@@ -10,7 +10,7 @@
   <title>m4music & umbraco</title>
 </head>
 <body>
-  <p-home>
+  <p-general>
     <o-header>
       <a-logo src=../../../img/logo.png href=../../../index.html></a-logo>
       <m-navigation>
@@ -78,41 +78,7 @@
         </ul>
       </m-navigation>
     </o-header>
-    <o-stage src=../../../img/stage.jpg>
-      <style>
-        *{
-          color: white;
-        }
-      </style>
-      <h2 style="font-size: 50px;">Hello</h2><p>no way</p>
-    </o-stage>
-    <o-highlight-list>
-      <h1>News</h1>
-      <m-highlight href=./baaahh>
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-        <img src=../../../img/GiuliaDabala.png />
-      </m-highlight>
-      <m-highlight href=#>
-        <img src=../../../img/GiuliaDabala.png />
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-      </m-highlight>
-      <m-highlight href=#>
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-        <img src=../../../img/GiuliaDabala.png />
-      </m-highlight>
-      <m-highlight href=#>
-        <img src=../../../img/GiuliaDabala.png />
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-      </m-highlight>
-    </o-highlight-list>
+    <o-general-get-news></o-general-get-news>
     <o-footer>
       <ul>
         <li>
@@ -184,7 +150,7 @@
         <li></li>
       </ul>
     </o-footer>
-  </p-home>
+  </p-general>
   <script rel=preload type=module>
     /**
     * First level controllers and organisms are loaded and defined here (loadChildComponents)
@@ -192,13 +158,11 @@
     Promise.all([
     // Controllers
     import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-    import('../../../es/components/pages/Home.js').then(module => ['p-home', module.default]),
+    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
     import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
-    import('../../../es/components/organisms/Stage.js').then(module => ['o-stage', module.default]),
-    import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
-    import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
+    import('../../../es/components/organisms/GeneralGetNews.js').then(module => ['o-general-get-news', module.default]),
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
