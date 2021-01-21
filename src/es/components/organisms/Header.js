@@ -65,17 +65,18 @@ export default class Header extends Shadow() {
           justify-content: space-between;
         }
         :host > header > m-navigation{
-          display: none;
           left: 0;
+          height: 0;
           max-height: calc(100vh - var(--height));
-          overflow-x: hidden;
-          overflow-y: auto;
+          overflow: hidden;
           position: absolute;
+          transition: height 0.2s ease;
           top: var(--height);
           width: 100%;
         }
         :host > header.open > m-navigation{
-          display: block;
+          height: 100vh;
+          overflow-y: auto;
         }
         :host  > header > a-menu-icon{
           display: block;

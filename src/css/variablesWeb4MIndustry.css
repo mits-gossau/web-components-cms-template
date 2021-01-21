@@ -1,0 +1,32 @@
+html {
+  --bg-color: #222; 
+  --content-margin: 40px;
+  --content-width: 80vw;
+  --font-color-hover: #8d4674;
+  --font-color: #777;
+  --font-color-footer-active: #cccccc;
+  --font-family-primary: "Circular", Helvetica, Arial, sans-serif;
+  --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
+  --font-weight: 300;
+  --footer-min-height-desktop: 250px;
+  --footer-min-height-mobile: 150px;
+  --header-height-desktop: 85px;
+  --header-height-mobile: 50px;
+  --hr-color: #e6e6e6;
+  font-family: var(--font-family-primary);
+  font-size: 10px;
+}
+/* sticky footer */
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+/* navigation open */
+body.no-scroll {
+  overflow: hidden;
+}
+/* hide component stuff before it is rendered */
+body, body a {
+  color: white;
+}

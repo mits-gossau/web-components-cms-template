@@ -107,8 +107,8 @@ export default class Footer extends Shadow() {
       aLink.textContent = a.textContent
       a.replaceWith(aLink)
       li.prepend(aLink)
+      this.footer.hidden = false
     }))
-    this.footer.hidden = false
   }
 
   /**

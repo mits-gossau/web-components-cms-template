@@ -84,9 +84,10 @@ export default class Navigation extends Shadow() {
       :host > nav > ul li:hover{
         cursor: pointer;
       }
-      :host > nav > ul li:hover ul,
-      :host > nav > ul li:focus-within ul,
-      :host > nav > ul li ul:hover{
+      ${this.getAttribute('hover') === 'true' && 
+        `:host > nav > ul li:hover ul,
+        :host > nav > ul li ul:hover,` || ''}
+      :host > nav > ul li:focus-within ul{
         display: block;
       }
       :host > nav > ul li ul li {
@@ -164,15 +165,22 @@ export default class Navigation extends Shadow() {
       aLink.textContent = a.textContent
       const arrow = new children[1][1]()
       arrow.setAttribute('direction', 'down')
-      arrow.addEventListener('click', event => {
+      const arrowClickListener = event => {
         li.classList.toggle('open')
         arrow.setAttribute('direction', li.classList.contains('open') ? 'up' : 'down')
+      }
+      arrow.addEventListener('click', arrowClickListener)
+      aLink.addEventListener('click', event => {
+        if (event.target && (!event.target.href || event.target.href === '#')) {
+          event.preventDefault()
+          arrowClickListener()
+        }
       })
       li.prepend(arrow)
       a.replaceWith(aLink)
       li.prepend(aLink)
+      this.nav.hidden = false
     }))
-    this.nav.hidden = false
   }
 
   /**
