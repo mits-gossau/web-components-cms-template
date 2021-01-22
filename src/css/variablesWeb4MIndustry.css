@@ -1,10 +1,11 @@
 html {
-  --bg-color: #222; 
+  --bg-color: #c2262f; 
   --content-margin: 40px;
   --content-width: 80vw;
-  --font-color-hover: #8d4674;
-  --font-color: #777;
-  --font-color-footer-active: #cccccc;
+  --font-color-hover: #b70e0c;
+  --font-color: black;
+  --font-color-h1: blue;
+  --font-color-footer-active: white;
   --font-family-primary: "Circular", Helvetica, Arial, sans-serif;
   --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
   --font-weight: 300;

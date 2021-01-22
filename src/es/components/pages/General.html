@@ -7,6 +7,10 @@
   <link href=../../../css/variablesM4music.css rel=stylesheet>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <script rel=preload type=module>
+    // the below javascript is purely for demonstrating the selection of different variable style sheets and can be ignored for the backend, since you select a variables.css with your templating engine
+    if (location.hash) document.querySelector('[rel=stylesheet]').href = `../../../css/${location.hash.replace('#', '')}`
+  </script>
   <title>m4music & umbraco</title>
 </head>
 <body>
