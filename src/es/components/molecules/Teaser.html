@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang=de>
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <link href=../../../../favicon.ico rel="shortcut icon" type=image/x-icon>
+  <!-- NOTE: Remove line Debugging.js below for none localhost -->
+  <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <title>teaser</title>
+</head>
+<body>
+  <m-teaser>
+    <h2>Hello World</h2>
+    <p>baaaahhhh</p>
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.m32hgt0RKShb5O7CFGJ0tQHaLH%26pid%3DApi&f=1">
+  </m-teaser>
+  <script rel=preload type=module>
+    /**
+    * First level controllers and organisms are loaded and defined here (loadChildComponents)
+    */
+    Promise.all([
+      // Controllers
+      import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
+      import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default])
+    ]).then(elements => elements.forEach(element => {
+      // don't define already existing customElements
+      if (element && !customElements.get(element[0])) customElements.define(...element)
+    }))
+  </script>
+</body>
+</html>
