@@ -11,8 +11,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  */
 export default class Footer extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     this.footer = document.createElement('footer')
     this.footer.hidden = true
@@ -44,7 +44,7 @@ export default class Footer extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
-        background-color: var(--bg-color);
+        background-color: var(--background-color);
         grid-area: footer;
         --padding: calc(var(--content-margin) / 2);
         --font-color-hover: white;

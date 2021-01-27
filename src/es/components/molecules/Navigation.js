@@ -11,8 +11,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  */
 export default class Navigation extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     this.nav = document.createElement('nav')
     this.nav.hidden = true
@@ -51,7 +51,7 @@ export default class Navigation extends Shadow() {
         --padding: 14px 10px;
       }
       :host ul{
-        background-color: var(--bg-color);
+        background-color: var(--background-color);
         list-style: none;
         margin: 0;
         padding: 0;
@@ -159,11 +159,11 @@ export default class Navigation extends Shadow() {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
-      const aLink = new children[0][1]()
+      const aLink = new children[0][1](undefined, {namespace: this.getAttribute('namespace') || ''})
       aLink.setAttribute('href', a.getAttribute('href'))
       aLink.setAttribute('text-transform', 'uppercase')
       aLink.textContent = a.textContent
-      const arrow = new children[1][1]()
+      const arrow = new children[1][1]({namespace: this.getAttribute('namespace') || ''})
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
         li.classList.toggle('open')

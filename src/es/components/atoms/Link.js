@@ -11,8 +11,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  */
 export default class Link extends Shadow() {
-  constructor (children = []) {
-    super()
+  constructor (children = [], ...args) {
+    super(...args)
 
     this.addedChildren = children
   }

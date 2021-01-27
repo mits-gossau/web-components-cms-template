@@ -1,12 +1,12 @@
 html {
-  --bg-color: #c2262f; 
+  --background-color: #c2262f; 
   --content-margin: 40px;
   --content-width: 80vw;
   --font-color-hover: #b70e0c;
   --font-color: black;
-  --font-color-h1: blue;
+  --h1-font-color: blue;
   --font-color-footer-active: white;
-  --font-family-primary: "Circular", Helvetica, Arial, sans-serif;
+  --font-family: "Circular", Helvetica, Arial, sans-serif;
   --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
   --font-weight: 300;
   --footer-min-height-desktop: 250px;
@@ -14,7 +14,7 @@ html {
   --header-height-desktop: 85px;
   --header-height-mobile: 50px;
   --hr-color: #e6e6e6;
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family);
   font-size: 10px;
 }
 /* sticky footer */

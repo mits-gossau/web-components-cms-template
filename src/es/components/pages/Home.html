@@ -11,9 +11,9 @@
 </head>
 <body>
   <p-home>
-    <o-header>
+    <o-header namespace=header->
       <a-logo src=../../../img/logo.png href=../../../index.html></a-logo>
-      <m-navigation hover="false">
+      <m-navigation hover="false" namespace=navigation->
         <ul>
           <li>
             <a href="#">Demotape Clinic</a>
@@ -78,12 +78,7 @@
         </ul>
       </m-navigation>
     </o-header>
-    <o-stage src=../../../img/stage.jpg>
-      <style>
-        *{
-          color: white;
-        }
-      </style>
+    <o-stage src=../../../img/stage.jpg namespace=stage->
       <h2 style="font-size: 50px;">Hello</h2><p>no way</p>
     </o-stage>
     <o-highlight-list>

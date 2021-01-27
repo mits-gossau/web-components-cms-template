@@ -11,8 +11,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  */
 export default class MenuIcon extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     this.width = this.getAttribute('width') ? this.getAttribute('width') : '35px'
     this.height = this.getAttribute('height') ? this.getAttribute('height') : '5px'

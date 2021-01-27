@@ -11,8 +11,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  */
 export default class Highlight extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     this.clickListener = event => {
       if (this.getAttribute('href')) location.href = this.getAttribute('href')
