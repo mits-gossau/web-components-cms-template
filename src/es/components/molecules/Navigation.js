@@ -171,7 +171,7 @@ export default class Navigation extends Shadow() {
       }
       arrow.addEventListener('click', arrowClickListener)
       aLink.addEventListener('click', event => {
-        if (event.target && (!event.target.href || event.target.href === '#')) {
+        if (event.target && (!event.target.getAttribute('href') || event.target.getAttribute('href') === '#')) {
           event.preventDefault()
           arrowClickListener()
         }
