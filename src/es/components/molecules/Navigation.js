@@ -4,11 +4,33 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Navigation hosts uls
+ * Example at: /src/es/components/pages/Home.html
  * As a molecule, this component shall hold Atoms
  *
  * @export
  * @class Navigation
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {boolean} [hover=false]
+ * }
+ * @css {
+ *  --content-spacing [40px]
+ *  --a-link-content-spacing [0]
+ *  --background-color [black]
+ *  --list-style [none]
+ *  --align-items [start]
+ *  --min-width [100px] of list items at second level
+ *  --padding-top [6px] first list item at second level
+ *  --hr-color [white]
+ *  --font-size-mobile [2rem]
+ *  --font-weight-mobile [600]
+ *  --text-align-mobile [center]
+ *  --justify-content-mobile [center]
+ *  --a-arrow-color [--color-hover, #777]
+ *  --min-height-mobile [50px]
+ *  --min-width-mobile [50px]
+ * }
  */
 export default class Navigation extends Shadow() {
   constructor (...args) {
@@ -45,25 +67,24 @@ export default class Navigation extends Shadow() {
     this.css = /* css */`
       :host{
         color: black;
-        --padding: calc(var(--content-spacing) / 2);
       }
       :host a-link {
-        --padding: 14px 10px;
+        --padding: var(--a-link-content-spacing, 14px 10px);
       }
       :host ul{
-        background-color: var(--background-color);
-        list-style: none;
+        background-color: var(--background-color, black);
+        list-style: var(--list-style, none);
         margin: 0;
         padding: 0;
       }
       :host > nav > ul{
-        align-items: center;
+        align-items: var(--align-items, center);
         display: flex;
-        padding: var(--padding) 0;
+        padding: calc(var(--content-spacing, 40px) / 2) 0;
       }
       :host > nav > ul > li{
         display: block;
-        padding: 0 10px;
+        padding: 0 calc(var(--content-spacing, 40px) / 4);
       }
       :host > nav > ul li{
         position: relative;
@@ -74,7 +95,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li ul{
         display: none;
-        padding-top: calc(var(--padding) - 1px);
+        padding-top: calc(var(--content-spacing, 40px) / 2 - 1px);
         position: absolute;
         width: max-content;
       }
@@ -91,32 +112,32 @@ export default class Navigation extends Shadow() {
         display: block;
       }
       :host > nav > ul li ul li {
-        min-width: 100px;
+        min-width: var(--min-width, 100px);
       }
       :host > nav > ul > li > ul > li:first-child{
-        padding-top: 6px;
-        border-top: 1px solid var(--color);
+        padding-top: var(--padding-top, 6px);
+        border-top: 1px solid var(--hr-color, white);
       }
       @media only screen and (max-width: 1000px) {
         :host {
-          --font-size: 2rem;
-          --font-weight: 600;
-          --text-align: center;
+          --font-size: var(--font-size-mobile, 2rem);
+          --font-weight: var(--font-weight-mobile, 600);
+          --text-align: var(--text-align-mobile, center);
         }
         :host > nav > ul{
           flex-direction: column;
           padding: 0;
         }
         :host > nav > ul li{
-          border-top: 1px solid var(--color);
+          border-top: 1px solid var(--hr-color, white);
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          justify-content: var(--justify-content-mobile, center);
           padding: 0;
           width: 100%;
         }
         :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
-          --color: var(--color-hover);
+          --color: var(--a-arrow-color, var(--color-hover, #777));
         }
         :host > nav > ul li > a-link{
           flex-grow: 1;
@@ -126,11 +147,11 @@ export default class Navigation extends Shadow() {
         }
         :host > nav > ul > li a-arrow {
           display: block;
-          min-height: 50px;
-          min-width: 50px;
+          min-height: var(--min-height-mobile, 50px);
+          min-width: var(--min-width-mobile, 50px);
         }
         :host > nav > ul li ul{
-          --font-weight: 300;
+          --font-weight: calc(var(--font-weight) / 2);
           padding: 0;
           position: unset;
           width: 100%;

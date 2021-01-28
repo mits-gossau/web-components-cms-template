@@ -4,11 +4,22 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Logo is the navigation logo
+ * Example at: /src/es/components/pages/Home.html
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
  * @class Logo
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} src used for the image source
+ *  {string} href used for the link reference
+ * }
+ * @css {
+ *  --content-spacing [40px]
+ *  --height-desktop [85px]
+ *  --height-mobile [50px]
+ * }
  */
 export default class Logo extends Shadow() {
   connectedCallback () {
@@ -49,12 +60,12 @@ export default class Logo extends Shadow() {
       }
       :host img{
         display: block;
-        height: calc(var(--height) - 40px);
+        height: calc(var(--height-desktop, 85px) - var(--content-spacing, 40px));
         object-fit: scale-down;
       }
       @media only screen and (max-width: 1000px) {
         :host img{
-          height: calc(var(--height) - var(--content-spacing) / 2);
+          height: calc(var(--height-mobile, 50px) - var(--content-spacing, 40px) / 2);
         }
       }
     `

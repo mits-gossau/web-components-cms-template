@@ -72,13 +72,15 @@ export default class Header extends Shadow() {
       }
       :host  > header > a-menu-icon{
         display: none;
+        --background-color: var(--color, #777);
       }
       @media only screen and (max-width: 1000px) {
-        :host > header{
+        :host > header {
+          height: var(--height-mobile, 50px);
           flex-direction: var(--flex-direction-mobile, row-reverse);
           justify-content: var(--justify-content-mobile, space-between);
         }
-        :host > header > m-navigation{
+        :host > header > m-navigation {
           left: 0;
           height: 0;
           max-height: calc(100vh - var(--height-mobile, 50px));
@@ -121,6 +123,7 @@ export default class Header extends Shadow() {
       })
       header.appendChild(MenuIcon)
     })
+    self.addEventListener('resize', event => document.body.classList.remove('no-scroll'))
   }
 
   /**
