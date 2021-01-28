@@ -27,8 +27,8 @@ html {
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
   --navigation-color: var(--color-secondary);
-  --navigation-hr-color: var(--navigation-color);
   --navigation-content-spacing: var(--content-spacing);
+  --navigation-hr-color: var(--navigation-color);
   --stage-arrow-color: var(--color-secondary);
   color: var(--color);
   font-family: var(--font-family);

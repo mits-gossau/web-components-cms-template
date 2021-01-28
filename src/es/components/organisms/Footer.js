@@ -18,6 +18,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --content-spacing [40px]
  *  --a-link-content-spacing [0]
  *  --a-link-font-size [1.5rem]
+ *  --a-link-font-size-2 [1rem]
  *  --list-style [none]
  *  --align-items [start]
  *  --font-size [2.5rem]
@@ -69,6 +70,9 @@ export default class Footer extends Shadow() {
       :host > footer > ul > li > a-link {
         --font-size: var(--a-link-font-size, 1.5rem);
         display: block;
+      }
+      :host > footer > ul > li > ul a-link {
+        --font-size: var(--a-link-font-size-2, 1rem);
       }
       :host ul{
         list-style: var(--list-style, none);

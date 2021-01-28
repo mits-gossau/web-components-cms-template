@@ -17,6 +17,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @css {
  *  --content-spacing [40px]
  *  --a-link-content-spacing [0]
+ *  --a-link-font-size [1rem]
  *  --background-color [black]
  *  --list-style [none]
  *  --align-items [start]
@@ -70,6 +71,7 @@ export default class Navigation extends Shadow() {
       }
       :host a-link {
         --padding: var(--a-link-content-spacing, 14px 10px);
+        --font-size: var(--a-link-font-size, 1rem);
       }
       :host ul{
         background-color: var(--background-color, black);

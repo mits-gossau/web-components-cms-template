@@ -5,21 +5,35 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
-  --background-color: #c2262f; 
+  --color-hover: #8d4674;
+  --color-secondary: black;
+  --color: black;
   --content-spacing: 40px;
   --content-width: 80vw;
-  --color-hover: #b70e0c;
-  --color: black;
-  --h1-color: blue;
-  --footer-color-active: white;
-  --font-family: "Circular", Helvetica, Arial, sans-serif;
   --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
+  --font-family: "Circular", Helvetica, Arial, sans-serif;
   --font-weight: 300;
+  --footer-a-link-font-size: 2rem;
+  --footer-a-link-font-size-2: 1.5rem;
+  --footer-background-color: #343227; 
+  --footer-color-hover: white;
+  --footer-color: rgb(198, 2, 25);
   --footer-min-height-desktop: 250px;
   --footer-min-height-mobile: 150px;
+  --header-background-color: #F6F6F4; 
+  --header-color: var(--color-secondary);
+  --header-content-spacing: var(--content-spacing);
   --header-height-desktop: 85px;
   --header-height-mobile: 50px;
   --hr-color: #e6e6e6;
+  --navigation-a-link-font-size: 2rem;
+  --navigation-background-color: var(--header-background-color); 
+  --navigation-color-hover: var(--color-secondary);
+  --navigation-color: var(--color-secondary);
+  --navigation-content-spacing: var(--content-spacing);
+  --navigation-hr-color: var(--navigation-color);
+  --stage-arrow-color: var(--color-secondary);
+  color: var(--color);
   font-family: var(--font-family);
   font-size: 10px;
 }
@@ -32,8 +46,4 @@ body {
 /* navigation open */
 body.no-scroll {
   overflow: hidden;
-}
-/* hide component stuff before it is rendered */
-body, body a {
-  color: white;
 }
