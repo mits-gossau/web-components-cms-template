@@ -47,13 +47,11 @@ export default class Footer extends Shadow() {
         background-color: var(--background-color);
         grid-area: footer;
         --padding: calc(var(--content-margin) / 2);
-        --font-color-hover: white;
       }
       :host a-link {
         --padding: 0;
       }
       :host > footer > ul > li > a-link {
-        --font-color: var(--font-color-footer-active);
         --font-size: 1.5rem;
         display: block;
         padding-bottom: 1rem;
@@ -101,7 +99,7 @@ export default class Footer extends Shadow() {
   renderHTML () {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
-      const aLink = new children[0][1](a.children)
+      const aLink = new children[0][1](a.children, {namespace: this.getAttribute('namespace') || ''})
       aLink.setAttribute('href', a.getAttribute('href'))
       aLink.setAttribute('text-transform', 'uppercase')
       aLink.textContent = a.textContent

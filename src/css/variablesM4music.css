@@ -1,27 +1,35 @@
+/**
+ * Variables naming rule: --{selector aka component aka namespace}-{css property}-{pseudo class or media query name} eg. --p-background-color-hover-desktop
+ * NOTE: Within the component don't use any name spacing eg. component header don't use --header-color just use --color the namespace can be added by the Shadow as an html attribute
+ * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
+ * - if a component holds other components you should share the attribute namespace with its children
+ */
 html {
+  --color-hover: #8d4674;
+  --color-secondary: #777;
+  --color: black;
   --content-margin: 40px;
   --content-width: 80vw;
-  --font-color-footer-active: #cccccc;
-  --font-color-hover: #8d4674;
-  --font-color: black;
-  --font-color-secondary: #777;
-  --font-family: "Circular", Helvetica, Arial, sans-serif;
   --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
+  --font-family: "Circular", Helvetica, Arial, sans-serif;
   --font-weight: 300;
+  --footer-background-color: var(--header-background-color); 
+  --footer-color-hover: var(--navigation-color-hover);
+  --footer-color: var(--color-secondary);
   --footer-min-height-desktop: 250px;
   --footer-min-height-mobile: 150px;
   --header-background-color: #222; 
+  --header-color: var(--color-secondary);
   --header-content-margin: var(--content-margin);
-  --header-font-color: var(--font-color-secondary);
   --header-height-desktop: 85px;
   --header-height-mobile: 50px;
   --hr-color: #e6e6e6;
   --navigation-background-color: var(--header-background-color); 
+  --navigation-color-hover: white;
+  --navigation-color: var(--color-secondary);
   --navigation-content-margin: var(--content-margin);
-  --navigation-font-color: var(--font-color-secondary);
-  --navigation-font-color-hover: white;
-  --stage-arrow-font-color: var(--font-color-secondary);
-  color: var(--font-color);
+  --stage-arrow-color: var(--color-secondary);
+  color: var(--color);
   font-family: var(--font-family);
   font-size: 10px;
 }

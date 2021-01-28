@@ -48,7 +48,7 @@ export default class Link extends Shadow() {
     this.css = /* css */`
       :host > a{
         box-sizing: border-box;
-        color: var(--font-color);
+        color: var(--color);
         display: block;
         font-size: var(--font-size, 1.2rem);
         font-weight: var(--font-weight, 300);
@@ -60,7 +60,7 @@ export default class Link extends Shadow() {
         width: 100%;
       }
       :host > a:hover{
-        color: var(--font-color-hover);
+        color: var(--color-hover);
       }
     `
   }

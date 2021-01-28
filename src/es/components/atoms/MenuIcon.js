@@ -64,7 +64,7 @@ export default class MenuIcon extends Shadow() {
       .${this.barClass}1, .${this.barClass}2, .${this.barClass}3 {
         width: ${this.width};
         height: ${this.height};
-        background-color: ${this.getAttribute('color') ? this.getAttribute('color') : 'var(--font-color, #333)'};
+        background-color: ${this.getAttribute('color') ? this.getAttribute('color') : 'var(--color, #333)'};
         margin: 0;
         transition: ${this.transition};
       }

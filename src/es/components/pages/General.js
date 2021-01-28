@@ -4,6 +4,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * General is simply a grid which expects certain grid-areas
  * As a page, this component becomes a domain dependent container and shall hold organisms, molecules and/or atoms
  *
  * @export

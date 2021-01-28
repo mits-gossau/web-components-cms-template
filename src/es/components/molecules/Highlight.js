@@ -70,7 +70,7 @@ export default class Highlight extends Shadow() {
         margin: 0;
       }
       section:hover h2 {
-        color: var(--font-color-hover);
+        color: var(--color-hover);
       }
       figure {
         display: flex;

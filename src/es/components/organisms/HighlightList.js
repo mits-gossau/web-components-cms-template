@@ -4,6 +4,8 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * HighlightList is the wrapper of molecules/Highlight.js which also styles a title/h1 for the list of highlights
+ * Example at: /src/es/components/pages/Home.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
@@ -14,7 +16,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --content-margin [40px]
  *  --hr-color [black]
  *  --content-width [80vw]
- *  --font-color [black]
+ *  --color [black]
  *  --font-family-secondary
  *  --font-size [2.5rem]
  *  --font-weight [300]
@@ -59,7 +61,7 @@ export default class HighlightList extends Shadow() {
         width: var(--content-width, 80vw);
       }
       :host > h1 {
-        color: var(--font-color, black);
+        color: var(--color, black);
         display: block;
         font-family: var(--font-family-secondary);
         font-size: var(--font-size, 2.5rem);

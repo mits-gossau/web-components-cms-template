@@ -95,7 +95,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul > li > ul > li:first-child{
         padding-top: 6px;
-        border-top: 1px solid var(--font-color);
+        border-top: 1px solid var(--color);
       }
       @media only screen and (max-width: 1000px) {
         :host {
@@ -108,7 +108,7 @@ export default class Navigation extends Shadow() {
           padding: 0;
         }
         :host > nav > ul li{
-          border-top: 1px solid var(--font-color);
+          border-top: 1px solid var(--color);
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
@@ -116,7 +116,7 @@ export default class Navigation extends Shadow() {
           width: 100%;
         }
         :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
-          --font-color: var(--font-color-hover);
+          --color: var(--color-hover);
         }
         :host > nav > ul li > a-link{
           flex-grow: 1;

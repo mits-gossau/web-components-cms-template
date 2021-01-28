@@ -54,7 +54,7 @@ export default class Arrow extends Shadow() {
     this.css = /* css */`
       :host > span{
         align-items: center;
-        color: var(--font-color);
+        color: var(--color);
         cursor: pointer;
         display: flex;
         font-size: var(--font-size, 1.2rem);
@@ -63,7 +63,7 @@ export default class Arrow extends Shadow() {
         width: 100%;
       }
       :host > span:hover{
-        color: var(--font-color-hover);
+        color: var(--color-hover);
       }
       :host > span.up{
         transform: rotate(90deg);

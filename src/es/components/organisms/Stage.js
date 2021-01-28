@@ -4,6 +4,8 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Stage is an image with text acting as a viewport cover, which can be clicked/scrolled away
+ * Example at: /src/es/components/pages/Home.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
@@ -14,7 +16,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --content-margin [40px]
  *  --arrow-font-size [3rem]
  *  --bottom [100px] overlay text position absolute at bottom
- *  --font-color, white
+ *  --color, white
  * }
  * @attribute {src} background image source link
  */
@@ -81,7 +83,7 @@ export default class Stage extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host{
-        color: var(--font-color, white);
+        color: var(--color, white);
         grid-area: stage;
         box-sizing: border-box;
         display: flex;
@@ -96,7 +98,7 @@ export default class Stage extends Shadow() {
         width: 100%;
       }
       :host > a-arrow {
-        --font-color: var(--arrow-font-color, white);
+        --color: var(--arrow-color, white);
         --font-size: var(--arrow-font-size, 3rem);
         animation: bounce 3s infinite;
         bottom: calc(var(--content-margin, 40px) / 2);

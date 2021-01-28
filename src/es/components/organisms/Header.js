@@ -4,6 +4,8 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Header can be sticky and hosts as a flex mostly a logo and a navigation
+ * Example at: /src/es/components/pages/Home.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export

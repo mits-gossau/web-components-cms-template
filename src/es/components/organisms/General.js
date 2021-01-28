@@ -39,7 +39,7 @@ export default class General extends Shadow() {
         width: var(--content-width);
       }
       h1 {
-        color: var(--h1-font-color, var(--font-color, black));
+        color: var(--h1-color, var(--color, black));
         font-size: 6rem;
       }
       h2 {
