@@ -20,7 +20,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --height-desktop [85px]
  *  --justify-content-desktop [space-between]
  *  --justify-content-mobile [space-between]
- *  --content-margin [40px]
+ *  --content-spacing [40px]
  *  --flex-direction-mobile [row-reverse]
  *  --height-mobile [50px]
  * }
@@ -68,7 +68,7 @@ export default class Header extends Shadow() {
         display: flex;
         height: var(--height-desktop, 85px);
         justify-content: var(--justify-content-desktop, space-between);
-        padding: 0 calc(var(--content-margin, 40px) / 2);
+        padding: 0 calc(var(--content-spacing, 40px) / 2);
       }
       :host  > header > a-menu-icon{
         display: none;

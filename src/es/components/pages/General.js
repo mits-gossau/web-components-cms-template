@@ -42,7 +42,7 @@ export default class General extends Shadow() {
       :host {
         display: grid;
         grid-template-areas: "header"
-                             "general"
+                             "body"
                              "footer";
         grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
         grid-template-columns: 1fr;

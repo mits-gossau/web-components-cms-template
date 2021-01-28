@@ -1,16 +1,24 @@
 // @ts-check
-import { Shadow } from '../prototypes/Shadow.js'
+import Body from './Body.js'
 
 /* global HTMLElement */
 
 /**
+ * Extends Body.js and renders the getNews api call at the connectedCallback
+ * Example at: /src/es/components/pages/GeneralGetNews.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
- * @class GeneralGetNews
+ * @class BodyGetNews
  * @type {CustomElementConstructor}
+ * @html {
+ *  section no section element is expected to make the api call
+ * }
+ * @css {
+ *  NOTE: grid-area: body;
+ * }
  */
-export default class GeneralGetNews extends Shadow() {
+export default class BodyGetNews extends Body {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
@@ -21,51 +29,8 @@ export default class GeneralGetNews extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
-    return !this.root.querySelector('style[_css]')
-  }
-
-  /**
-   * evaluates if a render is necessary
-   *
-   * @return {boolean}
-   */
   shouldComponentRenderHTML () {
     return !this.section
-  }
-
-  /**
-   * renders the o-highlight-list css
-   *
-   * @return {void}
-   */
-  renderCSS () {
-    this.css = /* css */`
-      :host {
-        grid-area: general;
-      }
-      :host > * {
-        margin: var(--content-margin) auto;
-        width: var(--content-width);
-      }
-      h1 {
-        font-size: 6rem;
-      }
-      h2 {
-        font-size: 5rem;
-        font-family: var(--font-family-secondary);
-      }
-      h3 {
-        font-size: 3rem;
-      }
-      h4 {
-        font-size: 2rem;
-      }
-      p {
-        font-size: 1.5rem;
-        font-family: var(--font-family-secondary);
-      }
-    `
   }
 
   /**
@@ -81,7 +46,7 @@ export default class GeneralGetNews extends Shadow() {
       this.html = ''
       json.news.forEach(newsEl => {
         this.html = /* html */`
-          <h2>${newsEl.title}</h2>${newsEl.abstract}<p><time>${newsEl.updateDate}</time></p>
+          <section><h2>${newsEl.title}</h2>${newsEl.abstract}<p><time>${newsEl.updateDate}</time></p></section>
         `
       })
     }

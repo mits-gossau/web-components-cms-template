@@ -54,7 +54,7 @@ export default class Logo extends Shadow() {
       }
       @media only screen and (max-width: 1000px) {
         :host img{
-          height: calc(var(--height) - var(--content-margin) / 2);
+          height: calc(var(--height) - var(--content-spacing) / 2);
         }
       }
     `

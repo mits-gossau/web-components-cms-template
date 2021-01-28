@@ -4,11 +4,24 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Footer is sticky and hosts uls
+ * Example at: /src/es/components/pages/Home.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
  * @class Footer
  * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-area: footer;
+ *  --background-color [black]
+ *  --z-index [100]
+ *  --content-spacing [40px]
+ *  --a-link-content-spacing [0]
+ *  --a-link-font-size [1.5rem]
+ *  --list-style [none]
+ *  --align-items [start]
+ *  --font-size [2.5rem]
+ * }
  */
 export default class Footer extends Shadow() {
   constructor (...args) {
@@ -44,40 +57,38 @@ export default class Footer extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
-        background-color: var(--background-color);
         grid-area: footer;
-        --padding: calc(var(--content-margin) / 2);
+        z-index: var(--z-index, 100);
+      }
+      :host > footer {
+        background-color: var(--background-color, black);
       }
       :host a-link {
-        --padding: 0;
+        --padding: var(--a-link-content-spacing, 0);
       }
       :host > footer > ul > li > a-link {
-        --font-size: 1.5rem;
+        --font-size: var(--a-link-font-size, 1.5rem);
         display: block;
-        padding-bottom: 1rem;
       }
       :host ul{
-        list-style: none;
-        margin: var(--content-margin) auto 0;
+        list-style: var(--list-style, none);
+        margin: calc(var(--content-spacing, 40px) / 2) auto 0;
         padding: 0;
       }
-      :host ul:last-child{
-        margin: 0 auto var(--content-margin);
-      }
       :host > footer > ul{
-        align-items: start;
+        align-items: var(--align-items, start);
         display: flex;
         flex-wrap: wrap;
-        padding: var(--padding) var(--content-margin);
+        padding: calc(var(--content-spacing, 40px) / 2) var(--content-spacing, 40px);
       }
       :host > footer > ul > li{
-        font-size: 25px;
+        font-size: var(--font-size, 2.5rem);
       }
       :host > footer > ul li:hover{
         cursor: pointer;
       }
       :host > footer > ul > li{
-        margin-right: calc(var(--content-margin) / 4);
+        margin: calc(var(--content-spacing, 40px) / 2) var(--content-spacing, 40px) 0 0;
       }
       :host > footer > ul li{
         padding-bottom: .5rem;

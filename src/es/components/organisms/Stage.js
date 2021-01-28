@@ -13,7 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @css {
  *  NOTE: grid-area: stage;
- *  --content-margin [40px]
+ *  --content-spacing [40px]
  *  --arrow-font-size [3rem]
  *  --bottom [100px] overlay text position absolute at bottom
  *  --color, white
@@ -101,7 +101,7 @@ export default class Stage extends Shadow() {
         --color: var(--arrow-color, white);
         --font-size: var(--arrow-font-size, 3rem);
         animation: bounce 3s infinite;
-        bottom: calc(var(--content-margin, 40px) / 2);
+        bottom: calc(var(--content-spacing, 40px) / 2);
         position: absolute;
       }
       :host > section {

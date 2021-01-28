@@ -13,7 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @css {
  *  NOTE: grid-area: highlight-list;
- *  --content-margin [40px]
+ *  --content-spacing [40px]
  *  --hr-color [black]
  *  --content-width [80vw]
  *  --color [black]
@@ -47,7 +47,7 @@ export default class HighlightList extends Shadow() {
     this.css = /* css */`
       :host {
         grid-area: highlight-list;
-        margin: var(--content-margin, 40px) auto;
+        margin: var(--content-spacing, 40px) auto;
       }
       :host > *:not(style):not(h1):first-Child {
         border-top: 1px solid var(--hr-color, black);
@@ -55,8 +55,8 @@ export default class HighlightList extends Shadow() {
       :host > *:not(style) {
         border-bottom: 1px solid var(--hr-color, black);
         display: flex;
-        gap: calc(var(--content-margin, 40px) / 2);
-        padding: var(--content-margin, 40px) 0;
+        gap: calc(var(--content-spacing, 40px) / 2);
+        padding: var(--content-spacing, 40px) 0;
         margin: 0 auto;
         width: var(--content-width, 80vw);
       }

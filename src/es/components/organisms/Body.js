@@ -4,13 +4,22 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Defines a body body for content and maps variables to global tags
+ * Example at: /src/es/components/pages/General.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
- * @class General
+ * @class Body
  * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-area: body;
+ *  --content-spacing [40px]
+ *  --content-width [80vw]
+ *  --h1-color [--color, black]
+ *  --font-family-secondary
+ * }
  */
-export default class General extends Shadow() {
+export default class Body extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
@@ -32,11 +41,11 @@ export default class General extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
-        grid-area: general;
+        grid-area: body;
       }
       :host > * {
-        margin: var(--content-margin) auto;
-        width: var(--content-width);
+        margin: var(--content-spacing, 40px) auto;
+        width: var(--content-width, 80vw);
       }
       h1 {
         color: var(--h1-color, var(--color, black));

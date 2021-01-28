@@ -45,7 +45,7 @@ export default class Navigation extends Shadow() {
     this.css = /* css */`
       :host{
         color: black;
-        --padding: calc(var(--content-margin) / 2);
+        --padding: calc(var(--content-spacing) / 2);
       }
       :host a-link {
         --padding: 14px 10px;
