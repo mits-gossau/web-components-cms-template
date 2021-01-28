@@ -49,10 +49,10 @@ export default class HighlightList extends Shadow() {
         grid-area: highlight-list;
         margin: var(--content-spacing, 40px) auto;
       }
-      :host > *:not(style):not(h1):first-Child {
+      :host > m-highlight:first-Child {
         border-top: 1px solid var(--hr-color, black);
       }
-      :host > *:not(style) {
+      :host > m-highlight {
         border-bottom: 1px solid var(--hr-color, black);
         display: flex;
         gap: calc(var(--content-spacing, 40px) / 2);
@@ -70,7 +70,7 @@ export default class HighlightList extends Shadow() {
         text-transform: var(--text-transform, uppercase);
       }
       @media only screen and (max-width: 1000px) {
-        :host > *:not(style) {
+        :host > m-highlight {
           flex-wrap: wrap;
         }
       }

@@ -11,6 +11,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @export
  * @class Highlight
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} href used for the link reference
+ * }
  * @css {
  *  --margin [0 0 1rem 0]
  *  --color-hover [#8d4674]
