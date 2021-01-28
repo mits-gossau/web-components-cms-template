@@ -1,2 +1,2 @@
 # web-components-cms-template
-m4music example
+A complete, ultra flexible web components template for any cms rendering engine
