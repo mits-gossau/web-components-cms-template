@@ -1,5 +1,5 @@
 html {
-  --bg-color: #c2262f; 
+  --background-color: #c2262f; 
   --content-margin: 40px;
   --content-width: 80vw;
   --font-color-hover: #b70e0c;
@@ -9,6 +9,8 @@ html {
   --font-family-primary: "Circular", Helvetica, Arial, sans-serif;
   --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
   --font-weight: 300;
+  --font-size-p: 1.6rem;
+  --font-size-h2: 2.4rem;
   --footer-min-height-desktop: 250px;
   --footer-min-height-mobile: 150px;
   --header-height-desktop: 85px;
