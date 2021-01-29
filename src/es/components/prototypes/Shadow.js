@@ -59,6 +59,22 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
   }
 
   /**
+   * Lifecycle callback, triggered when node is attached to the dom
+   * must be here as a placeholder
+   *
+   * @return {void}
+   */
+  connectedCallback () {}
+
+  /**
+   * Lifecycle callback, triggered when node is detached from the dom
+   * must be here as a placeholder
+   *
+   * @return {void}
+   */
+  disconnectedCallback () {}
+
+  /**
    * Helper function to parse object strings within attributes
    * return object if JSON parsable or null
    *

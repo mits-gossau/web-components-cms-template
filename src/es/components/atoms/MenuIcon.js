@@ -4,21 +4,31 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * MenuIcon is the mobile hamburger menu icon
+ * Example at: /src/es/components/pages/Home.html
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
  * @class MenuIcon
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} [openClass=open]
+ *  {string} [barClass=bar]
+ *  {string} [transition=0.2s]
+ * }
+ * @css {
+ *  --height [5px]
+ *  --width [35px]
+ *  --background-color [white]
+ *  --transition [0.2s]
+ * }
  */
 export default class MenuIcon extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
-    this.width = this.getAttribute('width') ? this.getAttribute('width') : '35px'
-    this.height = this.getAttribute('height') ? this.getAttribute('height') : '5px'
     this.openClass = this.getAttribute('openClass') ? this.getAttribute('openClass') : 'open'
     this.barClass = this.getAttribute('barClass') ? this.getAttribute('barClass') : 'bar'
-    this.transition = this.getAttribute('transition') ? this.getAttribute('transition') : '0.2s'
 
     this.addEventListener('click', event => this.toggleAnimationClass())
   }
@@ -55,26 +65,26 @@ export default class MenuIcon extends Shadow() {
       :host {
         display: inline-block;
         cursor: pointer;
-        transition: ${this.transition};
-        padding: 0 calc(${this.width} / 4) !important;
+        transition: var(--transition, 0.2s);
+        padding: 0 calc(var(--width, 35px) / 4) !important;
       }
       :host(.${this.openClass}) {
-        padding: 0 calc(${this.width} / 4) !important;
+        padding: 0 calc(var(--width, 35px) / 4) !important;
       }
       .${this.barClass}1, .${this.barClass}2, .${this.barClass}3 {
-        width: ${this.width};
-        height: ${this.height};
-        background-color: ${this.getAttribute('color') ? this.getAttribute('color') : 'var(--font-color, #333)'};
+        width: var(--width, 35px);
+        height: var(--height, 5px);
+        background-color: var(--background-color, white);
         margin: 0;
-        transition: ${this.transition};
+        transition: var(--transition, 0.2s);
       }
       .${this.barClass}2 {
-        margin: ${this.height} 0;
-        transition: ${this.transition} / 2;
+        margin: var(--height, 5px) 0;
+        transition: var(--transition, 0.2s);
       }
       /* Rotate first ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}1, :host(.${this.openClass}) .${this.barClass}2 {
-        transform: rotate(-45deg) translateY(calc(${this.height} * 5.5 / 2));
+        transform: rotate(-45deg) translateY(calc(var(--height, 5px) * 5.5 / 2));
       }
       /* Fade out the second ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}2 {
@@ -82,7 +92,7 @@ export default class MenuIcon extends Shadow() {
       }
       /* Rotate last ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}3 {
-        transform: rotate(45deg) translateY(calc(-${this.height} * 5.5 / 2));
+        transform: rotate(45deg) translateY(calc(var(--height, 5px) * -5.5 / 2));
       }
     `
   }

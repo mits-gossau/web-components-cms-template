@@ -4,11 +4,26 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Header can be sticky and hosts as a flex mostly a logo and a navigation
+ * Example at: /src/es/components/pages/Home.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
  * @class Header
  * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-area: header;
+ *  --position [sticky]
+ *  --z-index [100]
+ *  --align-items [center]
+ *  --background-color [black]
+ *  --height-desktop [85px]
+ *  --justify-content-desktop [space-between]
+ *  --justify-content-mobile [space-between]
+ *  --content-spacing [40px]
+ *  --flex-direction-mobile [row-reverse]
+ *  --height-mobile [50px]
+ * }
  */
 export default class Header extends Shadow() {
   connectedCallback () {
@@ -43,35 +58,36 @@ export default class Header extends Shadow() {
     this.css = /* css */`
       :host {
         grid-area: header;
-        position: sticky;
+        position: var(--position, sticky);
         top: 0;
-        z-index: 100;
+        z-index: var(--z-index, 100);
       }
       :host > header {
-        align-items: center;
-        background-color: var(--bg-color);
-        --font-color-hover: white;
+        align-items: var(--align-items, center);
+        background-color: var(--background-color, black);
         display: flex;
-        height: var(--height);
-        justify-content: space-between;
-        padding: 0 calc(var(--content-margin) / 2);
+        height: var(--height-desktop, 85px);
+        justify-content: var(--justify-content-desktop, space-between);
+        padding: 0 calc(var(--content-spacing, 40px) / 2);
       }
       :host  > header > a-menu-icon{
         display: none;
+        --background-color: var(--color, #777);
       }
-      @media only screen and (max-width: 1000px) {
-        :host > header{
-          flex-direction: row-reverse;
-          justify-content: space-between;
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > header {
+          height: var(--height-mobile, 50px);
+          flex-direction: var(--flex-direction-mobile, row-reverse);
+          justify-content: var(--justify-content-mobile, space-between);
         }
-        :host > header > m-navigation{
+        :host > header > m-navigation {
           left: 0;
           height: 0;
-          max-height: calc(100vh - var(--height));
+          max-height: calc(100vh - var(--height-mobile, 50px));
           overflow: hidden;
           position: absolute;
           transition: height 0.2s ease;
-          top: var(--height);
+          top: var(--height-mobile, 50px);
           width: 100%;
         }
         :host > header.open > m-navigation{
@@ -80,7 +96,6 @@ export default class Header extends Shadow() {
         }
         :host  > header > a-menu-icon{
           display: block;
-          padding-right: 10px;
         }
         :host > header > a-logo{
           flex-grow: 1;
@@ -100,7 +115,7 @@ export default class Header extends Shadow() {
       if (node !== header) header.appendChild(node)
     })
     this.loadChildComponents().then(children => {
-      const MenuIcon = new children[0][1]()
+      const MenuIcon = new children[0][1]({namespace: this.getAttribute('namespace') || ''})
       MenuIcon.addEventListener('click', event => {
         header.classList.toggle('open')
         const isOpen = header.classList.contains('open')
@@ -108,6 +123,7 @@ export default class Header extends Shadow() {
       })
       header.appendChild(MenuIcon)
     })
+    self.addEventListener('resize', event => document.body.classList.remove('no-scroll'))
   }
 
   /**

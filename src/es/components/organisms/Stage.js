@@ -4,15 +4,25 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Stage is an image with text acting as a viewport cover, which can be clicked/scrolled away
+ * Example at: /src/es/components/pages/Home.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
  * @class Stage
  * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-area: stage;
+ *  --content-spacing [40px]
+ *  --arrow-font-size [3rem]
+ *  --bottom [100px] overlay text position absolute at bottom
+ *  --color, white
+ * }
+ * @attribute {src} background image source link
  */
 export default class Stage extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     const section = document.createElement('section')
     Array.from(this.root.children).forEach(node => section.appendChild(node))
@@ -73,7 +83,8 @@ export default class Stage extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host{
-        --font-size: 3rem;
+        color: var(--color, white);
+        grid-area: stage;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
@@ -87,12 +98,14 @@ export default class Stage extends Shadow() {
         width: 100%;
       }
       :host > a-arrow {
+        --color: var(--arrow-color, white);
+        --font-size: var(--arrow-font-size, 3rem);
         animation: bounce 3s infinite;
-        bottom: calc(var(--content-margin) / 2);
+        bottom: calc(var(--content-spacing, 40px) / 2);
         position: absolute;
       }
       :host > section {
-        bottom: ${this.getAttribute('bottom') || '100px'};
+        bottom: var(--bottom, 100px);
         position: absolute;
       }
       @keyframes bounce {
@@ -109,7 +122,7 @@ export default class Stage extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.html = `<img src=${this.getAttribute('src')}><a-arrow direction=up></a-arrow>`
+    this.html = `<img src=${this.getAttribute('src')}><a-arrow direction=up namespace=${this.getAttribute('namespace') || ''}></a-arrow>`
   }
 
   /**

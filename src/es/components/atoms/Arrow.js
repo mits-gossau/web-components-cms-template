@@ -4,11 +4,21 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Arrow is an icon
+ * Example at: /src/es/components/pages/Home.html
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
  * @class Arrow
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {up, right, down, left} [direction=left]
+ * }
+ * @css {
+ *  --color [#777]
+ *  --font-size [1.2rem]
+ *  --color-hover [white]
+ * }
  */
 export default class Arrow extends Shadow() {
   static get observedAttributes () {
@@ -54,7 +64,7 @@ export default class Arrow extends Shadow() {
     this.css = /* css */`
       :host > span{
         align-items: center;
-        color: var(--font-color);
+        color: var(--color, #777);
         cursor: pointer;
         display: flex;
         font-size: var(--font-size, 1.2rem);
@@ -63,7 +73,7 @@ export default class Arrow extends Shadow() {
         width: 100%;
       }
       :host > span:hover{
-        color: var(--font-color-hover);
+        color: var(--color-hover, white);
       }
       :host > span.up{
         transform: rotate(90deg);

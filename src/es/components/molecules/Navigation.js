@@ -4,15 +4,39 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Navigation hosts uls
+ * Example at: /src/es/components/pages/Home.html
  * As a molecule, this component shall hold Atoms
  *
  * @export
  * @class Navigation
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {boolean} [hover=false]
+ * }
+ * @css {
+ *  --content-spacing [40px]
+ *  --a-link-content-spacing [0]
+ *  --a-link-font-size [1rem]
+ *  --background-color [black]
+ *  --list-style [none]
+ *  --align-items [start]
+ *  --min-width [100px] of list items at second level
+ *  --padding-top [6px] first list item at second level
+ *  --hr-color [white]
+ *  --a-link-font-size-mobile [2rem]
+ *  --font-weight-mobile [600]
+ *  --a-link-text-align-mobile [center]
+ *  --justify-content-mobile [center]
+ *  --a-arrow-color-hover [--color-hover, white]
+ *  --a-arrow-color [#777]
+ *  --min-height-mobile [50px]
+ *  --min-width-mobile [50px]
+ * }
  */
 export default class Navigation extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     this.nav = document.createElement('nav')
     this.nav.hidden = true
@@ -45,25 +69,25 @@ export default class Navigation extends Shadow() {
     this.css = /* css */`
       :host{
         color: black;
-        --padding: calc(var(--content-margin) / 2);
       }
       :host a-link {
-        --padding: 14px 10px;
+        --padding: var(--a-link-content-spacing, 14px 10px);
+        --font-size: var(--a-link-font-size, 1rem);
       }
       :host ul{
-        background-color: var(--bg-color);
-        list-style: none;
+        background-color: var(--background-color, black);
+        list-style: var(--list-style, none);
         margin: 0;
         padding: 0;
       }
       :host > nav > ul{
-        align-items: center;
+        align-items: var(--align-items, center);
         display: flex;
-        padding: var(--padding) 0;
+        padding: calc(var(--content-spacing, 40px) / 2) 0;
       }
       :host > nav > ul > li{
         display: block;
-        padding: 0 10px;
+        padding: 0 calc(var(--content-spacing, 40px) / 4);
       }
       :host > nav > ul li{
         position: relative;
@@ -74,7 +98,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li ul{
         display: none;
-        padding-top: calc(var(--padding) - 1px);
+        padding-top: calc(var(--content-spacing, 40px) / 2 - 1px);
         position: absolute;
         width: max-content;
       }
@@ -91,32 +115,35 @@ export default class Navigation extends Shadow() {
         display: block;
       }
       :host > nav > ul li ul li {
-        min-width: 100px;
+        min-width: var(--min-width, 100px);
       }
       :host > nav > ul > li > ul > li:first-child{
-        padding-top: 6px;
-        border-top: 1px solid var(--font-color);
+        padding-top: var(--padding-top, 6px);
+        border-top: 1px solid var(--hr-color, white);
       }
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
-          --font-size: 2rem;
-          --font-weight: 600;
-          --text-align: center;
+          --font-weight: var(--font-weight-mobile, 600);
+        }
+        :host a-link {
+          --font-size: var(--a-link-font-size-mobile, 2rem);
+          --text-align: var(--a-link-text-align-mobile, center);
+
         }
         :host > nav > ul{
           flex-direction: column;
           padding: 0;
         }
         :host > nav > ul li{
-          border-top: 1px solid var(--font-color);
+          border-top: 1px solid var(--hr-color, white);
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          justify-content: var(--justify-content-mobile, center);
           padding: 0;
           width: 100%;
         }
         :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
-          --font-color: var(--font-color-hover);
+          --color: var(--a-arrow-color-hover, var(--color-hover, white));
         }
         :host > nav > ul li > a-link{
           flex-grow: 1;
@@ -125,12 +152,13 @@ export default class Navigation extends Shadow() {
           visibility: visible;
         }
         :host > nav > ul > li a-arrow {
+          --color: var(--a-arrow-color, #777);
           display: block;
-          min-height: 50px;
-          min-width: 50px;
+          min-height: var(--min-height-mobile, 50px);
+          min-width: var(--min-width-mobile, 50px);
         }
         :host > nav > ul li ul{
-          --font-weight: 300;
+          --font-weight: calc(var(--font-weight) / 2);
           padding: 0;
           position: unset;
           width: 100%;
@@ -159,11 +187,11 @@ export default class Navigation extends Shadow() {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
-      const aLink = new children[0][1]()
+      const aLink = new children[0][1](undefined, {namespace: this.getAttribute('namespace') || ''})
       aLink.setAttribute('href', a.getAttribute('href'))
       aLink.setAttribute('text-transform', 'uppercase')
       aLink.textContent = a.textContent
-      const arrow = new children[1][1]()
+      const arrow = new children[1][1]({namespace: this.getAttribute('namespace') || ''})
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
         li.classList.toggle('open')
@@ -171,7 +199,7 @@ export default class Navigation extends Shadow() {
       }
       arrow.addEventListener('click', arrowClickListener)
       aLink.addEventListener('click', event => {
-        if (event.target && (!event.target.href || event.target.href === '#')) {
+        if (event.target && (!event.target.getAttribute('href') || event.target.getAttribute('href') === '#')) {
           event.preventDefault()
           arrowClickListener()
         }

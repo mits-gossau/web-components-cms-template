@@ -4,15 +4,30 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global HTMLElement */
 
 /**
+ * Link is a wrapper for an a-tag
+ * Example at: /src/es/components/pages/Home.html
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
  * @class Link
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} href used for the link reference
+ * }
+ * @css {
+ *  --text-transform [none]
+ *  --color [red]
+ *  --font-size [1.2rem]
+ *  --font-weight [300]
+ *  --padding [14px 10px]
+ *  --text-align [left]
+ *  --text-transform [none]
+ *  --color-hover [yellow]
+ * }
  */
 export default class Link extends Shadow() {
-  constructor (children = []) {
-    super()
+  constructor (children = [], ...args) {
+    super(...args)
 
     this.addedChildren = children
   }
@@ -48,7 +63,7 @@ export default class Link extends Shadow() {
     this.css = /* css */`
       :host > a{
         box-sizing: border-box;
-        color: var(--font-color);
+        color: var(--color, red);
         display: block;
         font-size: var(--font-size, 1.2rem);
         font-weight: var(--font-weight, 300);
@@ -56,11 +71,11 @@ export default class Link extends Shadow() {
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);
         text-decoration: none;
-        text-transform: ${this.getAttribute('text-transform') || 'none'};
+        text-transform: var(--text-transform, none);
         width: 100%;
       }
       :host > a:hover{
-        color: var(--font-color-hover);
+        color: var(--color-hover, yellow);
       }
     `
   }

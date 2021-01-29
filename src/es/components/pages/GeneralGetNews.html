@@ -10,10 +10,10 @@
   <title>m4music & umbraco</title>
 </head>
 <body>
-  <p-general>
-    <o-header>
-      <a-logo src=../../../img/logo.png href=../../../index.html></a-logo>
-      <m-navigation>
+  <p-body>
+    <o-header namespace=header->
+      <a-logo src=../../../img/logo.png href=../../../index.html namespace=header-></a-logo>
+      <m-navigation namespace=navigation->
         <ul>
           <li>
             <a href="/de/demotape-clinic">Demotape Clinic</a>
@@ -59,7 +59,7 @@
             </ul>
           </li>
           <li>
-            <a href="/de/multimedia">Multimedia</a>
+            <a href="#">Multimedia</a>
             <ul>
               <li>
                 <a href="/de/multimedia/fotos">Fotos</a>
@@ -78,8 +78,8 @@
         </ul>
       </m-navigation>
     </o-header>
-    <o-general-get-news></o-general-get-news>
-    <o-footer>
+    <o-body-get-news></o-body-get-news>
+    <o-footer namespace=footer->
       <ul>
         <li>
           <a href="/de/demotape-clinic">Demotape Clinic</a>
@@ -125,7 +125,7 @@
           </ul>
         </li>
         <li>
-          <a href="/de/multimedia">Multimedia</a>
+          <a href="#">Multimedia</a>
           <ul>
             <li>
               <a href="/de/multimedia/fotos">Fotos</a>
@@ -150,7 +150,7 @@
         <li></li>
       </ul>
     </o-footer>
-  </p-general>
+  </p-body>
   <script rel=preload type=module>
     /**
     * First level controllers and organisms are loaded and defined here (loadChildComponents)
@@ -158,11 +158,11 @@
     Promise.all([
     // Controllers
     import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
+    import('../../../es/components/pages/General.js').then(module => ['p-body', module.default]),
     import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
-    import('../../../es/components/organisms/GeneralGetNews.js').then(module => ['o-general-get-news', module.default]),
+    import('../../../es/components/organisms/BodyGetNews.js').then(module => ['o-body-get-news', module.default]),
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements

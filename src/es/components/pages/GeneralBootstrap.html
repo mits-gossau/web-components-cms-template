@@ -10,10 +10,10 @@
   <title>m4music & umbraco</title>
 </head>
 <body>
-  <p-general>
-    <o-header>
-      <a-logo src=../../../img/logo.png href=../../../index.html></a-logo>
-      <m-navigation>
+  <p-body>
+    <o-header namespace=header->
+      <a-logo src=../../../img/logo.png href=../../../index.html namespace=header-></a-logo>
+      <m-navigation namespace=navigation->
         <ul>
           <li>
             <a href="/de/demotape-clinic">Demotape Clinic</a>
@@ -59,7 +59,7 @@
             </ul>
           </li>
           <li>
-            <a href="/de/multimedia">Multimedia</a>
+            <a href="#">Multimedia</a>
             <ul>
               <li>
                 <a href="/de/multimedia/fotos">Fotos</a>
@@ -78,10 +78,10 @@
         </ul>
       </m-navigation>
     </o-header>
-    <o-general-bootstrap>
+    <o-body-bootstrap>
       <section>
-        <h1>This is a general content page with bootstrap content</h1>
-        <p style="color:red;">@Any, wend no meh bootsrap components mit javascript bruchsch, muess ich diä zerst im organisms/GeneralBootstrap.js intialisieren.</p>
+        <h1>This is a general body content page with bootstrap content</h1>
+        <p style="color:red;">@Any, wend no meh bootsrap components mit javascript bruchsch, muess ich diä zerst im organisms/BodyBootstrap.js intialisieren.</p>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         <div class="row">
           <div class="col-10"><button type="button" class="btn btn-secondary">Secondary</button></div>
@@ -110,8 +110,8 @@
           </div>
         </div>
       </section>
-    </o-general-bootstrap>
-    <o-footer>
+    </o-body-bootstrap>
+    <o-footer namespace=footer->
       <ul>
         <li>
           <a href="/de/demotape-clinic">Demotape Clinic</a>
@@ -157,7 +157,7 @@
           </ul>
         </li>
         <li>
-          <a href="/de/multimedia">Multimedia</a>
+          <a href="#">Multimedia</a>
           <ul>
             <li>
               <a href="/de/multimedia/fotos">Fotos</a>
@@ -182,7 +182,7 @@
         <li></li>
       </ul>
     </o-footer>
-  </p-general>
+  </p-body>
   <script rel=preload type=module>
     /**
     * First level controllers and organisms are loaded and defined here (loadChildComponents)
@@ -190,11 +190,11 @@
     Promise.all([
     // Controllers
     import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
+    import('../../../es/components/pages/General.js').then(module => ['p-body', module.default]),
     import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
-    import('../../../es/components/organisms/GeneralBootstrap.js').then(module => ['o-general-bootstrap', module.default]),
+    import('../../../es/components/organisms/BodyBootstrap.js').then(module => ['o-body-bootstrap', module.default]),
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements

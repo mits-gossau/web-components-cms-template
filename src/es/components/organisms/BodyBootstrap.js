@@ -1,18 +1,27 @@
 // @ts-check
-import { Shadow } from '../prototypes/Shadow.js'
+import Body from './Body.js'
 
 /* global HTMLElement */
 
 /**
+ * Extends Body.js and adds Bootstrap + Jquery into the shadow dom
+ * Example at: /src/es/components/pages/GeneralBootstrap.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
- * @class GeneralBootstrap
+ * @class BodyBootstrap
  * @type {CustomElementConstructor}
+ * @html {
+ *  scripts no scripts element is expected to make the api call
+ * }
+ * @css {
+ *  NOTE: grid-area: body;
+ * }
  */
-export default class GeneralBootstrap extends Shadow() {
+export default class BodyBootstrap extends Body {
   connectedCallback () {
     if (this.shouldComponentRenderHTML()) this.renderHTML().then(() => {
+      // initiate the carousel, since this components content is not accessible from outside the shadow dom
       $(this.root).find('.carousel').each((i, carousel) => {
         carousel = $(carousel)
         carousel.find('.carousel-control-prev').click(event => carousel.carousel('prev'))
@@ -28,51 +37,8 @@ export default class GeneralBootstrap extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
-    return !this.root.querySelector('style[_css]')
-  }
-
-  /**
-   * evaluates if a render is necessary
-   *
-   * @return {boolean}
-   */
   shouldComponentRenderHTML () {
     return !this.scripts
-  }
-
-  /**
-   * renders the o-highlight-list css
-   *
-   * @return {void}
-   */
-  renderCSS () {
-    this.css = /* css */`
-      :host {
-        grid-area: general;
-      }
-      :host > *:not(#scripts) {
-        margin: var(--content-margin) auto;
-        width: var(--content-width);
-      }
-      h1 {
-        font-size: 6rem;
-      }
-      h2 {
-        font-size: 5rem;
-        font-family: var(--font-family-secondary);
-      }
-      h3 {
-        font-size: 3rem;
-      }
-      h4 {
-        font-size: 2rem;
-      }
-      p {
-        font-size: 1.5rem;
-        font-family: var(--font-family-secondary);
-      }
-    `
   }
 
   /**
