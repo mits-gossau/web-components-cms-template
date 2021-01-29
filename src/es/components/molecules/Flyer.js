@@ -13,6 +13,7 @@ import { Intersection } from '../prototypes/Intersection.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  {string} href used for the link reference
+ *  {up, right, down, left} [direction=left] TODO: up, down overflow issue
  * }
  */
 export default class Flyer extends Intersection() {
@@ -57,10 +58,11 @@ export default class Flyer extends Intersection() {
         position: absolute;
       }
       :host > * {
-        transform: translateX(-100vw);
+        transform: ${this.getAttribute('direction') === 'up' ? 'translateY(100vh)' : this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : this.getAttribute('direction') === 'down' ? 'translateY(100vh)' : 'translateX(-100vw)'};
         transition: all 0.5s ease;
       }
       :host > *.visible {
+        transform: translateY(0);
         transform: translateX(0);
       }
     `
