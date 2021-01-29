@@ -12,7 +12,6 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Stage
  * @type {CustomElementConstructor}
  * @css {
- *  NOTE: grid-area: stage;
  *  --content-spacing [40px]
  *  --arrow-font-size [3rem]
  *  --bottom [100px] overlay text position absolute at bottom
@@ -84,12 +83,17 @@ export default class Stage extends Shadow() {
     this.css = /* css */`
       :host{
         color: var(--color, white);
-        grid-area: stage;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
-        height: 100%;
-        position: relative;
+        height: calc(100vh - var(--header-height-desktop, 85px));
+        margin: 0 !important;
+        width: 100vw !important;
+      }
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          height: calc(100vh - var(--header-height-mobile, 50px));
+        }
       }
       :host > img{
         display: block;

@@ -12,7 +12,6 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class HighlightList
  * @type {CustomElementConstructor}
  * @css {
- *  NOTE: grid-area: highlight-list;
  *  --content-spacing [40px]
  *  --hr-color [black]
  *  --content-width [80vw]
@@ -46,8 +45,7 @@ export default class HighlightList extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
-        grid-area: highlight-list;
-        margin: var(--content-spacing, 40px) auto;
+        display: block;
       }
       :host > m-highlight:first-Child {
         border-top: 1px solid var(--hr-color, black);

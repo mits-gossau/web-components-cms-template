@@ -10,7 +10,7 @@
   <title>m4music & umbraco</title>
 </head>
 <body>
-  <p-home>
+  <p-general>
     <o-header namespace=header->
       <a-logo src=../../../img/logo.png href=../../../index.html namespace=header-></a-logo>
       <m-navigation hover="false" namespace=navigation->
@@ -78,37 +78,51 @@
         </ul>
       </m-navigation>
     </o-header>
-    <o-stage src=../../../img/stage.jpg namespace=stage->
-      <h2 style="font-size: 50px;">Hello</h2><p>no way</p>
-    </o-stage>
-    <o-highlight-list>
-      <h1>News</h1>
-      <m-highlight href=./baaahh>
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-        <img src=../../../img/GiuliaDabala.png />
-      </m-highlight>
-      <m-highlight href=#>
-        <img src=../../../img/GiuliaDabala.png />
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-      </m-highlight>
-      <m-flyer><h1 style="color:red">Hello Joe!</h1><img src=https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-9OT1jnveHOk%2FUDElczsRPbI%2FAAAAAAAAJEA%2FQsEg1QMWzs0%2Fs1600%2FShirtless-Biden-Jump-R_jpg_600x1000_q85.jpg&f=1&nofb=1></m-flyer>
-      <m-highlight href=#>
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-        <img src=../../../img/GiuliaDabala.png />
-      </m-highlight>
-      <m-highlight href=#>
-        <img src=../../../img/GiuliaDabala.png />
-        <h5>Demotape Clinic: Sende dein Demo ein! </h5>
-        <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
-        <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-      </m-highlight>
-    </o-highlight-list>
+    <o-body>
+      <o-stage src=../../../img/stage.jpg namespace=stage->
+        <h2 style="font-size: 50px;">Hello</h2><p>no way</p>
+      </o-stage>
+      <o-highlight-list>
+        <h1>News</h1>
+        <m-highlight href=./baaahh>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-flyer><h1 style="color:red">Hello Joe!</h1><img src=https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-9OT1jnveHOk%2FUDElczsRPbI%2FAAAAAAAAJEA%2FQsEg1QMWzs0%2Fs1600%2FShirtless-Biden-Jump-R_jpg_600x1000_q85.jpg&f=1&nofb=1></m-flyer>
+        <m-highlight href=#>
+          <img src=../../../img/GiuliaDabala.png />
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+        </m-highlight>
+        <m-highlight href=#>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-highlight href=#>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-highlight href=#>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-highlight href=#>
+          <img src=../../../img/GiuliaDabala.png />
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+        </m-highlight>
+      </o-highlight-list>
+    </o-body>
     <o-footer namespace=footer->
       <ul>
         <li>
@@ -180,7 +194,7 @@
         <li></li>
       </ul>
     </o-footer>
-  </p-home>
+  </p-general>
   <script rel=preload type=module>
     self.Environment = {
       mobileBreakpoint: '800px'
@@ -191,10 +205,11 @@
     Promise.all([
     // Controllers
     import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-    import('../../../es/components/pages/Home.js').then(module => ['p-home', module.default]),
+    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
     import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
+    import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
     import('../../../es/components/organisms/Stage.js').then(module => ['o-stage', module.default]),
     import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),

@@ -17,7 +17,7 @@ import { Intersection } from '../prototypes/Intersection.js'
  */
 export default class Flyer extends Intersection() {
   constructor (options = {}, ...args) {
-    super(Object.assign(options, {intersectionObserverInit: {rootMargin: '0px 0px 0px 0px', threshold: 1}}), ...args)
+    super(Object.assign(options, {intersectionObserverInit: {rootMargin: '500px 0px 0px 0px', threshold: 1}}), ...args)
 
     this.clickListener = event => {
       if (this.getAttribute('href')) location.href = this.getAttribute('href')
