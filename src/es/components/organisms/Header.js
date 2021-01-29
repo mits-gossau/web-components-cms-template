@@ -74,7 +74,7 @@ export default class Header extends Shadow() {
         display: none;
         --background-color: var(--color, #777);
       }
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > header {
           height: var(--height-mobile, 50px);
           flex-direction: var(--flex-direction-mobile, row-reverse);

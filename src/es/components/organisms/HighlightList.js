@@ -69,7 +69,7 @@ export default class HighlightList extends Shadow() {
         text-align: var(--text-align, center);
         text-transform: var(--text-transform, uppercase);
       }
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > m-highlight {
           flex-wrap: wrap;
         }

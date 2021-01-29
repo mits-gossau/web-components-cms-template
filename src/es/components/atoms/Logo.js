@@ -63,7 +63,7 @@ export default class Logo extends Shadow() {
         height: calc(var(--height-desktop, 85px) - var(--content-spacing, 40px));
         object-fit: scale-down;
       }
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host img{
           height: calc(var(--height-mobile, 50px) - var(--content-spacing, 40px) / 2);
         }

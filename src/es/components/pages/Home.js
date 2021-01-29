@@ -49,7 +49,7 @@ export default class Home extends Shadow() {
         grid-template-columns: 1fr;
         min-height: 100vh;
       }
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           grid-template-rows: var(--header-height-mobile, 50px) calc(100vh - var(--header-height-mobile, 50px)) 1fr minmax(var(--footer-min-height-mobile, 150px), auto);
         }

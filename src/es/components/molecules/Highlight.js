@@ -121,7 +121,7 @@ export default class Highlight extends Shadow() {
         max-width: 100%;
         min-width: var(--img-min-width: 200px);
       }
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
         }

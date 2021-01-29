@@ -24,11 +24,12 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --min-width [100px] of list items at second level
  *  --padding-top [6px] first list item at second level
  *  --hr-color [white]
- *  --font-size-mobile [2rem]
+ *  --a-link-font-size-mobile [2rem]
  *  --font-weight-mobile [600]
- *  --text-align-mobile [center]
+ *  --a-link-text-align-mobile [center]
  *  --justify-content-mobile [center]
- *  --a-arrow-color [--color-hover, #777]
+ *  --a-arrow-color-hover [--color-hover, white]
+ *  --a-arrow-color [#777]
  *  --min-height-mobile [50px]
  *  --min-width-mobile [50px]
  * }
@@ -120,11 +121,14 @@ export default class Navigation extends Shadow() {
         padding-top: var(--padding-top, 6px);
         border-top: 1px solid var(--hr-color, white);
       }
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
-          --font-size: var(--font-size-mobile, 2rem);
           --font-weight: var(--font-weight-mobile, 600);
-          --text-align: var(--text-align-mobile, center);
+        }
+        :host a-link {
+          --font-size: var(--a-link-font-size-mobile, 2rem);
+          --text-align: var(--a-link-text-align-mobile, center);
+
         }
         :host > nav > ul{
           flex-direction: column;
@@ -139,7 +143,7 @@ export default class Navigation extends Shadow() {
           width: 100%;
         }
         :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
-          --color: var(--a-arrow-color, var(--color-hover, #777));
+          --color: var(--a-arrow-color-hover, var(--color-hover, white));
         }
         :host > nav > ul li > a-link{
           flex-grow: 1;
@@ -148,6 +152,7 @@ export default class Navigation extends Shadow() {
           visibility: visible;
         }
         :host > nav > ul > li a-arrow {
+          --color: var(--a-arrow-color, #777);
           display: block;
           min-height: var(--min-height-mobile, 50px);
           min-width: var(--min-width-mobile, 50px);
