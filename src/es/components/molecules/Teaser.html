@@ -9,11 +9,150 @@
   <title>teaser</title>
 </head>
 <body>
-  <m-teaser>
-    <h2>Hello World</h2>
-    <p>baaaahhhh</p>
-    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.m32hgt0RKShb5O7CFGJ0tQHaLH%26pid%3DApi&f=1">
-  </m-teaser>
+  <p-general>
+    <o-general>
+      <main style=" width: 80%; margin: 0 auto;">
+        <o-teaser-wrapper>
+          <style>
+            m-teaser {
+              --background-color: #c2262f;
+              --h3-color: white;
+              --p-color: white;
+              --background-color-light-theme: white;
+              --h3-color-light-theme: #c2262f;
+              --p-color-light-theme: black;
+              --figcaption-padding: 15px 15px 20px 15px; 
+              --figcaption-padding-light-theme: 15px 0;
+              --h3-font-size: 1.2rem;
+              --p-font-size: 1rem;
+              --font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+          </style>
+          <m-teaser>
+            <figure>
+              <picture>
+                <img src="https://via.placeholder.com/248x248" alt="" width="248" height="248">
+              </picture>
+              <figcaption>
+                <h3>Teaser Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </figcaption>
+            </figure>
+          </m-teaser>
+          <m-teaser>
+            <figure>
+              <picture>
+                <img src="https://via.placeholder.com/640x350" alt="" width="650" height="350">
+              </picture>
+              <figcaption>
+                <h3>Teaser Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </figcaption>
+            </figure>
+          </m-teaser>
+          <m-teaser>
+            <figure>
+              <picture>
+                <img src="https://via.placeholder.com/400x400" alt="" width="400" height="400">
+              </picture>
+              <figcaption>
+                <h3>Teaser Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </figcaption>
+            </figure>
+          </m-teaser>
+          <m-teaser>
+            <figure>
+              <picture>
+                <img src="https://via.placeholder.com/1040x950" alt="" width="1040" height="950">
+              </picture>
+              <figcaption>
+                <h3>Teaser Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </figcaption>
+            </figure>
+          </m-teaser>
+          </o-teaser-wrapper>
+
+<!-- Light Theme -->
+
+          <o-teaser-wrapper>
+            <style>
+              m-teaser {
+                --background-color: #c2262f;
+                --h3-color: white;
+                --p-color: white;
+                --background-color-light-theme: white;
+                --h3-color-light-theme: #c2262f;
+                --p-color-light-theme: black;
+                --figcaption-padding: 15px 15px 20px 15px; 
+                --figcaption-padding-light-theme: 15px 0;
+                --h3-font-size: 1.2rem;
+                --p-font-size: 1rem;
+                --font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+              }
+            </style>
+            <m-teaser theme="light">
+              <figure>
+                <picture>
+                  <img src="https://via.placeholder.com/248x248" alt="" width="248" height="248">
+                </picture>
+                <figcaption>
+                  <h3>Teaser Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </figcaption>
+              </figure>
+            </m-teaser>
+            <m-teaser theme="light">
+              <figure>
+                <picture>
+                  <img src="https://via.placeholder.com/640x350" alt="" width="650" height="350">
+                </picture>
+                <figcaption>
+                  <h3>Teaser Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </figcaption>
+              </figure>
+            </m-teaser>
+            <m-teaser theme="light">
+              <figure>
+                <picture>
+                  <img src="https://via.placeholder.com/400x400" alt="" width="400" height="400">
+                </picture>
+                <figcaption>
+                  <h3>Teaser Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </figcaption>
+              </figure>
+            </m-teaser>
+            <m-teaser>
+              <figure>
+                <picture>
+                  <img src="https://via.placeholder.com/1040x950" alt="" width="1040" height="950">
+                </picture>
+                <figcaption>
+                  <h3>Teaser Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </figcaption>
+              </figure>
+            </m-teaser>
+            <m-teaser>
+              <figure>
+                <picture>
+                  <img src="https://via.placeholder.com/1040x950" alt="" width="1040" height="950">
+                </picture>
+                <figcaption>
+                  <h3>Teaser Title</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </figcaption>
+              </figure>
+            </m-teaser>
+            
+          </o-teaser-wrapper>
+      </main> 
+    </o-general>
+  </p-general>
+  
   <script rel=preload type=module>
     /**
     * First level controllers and organisms are loaded and defined here (loadChildComponents)
@@ -21,7 +160,8 @@
     Promise.all([
       // Controllers
       import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-      import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default])
+      import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default]),
+      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)
