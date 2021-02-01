@@ -88,7 +88,7 @@ export default class Stage extends Shadow() {
         justify-content: center;
         height: calc(100vh - var(--header-height-desktop, 85px));
         margin: 0 !important;
-        width: 100vw !important;
+        width: 100% !important;
       }
       @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
