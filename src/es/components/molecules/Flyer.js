@@ -11,14 +11,32 @@ import { Intersection } from '../prototypes/Intersection.js'
  * @export
  * @class Flyer
  * @type {CustomElementConstructor}
+ * @css {
+ *  --padding [20px]
+ *  --text-align [left|right]
+ *  --duration [0.8s]
+  * --transform [translateX(var(--translate-x, 0))]
+ *  --translate-x [0]
+ * }
  * @attribute {
  *  {string} href used for the link reference
- *  {up, right, down, left} [direction=left] TODO: up, down overflow issue
+ *  {right, left} [direction=left]
  * }
+ * 
+ * TODO: allow elements to be triggered with a timer and position fixed, that scenario also allows for fly in top and bottom
+ * 
  */
 export default class Flyer extends Intersection() {
   constructor (options = {}, ...args) {
     super(Object.assign(options, {intersectionObserverInit: {rootMargin: '500px 0px 0px 0px', threshold: 1}}), ...args)
+
+    this.div = document.createElement('div')
+    const div = document.createElement('div')
+    Array.from(this.root.children).forEach(node => {
+      if (!node.getAttribute('slot')) div.appendChild(node)
+    })
+    this.div.appendChild(div)
+    this.html = this.div
 
     this.clickListener = event => {
       if (this.getAttribute('href')) location.href = this.getAttribute('href')
@@ -52,23 +70,26 @@ export default class Flyer extends Intersection() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host {
-        cursor: pointer;
+      :host > div {
+        box-sizing: border-box;
         display: block;
+        left: 0;
+        padding: var(--padding, 20px);
         position: absolute;
+        text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
+        width: 100%;
       }
-      :host > * {
-        transform: ${this.getAttribute('direction') === 'up' ? 'translateY(100vh)' : this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : this.getAttribute('direction') === 'down' ? 'translateY(100vh)' : 'translateX(-100vw)'};
-        transition: all 0.5s ease;
+      :host > div > div {
+        transform: ${this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : 'translateX(-100vw)'};
+        transition: all var(--duration, 0.8s) ease;
       }
-      :host > *.visible {
-        transform: translateY(0);
-        transform: translateX(0);
+      :host > div.visible > div {
+        transform: var(--transform, translateX(var(--translate-x, 0)));
       }
     `
   }
 
   intersectionCallback (entries, observer) {
-    if (entries && entries[0]) Array.from(this.root.children).forEach(node => node.classList[entries[0].isIntersecting ? 'add' : 'remove']('visible'))
+    if (entries && entries[0]) this.div.classList[entries[0].isIntersecting ? 'add' : 'remove']('visible')
   }
 }
