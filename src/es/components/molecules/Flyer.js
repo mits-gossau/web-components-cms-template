@@ -86,6 +86,9 @@ export default class Flyer extends Intersection() {
       :host > div.visible > div {
         transform: var(--transform, translateX(var(--translate-x, 0)));
       }
+      :host > div > div > * {
+        max-width: 100%;
+      }
     `
   }
 
