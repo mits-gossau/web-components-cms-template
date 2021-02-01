@@ -31,11 +31,9 @@ export default class Flyer extends Intersection() {
     super(Object.assign(options, {intersectionObserverInit: {rootMargin: '500px 0px 0px 0px', threshold: 1}}), ...args)
 
     this.div = document.createElement('div')
-    const div = document.createElement('div')
     Array.from(this.root.children).forEach(node => {
-      if (!node.getAttribute('slot')) div.appendChild(node)
+      if (!node.getAttribute('slot')) this.div.appendChild(node)
     })
-    this.div.appendChild(div)
     this.html = this.div
 
     this.clickListener = event => {
@@ -70,29 +68,32 @@ export default class Flyer extends Intersection() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host > div {
-        box-sizing: border-box;
+      :host {
         display: block;
+        box-sizing: border-box;
         left: 0;
-        padding: var(--padding, 20px);
         position: absolute;
-        text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
         width: 100%;
       }
-      :host > div > div {
+      :host > div {
+        padding: var(--padding, 20px);
+        text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
         transform: ${this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : 'translateX(-100vw)'};
         transition: all var(--duration, 0.8s) ease;
+        visibility: hidden;
       }
-      :host > div.visible > div {
+      :host > div.visible {
         transform: var(--transform, translateX(var(--translate-x, 0)));
+        visibility: visible;
       }
-      :host > div > div > * {
+      :host > div > * {
         max-width: 100%;
       }
     `
   }
 
   intersectionCallback (entries, observer) {
+    console.log('changed', entries);
     if (entries && entries[0]) this.div.classList[entries[0].isIntersecting ? 'add' : 'remove']('visible')
   }
 }
