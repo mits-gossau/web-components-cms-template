@@ -14,7 +14,7 @@ import { Intersection } from '../prototypes/Intersection.js'
  * @css {
  *  --padding [20px]
  *  --text-align [left|right]
- *  --duration [0.8s]
+ *  --duration [0.7s]
   * --transform [translateX(var(--translate-x, 0))]
  *  --translate-x [0]
  * }
@@ -79,7 +79,7 @@ export default class Flyer extends Intersection() {
         padding: var(--padding, 20px);
         text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
         transform: ${this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : 'translateX(-100vw)'};
-        transition: all var(--duration, 0.8s) ease;
+        transition: all var(--duration, 0.7s) ease;
         visibility: hidden;
       }
       :host > div.visible {
