@@ -20,10 +20,10 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  --z-index [99]
  * }
  * @attribute {
- *  {fixed | undefined} [position=undefined] set to fixed if it is desired for the flyer to follow the scroll for the defined rootMargin
+ *  {fixed | undefined} [position=undefined] set to fixed if it is desired for the flyer to follow the scroll for the defined rootMargin. NOTE: it is always fixed when... see => this.isPositionFixed
  *  {number} [timer=false] if any number all intersection settings will be ignored and the flyer will appear after the timeout
  *  {string} [href=undefined] used for the link reference
- *  {right, left} [direction=left]
+ *  {up, right, down, left} [direction=left] position will always be fixed when "up" or "down"
  * }
  */
 export default class Flyer extends Intersection() {
@@ -55,7 +55,10 @@ export default class Flyer extends Intersection() {
       setTimeout(() => {
         this.css = /* css */`
           :host {
-            --top: ${this.topMiddle}; 
+            ${this.varTop};
+            ${this.varRight}
+            ${this.varBottom};
+            ${this.varLeft}
           }
         `
         this.div.classList.add('visible')
@@ -69,7 +72,7 @@ export default class Flyer extends Intersection() {
   }
 
   disconnectedCallback () {
-    super.disconnectedCallback()
+    if (!this.getAttribute('timer')) super.disconnectedCallback()
     this.removeEventListener('click', this.clickListener)
     if (this.closeBtn) this.closeBtn.removeEventListener('click', this.closeClickListener)
   }
@@ -98,11 +101,14 @@ export default class Flyer extends Intersection() {
         width: 100%;
       }
       :host > div {
-        ${this.getAttribute('position') === 'fixed' || this.getAttribute('timer') ? 'position: fixed;' : ''}
-        top: var(--top, ${this.getAttribute('timer') ? this.topMiddle : 0});
+        ${this.isPositionFixed ? 'position: fixed;' : ''}
+        top: var(--top, unset);
+        right: var(--right, unset);
+        bottom: var(--bottom, unset);
+        left: var(--left, unset);
         padding: var(--padding, 20px);
         text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
-        transform: ${this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : 'translateX(-100vw)'};
+        transform: ${this.getAttribute('direction') === 'up' ? 'translateY(-100vh)' : this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : this.getAttribute('direction') === 'down' ? 'translateY(100vh)' : 'translateX(-100vw)'};
         transition: all var(--duration, 0.7s) ease;
         visibility: hidden;
         z-index: var(--z-index, 99);
@@ -124,9 +130,12 @@ export default class Flyer extends Intersection() {
   intersectionCallback (entries, observer) {
     if (entries && entries[0]) {
       if (entries[0].isIntersecting) {
-        if (this.getAttribute('position') === 'fixed') this.css = /* css */`
+        if (this.isPositionFixed) this.css = /* css */`
          :host {
-           --top: ${this.topMiddle}; 
+           ${this.varTop};
+           ${this.varRight}
+           ${this.varBottom};
+           ${this.varLeft}
          }
         `
         this.div.classList.add('visible')
@@ -137,7 +146,32 @@ export default class Flyer extends Intersection() {
   }
 
   get topMiddle () {
-    return `${(self.outerHeight - this.div.offsetHeight)/2}px`
+    return `${(self.innerHeight - this.div.offsetHeight)/2}px`
+  }
+
+  get leftMiddle () {
+    return `${(self.innerWidth - this.div.offsetWidth)/2}px`
+  }
+
+  get varTop () {
+    if (this.getAttribute('direction') === 'up') return '--top: 0;'
+    return this.getAttribute('direction') === 'left' || this.getAttribute('direction') === 'right' ? `--top: ${this.topMiddle};` : ''
+  }
+
+  get varRight () {
+    return this.getAttribute('direction') === 'right' ? '--right: 0;' : ''
+  }
+
+  get varBottom () {
+    return this.getAttribute('direction') === 'down' ? '--bottom: 0;' : ''
+  }
+
+  get varLeft () {
+    return this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down' ? `--left: ${this.leftMiddle};` : ''
+  }
+
+  get isPositionFixed () {
+    return this.getAttribute('position') === 'fixed' || this.getAttribute('timer') || this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down'
   }
 
   get closeBtn () {
