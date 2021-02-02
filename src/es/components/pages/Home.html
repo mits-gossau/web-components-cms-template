@@ -91,8 +91,12 @@
           <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
           <img src=../../../img/GiuliaDabala.png />
         </m-highlight>
-        <m-flyer direction=left>
-          <h1 style="color:blue">Hello!</h1><img src=https://i.pinimg.com/originals/57/62/ed/5762edaaf446bdcf3fdcf42b79c7ea0f.png>
+        <m-flyer
+          direction=left
+          position=fixed
+          intersectionObserverInit="{'rootMargin': '0px 0px 0px 0px', 'threshold': 0}"
+        >
+          <h1 style="color:blue">Hello Fixed!</h1><img src=https://i.pinimg.com/originals/57/62/ed/5762edaaf446bdcf3fdcf42b79c7ea0f.png>
         </m-flyer>
         <m-highlight href=#>
           <img src=../../../img/GiuliaDabala.png />
@@ -106,6 +110,12 @@
           <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
           <img src=../../../img/GiuliaDabala.png />
         </m-highlight>
+        <m-flyer
+          direction=left
+          timer=2000
+        >
+          <h1 style="color:red">Hello Timer!</h1><span id=close style="font-size: 25px;">&cross;</span><img src=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.i3zoFXIqLpw2h5u5PMB-rwHaHa%26pid%3DApi&f=1>
+        </m-flyer>
         <m-highlight href=#>
           <h5>Demotape Clinic: Sende dein Demo ein! </h5>
           <h2>m4music sucht die besten Newcomer-Songs 2021</h2>

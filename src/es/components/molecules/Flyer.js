@@ -15,16 +15,16 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  --padding [20px]
  *  --text-align [left|right]
  *  --duration [0.7s]
-  * --transform [translateX(var(--translate-x, 0))]
- *  --translate-x [0]
+ *  --transform [translateX(var(--translate-x, 0))] if set will overwrite the translateX
+ *  --translate-x [0] if transform is set it will be ignored
+ *  --z-index [99]
  * }
  * @attribute {
- *  {string} href used for the link reference
+ *  {fixed | undefined} [position=undefined] set to fixed if it is desired for the flyer to follow the scroll for the defined rootMargin
+ *  {number} [timer=false] if any number all intersection settings will be ignored and the flyer will appear after the timeout
+ *  {string} [href=undefined] used for the link reference
  *  {right, left} [direction=left]
  * }
- * 
- * TODO: allow elements to be triggered with a timer and position fixed, that scenario also allows for fly in top and bottom
- * 
  */
 export default class Flyer extends Intersection() {
   constructor (options = {}, ...args) {
@@ -37,19 +37,41 @@ export default class Flyer extends Intersection() {
     this.html = this.div
 
     this.clickListener = event => {
-      if (this.getAttribute('href')) location.href = this.getAttribute('href')
+      if (this.getAttribute('href')) {
+        event.preventDefault()
+        location.href = this.getAttribute('href')
+      }
+    }
+    this.closeClickListener = event => {
+      event.preventDefault()
+      event.stopPropagation()
+      this.div.classList.remove('visible')
     }
   }
 
   connectedCallback () {
-    super.connectedCallback()
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.getAttribute('timer')) {
+      setTimeout(() => {
+        this.css = /* css */`
+          :host {
+            --top: ${this.topMiddle}; 
+          }
+        `
+        this.div.classList.add('visible')
+      }, Number(this.getAttribute('timer')));
+    } else {
+      // only connect intersection callback if no timer is set
+      super.connectedCallback()
+    }
     this.addEventListener('click', this.clickListener)
+    if (this.closeBtn) this.closeBtn.addEventListener('click', this.closeClickListener)
   }
 
   disconnectedCallback () {
     super.disconnectedCallback()
     this.removeEventListener('click', this.clickListener)
+    if (this.closeBtn) this.closeBtn.removeEventListener('click', this.closeClickListener)
   }
 
   /**
@@ -76,24 +98,49 @@ export default class Flyer extends Intersection() {
         width: 100%;
       }
       :host > div {
+        ${this.getAttribute('position') === 'fixed' || this.getAttribute('timer') ? 'position: fixed;' : ''}
+        top: var(--top, ${this.getAttribute('timer') ? this.topMiddle : 0});
         padding: var(--padding, 20px);
         text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
         transform: ${this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : 'translateX(-100vw)'};
         transition: all var(--duration, 0.7s) ease;
         visibility: hidden;
+        z-index: var(--z-index, 99);
       }
       :host > div.visible {
         transform: var(--transform, translateX(var(--translate-x, 0)));
         visibility: visible;
       }
       :host > div > * {
+        max-height: 100%;
         max-width: 100%;
+      }
+      :host #close {
+        cursor: pointer;
       }
     `
   }
 
   intersectionCallback (entries, observer) {
-    console.log('changed', entries);
-    if (entries && entries[0]) this.div.classList[entries[0].isIntersecting ? 'add' : 'remove']('visible')
+    if (entries && entries[0]) {
+      if (entries[0].isIntersecting) {
+        if (this.getAttribute('position') === 'fixed') this.css = /* css */`
+         :host {
+           --top: ${this.topMiddle}; 
+         }
+        `
+        this.div.classList.add('visible')
+      } else {
+        this.div.classList.remove('visible')
+      }
+    }
+  }
+
+  get topMiddle () {
+    return `${(self.outerHeight - this.div.offsetHeight)/2}px`
+  }
+
+  get closeBtn () {
+    return this.root.querySelector('#close')
   }
 }

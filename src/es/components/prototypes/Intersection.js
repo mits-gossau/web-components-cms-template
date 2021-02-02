@@ -47,7 +47,7 @@ export const Intersection = (ChosenClass = Shadow()) => class Intersection exten
      *
      * @type {IntersectionObserverInit}
      */
-    let intersectionObserverInit = typeof options.intersectionObserverInit === 'object' ? options.intersectionObserverInit : Intersection.parseAttribute(this.getAttribute('intersectionObserverInit'))
+    let intersectionObserverInit = this.getAttribute('intersectionObserverInit') ? Intersection.parseAttribute(this.getAttribute('intersectionObserverInit')) : options.intersectionObserverInit
     if (intersectionObserverInit) {
       // add default IntersectionObserverInit Props
       intersectionObserverInit = Object.assign({
