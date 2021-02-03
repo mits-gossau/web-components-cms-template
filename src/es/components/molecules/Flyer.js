@@ -13,11 +13,17 @@ import { Intersection } from '../prototypes/Intersection.js'
  * @type {CustomElementConstructor}
  * @css {
  *  --padding [20px]
+ *  --margin [0]
  *  --text-align [left|right]
  *  --duration [0.7s]
  *  --transform [translateX(var(--translate-x, 0))] if set will overwrite the translateX
  *  --translate-x [0] if transform is set it will be ignored
  *  --z-index [99]
+ * NOTE: The below only work with position=fixed
+ *  --top: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
+ *  --right: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
+ *  --bottom: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
+ *  --left: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
  * }
  * @attribute {
  *  {fixed | false} [position=fixed] set to fixed if it is desired for the flyer to follow the scroll for the defined rootMargin. NOTE: it is by default fixed... see => this.isPositionFixed
@@ -102,11 +108,12 @@ export default class Flyer extends Intersection() {
       }
       :host > div {
         ${this.isPositionFixed ? 'position: fixed;' : ''}
-        top: var(--top, unset);
-        right: var(--right, unset);
-        bottom: var(--bottom, unset);
-        left: var(--left, unset);
+        top: var(--top, var(--top-auto-gen, auto));
+        right: var(--right, var(--right-auto-gen, auto));
+        bottom: var(--bottom, var(--bottom-auto-gen, auto));
+        left: var(--left, var(--left-auto-gen, auto));
         padding: var(--padding, 20px);
+        margin: var(--margin, 0);
         text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
         transform: ${this.getAttribute('direction') === 'up' ? 'translateY(-100vh)' : this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : this.getAttribute('direction') === 'down' ? 'translateY(100vh)' : 'translateX(-100vw)'};
         transition: all var(--duration, 0.7s) ease;
@@ -154,20 +161,20 @@ export default class Flyer extends Intersection() {
   }
 
   get varTop () {
-    if (this.getAttribute('direction') === 'up') return '--top: 0;'
-    return this.getAttribute('direction') === 'left' || this.getAttribute('direction') === 'right' ? `--top: ${this.topMiddle};` : ''
+    if (this.getAttribute('direction') === 'up') return '--top-auto-gen: 0;'
+    return this.getAttribute('direction') === 'left' || this.getAttribute('direction') === 'right' ? `--top-auto-gen: ${this.topMiddle};` : ''
   }
 
   get varRight () {
-    return this.getAttribute('direction') === 'right' ? '--right: 0;' : ''
+    return this.getAttribute('direction') === 'right' ? '--right-auto-gen: 0;' : ''
   }
 
   get varBottom () {
-    return this.getAttribute('direction') === 'down' ? '--bottom: 0;' : ''
+    return this.getAttribute('direction') === 'down' ? '--bottom-auto-gen: 0;' : ''
   }
 
   get varLeft () {
-    return this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down' ? `--left: ${this.leftMiddle};` : ''
+    return this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down' ? `--left-auto-gen: ${this.leftMiddle};` : ''
   }
 
   get isPositionFixed () {
