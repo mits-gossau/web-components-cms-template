@@ -100,6 +100,7 @@ export default class Flyer extends Intersection() {
   renderCSS () {
     this.css = /* css */`
       :host {
+        ${this.getAttribute('href') ? 'cursor: pointer;' : ''}
         display: block;
         box-sizing: border-box;
         left: 0;
