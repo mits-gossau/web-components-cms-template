@@ -20,9 +20,9 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  --z-index [99]
  * }
  * @attribute {
- *  {fixed | undefined} [position=undefined] set to fixed if it is desired for the flyer to follow the scroll for the defined rootMargin. NOTE: it is always fixed when... see => this.isPositionFixed
+ *  {fixed | false} [position=fixed] set to fixed if it is desired for the flyer to follow the scroll for the defined rootMargin. NOTE: it is by default fixed... see => this.isPositionFixed
  *  {number} [timer=false] if any number all intersection settings will be ignored and the flyer will appear after the timeout
- *  {string} [href=undefined] used for the link reference
+ *  {string} [href=falsy] used for the link reference
  *  {up, right, down, left} [direction=left] position will always be fixed when "up" or "down"
  * }
  */
@@ -171,7 +171,7 @@ export default class Flyer extends Intersection() {
   }
 
   get isPositionFixed () {
-    return this.getAttribute('position') === 'fixed' || this.getAttribute('timer') || this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down'
+    return this.getAttribute('position') === 'fixed' || !this.getAttribute('position') || this.getAttribute('timer') || this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down'
   }
 
   get closeBtn () {
