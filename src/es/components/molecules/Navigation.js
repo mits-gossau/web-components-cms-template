@@ -98,7 +98,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li ul{
         display: none;
-        padding-top: calc(var(--content-spacing, 40px) / 2 - 1px);
+        padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
         position: absolute;
         width: max-content;
       }
@@ -187,10 +187,8 @@ export default class Navigation extends Shadow() {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
-      const aLink = new children[0][1](undefined, {namespace: this.getAttribute('namespace') || ''})
-      aLink.setAttribute('href', a.getAttribute('href'))
+      const aLink = new children[0][1](a, {namespace: this.getAttribute('namespace') || ''})
       aLink.setAttribute('text-transform', 'uppercase')
-      aLink.textContent = a.textContent
       const arrow = new children[1][1]({namespace: this.getAttribute('namespace') || ''})
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
@@ -199,10 +197,7 @@ export default class Navigation extends Shadow() {
       }
       arrow.addEventListener('click', arrowClickListener)
       aLink.addEventListener('click', event => {
-        if (event.target && (!event.target.getAttribute('href') || event.target.getAttribute('href') === '#')) {
-          event.preventDefault()
-          arrowClickListener()
-        }
+        if (event.target) arrowClickListener()
       })
       li.prepend(arrow)
       a.replaceWith(aLink)

@@ -26,10 +26,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Link extends Shadow() {
-  constructor (children = [], ...args) {
+  constructor (a, ...args) {
     super(...args)
 
-    this.addedChildren = children
+    this.a = a
   }
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
@@ -51,7 +51,7 @@ export default class Link extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return !this.a && !!this.getAttribute('href')
+    return !this.root.querySelector('a')
   }
 
   /**
@@ -86,13 +86,6 @@ export default class Link extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.html = /* html */`
-      <a href=${this.getAttribute('href')}>${this.textContent}</a>
-    `
-    Array.from(this.addedChildren).forEach(child => this.a.appendChild(child))
-  }
-
-  get a () {
-    return this.root.querySelector('a')
+    this.html = this.a
   }
 }
