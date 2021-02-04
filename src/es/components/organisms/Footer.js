@@ -63,6 +63,7 @@ export default class Footer extends Shadow() {
       }
       :host > footer {
         background-color: var(--background-color, black);
+        height: 100%;
       }
       :host a-link {
         --padding: var(--a-link-content-spacing, 0);
