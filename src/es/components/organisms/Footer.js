@@ -80,6 +80,9 @@ export default class Footer extends Shadow() {
         margin: calc(var(--content-spacing, 40px) / 2) auto 0;
         padding: 0;
       }
+      :host ul:first-child{
+        margin-top: 0;
+      }
       :host > footer > ul{
         align-items: var(--align-items, start);
         display: flex;

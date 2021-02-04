@@ -197,7 +197,11 @@ export default class Navigation extends Shadow() {
       }
       arrow.addEventListener('click', arrowClickListener)
       aLink.addEventListener('click', event => {
-        if (event.target) arrowClickListener()
+        if (event.target) {
+          arrowClickListener()
+          let a = null
+          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) event.preventDefault()
+        }
       })
       li.prepend(arrow)
       a.replaceWith(aLink)
