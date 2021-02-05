@@ -12,6 +12,7 @@ import { Intersection } from '../prototypes/Intersection.js'
  * @class Flyer
  * @type {CustomElementConstructor}
  * @css {
+ *  --background-color [transparent]
  *  --padding [20px]
  *  --margin [0]
  *  --text-align [left|right]
@@ -100,6 +101,7 @@ export default class Flyer extends Intersection() {
   renderCSS () {
     this.css = /* css */`
       :host {
+        background-color: var(--background-color, transparent);
         ${this.getAttribute('href') ? 'cursor: pointer;' : ''}
         display: block;
         box-sizing: border-box;
