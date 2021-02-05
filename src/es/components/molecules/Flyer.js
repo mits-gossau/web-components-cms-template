@@ -101,7 +101,6 @@ export default class Flyer extends Intersection() {
   renderCSS () {
     this.css = /* css */`
       :host {
-        background-color: var(--background-color, transparent);
         ${this.getAttribute('href') ? 'cursor: pointer;' : ''}
         display: block;
         box-sizing: border-box;
@@ -110,6 +109,7 @@ export default class Flyer extends Intersection() {
         width: 100%;
       }
       :host > div {
+        background-color: var(--background-color, transparent);
         ${this.isPositionFixed ? 'position: fixed;' : ''}
         top: var(--top, var(--top-auto-gen, auto));
         right: var(--right, var(--right-auto-gen, auto));
