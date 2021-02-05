@@ -67,8 +67,7 @@ export default class Teaser extends Shadow() {
 
     this.css = /* css */`
       :host {
-        width: 40%;
-        margin: 20px;
+        display: block;
       }
       :host figure {
         display: block;
@@ -78,14 +77,15 @@ export default class Teaser extends Shadow() {
       }
       :host figure > picture {
         display: block;
-        height: 350px;
+        height: 300px;
         overflow: hidden;
       }
       :host figure > picture > img {
         width: 100%;
         max-width: 100%;
-        height: auto;
         min-height: 100%;
+        height: auto;
+        object-fit: cover;
       }
       :host figure figcaption {
         background-color: var(${backgroundColor}, #c2262f);
@@ -96,7 +96,7 @@ export default class Teaser extends Shadow() {
         right: 0;
       }
       :host h3, :host p {
-        font-family: var(--font-family);
+        font-family: var(--font-family, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif);
       }
       :host h3 {
          margin: 0 0 10px 0;
@@ -108,10 +108,6 @@ export default class Teaser extends Shadow() {
         font-size: var(--p-font-size, 1rem); 
         color: var(${fontColorP}, white);
       }
-      @media only screen and  (max-width: 768px) {
-        :host {
-          width: 90%;
-        }
       }
     `
   }

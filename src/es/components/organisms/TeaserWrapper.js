@@ -9,6 +9,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @export
  * @class TeaserWrapper
  * @type {CustomElementConstructor}
+ * @css {
+ *  --m-teaser-margin [20px]
+ *  --m-teaser-min-width [370px]
+ * }
  */
 export default class TeaserWrapper extends Shadow() {
   connectedCallback () {
@@ -35,30 +39,28 @@ export default class TeaserWrapper extends Shadow() {
       :host {
         width: 100%;
         display: flex;
-        padding: 30px;
         flex-wrap: wrap;
-      }
-      :host m-teaser {
-        margin: 20px 0;
-        margin-right: 30px; 
+        justify-content: center;
       }
     `;
 
-    if (teaserAmount === 1) {
+    if (teaserAmount % 2 == 0) {
       this.css += /* css */`
       :host m-teaser {
-        width: 40%;
-      }`;
-    } else if (teaserAmount % 2 == 0) {
-      this.css += /* css */`
-      :host m-teaser {
-        width: calc((100% - 90px)/2);
+        min-width: min(var(--m-teaser-min-width, 370px), 100%);
+        width: 100%;
+        max-width: calc(50% - 2 * var(--m-teaser-margin, 20px));
+        margin: var(--m-teaser-margin, 20px);
       }
+      
       `;
     } else {
       this.css += /* css */`
       :host m-teaser {
-        width: calc((100% - 120px)/3);
+        min-width: min(var(--m-teaser-min-width, 370px), 100%);
+        width: 100%;
+        max-width: calc(100% / 3 - 2 * var(--m-teaser-margin, 20px));
+        margin: var(--m-teaser-margin, 20px);
       }
       `;
     }
