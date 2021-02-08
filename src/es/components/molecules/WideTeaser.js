@@ -18,16 +18,37 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --h4-font-weight [300]
  *  --p-font-size [1.1rem]
  *  --font-family ['Roboto', (fallback)]
+ *  --justify-content [center]
+ *  --padding [30px 0]
  * }
- * 
+ * @html {
+ *  <figure>
+ *    <picture>
+ *     <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
+ *    </picture>
+ *    <figcaption>
+ *      <h3>Teaser Title</h3>
+ *      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+ *    </figcaption>
+ *  </figure>
+ * }
  */
 export default class WideTeaser extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
+
+    this.clickListener = event => {
+      if (this.getAttribute('href')) location.href = this.getAttribute('href')
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    this.removeEventListener('click', this.clickListener)
   }
 
   /**
@@ -46,15 +67,16 @@ export default class WideTeaser extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
+      :host {
+        cursor: pointer;
+      }
       :host figure {
         display: flex;
         background-color: var(--background-color, #333333);
-        justify-content: center;
-        position: absolute;
-        left: 0;
-        right: 0;
+        justify-content: var(--justify-content, center);
         margin: 0;
-        padding: 30px 0;
+        padding: var(--padding, 30px 0);
+        width: 100%;
       }
       :host figure:hover {
         background-color: var(--background-color-hover, #810917);

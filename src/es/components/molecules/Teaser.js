@@ -24,14 +24,24 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --h3-font-size [1.2rem]
  *  --p-font-size [1rem]
  *  --font-family
+ *  --height [300px] picture tag resp. whole teaser height
+ *  --min-height [100%] if set the image covers all of the teaser resp. picture tag
+ *  --object-fit [cover] image tag object fit
+ *  --opacity [1]
  * }
- * 
+ * @html {
+ *  <figure>
+ *    <picture>
+ *     <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
+ *    </picture>
+ *    <figcaption>
+ *      <h3>Teaser Title</h3>
+ *      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+ *    </figcaption>
+ *  </figure>
+ * }
  */
 export default class Teaser extends Shadow() {
-  constructor () {
-    super()
-
-  }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
@@ -66,9 +76,6 @@ export default class Teaser extends Shadow() {
     }
 
     this.css = /* css */`
-      :host {
-        display: block;
-      }
       :host figure {
         display: block;
         position: relative;
@@ -77,20 +84,20 @@ export default class Teaser extends Shadow() {
       }
       :host figure > picture {
         display: block;
-        height: 300px;
+        height: var(--height, 300px);
         overflow: hidden;
       }
       :host figure > picture > img {
         width: 100%;
-        max-width: 100%;
-        min-height: 100%;
+        min-height: var(--min-height, 100%);
         height: auto;
-        object-fit: cover;
+        object-fit: var(--object-fit, cover);
       }
       :host figure figcaption {
         background-color: var(${backgroundColor}, #c2262f);
         padding: var(${figcaptionPadding}, 15px 15px 20px 15px);
         position: absolute;
+        opacity: var(--opacity, 1);
         bottom: 0;
         left: 0;
         right: 0;

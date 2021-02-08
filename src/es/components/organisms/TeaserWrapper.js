@@ -10,8 +10,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class TeaserWrapper
  * @type {CustomElementConstructor}
  * @css {
- *  --m-teaser-margin [20px]
- *  --m-teaser-min-width [370px]
+ *  --margin [20px]
+ *  --min-width [370px]
+ *  --justify-content [center]
  * }
  */
 export default class TeaserWrapper extends Shadow() {
@@ -40,31 +41,28 @@ export default class TeaserWrapper extends Shadow() {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: var(--justify-content, center);
+      }
+      :host m-teaser {
+        min-width: min(var(--min-width, 370px), 100%);
+        width: 100%;
+        margin: var(--margin, 20px);
       }
     `;
 
     if (teaserAmount % 2 == 0) {
-      this.css += /* css */`
+      this.css = /* css */`
       :host m-teaser {
-        min-width: min(var(--m-teaser-min-width, 370px), 100%);
-        width: 100%;
-        max-width: calc(50% - 2 * var(--m-teaser-margin, 20px));
-        margin: var(--m-teaser-margin, 20px);
+        max-width: calc(50% - 2 * var(--margin, 20px));
       }
       
       `;
     } else {
-      this.css += /* css */`
+      this.css = /* css */`
       :host m-teaser {
-        min-width: min(var(--m-teaser-min-width, 370px), 100%);
-        width: 100%;
-        max-width: calc(100% / 3 - 2 * var(--m-teaser-margin, 20px));
-        margin: var(--m-teaser-margin, 20px);
+        max-width: calc(100% / 3 - 2 * var(--margin, 20px));
       }
       `;
     }
   }
-
-
 }
