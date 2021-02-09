@@ -32,11 +32,11 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @html {
  *  <figure>
  *    <picture>
- *     <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
+ *     <img src="" alt="" width="" height="">
  *    </picture>
  *    <figcaption>
  *      <h3>Teaser Title</h3>
- *      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+ *      <p>Teaser Text</p>
  *    </figcaption>
  *  </figure>
  * }
