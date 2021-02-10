@@ -39,6 +39,9 @@ export default class General extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
+      :host, :host a {
+        color: var(--color, black);
+      }
       :host {
         display: grid;
         grid-template-areas: "header"
