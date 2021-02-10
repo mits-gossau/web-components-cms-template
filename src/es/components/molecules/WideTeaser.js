@@ -80,7 +80,7 @@ export default class WideTeaser extends Shadow() {
     this.css = /* css */`
       :host {
         display: block;
-        cursor: pointer;
+        cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
         background-color: var(--background-color, #333333);
         margin: 0;
         width: 100%;

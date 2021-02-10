@@ -42,9 +42,21 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Teaser extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.clickListener = event => {
+      if (this.getAttribute('href')) location.href = this.getAttribute('href')
+    }
+  }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    this.removeEventListener('click', this.clickListener)
   }
 
   /**
@@ -76,6 +88,9 @@ export default class Teaser extends Shadow() {
     }
 
     this.css = /* css */`
+      :host {
+        cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
+      }
       :host figure {
         display: block;
         position: relative;
