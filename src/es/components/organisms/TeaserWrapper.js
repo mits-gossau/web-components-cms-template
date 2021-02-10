@@ -9,6 +9,11 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @export
  * @class TeaserWrapper
  * @type {CustomElementConstructor}
+ * @css {
+ *  --margin [20px]
+ *  --min-width [370px]
+ *  --justify-content [center]
+ * }
  */
 export default class TeaserWrapper extends Shadow() {
   connectedCallback () {
@@ -35,34 +40,29 @@ export default class TeaserWrapper extends Shadow() {
       :host {
         width: 100%;
         display: flex;
-        padding: 30px;
         flex-wrap: wrap;
+        justify-content: var(--justify-content, center);
       }
       :host m-teaser {
-        margin: 20px 0;
-        margin-right: 30px; 
+        min-width: min(var(--min-width, 370px), 100%);
+        width: 100%;
+        margin: var(--margin, 20px);
       }
     `;
 
-    if (teaserAmount === 1) {
-      this.css += /* css */`
+    if (teaserAmount % 2 == 0) {
+      this.css = /* css */`
       :host m-teaser {
-        width: 40%;
-      }`;
-    } else if (teaserAmount % 2 == 0) {
-      this.css += /* css */`
-      :host m-teaser {
-        width: calc((100% - 90px)/2);
+        max-width: calc(50% - 2 * var(--margin, 20px));
       }
+      
       `;
     } else {
-      this.css += /* css */`
+      this.css = /* css */`
       :host m-teaser {
-        width: calc((100% - 120px)/3);
+        max-width: calc(100% / 3 - 2 * var(--margin, 20px));
       }
       `;
     }
   }
-
-
 }

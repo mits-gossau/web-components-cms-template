@@ -11,7 +11,24 @@
 <body>
   <p-general>
     <o-general>
-      <main style=" width: 80%; margin: 0 auto;">
+      <style>
+        main {
+          width: 80%;
+          margin: 0 auto;
+          border: 1px solid black;
+        }
+        main h1 {
+          font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        o-teaser-wrapper {
+          --m-teaser-margin: 20px;
+          --m-teaser-min-width: 370px;
+        }
+      </style>
+      <main>
+
+        <!-------------------- SINGLE TEASER -------------------->
+        <h1>SINGLE TEASER</h1>
         <o-teaser-wrapper>
           <style>
             m-teaser {
@@ -31,7 +48,38 @@
           <m-teaser>
             <figure>
               <picture>
-                <img src="https://via.placeholder.com/248x248" alt="" width="248" height="248">
+                <img src="https://picsum.photos/500/350" alt="" width="248" height="248">
+              </picture>
+              <figcaption>
+                <h3>Teaser Title</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </figcaption>
+            </figure>
+          </m-teaser>
+        </o-teaser-wrapper>
+
+        <!-------------------- EVEN NUMBER OF TEASERS -------------------->
+        <h1>EVEN NUMBER OF TEASERS</h1>
+        <o-teaser-wrapper>
+          <style>
+            m-teaser {
+              --background-color: #c2262f;
+              --h3-color: white;
+              --p-color: white;
+              --background-color-light-theme: white;
+              --h3-color-light-theme: #c2262f;
+              --p-color-light-theme: black;
+              --figcaption-padding: 15px 15px 20px 15px; 
+              --figcaption-padding-light-theme: 15px 0;
+              --h3-font-size: 1.2rem;
+              --p-font-size: 1rem;
+              --font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+          </style>
+          <m-teaser>
+            <figure>
+              <picture>
+                <img src="https://picsum.photos/500/350" alt="" width="248" height="248">
               </picture>
               <figcaption>
                 <h3>Teaser Title</h3>
@@ -42,7 +90,7 @@
           <m-teaser>
             <figure>
               <picture>
-                <img src="https://via.placeholder.com/640x350" alt="" width="650" height="350">
+                <img src="https://picsum.photos/640/400" alt="" width="650" height="350">
               </picture>
               <figcaption>
                 <h3>Teaser Title</h3>
@@ -53,7 +101,7 @@
           <m-teaser>
             <figure>
               <picture>
-                <img src="https://via.placeholder.com/400x400" alt="" width="400" height="400">
+                <img src="https://picsum.photos/700/480" alt="" width="400" height="400">
               </picture>
               <figcaption>
                 <h3>Teaser Title</h3>
@@ -64,7 +112,7 @@
           <m-teaser>
             <figure>
               <picture>
-                <img src="https://via.placeholder.com/1040x950" alt="" width="1040" height="950">
+                <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
               </picture>
               <figcaption>
                 <h3>Teaser Title</h3>
@@ -73,9 +121,9 @@
             </figure>
           </m-teaser>
           </o-teaser-wrapper>
-
-<!-- Light Theme -->
-
+        
+          <!-------------------- ODD NUMBER OF TEASERS + LIGHT THEME -------------------->
+        <h1>ODD NUMBER OF TEASERS + LIGHT THEME</h1>
           <o-teaser-wrapper>
             <style>
               m-teaser {
@@ -95,7 +143,7 @@
             <m-teaser theme="light">
               <figure>
                 <picture>
-                  <img src="https://via.placeholder.com/248x248" alt="" width="248" height="248">
+                  <img src="https://picsum.photos/448/248" alt="" width="248" height="248">
                 </picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
@@ -106,7 +154,7 @@
             <m-teaser theme="light">
               <figure>
                 <picture>
-                  <img src="https://via.placeholder.com/640x350" alt="" width="650" height="350">
+                  <img src="https://picsum.photos/640/350" alt="" width="650" height="350">
                 </picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
@@ -117,7 +165,7 @@
             <m-teaser theme="light">
               <figure>
                 <picture>
-                  <img src="https://via.placeholder.com/400x400" alt="" width="400" height="400">
+                  <img src="https://picsum.photos/400/400" alt="" width="400" height="400">
                 </picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
@@ -128,7 +176,7 @@
             <m-teaser>
               <figure>
                 <picture>
-                  <img src="https://via.placeholder.com/1040x950" alt="" width="1040" height="950">
+                  <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
                 </picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
@@ -139,7 +187,7 @@
             <m-teaser>
               <figure>
                 <picture>
-                  <img src="https://via.placeholder.com/1040x950" alt="" width="1040" height="950">
+                  <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
                 </picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
@@ -147,8 +195,38 @@
                 </figcaption>
               </figure>
             </m-teaser>
-            
           </o-teaser-wrapper>
+          <!-------------------- WIDE TEASER -------------------->
+          <h1 style="font-family: Roboto;">WIDE TEASER</h1>
+          <style>
+            m-wide-teaser {
+              --background-color: #333333;
+              --background-color-hover: #810917;
+              --color: white;
+              --p-font-size: 1.2rem;
+              --p-font-weight: 300;
+              --h4-font-size: 1.1rem;
+              --font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+          </style>
+          <m-wide-teaser href=helloWorld>
+            <!-- TODO:
+              Redirect is currently being handled by JavaScript, check if this is UX/Accessibility compliant
+            -->
+            <figure>
+              <picture>
+                <img src="https://picsum.photos/1940/950" alt="" width="" height="">
+              </picture>
+              <figcaption>
+                <h4>Teaser Title</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fugit aliquam, explicabo vero dignissimos laborum doloremque esse inventore quaerat itaque eaque eveniet, odio tempore neque recusandae quibusdam officiis voluptatibus qui.</h4>
+                <p class="moreLink">
+                  <a-arrow direction=right></a-arrow>
+                  <span>Home</span>
+                </p>
+              </figcaption>
+            </figure>
+          </m-wide-teaser>
       </main> 
     </o-general>
   </p-general>
@@ -161,7 +239,9 @@
       // Controllers
       import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
       import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default]),
-      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default])
+      import('../../../es/components/molecules/WideTeaser.js').then(module => ['m-wide-teaser', module.default]),
+      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default]),
+      import('../../../es/components/atoms/Arrow.js').then(module => ['a-arrow', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)
