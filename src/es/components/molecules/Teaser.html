@@ -30,9 +30,10 @@
           </style>
           <m-teaser>
             <figure>
-              <picture>
+              <a-picture></a-picture>
+              <!-- <picture>
                 <img src="https://via.placeholder.com/248x248" alt="" width="248" height="248">
-              </picture>
+              </picture> -->
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -161,6 +162,7 @@
       // Controllers
       import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
       import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default]),
+      import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
       import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
