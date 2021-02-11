@@ -216,12 +216,24 @@ export default class Navigation extends Shadow() {
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
   loadChildComponents () {
-    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
-      import('../atoms/Link.js').then(
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let linkPromise, arrowPromise
+    try {
+      linkPromise = Promise.resolve({default: Link})
+    } catch (error) {
+      linkPromise = import('../atoms/Link.js')
+    }
+    try {
+      arrowPromise = Promise.resolve({default: Arrow})
+    } catch (error) {
+      arrowPromise = import('../atoms/Arrow.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      linkPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-link', module.default]
       ),
-      import('../atoms/Arrow.js').then(
+      arrowPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-arrow', module.default]
       )

@@ -132,8 +132,15 @@ export default class Header extends Shadow() {
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
   loadChildComponents () {
-    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
-      import('../atoms/MenuIcon.js').then(
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let menuIconPromise
+    try {
+      menuIconPromise = Promise.resolve({default: MenuIcon})
+    } catch (error) {
+      menuIconPromise = import('../atoms/MenuIcon.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      menuIconPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-menu-icon', module.default]
       )

@@ -135,8 +135,15 @@ export default class Stage extends Shadow() {
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
   loadChildComponents () {
-    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
-      import('../atoms/Arrow.js').then(
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let arrowPromise
+    try {
+      arrowPromise = Promise.resolve({default: Arrow})
+    } catch (error) {
+      arrowPromise = import('../atoms/Arrow.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      arrowPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-arrow', module.default]
       )
