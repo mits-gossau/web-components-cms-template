@@ -591,7 +591,7 @@ class General extends Shadow() {
         grid-template-columns: 1fr;
         min-height: 100vh;
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           grid-template-rows: var(--header-height-mobile, 50px) 1fr minmax(var(--footer-min-height-mobile, 150px), auto);
         }
@@ -676,7 +676,7 @@ class Header extends Shadow() {
         display: none;
         --background-color: var(--color, #777);
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > header {
           height: var(--height-mobile, 50px);
           flex-direction: var(--flex-direction-mobile, row-reverse);
@@ -815,7 +815,7 @@ class Logo extends Shadow() {
         height: calc(var(--height-desktop, 85px) - var(--content-spacing, 40px));
         object-fit: scale-down;
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host img{
           height: calc(var(--height-mobile, 50px) - var(--content-spacing, 40px) / 2);
         }
@@ -971,7 +971,7 @@ class Navigation extends Shadow() {
         padding-top: var(--padding-top, 6px);
         border-top: 1px solid var(--hr-color, white);
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           --font-weight: var(--font-weight-mobile, 600);
         }
@@ -1250,7 +1250,7 @@ class Stage extends Shadow() {
         margin: 0 !important;
         width: 100% !important;
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           height: calc(100vh - var(--header-height-mobile, 50px));
         }
@@ -1388,7 +1388,7 @@ class HighlightList extends Shadow() {
         text-align: var(--text-align, center);
         text-transform: var(--text-transform, uppercase);
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > m-highlight {
           flex-wrap: wrap;
         }
@@ -1520,7 +1520,7 @@ class Highlight extends Shadow() {
         max-width: 100%;
         min-width: var(--img-min-width: 200px);
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
         }

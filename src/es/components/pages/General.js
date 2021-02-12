@@ -16,9 +16,20 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --header-height-mobile [50px]
  *  --footer-min-height-desktop [250px]
  *  --footer-min-height-mobile [150px]
+ *  --color [black]
+ *  --font-family [FuturaT, (fallback)]
+ *  --font-family-bold [OPTIFutura-ExtraBlackCond, (fallback)]
+ * 
+ * }
+ * @attribute {
+ *  {string} mobile-breakpoint
  * }
  */
 export default class General extends Shadow() {
+  constructor(...args) {
+    super({mode: "false"}, ...args) // disabling shadow-DOM to control root font-size on html-tag
+  }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
@@ -39,21 +50,26 @@ export default class General extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host, :host a {
-        color: var(--color, black);
-      }
       :host {
         display: grid;
         grid-template-areas: "header"
                              "body"
                              "footer";
-        grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
+        color: var(--color, black);
+        font-family: var(--font-family, "FuturaT", Arial, sans-serif);
         grid-template-columns: 1fr;
+        grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
         min-height: 100vh;
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      html {
+        font-size: var(--font-size, 20px);
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           grid-template-rows: var(--header-height-mobile, 50px) 1fr minmax(var(--footer-min-height-mobile, 150px), auto);
+        }
+        html {
+          font-size: var(--font-size-mobile, 12px);
         }
       }
     `

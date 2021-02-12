@@ -22,6 +22,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --text-align [center]
  *  --text-transform [uppercase]
  * }
+ * @attribute {
+ *  {string} mobile-breakpoint
+ * }
  */
 export default class HighlightList extends Shadow() {
   connectedCallback () {
@@ -48,11 +51,12 @@ export default class HighlightList extends Shadow() {
         display: block;
       }
       :host > m-highlight:first-Child {
-        border-top: 1px solid var(--hr-color, black);
+        border-top: var(--border-top, 1px solid var(--hr-color, black));
       }
       :host > m-highlight {
-        border-bottom: 1px solid var(--hr-color, black);
+        border-bottom: var(--border-bottom, 1px solid var(--hr-color, black));
         display: flex;
+        flex-direction: var(--flex-direction, row);
         gap: calc(var(--content-spacing, 40px) / 2);
         padding: var(--content-spacing, 40px) 0;
         margin: 0 auto;
@@ -67,7 +71,7 @@ export default class HighlightList extends Shadow() {
         text-align: var(--text-align, center);
         text-transform: var(--text-transform, uppercase);
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > m-highlight {
           flex-wrap: wrap;
         }
