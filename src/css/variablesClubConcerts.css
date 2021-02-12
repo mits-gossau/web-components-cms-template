@@ -1,0 +1,79 @@
+/**
+ * Variables naming rule: --{selector aka component aka namespace}-{css property}-{pseudo class or media query name} eg. --p-background-color-hover-desktop
+ * NOTE: Within the component don't use any name spacing eg. component header don't use --header-color just use --color the namespace can be added by the Shadow as an html attribute
+ * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
+ * - if a component holds other components you should share the attribute namespace with its children
+ */
+
+ @font-face {
+  font-family: 'FuturaT';
+  src: url('../fonts/FuturaT/FuturaT-Book.eot');
+  src: url('../fonts/FuturaT/FuturaT-Book.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/FuturaT/FuturaT-Book.woff2') format('woff2'),
+      url('../fonts/FuturaT/FuturaT-Book.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OPTIFutura-ExtraBlackCond';
+  src:url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.woff') format('woff'),
+      url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.svg#OPTIFutura-ExtraBlackCond') format('svg'),
+      url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot'),
+      url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot?#iefix') format('embedded-opentype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  --color-hover: #8d4674;
+  --color: white;
+  --color-secondary: #ffeb3d;
+  --content-spacing: 40px;
+  --content-width: 80vw;
+  --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
+  --font-family: "Circular", Helvetica, Arial, sans-serif;
+  --font-weight: 300;
+  --footer-background-color: var(--header-background-color); 
+  --footer-color-hover: var(--navigation-color-hover);
+  --footer-color: var(--color-secondary);
+  --footer-min-height-desktop: 250px;
+  --footer-min-height-mobile: 150px;
+  --header-background-color: #1a1b26; 
+  --header-color: var(--color);
+  --header-content-spacing: var(--content-spacing);
+  --header-height-desktop: 85px;
+  --header-height-mobile: 50px;
+  --header-justify-content-desktop: end;
+  --header-justify-content-mobile: end;
+  --header-position: static;
+  --header-height-desktop: auto;
+  --header-flex-direction-desktop: column;
+  --header-flex-direction-mobile: column;
+  --header-logo-height: 50px;
+  --hr-color: #e6e6e6;
+  --navigation-background-color: var(--header-background-color); 
+  --navigation-color-hover: white;
+  --navigation-color: var(--color-secondary);
+  --navigation-content-spacing: var(--content-spacing);
+  --navigation-hr-color: var(--navigation-color);
+  --stage-arrow-color: var(--color-secondary);
+  color: var(--color);
+  font-family: var(--font-family);
+  font-size: 10px;
+}
+/* sticky footer */
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+/* navigation open */
+body.no-scroll {
+  overflow: hidden;
+}
+/* hide component stuff before it is rendered */
+body, body a {
+  color: white;
+}
+

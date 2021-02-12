@@ -39,8 +39,9 @@ export default class General extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host, :host a {
+      :host, h1, h2, h3, h4, h5, h6, p, a, span, div, li {
         color: var(--color, black);
+        font-family: 'FuturaT';
       }
       :host {
         display: grid;
