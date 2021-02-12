@@ -228,6 +228,14 @@
       </ul>
     </o-footer>
   </p-general>
+  <msrc-cookie-banner
+    props="{
+      'env': 'test',
+      'language': 'de',
+      'theme': 'mgb',
+      'webAPIKey': '5reweDEbruthex8s'
+    }"
+  ></msrc-cookie-banner>
   <script rel=preload type=module>
     self.Environment = {
       mobileBreakpoint: '800px'
@@ -247,7 +255,8 @@
     import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
-    import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default])
+    import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default]),
+    import('../../../es/components/msrc/CookieBanner.js').then(module => ['msrc-cookie-banner', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)
