@@ -62,14 +62,14 @@ export default class General extends Shadow() {
         min-height: 100vh;
       }
       html {
-        font-size: var(--font-size, 20px);
+        font-size: var(--font-size, 10px);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           grid-template-rows: var(--header-height-mobile, 50px) 1fr minmax(var(--footer-min-height-mobile, 150px), auto);
         }
         html {
-          font-size: var(--font-size-mobile, 12px);
+          font-size: var(--font-size-mobile, 10px);
         }
       }
     `
