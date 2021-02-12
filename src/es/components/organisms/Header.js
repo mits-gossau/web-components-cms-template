@@ -29,6 +29,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @attribute {
  *  {boolean} [show]
  *  {string} mobile-breakpoint
+ *  {boolean} [menu-icon=false]
  * }
  */
 export default class Header extends Shadow() {
