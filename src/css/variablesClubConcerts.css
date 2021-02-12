@@ -4,7 +4,6 @@
  * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
  * - if a component holds other components you should share the attribute namespace with its children
  */
-
  @font-face {
   font-family: 'FuturaT';
   src: url('../fonts/FuturaT/FuturaT-Book.eot');
@@ -14,7 +13,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'OPTIFutura-ExtraBlackCond';
   src:url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.woff') format('woff'),
@@ -26,41 +24,57 @@
 }
 
 html {
-  --color-hover: #8d4674;
-  --color: white;
+  --a-font-size: 1.3rem;
+  --background-color: #1a1b26;
+  --color-hover: var(--color-secondary);
   --color-secondary: #ffeb3d;
-  --content-spacing: 40px;
+  --color: white;
+  --content-spacing: 20px;
   --content-width: 80vw;
-  --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
-  --font-family: "Circular", Helvetica, Arial, sans-serif;
+  --filter-hover: grayscale(100%);
+  --font-family-bold: "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
+  --font-family-secondary: var(--font-family);
+  --font-family: "FuturaT", Arial, sans-serif;
+  --font-size-mobile: 12px;
+  --font-size: 20px;
   --font-weight: 300;
   --footer-background-color: var(--header-background-color); 
   --footer-color-hover: var(--navigation-color-hover);
   --footer-color: var(--color-secondary);
   --footer-min-height-desktop: 250px;
   --footer-min-height-mobile: 150px;
-  --header-background-color: #1a1b26; 
+  --h2-font-size: 3.5rem;
+  --h2-text-transform: uppercase;
+  --header-background-color: var(--background-color); 
   --header-color: var(--color);
   --header-content-spacing: var(--content-spacing);
-  --header-height-desktop: 85px;
-  --header-height-mobile: 50px;
-  --header-justify-content-desktop: end;
-  --header-justify-content-mobile: end;
-  --header-position: static;
-  --header-height-desktop: auto;
   --header-flex-direction-desktop: column;
   --header-flex-direction-mobile: column;
-  --header-logo-height: 50px;
-  --hr-color: #e6e6e6;
+  --header-height-desktop: auto;
+  --header-height-mobile: auto;
+  --header-justify-content-desktop: end;
+  --header-justify-content-mobile: end;
+  --header-logo-height: 25vw;
+  --header-logo-margin: 10px 0 0;
+  --header-logo-max-height: 100px;
+  --header-position: static;
+  --header-text-align: center;
+  --highlight-list-border-bottom: none;
+  --highlight-list-border-top: none;
+  --highlight-list-flex-direction: column;
+  --hr-color: transparent;
+  --img-max-width: 65vw;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
+  --p-font-sizeGiuliaDabala: 1.4rem;
   --stage-arrow-color: var(--color-secondary);
+  --transition: filter 0.8s ease;
   color: var(--color);
   font-family: var(--font-family);
-  font-size: 10px;
+  font-size: var(--font-size);
 }
 /* sticky footer */
 body {

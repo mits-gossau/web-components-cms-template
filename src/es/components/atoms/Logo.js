@@ -14,12 +14,15 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @attribute {
  *  {string} src used for the image source
  *  {string} href used for the link reference
+ *  {string} mobile-breakpoint
  * }
  * @css {
  *  --content-spacing [40px]
  *  --height-desktop [85px]
  *  --height-mobile [50px]
  *  --height [calc(var(--height-desktop, 85px) - var(--content-spacing, 40px))]
+ *  --max-height [none]
+ *  --margin [0px]
  * }
  */
 export default class Logo extends Shadow() {
@@ -58,15 +61,18 @@ export default class Logo extends Shadow() {
         display: flex;
         justify-content: center;
         box-sizing: border-box;
+        margin: var(--margin, 0px);
       }
       :host img{
         display: block;
         height: var(--height, calc(var(--height-desktop, 85px) - var(--content-spacing, 40px)));
+        max-height: var(--max-height, none);
         object-fit: scale-down;
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host img{
-          height: calc(var(--height-mobile, 50px) - var(--content-spacing, 40px) / 2);
+          height: var(--height, calc(var(--height-mobile, 50px) - var(--content-spacing, 40px) / 2));
+          max-height: var(--max-height, none);
         }
       }
     `
