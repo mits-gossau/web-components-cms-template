@@ -49,5 +49,5 @@ body.no-scroll {
 }
 /* hide component stuff before it is rendered */
 body, body a {
-  color: white;
+  color: var(--background-color, white);
 }
