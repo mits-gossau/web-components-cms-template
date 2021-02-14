@@ -93,9 +93,9 @@ export default class Highlight extends Shadow() {
       section > *:last-child {
         margin-bottom: 0;
       }
-      section h2:hover {
+      ${this.getAttribute('href') ? `section h2:hover {
         color: var(--color-hover, #8d4674);
-      }
+      }` : ''}
       figure {
         display: flex;
         flex-grow: 2;
