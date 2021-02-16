@@ -41,6 +41,7 @@ export default class Body extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
+        background-color: var(--background-color, white);
         grid-area: body;
       }
       :host > * {

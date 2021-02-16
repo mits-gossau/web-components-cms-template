@@ -132,8 +132,15 @@ export default class Footer extends Shadow() {
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
   loadChildComponents () {
-    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
-      import('../atoms/Link.js').then(
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let linkPromise
+    try {
+      linkPromise = Promise.resolve({default: Link})
+    } catch (error) {
+      linkPromise = import('../atoms/Link.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      linkPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-link', module.default]
       )

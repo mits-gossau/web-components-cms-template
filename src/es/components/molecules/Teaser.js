@@ -24,15 +24,39 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --h3-font-size [1.2rem]
  *  --p-font-size [1rem]
  *  --font-family
+ *  --height [300px] picture tag resp. whole teaser height
+ *  --min-height [100%] if set the image covers all of the teaser resp. picture tag
+ *  --object-fit [cover] image tag object fit
+ *  --opacity [1]
+ * }
+ * @html {
+ *  <figure>
+ *    <picture>
+ *     <img src="" alt="" width="" height="">
+ *    </picture>
+ *    <figcaption>
+ *      <h3>Teaser Title</h3>
+ *      <p>Teaser Text</p>
+ *    </figcaption>
+ *  </figure>
  * }
  */
 export default class Teaser extends Shadow() {
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
+
+    this.clickListener = event => {
+      if (this.getAttribute('href')) location.href = this.getAttribute('href')
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    this.removeEventListener('click', this.clickListener)
   }
 
   /**
@@ -65,8 +89,7 @@ export default class Teaser extends Shadow() {
 
     this.css = /* css */`
       :host {
-        width: 40%;
-        margin: 20px;
+        cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
       }
       :host figure {
         display: block;
@@ -78,14 +101,14 @@ export default class Teaser extends Shadow() {
       /* fallback if a-picture is not used */
       :host figure > picture {
         display: block;
-        height: 350px;
+        height: var(--height, 300px);
         overflow: hidden;
       }
       :host figure > picture > img {
         width: 100%;
-        max-width: 100%;
+        min-height: var(--min-height, 100%);
         height: auto;
-        min-height: 100%;
+        object-fit: var(--object-fit, cover);
       }
       /* --------------------------- */
 
@@ -93,12 +116,13 @@ export default class Teaser extends Shadow() {
         background-color: var(${backgroundColor}, #c2262f);
         padding: var(${figcaptionPadding}, 15px 15px 20px 15px);
         position: absolute;
+        opacity: var(--opacity, 1);
         bottom: 0;
         left: 0;
         right: 0;
       }
       :host h3, :host p {
-        font-family: var(--font-family);
+        font-family: var(--font-family, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif);
       }
       :host h3 {
          margin: 0 0 10px 0;
@@ -110,10 +134,6 @@ export default class Teaser extends Shadow() {
         font-size: var(--p-font-size, 1rem); 
         color: var(${fontColorP}, white);
       }
-      @media only screen and  (max-width: 768px) {
-        :host {
-          width: 90%;
-        }
       }
     `
   }

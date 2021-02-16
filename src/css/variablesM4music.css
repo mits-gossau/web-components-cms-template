@@ -44,3 +44,7 @@ body {
 body.no-scroll {
   overflow: hidden;
 }
+/* hide component stuff before it is rendered */
+body, body a {
+  color: var(--background-color, white);
+}

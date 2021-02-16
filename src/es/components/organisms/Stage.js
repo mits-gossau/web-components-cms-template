@@ -90,7 +90,7 @@ export default class Stage extends Shadow() {
         margin: 0 !important;
         width: 100% !important;
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           height: calc(100vh - var(--header-height-mobile, 50px));
         }
@@ -135,8 +135,15 @@ export default class Stage extends Shadow() {
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
   loadChildComponents () {
-    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
-      import('../atoms/Arrow.js').then(
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let arrowPromise
+    try {
+      arrowPromise = Promise.resolve({default: Arrow})
+    } catch (error) {
+      arrowPromise = import('../atoms/Arrow.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      arrowPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-arrow', module.default]
       )

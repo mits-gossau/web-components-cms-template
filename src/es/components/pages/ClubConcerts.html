@@ -5,81 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name=viewport content="width=device-width, initial-scale=1.0">
   <link href=../../../../favicon.ico rel="shortcut icon" type=image/x-icon>
-  <link href=../../../css/variablesM4music.css rel=stylesheet>
+  <link href=../../../css/variablesClubConcerts.css rel=stylesheet>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
-  <title>m4music & umbraco</title>
+  <title>club concerts & umbraco</title>
 </head>
 <body>
   <p-general>
-    <o-header menu-icon="true" namespace=header->
-      <a-logo src=../../../img/logo.png href=../../../index.html namespace=header-></a-logo>
-      <m-navigation namespace=navigation->
-        <ul>
-          <li>
-            <a href="/de/demotape-clinic">Demotape Clinic</a>
-            <ul>
-              <li>
-                <a href="/de/demotape-clinic/der-demotape-clinic-news-alert">News Alert</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/anmelden">Anmelden</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/mbassadors-2021">Mbassadors 2021</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/reglement">Reglement</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/ablauf">Ablauf</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/preise">Preise</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/hall-of-fame">Hall of Fame</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/best-of-dtc">Best Of Demotape Clinic</a>
-              </li>
-              <li>
-                <a href="/de/demotape-clinic/winner-2020">Winner 2020</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="/de/best-swiss-video-clip">Best Swiss Video Clip</a>
-            <ul>
-              <li>
-                <a href="/de/best-swiss-video-clip/ablauf-und-preise">Ablauf und Preise 2021</a>
-              </li>
-              <li>
-                <a href="/de/best-swiss-video-clip/winner-2020">Winner 2020</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Multimedia</a>
-            <ul>
-              <li>
-                <a href="/de/multimedia/fotos">Fotos</a>
-              </li>
-              <li>
-                <a href="/de/multimedia/videos"> Videos</a>
-              </li>
-              <li>
-                <a href="/de/multimedia/audio">Audio</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="/de/tickets">Tickets</a>
-          </li>
-        </ul>
-      </m-navigation>
+    <o-header namespace=header->
+      <a-logo src=../../../img/ClubConcertLogo.svg href=../../../index.html namespace=header-logo-></a-logo>
+      <style>
+        :host header a-logo {
+          align-self: flex-end;
+        }
+        :host #intro {
+          width: 100%;
+          text-align: center;
+        }
+        :host p {
+          text-align: center;
+          font-size: var(--p-font-size);
+          margin: 30px auto;
+          padding: 0 15px;
+        }
+        :host #intro img {
+          margin-top: 50px;
+          max-width: var(--img-max-width, 65vw);
+          transition: var(--transition, none);
+        }
+        :host #intro img:hover {
+          filter: var(--filter-hover, none);
+        }
+        .headerText {
+          margin: max(5vw, 20px) 0 0 0;
+        }
+        .headerText h1 {
+          color: var(--color, white);
+          font-size: 6rem;
+          line-height: 5rem;
+          font-family: var(--font-family-bold, 'OPTIFutura-ExtraBlackCond');
+          margin: 0;
+        }
+        .headerText h1.secondaryColor {
+          color: var(--color-secondary, #ffeb3d);
+        }
+      </style>
+      <div class="headerText">
+        <h1>CLUB</h1>
+        <h1>KONZERTE</h1>
+        <h1 class="secondaryColor">LIVE</h1>
+      </div>
+      <div id="intro">
+        <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
+        <p>
+          Club-Konzerte finden in Genf, Bern, Luzern und Zürich für ein kleines Publikum statt. <br> 
+          Junge Musiker*innen unserer Talent-Wettbewerbe treten gemeinsam mit Schweizer Jazzmusiker*innen auf.
+        </p>
+      </div>
     </o-header>
-    <o-body-get-news></o-body-get-news>
+    
+    <o-body>
+      <o-highlight-list namespace=highlight-list->
+        <m-highlight>
+          <h2>Zürich</h2>
+          <p>Dienstag, 16. März 2021 in der Helferei</p>
+          <p>Classics-Tournee Deutsches Symphonie-Orchester Berlin</p>
+          <p class="secondaryColor">Extrakonzert Israel Philharmonic Orchestra</p>
+          <ul>
+            <li><a href="#">zum Programm</a></li>
+            <li><a href="#">Tickets</a></li>
+          </ul>
+          <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
+        </m-highlight>
+      </o-highlight-list>
+    </o-body>
     <o-footer namespace=footer->
       <ul>
         <li>
@@ -144,7 +143,6 @@
         </li>
       </ul>
       <ul style="justify-content: center; align-items: center;">
-        <li><a href=migros.ch><img src=../../../img/footerLogo.png></a></li>
         <li><a href=#de>Deutsch</a></li>
         <li><a href=#fr>Français</a></li>
         <li><a href=#en>English</a></li>
@@ -153,6 +151,10 @@
     </o-footer>
   </p-general>
   <script rel=preload type=module>
+    self.Environment = {
+      mobileBreakpoint: '800px'
+    }
+
     /**
     * First level controllers and organisms are loaded and defined here (loadChildComponents)
     */
@@ -162,8 +164,9 @@
     import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
     import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
-    import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
-    import('../../../es/components/organisms/BodyGetNews.js').then(module => ['o-body-get-news', module.default]),
+    import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
+    import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
+    import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements

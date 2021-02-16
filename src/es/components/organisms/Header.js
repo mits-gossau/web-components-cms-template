@@ -21,8 +21,15 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --justify-content-desktop [space-between]
  *  --justify-content-mobile [space-between]
  *  --content-spacing [40px]
+ *  --flex-direction-desktop [row]
  *  --flex-direction-mobile [row-reverse]
  *  --height-mobile [50px]
+ *  --text-align [initial]
+ * }
+ * @attribute {
+ *  {boolean} [show]
+ *  {string} mobile-breakpoint
+ *  {boolean} [menu-icon=false]
  * }
  */
 export default class Header extends Shadow() {
@@ -61,11 +68,13 @@ export default class Header extends Shadow() {
         position: var(--position, sticky);
         top: 0;
         z-index: var(--z-index, 100);
+        text-align: var(--text-align, initial);
       }
       :host > header {
         align-items: var(--align-items, center);
         background-color: var(--background-color, black);
         display: flex;
+        flex-direction: var(--flex-direction-desktop, row);
         height: var(--height-desktop, 85px);
         justify-content: var(--justify-content-desktop, space-between);
         padding: 0 calc(var(--content-spacing, 40px) / 2);
@@ -74,7 +83,7 @@ export default class Header extends Shadow() {
         display: none;
         --background-color: var(--color, #777);
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > header {
           height: var(--height-mobile, 50px);
           flex-direction: var(--flex-direction-mobile, row-reverse);
@@ -114,15 +123,17 @@ export default class Header extends Shadow() {
     Array.from(this.root.children).forEach(node => {
       if (node !== header) header.appendChild(node)
     })
-    this.loadChildComponents().then(children => {
-      const MenuIcon = new children[0][1]({namespace: this.getAttribute('namespace') || ''})
-      MenuIcon.addEventListener('click', event => {
-        header.classList.toggle('open')
-        const isOpen = header.classList.contains('open')
-        document.body.classList[isOpen ? 'add' : 'remove']('no-scroll')
+    if (this.getAttribute('menu-icon')) {
+      this.loadChildComponents().then(children => {
+        const MenuIcon = new children[0][1]({namespace: this.getAttribute('namespace') || ''})
+        MenuIcon.addEventListener('click', event => {
+          header.classList.toggle('open')
+          const isOpen = header.classList.contains('open')
+          document.body.classList[isOpen ? 'add' : 'remove']('no-scroll')
+        })
+        header.appendChild(MenuIcon)
       })
-      header.appendChild(MenuIcon)
-    })
+    }
     self.addEventListener('resize', event => document.body.classList.remove('no-scroll'))
   }
 
@@ -132,8 +143,15 @@ export default class Header extends Shadow() {
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
   loadChildComponents () {
-    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
-      import('../atoms/MenuIcon.js').then(
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let menuIconPromise
+    try {
+      menuIconPromise = Promise.resolve({default: MenuIcon})
+    } catch (error) {
+      menuIconPromise = import('../atoms/MenuIcon.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      menuIconPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-menu-icon', module.default]
       )

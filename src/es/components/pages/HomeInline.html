@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang=de>
+<head>
+  <meta charset=UTF-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <link href=../../../../favicon.ico rel="shortcut icon" type=image/x-icon>
+  <link href=../../../css/variablesM4music.css rel=stylesheet>
+  <!-- NOTE: Remove line Debugging.js below for none localhost -->
+  <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <title>m4music & umbraco</title>
+</head>
+<body>
+  <p-general>
+    <o-header menu-icon="true" namespace=header->
+      <a-logo src=../../../img/logo.png href=../../../index.html namespace=header-></a-logo>
+      <m-navigation hover="false" namespace=navigation->
+        <ul>
+          <li>
+            <a href="#">Demotape Clinic</a>
+            <ul>
+              <li>
+                <a target="_blank" href="/de/demotape-clinic/der-demotape-clinic-news-alert">News Alert</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/anmelden">Anmelden</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/mbassadors-2021">Mbassadors 2021</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/reglement">Reglement</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/ablauf">Ablauf</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/preise">Preise</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/hall-of-fame">Hall of Fame</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/best-of-dtc">Best Of Demotape Clinic</a>
+              </li>
+              <li>
+                <a href="/de/demotape-clinic/winner-2020">Winner 2020</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Best Swiss Video Clip</a>
+            <ul>
+              <li>
+                <a href="/de/best-swiss-video-clip/ablauf-und-preise">Ablauf und Preise 2021</a>
+              </li>
+              <li>
+                <a href="/de/best-swiss-video-clip/winner-2020">Winner 2020</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Multimedia</a>
+            <ul>
+              <li>
+                <a href="/de/multimedia/fotos">Fotos</a>
+              </li>
+              <li>
+                <a href="/de/multimedia/videos"> Videos</a>
+              </li>
+              <li>
+                <a href="/de/multimedia/audio">Audio</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/de/tickets">Tickets</a>
+          </li>
+        </ul>
+      </m-navigation>
+    </o-header>
+    <o-body>
+      <o-stage src=../../../img/stage.jpg namespace=stage->
+        <h2 style="font-size: 50px;">Hello</h2><p>no way</p>
+      </o-stage>
+      <o-highlight-list>
+        <h1>News</h1>
+        <m-flyer direction=up>
+          <style>
+            :host {
+              --transform: rotate(180deg);
+            }
+          </style>
+          <h1 style="color:pink;">Hello Down!</h1><img src=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd1w7fb2mkkr3kw.cloudfront.net%2Fassets%2Fimages%2Fbook%2Flrg%2F9781%2F5892%2F9781589256361.jpg&f=1&nofb=1>
+        </m-flyer>
+        <m-highlight href=./baaahh>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-flyer
+          direction=left
+          position=fixed
+          intersectionObserverInit="{'rootMargin': '0px 0px 0px 0px', 'threshold': 0}"
+        >
+          <h1 style="color:blue">Hello Fixed!</h1><img src=https://i.pinimg.com/originals/57/62/ed/5762edaaf446bdcf3fdcf42b79c7ea0f.png>
+        </m-flyer>
+        <m-highlight href=#>
+          <img src=../../../img/GiuliaDabala.png />
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+        </m-highlight>
+        <m-highlight href=#>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-flyer
+          direction=left
+          timer=2000
+        >
+          <div style="display: flex;"><h1 style="color:red;">Hello Timer!</h1><span id=close style="font-size: 45px;color:red;">&cross;</span></div><img src=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.i3zoFXIqLpw2h5u5PMB-rwHaHa%26pid%3DApi&f=1>
+        </m-flyer>
+        <m-highlight href=#>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-flyer direction=right position=false>
+          <style>
+            :host {
+              --translate-x: 140px;
+              --transform: rotate(-15deg);
+            }
+          </style>
+          <h1 style="color:orange;">Hello Joe!</h1><img src=https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-9OT1jnveHOk%2FUDElczsRPbI%2FAAAAAAAAJEA%2FQsEg1QMWzs0%2Fs1600%2FShirtless-Biden-Jump-R_jpg_600x1000_q85.jpg&f=1&nofb=1>
+        </m-flyer>
+        <m-highlight href=#>
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+          <img src=../../../img/GiuliaDabala.png />
+        </m-highlight>
+        <m-highlight href=#>
+          <img src=../../../img/GiuliaDabala.png />
+          <h5>Demotape Clinic: Sende dein Demo ein! </h5>
+          <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
+          <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
+        </m-highlight>
+        <m-flyer direction=down>
+          <h1 style="color:lightcoral;">Hello Up!</h1><img src=https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F-EVyEb9q4KCA%2FUiCQ8yfHSLI%2FAAAAAAAAHDs%2FR2MODIADc7s%2Fs1600%2FBalloon-Up-Movie3.jpg&f=1&nofb=1>
+        </m-flyer>
+      </o-highlight-list>
+    </o-body>
+    <o-footer namespace=footer->
+      <ul>
+        <li>
+          <a href="/de/demotape-clinic">Demotape Clinic</a>
+          <ul>
+            <li>
+              <a href="/de/demotape-clinic/der-demotape-clinic-news-alert">News Alert</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/anmelden">Anmelden</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/mbassadors-2021">Mbassadors 2021</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/reglement">Reglement</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/ablauf">Ablauf</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/preise">Preise</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/hall-of-fame">Hall of Fame</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/best-of-dtc">Best Of Demotape Clinic</a>
+            </li>
+            <li>
+              <a href="/de/demotape-clinic/winner-2020">Winner 2020</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/de/best-swiss-video-clip">Best Swiss Video Clip</a>
+          <ul>
+            <li>
+              <a href="/de/best-swiss-video-clip/ablauf-und-preise">Ablauf und Preise 2021</a>
+            </li>
+            <li>
+              <a href="/de/best-swiss-video-clip/winner-2020">Winner 2020</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Multimedia</a>
+          <ul>
+            <li>
+              <a href="/de/multimedia/fotos">Fotos</a>
+            </li>
+            <li>
+              <a href="/de/multimedia/videos"> Videos</a>
+            </li>
+            <li>
+              <a href="/de/multimedia/audio">Audio</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/de/tickets">Tickets</a>
+        </li>
+      </ul>
+      <ul style="justify-content: center; align-items: center;">
+        <li><a href=migros.ch><img src=../../../img/footerLogo.png></a></li>
+        <li><a href=#de>Deutsch</a></li>
+        <li><a href=#fr>Français</a></li>
+        <li><a href=#en>English</a></li>
+        <li></li>
+      </ul>
+    </o-footer>
+  </p-general>
+  <script>
+    // @ts-check
+/** @typedef {ShadowRootMode | 'false'} mode */
+
+/* global HTMLElement */
+/* global document */
+
+/**
+ * Shadow is a helper with a few functions for every web component which possibly allows a shadowRoot (atom, organism and molecule)
+ *
+ * @export
+ * @function Shadow
+ * @param {CustomElementConstructor} ChosenHTMLElement
+ * @attribute {mode} [mode='open']
+ * @attribute {namespace} namespace
+ * @property {
+    connectedCallback,
+    disconnectedCallback,
+    Shadow.parseAttribute,
+    getMode,
+    mode,
+    namespace,
+    hasShadowRoot,
+    root,
+    cssSelector,
+    css,
+    _css,
+    html
+  }
+ * @return {CustomElementConstructor | *}
+ */
+const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends ChosenHTMLElement {
+  /**
+   * Creates an instance of Shadow. The constructor will be called for every custom element using this class when initially created.
+   *
+   * @param {{mode?: mode | undefined, namespace?: string | undefined}} [options = {mode: undefined, namespace: undefined}]
+   * @param {*} args
+   */
+  constructor (options = { mode: undefined, namespace: undefined }, ...args) {
+    // @ts-ignore
+    super(...args)
+
+    /**
+     * Digest attribute to have shadow or not
+     * open, closed or false (no shadow) Note: open or closed only differs by exposing shadowRoot, which could be worked around anyways.
+     * IMPORTANT: If you use mode = 'closed' this.shadowRoot will not be exposed and for this reason this.root, this.html and this.css is not going to work
+     *
+     * @type {mode}
+     */
+    this.mode = this.getMode(typeof options.mode === 'string' ? options.mode : this.getAttribute('mode'))
+    if (this.hasShadowRoot) {
+      // @ts-ignore
+      const shadowRoot = this.attachShadow({ mode: this.mode })
+      Array.from(this.children).forEach(node => {
+        if (!node.getAttribute('slot')) shadowRoot.appendChild(node)
+      })
+    }
+    /** @type {string} */
+    this.namespace = typeof options.namespace === 'string' ? options.namespace : this.getAttribute('namespace') || ''
+  }
+
+  /**
+   * Lifecycle callback, triggered when node is attached to the dom
+   * must be here as a placeholder
+   *
+   * @return {void}
+   */
+  connectedCallback () {}
+
+  /**
+   * Lifecycle callback, triggered when node is detached from the dom
+   * must be here as a placeholder
+   *
+   * @return {void}
+   */
+  disconnectedCallback () {}
+
+  /**
+   * Helper function to parse object strings within attributes
+   * return object if JSON parsable or null
+   *
+   * @static
+   * @param {string} attribute
+   * @return {{} | null}
+   */
+  static parseAttribute (attribute) {
+    if (!attribute || typeof attribute !== 'string') return null
+    try {
+      return JSON.parse(attribute.replace(/'/g, '"')) || null
+    } catch (e) {
+      return null
+    }
+  }
+
+  /**
+   * returns a mode from a string and falls back to 'open'
+   *
+   * @param {string | null} mode
+   * @return {mode}
+   */
+  getMode (mode) {
+    return mode === 'closed' || mode === 'open' || mode === 'false' ? mode : 'open'
+  }
+
+  /**
+   * check if we operate with a shadow
+   *
+   * @readonly
+   * @return {boolean}
+   */
+  get hasShadowRoot () {
+    return this.mode === 'closed' || this.mode === 'open'
+  }
+
+  /**
+   * html nodes have to be placed within the shadowRoot if existent
+   * this function helps to find the parent (shadowRoot or this)
+   *
+   * @readonly
+   * @return {ShadowRoot | this}
+   */
+  get root () {
+    return this.shadowRoot || this
+  }
+
+  /**
+   * selector :host only works when shadow is active, fallback to id then nodeName
+   *
+   * @readonly
+   * @return {string}
+   */
+  get cssSelector () {
+    return this.hasShadowRoot ? ':host' : this.getAttribute('id') ? `#${this.getAttribute('id')}` : this.nodeName
+  }
+
+  /**
+   * the master css style of this component
+   *
+   * @return {string}
+   */
+  get css () {
+    return this._css && this._css.textContent
+  }
+
+  /**
+   * to clear, set empty string otherwise it gets prepended to already set style
+   *
+   * @param {string} style
+   */
+  set css (style) {
+    if (!this._css) {
+      /** @type {HTMLStyleElement} */
+      this._css = document.createElement('style')
+      this._css.setAttribute('_css', '')
+      this._css.setAttribute('protected', 'true') // this will avoid deletion by html=''
+      this.root.appendChild(this._css)
+    }
+    if (!style) {
+      this._css.textContent = ''
+    } else {
+      let textContent = this._css.textContent + style
+      if (!this.hasShadowRoot) textContent = textContent.replace(/:host\s{0,5}/g, `${this.cssSelector} `)
+      if (this.namespace) textContent = textContent.replace(/--/g, `--${this.namespace}`)
+      this._css.textContent = textContent
+    }
+  }
+
+  /**
+   * returns innerHTML STRING of shadow else this
+   *
+   * @return {string | HTMLCollection | HTMLElement[]| ChildNode[] | HTMLElement | NodeList}
+   */
+  get html () {
+    return this.root.innerHTML
+  }
+
+  /**
+   * set innerHTML of shadow else this
+   *
+   * @param {string | HTMLCollection | HTMLElement[]| ChildNode[] | HTMLElement | NodeList} innerHTML
+   */
+  set html (innerHTML) {
+    if (typeof innerHTML === 'string') {
+      if (!innerHTML) {
+        // save all protected
+        innerHTML = this.root.querySelectorAll('[protected=true]')
+        // clear all childNodes but keep protected
+        this.root.innerHTML = ''
+      } else {
+        /**
+         * this div is used to render string to childNodes and avoids:
+         * "this.root.innerHTML = this.root.innerHTML + innerHTML"
+         * the above would re-initiate (newly construct) already set childNodes, which is bad for performance but also destroys references
+         *
+         * @type {HTMLElement}
+         */
+        const div = document.createElement('div')
+        div.innerHTML = innerHTML
+        innerHTML = div.childNodes
+      }
+    }
+    // @ts-ignore
+    if (innerHTML.length === undefined) innerHTML = [innerHTML]
+    // @ts-ignore
+    Array.from(innerHTML).forEach(node => this.root.appendChild(node))
+  }
+}
+
+// @ts-check
+
+/* global IntersectionObserver */
+
+
+/**
+ * IntersectionObserver is a helper which sets up a new IntersectionObserver in the context of a web component
+ * NOTE: IntersectionObserver comes with event queues, which use can be overwritten by intersectionCallback if not needed. A full queue web component would make sense with ES6 Proxies aka. Proxify.js to queue not only events but any attribute and function.
+ *
+ * @export
+ * @function IntersectionObserver
+ * @param {Function | *} ChosenClass
+ * @attribute {'string'} [intersectionObserverInit=`{
+      'root': undefined
+      'rootMargin': '200px 0px 200px 0px',
+      'threshold': 0
+    }`]
+ * @requires {
+      Shadow: {
+        connectedCallback,
+        disconnectedCallback,
+        parseAttribute
+      }
+    }
+ * @property {
+      intersectionCallback,
+      intersectionObserveStart,
+      intersectionObserveStop
+    }
+ * @return {CustomElementConstructor | *}
+ */
+const Intersection = (ChosenClass = Shadow()) => class Intersection extends ChosenClass {
+  /**
+   * Creates an instance of IntersectionObserver. The constructor will be called for every custom element using this class when initially created.
+   *
+   * @param {{intersectionObserverInit: IntersectionObserverInit | undefined}} [options = {intersectionObserverInit: undefined}]
+   * @param {*} args
+   */
+  constructor (options = { intersectionObserverInit: undefined }, ...args) {
+    super(options, ...args)
+
+    /**
+     * Digest attribute to have IntersectionObservers or not
+     * this will trigger this.intersectionCallback and can be extended
+     * see => https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver Properties
+     *
+     * @type {IntersectionObserverInit}
+     */
+    let intersectionObserverInit = this.getAttribute('intersectionObserverInit') ? Intersection.parseAttribute(this.getAttribute('intersectionObserverInit')) : options.intersectionObserverInit
+    if (intersectionObserverInit) {
+      // add default IntersectionObserverInit Props
+      intersectionObserverInit = Object.assign({
+        root: undefined,
+        rootMargin: '200px 0px 200px 0px',
+        threshold: 0
+      }, intersectionObserverInit)
+      /** @type {IntersectionObserver} */
+      const intersectionObserver = new IntersectionObserver(this.intersectionCallback.bind(this), intersectionObserverInit)
+      /** @return {void} */
+      this.intersectionObserveStart = () => {
+        // @ts-ignore
+        intersectionObserver.observe(this)
+      }
+      /** @return {void} */
+      this.intersectionObserveStop = () => intersectionObserver.disconnect()
+    } else {
+      /** @return {void} */
+      this.intersectionObserveStart = () => {}
+      /** @return {void} */
+      this.intersectionObserveStop = () => {}
+      console.warn('IntersectionObserver got not started, due to missing options.intersectionObserverInit. At least supply an empty object to activate the observer with the default settings!')
+    }
+  }
+
+  /**
+   * Lifecycle callback, triggered when node is attached to the dom
+   *
+   * @return {void}
+   */
+  connectedCallback () {
+    super.connectedCallback()
+    this.intersectionObserveStart()
+  }
+
+  /**
+   * Lifecycle callback, triggered when node is detached from the dom
+   *
+   * @return {void}
+   */
+  disconnectedCallback () {
+    super.disconnectedCallback()
+    this.intersectionObserveStop()
+  }
+
+  /**
+   * observes intersection with its intersectionObserverInit.root (dom viewport)
+   *
+   * @param {IntersectionObserverEntry[]} entries
+   * @param {IntersectionObserver} observer
+   * @return {void}
+   */
+  intersectionCallback (entries, observer) {}
+}
+
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * General is simply a grid which expects certain grid-areas
+ * As a page, this component becomes a domain dependent container and shall hold organisms, molecules and/or atoms
+ *
+ * @export
+ * @class General
+ * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-template-areas!
+ *  --header-height-desktop [85px]
+ *  --header-height-mobile [50px]
+ *  --footer-min-height-desktop [250px]
+ *  --footer-min-height-mobile [150px]
+ * }
+ */
+class General extends Shadow() {
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * renders css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host {
+        display: grid;
+        grid-template-areas: "header"
+                             "body"
+                             "footer";
+        grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
+        grid-template-columns: 1fr;
+        min-height: 100vh;
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          grid-template-rows: var(--header-height-mobile, 50px) 1fr minmax(var(--footer-min-height-mobile, 150px), auto);
+        }
+      }
+    `
+  }
+}
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * Header can be sticky and hosts as a flex mostly a logo and a navigation
+ * Example at: /src/es/components/pages/Home.html
+ * As an organism, this component shall hold molecules and/or atoms
+ *
+ * @export
+ * @class Header
+ * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-area: header;
+ *  --position [sticky]
+ *  --z-index [100]
+ *  --align-items [center]
+ *  --background-color [black]
+ *  --height-desktop [85px]
+ *  --justify-content-desktop [space-between]
+ *  --justify-content-mobile [space-between]
+ *  --content-spacing [40px]
+ *  --flex-direction-mobile [row-reverse]
+ *  --height-mobile [50px]
+ * }
+ */
+class Header extends Shadow() {
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.root.querySelector('header')
+  }
+
+  /**
+   * renders the o-header css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host {
+        grid-area: header;
+        position: var(--position, sticky);
+        top: 0;
+        z-index: var(--z-index, 100);
+      }
+      :host > header {
+        align-items: var(--align-items, center);
+        background-color: var(--background-color, black);
+        display: flex;
+        height: var(--height-desktop, 85px);
+        justify-content: var(--justify-content-desktop, space-between);
+        padding: 0 calc(var(--content-spacing, 40px) / 2);
+      }
+      :host  > header > a-menu-icon{
+        display: none;
+        --background-color: var(--color, #777);
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > header {
+          height: var(--height-mobile, 50px);
+          flex-direction: var(--flex-direction-mobile, row-reverse);
+          justify-content: var(--justify-content-mobile, space-between);
+        }
+        :host > header > m-navigation {
+          left: 0;
+          height: 0;
+          max-height: calc(100vh - var(--height-mobile, 50px));
+          overflow: hidden;
+          position: absolute;
+          transition: height 0.2s ease;
+          top: var(--height-mobile, 50px);
+          width: 100%;
+        }
+        :host > header.open > m-navigation{
+          height: 100vh;
+          overflow-y: auto;
+        }
+        :host  > header > a-menu-icon{
+          display: block;
+        }
+        :host > header > a-logo{
+          flex-grow: 1;
+        }
+      }
+    `
+  }
+
+  /**
+   * renders the a-link html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    const header = this.root.appendChild(document.createElement('header'))
+    Array.from(this.root.children).forEach(node => {
+      if (node !== header) header.appendChild(node)
+    })
+    this.loadChildComponents().then(children => {
+      const MenuIcon = new children[0][1]({namespace: this.getAttribute('namespace') || ''})
+      MenuIcon.addEventListener('click', event => {
+        header.classList.toggle('open')
+        const isOpen = header.classList.contains('open')
+        document.body.classList[isOpen ? 'add' : 'remove']('no-scroll')
+      })
+      header.appendChild(MenuIcon)
+    })
+    self.addEventListener('resize', event => document.body.classList.remove('no-scroll'))
+  }
+
+  /**
+   * fetch children when first needed
+   *
+   * @returns {Promise<[string, CustomElementConstructor][]>}
+   */
+  loadChildComponents () {
+    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
+      import('../atoms/MenuIcon.js').then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-menu-icon', module.default]
+      )
+    ]).then(elements => {
+      elements.forEach(element => {
+        // don't define already existing customElements
+        // @ts-ignore
+        if (!customElements.get(element[0])) customElements.define(...element)
+      })
+      return elements
+    }))
+  }
+}
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * Logo is the navigation logo
+ * Example at: /src/es/components/pages/Home.html
+ * As an atom, this component can not hold further children (those would be quantum)
+ *
+ * @export
+ * @class Logo
+ * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} src used for the image source
+ *  {string} href used for the link reference
+ * }
+ * @css {
+ *  --content-spacing [40px]
+ *  --height-desktop [85px]
+ *  --height-mobile [50px]
+ * }
+ */
+class Logo extends Shadow() {
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.img && !!this.getAttribute('src')
+  }
+
+  /**
+   * renders the css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+      }
+      :host img{
+        display: block;
+        height: calc(var(--height-desktop, 85px) - var(--content-spacing, 40px));
+        object-fit: scale-down;
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host img{
+          height: calc(var(--height-mobile, 50px) - var(--content-spacing, 40px) / 2);
+        }
+      }
+    `
+  }
+
+  /**
+   * renders the html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    const img = `<img src=${this.getAttribute('src')}>`
+    let a = null
+    if (!!this.getAttribute('href')) {
+      a = document.createElement('a')
+      a.setAttribute('href', this.getAttribute('href'))
+      a.innerHTML = img
+    }
+    this.html = a ? a : img
+  }
+
+  get a () {
+    return this.root.querySelector('a')
+  }
+
+  get img () {
+    return this.root.querySelector('img')
+  }
+}
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * Navigation hosts uls
+ * Example at: /src/es/components/pages/Home.html
+ * As a molecule, this component shall hold Atoms
+ *
+ * @export
+ * @class Navigation
+ * @type {CustomElementConstructor}
+ * @attribute {
+ *  {boolean} [hover=false]
+ * }
+ * @css {
+ *  --content-spacing [40px]
+ *  --a-link-content-spacing [0]
+ *  --a-link-font-size [1rem]
+ *  --background-color [black]
+ *  --list-style [none]
+ *  --align-items [start]
+ *  --min-width [100px] of list items at second level
+ *  --padding-top [6px] first list item at second level
+ *  --hr-color [white]
+ *  --a-link-font-size-mobile [2rem]
+ *  --font-weight-mobile [600]
+ *  --a-link-text-align-mobile [center]
+ *  --justify-content-mobile [center]
+ *  --a-arrow-color-hover [--color-hover, white]
+ *  --a-arrow-color [#777]
+ *  --min-height-mobile [50px]
+ *  --min-width-mobile [50px]
+ * }
+ */
+class Navigation extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.nav = document.createElement('nav')
+    this.nav.hidden = true
+    Array.from(this.root.children).forEach(node => {
+      if (!node.getAttribute('slot')) this.nav.appendChild(node)
+    })
+    this.root.appendChild(this.nav)
+  }
+
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.renderHTML()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * renders the m-navigation css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host{
+        color: black;
+      }
+      :host a-link {
+        --padding: var(--a-link-content-spacing, 14px 10px);
+        --font-size: var(--a-link-font-size, 1rem);
+      }
+      :host ul{
+        background-color: var(--background-color, black);
+        list-style: var(--list-style, none);
+        margin: 0;
+        padding: 0;
+      }
+      :host > nav > ul{
+        align-items: var(--align-items, center);
+        display: flex;
+        padding: calc(var(--content-spacing, 40px) / 2) 0;
+      }
+      :host > nav > ul > li{
+        display: block;
+        padding: 0 calc(var(--content-spacing, 40px) / 4);
+      }
+      :host > nav > ul li{
+        position: relative;
+      }
+      :host > nav > ul li > a-arrow {
+        display: none;
+        visibility: hidden;
+      }
+      :host > nav > ul li ul{
+        display: none;
+        padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
+        position: absolute;
+        width: max-content;
+      }
+      :host > nav > ul li:last-child ul{
+        right: 0;
+      }
+      :host > nav > ul li:hover{
+        cursor: pointer;
+      }
+      ${this.getAttribute('hover') === 'true' && 
+        `:host > nav > ul li:hover ul,
+        :host > nav > ul li ul:hover,` || ''}
+      :host > nav > ul li:focus-within ul{
+        display: block;
+      }
+      :host > nav > ul li ul li {
+        min-width: var(--min-width, 100px);
+      }
+      :host > nav > ul > li > ul > li:first-child{
+        padding-top: var(--padding-top, 6px);
+        border-top: 1px solid var(--hr-color, white);
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          --font-weight: var(--font-weight-mobile, 600);
+        }
+        :host a-link {
+          --font-size: var(--a-link-font-size-mobile, 2rem);
+          --text-align: var(--a-link-text-align-mobile, center);
+
+        }
+        :host > nav > ul{
+          flex-direction: column;
+          padding: 0;
+        }
+        :host > nav > ul li{
+          border-top: 1px solid var(--hr-color, white);
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: var(--justify-content-mobile, center);
+          padding: 0;
+          width: 100%;
+        }
+        :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
+          --color: var(--a-arrow-color-hover, var(--color-hover, white));
+        }
+        :host > nav > ul li > a-link{
+          flex-grow: 1;
+        }
+        :host > nav > ul > li:not(.no-arrow) > a-arrow {
+          visibility: visible;
+        }
+        :host > nav > ul > li a-arrow {
+          --color: var(--a-arrow-color, #777);
+          display: block;
+          min-height: var(--min-height-mobile, 50px);
+          min-width: var(--min-width-mobile, 50px);
+        }
+        :host > nav > ul li ul{
+          --font-weight: calc(var(--font-weight) / 2);
+          padding: 0;
+          position: unset;
+          width: 100%;
+        }
+        :host > nav > ul li:hover ul,
+        :host > nav > ul li:focus-within ul,
+        :host > nav > ul li ul:hover{
+          display: none;
+        }
+        :host > nav > ul li.open ul{
+          display: block;
+        }
+        :host > nav > ul > li > ul li {
+          flex-wrap: unset;
+        }
+      }
+    `
+  }
+
+  /**
+   * renders the a-link html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
+      const li = a.parentElement
+      if (!li.querySelector('ul')) li.classList.add('no-arrow')
+      const aLink = new children[0][1](a, {namespace: this.getAttribute('namespace') || ''})
+      aLink.setAttribute('text-transform', 'uppercase')
+      const arrow = new children[1][1]({namespace: this.getAttribute('namespace') || ''})
+      arrow.setAttribute('direction', 'down')
+      const arrowClickListener = event => {
+        li.classList.toggle('open')
+        arrow.setAttribute('direction', li.classList.contains('open') ? 'up' : 'down')
+      }
+      arrow.addEventListener('click', arrowClickListener)
+      aLink.addEventListener('click', event => {
+        if (event.target) {
+          arrowClickListener()
+          let a = null
+          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) event.preventDefault()
+        }
+      })
+      li.prepend(arrow)
+      a.replaceWith(aLink)
+      li.prepend(aLink)
+      this.nav.hidden = false
+    }))
+  }
+
+  /**
+   * fetch children when first needed
+   *
+   * @returns {Promise<[string, CustomElementConstructor][]>}
+   */
+  loadChildComponents () {
+    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
+      import('../atoms/Link.js').then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-link', module.default]
+      ),
+      import('../atoms/Arrow.js').then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-arrow', module.default]
+      )
+    ]).then(elements => {
+      elements.forEach(element => {
+        // don't define already existing customElements
+        // @ts-ignore
+        if (!customElements.get(element[0])) customElements.define(...element)
+      })
+      return elements
+    }))
+  }
+}
+
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * Defines a body body for content and maps variables to global tags
+ * Example at: /src/es/components/pages/General.html
+ * As an organism, this component shall hold molecules and/or atoms
+ *
+ * @export
+ * @class Body
+ * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-area: body;
+ *  --content-spacing [40px]
+ *  --content-width [80vw]
+ *  --h1-color [--color, black]
+ *  --font-family-secondary
+ * }
+ */
+class Body extends Shadow() {
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * renders the o-highlight-list css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host {
+        grid-area: body;
+      }
+      :host > * {
+        margin: var(--content-spacing, 40px) auto;
+        width: var(--content-width, 80vw);
+      }
+      h1 {
+        color: var(--h1-color, var(--color, black));
+        font-size: 6rem;
+      }
+      h2 {
+        font-size: 5rem;
+        font-family: var(--font-family-secondary);
+      }
+      h3 {
+        font-size: 3rem;
+      }
+      h4 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.5rem;
+        font-family: var(--font-family-secondary);
+      }
+    `
+  }
+}
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * Stage is an image with text acting as a viewport cover, which can be clicked/scrolled away
+ * Example at: /src/es/components/pages/Home.html
+ * As an organism, this component shall hold molecules and/or atoms
+ *
+ * @export
+ * @class Stage
+ * @type {CustomElementConstructor}
+ * @css {
+ *  --content-spacing [40px]
+ *  --arrow-font-size [3rem]
+ *  --bottom [100px] overlay text position absolute at bottom
+ *  --color, white
+ * }
+ * @attribute {src} background image source link
+ */
+class Stage extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    const section = document.createElement('section')
+    Array.from(this.root.children).forEach(node => section.appendChild(node))
+    this.html = section
+    this.clickEventListenerTimeout = null
+    this.clickEventListener = event => {
+      clearTimeout(this.clickEventListenerTimeout)
+      const direction = () => self.scrollY > 0 ? 'down' : 'up'
+      this.arrow.setAttribute('direction', direction())
+      this.clickEventListenerTimeout = setTimeout(() => {
+        this.arrow.setAttribute('direction', direction())
+        if (event && event.type !== 'scroll') {
+          if (direction() === 'down') {
+            document.body.scrollIntoView({behavior: 'smooth'})
+          } else {
+            this.nextSibling.scrollIntoView({behavior: 'smooth'})
+          }
+        }
+      }, 50)
+    }
+  }
+  connectedCallback () {
+    this.loadChildComponents()
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
+    this.root.addEventListener('click', this.clickEventListener)
+    self.addEventListener('scroll', this.clickEventListener)
+  }
+
+  disconnectedCallback () {
+    this.root.removeEventListener('click', this.clickEventListener)
+    self.removeEventListener('scroll', this.clickEventListener)
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.img
+  }
+
+  /**
+   * renders the css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host{
+        color: var(--color, white);
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        height: calc(100vh - var(--header-height-desktop, 85px));
+        margin: 0 !important;
+        width: 100% !important;
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          height: calc(100vh - var(--header-height-mobile, 50px));
+        }
+      }
+      :host > img{
+        display: block;
+        height: auto;
+        object-fit: cover;
+        width: 100%;
+      }
+      :host > a-arrow {
+        --color: var(--arrow-color, white);
+        --font-size: var(--arrow-font-size, 3rem);
+        animation: bounce 3s infinite;
+        bottom: calc(var(--content-spacing, 40px) / 2);
+        position: absolute;
+      }
+      :host > section {
+        bottom: var(--bottom, 100px);
+        position: absolute;
+      }
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+        40% {transform: translateY(-15px);} 
+        60% {transform: translateY(-7px);} 
+     } 
+    `
+  }
+
+  /**
+   * renders the html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    this.html = `<img src=${this.getAttribute('src')}><a-arrow direction=up namespace=${this.getAttribute('namespace') || ''}></a-arrow>`
+  }
+
+  /**
+   * fetch children when first needed
+   *
+   * @returns {Promise<[string, CustomElementConstructor][]>}
+   */
+  loadChildComponents () {
+    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
+      import('../atoms/Arrow.js').then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-arrow', module.default]
+      )
+    ]).then(elements => {
+      elements.forEach(element => {
+        // don't define already existing customElements
+        // @ts-ignore
+        if (!customElements.get(element[0])) customElements.define(...element)
+      })
+      return elements
+    }))
+  }
+
+  get img () {
+    return this.root.querySelector('img')
+  }
+
+  get arrow () {
+    return this.root.querySelector('a-arrow')
+  }
+}
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * HighlightList is the wrapper of molecules/Highlight.js which also styles a title/h1 for the list of highlights
+ * Example at: /src/es/components/pages/Home.html
+ * As an organism, this component shall hold molecules and/or atoms
+ *
+ * @export
+ * @class HighlightList
+ * @type {CustomElementConstructor}
+ * @css {
+ *  --content-spacing [40px]
+ *  --hr-color [black]
+ *  --content-width [80vw]
+ *  --color [black]
+ *  --font-family-secondary
+ *  --font-size [2.5rem]
+ *  --font-weight [300]
+ *  --text-align [center]
+ *  --text-transform [uppercase]
+ * }
+ */
+class HighlightList extends Shadow() {
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * renders the o-highlight-list css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host {
+        display: block;
+      }
+      :host > m-highlight:first-Child {
+        border-top: 1px solid var(--hr-color, black);
+      }
+      :host > m-highlight {
+        border-bottom: 1px solid var(--hr-color, black);
+        display: flex;
+        gap: calc(var(--content-spacing, 40px) / 2);
+        padding: var(--content-spacing, 40px) 0;
+        margin: 0 auto;
+        width: var(--content-width, 80vw);
+      }
+      :host > h1 {
+        color: var(--color, black);
+        display: block;
+        font-family: var(--font-family-secondary);
+        font-size: var(--font-size, 2.5rem);
+        font-weight: var(--font-weight, 300);
+        text-align: var(--text-align, center);
+        text-transform: var(--text-transform, uppercase);
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > m-highlight {
+          flex-wrap: wrap;
+        }
+      }
+    `
+  }
+}
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * Highlight can be wrapped by src/es/components/organisms/HighlightList.js and expects h5, h2, p, img 
+ * Example at: /src/es/components/pages/Home.html
+ * As a molecule, this component shall hold Atoms
+ *
+ * @export
+ * @class Highlight
+ * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} href used for the link reference
+ * }
+ * @css {
+ *  --margin [0 0 1rem 0]
+ *  --color-hover [#8d4674]
+ *  --text-align [center]
+ *  --justify-content [center]
+ *  --h2-font-family [--font-family]
+ *  --h2-font-size [6rem]
+ *  --h2-text-transform [none]
+ *  --h5-font-family [--font-family-secondary]
+ *  --h5-font-size [1rem]
+ *  --h5-text-transform [uppercase]
+ *  --p-font-family [--font-family-secondary]
+ *  --p-font-size [1.5rem]
+ *  --p-text-transform [none]
+ *  --img-min-width [200px]
+ *  --h2-font-size-mobile [2.5rem]
+ *  --img-min-width-mobile [50px]
+ * }
+ */
+class Highlight extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.clickListener = event => {
+      if (this.getAttribute('href')) location.href = this.getAttribute('href')
+    }
+  }
+
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
+    this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    this.removeEventListener('click', this.clickListener)
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return [this.h2 && this.h5 && this.p].some(node => !node || !node.parentElement || node.parentElement.nodeName !== 'SECTION') && [this.img].some(node => !node || !node.parentElement || node.parentElement.nodeName !== 'FIGURE')
+  }
+
+  /**
+   * renders the m-Highlight css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host {
+        cursor: pointer;
+      }
+      section {
+        flex-grow: 1;
+        flex-shrink: 2;
+        text-align: var(--text-align, center);
+      }
+      section > * {
+        margin: var(--margin, 0 0 1rem 0);
+      }
+      section > *:last-child {
+        margin-bottom: 0;
+      }
+      section:hover h2 {
+        color: var(--color-hover, #8d4674);
+      }
+      figure {
+        display: flex;
+        flex-grow: 2;
+        justify-content: var(--justify-content, center);
+        margin: 0;
+      }
+      h2 {
+        font-family: var(--h2-font-family, var(--font-family));
+        font-size: var(--h2-font-size, 6rem);
+        text-transform: var(--h2-text-transform, none);
+      }
+      h5 {
+        font-family: var(--h5-font-family, var(--font-family-secondary));
+        font-size: var(--h5-font-size, 1rem);
+        text-transform: var(--h5-text-transform, uppercase);
+      }
+      p {
+        font-family: var(--p-font-family, var(--font-family-secondary));
+        font-size: var(--p-font-size, 1.5rem);
+        text-transform: var(--p-text-transform, none);
+      }
+      img {
+        height: auto;
+        object-fit: scale-down;
+        max-width: 100%;
+        min-width: var(--img-min-width: 200px);
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        h2 {
+          font-size: var(--h2-font-size-mobile, 2.5rem);
+        }
+        img {
+          min-width: var(--img-min-width-mobile: 50px);
+        }
+      }
+    `
+  }
+
+  /**
+   * renders the a-link html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    Array.from(this.root.children).forEach(node => {
+      if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      if (node.nodeName === 'IMG') {
+        this.figure.appendChild(node)
+      } else {
+        this.section.appendChild(node)
+      }
+    })
+  }
+
+  get h2 () {
+    return this.root.querySelector('h2')
+  }
+
+  get h5 () {
+    return this.root.querySelector('h5')
+  }
+
+  get p () {
+    return this.root.querySelector('p')
+  }
+
+  get img () {
+    return this.root.querySelector('img')
+  }
+
+  get section () {
+    return this.root.querySelector('section') || (() => {
+      // create section if it is not yet set and position it at the correct position before or after the image
+      const section = document.createElement('section')
+      if (this.root.children && this.root.children[0] && (this.root.children[0].nodeName === 'IMG' || this.root.children[0].nodeName === 'FIGURE')) {
+        this.root.appendChild(section)
+      } else {
+        this.root.prepend(section)
+      }
+      return section
+    })()
+  }
+
+  get figure () {
+    return this.root.querySelector('figure') || (() => {
+      // create figure if it is not yet set and position it at the correct position before or after the image
+      const figure = document.createElement('figure')
+      if (this.root.children && this.root.children[0] && this.root.children[0].nodeName === 'IMG') {
+        this.root.prepend(figure)
+      } else {
+        this.root.appendChild(figure)
+      }
+      return figure
+    })()
+  }
+}
+
+// @ts-check
+
+
+/* global HTMLElement */
+
+/**
+ * Footer is sticky and hosts uls
+ * Example at: /src/es/components/pages/Home.html
+ * As an organism, this component shall hold molecules and/or atoms
+ *
+ * @export
+ * @class Footer
+ * @type {CustomElementConstructor}
+ * @css {
+ *  NOTE: grid-area: footer;
+ *  --background-color [black]
+ *  --z-index [100]
+ *  --content-spacing [40px]
+ *  --a-link-content-spacing [0]
+ *  --a-link-font-size [1.5rem]
+ *  --a-link-font-size-2 [1rem]
+ *  --list-style [none]
+ *  --align-items [start]
+ *  --font-size [2.5rem]
+ * }
+ */
+class Footer extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.footer = document.createElement('footer')
+    this.footer.hidden = true
+    Array.from(this.root.children).forEach(node => {
+      if (!node.getAttribute('slot')) this.footer.appendChild(node)
+    })
+    this.root.appendChild(this.footer)
+  }
+
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.renderHTML()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * renders the m-footerigation css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host {
+        grid-area: footer;
+        z-index: var(--z-index, 100);
+      }
+      :host > footer {
+        background-color: var(--background-color, black);
+        height: 100%;
+      }
+      :host a-link {
+        --padding: var(--a-link-content-spacing, 0);
+      }
+      :host > footer > ul > li > a-link {
+        --font-size: var(--a-link-font-size, 1.5rem);
+        display: block;
+      }
+      :host > footer > ul > li > ul a-link {
+        --font-size: var(--a-link-font-size-2, 1rem);
+      }
+      :host ul{
+        list-style: var(--list-style, none);
+        margin: calc(var(--content-spacing, 40px) / 2) auto 0;
+        padding: 0;
+      }
+      :host ul:first-child{
+        margin-top: 0;
+      }
+      :host > footer > ul{
+        align-items: var(--align-items, start);
+        display: flex;
+        flex-wrap: wrap;
+        padding: calc(var(--content-spacing, 40px) / 2) var(--content-spacing, 40px);
+      }
+      :host > footer > ul > li{
+        font-size: var(--font-size, 2.5rem);
+      }
+      :host > footer > ul li:hover{
+        cursor: pointer;
+      }
+      :host > footer > ul > li{
+        margin: calc(var(--content-spacing, 40px) / 2) var(--content-spacing, 40px) 0 0;
+      }
+      :host > footer > ul li{
+        padding-bottom: .5rem;
+      }
+      :host > footer > ul li:last-child{
+        padding-bottom: 0;
+      }
+      :host > footer > ul > li:last-child {
+        margin-right: 0;
+      }
+    `
+  }
+
+  /**
+   * renders the a-link html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
+      const li = a.parentElement
+      const aLink = new children[0][1](a, {namespace: this.getAttribute('namespace') || ''})
+      aLink.setAttribute('text-transform', 'uppercase')
+      a.replaceWith(aLink)
+      li.prepend(aLink)
+      this.footer.hidden = false
+    }))
+  }
+
+  /**
+   * fetch children when first needed
+   *
+   * @returns {Promise<[string, CustomElementConstructor][]>}
+   */
+  loadChildComponents () {
+    return this.childComponentsPromise || (this.childComponentsPromise = Promise.all([
+      import('../atoms/Link.js').then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-link', module.default]
+      )
+    ]).then(elements => {
+      elements.forEach(element => {
+        // don't define already existing customElements
+        // @ts-ignore
+        if (!customElements.get(element[0])) customElements.define(...element)
+      })
+      return elements
+    }))
+  }
+}
+
+// @ts-check
+
+/* global HTMLElement */
+
+/**
+ * Flyer can hold anything which shall fly into the viewport on intersection
+ * Example at: /src/es/components/pages/Home.html
+ * As a molecule, this component shall hold Atoms
+ *
+ * @export
+ * @class Flyer
+ * @type {CustomElementConstructor}
+ * @css {
+ *  --background-color [transparent]
+ *  --padding [20px]
+ *  --margin [0]
+ *  --text-align [left|right]
+ *  --duration [0.7s]
+ *  --transform [translateX(var(--translate-x, 0))] if set will overwrite the translateX
+ *  --translate-x [0] if transform is set it will be ignored
+ *  --z-index [99]
+ * NOTE: The below only work with position=fixed
+ *  --top: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
+ *  --right: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
+ *  --bottom: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
+ *  --left: [auto] -auto-gen can be overwritten here, be sure to set the opposite to auto to take effect
+ * }
+ * @attribute {
+ *  {fixed | false} [position=fixed] set to fixed if it is desired for the flyer to follow the scroll for the defined rootMargin. NOTE: it is by default fixed... see => this.isPositionFixed
+ *  {number} [timer=false] if any number all intersection settings will be ignored and the flyer will appear after the timeout
+ *  {string} [href=falsy] used for the link reference
+ *  {up, right, down, left} [direction=left] position will always be fixed when "up" or "down"
+ * }
+ */
+class Flyer extends Intersection() {
+  constructor (options = {}, ...args) {
+    super(Object.assign(options, {intersectionObserverInit: {rootMargin: '500px 0px 0px 0px', threshold: 1}}), ...args)
+
+    this.div = document.createElement('div')
+    Array.from(this.root.children).forEach(node => {
+      if (!node.getAttribute('slot')) this.div.appendChild(node)
+    })
+    this.html = this.div
+
+    this.clickListener = event => {
+      if (this.getAttribute('href')) {
+        event.preventDefault()
+        location.href = this.getAttribute('href')
+      }
+    }
+    this.closeClickListener = event => {
+      event.preventDefault()
+      event.stopPropagation()
+      this.div.classList.remove('visible')
+    }
+  }
+
+  connectedCallback () {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.getAttribute('timer')) {
+      setTimeout(() => {
+        this.css = /* css */`
+          :host {
+            ${this.varTop};
+            ${this.varRight}
+            ${this.varBottom};
+            ${this.varLeft}
+          }
+        `
+        this.div.classList.add('visible')
+      }, Number(this.getAttribute('timer')));
+    } else {
+      // only connect intersection callback if no timer is set
+      super.connectedCallback()
+    }
+    this.addEventListener('click', this.clickListener)
+    if (this.closeBtn) this.closeBtn.addEventListener('click', this.closeClickListener)
+  }
+
+  disconnectedCallback () {
+    if (!this.getAttribute('timer')) super.disconnectedCallback()
+    this.removeEventListener('click', this.clickListener)
+    if (this.closeBtn) this.closeBtn.removeEventListener('click', this.closeClickListener)
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * renders the m-Flyer css
+   *
+   * @return {void}
+   */
+  renderCSS () {
+    this.css = /* css */`
+      :host {
+        ${this.getAttribute('href') ? 'cursor: pointer;' : ''}
+        display: block;
+        box-sizing: border-box;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+      :host > div {
+        background-color: var(--background-color, transparent);
+        ${this.isPositionFixed ? 'position: fixed;' : ''}
+        top: var(--top, var(--top-auto-gen, auto));
+        right: var(--right, var(--right-auto-gen, auto));
+        bottom: var(--bottom, var(--bottom-auto-gen, auto));
+        left: var(--left, var(--left-auto-gen, auto));
+        padding: var(--padding, 20px);
+        margin: var(--margin, 0);
+        text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
+        transform: ${this.getAttribute('direction') === 'up' ? 'translateY(-100vh)' : this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : this.getAttribute('direction') === 'down' ? 'translateY(100vh)' : 'translateX(-100vw)'};
+        transition: all var(--duration, 0.7s) ease;
+        visibility: hidden;
+        z-index: var(--z-index, 99);
+      }
+      :host > div.visible {
+        transform: var(--transform, translateX(var(--translate-x, 0)));
+        visibility: visible;
+      }
+      :host > div > * {
+        max-height: 100%;
+        max-width: 100%;
+      }
+      :host #close {
+        cursor: pointer;
+      }
+    `
+  }
+
+  intersectionCallback (entries, observer) {
+    if (entries && entries[0]) {
+      if (entries[0].isIntersecting) {
+        if (this.isPositionFixed) this.css = /* css */`
+         :host {
+           ${this.varTop};
+           ${this.varRight}
+           ${this.varBottom};
+           ${this.varLeft}
+         }
+        `
+        this.div.classList.add('visible')
+      } else {
+        this.div.classList.remove('visible')
+      }
+    }
+  }
+
+  get topMiddle () {
+    return `${(self.innerHeight - this.div.offsetHeight)/2}px`
+  }
+
+  get leftMiddle () {
+    return `${(self.innerWidth - this.div.offsetWidth)/2}px`
+  }
+
+  get varTop () {
+    if (this.getAttribute('direction') === 'up') return '--top-auto-gen: 0;'
+    return this.getAttribute('direction') === 'left' || this.getAttribute('direction') === 'right' ? `--top-auto-gen: ${this.topMiddle};` : ''
+  }
+
+  get varRight () {
+    return this.getAttribute('direction') === 'right' ? '--right-auto-gen: 0;' : ''
+  }
+
+  get varBottom () {
+    return this.getAttribute('direction') === 'down' ? '--bottom-auto-gen: 0;' : ''
+  }
+
+  get varLeft () {
+    return this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down' ? `--left-auto-gen: ${this.leftMiddle};` : ''
+  }
+
+  get isPositionFixed () {
+    return this.getAttribute('position') === 'fixed' || !this.getAttribute('position') || this.getAttribute('timer') || this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down'
+  }
+
+  get closeBtn () {
+    return this.root.querySelector('#close')
+  }
+}
+</script>
+<script>
+
+    /**
+    * First level controllers and organisms are loaded and defined here (loadChildComponents)
+    */
+    // Controllers
+    [
+      ['p-general', General],
+      ['o-header', Header],
+      ['a-logo', Logo],
+      ['m-navigation', Navigation],
+      ['o-body', Body],
+      ['o-stage', Stage],
+      ['o-highlight-list', HighlightList],
+      ['m-highlight', Highlight],
+      ['o-footer', Footer],
+      ['m-flyer', Flyer]
+    ].forEach(element => {
+      // don't define already existing customElements
+      if (element && !customElements.get(element[0])) customElements.define(...element)
+    })
+  </script>
+</body>
+</html>
