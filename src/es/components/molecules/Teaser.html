@@ -74,13 +74,23 @@
               --h3-font-size: 1.2rem;
               --p-font-size: 1rem;
               --font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+              /*
+              * If there are more variables that are named width, height, etc: .
+              * Do I have to add a namespace to each a-picture element? e.g. namespace=a-picture- ?
+              */
+              --width: 100%;
+              --max-width: 100%;
+              --height: auto;
+              --min-height: 100%;
+              --object-fit: cover;
             }
           </style>
           <m-teaser>
             <figure>
               <picture>
                 <img src="https://picsum.photos/500/350" alt="" width="248" height="248">
-              </picture>
+               </picture>
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -92,6 +102,7 @@
               <picture>
                 <img src="https://picsum.photos/640/400" alt="" width="650" height="350">
               </picture>
+
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -239,8 +250,9 @@
       // Controllers
       import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
       import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default]),
+      import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
+      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default])
       import('../../../es/components/molecules/WideTeaser.js').then(module => ['m-wide-teaser', module.default]),
-      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default]),
       import('../../../es/components/atoms/Arrow.js').then(module => ['a-arrow', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
