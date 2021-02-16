@@ -99,7 +99,7 @@ export default class Teaser extends Shadow() {
       }
 
       /* fallback if a-picture is not used */
-      :host figure > picture {
+      :host figure picture {
         display: block;
         height: var(--height, 300px);
         overflow: hidden;

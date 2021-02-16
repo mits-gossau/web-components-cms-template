@@ -69,13 +69,18 @@ export default class Picture extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      /*:host picture {
-        width: var(--width, 100%);
-        max-width: var(--max-width, 100%);
+      :host picture {
+        display: var(--display, block);
         height: var(--height, auto);
-        min-height: var(--min-height, 100%);
-        object-fit: var(--object-fit, cover);
-      }*/
+        overflow: var(--overflow, initial);
+      }
+      :host picture img {
+        width: var(--img-width, 100%);
+        max-width: var(--img-max-width, 100%);
+        height: var(--img-height, auto);
+        min-height: var(--img-min-height, 100%);
+        object-fit: var(--img-object-fit, cover);
+      }
     `
   }
 

@@ -23,6 +23,19 @@
         o-teaser-wrapper {
           --m-teaser-margin: 20px;
           --m-teaser-min-width: 370px;
+
+
+          /* When I want to re-use the variables like width, height, etc. for other components in a CSS-Variables file for example
+          *  Do I have to namespace each a-picture component separately ?
+          */
+          --display: block;
+          --height: 300px;
+          --overflow: hidden;
+
+          --img-width: 100%;
+          --img-height: auto;
+          --img-min-height: 100%;
+          --img-object-fit: cover;
         }
       </style>
       <main>
@@ -47,9 +60,23 @@
           </style>
           <m-teaser>
             <figure>
-              <picture>
-                <img src="https://picsum.photos/500/350" alt="" width="248" height="248">
-              </picture>
+              <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "small" 
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "medium"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "large"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "extra-large"
+              }]'></a-picture>
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -74,23 +101,27 @@
               --h3-font-size: 1.2rem;
               --p-font-size: 1rem;
               --font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-              /*
-              * If there are more variables that are named width, height, etc: .
-              * Do I have to add a namespace to each a-picture element? e.g. namespace=a-picture- ?
-              */
-              --width: 100%;
-              --max-width: 100%;
-              --height: auto;
-              --min-height: 100%;
-              --object-fit: cover;
             }
           </style>
           <m-teaser>
             <figure>
-              <picture>
-                <img src="https://picsum.photos/500/350" alt="" width="248" height="248">
-               </picture>
+              <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "small" 
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "medium"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "large"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "extra-large"
+              }]'></a-picture>
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -99,10 +130,23 @@
           </m-teaser>
           <m-teaser>
             <figure>
-              <picture>
-                <img src="https://picsum.photos/640/400" alt="" width="650" height="350">
-              </picture>
-
+              <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "small" 
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "medium"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "large"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "extra-large"
+              }]'></a-picture>
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -111,9 +155,23 @@
           </m-teaser>
           <m-teaser>
             <figure>
-              <picture>
-                <img src="https://picsum.photos/700/480" alt="" width="400" height="400">
-              </picture>
+              <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "small" 
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "medium"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "large"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "extra-large"
+              }]'></a-picture>
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -122,9 +180,23 @@
           </m-teaser>
           <m-teaser>
             <figure>
-              <picture>
-                <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
-              </picture>
+              <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "small" 
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "medium"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "large"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "extra-large"
+              }]'></a-picture>
               <figcaption>
                 <h3>Teaser Title</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -153,9 +225,23 @@
             </style>
             <m-teaser theme="light">
               <figure>
-                <picture>
-                  <img src="https://picsum.photos/448/248" alt="" width="248" height="248">
-                </picture>
+                <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "small" 
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "medium"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "large"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "extra-large"
+                }]'></a-picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -164,9 +250,23 @@
             </m-teaser>
             <m-teaser theme="light">
               <figure>
-                <picture>
-                  <img src="https://picsum.photos/640/350" alt="" width="650" height="350">
-                </picture>
+                <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "small" 
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "medium"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "large"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "extra-large"
+                }]'></a-picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -175,9 +275,23 @@
             </m-teaser>
             <m-teaser theme="light">
               <figure>
-                <picture>
-                  <img src="https://picsum.photos/400/400" alt="" width="400" height="400">
-                </picture>
+                <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "small" 
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "medium"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "large"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "extra-large"
+                }]'></a-picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -186,9 +300,23 @@
             </m-teaser>
             <m-teaser>
               <figure>
-                <picture>
-                  <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
-                </picture>
+                <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "small" 
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "medium"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "large"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "extra-large"
+                }]'></a-picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -197,9 +325,23 @@
             </m-teaser>
             <m-teaser>
               <figure>
-                <picture>
-                  <img src="https://picsum.photos/1040/950" alt="" width="1040" height="950">
-                </picture>
+                <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "small" 
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "medium"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "large"
+                },{
+                  "src": "https://picsum.photos/900/770",
+                  "type": "image/jpg",
+                  "size": "extra-large"
+                }]'></a-picture>
                 <figcaption>
                   <h3>Teaser Title</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -225,9 +367,23 @@
               Redirect is currently being handled by JavaScript, check if this is UX/Accessibility compliant
             -->
             <figure>
-              <picture>
-                <img src="https://picsum.photos/1940/950" alt="" width="" height="">
-              </picture>
+              <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "small" 
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "medium"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "large"
+              },{
+                "src": "https://picsum.photos/900/770",
+                "type": "image/jpg",
+                "size": "extra-large"
+              }]'></a-picture>
               <figcaption>
                 <h4>Teaser Title</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fugit aliquam, explicabo vero dignissimos laborum doloremque esse inventore quaerat itaque eaque eveniet, odio tempore neque recusandae quibusdam officiis voluptatibus qui.</h4>
@@ -250,9 +406,9 @@
       // Controllers
       import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
       import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default]),
-      import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
-      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default])
       import('../../../es/components/molecules/WideTeaser.js').then(module => ['m-wide-teaser', module.default]),
+      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default]),
+      import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
       import('../../../es/components/atoms/Arrow.js').then(module => ['a-arrow', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
