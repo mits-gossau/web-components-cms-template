@@ -5,20 +5,40 @@ import { Shadow } from '../prototypes/Shadow.js'
 
 /**
  * Picture 
- *  // TODO Description
+ * Wrapper for a picture-tag with multiple sources
+ * Makes it easier for backend-user by accepting sources as array and applying media-queries according to size-attribute 
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
  * @class Picture
  * @type {CustomElementConstructor}
  * @attribute {
- *  {array[string]} [sources] array of the different image URL's
+ *  sources [array] 
+ *  [{
+ *    source [string]
+ *    type [string] e.g. image/jpg, image/webp, etc.
+ *    size [string=small, medium, large, extra-large] corresponds to different media queries
+ *  }, {...}, {...}] 
+ * 
+ *  {string} [defaultSource] the default source for the img-tag
  *  {string} [alt] alt-text for the image
- *  {number} [width] explicitly set the target width
- *  {number} [height] explicitly set the target height
+ * }
+ * @css {
+ *  --width [100%]
+ *  --max-width [100%]
+ *  --height [auto]
+ *  --min-height [100%]
+ *  --object-fit [cover]
  * }
  */
 export default class Picture extends Shadow() {
+  constructor(...args) {
+    super(...args)
+    this.sources = this.getAttribute('sources') ? this.getAttribute('sources') : []
+    this.defaultSource = this.getAttribute("defaultSource") ? this.getAttribute("defaultSource") : ""
+    this.alt = this.getAttribute("alt") ? this.getAttribute("alt") : ""
+  }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
@@ -49,7 +69,13 @@ export default class Picture extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-
+      /*:host picture {
+        width: var(--width, 100%);
+        max-width: var(--max-width, 100%);
+        height: var(--height, auto);
+        min-height: var(--min-height, 100%);
+        object-fit: var(--object-fit, cover);
+      }*/
     `
   }
 
@@ -59,17 +85,44 @@ export default class Picture extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    let test = ["test", "test2", "test3"];
-    test.map
-    this.html = /* html */`
-      <picture>
-        ${[...test]}
-      </picture>
-    `;
+    JSON.parse(this.sources).forEach(i => {
+      if (i.src !== "" && i.type !== "" && i.size !== "") {
+        switch (i.size) {
+          case "small": 
+          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(max-width: 767px)">`
+          break;
+          case "medium": 
+          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 768px) and (max-width: 990px)">`
+          break;
+          case "large": 
+          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 991px) and (max-width: 1200px)">`
+          break;
+          case "extra-large": 
+          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
+          break;
+          default:
+          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}">`
+          break;
+        }
+      } else {
+        console.warn(`a-picture src - missing attributes: ${i.src === "" ? "src" : ""} ${i.type === "" ? "type" : ""} ${i.size === "" ? "size" : ""}`)
+      }
+    })
+    if (this.defaultSource !== "") {
+      this.picture.innerHTML += `<img src="${this.defaultSource}" alt="${this.alt}">`
+      if (this.alt === "") {
+        console.warn("a-picture alt is missing")
+      }
+    } else {
+      console.warn(`a-picture defaultSource ${this.alt === "" ? "& alt ": ""}is missing`)
+    }
   }
 
   get picture () {
-    return this.root.querySelector('picture')
+    return this.root.querySelector('picture') || (() => {
+      const picture = document.createElement('picture')
+      this.html = picture
+    })()
   }
 
   get img () {

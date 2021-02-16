@@ -25,12 +25,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --p-font-size [1rem]
  *  --font-family
  * }
- * 
  */
 export default class Teaser extends Shadow() {
   constructor () {
     super()
-
   }
 
   connectedCallback () {
@@ -76,6 +74,8 @@ export default class Teaser extends Shadow() {
         margin: 0;
         background-color: var(${backgroundColor}, #c2262f);
       }
+
+      /* fallback if a-picture is not used */
       :host figure > picture {
         display: block;
         height: 350px;
@@ -87,6 +87,8 @@ export default class Teaser extends Shadow() {
         height: auto;
         min-height: 100%;
       }
+      /* --------------------------- */
+
       :host figure figcaption {
         background-color: var(${backgroundColor}, #c2262f);
         padding: var(${figcaptionPadding}, 15px 15px 20px 15px);
