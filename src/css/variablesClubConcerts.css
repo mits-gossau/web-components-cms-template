@@ -88,6 +88,6 @@ body.no-scroll {
 }
 /* hide component stuff before it is rendered */
 body, body a {
-  color: var(--background-color, #1a1b26);
+  color: var(--background-color, white);
 }
 
