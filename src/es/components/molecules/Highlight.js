@@ -149,7 +149,7 @@ export default class Highlight extends Shadow() {
           font-size: var(--h2-font-size-mobile, 2.5rem);
         }
         img {
-          min-width: var(--img-min-width-mobile: 50px);
+          min-width: var(--img-min-width-mobile, 50px);
         }
       }
     `

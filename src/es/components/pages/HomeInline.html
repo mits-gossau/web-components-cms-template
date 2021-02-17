@@ -1518,14 +1518,14 @@ class Highlight extends Shadow() {
         height: auto;
         object-fit: scale-down;
         max-width: 100%;
-        min-width: var(--img-min-width: 200px);
+        min-width: var(--img-min-width, 200px);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
         }
         img {
-          min-width: var(--img-min-width-mobile: 50px);
+          min-width: var(--img-min-width-mobile, 50px);
         }
       }
     `
