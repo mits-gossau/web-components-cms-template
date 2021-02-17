@@ -33,7 +33,4 @@ html {
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
   --stage-arrow-color: var(--color-secondary);
-  color: var(--color);
-  font-family: var(--font-family);
-  font-size: 10px;
 }

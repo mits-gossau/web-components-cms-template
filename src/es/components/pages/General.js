@@ -61,15 +61,22 @@ export default class General extends Shadow() {
         grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
         min-height: 100vh;
       }
+      /* global css set by page */
       html {
+        font-family: var(--font-family);
         font-size: var(--font-size, 10px);
+        word-break: break-word;
+      }
+      /* to counteract misc.css */
+      /* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
+      html, html a {
+        color: var(--color, black);
       }
       /* sticky footer */
       body {
         margin: 0;
         min-height: 100vh;
         overflow-x: hidden;
-        word-break: break-word;
       }
       /* navigation open */
       body.no-scroll {

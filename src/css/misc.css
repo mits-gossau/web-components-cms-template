@@ -14,11 +14,11 @@
       url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot'),
       url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot?#iefix') format('embedded-opentype'); 
   font-weight: normal;
-  font-style: normal;
+  font-style: swap;
 }
 
-/* hide component stuff before it is rendered */
-body, body a {
+/* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
+html, html a {
   background-color: var(--background-color, transparent);
   color: var(--background-color, transparent);
 }
