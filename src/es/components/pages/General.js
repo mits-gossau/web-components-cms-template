@@ -55,22 +55,20 @@ export default class General extends Shadow() {
         grid-template-areas: "header"
                              "body"
                              "footer";
-        color: var(--color, black);
-        font-family: var(--font-family, "FuturaT", Arial, sans-serif);
         grid-template-columns: 1fr;
         grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
         min-height: 100vh;
       }
       /* global css set by page */
       html {
-        font-family: var(--font-family);
         font-size: var(--font-size, 10px);
         word-break: break-word;
       }
       /* to counteract misc.css */
       /* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
-      html, html a {
+      :host, html, html a {
         color: var(--color, black);
+        font-family: var(--font-family, "FuturaT", Arial, sans-serif);
       }
       /* sticky footer */
       body {
@@ -86,6 +84,7 @@ export default class General extends Shadow() {
         :host {
           grid-template-rows: var(--header-height-mobile, 50px) 1fr minmax(var(--footer-min-height-mobile, 150px), auto);
         }
+        /* global css set by page */
         html {
           font-size: var(--font-size-mobile, 10px);
         }
