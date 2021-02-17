@@ -5,7 +5,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 
 /**
  * Highlight can be wrapped by src/es/components/organisms/HighlightList.js and expects h5, h2, p, img 
- * Example at: /src/es/components/pages/Home.html
+ * Example at: /src/es/components/pages/Home.html + /src/es/components/pages/ClubConcerts.html
  * As a molecule, this component shall hold Atoms
  *
  * @export
@@ -25,7 +25,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --h5-text-transform [uppercase]
  *  --img-min-width [200px]
  *  --img-min-width-mobile [50px]
- *  --justify-content [center]
+ *  --text-align [center]
  *  --filter [none]
  *  --filter-hover [none]
  *  --margin [0 0 1rem 0]
@@ -97,9 +97,8 @@ export default class Highlight extends Shadow() {
         color: var(--color-hover, #8d4674);
       }` : ''}
       figure {
-        display: flex;
-        flex-grow: 2;
-        justify-content: var(--justify-content, center);
+        /* caution: if this is display: flex check img height on IOS Safari */
+        text-align: var(--text-align, center);
         margin: 0;
       }
       figure:hover img {
@@ -163,7 +162,7 @@ export default class Highlight extends Shadow() {
   renderHTML () {
     Array.from(this.root.children).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
-      if (node.nodeName === 'IMG') {
+      if (node.nodeName === 'IMG' || node.nodeName === 'FIGCAPTION') {
         this.figure.appendChild(node)
       } else {
         this.section.appendChild(node)
