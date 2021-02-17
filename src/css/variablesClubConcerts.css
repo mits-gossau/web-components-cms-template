@@ -6,13 +6,13 @@
  */
 html {
   --a-font-size: 1.3rem;
-  --background-color: #1a1b26;
+  --background-color: black;
   --color-hover: var(--color-secondary);
-  --color-secondary: #ffeb3d;
+  --color-secondary: #ffff00;
   --color: white;
   --content-spacing: 20px;
   --content-width: 80vw;
-  --filter-hover: grayscale(100%);
+  --filter: grayscale(100%);
   --font-family-bold: "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "FuturaT", Arial, sans-serif;
