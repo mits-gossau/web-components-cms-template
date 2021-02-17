@@ -4,25 +4,6 @@
  * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
  * - if a component holds other components you should share the attribute namespace with its children
  */
- @font-face {
-  font-family: 'FuturaT';
-  src: url('../fonts/FuturaT/FuturaT-Book.eot');
-  src: url('../fonts/FuturaT/FuturaT-Book.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/FuturaT/FuturaT-Book.woff2') format('woff2'),
-      url('../fonts/FuturaT/FuturaT-Book.woff') format('woff');
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'OPTIFutura-ExtraBlackCond';
-  src:url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.woff') format('woff'),
-      url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.svg#OPTIFutura-ExtraBlackCond') format('svg'),
-      url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot'),
-      url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot?#iefix') format('embedded-opentype'); 
-  font-weight: normal;
-  font-style: normal;
-}
-
 html {
   --a-font-size: 1.3rem;
   --background-color: #1a1b26;
@@ -76,18 +57,3 @@ html {
   font-family: var(--font-family);
   font-size: var(--font-size);
 }
-/* sticky footer */
-body {
-  margin: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-/* navigation open */
-body.no-scroll {
-  overflow: hidden;
-}
-/* hide component stuff before it is rendered */
-body, body a {
-  color: var(--background-color, white);
-}
-

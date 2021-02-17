@@ -27,7 +27,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  */
 export default class General extends Shadow() {
   constructor(...args) {
-    super({mode: "false"}, ...args) // disabling shadow-DOM to control root font-size on html-tag
+    super({mode: 'false'}, ...args) // disabling shadow-DOM to control root font-size on html-tag
   }
 
   connectedCallback () {
@@ -63,6 +63,17 @@ export default class General extends Shadow() {
       }
       html {
         font-size: var(--font-size, 10px);
+      }
+      /* sticky footer */
+      body {
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+        word-break: break-word;
+      }
+      /* navigation open */
+      body.no-scroll {
+        overflow: hidden;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
