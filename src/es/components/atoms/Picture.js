@@ -71,8 +71,15 @@ export default class Picture extends Shadow() {
     this.css = /* css */`
       :host picture {
         display: var(--display, block);
-        height: var(--height, auto);
+        width: var(--width, unset);
+        height: var(--height, unset);
         overflow: var(--overflow, initial);
+        filter: var(--filter, none);
+        transition: var(--transition, none);
+        margin: var(--margin, 0);
+      }
+      :host picture:hover {
+        filter: var(--filter-hover, none);
       }
       :host picture img {
         width: var(--img-width, 100%);
@@ -90,30 +97,32 @@ export default class Picture extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    JSON.parse(this.sources).forEach(i => {
-      if (i.src !== "" && i.type !== "" && i.size !== "") {
-        switch (i.size) {
-          case "small": 
-          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(max-width: 767px)">`
-          break;
-          case "medium": 
-          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 768px) and (max-width: 990px)">`
-          break;
-          case "large": 
-          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 991px) and (max-width: 1200px)">`
-          break;
-          case "extra-large": 
-          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
-          break;
-          default:
-          this.picture.innerHTML += `<source src="${i.src}" type="${i.type}">`
-          break;
+    if (this.sources != "") {
+      JSON.parse(this.sources).forEach(i => {
+        if (i.src !== "" && i.type !== "" && i.size !== "") {
+          switch (i.size) {
+            case "small": 
+            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(max-width: 767px)">`
+            break;
+            case "medium": 
+            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 768px) and (max-width: 990px)">`
+            break;
+            case "large": 
+            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 991px) and (max-width: 1200px)">`
+            break;
+            case "extra-large": 
+            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
+            break;
+            default:
+            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}">`
+            break;
+          }
+        } else {
+          console.warn(`a-picture src - missing attributes: ${i.src === "" ? "src" : ""} ${i.type === "" ? "type" : ""} ${i.size === "" ? "size" : ""}`)
         }
-      } else {
-        console.warn(`a-picture src - missing attributes: ${i.src === "" ? "src" : ""} ${i.type === "" ? "type" : ""} ${i.size === "" ? "size" : ""}`)
-      }
-    })
-    if (this.defaultSource !== "") {
+      })
+    }
+    if (this.defaultSource != "") {
       this.picture.innerHTML += `<img src="${this.defaultSource}" alt="${this.alt}">`
       if (this.alt === "") {
         console.warn("a-picture alt is missing")

@@ -71,7 +71,7 @@ export default class Logo extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host img{
-          height: var(--height, calc(var(--height-mobile, 50px) - var(--content-spacing, 40px) / 2));
+          height: var(--height-mobile, 75px);
           max-height: var(--max-height, none);
         }
       }
