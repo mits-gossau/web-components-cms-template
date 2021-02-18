@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'FuturaT';
+    src: url('../fonts/FuturaT/FuturaT-Book.eot');
+    src: url('../fonts/FuturaT/FuturaT-Book.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FuturaT/FuturaT-Book.woff2') format('woff2'),
+        url('../fonts/FuturaT/FuturaT-Book.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'OPTIFutura-ExtraBlackCond';
+    src:url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.woff') format('woff'),
+        url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.svg#OPTIFutura-ExtraBlackCond') format('svg'),
+        url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot'),
+        url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: swap;
+}

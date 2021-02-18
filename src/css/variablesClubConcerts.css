@@ -16,7 +16,7 @@ html {
   --font-family-bold: "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "FuturaT", Arial, sans-serif;
-  --font-size-mobile: 12px;
+  --font-size-mobile: 11px;
   --font-size: 20px;
   --font-weight: 300;
   --footer-background-color: var(--header-background-color); 
