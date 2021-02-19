@@ -93,7 +93,7 @@ export default class Footer extends Shadow() {
     `
     /*----------------------------------------- CLUB CONCERT CSS -------------------------------------------------*/
 
-    if (this.getAttribute("clubConcert") === "true") {
+    if (this.getAttribute("theme") === "simple") {
       this.css = /* css */`
         :host {
           width: var(--content-width, 100vw);
@@ -133,7 +133,7 @@ export default class Footer extends Shadow() {
         }
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
           :host {
-            width: var(--content-width-mobile, 100vw);
+            width: var(--content-width-mobile, 90vw);
           }
           :host ul {
             flex-direction: column;

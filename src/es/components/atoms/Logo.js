@@ -15,6 +15,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} src used for the image source
  *  {string} href used for the link reference
  *  {string} mobile-breakpoint
+ *  {string} alt
  * }
  * @css {
  *  --content-spacing [40px]
@@ -84,7 +85,7 @@ export default class Logo extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    const img = `<img src=${this.getAttribute('src')}>`
+    const img = `<img src=${this.getAttribute('src')} alt=${this.getAttribute('alt')}>`
     let a = null
     if (!!this.getAttribute('href')) {
       a = document.createElement('a')

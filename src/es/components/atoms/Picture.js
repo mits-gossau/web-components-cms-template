@@ -88,6 +88,12 @@ export default class Picture extends Shadow() {
         min-height: var(--img-min-height, 100%);
         object-fit: var(--img-object-fit, cover);
       }
+
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host picture {
+          width: var(--width-mobile, 100vw);
+        }
+      }
     `
   }
 
@@ -97,24 +103,33 @@ export default class Picture extends Shadow() {
    * @return {void}
    */
   renderHTML () {
+    // in case someone adds sources/img directly instead of using the attributes
+    // TODO: this logic breaks when adding an img-tag as a child for some reason
+    Array.from(this.root.children).forEach(node => {
+      if (node.nodeName === "SOURCE" || node.nodeName === "IMG") {
+        const child = this.root.removeChild(node)
+        this.picture.appendChild(child)
+      }
+   })
+
     if (this.sources != "") {
-      JSON.parse(this.sources).forEach(i => {
+      Picture.parseAttribute(this.sources).forEach(i => {
         if (i.src !== "" && i.type !== "" && i.size !== "") {
           switch (i.size) {
             case "small": 
-            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(max-width: 767px)">`
+            this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(max-width: 767px)">`
             break;
             case "medium": 
-            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 768px) and (max-width: 990px)">`
+            this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 768px) and (max-width: 990px)">`
             break;
             case "large": 
-            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 991px) and (max-width: 1200px)">`
+            this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 991px) and (max-width: 1200px)">`
             break;
             case "extra-large": 
-            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
+            this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
             break;
             default:
-            this.picture.innerHTML += `<source src="${i.src}" type="${i.type}">`
+            this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}">`
             break;
           }
         } else {
@@ -142,4 +157,5 @@ export default class Picture extends Shadow() {
   get img () {
     return this.root.querySelector('img')
   }
+
 }

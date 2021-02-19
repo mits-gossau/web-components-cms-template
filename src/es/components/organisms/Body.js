@@ -69,8 +69,8 @@ export default class Body extends Shadow() {
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > * {
-          margin: var(--content-spacing-mobile, 0);
-          width: var(--content-width-mobile, 100vw);
+          margin: var(--content-spacing-mobile, 0 auto);
+          width: var(--content-width-mobile, 90vw);
         }
       }
     `

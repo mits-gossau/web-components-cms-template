@@ -43,7 +43,7 @@ export default class TeaserWrapper extends Shadow() {
         flex-wrap: wrap;
         justify-content: var(--justify-content, center);
       }
-      :host m-teaser {
+      :host > * {
         min-width: min(var(--min-width, 370px), 100%);
         width: 100%;
         margin: var(--margin, 20px);
@@ -52,14 +52,14 @@ export default class TeaserWrapper extends Shadow() {
 
     if (teaserAmount % 2 == 0) {
       this.css = /* css */`
-      :host m-teaser {
+      :host > * {
         max-width: calc(50% - 2 * var(--margin, 20px));
       }
       
       `;
     } else {
       this.css = /* css */`
-      :host m-teaser {
+      :host > * {
         max-width: calc(100% / 3 - 2 * var(--margin, 20px));
       }
       `;

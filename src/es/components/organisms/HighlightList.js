@@ -58,7 +58,7 @@ export default class HighlightList extends Shadow() {
         display: flex;
         flex-direction: var(--flex-direction, row);
         gap: calc(var(--content-spacing, 40px) / 2);
-        padding: var(--content-spacing, 40px) 0;
+        padding: var(--content-spacing, 40px 0) ;
         margin: 0 auto;
         width: var(--content-width, 80vw);
       }
@@ -74,7 +74,8 @@ export default class HighlightList extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > m-highlight {
           flex-wrap: wrap;
-          width: var(--content-width-mobile, 100vw);
+          width: var(--content-width-mobile, 90vw);
+          padding: var(--content-spacing-mobile, 30px 0);
         }
       }
     `

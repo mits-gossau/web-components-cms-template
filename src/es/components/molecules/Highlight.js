@@ -144,8 +144,8 @@ export default class Highlight extends Shadow() {
         transition: var(--transition, none);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        a-picture {
-          --a-picture-width: var(--a-picture-width-mobile, 100vw);
+        :host section > h2, :host section > p, :host section > ul {
+          padding: var(--section-padding, 0 15px);
         }
         h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
