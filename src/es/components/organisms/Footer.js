@@ -13,7 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @css {
  *  NOTE: grid-area: footer;
- *  NOTE: please duplicate language-switcher ul and add the classes .languageSwitcher & .languageSwitcherMobile respectively (to use 2-letter-codes on Mobile)
+ *  NOTE: if you wish to use seperate language-switchers for desktop & mobile use the classes .language-switcher & .language-switcher-mobile
  *  --background-color [black]
  *  --z-index [100]
  *  --content-spacing [40px]
@@ -79,14 +79,14 @@ export default class Footer extends Shadow() {
       :host ul:first-child{
         margin-top: 0;
       }
-      :host ul.languageSwitcherMobile {
+      :host ul.language-switcher-mobile {
         display: none;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host ul.languageSwitcher {
+        :host ul.language-switcher {
           display: none;
         }
-        :host ul.languageSwitcherMobile {
+        :host ul.language-switcher-mobile {
           display: flex;
         }
       }
@@ -138,10 +138,10 @@ export default class Footer extends Shadow() {
           :host ul {
             flex-direction: column;
           }
-          :host ul.languageSwitcherMobile {
+          :host ul.language-switcher-mobile {
             flex-direction: row;
           }
-          :host ul.languageSwitcherMobile li {
+          :host ul.language-switcher-mobile li {
             margin: 0 var(--content-spacing, 5px);
           }
           :host ul li {
