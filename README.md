@@ -12,4 +12,6 @@ A complete, ultra flexible web components template for any cms rendering engine
 4. Carousel with only points as indicators, allowing any content
 5. language switch if browser lang disagrees with domain lang
 6. Standardjs linter eg. https://github.com/mits-gossau/web-components/blob/master/package.json
-7. Web Components repo as submodule
+7. Snapshot Testing
+8. Web Component analyzer/editor/tester
+9. Web Components repo as submodule
