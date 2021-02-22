@@ -120,7 +120,7 @@ export default class Highlight extends Shadow() {
         text-transform: var(--p-text-transform, none);
         margin: 3px 0;
       }
-      :host p.secondaryColor {
+      :host p.secondary-color {
         color: var(--color-secondary, white);
       }
       :host ul {

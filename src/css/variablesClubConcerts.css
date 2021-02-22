@@ -44,6 +44,7 @@ html {
   --header-logo-height: 25vw;
   --header-logo-margin: 10px 0 0;
   --header-logo-max-height: 100px;
+  --header-logo-align-self: flex-end;
   --header-position: static;
   --header-text-align: center;
   --highlight-list-border-bottom: none;

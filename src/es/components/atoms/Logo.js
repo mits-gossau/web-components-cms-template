@@ -59,6 +59,7 @@ export default class Logo extends Shadow() {
     this.css = /* css */`
       :host{
         align-items: center;
+        align-self: var(--align-self, auto);
         display: flex;
         justify-content: center;
         box-sizing: border-box;

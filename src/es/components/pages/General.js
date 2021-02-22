@@ -62,7 +62,7 @@ export default class General extends Shadow() {
       /* global css set by page */
       html {
         font-size: var(--font-size, 10px);
-        word-break: break-word;
+        word-break: var(--word-break, normal);
       }
       /* to counteract misc.css */
       /* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
