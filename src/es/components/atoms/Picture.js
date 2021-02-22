@@ -22,6 +22,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * 
  *  {string} [defaultSource] the default source for the img-tag
  *  {string} [alt] alt-text for the image
+ *  {string} [loading=lazy] image loading
  * }
  * @css {
  *  --width [100%]
@@ -34,7 +35,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class Picture extends Shadow() {
   constructor(...args) {
     super(...args)
-    this.sources = this.getAttribute('sources') ? this.getAttribute('sources') : []
+    this.sources = this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources')) || null
     this.defaultSource = this.getAttribute("defaultSource") ? this.getAttribute("defaultSource") : ""
     this.alt = this.getAttribute("alt") ? this.getAttribute("alt") : ""
   }
@@ -59,7 +60,7 @@ export default class Picture extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return !this.picture && !this.img
+    return !this.picture
   }
 
   /**
@@ -103,17 +104,15 @@ export default class Picture extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    // in case someone adds sources/img directly instead of using the attributes
-    // TODO: this logic breaks when adding an img-tag as a child for some reason
-    Array.from(this.root.children).forEach(node => {
-      if (node.nodeName === "SOURCE" || node.nodeName === "IMG") {
-        const child = this.root.removeChild(node)
-        this.picture.appendChild(child)
-      }
-   })
+    this.html = this.picture = document.createElement('picture')
 
-    if (this.sources != "") {
-      Picture.parseAttribute(this.sources).forEach(i => {
+    // in case someone adds sources/img directly instead of using the attributes
+    Array.from(this.root.children).forEach(node => {
+      if (node.nodeName === "SOURCE" || node.nodeName === "IMG") this.picture.appendChild(node)
+    })
+
+    if (this.sources) {
+      this.sources.forEach(i => {
         if (i.src !== "" && i.type !== "" && i.size !== "") {
           switch (i.size) {
             case "small": 
@@ -137,7 +136,7 @@ export default class Picture extends Shadow() {
         }
       })
     }
-    if (this.defaultSource != "") {
+    if (this.defaultSource) {
       this.picture.innerHTML += `<img src="${this.defaultSource}" alt="${this.alt}">`
       if (this.alt === "") {
         console.warn("a-picture alt is missing")
@@ -145,13 +144,8 @@ export default class Picture extends Shadow() {
     } else {
       console.warn(`a-picture defaultSource ${this.alt === "" ? "& alt ": ""}is missing`)
     }
-  }
 
-  get picture () {
-    return this.root.querySelector('picture') || (() => {
-      const picture = document.createElement('picture')
-      this.html = picture
-    })()
+    this.img.setAttribute('loading', this.getAttribute('loading') || 'lazy')
   }
 
   get img () {

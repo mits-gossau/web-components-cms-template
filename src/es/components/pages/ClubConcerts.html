@@ -61,7 +61,8 @@
             'src': '../../../img/JulieCampiche.jpg',
             'size': 'medium',
             'type': 'image/jpg'
-          }]"></a-picture>
+          }]">
+        </a-picture>
           <p>
             Club-Konzerte finden in Genf, Bern, Luzern und Zürich für ein kleines Publikum statt. <br> 
             Junge Musiker*innen unserer Talent-Wettbewerbe treten gemeinsam mit Schweizer Jazzmusiker*innen auf.
@@ -76,7 +77,11 @@
             <li><a href="#">zum Programm</a></li>
             <li><a href="#">Tickets</a></li>
           </ul>
-          <a-picture namespace=picture- defaultSource=../../../img/JulieCampiche.jpg alt="Juli Campiche spielt Harfe"></a-picture>
+          <a-picture namespace=picture->
+            <source srcset="../../../img/JulieCampiche.jpg" type="image/jpg" media="(max-width: 767px)">
+            <source srcset="../../../img/JulieCampiche.jpg" type="image/jpg" media="(min-width: 768px) and (max-width: 990px)">
+            <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
+          </a-picture>
         </m-highlight>
         <m-highlight>
           <h2>Zürich</h2>
