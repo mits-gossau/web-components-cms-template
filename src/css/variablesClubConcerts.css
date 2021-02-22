@@ -13,7 +13,7 @@ html {
   --content-spacing: 20px;
   --content-width-mobile: 100vw;
   --content-width: 80vw;
-  --font-family-bold: "Futura Now Text W05 XBold", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
+  --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
   --font-size-mobile: 13px;
@@ -44,7 +44,6 @@ html {
   --header-logo-height: 25vw;
   --header-logo-margin: 10px 0 0;
   --header-logo-max-height: 100px;
-  --header-logo-align-self: flex-end;
   --header-position: static;
   --header-text-align: center;
   --highlight-list-border-bottom: none;

@@ -49,15 +49,15 @@ export default class Title extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host{
-        margin: min(6vw,50px) 0 0 0;
+        margin: min(9vw, 60px) 0 0 0;
       }
       :host h1{
         text-transform: uppercase;
         color: var(--color,white);
-        font-size: min(15vw, 6rem);
+        font-size: min(14vw, 3.9rem);
         font-family: var(--font-family-bold, 'OPTIFutura-ExtraBlackCond');
         margin: 0;
-        line-height: min(15vw, 6rem);
+        line-height: min(14vw, 3.4rem);
       }
       :host h1 .secondary-color {
         color: var(--color-secondary, white);
