@@ -5,23 +5,29 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
-  --a-font-size: 1.3rem;
+  --a-font-size: var(--p-font-size);
   --background-color: black;
   --color-hover: var(--color-secondary);
   --color-secondary: #ffff00;
   --color: white;
   --content-spacing: 20px;
+  --content-width-mobile: 100vw;
   --content-width: 80vw;
-  --filter: grayscale(100%);
   --font-family-bold: "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "FuturaT", Arial, sans-serif;
-  --font-size-mobile: 11px;
+  --font-size-mobile: 13px;
   --font-size: 20px;
   --font-weight: 300;
+  --footer-a-link-font-size: 1.2rem; /* deviating from standard p-font-size to make sure footer-links fit until breakpoint*/
   --footer-background-color: var(--header-background-color); 
   --footer-color-hover: var(--navigation-color-hover);
   --footer-color: var(--color-secondary);
+  --footer-content-width: var(--content-width);
+  --footer-logo-height: var(--header-logo-height);
+  --footer-logo-margin: 0 0 20px 0;
+  --footer-logo-max-height: var(--header-logo-max-height);
+  --footer-margin: 5vh auto 0 auto;
   --footer-min-height-desktop: 250px;
   --footer-min-height-mobile: 150px;
   --h2-font-size: 3.5rem;
@@ -42,15 +48,23 @@ html {
   --header-text-align: center;
   --highlight-list-border-bottom: none;
   --highlight-list-border-top: none;
+  --highlight-list-content-spacing: 40px 0;
+  --highlight-list-content-width-mobile: 100vw;
   --highlight-list-flex-direction: column;
   --hr-color: transparent;
   --img-max-width: 65vw;
+  --margin: 0;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
-  --p-font-sizeGiuliaDabala: 1.4rem;
+  --p-font-size: 1.4rem;
+  --picture-filter: grayscale(100%);
+  --picture-img-width: 100%;
+  --picture-margin: 30px auto;
+  --picture-transition: filter 0.8s ease;
+  --picture-width-mobile: 100vw;
+  --picture-width: 60vw;
   --stage-arrow-color: var(--color-secondary);
-  --transition: filter 0.8s ease;
 }

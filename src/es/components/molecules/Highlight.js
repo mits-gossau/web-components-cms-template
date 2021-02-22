@@ -143,7 +143,10 @@ export default class Highlight extends Shadow() {
         min-width: var(--img-min-width, 200px);
         transition: var(--transition, none);
       }
-      @media only screen and (max-width: ${self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host section > h2, :host section > p, :host section > ul {
+          padding: var(--section-padding, 0 15px);
+        }
         h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
         }

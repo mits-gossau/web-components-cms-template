@@ -66,6 +66,13 @@ export default class Body extends Shadow() {
         font-size: 1.5rem;
         font-family: var(--font-family-secondary);
       }
+
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > * {
+          margin: var(--content-spacing-mobile, 0 auto);
+          width: var(--content-width-mobile, 90vw);
+        }
+      }
     `
   }
 }

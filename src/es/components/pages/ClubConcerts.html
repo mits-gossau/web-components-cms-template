@@ -2,8 +2,8 @@
 <html lang=de>
 <head>
   <meta charset=UTF-8>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="Erfahre hier die neusten Informationen über die Klub-Konzerte des Migros-Kulturprozent-Classics.">
   <link href=../../../../favicon.ico rel="shortcut icon" type=image/x-icon>
   <link href=../../../css/variablesClubConcerts.css rel=stylesheet>
   <link href=../../../css/misc.css rel=stylesheet>
@@ -15,14 +15,10 @@
 <body>
   <p-general>
     <o-header namespace=header->
-      <a-logo src=../../../img/ClubConcertLogo.svg href=../../../index.html namespace=header-logo-></a-logo>
+      <a-logo src=../../../img/ClubConcertLogo.svg alt="Club Konzerte Logo" href=../../../index.html namespace=header-logo-></a-logo>
       <style>
         :host header a-logo {
           align-self: flex-end;
-        }
-        :host #intro {
-          width: 100%;
-          text-align: center;
         }
         :host p {
           text-align: center;
@@ -30,16 +26,8 @@
           margin: 30px auto;
           padding: 0 15px;
         }
-        :host #intro img {
-          margin-top: 50px;
-          max-width: var(--img-max-width, 65vw);
-          transition: var(--transition, none);
-        }
-        :host #intro img:hover {
-          filter: var(--filter-hover, none);
-        }
         .headerText {
-          margin: max(5vw, 20px) 0 0 0;
+          margin: 40px 0 0 0;
         }
         .headerText h1 {
           color: var(--color, white);
@@ -52,33 +40,33 @@
         .headerText h1.secondaryColor {
           color: var(--color-secondary, #ffeb3d);
         }
+        #introHighlight {
+          margin-top: 50px;
+        }
       </style>
       <div class="headerText">
         <h1>CLUB</h1>
         <h1>KONZERTE</h1>
         <h1 class="secondaryColor">LIVE</h1>
       </div>
-      <div id="intro">
-        <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
-        <p>
-          Club-Konzerte finden in Genf, Bern, Luzern und Zürich für ein kleines Publikum statt. <br> 
-          Junge Musiker*innen unserer Talent-Wettbewerbe treten gemeinsam mit Schweizer Jazzmusiker*innen auf.
-        </p>
-      </div>
     </o-header>
-    
     <o-body>
       <o-highlight-list namespace=highlight-list->
-        <m-highlight>
-          <h2>Zürich</h2>
-          <p>Dienstag, 16. März 2021 in der Helferei</p>
-          <p>Classics-Tournee Deutsches Symphonie-Orchester Berlin</p>
-          <p class="secondaryColor">Extrakonzert Israel Philharmonic Orchestra</p>
-          <ul>
-            <li><a href="#">zum Programm</a></li>
-            <li><a href="#">Tickets</a></li>
-          </ul>
-          <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
+        <m-highlight id="introHighlight">
+          <a-picture namespace=picture- defaultSource=../../../img/JulieCampiche.jpg alt="Juli Campiche spielt Harfe" sources="[{
+            'src': '../../../img/JulieCampiche.jpg',
+            'size': 'small',
+            'type': 'image/jpg'
+          }, {
+            'src': '../../../img/JulieCampiche.jpg',
+            'size': 'medium',
+            'type': 'image/jpg'
+          }]">
+        </a-picture>
+          <p>
+            Club-Konzerte finden in Genf, Bern, Luzern und Zürich für ein kleines Publikum statt. <br> 
+            Junge Musiker*innen unserer Talent-Wettbewerbe treten gemeinsam mit Schweizer Jazzmusiker*innen auf.
+          </p>
         </m-highlight>
         <m-highlight>
           <h2>Zürich</h2>
@@ -89,79 +77,49 @@
             <li><a href="#">zum Programm</a></li>
             <li><a href="#">Tickets</a></li>
           </ul>
-          <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
-          <figcaption>Julie Campiche</figcaption>
+          <a-picture namespace=picture->
+            <source srcset="../../../img/JulieCampiche.jpg" type="image/jpg" media="(max-width: 767px)">
+            <source srcset="../../../img/JulieCampiche.jpg" type="image/jpg" media="(min-width: 768px) and (max-width: 990px)">
+            <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
+          </a-picture>
+        </m-highlight>
+        <m-highlight>
+          <h2>Zürich</h2>
+          <p>Dienstag, 16. März 2021 in der Helferei</p>
+          <p>Classics-Tournee Deutsches Symphonie-Orchester Berlin</p>
+          <p class="secondaryColor">Extrakonzert Israel Philharmonic Orchestra</p>
+          <ul>
+            <li><a href="#">zum Programm</a></li>
+            <li><a href="#">Tickets</a></li>
+          </ul>
+          <a-picture namespace=picture- defaultSource="../../../img/CCroisé_Sept20_257_done.jpg" alt="Croisé"></a-picture>
         </m-highlight>
       </o-highlight-list>
     </o-body>
-    <o-footer namespace=footer->
+    <o-footer namespace=footer- theme=simple>
+      <a-logo src=../../../img/ClubConcertLogo.svg alt="Club Konzerte Logo" href=../../../index.html namespace=footer-logo-></a-logo>
       <ul>
         <li>
-          <a href="/de/demotape-clinic">Demotape Clinic</a>
-          <ul>
-            <li>
-              <a href="/de/demotape-clinic/der-demotape-clinic-news-alert">News Alert</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/anmelden">Anmelden</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/mbassadors-2021">Mbassadors 2021</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/reglement">Reglement</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/ablauf">Ablauf</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/preise">Preise</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/hall-of-fame">Hall of Fame</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/best-of-dtc">Best Of Demotape Clinic</a>
-            </li>
-            <li>
-              <a href="/de/demotape-clinic/winner-2020">Winner 2020</a>
-            </li>
-          </ul>
+          <a href="#">Migros-Kulturprozent-Classics</a>
         </li>
         <li>
-          <a href="/de/best-swiss-video-clip">Best Swiss Video Clip</a>
-          <ul>
-            <li>
-              <a href="/de/best-swiss-video-clip/ablauf-und-preise">Ablauf und Preise 2021</a>
-            </li>
-            <li>
-              <a href="/de/best-swiss-video-clip/winner-2020">Winner 2020</a>
-            </li>
-          </ul>
+          <a href="#">Impressum</a>
         </li>
         <li>
-          <a href="#">Multimedia</a>
-          <ul>
-            <li>
-              <a href="/de/multimedia/fotos">Fotos</a>
-            </li>
-            <li>
-              <a href="/de/multimedia/videos"> Videos</a>
-            </li>
-            <li>
-              <a href="/de/multimedia/audio">Audio</a>
-            </li>
-          </ul>
-        </li>
+          <a href="#">Disclaimer</a>
         <li>
-          <a href="/de/tickets">Tickets</a>
+          <a href="#">Kontakt</a>
         </li>
       </ul>
-      <ul style="justify-content: center; align-items: center;">
+      <ul class="language-switcher">
         <li><a href=#de>Deutsch</a></li>
         <li><a href=#fr>Français</a></li>
         <li><a href=#en>English</a></li>
-        <li></li>
+      </ul>
+      <ul class="language-switcher-mobile">
+        <li><a href=#de>DE</a></li>
+        <li><a href=#fr>FR</a></li>
+        <li><a href=#en>EN</a></li>
       </ul>
     </o-footer>
   </p-general>
@@ -179,6 +137,7 @@
     import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
     import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
+    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
     import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
     import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
