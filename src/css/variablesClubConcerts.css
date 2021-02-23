@@ -5,11 +5,13 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
-  --a-font-size: var(--p-font-size);
   --background-color: black;
+  --club-concert-logo-height: var(--header-logo-height);
+  --club-concert-logo-margin: var(--header-logo-margin);
+  --club-concert-logo-max-height: var(--header-logo-max-height);
+  --color-hover-secondary: var(--color);
   --color-hover: var(--color-secondary);
   --color-secondary: #ffff00;
-  --color-hover-secondary: var(--color);
   --color: white;
   --content-spacing: 20px;
   --content-width-mobile: 100%;
@@ -25,13 +27,6 @@ html {
   --footer-color-hover: var(--navigation-color-hover);
   --footer-color: var(--color-secondary);
   --footer-content-width: var(--content-width);
-  --club-concert-logo-height: var(--header-logo-height);
-  --club-concert-logo-margin: var(--header-logo-margin);
-  --club-concert-logo-max-height: var(--header-logo-max-height);
-  --kulturprozent-logo-height: max(60px, 6vw);
-  --kulturprozent-logo-height-mobile: 50px;
-  --kulturprozent-logo-margin: var(--header-logo-margin);
-  --kulturprozent-logo-max-height: var(--header-logo-max-height);
   --footer-margin: 5vh auto 0 auto;
   --footer-min-height : 250px;
   --footer-min-height-mobile: 150px;
@@ -58,6 +53,10 @@ html {
   --highlight-list-flex-direction: column;
   --hr-color: transparent;
   --img-max-width: 65%;
+  --kulturprozent-logo-height-mobile: 50px;
+  --kulturprozent-logo-height: max(60px, 6vw);
+  --kulturprozent-logo-margin: var(--header-logo-margin);
+  --kulturprozent-logo-max-height: var(--header-logo-max-height);
   --margin: 0;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
@@ -71,5 +70,6 @@ html {
   --picture-transition: filter 0.8s ease;
   --picture-width-mobile: 100%;
   --picture-width: 60%;
+  --section-font-size: var(--p-font-size);
   --stage-arrow-color: var(--color-secondary);
 }
