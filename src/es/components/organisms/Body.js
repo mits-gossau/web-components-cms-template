@@ -68,6 +68,7 @@ export default class Body extends Shadow() {
       }
       a {
         color: var(--a-color, var(--color-secondary, pink));
+        text-decoration: var(--text-decoration, none);
       }
       a:hover {
         color: var(--a-color-hover, var(--color-hover-secondary, green));
