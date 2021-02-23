@@ -85,6 +85,7 @@ export default class Highlight extends Shadow() {
       section {
         flex-grow: 1;
         flex-shrink: 2;
+        font-size: var(--section-font-size, 1.2rem);
         text-align: var(--text-align, center);
       }
       section > * {
@@ -120,6 +121,13 @@ export default class Highlight extends Shadow() {
         text-transform: var(--p-text-transform, none);
         margin: 3px 0;
       }
+      :host a {
+        color: var(--a-color, var(--color-secondary, pink));
+        text-decoration: none;
+      }
+      :host a:hover {
+        color: var(--a-color-hover, var(--color-hover-secondary, green));
+      }
       :host p.secondary-color {
         color: var(--color-secondary, white);
       }
@@ -129,11 +137,10 @@ export default class Highlight extends Shadow() {
         padding: 0;
       }
       :host ul li a {
-        font-size: var(--a-font-size, 1.2rem);
-        color: var(--color, black);
+        color: var(--ul-a-color, var(--a-color, var(--color-secondary, pink)));
       }
       :host ul li a:hover {
-        color: var(--color-hover, white);
+        color: var(--ul-a-color-hover, var(--a-color-hover, var(--color-hover-secondary, green)));
       }
       img {
         filter: var(--filter, none);
