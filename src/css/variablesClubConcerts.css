@@ -47,6 +47,12 @@ html {
   --header-logo-max-height: 100px;
   --header-padding: 0;
   --header-picture-margin: 30px auto 45px;
+  --header-picture-filter: var(--picture-filter);
+  --header-picture-img-width: var(--picture-img-width);
+  --header-picture-margin: var(--picture-margin);
+  --header-picture-transition: var(--picture-transition);
+  --header-picture-width-mobile: var(--picture-width-mobile);
+  --header-picture-width: var(--picture-width);
   --header-position: static;
   --header-text-align: center;
   --highlight-list-border-bottom: none;

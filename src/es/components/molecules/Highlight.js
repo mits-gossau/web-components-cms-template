@@ -172,12 +172,16 @@ export default class Highlight extends Shadow() {
   renderHTML () {
     Array.from(this.root.children).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
-      if (node.nodeName === 'IMG' || node.nodeName === 'FIGCAPTION') {
+      if (this.belongsToFigure(node)) {
         this.figure.appendChild(node)
       } else {
         this.section.appendChild(node)
       }
     })
+  }
+
+  belongsToFigure (node) {
+    return node.nodeName === 'IMG' || node.nodeName === 'FIGCAPTION' || node.nodeName === 'FIGURE' || node.nodeName.includes('PICTURE')
   }
 
   get h2 () {
@@ -200,7 +204,7 @@ export default class Highlight extends Shadow() {
     return this.root.querySelector('section') || (() => {
       // create section if it is not yet set and position it at the correct position before or after the image
       const section = document.createElement('section')
-      if (this.root.children && this.root.children[0] && (this.root.children[0].nodeName === 'IMG' || this.root.children[0].nodeName === 'FIGURE')) {
+      if (this.root.children && this.root.children[0] && this.belongsToFigure(this.root.children[0])) {
         this.root.appendChild(section)
       } else {
         this.root.prepend(section)
@@ -213,7 +217,7 @@ export default class Highlight extends Shadow() {
     return this.root.querySelector('figure') || (() => {
       // create figure if it is not yet set and position it at the correct position before or after the image
       const figure = document.createElement('figure')
-      if (this.root.children && this.root.children[0] && this.root.children[0].nodeName === 'IMG') {
+      if (this.root.children && this.root.children[0] && this.belongsToFigure(this.root.children[0])) {
         this.root.prepend(figure)
       } else {
         this.root.appendChild(figure)

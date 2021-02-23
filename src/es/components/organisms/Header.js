@@ -71,6 +71,10 @@ export default class Header extends Shadow() {
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);
       }
+      :host > * {
+        margin: var(--content-spacing, 40px) auto;
+        width: var(--content-width, 80%);
+      }
       :host > header {
         align-items: var(--align-items, center);
         background-color: var(--background-color, black);
@@ -85,6 +89,10 @@ export default class Header extends Shadow() {
         --background-color: var(--color, #777);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > * {
+          margin: var(--content-spacing-mobile, 0 auto);
+          width: var(--content-width-mobile, 90%);
+        }
         :host > header {
           height: var(--height-mobile, 50px);
           flex-direction: var(--flex-direction-mobile, row-reverse);
