@@ -17,11 +17,11 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --z-index [100]
  *  --align-items [center]
  *  --background-color [black]
- *  --height-desktop [85px]
- *  --justify-content-desktop [space-between]
+ *  --height  [85px]
+ *  --justify-content  [space-between]
  *  --justify-content-mobile [space-between]
  *  --content-spacing [40px]
- *  --flex-direction-desktop [row]
+ *  --flex-direction  [row]
  *  --flex-direction-mobile [row-reverse]
  *  --height-mobile [50px]
  *  --text-align [initial]
@@ -74,9 +74,9 @@ export default class Header extends Shadow() {
         align-items: var(--align-items, center);
         background-color: var(--background-color, black);
         display: flex;
-        flex-direction: var(--flex-direction-desktop, row);
-        height: var(--height-desktop, 85px);
-        justify-content: var(--justify-content-desktop, space-between);
+        flex-direction: var(--flex-direction , row);
+        height: var(--height , 85px);
+        justify-content: var(--justify-content , space-between);
         padding: 0 calc(var(--content-spacing, 40px) / 2);
       }
       :host  > header > a-menu-icon{

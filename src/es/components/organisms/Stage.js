@@ -86,7 +86,7 @@ export default class Stage extends Shadow() {
         box-sizing: border-box;
         display: flex;
         justify-content: center;
-        height: calc(100vh - var(--header-height-desktop, 85px));
+        height: calc(100vh - var(--header-height , 85px));
         margin: 0 !important;
         width: 100% !important;
       }

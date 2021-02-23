@@ -19,9 +19,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  * @css {
  *  --content-spacing [40px]
- *  --height-desktop [85px]
+ *  --height  [85px]
  *  --height-mobile [50px]
- *  --height [calc(var(--height-desktop, 85px) - var(--content-spacing, 40px))]
+ *  --height [calc(var(--height , 85px) - var(--content-spacing, 40px))]
  *  --max-height [none]
  *  --margin [0px]
  * }
@@ -67,14 +67,16 @@ export default class Logo extends Shadow() {
       }
       :host img{
         display: block;
-        height: var(--height, calc(var(--height-desktop, 85px) - var(--content-spacing, 40px)));
+        height: var(--height, calc(var(--height, 85px) - var(--content-spacing, 40px)));
         max-height: var(--max-height, none);
         object-fit: scale-down;
+        width: var(--width, auto);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host img{
           height: var(--height-mobile, 65px);
-          max-height: var(--max-height, none);
+          max-height: var(--max-height-mobile, none);
+          width: var(--width-mobile, auto);
         }
       }
     `

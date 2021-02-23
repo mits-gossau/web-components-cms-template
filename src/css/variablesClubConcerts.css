@@ -1,5 +1,5 @@
 /**
- * Variables naming rule: --{selector aka component aka namespace}-{css property}-{pseudo class or media query name} eg. --p-background-color-hover-desktop
+ * Variables naming rule: --{selector aka component aka namespace}-{css property}-{pseudo class or media query name} eg. --p-background-color-hover 
  * NOTE: Within the component don't use any name spacing eg. component header don't use --header-color just use --color the namespace can be added by the Shadow as an html attribute
  * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
  * - if a component holds other components you should share the attribute namespace with its children
@@ -11,8 +11,8 @@ html {
   --color-secondary: #ffff00;
   --color: white;
   --content-spacing: 20px;
-  --content-width-mobile: 100vw;
-  --content-width: 80vw;
+  --content-width-mobile: 100%;
+  --content-width: 80%;
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
@@ -28,18 +28,18 @@ html {
   --footer-logo-margin: 0 0 20px 0;
   --footer-logo-max-height: var(--header-logo-max-height);
   --footer-margin: 5vh auto 0 auto;
-  --footer-min-height-desktop: 250px;
+  --footer-min-height : 250px;
   --footer-min-height-mobile: 150px;
   --h2-font-size: 3.5rem;
   --h2-text-transform: uppercase;
   --header-background-color: var(--background-color); 
   --header-color: var(--color);
   --header-content-spacing: var(--content-spacing);
-  --header-flex-direction-desktop: column;
+  --header-flex-direction : column;
   --header-flex-direction-mobile: column;
-  --header-height-desktop: auto;
+  --header-height : auto;
   --header-height-mobile: auto;
-  --header-justify-content-desktop: end;
+  --header-justify-content : end;
   --header-justify-content-mobile: end;
   --header-logo-height: 25vw;
   --header-logo-margin: 10px 0 0;
@@ -49,10 +49,10 @@ html {
   --highlight-list-border-bottom: none;
   --highlight-list-border-top: none;
   --highlight-list-content-spacing: 40px 0;
-  --highlight-list-content-width-mobile: 100vw;
+  --highlight-list-content-width-mobile: 100%;
   --highlight-list-flex-direction: column;
   --hr-color: transparent;
-  --img-max-width: 65vw;
+  --img-max-width: 65%;
   --margin: 0;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
@@ -64,7 +64,7 @@ html {
   --picture-img-width: 100%;
   --picture-margin: 30px auto;
   --picture-transition: filter 0.8s ease;
-  --picture-width-mobile: 100vw;
-  --picture-width: 60vw;
+  --picture-width-mobile: 100%;
+  --picture-width: 60%;
   --stage-arrow-color: var(--color-secondary);
 }
