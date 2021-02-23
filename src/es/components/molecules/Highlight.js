@@ -120,6 +120,13 @@ export default class Highlight extends Shadow() {
         text-transform: var(--p-text-transform, none);
         margin: 3px 0;
       }
+      :host p a {
+        color: var(--a-color, var(--color-secondary, pink));
+        text-decoration: none;
+      }
+      :host p a:hover {
+        color: var(--a-color-hover, var(--color-hover-secondary, green));
+      }
       :host p.secondary-color {
         color: var(--color-secondary, white);
       }

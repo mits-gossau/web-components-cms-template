@@ -9,6 +9,7 @@ html {
   --background-color: black;
   --color-hover: var(--color-secondary);
   --color-secondary: #ffff00;
+  --color-hover-secondary: var(--color);
   --color: white;
   --content-spacing: 20px;
   --content-width-mobile: 100vw;
@@ -59,7 +60,7 @@ html {
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
-  --p-font-size: 1.4rem;
+  --p-font-size: 1.2rem;
   --picture-filter: grayscale(100%);
   --picture-img-width: 100%;
   --picture-margin: 30px auto;

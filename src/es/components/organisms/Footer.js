@@ -103,8 +103,9 @@ export default class Footer extends Shadow() {
           display: flex;
           flex-direction: column;
         }
-        :host a-logo {
-          align-self: flex-end;
+        :host .logo-container {
+          display: flex;
+          justify-content: space-between;
         }
         :host ul {
           list-style: var(--list-style, none);
