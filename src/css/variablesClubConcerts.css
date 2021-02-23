@@ -20,14 +20,18 @@ html {
   --font-size-mobile: 13px;
   --font-size: 20px;
   --font-weight: 300;
-  --footer-a-link-font-size: 1.2rem; /* deviating from standard p-font-size to make sure footer-links fit until breakpoint*/
+  --footer-a-link-font-size: 1.1rem;
   --footer-background-color: var(--header-background-color); 
   --footer-color-hover: var(--navigation-color-hover);
   --footer-color: var(--color-secondary);
   --footer-content-width: var(--content-width);
-  --footer-logo-height: var(--header-logo-height);
-  --footer-logo-margin: 0 0 20px 0;
-  --footer-logo-max-height: var(--header-logo-max-height);
+  --club-concert-logo-height: var(--header-logo-height);
+  --club-concert-logo-margin: var(--header-logo-margin);
+  --club-concert-logo-max-height: var(--header-logo-max-height);
+  --kulturprozent-logo-height: max(60px, 6vw);
+  --kulturprozent-logo-height-mobile: 50px;
+  --kulturprozent-logo-margin: var(--header-logo-margin);
+  --kulturprozent-logo-max-height: var(--header-logo-max-height);
   --footer-margin: 5vh auto 0 auto;
   --footer-min-height-desktop: 250px;
   --footer-min-height-mobile: 150px;
