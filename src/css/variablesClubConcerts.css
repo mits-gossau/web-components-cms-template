@@ -39,6 +39,7 @@ html {
   --header-flex-direction-mobile: column;
   --header-height : auto;
   --header-height-mobile: auto;
+  --header-padding: 0;
   --header-justify-content : end;
   --header-justify-content-mobile: end;
   --header-logo-height: 25vw;

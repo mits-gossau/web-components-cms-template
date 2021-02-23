@@ -25,6 +25,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --flex-direction-mobile [row-reverse]
  *  --height-mobile [50px]
  *  --text-align [initial]
+ *  --padding [calc...]
  * }
  * @attribute {
  *  {boolean} [show]
@@ -77,7 +78,7 @@ export default class Header extends Shadow() {
         flex-direction: var(--flex-direction , row);
         height: var(--height , 85px);
         justify-content: var(--justify-content , space-between);
-        padding: 0 calc(var(--content-spacing, 40px) / 2);
+        padding: var(--padding, 0 calc(var(--content-spacing, 40px) / 2));
       }
       :host  > header > a-menu-icon{
         display: none;
