@@ -39,12 +39,14 @@ html {
   --header-flex-direction-mobile: column;
   --header-height : auto;
   --header-height-mobile: auto;
-  --header-padding: 0;
+  --header-intro-p-font-size: 1.2rem;
   --header-justify-content : end;
   --header-justify-content-mobile: end;
   --header-logo-height: 25vw;
   --header-logo-margin: 10px 0 0;
   --header-logo-max-height: 100px;
+  --header-padding: 0;
+  --header-picture-margin: 30px auto 45px;
   --header-position: static;
   --header-text-align: center;
   --highlight-list-border-bottom: none;
