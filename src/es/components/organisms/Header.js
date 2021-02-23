@@ -134,7 +134,7 @@ export default class Header extends Shadow() {
     })
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {
-        const MenuIcon = new children[0][1]({namespace: this.getAttribute('namespace') || ''})
+        const MenuIcon = new children[0][1]({namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : ''})
         MenuIcon.addEventListener('click', event => {
           header.classList.toggle('open')
           const isOpen = header.classList.contains('open')

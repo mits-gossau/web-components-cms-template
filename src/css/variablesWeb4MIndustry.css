@@ -22,7 +22,10 @@ html {
   --footer-min-height-mobile: 150px;
   --header-background-color: #F6F6F4; 
   --header-color: var(--color-secondary);
-  --header-content-spacing: var(--content-spacing);
+  --header-content-spacing: 0;
+  --header-content-spacing-mobile: 0;
+  --header-content-width: 100%;
+  --header-content-width-mobile: 100%;
   --header-height : 85px;
   --header-height-mobile: 50px;
   --hr-color: #e6e6e6;

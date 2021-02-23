@@ -54,8 +54,9 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
         if (!node.getAttribute('slot')) shadowRoot.appendChild(node)
       })
     }
+    if (typeof options.namespace === 'string') this.setAttribute('namespace', options.namespace)
     /** @type {string} */
-    this.namespace = typeof options.namespace === 'string' ? options.namespace : this.getAttribute('namespace') || ''
+    this.namespace = this.getAttribute('namespace') || ''
   }
 
   /**
