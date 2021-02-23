@@ -7,13 +7,13 @@ import { Shadow } from '../prototypes/Shadow.js'
  * Example at: /src/es/components/pages/Home.html
  *
  * @export
- * @class GTM
+ * @class TagManager
  * @type {CustomElementConstructor}
  * @attribute {
  *  {string} id
  * }
  */
-export default class GTM extends Shadow() {
+export default class TagManager extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderHTML()) this.render()
   }

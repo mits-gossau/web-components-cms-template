@@ -238,7 +238,7 @@
       'webAPIKey': 'baaahhhh'
     }"
   ></msrc-cookie-banner>
-  <c-gtm id=UA-38442413-12></c-gtm>
+  <c-tag-manager id=UA-38442413-12></c-tag-manager>
   <script rel=preload type=module>
     self.Environment = {
       mobileBreakpoint: '800px'
@@ -260,7 +260,7 @@
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
     import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default]),
     import('../../../es/components/msrc/CookieBanner.js').then(module => ['msrc-cookie-banner', module.default]),
-    import('../../../es/components/controllers/GTM.js').then(module => ['c-gtm', module.default])
+    import('../../../es/components/controllers/TagManager.js').then(module => ['c-tag-manager', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)
