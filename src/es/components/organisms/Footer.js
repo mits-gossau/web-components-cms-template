@@ -96,7 +96,7 @@ export default class Footer extends Shadow() {
     if (this.getAttribute("theme") === "simple") {
       this.css = /* css */`
         :host {
-          width: var(--content-width, 100vw);
+          width: var(--content-width, 100%);
           margin: var(--margin, 0 auto);
         }
         :host footer {
@@ -134,7 +134,7 @@ export default class Footer extends Shadow() {
         }
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
           :host {
-            width: var(--content-width-mobile, 90vw);
+            width: var(--content-width-mobile, 90%);
           }
           :host ul {
             flex-direction: column;

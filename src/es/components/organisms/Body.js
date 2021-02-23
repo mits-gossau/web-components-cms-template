@@ -14,7 +14,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @css {
  *  NOTE: grid-area: body;
  *  --content-spacing [40px]
- *  --content-width [80vw]
+ *  --content-width [80%]
  *  --h1-color [--color, black]
  *  --font-family-secondary
  * }
@@ -46,7 +46,7 @@ export default class Body extends Shadow() {
       }
       :host > * {
         margin: var(--content-spacing, 40px) auto;
-        width: var(--content-width, 80vw);
+        width: var(--content-width, 80%);
       }
       h1 {
         color: var(--h1-color, var(--color, black));
@@ -66,11 +66,17 @@ export default class Body extends Shadow() {
         font-size: 1.5rem;
         font-family: var(--font-family-secondary);
       }
+      a {
+        color: var(--a-color, var(--color-secondary, pink));
+      }
+      a:hover {
+        color: var(--a-color-hover, var(--color-hover-secondary, green));
+      }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > * {
           margin: var(--content-spacing-mobile, 0 auto);
-          width: var(--content-width-mobile, 90vw);
+          width: var(--content-width-mobile, 90%);
         }
       }
     `

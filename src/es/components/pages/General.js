@@ -12,9 +12,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @css {
  *  NOTE: grid-template-areas!
- *  --header-height-desktop [85px]
+ *  --header-height  [85px]
  *  --header-height-mobile [50px]
- *  --footer-min-height-desktop [250px]
+ *  --footer-min-height  [250px]
  *  --footer-min-height-mobile [150px]
  *  --color [black]
  *  --font-family [FuturaT, (fallback)]
@@ -55,8 +55,8 @@ export default class General extends Shadow() {
         grid-template-areas: "header"
                              "body"
                              "footer";
-        grid-template-columns: 1fr;
-        grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
+        grid-template-columns: 100%;
+        grid-template-rows: var(--header-height , 85px) 1fr minmax(var(--footer-min-height , 250px), auto);
         min-height: 100vh;
       }
       /* global css set by page */

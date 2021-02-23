@@ -14,7 +14,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @css {
  *  --content-spacing [40px]
  *  --hr-color [black]
- *  --content-width [80vw]
+ *  --content-width [80%]
  *  --color [black]
  *  --font-family-secondary
  *  --font-size [2.5rem]
@@ -60,7 +60,7 @@ export default class HighlightList extends Shadow() {
         gap: calc(var(--content-spacing, 40px) / 2);
         padding: var(--content-spacing, 40px 0) ;
         margin: 0 auto;
-        width: var(--content-width, 80vw);
+        width: var(--content-width, 80%);
       }
       :host > h1 {
         color: var(--color, black);
@@ -74,7 +74,7 @@ export default class HighlightList extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > m-highlight {
           flex-wrap: wrap;
-          width: var(--content-width-mobile, 90vw);
+          width: var(--content-width-mobile, 90%);
           padding: var(--content-spacing-mobile, 30px 0);
         }
       }

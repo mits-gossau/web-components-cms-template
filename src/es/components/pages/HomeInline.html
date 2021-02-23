@@ -557,9 +557,9 @@ const Intersection = (ChosenClass = Shadow()) => class Intersection extends Chos
  * @type {CustomElementConstructor}
  * @css {
  *  NOTE: grid-template-areas!
- *  --header-height-desktop [85px]
+ *  --header-height  [85px]
  *  --header-height-mobile [50px]
- *  --footer-min-height-desktop [250px]
+ *  --footer-min-height  [250px]
  *  --footer-min-height-mobile [150px]
  * }
  */
@@ -589,7 +589,7 @@ class General extends Shadow() {
         grid-template-areas: "header"
                              "body"
                              "footer";
-        grid-template-rows: var(--header-height-desktop, 85px) 1fr minmax(var(--footer-min-height-desktop, 250px), auto);
+        grid-template-rows: var(--header-height , 85px) 1fr minmax(var(--footer-min-height , 250px), auto);
         grid-template-columns: 1fr;
         min-height: 100vh;
       }
@@ -621,8 +621,8 @@ class General extends Shadow() {
  *  --z-index [100]
  *  --align-items [center]
  *  --background-color [black]
- *  --height-desktop [85px]
- *  --justify-content-desktop [space-between]
+ *  --height  [85px]
+ *  --justify-content  [space-between]
  *  --justify-content-mobile [space-between]
  *  --content-spacing [40px]
  *  --flex-direction-mobile [row-reverse]
@@ -670,8 +670,8 @@ class Header extends Shadow() {
         align-items: var(--align-items, center);
         background-color: var(--background-color, black);
         display: flex;
-        height: var(--height-desktop, 85px);
-        justify-content: var(--justify-content-desktop, space-between);
+        height: var(--height , 85px);
+        justify-content: var(--justify-content , space-between);
         padding: 0 calc(var(--content-spacing, 40px) / 2);
       }
       :host  > header > a-menu-icon{
@@ -771,7 +771,7 @@ class Header extends Shadow() {
  * }
  * @css {
  *  --content-spacing [40px]
- *  --height-desktop [85px]
+ *  --height  [85px]
  *  --height-mobile [50px]
  * }
  */
@@ -814,7 +814,7 @@ class Logo extends Shadow() {
       }
       :host img{
         display: block;
-        height: calc(var(--height-desktop, 85px) - var(--content-spacing, 40px));
+        height: calc(var(--height , 85px) - var(--content-spacing, 40px));
         object-fit: scale-down;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
@@ -1248,7 +1248,7 @@ class Stage extends Shadow() {
         box-sizing: border-box;
         display: flex;
         justify-content: center;
-        height: calc(100vh - var(--header-height-desktop, 85px));
+        height: calc(100vh - var(--header-height , 85px));
         margin: 0 !important;
         width: 100% !important;
       }
