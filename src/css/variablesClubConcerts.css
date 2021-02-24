@@ -6,9 +6,9 @@
  */
 html {
   --background-color: black;
-  --club-concert-logo-height: var(--header-logo-height);
-  --club-concert-logo-margin: var(--header-logo-margin);
-  --club-concert-logo-max-height: var(--header-logo-max-height);
+  --footer-logo-height: var(--header-logo-height);
+  --footer-logo-margin: var(--header-logo-margin);
+  --footer-logo-max-height: var(--header-logo-max-height);
   --color-hover-secondary: var(--color);
   --color-hover: var(--color-secondary);
   --color-secondary: #FFED00;
@@ -62,10 +62,6 @@ html {
   --highlight-list-flex-direction: column;
   --hr-color: transparent;
   --img-max-width: 65%;
-  --kulturprozent-logo-height-mobile: 50px;
-  --kulturprozent-logo-height: max(60px, 6vw);
-  --kulturprozent-logo-margin: var(--header-logo-margin);
-  --kulturprozent-logo-max-height: var(--header-logo-max-height);
   --margin: 0;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
