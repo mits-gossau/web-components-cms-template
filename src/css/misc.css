@@ -1,5 +1,7 @@
 /* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
-html, html a {
+html {
   background-color: var(--background-color, transparent);
+}
+html, html a {
   color: var(--background-color, transparent);
 }
