@@ -21,6 +21,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class CookieBanner extends Shadow() {
+  constructor(...args) {
+    super({mode: 'false'}, ...args) // disabling shadow-DOM to have msrc styles flow into the node
+  }
+
   connectedCallback () {
     if (this.shouldComponentRenderHTML()) this.render()
   }
