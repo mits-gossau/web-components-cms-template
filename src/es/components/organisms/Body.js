@@ -50,20 +50,19 @@ export default class Body extends Shadow() {
       }
       h1 {
         color: var(--h1-color, var(--color, black));
-        font-size: 6rem;
+        font-size: var(--h1-font-size, 5rem);
       }
       h2 {
-        font-size: 5rem;
+        font-size: var(--h2-font-size, 4rem);
         font-family: var(--font-family-secondary);
       }
       h3 {
-        font-size: 3rem;
+        font-size: var(--h3-font-size, 3rem);
       }
       h4 {
-        font-size: 2rem;
+        font-size: var(--h4-font-size, 2rem);
       }
       p {
-        font-size: 1.5rem;
         font-family: var(--font-family-secondary);
       }
       a {

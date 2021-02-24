@@ -17,11 +17,11 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @css {
  *  --color-hover [#8d4674]
  *  --h2-font-family [--font-family]
- *  --h2-font-size [6rem]
+ *  --h2-font-size [4rem]
  *  --h2-font-size-mobile [2.5rem]
  *  --h2-text-transform [none]
  *  --h5-font-family [--font-family-secondary]
- *  --h5-font-size [1rem]
+ *  --h5-font-size [1.5rem]
  *  --h5-text-transform [uppercase]
  *  --img-min-width [200px]
  *  --img-min-width-mobile [50px]
@@ -30,7 +30,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --filter-hover [none]
  *  --margin [0 0 1rem 0]
  *  --p-font-family [--font-family-secondary]
- *  --p-font-size [1.5rem]
+ *  --p-font-size [1rem]
  *  --p-text-transform [none]
  *  --text-align [center]
  * }
@@ -85,7 +85,7 @@ export default class Highlight extends Shadow() {
       section {
         flex-grow: 1;
         flex-shrink: 2;
-        font-size: var(--section-font-size, 1.2rem);
+        font-size: var(--section-font-size, 1rem);
         text-align: var(--text-align, center);
       }
       section > * {
@@ -107,17 +107,17 @@ export default class Highlight extends Shadow() {
       }
       :host h2 {
         font-family: var(--h2-font-family, var(--font-family-bold));
-        font-size: var(--h2-font-size, 6rem);
+        font-size: var(--h2-font-size, 4rem);
         text-transform: var(--h2-text-transform, none);
       }
       :host h5 {
         font-family: var(--h5-font-family, var(--font-family-secondary));
-        font-size: var(--h5-font-size, 1rem);
+        font-size: var(--h5-font-size, 1.5rem);
         text-transform: var(--h5-text-transform, uppercase);
       }
       :host p {
         font-family: var(--p-font-family, var(--font-family-secondary));
-        font-size: var(--p-font-size, 1.5rem);
+        font-size: var(--p-font-size, 1rem);
         text-transform: var(--p-text-transform, none);
         margin: 3px 0;
       }

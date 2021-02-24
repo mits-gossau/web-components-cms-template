@@ -54,16 +54,22 @@ export default class Title extends Shadow() {
       :host h1{
         text-transform: uppercase;
         color: var(--color,white);
-        font-size: min(14vw, 3.95rem);
+        font-size: var(--font-size, 79px);
         font-family: var(--font-family-bold, 'OPTIFutura-ExtraBlackCond');
         margin: 0;
-        line-height: min(14vw, 3.45rem);
+        line-height: var(--line-height, 69px);
       }
       :host h1 .secondary-color {
         color: var(--color-secondary, white);
       }
       :host h1 span {
         display: block;
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host h1{
+          font-size: var(--font-size-mobile, min(14vw, 49px));
+          line-height: var(--line-height-mobile, min(14vw, 43px));
+        }
       }
     `
   }

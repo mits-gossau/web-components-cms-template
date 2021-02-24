@@ -17,11 +17,11 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --z-index [100]
  *  --content-spacing [40px]
  *  --a-link-content-spacing [0]
- *  --a-link-font-size [1.5rem]
+ *  --a-link-font-size [1rem]
  *  --a-link-font-size-2 [1rem]
  *  --list-style [none]
  *  --align-items [start]
- *  --font-size [2.5rem]
+ *  --font-size [1rem]
  * }
  */
 export default class Footer extends Shadow() {
@@ -69,7 +69,7 @@ export default class Footer extends Shadow() {
         --padding: var(--a-link-content-spacing, 0);
       }
       :host > footer ul > li > a-link {
-        --font-size: var(--a-link-font-size, 1.5rem);
+        --font-size: var(--a-link-font-size, 1rem);
         display: block;
       }
       :host > footer ul > li > ul a-link {
@@ -142,10 +142,10 @@ export default class Footer extends Shadow() {
             margin-bottom: 0;
           }
           :host > footer ul > li > a-link {
-            --font-size: var(--a-link-font-size-mobile, 1.5rem);
+            --font-size: var(--a-link-font-size-mobile, 1rem);
           }
           :host > footer ul > li {
-            font-size: var(--a-link-font-size-mobile, 1.5rem);
+            font-size: var(--a-link-font-size-mobile, 1rem);
           }
         }
       `
@@ -167,7 +167,7 @@ export default class Footer extends Shadow() {
           padding: calc(var(--content-spacing, 40px) / 2) var(--content-spacing, 40px);
         }
         :host > footer > ul > li{
-          font-size: var(--font-size, 2.5rem);
+          font-size: var(--font-size, 1rem);
         }
         :host > footer > ul li:hover{
           cursor: pointer;

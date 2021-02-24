@@ -65,7 +65,7 @@ export default class Link extends Shadow() {
         box-sizing: border-box;
         color: var(--color, red);
         display: block;
-        font-size: var(--font-size, 1.2rem);
+        font-size: var(--font-size, 1rem);
         font-weight: var(--font-weight, 300);
         height: 100%;
         padding: var(--padding, 14px 10px);

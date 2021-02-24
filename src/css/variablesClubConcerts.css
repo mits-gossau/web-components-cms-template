@@ -11,7 +11,7 @@ html {
   --club-concert-logo-max-height: var(--header-logo-max-height);
   --color-hover-secondary: var(--color);
   --color-hover: var(--color-secondary);
-  --color-secondary: #ffff00;
+  --color-secondary: #FFED00;
   --color: white;
   --content-spacing: 20px;
   --content-width-mobile: 100%;
@@ -19,10 +19,9 @@ html {
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
-  --font-size-mobile: 13px;
-  --font-size: 20px;
+  --font-size-mobile: 16px;
+  --font-size: 22px;
   --font-weight: 300;
-  --footer-a-link-font-size: 1.1rem;
   --footer-background-color: var(--header-background-color); 
   --footer-color-hover: var(--navigation-color-hover);
   --footer-color: var(--color-secondary);
@@ -30,7 +29,7 @@ html {
   --footer-margin: 5vh auto 0 auto;
   --footer-min-height : 250px;
   --footer-min-height-mobile: 150px;
-  --h2-font-size: 3.5rem;
+  --h2-font-size: 3rem;
   --h2-text-transform: uppercase;
   --header-background-color: var(--background-color); 
   --header-color: var(--color);
@@ -39,7 +38,6 @@ html {
   --header-flex-direction-mobile: column;
   --header-height : auto;
   --header-height-mobile: auto;
-  --header-intro-p-font-size: 1.2rem;
   --header-justify-content : end;
   --header-justify-content-mobile: end;
   --header-logo-height: 25vw;
@@ -54,6 +52,8 @@ html {
   --header-picture-width-mobile: var(--picture-width-mobile);
   --header-picture-width: var(--picture-width);
   --header-position: static;
+  --header-title-font-family-bold: var(--font-family-bold);
+  --header-title-color-secondary: var(--color-secondary);
   --header-text-align: center;
   --highlight-list-border-bottom: none;
   --highlight-list-border-top: none;
@@ -72,13 +72,11 @@ html {
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
-  --p-font-size: 1.2rem;
   --picture-filter: grayscale(100%);
   --picture-img-width: 100%;
   --picture-margin: 30px auto;
   --picture-transition: filter 0.8s ease;
   --picture-width-mobile: 100%;
   --picture-width: 60%;
-  --section-font-size: var(--p-font-size);
   --stage-arrow-color: var(--color-secondary);
 }
