@@ -44,9 +44,9 @@ html {
   --header-logo-margin: 10px 0 0;
   --header-logo-max-height: 100px;
   --header-padding: 0;
-  --header-picture-margin: 30px auto 45px;
   --header-picture-filter: var(--picture-filter);
   --header-picture-img-width: var(--picture-img-width);
+  --header-picture-margin: 30px auto 45px;
   --header-picture-margin: var(--picture-margin);
   --header-picture-transition: var(--picture-transition);
   --header-picture-width-mobile: var(--picture-width-mobile);
@@ -79,4 +79,5 @@ html {
   --picture-width-mobile: 100%;
   --picture-width: 60%;
   --stage-arrow-color: var(--color-secondary);
+  --text-decoration: none;
 }
