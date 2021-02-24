@@ -19,6 +19,18 @@ import { Shadow } from '../prototypes/Shadow.js'
  *    'webAPIKey': '5reweDEbruthex8s'
  *  }"]
  * }
+ * @css {
+ * --color, black
+ * --font-size, 0.8rem
+ * --line-height, normal
+ * --font-weight, normal
+ * --background-color, white
+ * --box-shadow-color, white
+ * --background-color-button, --color-secondary, orange
+ * --border-color-button, --color-secondary, orange
+ * --color-button, --background-color, white
+ * --color-a, --color-secondary, white
+ * }
  */
 export default class CookieBanner extends Shadow() {
   constructor(...args) {
@@ -44,9 +56,30 @@ export default class CookieBanner extends Shadow() {
    * @return {void}
    */
   render () {
+    const style = document.createElement('style')
+    style.textContent = /* css */`
+      #msrc-widget div, #msrc-widget a, #msrc-widget button {
+        color: var(--color, black) !important;
+        font-size: var(--font-size, 0.8rem) !important;
+        line-height: var(--line-height, normal) !important;
+        font-weight: var(--font-weight, normal) !important;
+      }
+      #msrc-widget > div {
+        background-color: var(--background-color, white) !important;
+        box-shadow: var(--box-shadow-color, white) 0px -3px 3px !important;
+      }
+      #msrc-widget button {
+        background-color: var(--background-color-button, var(--color-secondary, orange)) !important;
+        border-color: var(--border-color-button, var(--color-secondary, orange)) !important;
+        color: var(--color-button, var(--background-color, white)) !important;
+      }
+      #msrc-widget a {
+        color: var(--color-a, var(--color-secondary, white)) !important;
+      }
+    `
     const msrcCookieBanner = document.createElement('div')
     this.loadDependency().then(msrc => msrc.components.privacy.cookieBanner(msrcCookieBanner, this.constructor.parseAttribute(this.getAttribute('props'))))
-    this.html = msrcCookieBanner
+    this.html = [style, msrcCookieBanner]
   }
 
   /**
