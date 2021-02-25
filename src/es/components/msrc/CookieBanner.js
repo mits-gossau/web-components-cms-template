@@ -76,6 +76,14 @@ export default class CookieBanner extends Shadow() {
       #msrc-widget a {
         color: var(--color-a, var(--color-secondary, white)) !important;
       }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        #msrc-widget div, #msrc-widget a, #msrc-widget button {
+          color: var(--color-mobile, black) !important;
+          font-size: var(--font-size-mobile, 0.73rem) !important;
+          line-height: var(--line-height-mobile, normal) !important;
+          font-weight: var(--font-weight-mobile, normal) !important;
+        }
+      }
     `
     const msrcCookieBanner = document.createElement('div')
     this.loadDependency().then(msrc => msrc.components.privacy.cookieBanner(msrcCookieBanner, this.constructor.parseAttribute(this.getAttribute('props'))))

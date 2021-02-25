@@ -62,6 +62,7 @@ export default class General extends Shadow() {
       /* global css set by page */
       html {
         font-size: var(--font-size, 10px);
+        line-height: var(--line-height, normal);
         word-break: var(--word-break, normal);
       }
       /* to counteract misc.css */
@@ -87,6 +88,8 @@ export default class General extends Shadow() {
         /* global css set by page */
         html {
           font-size: var(--font-size-mobile, 10px);
+          line-height: var(--line-height-mobile, normal);
+          word-break: var(--word-break-mobile, normal);
         }
       }
     `

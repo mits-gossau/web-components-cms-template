@@ -45,8 +45,11 @@ export default class Body extends Shadow() {
         grid-area: body;
       }
       :host > * {
-        margin: var(--content-spacing, 40px) auto;
+        margin: var(--content-spacing, 40px) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
+      }
+      :host > span, :host > div, :host > p, :host > ul, :host > ol {
+        width: var(--content-width-not-web-component, 80%);
       }
       h1 {
         color: var(--h1-color, var(--color, black));
@@ -71,7 +74,7 @@ export default class Body extends Shadow() {
       }
       a {
         color: var(--a-color, var(--color-secondary, pink));
-        text-decoration: var(--text-decoration, none);
+        text-decoration: var(--text-decoration-a, none);
       }
       a:hover {
         color: var(--a-color-hover, var(--color-hover-secondary, green));
@@ -79,8 +82,11 @@ export default class Body extends Shadow() {
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > * {
-          margin: var(--content-spacing-mobile, 0 auto);
+          margin: 0 auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
+        }
+        :host > span, :host > div, :host > p, :host > ul, :host > ol {
+          width: var(--content-width-not-web-component-mobile, 90%);
         }
         .outro-text {
           margin-top: var(--outro-text-margin-top-mobile, 75px);
