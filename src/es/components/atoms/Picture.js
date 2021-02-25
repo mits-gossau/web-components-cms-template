@@ -1,5 +1,5 @@
 // @ts-check
-import { Intersection } from '../prototypes/Intersection.js'
+import { Shadow } from '../prototypes/Shadow.js'
 
 /* global HTMLElement */
 
@@ -32,9 +32,9 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  --object-fit [cover]
  * }
  */
-export default class Picture extends Intersection() {
-  constructor (options = {}, ...args) {
-    super(Object.assign(options, {intersectionObserverInit: {rootMargin: "0px 0px 0px 0px", threshold: 1} }), ...args)
+export default class Picture extends Shadow() {
+  constructor(...args) {
+    super(...args)
     this.sources = this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources')) || null
     this.defaultSource = this.getAttribute("defaultSource") ? this.getAttribute("defaultSource") : ""
     this.alt = this.getAttribute("alt") ? this.getAttribute("alt") : ""
@@ -43,11 +43,6 @@ export default class Picture extends Intersection() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
-    super.connectedCallback()
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback()
   }
 
   /**
@@ -155,23 +150,6 @@ export default class Picture extends Intersection() {
 
   get img () {
     return this.root.querySelector('img')
-  }
-
-  /**
-   * callback from the Intersection Observer
-   *
-   * @return {void}
-   */
-  intersectionCallback (entries, observer) {
-    const entry = entries[0]
-    if (entries && entry) {
-      const element = entry.target
-      if (entry.target.classList.contains("testing")) { // for testing, remove threshold
-        if (entry.isIntersecting && element) {
-          //element.style.setProperty("--picture-filter", `grayscale(${100}%)`)
-        }
-      }
-    }
   }
 
 }
