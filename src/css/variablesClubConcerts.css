@@ -16,7 +16,7 @@ html {
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
-  --font-size-mobile: 19.2px;
+  --font-size-mobile: 19px;
   --font-size: 22px;
   --font-weight: 300;
   --footer-background-color: var(--header-background-color); 
@@ -62,6 +62,8 @@ html {
   --highlight-list-content-spacing: 40px 0;
   --highlight-list-content-width-mobile: 100%;
   --highlight-list-flex-direction: column;
+  --header-intro-p-line-height-mobile: var(--p-line-height-mobile);
+  --p-line-height-mobile: 1.4rem;
   --hr-color: transparent;
   --img-max-width: 65%;
   --margin: 0;

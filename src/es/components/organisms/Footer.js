@@ -68,16 +68,18 @@ export default class Footer extends Shadow() {
       :host a-link {
         --padding: var(--a-link-content-spacing, 0);
       }
+      :host > footer ul > li {
+        color: var(--color, red);
+      }
       :host > footer ul > li > * {
-        --font-size: var(--a-link-font-size, 1rem);
         font-size: var(--a-link-font-size, 1rem);
         display: block;
       }
-      :host > footer ul > li > ul * {
-        --font-size: var(--a-link-font-size-2, 1rem);
+      :host > footer ul > li > a-link {
+        --font-size: var(--a-link-font-size, 1rem);
       }
-      :host > footer ul > li {
-        color: var(--color, red);
+      :host > footer ul > li > ul a-link {
+        --font-size: var(--a-link-font-size-2, 1rem);
       }
     `
     /*----------------------------------------- CLUB CONCERT CSS -------------------------------------------------*/
@@ -140,7 +142,7 @@ export default class Footer extends Shadow() {
           }
           :host ul li {
             align-self: center;
-            margin: var(--mobile-content-spacing, 0) 0;
+            margin: var(--content-spacing-mobile, 0) 0;
           }
           :host ul li:first-of-type {
             margin-top: 0;
@@ -149,8 +151,10 @@ export default class Footer extends Shadow() {
             margin-bottom: 0;
           }
           :host > footer ul > li > * {
-            --font-size: var(--a-link-font-size-mobile, 1rem);
             font-size: var(--a-link-font-size-mobile, 1rem);
+          }
+          :host > footer ul > li > a-link {
+            --font-size: var(--a-link-font-size-mobile, 1rem);
           }
         }
       `
