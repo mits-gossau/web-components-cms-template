@@ -160,10 +160,10 @@ export default class Highlight extends Shadow() {
           margin: var(--p-margin-mobile, 3px 0);
           line-height: var(--p-line-height-mobile, normal)
         }
-        h2 {
+        :host h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
         }
-        img {
+        :host img {
           min-width: var(--img-min-width-mobile, 50px);
         }
       }
