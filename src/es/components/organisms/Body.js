@@ -65,6 +65,10 @@ export default class Body extends Shadow() {
       p {
         font-family: var(--font-family-secondary);
       }
+      .outro-text {
+        text-align: var(--outro-text-text-align, center);
+        margin-top: var(--outro-text-margin-top, 120px);
+      }
       a {
         color: var(--a-color, var(--color-secondary, pink));
         text-decoration: var(--text-decoration, none);
@@ -77,6 +81,9 @@ export default class Body extends Shadow() {
         :host > * {
           margin: var(--content-spacing-mobile, 0 auto);
           width: var(--content-width-mobile, 90%);
+        }
+        .outro-text {
+          margin-top: var(--outro-text-margin-top-mobile, 75px);
         }
       }
     `
