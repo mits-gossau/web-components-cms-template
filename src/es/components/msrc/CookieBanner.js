@@ -21,7 +21,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  * @css {
  * --color, black
- * --font-size, 0.8rem
+ * --font-size, 0.73rem
  * --line-height, normal
  * --font-weight, normal
  * --background-color, white
@@ -60,7 +60,7 @@ export default class CookieBanner extends Shadow() {
     style.textContent = /* css */`
       #msrc-widget div, #msrc-widget a, #msrc-widget button {
         color: var(--color, black) !important;
-        font-size: var(--font-size, 0.8rem) !important;
+        font-size: var(--font-size, 0.73rem) !important;
         line-height: var(--line-height, normal) !important;
         font-weight: var(--font-weight, normal) !important;
       }

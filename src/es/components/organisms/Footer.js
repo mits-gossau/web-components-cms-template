@@ -68,16 +68,18 @@ export default class Footer extends Shadow() {
       :host a-link {
         --padding: var(--a-link-content-spacing, 0);
       }
+      :host > footer ul > li {
+        color: var(--color, red);
+      }
+      :host > footer ul > li > * {
+        font-size: var(--a-link-font-size, 1rem);
+        display: block;
+      }
       :host > footer ul > li > a-link {
         --font-size: var(--a-link-font-size, 1rem);
-        display: block;
       }
       :host > footer ul > li > ul a-link {
         --font-size: var(--a-link-font-size-2, 1rem);
-      }
-      :host > footer ul > li {
-        font-size: var(--a-link-font-size-2, 1rem);
-        color: var(--color, red);
       }
     `
     /*----------------------------------------- CLUB CONCERT CSS -------------------------------------------------*/
@@ -95,8 +97,9 @@ export default class Footer extends Shadow() {
           display: flex;
           justify-content: space-between;
         }
-        :host .logo-container:first-child {
-          --logo-height: var(--first-height, max(60px, 6vw));
+        :host .logo-container :first-child {
+          --logo-height: var(--first-height, max(65px, 4.8vw));
+          --logo-height-mobile: var(--first-height-mobile, 48px);
         }
         :host .footer-links {
           display: flex;
@@ -139,7 +142,7 @@ export default class Footer extends Shadow() {
           }
           :host ul li {
             align-self: center;
-            margin: var(--content-spacing, 5px) 0;
+            margin: var(--content-spacing-mobile, 0) 0;
           }
           :host ul li:first-of-type {
             margin-top: 0;
@@ -147,11 +150,11 @@ export default class Footer extends Shadow() {
           :host ul li:last-of-type {
             margin-bottom: 0;
           }
+          :host > footer ul > li > * {
+            font-size: var(--a-link-font-size-mobile, 1rem);
+          }
           :host > footer ul > li > a-link {
             --font-size: var(--a-link-font-size-mobile, 1rem);
-          }
-          :host > footer ul > li {
-            font-size: var(--a-link-font-size-mobile, 1rem);
           }
         }
       `

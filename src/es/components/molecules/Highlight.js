@@ -119,7 +119,12 @@ export default class Highlight extends Shadow() {
         font-family: var(--p-font-family, var(--font-family-secondary));
         font-size: var(--p-font-size, 1rem);
         text-transform: var(--p-text-transform, none);
-        margin: 3px 0;
+        margin: var(--p-margin, 3px 0);
+        line-height: var(--p-line-height, 1.6rem)
+      }
+      :host p:first-of-type {
+        font-family: var(--font-family-bold);
+        text-transform: var(--p-first-text-transform, none);
       }
       :host a {
         color: var(--a-color, var(--color-secondary, pink));
@@ -127,9 +132,6 @@ export default class Highlight extends Shadow() {
       }
       :host a:hover {
         color: var(--a-color-hover, var(--color-hover-secondary, green));
-      }
-      :host p.secondary-color {
-        color: var(--color-secondary, white);
       }
       :host ul {
         list-style-type: none;
@@ -153,6 +155,10 @@ export default class Highlight extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host section > h2, :host section > p, :host section > ul {
           padding: var(--section-padding, 0 15px);
+        }
+        :host p {
+          margin: var(--p-margin-mobile, 3px 0);
+          line-height: var(--p-line-height-mobile, normal)
         }
         h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
