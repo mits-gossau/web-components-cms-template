@@ -57,7 +57,7 @@ html {
   --header-justify-content-mobile: end;
   --header-logo-height: 25vw;
   --header-logo-margin: 10px 0 0;
-  --header-logo-max-height: 100px;
+  --header-logo-max-height: max(100px, 5vw);
   --header-padding: 0;
   --header-picture-filter: var(--picture-filter);
   --header-picture-img-width: var(--picture-img-width);
