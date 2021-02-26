@@ -54,16 +54,22 @@ export default class Body extends Shadow() {
       h1 {
         color: var(--h1-color, var(--color, black));
         font-size: var(--h1-font-size, 5rem);
+        font-family: var(--h1-font-family, var(--font-family-bold));
       }
       h2 {
         font-size: var(--h2-font-size, 4rem);
-        font-family: var(--font-family-secondary);
+        font-family: var(--h2-font-family, var(--font-family-bold));
       }
       h3 {
         font-size: var(--h3-font-size, 3rem);
+        font-family: var(--h3-font-family, var(--font-family-bold));
       }
       h4 {
         font-size: var(--h4-font-size, 2rem);
+        font-family: var(--h4-font-family);
+      }
+      h5 {
+        font-family: var(--h5-font-family, var(--font-family-secondary));
       }
       p {
         font-family: var(--font-family-secondary);
@@ -85,7 +91,7 @@ export default class Body extends Shadow() {
           margin: 0 auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
         }
-        :host > span, :host > div, :host > p, :host > ul, :host > ol {
+        :host > span, :host > div, :host > p, :host > ul, :host > ol, :host > section, :host > h1, :host > h2, :host > h3, :host > h4, :host > h5 {
           width: var(--content-width-not-web-component-mobile, 90%);
         }
         .outro-text {
