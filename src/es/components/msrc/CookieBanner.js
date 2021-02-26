@@ -26,9 +26,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  * --font-weight, normal
  * --background-color, white
  * --box-shadow-color, white
- * --background-color-button, --color-secondary, orange
- * --border-color-button, --color-secondary, orange
- * --color-button, --background-color, white
+ * --button-background-color, --color-secondary, orange
+ * --button-border-color, --color-secondary, orange
+ * --button-color, --background-color, white
  * --color-a, --color-secondary, white
  * }
  */
@@ -69,16 +69,15 @@ export default class CookieBanner extends Shadow() {
         box-shadow: var(--box-shadow-color, white) 0px -3px 3px !important;
       }
       #msrc-widget button {
-        background-color: var(--background-color-button, var(--color-secondary, orange)) !important;
-        border-color: var(--border-color-button, var(--color-secondary, orange)) !important;
-        color: var(--color-button, var(--background-color, white)) !important;
+        background-color: var(--button-background-color, var(--color-secondary, orange)) !important;
+        border-color: var(--button-border-color, var(--color-secondary, orange)) !important;
+        color: var(--button-color, var(--background-color, white)) !important;
       }
       #msrc-widget a {
-        color: var(--color-a, var(--color-secondary, white)) !important;
+        color: var(--a-color, var(--color-secondary, white)) !important;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         #msrc-widget div, #msrc-widget a, #msrc-widget button {
-          color: var(--color-mobile, var(--color, black)) !important;
           font-size: var(--font-size-mobile, var(--font-size, 0.73rem)) !important;
           line-height: var(--line-height-mobile, var(--line-height, normal)) !important;
           font-weight: var(--font-weight-mobile, var(--font-weight, normal)) !important;
