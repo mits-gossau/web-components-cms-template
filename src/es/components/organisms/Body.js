@@ -76,7 +76,7 @@ export default class Body extends Shadow() {
       }
       .outro-text {
         text-align: var(--outro-text-text-align, center);
-        margin-top: var(--outro-text-margin-top, 120px);
+        margin-top: var(--outro-text-margin-top, 100px);
       }
       a {
         color: var(--a-color, var(--color-secondary, pink));
@@ -95,7 +95,7 @@ export default class Body extends Shadow() {
           width: var(--content-width-not-web-component-mobile, 90%);
         }
         .outro-text {
-          margin-top: var(--outro-text-margin-top-mobile, 75px);
+          margin-top: var(--outro-text-margin-top-mobile, 50px);
         }
       }
     `
