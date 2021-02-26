@@ -78,10 +78,16 @@ export default class CookieBanner extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         #msrc-widget div, #msrc-widget a, #msrc-widget button {
-          color: var(--color-mobile, black) !important;
-          font-size: var(--font-size-mobile, 0.73rem) !important;
-          line-height: var(--line-height-mobile, normal) !important;
-          font-weight: var(--font-weight-mobile, normal) !important;
+          color: var(--color-mobile, var(--color, black)) !important;
+          font-size: var(--font-size-mobile, var(--font-size, 0.73rem)) !important;
+          line-height: var(--line-height-mobile, var(--line-height, normal)) !important;
+          font-weight: var(--font-weight-mobile, var(--font-weight, normal)) !important;
+        }
+      }
+      @media only screen and (max-width: 280px) {
+        /* the cookie banner has never been adjusted for tiny sizes and looks shit, so better to hide it completely for smart watches, etc. */
+        #msrc-widget {
+          display: none;
         }
       }
     `
