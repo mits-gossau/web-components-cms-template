@@ -82,6 +82,10 @@ export default class CookieBanner extends Shadow() {
           line-height: var(--line-height-mobile, var(--line-height, normal)) !important;
           font-weight: var(--font-weight-mobile, var(--font-weight, normal)) !important;
         }
+        #msrc-widget > div {
+          flex-direction: column !important;
+          align-items: stretch !important;
+        }
       }
       @media only screen and (max-width: 280px) {
         /* the cookie banner has never been adjusted for tiny sizes and looks shit, so better to hide it completely for smart watches, etc. */
