@@ -36,6 +36,7 @@ html {
   --footer-min-height: 50px;
   --footer-padding-top-mobile: 3vh;
   --footer-padding-top: 5vh;
+  --h2-font-size-mobile: min(2.5rem, 14vw);
   --h2-font-size: 3rem;
   --h2-line-height-mobile: var(--h2-line-height);
   --h2-line-height: normal;
@@ -53,8 +54,8 @@ html {
   --header-height-mobile: auto;
   --header-intro-p-margin: 0;
   --header-intro-width-section-mobile: var(--content-width-not-web-component-mobile);
-  --header-justify-content: end;
   --header-justify-content-mobile: end;
+  --header-justify-content: end;
   --header-logo-height: 25vw;
   --header-logo-margin: 10px 0 0;
   --header-logo-max-height: max(100px, 5vw);

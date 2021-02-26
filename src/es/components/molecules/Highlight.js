@@ -112,13 +112,13 @@ export default class Highlight extends Shadow() {
       :host h2 {
         font-family: var(--h2-font-family, var(--font-family-bold));
         font-size: var(--h2-font-size, 4rem);
-        line-height: var(--h2-line-height, 4rem);
+        line-height: var(--h2-line-height, normal);
         text-transform: var(--h2-text-transform, none);
       }
       :host h5 {
         font-family: var(--h5-font-family, var(--font-family-secondary));
         font-size: var(--h5-font-size, 1.5rem);
-        line-height: var(--h5-line-height, 1.5rem);
+        line-height: var(--h5-line-height, normal);
         text-transform: var(--h5-text-transform, uppercase);
       }
       :host p {
@@ -127,7 +127,7 @@ export default class Highlight extends Shadow() {
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, 3px 0);
       }
-      :host p:first-of-type {
+      :host p.date {
         font-family: var(--font-family-bold);
         text-transform: var(--p-first-text-transform, none);
       }
@@ -175,6 +175,9 @@ export default class Highlight extends Shadow() {
         :host p {
           margin: var(--p-margin-mobile, 3px 0);
           font-size: var(--p-font-size-mobile, 1rem);
+        }
+        :host p.date > span {
+          display: block;
         }
         :host img {
           min-width: var(--img-min-width-mobile, 50px);

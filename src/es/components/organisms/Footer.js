@@ -100,6 +100,7 @@ export default class Footer extends Shadow() {
         }
         :host .logo-container {
           display: flex;
+          flex-wrap: wrap;
           justify-content: space-between;
         }
         :host .logo-container :first-child {
