@@ -3,5 +3,5 @@ html {
   background-color: var(--background-color, transparent);
 }
 html, html a {
-  color: var(--background-color, transparent);
+  color: transparent;
 }

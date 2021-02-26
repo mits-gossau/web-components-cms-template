@@ -67,8 +67,12 @@ export default class General extends Shadow() {
       }
       /* to counteract misc.css */
       /* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
-      :host, html, html a {
+      :host, html {
         color: var(--color, black);
+        font-family: var(--font-family, "FuturaT", Arial, sans-serif);
+      }
+      html a {
+        color: var(--a-color, var(--color-secondary, blue));
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
       }
       /* sticky footer */
