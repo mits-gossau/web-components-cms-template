@@ -9,7 +9,7 @@
   html a {
     color: blue;
   }
-  body::before {
+  body:before {
     color: red;
     content: "Warning! You are using Internet Explorer; hence this page is intentionally left ugly ;-)";
   }
