@@ -61,6 +61,7 @@ export default class CookieBanner extends Shadow() {
       #msrc-widget div, #msrc-widget a, #msrc-widget button {
         color: var(--color, black) !important;
         font-size: var(--font-size, 0.73rem) !important;
+        font-family: var(--font-family) !important;
         line-height: var(--line-height, normal) !important;
         font-weight: var(--font-weight, normal) !important;
       }
@@ -72,6 +73,7 @@ export default class CookieBanner extends Shadow() {
         background-color: var(--button-background-color, var(--color-secondary, orange)) !important;
         border-color: var(--button-border-color, var(--color-secondary, orange)) !important;
         color: var(--button-color, var(--background-color, white)) !important;
+        font-family: var(--font-family-bold) !important;
       }
       #msrc-widget a {
         color: var(--a-color, var(--color-secondary, white)) !important;
@@ -113,6 +115,7 @@ export default class CookieBanner extends Shadow() {
         let scriptCount = 0
         const vendorsMainScript = document.createElement('script')
         vendorsMainScript.setAttribute('type', 'text/javascript')
+        vendorsMainScript.setAttribute('async', '')
         vendorsMainScript.setAttribute('src', '//cdn.migros.ch/msrc/20201012123840/vendors~main.js')
         vendorsMainScript.onload = () => {
           scriptCount++
@@ -120,6 +123,7 @@ export default class CookieBanner extends Shadow() {
         }
         const mainScript = document.createElement('script')
         mainScript.setAttribute('type', 'text/javascript')
+        mainScript.setAttribute('async', '')
         mainScript.setAttribute('src', '//cdn.migros.ch/msrc/20201012123840/main.js')
         mainScript.onload = () => {
           scriptCount++
