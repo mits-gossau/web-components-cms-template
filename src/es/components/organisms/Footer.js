@@ -100,12 +100,12 @@ export default class Footer extends Shadow() {
         }
         :host .logo-container {
           display: flex;
-          flex-wrap: wrap;
+          flex-wrap: var(--logo-container-flex-wrap, nowrap);
           justify-content: space-between;
         }
-        :host .logo-container :first-child {
-          --logo-height: var(--first-height, max(65px, 4.8vw));
-          --logo-height-mobile: var(--first-height-mobile, 48px);
+        :host .logo-container:first-child {
+          --logo-height: var(--logo-height-first, max(65px, 4.8vw));
+          --logo-height-mobile: var(--logo-height-first-mobile, 48px);
         }
         :host .footer-links {
           display: flex;
@@ -141,8 +141,11 @@ export default class Footer extends Shadow() {
           :host > span, :host > div, :host > p, :host > ul, :host > ol {
             width: var(--content-width-not-web-component-mobile, 90%);
           }
+          :host .logo-container {
+            flex-wrap: var(--logo-container-flex-wrap-mobile, nowrap);
+          }
           :host .logo-container:first-child {
-            --logo-height: var(--first-height-mobile, 50px);
+            --logo-height: var(--logo-height-first-mobile, 50px);
           }
           :host .footer-links {
             flex-direction: column;

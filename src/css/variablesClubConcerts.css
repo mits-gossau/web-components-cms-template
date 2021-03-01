@@ -31,6 +31,7 @@ html {
   --footer-content-width-not-web-component: var(--content-width-not-web-component);
   --footer-content-width: var(--content-width);
   --footer-flex-wrap: wrap;
+  --footer-logo-container-flex-wrap-mobile: wrap;
   --footer-logo-height: var(--header-logo-height);
   --footer-logo-margin: var(--header-logo-margin);
   --footer-logo-max-height: var(--header-logo-max-height);
