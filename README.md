@@ -11,4 +11,3 @@ A complete, ultra flexible web components template for any cms rendering engine
 1. Snapshot Testing
 1. Web Component analyzer/editor/tester
 1. Web Components repo as submodule
-1. (IE11 message)
