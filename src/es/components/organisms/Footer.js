@@ -112,10 +112,10 @@ export default class Footer extends Shadow() {
           justify-content: center;
           flex-wrap: wrap;
         }
-        :host ul, :host .language-switcher
-        {
+        :host ul, :host .language-switcher {
           display: flex;
           flex-direction: row;
+          flex-wrap: var(--flex-wrap, nowrap);
           list-style: var(--list-style, none);
           justify-content: center;
           margin: var(--ul-margin, 10px 0);
