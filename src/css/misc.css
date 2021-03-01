@@ -5,19 +5,15 @@ html {
 html, html a {
   color: transparent;
 }
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  /* IE10+ CSS styles go here */
-  html {
-    background-color: white;
-  }
-  html {
-    color: black;
-  }
-  html a {
-    color: blue;
-  }
-  body::before {
-    color: red;
-    content: "Warning! You are using Internet Explorer; hence this page is intentionally left ugly ;-)";
-  }
+/* IE10+ CSS styles go here */
+_:-ms-lang(x), .ie10up {
+  background-color: white;
+  color: black;
+}
+_:-ms-lang(x) a, .ie10up a {
+  color: blue;
+}
+_:-ms-lang(x) body::before, .ie10up body::before {
+  color: red;
+  content: "Warning! You are using Internet Explorer; hence this page is intentionally left ugly ;-)";
 }
