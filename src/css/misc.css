@@ -1,13 +1,7 @@
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   html {
-    background-color: white !important;
-  }
-  html {
-    color: black !important;
-  }
-  html a {
-    color: blue !important;
+    background-color: transparent !important;
   }
   body:before {
     color: red;
@@ -16,13 +10,12 @@
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 50px;
-    text-decoration: underline;
   }
 }
 /* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
 html {
   background-color: var(--background-color, transparent);
 }
-html, html a {
-  color: transparent;
+:not(:defined) {
+  display: none;
 }
