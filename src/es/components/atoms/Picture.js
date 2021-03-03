@@ -1,5 +1,5 @@
 // @ts-check
-import { Intersection } from '../prototypes/Intersection.js'
+import { Shadow } from '../prototypes/Shadow.js'
 
 /* global HTMLElement */
 
@@ -32,9 +32,9 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  --object-fit [cover]
  * }
  */
-export default class Picture extends Intersection() {
-  constructor (options = {}, ...args) {
-    super(Object.assign(options, {intersectionObserverInit: {rootMargin: "0px 0px 0px 0px"} }), ...args)
+export default class Picture extends Shadow() {
+  constructor(...args) {
+    super(...args)
     this.sources = this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources')) || null
     this.defaultSource = this.getAttribute("defaultSource") ? this.getAttribute("defaultSource") : ""
     this.alt = this.getAttribute("alt") ? this.getAttribute("alt") : ""
@@ -43,11 +43,6 @@ export default class Picture extends Intersection() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
-    super.connectedCallback()
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback()
   }
 
   /**
@@ -97,6 +92,7 @@ export default class Picture extends Intersection() {
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
+          filter: var(--filter-mobile, none);
           width: var(--width-mobile, 100%);
         }
       }
@@ -157,55 +153,4 @@ export default class Picture extends Intersection() {
     return this.root.querySelector('img')
   }
 
-
-  scrollFunction() {
-    // define variables and calculate percentage position of image
-    // define before center, exactly center || after
-    // apply filter
-    //element.style.setProperty("--picture-filter", `grayscale(${100}%)`)
-    console.log("test");
-  }
-
-  listeningList = [];
-
-  isListening (element) {
-    const i = this.listeningList.find(o => o.element === element)
-    return i !== undefined && i !== null
-  }
-
-  stopListening (element) {
-    const current = this.listeningList.find(o => o.element === element)
-    const listener = current.listener
-    window.removeEventListener("scroll", listener)
-    this.listeningList = this.listeningList.filter(i => i !== current)
-  }
-  
-  /**
-   * callback from the Intersection Observer
-   *
-   * @return {void}
-   */
-  intersectionCallback (entries, observer) {
-    const entry = entries[0]
-    
-    if (entries && entry) {
-      const element = entry.target
-      if (entry.target.classList.contains("testing")) { // for testing
-        if (element) {  
-          if (entry.isIntersecting) {
-            if (!this.isListening(element)) {
-              const listener = this.scrollFunction.bind(element)
-              const dataElement = { element, listener }
-              this.listeningList.push(dataElement)
-              window.addEventListener("scroll", listener)
-            }
-          } else {
-            if (this.isListening(element)) {
-              this.stopListening(element)  
-            }
-          }
-        }
-      }
-    }
-  }
 }

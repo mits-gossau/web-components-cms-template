@@ -46,22 +46,48 @@
             <li><a href="#">zum Programm</a></li>
             <li><a href="#">Tickets</a></li>
           </ul>
-          <a-picture namespace=picture->
-            <source srcset="../../../img/JulieCampiche.jpg" type="image/jpg" media="(max-width: 767px)">
-            <source srcset="../../../img/JulieCampiche.jpg" type="image/jpg" media="(min-width: 768px) and (max-width: 990px)">
-            <img src="../../../img/JulieCampiche.jpg" alt="Juli Campiche spielt Harfe">
-          </a-picture>
+          <c-intersection-scroll-filter filter="grayscale" maxValue="100%">
+            <a-picture namespace=picture- defaultSource="../../../img/CCroisé_Sept20_257_done.jpg" alt="Croisé"></a-picture>
+          </c-intersection-scroll-filter>
         </m-highlight>
         <m-highlight>
           <h2>Zürich</h2>
           <p>Dienstag, 16. März 2021 in der Helferei</p>
-          <p>Classics-Tournee Deutsches <a href="fafsdf">testtestset</a> Symphonie-Orchester Berlin</p>
+          <p>Classics-Tournee Deutsches Symphonie-Orchester Berlin <a href=#>Philharmonic</a></p>
           <p>Extrakonzert Israel Philharmonic Orchestra</p>
           <ul>
             <li><a href="#">zum Programm</a></li>
             <li><a href="#">Tickets</a></li>
           </ul>
-          <a-picture class="testing" namespace=picture- defaultSource="../../../img/CCroisé_Sept20_257_done.jpg" alt="Croisé"></a-picture>
+          <c-intersection-scroll-filter filter="contrast" maxValue="100%">
+            <a-picture namespace=picture- defaultSource="../../../img/CCroisé_Sept20_257_done.jpg" alt="Croisé"></a-picture>
+          </c-intersection-scroll-filter>
+        </m-highlight>
+        <m-highlight>
+          <h2>Zürich</h2>
+          <p>Dienstag, 16. März 2021 in der Helferei</p>
+          <p>Classics-Tournee Deutsches Symphonie-Orchester Berlin <a href=#>Philharmonic</a></p>
+          <p>Extrakonzert Israel Philharmonic Orchestra</p>
+          <ul>
+            <li><a href="#">zum Programm</a></li>
+            <li><a href="#">Tickets</a></li>
+          </ul>
+          <c-intersection-scroll-filter filter="brightness" maxValue="30%" invert="true">
+            <a-picture namespace=picture- defaultSource="../../../img/CCroisé_Sept20_257_done.jpg" alt="Croisé"></a-picture>
+          </c-intersection-scroll-filter>
+        </m-highlight>
+        <m-highlight>
+          <h2>Zürich</h2>
+          <p>Dienstag, 16. März 2021 in der Helferei</p>
+          <p>Classics-Tournee Deutsches Symphonie-Orchester Berlin <a href=#>Philharmonic</a></p>
+          <p>Extrakonzert Israel Philharmonic Orchestra</p>
+          <ul>
+            <li><a href="#">zum Programm</a></li>
+            <li><a href="#">Tickets</a></li>
+          </ul>
+          <c-intersection-scroll-filter filter="blur" maxValue="20px">
+            <a-picture namespace=picture- defaultSource="../../../img/CCroisé_Sept20_257_done.jpg" alt="Croisé"></a-picture>
+          </c-intersection-scroll-filter>
         </m-highlight>
       </o-highlight-list>
       <p class="outro-text">Die Club-Konzerte sind ein Projekt der <a rel="noopener" href="http://www.migros-kulturprozent-classics.ch/" target="_blank" title="Migros-Kulturprozent-Classics">Migros-Kulturprozent-Classics</a> unter der Intendanz von Mischa Damev. Für den Jazz ist Mirko Vaiz verantwortlich.</p>
@@ -115,7 +141,8 @@
     import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
     import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
-    import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default])
+    import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
+    import('../../../es/components/controllers/IntersectionScrollFilter.js').then(module => ['c-intersection-scroll-filter', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)
