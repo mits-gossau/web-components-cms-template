@@ -142,7 +142,7 @@
     import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
-    import('../../../es/components/controllers/IntersectionScrollFilter.js').then(module => ['c-intersection-scroll-effect', module.default])
+    import('../../../es/components/controllers/IntersectionScrollEffect.js').then(module => ['c-intersection-scroll-effect', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)
