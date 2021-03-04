@@ -4,34 +4,34 @@ import { Intersection } from '../prototypes/Intersection.js'
 /* global HTMLElement */
 
 /**
-* IntersectionScrollFilter 
-* Applies a CSS-Filter to the direct children of itself. The type of filter can be defined through an attribute.
-* The Output-Value is between 0 and 1 depending on the scroll position of the element.
-* Default Behaviour: The CSS-Filter will be applied at 100% at the edges of the viewport and will increase/decrease while nearing the center,
-* where the filter will be applied at 0%. This behaviour can be inverted by setting the invert attribute to "true"
+* IntersectionScrollEffect 
+* This component can be used to apply a CSS-Effect to its children based on scroll-position. The type of effect can be defined through attributes.
+* Examples: 
+*   <c-intersection-scroll-effect css-property=filter, effect=brightness, max-value=100%>
+*   <c-intersection-scroll-effect css-property=--transform-mobile, effect=translateX, max-value=50px>
 *
-* Possible FUTURE improvement calc into web workers> https://github.com/mits-gossau/web-components/blob/master/src/es/helpers/WebWorker.js
+* NOTE: When using a CSS-Variable for the css-property, the component where the effect should be applied needs to have a line where the CSS-variable gets used
+* => e.g.: filter: var(--filter-mobile, none)
+* 
+* The CSS-Effect will be applied at 100% at the edges of the viewport and will increase/decrease while nearing the center,
+* at which the effect will be applied at 0%. This behaviour can be inverted by setting the invert attribute to "true"
+*
+* Possible FUTURE improvement calc into web workers -> https://github.com/mits-gossau/web-components/blob/master/src/es/helpers/WebWorker.js
 *
 * @export
-* @class IntersectionScrollFilter
+* @class IntersectionScrollEffect
 * @type {CustomElementConstructor}
 * @attribute {
-  *  {string} [filter] css filter name
-  *  {string} [max-value] the maximum value of the set filter e.g. "100%" (including the unit)
+  *  {string} [css-property] the name of the css-property (can be a CSS-Variable)
+  *  {mobile, desktop} [media=both desktop & mobile] defining when effect should be applied
+  *  {string} [mobile-breakpoint=self.Environment.mobileBreakpoint] define custom mobile-breakpoint
+  *  {string} [max-value] the maximum value of the set effect e.g. "100%" (including the unit)
   *  {string} [invert] if set to "true" the filter will be applied inverted (default is: 0% filter in the center of the viewport, 100% filter at the edges)
   * }
-  * 
-  * TODO: mobile/desktop attribute [mobile, desktop, both]
-  *   effect transform... or even others
-  *   rename component
-  *   test old browsers
-  *   look at possible use case min-value
-  *   --filter-mobile var name dynamic filter... transform see above
-  *   rounding not always working
   */
-  export default class IntersectionScrollFilter extends Intersection() {
+  export default class IntersectionScrollEffect extends Intersection() {
     constructor (options = {}, ...args) {
-      super(Object.assign(options, {mode: 'false', intersectionObserverInit: {rootMargin: "0px 0px 0px 0px"} }), ...args)
+      super(Object.assign(options, {mode: "false", intersectionObserverInit: {rootMargin: "0px 0px 0px 0px"} }), ...args)
       
       /** @type {number} */
       this.windowInnerHeight
@@ -41,43 +41,75 @@ import { Intersection } from '../prototypes/Intersection.js'
       this.center
       /** @type {number} */
       this.maxDistanceFromCenter
+      /** @type {boolean} */
+      this.onLoadExecute
       
       this.scrollListener = event => {
         const boundingRect = this.getBoundingClientRect()
+        this.css = "" // resets css
+        this.css = /* css */ `
+          :host { display: block; } /* fix: google chrome wrong measurements */
+        `
+        console.log(boundingRect);
+        // saving measurements in variables to avoid redundant calculations
         if (!this.windowInnerHeight) this.windowInnerHeight = self.innerHeight
         if (!this.elementHeight) this.elementHeight = this.round(boundingRect.height, 2)
         if (!this.center) this.center = this.round(this.windowInnerHeight / 2 - this.elementHeight / 2, 2)
         if (!this.maxDistanceFromCenter) this.maxDistanceFromCenter = this.windowInnerHeight - this.center
-        
-        const difference = this.round(this.center > boundingRect.top 
-          ? this.center - boundingRect.top 
-          : boundingRect.top - this.center
-        , 2)
-          
-        let outputValue = this.round(difference / this.maxDistanceFromCenter, 2)
-        
-        outputValue = this.clamp(outputValue, 0, 1) // clamp value to avoid inaccuracies from scrolling too fast
+
+        console.log(this.elementHeight, boundingRect.height);
+        // get distance from center (abs)
+        const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
+        // get output [0..1]
+        let outputValue = this.round(difference / this.maxDistanceFromCenter, 4)
+        // clamp value to avoid inaccuracies from scrolling too fast
+        outputValue = this.clamp(outputValue, 0, 1) 
+        // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
         outputValue = this.getAttribute("invert") === "true" ? 1 - outputValue : outputValue
-        if (this.getAttribute("filter") && this.getAttribute("max-value")) {
-          console.log('changed', outputValue);
-          this.css = ''
+        if (outputValue !== NaN && this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
           this.css = /* css */ `
-          :host {
-            --filter-mobile: ${this.getAttribute("filter")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
+          :host > * {
+            ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
           }
           `
         }
       }
      }
 
-     connectedCallback () {
-       //@ts-ignore ignoring self.Environment error
-      if (window.matchMedia(`(max-width: ${self.Environment.mobileBreakpoint}`).matches) super.connectedCallback()
+      connectedCallback () {
+        //@ts-ignore ignoring self.Environment error
+        const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+        switch(this.getAttribute("media")) {
+          case "mobile": 
+            if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
+          break;
+
+          case "desktop":
+            if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
+          break;
+
+          default:
+            super.connectedCallback()
+          break;
+       }
      }
 
      disconnectedCallback () {
-       //@ts-ignore ignoring self.Environment error
-        if (window.matchMedia(`(max-width: ${self.Environment.mobileBreakpoint}`).matches) super.disconnectedCallback()
+      //@ts-ignore ignoring self.Environment error
+      const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+      switch(this.getAttribute("media")) {
+        case "mobile": 
+          if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
+        break;
+
+        case "desktop":
+          if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
+        break;
+
+        default:
+          super.connectedCallback()
+        break;
+       }
      }
       
       /**
@@ -108,6 +140,10 @@ import { Intersection } from '../prototypes/Intersection.js'
       intersectionCallback (entries, observer) {
         if (entries && entries[0]) {
           if (entries[0].isIntersecting) {
+            if (!this.onLoadExecute) {
+              this.scrollListener()
+              this.onLoadExecute = true
+            }
             self.addEventListener("scroll", this.scrollListener)
           } else {
             self.removeEventListener("scroll", this.scrollListener)

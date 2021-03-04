@@ -71,11 +71,11 @@ export default class Picture extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host picture {
-        display: var(--display, block);
+        filter: var(--filter, none);
+        display: var(--display, inline-block);
         width: var(--width, unset);
         height: var(--height, unset);
         overflow: var(--overflow, initial);
-        filter: var(--filter, none);
         transition: var(--transition, none);
         margin: var(--margin, 0);
       }
@@ -92,6 +92,7 @@ export default class Picture extends Shadow() {
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
+          transition: var(--transition-mobile, none);
           filter: var(--filter-mobile, none);
           width: var(--width-mobile, 100%);
         }
