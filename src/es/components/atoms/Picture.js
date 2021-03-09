@@ -83,6 +83,7 @@ export default class Picture extends Shadow() {
         filter: var(--filter-hover, none);
       }
       :host picture img {
+        display: var(--img-display, inline);
         width: var(--img-width, 100%);
         max-width: var(--img-max-width, 100%);
         height: var(--img-height, auto);

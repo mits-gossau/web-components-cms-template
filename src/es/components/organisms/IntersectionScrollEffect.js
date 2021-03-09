@@ -7,8 +7,8 @@ import { Intersection } from '../prototypes/Intersection.js'
 * IntersectionScrollEffect 
 * This component can be used to apply a CSS-Effect to its children based on scroll-position. The type of effect can be defined through attributes.
 * Examples: 
-*   <c-intersection-scroll-effect css-property=filter, effect=brightness, max-value=100%>
-*   <c-intersection-scroll-effect css-property=--transform-mobile, effect=translateX, max-value=50px>
+*   <o-intersection-scroll-effect css-property=filter, effect=brightness, max-value=100%>
+*   <o-intersection-scroll-effect css-property=--transform-mobile, effect=translateX, max-value=50px>
 *
 * NOTE: When using a CSS-Variable for the css-property, the component where the effect should be applied needs to have a line where the CSS-variable gets used
 * => e.g.: filter: var(--filter-mobile, none)
@@ -46,18 +46,25 @@ import { Intersection } from '../prototypes/Intersection.js'
       
       this.scrollListener = event => {
         const boundingRect = this.getBoundingClientRect()
+        let recalculate = false
+
         this.css = "" // resets css
         this.css = /* css */ `
           :host { display: block; } /* fix: google chrome wrong measurements */
         `
-        console.log(boundingRect);
+        if (this.elementHeight !== boundingRect.height) recalculate = true
         // saving measurements in variables to avoid redundant calculations
-        if (!this.windowInnerHeight) this.windowInnerHeight = self.innerHeight
-        if (!this.elementHeight) this.elementHeight = this.round(boundingRect.height, 2)
-        if (!this.center) this.center = this.round(this.windowInnerHeight / 2 - this.elementHeight / 2, 2)
-        if (!this.maxDistanceFromCenter) this.maxDistanceFromCenter = this.windowInnerHeight - this.center
+        if (!this.windowInnerHeight || recalculate) this.windowInnerHeight = self.innerHeight
+        if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
+        if (!this.center || recalculate) this.center = this.round(this.windowInnerHeight / 2 - this.elementHeight / 2, 2)
+        if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = this.windowInnerHeight - this.center
+        
+        // TODO
+        // wrong value onload
+        // display block? lazy loading? 
 
-        console.log(this.elementHeight, boundingRect.height);
+        console.log(boundingRect.height);
+
         // get distance from center (abs)
         const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
         // get output [0..1]
