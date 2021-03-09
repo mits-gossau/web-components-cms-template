@@ -81,7 +81,6 @@ html {
   --picture-margin: 30px auto;
   --picture-width-mobile: 100%;
   --picture-width: 60%;
-  --picture-img-display: block;
   --stage-arrow-color: var(--color-secondary);
   --text-decoration: none;
 }
