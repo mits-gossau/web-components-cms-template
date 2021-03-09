@@ -1,3 +1,7 @@
+/**
+ * NOTE: consider the following <link rel="preload" href="[url_to_font]"> to prefetch initially displayed fonts
+ */
+
 @font-face {
     font-family: 'FuturaT';
     src: url('../fonts/FuturaT/FuturaT-Book.eot');
@@ -18,9 +22,10 @@
 }
 
 /**
- * ClubConcerts.html see end of body, there is a javascript which does along with the CSS style
- * <link href="https://fast.fonts.net/cssapi/2b52b456-d052-418d-8595-f1c46d3439fb.css" rel="stylesheet" />
- * <script type="text/javascript" src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
+ * ClubConcerts.html see end of body, there is a javascript which goes along with the CSS style
+ * <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
+ * The contents below are taken from: <link href="https://fast.fonts.net/cssapi/2b52b456-d052-418d-8595-f1c46d3439fb.css" rel="stylesheet" />
+ * NOTE: use it inline like below, since the extra request to fast.fonts.net is not necessary
  */
 @import url(/t/1.css?apiType=css&projectid=2b52b456-d052-418d-8595-f1c46d3439fb);
 @font-face{

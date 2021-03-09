@@ -82,11 +82,14 @@ export default class Highlight extends Shadow() {
       :host {
         cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
       }
+      :host > * {
+        margin: 0 auto;
+      }
       section {
         flex-grow: 1;
         flex-shrink: 2;
-        font-size: var(--section-font-size, 1rem);
         text-align: var(--text-align, center);
+        width: var(--width-section, auto);
       }
       section > * {
         margin: var(--margin, 0 0 1rem 0);
@@ -101,6 +104,7 @@ export default class Highlight extends Shadow() {
         /* caution: if this is display: flex check img height on IOS Safari */
         text-align: var(--text-align, center);
         margin: 0;
+        width: var(--width-figure, auto);
       }
       figure:hover img {
         filter: var(--filter-hover, none);
@@ -108,11 +112,13 @@ export default class Highlight extends Shadow() {
       :host h2 {
         font-family: var(--h2-font-family, var(--font-family-bold));
         font-size: var(--h2-font-size, 4rem);
+        line-height: var(--h2-line-height, normal);
         text-transform: var(--h2-text-transform, none);
       }
       :host h5 {
         font-family: var(--h5-font-family, var(--font-family-secondary));
         font-size: var(--h5-font-size, 1.5rem);
+        line-height: var(--h5-line-height, normal);
         text-transform: var(--h5-text-transform, uppercase);
       }
       :host p {
@@ -120,9 +126,8 @@ export default class Highlight extends Shadow() {
         font-size: var(--p-font-size, 1rem);
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, 3px 0);
-        line-height: var(--p-line-height, 1.6rem)
       }
-      :host p:first-of-type {
+      :host p.date {
         font-family: var(--font-family-bold);
         text-transform: var(--p-first-text-transform, none);
       }
@@ -153,15 +158,26 @@ export default class Highlight extends Shadow() {
         transition: var(--transition, none);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host section > h2, :host section > p, :host section > ul {
-          padding: var(--section-padding, 0 15px);
+        section {
+          width: var(--width-section-mobile, auto);
         }
-        :host p {
-          margin: var(--p-margin-mobile, 3px 0);
-          line-height: var(--p-line-height-mobile, normal)
+        figure {
+          width: var(--width-figure-mobile, auto);
         }
         :host h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
+          line-height: var(--h2-line-height-mobile, 2.5rem);
+        }
+        :host h5 {
+          font-size: var(--h5-font-size-mobile, 1.5rem);
+          line-height: var(--h5-line-height-mobile, 1.5rem);
+        }
+        :host p {
+          margin: var(--p-margin-mobile, 3px 0);
+          font-size: var(--p-font-size-mobile, 1rem);
+        }
+        :host p.date > span {
+          display: block;
         }
         :host img {
           min-width: var(--img-min-width-mobile, 50px);
