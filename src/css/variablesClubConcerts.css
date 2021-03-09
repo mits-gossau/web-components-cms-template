@@ -75,10 +75,10 @@ html {
   --p-first-text-transform: uppercase;
   --header-intro-p-margin: 0;
   --p-margin: 0;
-  --picture-filter: grayscale(100%);
+  /* --picture-filter: grayscale(100%); */
+  /* --picture-transition: filter 0.8s ease; */
   --picture-img-width: 100%;
   --picture-margin: 30px auto;
-  --picture-transition: filter 0.8s ease;
   --picture-width-mobile: 100%;
   --picture-width: 60%;
   --picture-img-display: block;

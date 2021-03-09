@@ -53,26 +53,25 @@ import { Intersection } from '../prototypes/Intersection.js'
           :host { display: block; } /* fix: google chrome wrong measurements */
         `
         if (this.elementHeight !== boundingRect.height) recalculate = true
+
         // saving measurements in variables to avoid redundant calculations
         if (!this.windowInnerHeight || recalculate) this.windowInnerHeight = self.innerHeight
         if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
         if (!this.center || recalculate) this.center = this.round(this.windowInnerHeight / 2 - this.elementHeight / 2, 2)
         if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = this.windowInnerHeight - this.center
         
-        // TODO
-        // wrong value onload
-        // display block? lazy loading? 
-
-        console.log(boundingRect.height);
+        //TODO wrong boundingRect.height onload
+        //TODO add optional min-value? max(minValue, outputValue * maxValue)
 
         // get distance from center (abs)
         const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
         // get output [0..1]
         let outputValue = this.round(difference / this.maxDistanceFromCenter, 4)
         // clamp value to avoid inaccuracies from scrolling too fast
-        outputValue = this.clamp(outputValue, 0, 1) 
+        outputValue = this.clamp(outputValue, 0, 1)
         // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
         outputValue = this.getAttribute("invert") === "true" ? 1 - outputValue : outputValue
+
         if (outputValue !== NaN && this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
           this.css = /* css */ `
           :host > * {

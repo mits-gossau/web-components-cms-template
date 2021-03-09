@@ -78,9 +78,10 @@ export default class Picture extends Shadow() {
         overflow: var(--overflow, initial);
         transition: var(--transition, none);
         margin: var(--margin, 0);
+        transform: var(--transform, none);
       }
       :host picture:hover {
-        filter: var(--filter-hover, none);
+        filter: var(--filter-hover, var(--filter, none));
       }
       :host picture img {
         display: var(--img-display, inline);
@@ -94,6 +95,7 @@ export default class Picture extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
           transition: var(--transition-mobile, none);
+          transform: var(--transform-mobile, none);
           filter: var(--filter-mobile, none);
           width: var(--width-mobile, 100%);
         }
