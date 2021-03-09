@@ -113,7 +113,7 @@ import { Intersection } from '../prototypes/Intersection.js'
         break;
 
         default:
-          super.connectedCallback()
+          super.disconnectedCallback()
         break;
        }
      }
