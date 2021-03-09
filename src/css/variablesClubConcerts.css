@@ -101,7 +101,6 @@ html {
   --picture-img-width: 100%;
   --picture-margin: 30px auto;
   --picture-width-mobile: 100%; 
-  --picture-img-display: block;
   --picture-width: 100%;
   --text-decoration-a: none;
   --width-section-mobile: var(--content-width-not-web-component-mobile);
