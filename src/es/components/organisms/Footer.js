@@ -85,31 +85,37 @@ export default class Footer extends Shadow() {
     /*----------------------------------------- CLUB CONCERT CSS -------------------------------------------------*/
     if (this.getAttribute("theme") === "simple") {
       this.css = /* css */`
-        :host {
-          width: var(--content-width, 100%);
-          margin: var(--margin, 0 auto);
+        :host > * {
+          width: var(--content-width, 80%);
+          margin: var(--content-spacing, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+        }
+        :host > span, :host > div, :host > p, :host > ul, :host > ol {
+          width: var(--content-width-not-web-component, 80%);
         }
         :host footer {
           display: flex;
           flex-direction: column;
+          justify-content: var(--justify-content, flex-end);
+          padding-top: var(--padding-top, auto);
         }
         :host .logo-container {
           display: flex;
+          flex-wrap: var(--logo-container-flex-wrap, nowrap);
           justify-content: space-between;
         }
-        :host .logo-container :first-child {
-          --logo-height: var(--first-height, max(65px, 4.8vw));
-          --logo-height-mobile: var(--first-height-mobile, 48px);
+        :host .logo-container:first-child {
+          --logo-height: var(--logo-height-first, max(65px, 4.8vw));
+          --logo-height-mobile: var(--logo-height-first-mobile, 48px);
         }
         :host .footer-links {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
         }
-        :host ul, :host .language-switcher
-        {
+        :host ul, :host .language-switcher {
           display: flex;
           flex-direction: row;
+          flex-wrap: var(--flex-wrap, nowrap);
           list-style: var(--list-style, none);
           justify-content: center;
           margin: var(--ul-margin, 10px 0);
@@ -125,11 +131,21 @@ export default class Footer extends Shadow() {
           margin-left: 15px;
         }
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-          :host {
+          :host > * {
             width: var(--content-width-mobile, 90%);
+            margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+          }
+          :host footer {
+            padding-top: var(--padding-top-mobile, auto);
+          }
+          :host > span, :host > div, :host > p, :host > ul, :host > ol {
+            width: var(--content-width-not-web-component-mobile, 90%);
+          }
+          :host .logo-container {
+            flex-wrap: var(--logo-container-flex-wrap-mobile, nowrap);
           }
           :host .logo-container:first-child {
-            --logo-height: var(--first-height-mobile, 50px);
+            --logo-height: var(--logo-height-first-mobile, 50px);
           }
           :host .footer-links {
             flex-direction: column;

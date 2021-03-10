@@ -72,8 +72,11 @@ export default class Header extends Shadow() {
         text-align: var(--text-align, initial);
       }
       :host > * {
-        margin: var(--content-spacing, 40px) auto;
+        margin: var(--content-spacing, 40px) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
+      }
+      :host > span, :host > div, :host > p, :host > ul, :host > ol {
+        width: var(--content-width-not-web-component, 80%);
       }
       :host > header {
         align-items: var(--align-items, center);
@@ -90,8 +93,11 @@ export default class Header extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > * {
-          margin: var(--content-spacing-mobile, 0 auto);
+          margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
+        }
+        :host > span, :host > div, :host > p, :host > ul, :host > ol {
+          width: var(--content-width-not-web-component-mobile, 90%);
         }
         :host > header {
           height: var(--height-mobile, 50px);

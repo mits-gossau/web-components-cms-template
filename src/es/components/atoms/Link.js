@@ -17,7 +17,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @css {
  *  --text-transform [none]
  *  --color [red]
- *  --font-size [1.2rem]
+ *  --font-size [1rem]
  *  --font-weight [300]
  *  --padding [14px 10px]
  *  --text-align [left]
