@@ -12,6 +12,8 @@ import { Intersection } from '../prototypes/Intersection.js'
 *
 * NOTE: When using a CSS-Variable for the css-property, the component where the effect should be applied needs to have a line where the CSS-variable gets used
 * => e.g.: filter: var(--filter-mobile, none)
+*
+* NOTE: Use Css variables for certain values in combination with child web components, since not every css property will propagate to its child web component. eg. transform (filter seems to work though)
 * 
 * The CSS-Effect will be applied at 100% at the edges of the viewport and will increase/decrease while nearing the center,
 * at which the effect will be applied at 0%. This behaviour can be inverted by setting the invert attribute to "true"
@@ -31,7 +33,7 @@ import { Intersection } from '../prototypes/Intersection.js'
   */
   export default class IntersectionScrollEffect extends Intersection() {
     constructor (options = {}, ...args) {
-      super(Object.assign(options, {mode: "false", intersectionObserverInit: {rootMargin: "0px 0px 0px 0px"} }), ...args)
+      super(Object.assign(options, {mode: "open", intersectionObserverInit: {rootMargin: "0px 0px 0px 0px"} }), ...args)
       
       /** @type {number} */
       this.windowInnerHeight
@@ -43,15 +45,17 @@ import { Intersection } from '../prototypes/Intersection.js'
       this.maxDistanceFromCenter
       /** @type {boolean} */
       this.onLoadExecute
+
+      this.html = /* HTML */`
+        <style _css="" protected="true">
+          :host { display: block; } /* fix: google chrome wrong measurements */
+        </style>
+      `
       
       this.scrollListener = event => {
         const boundingRect = this.getBoundingClientRect()
         let recalculate = false
 
-        this.css = "" // resets css
-        this.css = /* css */ `
-          :host { display: block; } /* fix: google chrome wrong measurements */
-        `
         if (this.elementHeight !== boundingRect.height) recalculate = true
 
         // saving measurements in variables to avoid redundant calculations
@@ -72,7 +76,8 @@ import { Intersection } from '../prototypes/Intersection.js'
         // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
         outputValue = this.getAttribute("invert") === "true" ? 1 - outputValue : outputValue
 
-        if (outputValue !== NaN && this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
+        if (!isNaN(outputValue)) {
+          this.css = "" // resets css
           this.css = /* css */ `
           :host > * {
             ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
@@ -83,39 +88,43 @@ import { Intersection } from '../prototypes/Intersection.js'
      }
 
       connectedCallback () {
+        if (this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
+          //@ts-ignore ignoring self.Environment error
+          const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+          switch(this.getAttribute("media")) {
+            case "mobile": 
+              if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
+            break;
+  
+            case "desktop":
+              if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
+            break;
+  
+            default:
+              super.connectedCallback()
+            break;
+         }
+        }
+     }
+
+     disconnectedCallback () {
+      if (this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
         //@ts-ignore ignoring self.Environment error
         const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
         switch(this.getAttribute("media")) {
           case "mobile": 
-            if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
+            if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
           break;
 
           case "desktop":
-            if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
+            if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
           break;
 
           default:
-            super.connectedCallback()
+            super.disconnectedCallback()
           break;
-       }
-     }
-
-     disconnectedCallback () {
-      //@ts-ignore ignoring self.Environment error
-      const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-      switch(this.getAttribute("media")) {
-        case "mobile": 
-          if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
-        break;
-
-        case "desktop":
-          if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
-        break;
-
-        default:
-          super.disconnectedCallback()
-        break;
-       }
+        }
+      }
      }
       
       /**
