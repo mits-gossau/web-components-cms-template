@@ -36,15 +36,15 @@ import { Intersection } from '../prototypes/Intersection.js'
       super(Object.assign(options, {mode: "open", intersectionObserverInit: {rootMargin: "0px 0px 0px 0px"} }), ...args)
       
       /** @type {number} */
-      this.windowInnerHeight
-      /** @type {number} */
       this.elementHeight
       /** @type {number} */
       this.center
       /** @type {number} */
       this.maxDistanceFromCenter
       /** @type {boolean} */
-      this.onLoadExecute
+      this.isFirstIntersection = true
+      /** @type {boolean} */
+      this.hasRequiredAttributes = this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")
 
       this.html = /* HTML */`
         <style _css="" protected="true">
@@ -54,15 +54,12 @@ import { Intersection } from '../prototypes/Intersection.js'
       
       this.scrollListener = event => {
         const boundingRect = this.getBoundingClientRect()
-        let recalculate = false
-
-        if (this.elementHeight !== boundingRect.height) recalculate = true
+        const recalculate = this.elementHeight !== boundingRect.height
 
         // saving measurements in variables to avoid redundant calculations
-        if (!this.windowInnerHeight || recalculate) this.windowInnerHeight = self.innerHeight
         if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
-        if (!this.center || recalculate) this.center = this.round(this.windowInnerHeight / 2 - this.elementHeight / 2, 2)
-        if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = this.windowInnerHeight - this.center
+        if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
+        if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - this.center
         
         //TODO wrong boundingRect.height onload
         //TODO add optional min-value? max(minValue, outputValue * maxValue)
@@ -79,51 +76,51 @@ import { Intersection } from '../prototypes/Intersection.js'
         if (!isNaN(outputValue)) {
           this.css = "" // resets css
           this.css = /* css */ `
-          :host > * {
-            ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
-          }
+            :host > * {
+              ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
+            }
           `
+        }
+      }
+
+      this.resizeListener = event => {
+        if (this.hasRequiredAttributes) {
+          if (this.checkMedia()) {
+            this.intersectionObserveStart()
+          } else {
+            this.intersectionObserveStop()
+            self.removeEventListener("scroll", this.scrollListener)
+            this.css = "" // resets css
+          }
         }
       }
      }
 
-      connectedCallback () {
-        if (this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
-          //@ts-ignore ignoring self.Environment error
-          const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-          switch(this.getAttribute("media")) {
-            case "mobile": 
-              if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
-            break;
-  
-            case "desktop":
-              if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
-            break;
-  
-            default:
-              super.connectedCallback()
-            break;
-         }
+    checkMedia () {
+      //@ts-ignore ignoring self.Environment error
+      const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+      switch(this.getAttribute("media")) {
+        case "mobile": return self.matchMedia(`(max-width: ${breakpoint})`).matches
+        case "desktop": return self.matchMedia(`(min-width: ${breakpoint})`).matches
+        default: return true
+      }
+    }
+
+    connectedCallback () {
+        if (this.hasRequiredAttributes) {
+          if (this.checkMedia()) super.connectedCallback() // this.intersectionObserveStart()
+          self.addEventListener('resize', this.resizeListener);
         }
-     }
+    }
 
      disconnectedCallback () {
-      if (this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
-        //@ts-ignore ignoring self.Environment error
-        const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-        switch(this.getAttribute("media")) {
-          case "mobile": 
-            if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
-          break;
-
-          case "desktop":
-            if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
-          break;
-
-          default:
-            super.disconnectedCallback()
-          break;
+      if (this.hasRequiredAttributes) {
+        if (this.checkMedia()) {
+          super.disconnectedCallback() // this.intersectionObserveStop()
+          self.removeEventListener("scroll", this.scrollListener)
+          this.css = "" // resets css
         }
+        self.removeEventListener('resize', this.resizeListener);
       }
      }
       
@@ -155,9 +152,10 @@ import { Intersection } from '../prototypes/Intersection.js'
       intersectionCallback (entries, observer) {
         if (entries && entries[0]) {
           if (entries[0].isIntersecting) {
-            if (!this.onLoadExecute) {
+            if (this.isFirstIntersection) {
               this.scrollListener()
-              this.onLoadExecute = true
+              setTimeout(() => this.scrollListener(), 100);
+              this.isFirstIntersection = false
             }
             self.addEventListener("scroll", this.scrollListener)
           } else {
