@@ -87,43 +87,33 @@ import { Intersection } from '../prototypes/Intersection.js'
       }
      }
 
-      connectedCallback () {
-        if (this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
-          //@ts-ignore ignoring self.Environment error
-          const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-          switch(this.getAttribute("media")) {
-            case "mobile": 
-              if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
-            break;
-  
-            case "desktop":
-              if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.connectedCallback()
-            break;
-  
-            default:
-              super.connectedCallback()
-            break;
-         }
-        }
+
+    checkMedia () {
+      //@ts-ignore ignoring self.Environment error
+      const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+      switch(this.getAttribute("media")) {
+        case "mobile": 
+          if (window.matchMedia(`(max-width: ${breakpoint})`).matches) return true
+        break;
+
+        case "desktop":
+          if (!window.matchMedia(`(max-width: ${breakpoint})`).matches) return true
+        break;
+
+        default: return true
      }
+     return false
+    }
+
+    connectedCallback () {
+        if (this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
+          if (this.checkMedia()) super.connectedCallback()
+        }
+    }
 
      disconnectedCallback () {
       if (this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")) {
-        //@ts-ignore ignoring self.Environment error
-        const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-        switch(this.getAttribute("media")) {
-          case "mobile": 
-            if (window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
-          break;
-
-          case "desktop":
-            if (!window.matchMedia(`(max-width: ${breakpoint}`).matches) super.disconnectedCallback()
-          break;
-
-          default:
-            super.disconnectedCallback()
-          break;
-        }
+        if (this.checkMedia()) super.disconnectedCallback()
       }
      }
       
