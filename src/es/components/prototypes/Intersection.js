@@ -24,6 +24,7 @@ import { Shadow } from './Shadow.js'
       }
     }
  * @property {
+      isObserving,
       intersectionCallback,
       intersectionObserveStart,
       intersectionObserveStop
@@ -40,6 +41,7 @@ export const Intersection = (ChosenClass = Shadow()) => class Intersection exten
   constructor (options = { intersectionObserverInit: undefined }, ...args) {
     super(options, ...args)
 
+    this.isObserving = false
     /**
      * Digest attribute to have IntersectionObservers or not
      * this will trigger this.intersectionCallback and can be extended
@@ -59,11 +61,19 @@ export const Intersection = (ChosenClass = Shadow()) => class Intersection exten
       const intersectionObserver = new IntersectionObserver(this.intersectionCallback.bind(this), intersectionObserverInit)
       /** @return {void} */
       this.intersectionObserveStart = () => {
-        // @ts-ignore
-        intersectionObserver.observe(this)
+        if (!this.isObserving) {
+          // @ts-ignore
+          intersectionObserver.observe(this)
+          this.isObserving = true
+        }
       }
       /** @return {void} */
-      this.intersectionObserveStop = () => intersectionObserver.disconnect()
+      this.intersectionObserveStop = () => {
+        if (this.isObserving) {
+          intersectionObserver.disconnect()
+          this.isObserving = false
+        }
+      }
     } else {
       /** @return {void} */
       this.intersectionObserveStart = () => {}
