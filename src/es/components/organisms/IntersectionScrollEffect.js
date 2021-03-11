@@ -29,6 +29,7 @@ import { Intersection } from '../prototypes/Intersection.js'
   *  {string} [mobile-breakpoint=self.Environment.mobileBreakpoint] define custom mobile-breakpoint
   *  {string} [max-value] the maximum value of the set effect e.g. "100%" (including the unit)
   *  {string} [invert] if set to "true" the filter will be applied inverted (default is: 0% filter in the center of the viewport, 100% filter at the edges)
+  *  {string} [transition] set if the effect shall have a transition e.g. "0.2s ease"
   * }
   */
   export default class IntersectionScrollEffect extends Intersection() {
@@ -48,7 +49,12 @@ import { Intersection } from '../prototypes/Intersection.js'
 
       this.html = /* HTML */`
         <style _css="" protected="true">
-          :host { display: block; } /* fix: google chrome wrong measurements */
+          :host {
+            display: block; /* fix: google chrome wrong measurements */
+          }
+          ${this.getAttribute("transition") && this.getAttribute("css-property") && !this.getAttribute("css-property").includes('--') ? /* CSS */`:host > * {
+            transition: ${this.getAttribute("css-property")} ${this.getAttribute("transition")};
+          }` : ''}
         </style>
       `
       
@@ -77,7 +83,7 @@ import { Intersection } from '../prototypes/Intersection.js'
           this.css = "" // resets css
           this.css = /* css */ `
             :host > * {
-              ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
+              ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}));
             }
           `
         }
@@ -91,6 +97,7 @@ import { Intersection } from '../prototypes/Intersection.js'
             this.intersectionObserveStop()
             self.removeEventListener("scroll", this.scrollListener)
             this.css = "" // resets css
+            this.isFirstIntersection = true
           }
         }
       }
@@ -101,7 +108,7 @@ import { Intersection } from '../prototypes/Intersection.js'
       const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
       switch(this.getAttribute("media")) {
         case "mobile": return self.matchMedia(`(max-width: ${breakpoint})`).matches
-        case "desktop": return self.matchMedia(`(min-width: ${breakpoint})`).matches
+        case "desktop": return self.matchMedia(`(min-width: calc(${breakpoint} + 1px))`).matches
         default: return true
       }
     }
@@ -119,6 +126,7 @@ import { Intersection } from '../prototypes/Intersection.js'
           super.disconnectedCallback() // this.intersectionObserveStop()
           self.removeEventListener("scroll", this.scrollListener)
           this.css = "" // resets css
+          this.isFirstIntersection = true
         }
         self.removeEventListener('resize', this.resizeListener);
       }

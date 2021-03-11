@@ -1,0 +1,14 @@
+{
+  "name": "web-components-cms-template",
+  "version": "0.0.1",
+  "description": "A Web Component collection for CMS templates",
+  "main": "./index.html",
+  "scripts": {
+    "fix": "standard --fix"
+  },
+  "author": "weedshaker@gmail.com, https://github.com/joeljxse",
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "*"
+  }
+}
