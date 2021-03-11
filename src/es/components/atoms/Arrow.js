@@ -1,8 +1,6 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
-
 /**
  * Arrow is an icon
  * Example at: /src/es/components/pages/Home.html

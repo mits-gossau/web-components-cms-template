@@ -1,7 +1,9 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
+/* global Link */
+/* global customElements */
 
 /**
  * Footer is sticky and hosts uls
@@ -82,8 +84,8 @@ export default class Footer extends Shadow() {
         --font-size: var(--a-link-font-size-2, 1rem);
       }
     `
-    /*----------------------------------------- CLUB CONCERT CSS -------------------------------------------------*/
-    if (this.getAttribute("theme") === "simple") {
+    /* ----------------------------------------- CLUB CONCERT CSS ------------------------------------------------- */
+    if (this.getAttribute('theme') === 'simple') {
       this.css = /* css */`
         :host > * {
           width: var(--content-width, 80%);
@@ -174,7 +176,7 @@ export default class Footer extends Shadow() {
           }
         }
       `
-      /*-----------------------------------------------------------------------------*/
+      /* ----------------------------------------------------------------------------- */
     } else {
       this.css = /* css */`
         :host ul {
@@ -221,7 +223,7 @@ export default class Footer extends Shadow() {
   renderHTML () {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
-      const aLink = new children[0][1](a, {namespace: this.getAttribute('namespace') || ''})
+      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
       aLink.setAttribute('text-transform', 'uppercase')
       a.replaceWith(aLink)
       li.prepend(aLink)
@@ -238,7 +240,7 @@ export default class Footer extends Shadow() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let linkPromise
     try {
-      linkPromise = Promise.resolve({default: Link})
+      linkPromise = Promise.resolve({ default: Link })
     } catch (error) {
       linkPromise = import('../atoms/Link.js')
     }

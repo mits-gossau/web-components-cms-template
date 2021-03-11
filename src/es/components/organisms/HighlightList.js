@@ -1,7 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
 
 /**
  * HighlightList is the wrapper of molecules/Highlight.js which also styles a title/h1 for the list of highlights

@@ -1,7 +1,9 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
+/* global MenuIcon */
+/* global customElements */
 
 /**
  * Header can be sticky and hosts as a flex mostly a logo and a navigation
@@ -140,7 +142,7 @@ export default class Header extends Shadow() {
     })
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {
-        const MenuIcon = new children[0][1]({namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : ''})
+        const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '' })
         MenuIcon.addEventListener('click', event => {
           header.classList.toggle('open')
           const isOpen = header.classList.contains('open')
@@ -161,7 +163,7 @@ export default class Header extends Shadow() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let menuIconPromise
     try {
-      menuIconPromise = Promise.resolve({default: MenuIcon})
+      menuIconPromise = Promise.resolve({ default: MenuIcon })
     } catch (error) {
       menuIconPromise = import('../atoms/MenuIcon.js')
     }

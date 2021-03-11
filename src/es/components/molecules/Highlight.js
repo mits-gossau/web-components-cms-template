@@ -1,10 +1,11 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global location */
+/* global self */
 
 /**
- * Highlight can be wrapped by src/es/components/organisms/HighlightList.js and expects h5, h2, p, img 
+ * Highlight can be wrapped by src/es/components/organisms/HighlightList.js and expects h5, h2, p, img
  * Example at: /src/es/components/pages/Home.html + /src/es/components/pages/ClubConcerts.html
  * As a molecule, this component shall hold Atoms
  *
@@ -97,9 +98,12 @@ export default class Highlight extends Shadow() {
       section > *:last-child {
         margin-bottom: 0;
       }
-      ${this.getAttribute('href') ? `section h2:hover {
-        color: var(--color-hover, #8d4674);
-      }` : ''}
+      ${this.getAttribute('href')
+        ? `section h2:hover {
+          color: var(--color-hover, #8d4674);
+        }`
+        : ''
+      }
       figure {
         /* caution: if this is display: flex check img height on IOS Safari */
         text-align: var(--text-align, center);
