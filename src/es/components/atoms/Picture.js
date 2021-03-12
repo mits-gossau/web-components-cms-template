@@ -33,6 +33,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Picture extends Shadow() {
+  static get observedAttributes () {
+    return ['loading']
+  }
+
   constructor(...args) {
     super(...args)
     this.sources = this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources')) || null
@@ -43,6 +47,10 @@ export default class Picture extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+  }
+
+  attributeChangedCallback (name, oldValue, newValue) {
+    if (name === 'loading') this.img.setAttribute(name, newValue)
   }
 
   /**

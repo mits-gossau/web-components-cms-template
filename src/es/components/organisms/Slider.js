@@ -16,7 +16,10 @@ export default class Slider extends Shadow() {
 
     this.section = document.createElement('section')
     Array.from(this.root.children).forEach(node => {
-      if (!node.getAttribute('slot') && node.tagName !== 'STYLE') this.section.appendChild(node)
+      if (!node.getAttribute('slot') && node.tagName !== 'STYLE') {
+        node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
+        this.section.appendChild(node)
+      }
     })
 
     // TODO: for debugging, remove the line below when done
@@ -26,6 +29,9 @@ export default class Slider extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+    setInterval(() => {
+      this.next()
+    }, 5000);
   }
 
   /**
@@ -95,7 +101,12 @@ export default class Slider extends Shadow() {
   }
 
   next() {
-    //Array.from(this.section.children).find(child => child.getBoundingClientRect().x > child.getBoundingClientRect().width)[0].x
+    let boundingClientRect = null
+    if (Array.from(this.section.children).find(child => (boundingClientRect = child.getBoundingClientRect()) && boundingClientRect.x > boundingClientRect.width) && boundingClientRect) {
+      this.section.scrollLeft += boundingClientRect.x
+    } else {
+      this.section.scrollLeft = 0
+    }
   }
 
 }
