@@ -1,7 +1,9 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
+/* global Arrow */
+/* global customElements */
 
 /**
  * Stage is an image with text acting as a viewport cover, which can be clicked/scrolled away
@@ -35,14 +37,15 @@ export default class Stage extends Shadow() {
         this.arrow.setAttribute('direction', direction())
         if (event && event.type !== 'scroll') {
           if (direction() === 'down') {
-            document.body.scrollIntoView({behavior: 'smooth'})
+            document.body.scrollIntoView({ behavior: 'smooth' })
           } else {
-            this.nextSibling.scrollIntoView({behavior: 'smooth'})
+            this.nextSibling.scrollIntoView({ behavior: 'smooth' })
           }
         }
       }, 50)
     }
   }
+
   connectedCallback () {
     this.loadChildComponents()
     if (this.shouldComponentRenderCSS()) this.renderCSS()
@@ -138,7 +141,7 @@ export default class Stage extends Shadow() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let arrowPromise
     try {
-      arrowPromise = Promise.resolve({default: Arrow})
+      arrowPromise = Promise.resolve({ default: Arrow })
     } catch (error) {
       arrowPromise = import('../atoms/Arrow.js')
     }

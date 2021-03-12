@@ -1,7 +1,8 @@
 // @ts-check
 import Body from './Body.js'
 
-/* global HTMLElement */
+/* global AbortController */
+/* global fetch */
 
 /**
  * Extends Body.js and renders the getNews api call at the connectedCallback
@@ -55,11 +56,11 @@ export default class BodyGetNews extends Body {
       throw new Error(response.statusText)
     // @ts-ignore
     })
-    .then(success)
-    .catch(error => {
-      success() // blow out the mock data
-      return console.warn(url, error) || error
-    })
+      .then(success)
+      .catch(error => {
+        success() // blow out the mock data
+        return console.warn(url, error) || error
+      })
   }
 
   get section () {

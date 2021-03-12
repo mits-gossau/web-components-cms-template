@@ -1,7 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
 
 /**
  * Logo is the navigation logo
@@ -90,12 +90,12 @@ export default class Logo extends Shadow() {
   renderHTML () {
     const img = `<img src=${this.getAttribute('src')} alt=${this.getAttribute('alt')}>`
     let a = null
-    if (!!this.getAttribute('href')) {
+    if (this.getAttribute('href')) {
       a = document.createElement('a')
       a.setAttribute('href', this.getAttribute('href'))
       a.innerHTML = img
     }
-    this.html = a ? a : img
+    this.html = a || img
   }
 
   get a () {

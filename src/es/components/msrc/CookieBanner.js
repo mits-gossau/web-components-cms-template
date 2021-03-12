@@ -1,7 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
 
 /**
  * CookieBanner https://react-components.migros.ch/?path=/docs/msrc-privacy-00-readme--page
@@ -33,8 +33,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class CookieBanner extends Shadow() {
-  constructor(...args) {
-    super({mode: 'false'}, ...args) // disabling shadow-DOM to have msrc styles flow into the node
+  constructor (...args) {
+    super({ mode: 'false' }, ...args) // disabling shadow-DOM to have msrc styles flow into the node
   }
 
   connectedCallback () {

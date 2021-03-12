@@ -1,7 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
 
 /**
  * General is simply a grid which expects certain grid-areas
@@ -19,15 +19,15 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --color [black]
  *  --font-family [FuturaT, (fallback)]
  *  --font-family-bold [OPTIFutura-ExtraBlackCond, (fallback)]
- * 
+ *
  * }
  * @attribute {
  *  {string} mobile-breakpoint
  * }
  */
 export default class General extends Shadow() {
-  constructor(...args) {
-    super({mode: 'false'}, ...args) // disabling shadow-DOM to control root font-size on html-tag
+  constructor (...args) {
+    super({ mode: 'false' }, ...args) // disabling shadow-DOM to control root font-size on html-tag
   }
 
   connectedCallback () {

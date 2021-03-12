@@ -24,6 +24,7 @@ import { Shadow } from './Shadow.js'
       }
     }
  * @property {
+      isObserving,
       intersectionCallback,
       intersectionObserveStart,
       intersectionObserveStop
@@ -40,6 +41,7 @@ export const Intersection = (ChosenClass = Shadow()) => class Intersection exten
   constructor (options = { intersectionObserverInit: undefined }, ...args) {
     super(options, ...args)
 
+    this.isObserving = false
     /**
      * Digest attribute to have IntersectionObservers or not
      * this will trigger this.intersectionCallback and can be extended
@@ -48,28 +50,44 @@ export const Intersection = (ChosenClass = Shadow()) => class Intersection exten
      * @type {IntersectionObserverInit}
      */
     let intersectionObserverInit = this.getAttribute('intersectionObserverInit') ? Intersection.parseAttribute(this.getAttribute('intersectionObserverInit')) : options.intersectionObserverInit
-    if (intersectionObserverInit) {
-      // add default IntersectionObserverInit Props
-      intersectionObserverInit = Object.assign({
-        root: undefined,
-        rootMargin: '200px 0px 200px 0px',
-        threshold: 0
-      }, intersectionObserverInit)
-      /** @type {IntersectionObserver} */
-      const intersectionObserver = new IntersectionObserver(this.intersectionCallback.bind(this), intersectionObserverInit)
-      /** @return {void} */
-      this.intersectionObserveStart = () => {
-        // @ts-ignore
-        intersectionObserver.observe(this)
+    try {
+      if (intersectionObserverInit) {
+        // add default IntersectionObserverInit Props
+        intersectionObserverInit = Object.assign({
+          root: undefined,
+          rootMargin: '200px 0px 200px 0px',
+          threshold: 0
+        }, intersectionObserverInit)
+        /** @type {IntersectionObserver} */
+        const intersectionObserver = new IntersectionObserver(this.intersectionCallback.bind(this), intersectionObserverInit)
+        /** @return {void} */
+        this.intersectionObserveStart = () => {
+          if (!this.isObserving) {
+            // @ts-ignore
+            intersectionObserver.observe(this)
+            this.isObserving = true
+          }
+        }
+        /** @return {void} */
+        this.intersectionObserveStop = () => {
+          if (this.isObserving) {
+            intersectionObserver.disconnect()
+            this.isObserving = false
+          }
+        }
+      } else {
+        /** @return {void} */
+        this.intersectionObserveStart = () => {}
+        /** @return {void} */
+        this.intersectionObserveStop = () => {}
+        console.warn('IntersectionObserver got not started, due to missing options.intersectionObserverInit. At least supply an empty object to activate the observer with the default settings!')
       }
-      /** @return {void} */
-      this.intersectionObserveStop = () => intersectionObserver.disconnect()
-    } else {
+    } catch (error) {
       /** @return {void} */
       this.intersectionObserveStart = () => {}
       /** @return {void} */
       this.intersectionObserveStop = () => {}
-      console.warn('IntersectionObserver got not started, due to missing options.intersectionObserverInit. At least supply an empty object to activate the observer with the default settings!')
+      console.warn('IntersectionObserver got not started, due to missing support!')
     }
   }
 

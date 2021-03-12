@@ -1,8 +1,6 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
-
 /**
  * Example at: /src/es/components/pages/Home.html
  *
@@ -34,7 +32,7 @@ export default class TagManager extends Shadow() {
    */
   render () {
     const script = document.createElement('script')
-    script.textContent =  /* html */`
+    script.textContent = /* html */`
       window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
       ga('create', '${this.getAttribute('id')}', 'auto');
       ga('send', 'pageview');
