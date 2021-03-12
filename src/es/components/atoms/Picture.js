@@ -37,7 +37,7 @@ export default class Picture extends Shadow() {
     return ['loading']
   }
 
-  constructor(...args) {
+  constructor (...args) {
     super(...args)
     this.sources = (this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources'))) || null
     this.defaultSource = this.getAttribute('defaultSource') ? this.getAttribute('defaultSource') : ''

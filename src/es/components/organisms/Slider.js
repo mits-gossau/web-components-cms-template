@@ -1,7 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
 
 /**
  * Example at: /src/es/components/pages/Home.html
@@ -31,7 +31,7 @@ export default class Slider extends Shadow() {
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     setInterval(() => {
       this.next()
-    }, 5000);
+    }, 5000)
   }
 
   /**
@@ -100,7 +100,7 @@ export default class Slider extends Shadow() {
     this.html = this.section
   }
 
-  next() {
+  next () {
     let boundingClientRect = null
     if (Array.from(this.section.children).find(child => (boundingClientRect = child.getBoundingClientRect()) && boundingClientRect.x > boundingClientRect.width) && boundingClientRect) {
       this.section.scrollLeft += boundingClientRect.x
@@ -108,5 +108,4 @@ export default class Slider extends Shadow() {
       this.section.scrollLeft = 0
     }
   }
-
 }
