@@ -69,6 +69,7 @@ html {
   --header-logo-max-height: max(100px, 5vw);
   --header-padding: 0;
   --header-picture-filter: var(--picture-filter);
+  --header-picture-filter-hover: var(--picture-filter-hover);
   --header-picture-img-width: var(--picture-img-width);
   --header-picture-margin: 30px auto 45px;
   --header-picture-margin: var(--picture-margin);
@@ -96,8 +97,9 @@ html {
   --navigation-hr-color: var(--navigation-color);
   --p-first-text-transform: uppercase;
   --p-margin: 0;
-  /* --picture-filter: grayscale(100%); */
-  /* --picture-transition: filter 0.8s ease; */
+  --picture-filter: grayscale(100%);
+  --picture-filter-hover: none;
+  --picture-transition: filter 0.8s ease;
   --picture-img-width: 100%;
   --picture-margin: 30px auto;
   --picture-width-mobile: 100%; 
