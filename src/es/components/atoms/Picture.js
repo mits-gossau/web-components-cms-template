@@ -94,9 +94,11 @@ export default class Picture extends Shadow() {
       :host picture img {
         display: var(--img-display, inline);
         width: var(--img-width, 100%);
+        min-width: var(--img-min-width);
         max-width: var(--img-max-width, 100%);
         height: var(--img-height, auto);
         min-height: var(--img-min-height, 100%);
+        max-height: var(--img-max-height);
         object-fit: var(--img-object-fit, cover);
       }
 

@@ -4,7 +4,8 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global self */
 
 /**
- * Example at: /src/es/components/pages/Home.html
+ * Dependencies: https://github.com/ciampo/macro-carousel
+ * Example at: /src/es/components/organisms/Slider.html
  *
  * @export
  * @class Slider
@@ -14,24 +15,22 @@ export default class Slider extends Shadow() {
   constructor (...args) {
     super(...args)
 
-    this.section = document.createElement('section')
+    this.macroCarousel = document.createElement('macro-carousel')
+    Array.from(this.attributes).forEach(attribute => {
+      if (attribute.name) this.macroCarousel.setAttribute(attribute.name, attribute.key || 'true')
+    })
     Array.from(this.root.children).forEach(node => {
       if (!node.getAttribute('slot') && node.tagName !== 'STYLE') {
         node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
-        this.section.appendChild(node)
+        this.macroCarousel.appendChild(node)
       }
     })
-
-    // TODO: for debugging, remove the line below when done
-    self.slider = this
+    this.interval = null
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
-    setInterval(() => {
-      this.next()
-    }, 5000)
   }
 
   /**
@@ -49,7 +48,7 @@ export default class Slider extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return !this.root.querySelector('section')
+    return !this.scripts.length
   }
 
   /**
@@ -59,34 +58,33 @@ export default class Slider extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host > section {
+      :host > macro-carousel {
+        --height: auto;
+        --width: auto;
+        --width-mobile: auto;
+      }
+      :host > macro-carousel > * {
+        --img-height: ${this.getAttribute('height') ? 'min(auto, 100%)' : 'auto'};
+        --img-width: ${this.getAttribute('height') ? 'auto' : '100%'};
+        --img-max-height: ${this.getAttribute('height') || '100%'};
+        --img-min-height: 0px;
+        --img-max-width: 100%;
+        --img-min-width: 0px;
         display: flex;
-        overflow: var(--overflow, hidden);
-        overflow-behavior: var(--overflow-behavior, contain);
-        overflow-scrolling: var(--overflow-scrolling, touch);
-        -webkit-overflow-scrolling: var(---webkit-overflow-scrolling, touch);
-        overscroll-behavior-x: var(--overscroll-behavior-x, none);
-        scroll-behavior: var(--scroll-behavior, smooth);
-        -ms-scroll-chaining: var(---ms-scroll-chaining, none);
-        scroll-snap-type: var(--scroll-snap-type, x proximity);
-      /* https://dev.to/dailydevtips1/css-hide-scrollbars-2na0 */
-        -ms-overflow-style: var(---ms-overflow-style, none);
-        scrollbar-width: var(--scrollbar-width, none);
+        align-items: center;
+        justify-content: center;
       }
-      .host > section::-webkit-scrollbar {
-        display: none;
+      :host > macro-carousel *:focus {
+        outline: var(--outline-focus, 0);
       }
-      /* / https://dev.to/dailydevtips1/css-hide-scrollbars-2na0 */
-      :host > section > * {
-        --img-height: var(--height);
-        --img-width: var(--width);
-        --img-object-fit: var(--object-fit, contain);
-        align-items: var(--align-items, center);
-        display: var(--display, flex);
-        justify-content: var(--justify-content, center);
-        height: var(--height);
-        scroll-snap-align: var(--scroll-snap-align, center);
-        min-width: var(--min-width, 100%);
+    `
+    // inject style which can't be controlled through css vars
+    // style which must be inside macro-carousel shadowDom
+    this.injectStyle = document.createElement('style')
+    this.injectStyle.innerHTML = /* css */`
+      #pagination {
+        position: var(--pagination-position);
+        bottom: var(--pagination-bottom);
       }
     `
   }
@@ -97,15 +95,50 @@ export default class Slider extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.html = this.section
+    this.loadDependency().then(() => {
+      this.html = this.macroCarousel
+      // wait for the carousel component to initiate the shadowDom and be ready
+      const interval = setInterval(() => {
+        if (this.macroCarousel.shadowRoot) {
+          clearInterval(interval)
+          this.macroCarouselReady()
+        }
+      }, 100);
+    })
   }
 
-  next () {
-    let boundingClientRect = null
-    if (Array.from(this.section.children).find(child => (boundingClientRect = child.getBoundingClientRect()) && boundingClientRect.x > boundingClientRect.width) && boundingClientRect) {
-      this.section.scrollLeft += boundingClientRect.x
-    } else {
-      this.section.scrollLeft = 0
+  /**
+   * fetch dependency
+   *
+   * @returns {Promise<{components: any}>}
+   */
+  loadDependency () {
+    return this.dependencyPromise || (this.dependencyPromise = new Promise(resolve => {
+      const macroCarouselScript = document.createElement('script')
+      macroCarouselScript.setAttribute('type', 'text/javascript')
+      macroCarouselScript.setAttribute('async', '')
+      //macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel/dist/macro-carousel.min.js')
+      macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel@1.0.0/dist/macro-carousel.min.js')
+      macroCarouselScript.onload = () => resolve()
+      this.html = macroCarouselScript
+    }))
+  }
+
+  macroCarouselReady () {
+    this.macroCarousel.shadowRoot.appendChild(this.injectStyle)
+    // autoplay
+    if (this.getAttribute('interval')) {
+      this.setInterval()
+      this.macroCarousel.addEventListener('macro-carousel-selected-changed', event => this.setInterval())
     }
+  }
+
+  setInterval () {
+    clearInterval(this.interval)
+    this.interval = setInterval(() => this.macroCarousel.next(), Number(this.getAttribute('interval')))
+  }
+
+  get scripts () {
+    return this.root.querySelectorAll('script')
   }
 }

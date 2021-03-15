@@ -17,15 +17,16 @@
           min-height: 100vh;
           margin: 0 auto;
           border: 1px solid black;
+
+          --pagination-position: absolute;
+          --pagination-bottom: 10px;
+        }
+        *:focus {
+          border: 0;
         }
       </style>
       <main> 
-        <o-slider>
-          <style>
-            :host {
-              /*--height: 400px;*/
-            }
-          </style>
+        <o-slider pagination loop height="350px" interval="5000">
           <a-picture defaultSource="https://picsum.photos/900/770" alt="randomized image" sources='[{
             "src": "https://picsum.photos/900/770",
             "type": "image/jpg",
@@ -213,7 +214,7 @@
             "type": "image/jpg",
             "size": "extra-large"
           }]'></a-picture>
-          baaahhhhh
+          <div>baaahhhhh</div>
         </o-slider>
       </main> 
     </o-body>
