@@ -81,10 +81,19 @@ export default class Slider extends Shadow() {
     // inject style which can't be controlled through css vars
     // style which must be inside macro-carousel shadowDom
     this.injectStyle = document.createElement('style')
+    // get more from here: https://github.com/ciampo/macro-carousel/blob/master/src/macro-carousel/macro-carousel.css
     this.injectStyle.innerHTML = /* css */`
-      #pagination {
+      :host {
+        --macro-carousel-transition-duration: var(--transition-duration);
+      }
+      :host > #pagination {
         position: var(--pagination-position);
         bottom: var(--pagination-bottom);
+      }
+      :host div ::slotted(macro-carousel-pagination-indicator) {
+        --macro-carousel-pagination-color: var(--pagination-background-color);
+        --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected);
+        --macro-carousel-pagination-size-dot: var(--pagination-width);
       }
     `
   }
@@ -113,14 +122,21 @@ export default class Slider extends Shadow() {
    * @returns {Promise<{components: any}>}
    */
   loadDependency () {
-    return this.dependencyPromise || (this.dependencyPromise = new Promise(resolve => {
-      const macroCarouselScript = document.createElement('script')
-      macroCarouselScript.setAttribute('type', 'text/javascript')
-      macroCarouselScript.setAttribute('async', '')
-      //macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel/dist/macro-carousel.min.js')
-      macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel@1.0.0/dist/macro-carousel.min.js')
-      macroCarouselScript.onload = () => resolve()
-      this.html = macroCarouselScript
+    // make it global to self so that other components can know when it has been loaded
+    return this.dependencyPromise || (this.dependencyPromise = self.macroCarousel = new Promise(resolve => {
+      if (customElements.get('macro-carousel')) {
+        resolve()
+      } else if (self.macroCarousel) {
+        self.macroCarousel.then(() => resolve())
+      } else {
+        const macroCarouselScript = document.createElement('script')
+        macroCarouselScript.setAttribute('type', 'text/javascript')
+        macroCarouselScript.setAttribute('async', '')
+        //macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel/dist/macro-carousel.min.js')
+        macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel@1.0.0/dist/macro-carousel.min.js')
+        macroCarouselScript.onload = () => resolve()
+        this.html = macroCarouselScript
+      }
     }))
   }
 
