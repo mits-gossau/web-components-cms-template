@@ -61,7 +61,7 @@ html {
   --header-height : auto;
   --header-height-mobile: auto;
   --header-intro-p-margin: 0;
-  --header-intro-width-section-mobile: var(--content-width-not-web-component-mobile);
+  --header-intro-section-width-mobile: var(--content-width-not-web-component-mobile);
   --header-justify-content-mobile: end;
   --header-justify-content: end;
   --header-logo-height: 25vw;
@@ -94,7 +94,7 @@ html {
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
-  --p-first-text-transform: uppercase;
+  --p-date-text-transform: uppercase;
   --p-margin: 0;
   /* --picture-filter: grayscale(100%); */
   /* --picture-transition: filter 0.8s ease; */
@@ -103,5 +103,5 @@ html {
   --picture-width-mobile: 100%; 
   --picture-width: 100%;
   --text-decoration-a: none;
-  --width-section-mobile: var(--content-width-not-web-component-mobile);
+  --section-width-mobile: var(--content-width-not-web-component-mobile);
 }
