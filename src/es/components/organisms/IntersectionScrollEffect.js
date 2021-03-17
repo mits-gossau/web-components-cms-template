@@ -52,14 +52,14 @@ import { Intersection } from '../prototypes/Intersection.js'
         </style>
       `
     this.scrollListener = event => {
-      const offset = self.innerHeight / 4
+      const offset = self.innerHeight / 2
       const boundingRect = this.getBoundingClientRect()
       const recalculate = this.elementHeight !== boundingRect.height
 
       // saving measurements in variables to avoid redundant calculations
       if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
       if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
-      if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = (self.innerHeight - offset * 2) - this.center
+      if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - offset - this.center
 
       // TODO wrong boundingRect.height onload
       // TODO add optional min-value? max(minValue, outputValue * maxValue)
