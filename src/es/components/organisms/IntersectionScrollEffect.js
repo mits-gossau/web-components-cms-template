@@ -51,31 +51,31 @@ import { Intersection } from '../prototypes/Intersection.js'
           :host { display: block; } /* fix: google chrome wrong measurements */
         </style>
       `
-      
-      this.scrollListener = event => {
-        const boundingRect = this.getBoundingClientRect()
-        const recalculate = this.elementHeight !== boundingRect.height
+    this.scrollListener = event => {
+      const offset = self.innerHeight / 4
+      const boundingRect = this.getBoundingClientRect()
+      const recalculate = this.elementHeight !== boundingRect.height
 
-        // saving measurements in variables to avoid redundant calculations
-        if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
-        if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
-        if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - this.center
-        
-        //TODO wrong boundingRect.height onload
-        //TODO add optional min-value? max(minValue, outputValue * maxValue)
+      // saving measurements in variables to avoid redundant calculations
+      if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
+      if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
+      if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = (self.innerHeight - offset * 2) - this.center
 
-        // get distance from center (abs)
-        const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
-        // get output [0..1]
-        let outputValue = this.round(difference / this.maxDistanceFromCenter, 4)
-        // clamp value to avoid inaccuracies from scrolling too fast
-        outputValue = this.clamp(outputValue, 0, 1)
-        // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
-        outputValue = this.getAttribute("invert") === "true" ? 1 - outputValue : outputValue
+      // TODO wrong boundingRect.height onload
+      // TODO add optional min-value? max(minValue, outputValue * maxValue)
 
-        if (!isNaN(outputValue)) {
-          this.css = "" // resets css
-          this.css = /* css */ `
+      // get distance from center (abs)
+      const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
+      // get output [0..1]
+      let outputValue = this.round(difference / this.maxDistanceFromCenter, 4)
+      // clamp value to avoid inaccuracies from scrolling too fast
+      outputValue = this.clamp(outputValue, 0, 1)
+      // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
+      outputValue = this.getAttribute('invert') === 'true' ? 1 - outputValue : outputValue
+
+      if (!isNaN(outputValue)) {
+        this.css = '' // resets css
+        this.css = /* css */ `
             :host > * {
               ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
             }
