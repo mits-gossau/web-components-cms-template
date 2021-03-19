@@ -6,7 +6,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 
 /**
  * Dependencies: https://github.com/ciampo/macro-carousel
- * Example at: /src/es/components/organisms/Slider.html
+ * Example at: /src/es/components/organisms/MacroCarousel.html
  *
  * @attribute {
  *  {number + px} height
@@ -41,7 +41,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  * @type {CustomElementConstructor}
  */
-export default class Slider extends Shadow() {
+export default class MacroCarousel extends Shadow() {
   constructor (...args) {
     super(...args)
 
