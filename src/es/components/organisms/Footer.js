@@ -36,11 +36,34 @@ export default class Footer extends Shadow() {
       if (!node.getAttribute('slot')) this.footer.appendChild(node)
     })
     this.root.appendChild(this.footer)
+
+    let timeout = null
+    // check if the flex-box wrapped
+    this.wrappedListener = event => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        if (this.logoContainer) {
+          if (!!this.logoContainer.children.length) {
+            const children = Array.from(this.logoContainer.children)
+            const top = children.pop().getBoundingClientRect().top
+            if (children.some(child => top !== child.getBoundingClientRect().top)) return this.logoContainer.classList.add('wrapped')
+          }
+          this.logoContainer.classList.remove('wrapped')
+        }
+      }, 200)
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     this.renderHTML()
+    self.addEventListener('resize', this.wrappedListener)
+    this.addEventListener('logo-load', this.wrappedListener)
+  }
+
+  disconnectedCallback () {
+    self.removeEventListener('resize', this.wrappedListener)
+    this.removeEventListener('logo-load', this.wrappedListener)
   }
 
   /**
@@ -103,7 +126,10 @@ export default class Footer extends Shadow() {
         :host .logo-container {
           display: flex;
           flex-wrap: var(--logo-container-flex-wrap, nowrap);
-          justify-content: space-between;
+          justify-content: var(--logo-container-justify-content, space-between);
+        }
+        :host .logo-container.wrapped {
+          justify-content: var(--logo-container-justify-content-wrapped, var(--logo-container-justify-content, space-between));
         }
         :host .logo-container:first-child {
           --logo-height: var(--logo-height-first, max(65px, 4.8vw));
@@ -145,6 +171,10 @@ export default class Footer extends Shadow() {
           }
           :host .logo-container {
             flex-wrap: var(--logo-container-flex-wrap-mobile, nowrap);
+            justify-content: var(--logo-container-justify-content-mobile, space-between);
+          }
+          :host .logo-container.wrapped {
+            justify-content: var(--logo-container-justify-content-wrapped-mobile, var(--logo-container-justify-content-mobile, space-between));
           }
           :host .logo-container:first-child {
             --logo-height: var(--logo-height-first-mobile, 50px);
@@ -257,5 +287,9 @@ export default class Footer extends Shadow() {
       })
       return elements
     }))
+  }
+
+  get logoContainer () {
+    return this.root.querySelector('.logo-container')
   }
 }

@@ -49,7 +49,7 @@ export default class Title extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host{
-        margin: min(9vw, 60px) 0 0 0;
+        margin: var(--margin, min(9vw, 60px) 0 0 0);
       }
       :host h1{
         text-transform: uppercase;

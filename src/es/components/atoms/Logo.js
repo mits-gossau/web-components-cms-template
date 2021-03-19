@@ -27,9 +27,31 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Logo extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.textSelector = ':host > :not(img):not(a):not(style)'
+
+    let timeout = null
+    this.resizeListener = event => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        if (this.text) this.css = /* css */`
+          ${this.textSelector}{
+            width: ${this.img.getBoundingClientRect().width}px;
+          }
+        `
+      }, 200)
+    }
+  }
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+    self.addEventListener('resize', this.resizeListener)
+  }
+
+  disconnectedCallback () {
+    self.removeEventListener('resize', this.resizeListener)
   }
 
   /**
@@ -58,10 +80,11 @@ export default class Logo extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host{
-        align-items: center;
+        align-items: var(--align-items, center);
         align-self: var(--align-self, auto);
         display: flex;
-        justify-content: center;
+        flex-flow: var(--flex-flow, row);
+        justify-content: var(--justify-content, center);
         box-sizing: border-box;
         margin: var(--margin, 0px);
       }
@@ -71,6 +94,23 @@ export default class Logo extends Shadow() {
         max-height: var(--max-height, none);
         object-fit: scale-down;
         width: var(--width, auto);
+        max-width: var(--max-width, 80vw);
+      }
+      ${this.textSelector}{
+        box-sizing: border-box;
+        color: var(--text-color, pink);
+        font-size: var(--text-font-size, 1rem);
+        line-height: var(--text-line-height, normal);
+        padding: var(--text-padding, 0);
+        margin: var(--text-margin, 0);
+      }
+      ${this.textSelector} a{
+        color: var(--text-a-color, green);
+        text-decoration: var(--text-a-text-decoration, none);
+      }
+      ${this.textSelector} a:hover{
+        color: var(--text-a-color-hover, green);
+        text-decoration: var(--text-a-text-decoration-hover, none);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host img{
@@ -96,6 +136,15 @@ export default class Logo extends Shadow() {
       a.innerHTML = img
     }
     this.html = a || img
+    // calculated css style
+    this.img.addEventListener('load', event => {
+      this.resizeListener(event)
+      this.dispatchEvent(new CustomEvent('logo-load', {
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    })
   }
 
   get a () {
@@ -104,5 +153,9 @@ export default class Logo extends Shadow() {
 
   get img () {
     return this.root.querySelector('img')
+  }
+
+  get text () {
+    return this.root.querySelector(this.textSelector)
   }
 }
