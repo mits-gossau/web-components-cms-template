@@ -29,6 +29,7 @@ import { Intersection } from '../prototypes/Intersection.js'
   *  {string} [mobile-breakpoint=self.Environment.mobileBreakpoint] define custom mobile-breakpoint
   *  {string} [max-value] the maximum value of the set effect e.g. "100%" (including the unit)
   *  {string} [invert] if set to "true" the filter will be applied inverted (default is: 0% filter in the center of the viewport, 100% filter at the edges)
+  *  {number} [offset=0] in percentage to self.innerHeight
   *  {string} [transition] set if the effect shall have a transition e.g. "0.2s ease"
   * }
   */
@@ -62,13 +63,14 @@ export default class IntersectionScrollEffect extends Intersection() {
       `
 
     this.scrollListener = event => {
+      const offset = self.innerHeight / 100 * Number(this.getAttribute('offset'))
       const boundingRect = this.getBoundingClientRect()
       const recalculate = this.elementHeight !== boundingRect.height
 
       // saving measurements in variables to avoid redundant calculations
       if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
       if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
-      if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - this.center
+      if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - offset - this.center
 
       // TODO wrong boundingRect.height onload
       // TODO add optional min-value? max(minValue, outputValue * maxValue)
