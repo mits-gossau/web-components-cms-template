@@ -50,7 +50,7 @@ export default class Picture extends Shadow() {
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
-    if (name === 'loading') this.img.setAttribute(name, newValue)
+    if (name === 'loading' && this.img) this.img.setAttribute(name, newValue)
   }
 
   /**
