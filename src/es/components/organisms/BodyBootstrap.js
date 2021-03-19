@@ -1,7 +1,7 @@
 // @ts-check
 import Body from './Body.js'
 
-/* global HTMLElement */
+/* global $ */
 
 /**
  * Extends Body.js and adds Bootstrap + Jquery into the shadow dom
@@ -20,15 +20,17 @@ import Body from './Body.js'
  */
 export default class BodyBootstrap extends Body {
   connectedCallback () {
-    if (this.shouldComponentRenderHTML()) this.renderHTML().then(() => {
+    if (this.shouldComponentRenderHTML()) {
+      this.renderHTML().then(() => {
       // initiate the carousel, since this components content is not accessible from outside the shadow dom
-      $(this.root).find('.carousel').each((i, carousel) => {
-        carousel = $(carousel)
-        carousel.find('.carousel-control-prev').click(event => carousel.carousel('prev'))
-        carousel.find('.carousel-control-next').click(event => carousel.carousel('next'))
-        carousel.carousel()
+        $(this.root).find('.carousel').each((i, carousel) => {
+          carousel = $(carousel)
+          carousel.find('.carousel-control-prev').click(event => carousel.carousel('prev'))
+          carousel.find('.carousel-control-next').click(event => carousel.carousel('next'))
+          carousel.carousel()
+        })
       })
-    })
+    }
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
 
@@ -50,7 +52,7 @@ export default class BodyBootstrap extends Body {
     return new Promise((resolve) => {
       const scripts = document.createElement('section')
       scripts.setAttribute('id', 'scripts')
-      scripts.innerHTML = /* html */`<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css>`
+      scripts.innerHTML = /* html */'<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css>'
       const jquery = document.createElement('script')
       jquery.setAttribute('src', 'https://code.jquery.com/jquery-3.5.1.slim.min.js')
       jquery.onload = event => {

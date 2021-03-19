@@ -1,8 +1,6 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
-
 /**
  * Link is a wrapper for an a-tag
  * Example at: /src/es/components/pages/Home.html
@@ -31,6 +29,7 @@ export default class Link extends Shadow() {
 
     this.a = a
   }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()

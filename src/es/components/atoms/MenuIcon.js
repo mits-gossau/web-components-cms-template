@@ -1,8 +1,6 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
-
 /**
  * MenuIcon is the mobile hamburger menu icon
  * Example at: /src/es/components/pages/Home.html
@@ -32,6 +30,7 @@ export default class MenuIcon extends Shadow() {
 
     this.addEventListener('click', event => this.toggleAnimationClass())
   }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()

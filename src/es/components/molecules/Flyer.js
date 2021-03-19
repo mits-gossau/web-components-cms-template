@@ -1,7 +1,8 @@
 // @ts-check
 import { Intersection } from '../prototypes/Intersection.js'
 
-/* global HTMLElement */
+/* global location */
+/* global self */
 
 /**
  * Flyer can hold anything which shall fly into the viewport on intersection
@@ -35,7 +36,7 @@ import { Intersection } from '../prototypes/Intersection.js'
  */
 export default class Flyer extends Intersection() {
   constructor (options = {}, ...args) {
-    super(Object.assign(options, {intersectionObserverInit: {rootMargin: '500px 0px 0px 0px', threshold: 1}}), ...args)
+    super(Object.assign(options, { intersectionObserverInit: { rootMargin: '500px 0px 0px 0px', threshold: 1 } }), ...args)
 
     this.div = document.createElement('div')
     Array.from(this.root.children).forEach(node => {
@@ -69,7 +70,7 @@ export default class Flyer extends Intersection() {
           }
         `
         this.div.classList.add('visible')
-      }, Number(this.getAttribute('timer')));
+      }, Number(this.getAttribute('timer')))
     } else {
       // only connect intersection callback if no timer is set
       super.connectedCallback()
@@ -140,7 +141,8 @@ export default class Flyer extends Intersection() {
   intersectionCallback (entries, observer) {
     if (entries && entries[0]) {
       if (entries[0].isIntersecting) {
-        if (this.isPositionFixed) this.css = /* css */`
+        if (this.isPositionFixed) {
+          this.css = /* css */`
          :host {
            ${this.varTop};
            ${this.varRight}
@@ -148,6 +150,7 @@ export default class Flyer extends Intersection() {
            ${this.varLeft}
          }
         `
+        }
         this.div.classList.add('visible')
       } else {
         this.div.classList.remove('visible')
@@ -156,11 +159,11 @@ export default class Flyer extends Intersection() {
   }
 
   get topMiddle () {
-    return `${(self.innerHeight - this.div.offsetHeight)/2}px`
+    return `${(self.innerHeight - this.div.offsetHeight) / 2}px`
   }
 
   get leftMiddle () {
-    return `${(self.innerWidth - this.div.offsetWidth)/2}px`
+    return `${(self.innerWidth - this.div.offsetWidth) / 2}px`
   }
 
   get varTop () {

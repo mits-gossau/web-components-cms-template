@@ -1,8 +1,6 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
-
 /**
  * As an organism, this component shall hold molecules and/or atoms
  *
@@ -35,7 +33,7 @@ export default class TeaserWrapper extends Shadow() {
    * @return {void}
    */
   renderCSS () {
-    let teaserAmount = this.root.querySelectorAll("m-teaser").length;
+    const teaserAmount = this.root.querySelectorAll('m-teaser').length
     this.css = /* css */`
       :host {
         width: 100%;
@@ -48,21 +46,21 @@ export default class TeaserWrapper extends Shadow() {
         width: 100%;
         margin: var(--margin, 20px);
       }
-    `;
+    `
 
-    if (teaserAmount % 2 == 0) {
+    if (teaserAmount % 2 === 0) {
       this.css = /* css */`
       :host > * {
         max-width: calc(50% - 2 * var(--margin, 20px));
       }
       
-      `;
+      `
     } else {
       this.css = /* css */`
       :host > * {
         max-width: calc(100% / 3 - 2 * var(--margin, 20px));
       }
-      `;
+      `
     }
   }
 }

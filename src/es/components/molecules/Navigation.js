@@ -1,7 +1,10 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global HTMLElement */
+/* global self */
+/* global Link */
+/* global Arrow */
+/* global customElements */
 
 /**
  * Navigation hosts uls
@@ -108,9 +111,9 @@ export default class Navigation extends Shadow() {
       :host > nav > ul li:hover{
         cursor: pointer;
       }
-      ${this.getAttribute('hover') === 'true' && 
+      ${(this.getAttribute('hover') === 'true' &&
         `:host > nav > ul li:hover ul,
-        :host > nav > ul li ul:hover,` || ''}
+        :host > nav > ul li ul:hover,`) || ''}
       :host > nav > ul li:focus-within ul{
         display: block;
       }
@@ -187,9 +190,9 @@ export default class Navigation extends Shadow() {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
-      const aLink = new children[0][1](a, {namespace: this.getAttribute('namespace') || ''})
+      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
       aLink.setAttribute('text-transform', 'uppercase')
-      const arrow = new children[1][1]({namespace: this.getAttribute('namespace') || ''})
+      const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
         li.classList.toggle('open')
@@ -219,12 +222,12 @@ export default class Navigation extends Shadow() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let linkPromise, arrowPromise
     try {
-      linkPromise = Promise.resolve({default: Link})
+      linkPromise = Promise.resolve({ default: Link })
     } catch (error) {
       linkPromise = import('../atoms/Link.js')
     }
     try {
-      arrowPromise = Promise.resolve({default: Arrow})
+      arrowPromise = Promise.resolve({ default: Arrow })
     } catch (error) {
       arrowPromise = import('../atoms/Arrow.js')
     }

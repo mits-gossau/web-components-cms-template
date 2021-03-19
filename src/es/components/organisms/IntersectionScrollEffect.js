@@ -30,28 +30,38 @@ import { Intersection } from '../prototypes/Intersection.js'
   *  {string} [max-value] the maximum value of the set effect e.g. "100%" (including the unit)
   *  {string} [invert] if set to "true" the filter will be applied inverted (default is: 0% filter in the center of the viewport, 100% filter at the edges)
   *  {number} [offset=0] in percentage to self.innerHeight
+  *  {string} [transition] set if the effect shall have a transition e.g. "0.2s ease"
   * }
   */
-  export default class IntersectionScrollEffect extends Intersection() {
-    constructor (options = {}, ...args) {
-      super(Object.assign(options, {mode: "open", intersectionObserverInit: {rootMargin: "0px 0px 0px 0px"} }), ...args)
-      
-      /** @type {number} */
-      this.elementHeight
-      /** @type {number} */
-      this.center
-      /** @type {number} */
-      this.maxDistanceFromCenter
-      /** @type {boolean} */
-      this.isFirstIntersection = true
-      /** @type {boolean} */
-      this.hasRequiredAttributes = this.getAttribute("css-property") && this.getAttribute("effect") && this.getAttribute("max-value")
+export default class IntersectionScrollEffect extends Intersection() {
+  constructor (options = {}, ...args) {
+    super(Object.assign(options, { mode: 'open', intersectionObserverInit: { rootMargin: '0px 0px 0px 0px' } }), ...args)
 
-      this.html = /* HTML */`
+    /** @type {number} */
+    this.elementHeight = 0
+    /** @type {number} */
+    this.center = 0
+    /** @type {number} */
+    this.maxDistanceFromCenter = 0
+    /** @type {boolean} */
+    this.isFirstIntersection = true
+    /** @type {boolean} */
+    this.hasRequiredAttributes = this.getAttribute('css-property') && this.getAttribute('effect') && this.getAttribute('max-value')
+
+    this.html = /* HTML */`
         <style _css="" protected="true">
-          :host { display: block; } /* fix: google chrome wrong measurements */
+          :host {
+            display: block; /* fix: google chrome wrong measurements */
+          }
+          ${this.getAttribute('transition') && this.getAttribute('css-property') && !this.getAttribute('css-property').includes('--')
+            ? /* CSS */`:host > * {
+              transition: ${this.getAttribute('css-property')} ${this.getAttribute('transition')};
+            }`
+            : ''
+          }
         </style>
       `
+
     this.scrollListener = event => {
       const offset = self.innerHeight / 100 * Number(this.getAttribute('offset'))
       const boundingRect = this.getBoundingClientRect()
@@ -78,90 +88,92 @@ import { Intersection } from '../prototypes/Intersection.js'
         this.css = '' // resets css
         this.css = /* css */ `
             :host > * {
-              ${this.getAttribute("css-property")}: ${this.getAttribute("effect")}(calc(${outputValue} * ${this.getAttribute("max-value")}))
+              ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.getAttribute('max-value')}));
             }
           `
-        }
-      }
-
-      this.resizeListener = event => {
-        if (this.hasRequiredAttributes) {
-          if (this.checkMedia()) {
-            this.intersectionObserveStart()
-          } else {
-            this.intersectionObserveStop()
-            self.removeEventListener("scroll", this.scrollListener)
-            this.css = "" // resets css
-          }
-        }
-      }
-     }
-
-    checkMedia () {
-      //@ts-ignore ignoring self.Environment error
-      const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-      switch(this.getAttribute("media")) {
-        case "mobile": return self.matchMedia(`(max-width: ${breakpoint})`).matches
-        case "desktop": return self.matchMedia(`(min-width: ${breakpoint})`).matches
-        default: return true
       }
     }
 
-    connectedCallback () {
-        if (this.hasRequiredAttributes) {
-          if (this.checkMedia()) super.connectedCallback() // this.intersectionObserveStart()
-          self.addEventListener('resize', this.resizeListener);
-        }
-    }
-
-     disconnectedCallback () {
+    this.resizeListener = event => {
       if (this.hasRequiredAttributes) {
         if (this.checkMedia()) {
-          super.disconnectedCallback() // this.intersectionObserveStop()
-          self.removeEventListener("scroll", this.scrollListener)
-          this.css = "" // resets css
+          this.intersectionObserveStart()
+        } else {
+          this.intersectionObserveStop()
+          self.removeEventListener('scroll', this.scrollListener)
+          this.css = '' // resets css
+          this.isFirstIntersection = true
         }
-        self.removeEventListener('resize', this.resizeListener);
       }
-     }
-      
-      /**
+    }
+  }
+
+  checkMedia () {
+    // @ts-ignore ignoring self.Environment error
+    const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+    switch (this.getAttribute('media')) {
+      case 'mobile': return self.matchMedia(`(max-width: ${breakpoint})`).matches
+      case 'desktop': return self.matchMedia(`(min-width: calc(${breakpoint} + 1px))`).matches
+      default: return true
+    }
+  }
+
+  connectedCallback () {
+    if (this.hasRequiredAttributes) {
+      if (this.checkMedia()) super.connectedCallback() // this.intersectionObserveStart()
+      self.addEventListener('resize', this.resizeListener)
+    }
+  }
+
+  disconnectedCallback () {
+    if (this.hasRequiredAttributes) {
+      if (this.checkMedia()) {
+        super.disconnectedCallback() // this.intersectionObserveStop()
+        self.removeEventListener('scroll', this.scrollListener)
+        this.css = '' // resets css
+        this.isFirstIntersection = true
+      }
+      self.removeEventListener('resize', this.resizeListener)
+    }
+  }
+
+  /**
       * rounds number to set amount of decimals (>= 1)
-      * @param {number} value 
+      * @param {number} value
       * @param {number} decimalsAmount
       */
-      round(value, decimalsAmount) {
-        decimalsAmount = decimalsAmount < 1 ? 1 : decimalsAmount
-        return Math.round((value + Number.EPSILON) * (10 * decimalsAmount)) / (10 * decimalsAmount) 
-      }
-      
-      /**
+  round (value, decimalsAmount) {
+    decimalsAmount = decimalsAmount < 1 ? 1 : decimalsAmount
+    return Math.round((value + Number.EPSILON) * (10 * decimalsAmount)) / (10 * decimalsAmount)
+  }
+
+  /**
       * clamps number between min & max value
-      * @param {number} value 
-      * @param {number} min 
+      * @param {number} value
+      * @param {number} min
       * @param {number} max
       */
-      clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max)
-      }
-      
-      /**
+  clamp (value, min, max) {
+    return Math.min(Math.max(value, min), max)
+  }
+
+  /**
       * callback from the Intersection Observer
       *
       * @return {void}
       */
-      intersectionCallback (entries, observer) {
-        if (entries && entries[0]) {
-          if (entries[0].isIntersecting) {
-            if (this.isFirstIntersection) {
-              this.scrollListener()
-              setTimeout(() => this.scrollListener(), 100);
-              this.isFirstIntersection = false
-            }
-            self.addEventListener("scroll", this.scrollListener)
-          } else {
-            self.removeEventListener("scroll", this.scrollListener)
-          }
+  intersectionCallback (entries, observer) {
+    if (entries && entries[0]) {
+      if (entries[0].isIntersecting) {
+        if (this.isFirstIntersection) {
+          this.scrollListener()
+          setTimeout(() => this.scrollListener(), 100)
+          this.isFirstIntersection = false
         }
+        self.addEventListener('scroll', this.scrollListener)
+      } else {
+        self.removeEventListener('scroll', this.scrollListener)
       }
     }
+  }
+}
