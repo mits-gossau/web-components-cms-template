@@ -4,9 +4,9 @@ import { Intersection } from '../prototypes/Intersection.js'
 /* global self */
 
 /**
-* IntersectionScrollEffect 
+* IntersectionScrollEffect
 * This component can be used to apply a CSS-Effect to its children based on scroll-position. The type of effect can be defined through attributes.
-* Examples: 
+* Examples:
 *   <o-intersection-scroll-effect css-property=filter, effect=brightness, max-value=100%>
 *   <o-intersection-scroll-effect css-property=--transform-mobile, effect=translateX, max-value=50px>
 *
@@ -14,7 +14,7 @@ import { Intersection } from '../prototypes/Intersection.js'
 * => e.g.: filter: var(--filter-mobile, none)
 *
 * NOTE: Use Css variables for certain values in combination with child web components, since not every css property will propagate to its child web component. eg. transform (filter seems to work though)
-* 
+*
 * The CSS-Effect will be applied at 100% at the edges of the viewport and will increase/decrease while nearing the center,
 * at which the effect will be applied at 0%. This behaviour can be inverted by setting the invert attribute to "true"
 *

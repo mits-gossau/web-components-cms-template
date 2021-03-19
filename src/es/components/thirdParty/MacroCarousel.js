@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
+/* global customElements */
 
 /**
  * Dependencies: https://github.com/ciampo/macro-carousel
@@ -160,7 +161,7 @@ export default class Slider extends Shadow() {
           clearInterval(interval)
           this.macroCarouselReady()
         }
-      }, 100);
+      }, 100)
     })
   }
 
@@ -171,16 +172,14 @@ export default class Slider extends Shadow() {
    */
   loadDependency () {
     // make it global to self so that other components can know when it has been loaded
-    return this.dependencyPromise || (this.dependencyPromise = self.macroCarousel = new Promise(resolve => {
+    return self.macroCarousel || (self.macroCarousel = new Promise(resolve => {
       if (customElements.get('macro-carousel')) {
         resolve()
-      } else if (self.macroCarousel) {
-        self.macroCarousel.then(() => resolve())
       } else {
         const macroCarouselScript = document.createElement('script')
         macroCarouselScript.setAttribute('type', 'text/javascript')
         macroCarouselScript.setAttribute('async', '')
-        //macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel/dist/macro-carousel.min.js')
+        // macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel/dist/macro-carousel.min.js')
         macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel@1.0.0/dist/macro-carousel.min.js')
         macroCarouselScript.onload = () => resolve()
         this.html = macroCarouselScript
