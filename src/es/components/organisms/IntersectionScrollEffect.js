@@ -1,7 +1,7 @@
 // @ts-check
 import { Intersection } from '../prototypes/Intersection.js'
 
-/* global HTMLElement */
+/* global self */
 
 /**
 * IntersectionScrollEffect 
