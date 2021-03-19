@@ -207,7 +207,7 @@ export default class Highlight extends Shadow() {
   }
 
   belongsToFigure (node) {
-    return node.nodeName === 'IMG' || node.nodeName === 'FIGCAPTION' || node.nodeName === 'FIGURE' || node.nodeName.includes('PICTURE')
+    return node.nodeName === 'IMG' || node.nodeName === 'FIGCAPTION' || node.nodeName === 'FIGURE' || node.nodeName.includes('PICTURE') || node.nodeName.includes('INTERSECTION-SCROLL-EFFECT')
   }
 
   get h2 () {
