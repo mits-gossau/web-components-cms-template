@@ -90,7 +90,7 @@ export default class Highlight extends Shadow() {
         flex-grow: 1;
         flex-shrink: 2;
         text-align: var(--text-align, center);
-        width: var(--width-section, auto);
+        width: var(--section-width, auto);
       }
       section > * {
         margin: var(--margin, 0 0 1rem 0);
@@ -108,7 +108,7 @@ export default class Highlight extends Shadow() {
         /* caution: if this is display: flex check img height on IOS Safari */
         text-align: var(--text-align, center);
         margin: 0;
-        width: var(--width-figure, auto);
+        width: var(--figure-width, auto);
       }
       figure:hover img {
         filter: var(--filter-hover, none);
@@ -133,7 +133,7 @@ export default class Highlight extends Shadow() {
       }
       :host p.date {
         font-family: var(--font-family-bold);
-        text-transform: var(--p-first-text-transform, none);
+        text-transform: var(--p-date-text-transform, none);
       }
       :host a {
         color: var(--a-color, var(--color-secondary, pink));
@@ -163,10 +163,10 @@ export default class Highlight extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         section {
-          width: var(--width-section-mobile, auto);
+          width: var(--section-width-mobile, auto);
         }
         figure {
-          width: var(--width-figure-mobile, auto);
+          width: var(--figure-width-mobile, auto);
         }
         :host h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
