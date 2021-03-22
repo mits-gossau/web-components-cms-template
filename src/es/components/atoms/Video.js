@@ -74,7 +74,8 @@ export default class Video extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.html = this.video = document.createElement('video')
+    //this.html = this.video = document.createElement('video')
+    this.html = this.video = document.createElement('div')
 
     // in case someone adds sources/img directly instead of using the attributes
     Array.from(this.root.children).forEach(node => {
@@ -83,40 +84,17 @@ export default class Video extends Shadow() {
 
     if (this.sources) {
       this.sources.forEach(i => {
-        if (i.src !== '' && i.type !== '' && i.size !== '') {
-          switch (i.size) {
-            case 'small':
-              this.video.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(max-width: 767px)">`
-              break
-            case 'medium':
-              this.video.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 768px) and (max-width: 990px)">`
-              break
-            case 'large':
-              this.video.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 991px) and (max-width: 1200px)">`
-              break
-            case 'extra-large':
-              this.video.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
-              break
-            default:
-              this.video.innerHTML += `<source srcset="${i.src}" type="${i.type}">`
-              break
-          }
-        } else {
-          console.warn(`a-video src - missing attributes: ${i.src === '' ? 'src' : ''} ${i.type === '' ? 'type' : ''} ${i.size === '' ? 'size' : ''}`)
-        }
+        //if (i.src !== '' && i.type !== '') this.video.innerHTML += `<source srcset="${i.src}" type="${i.type}">`
+        if (i.src !== '' && i.type !== '') this.video.innerHTML += `<embed
+          src="${i.src}"
+          wmode="transparent"
+          type="video/mp4"
+          width="100%" height="100%"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+          title="Koooooooter"
+        >`
       })
     }
-    if (this.defaultSource) {
-      this.video.innerHTML += `<img src="${this.defaultSource}" alt="${this.alt}">`
-      if (this.alt === '') {
-        console.warn('a-video alt is missing')
-      }
-    } else {
-      console.warn(`a-video defaultSource ${this.alt === '' ? '& alt ' : ''}is missing`)
-    }
-  }
-
-  get video () {
-    return this.root.querySelector('img')
   }
 }

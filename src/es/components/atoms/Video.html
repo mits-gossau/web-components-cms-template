@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang=de>
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <link href=../../../../favicon.ico rel="shortcut icon" type=image/x-icon>
+  <!-- NOTE: Remove line Debugging.js below for none localhost -->
+  <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <title>video</title>
+</head>
+<body>
+  <p-general>
+    <o-body>
+      <style>
+        main {
+          width: 80%;
+          min-height: 100vh;
+          margin: 0 auto;
+          border: 1px solid black;
+        }
+      </style>
+      <main>
+          <a-video sources='[{
+            "src": "https://www.youtube.com/embed/J---aiyznGQ?autohide=1&autoplay=1",
+            "type": "iframe"
+          }]'></a-video>
+          <!-- 
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/jFeRels8AyY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+          -->
+        </third-party-macro-carousel>
+      </main> 
+    </o-body>
+  </p-general>
+  
+  <script rel=preload type=module>
+    /**
+    * First level controllers and organisms are loaded and defined here (loadChildComponents)
+    */
+    Promise.all([
+    // Controllers
+    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
+    import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
+    import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
+    import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
+    ]).then(elements => elements.forEach(element => {
+      // don't define already existing customElements
+      if (element && !customElements.get(element[0])) customElements.define(...element)
+    }))
+  </script>
+</body>
+</html>
