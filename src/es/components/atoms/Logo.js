@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
+/* global CustomEvent */
 
 /**
  * Logo is the navigation logo
@@ -36,14 +37,17 @@ export default class Logo extends Shadow() {
     this.resizeListener = event => {
       clearTimeout(timeout)
       timeout = setTimeout(() => {
-        if (this.text) this.css = /* css */`
+        if (this.text) {
+          this.css = /* css */`
           ${this.textSelector}{
             width: ${this.img.getBoundingClientRect().width}px;
           }
         `
+        }
       }, 200)
     }
   }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()

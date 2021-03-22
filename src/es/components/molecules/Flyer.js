@@ -40,7 +40,8 @@ export default class Flyer extends Intersection() {
 
     this.div = document.createElement('div')
     Array.from(this.root.children).forEach(node => {
-      if (!node.getAttribute('slot')) this.div.appendChild(node)
+      if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      this.div.appendChild(node)
     })
     this.html = this.div
 

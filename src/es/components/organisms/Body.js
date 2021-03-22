@@ -22,6 +22,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class Body extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
 
   /**
@@ -31,6 +32,15 @@ export default class Body extends Shadow() {
    */
   shouldComponentRenderCSS () {
     return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.root.querySelector('main')
   }
 
   /**
@@ -44,11 +54,11 @@ export default class Body extends Shadow() {
         background-color: var(--background-color, white);
         grid-area: body;
       }
-      :host > * {
+      :host > main > * {
         margin: var(--content-spacing, 40px) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
-      :host > span, :host > div, :host > p, :host > ul, :host > ol {
+      :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5 {
         width: var(--content-width-not-web-component, 80%);
       }
       h1 {
@@ -108,11 +118,11 @@ export default class Body extends Shadow() {
       }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host > * {
+        :host > main > * {
           margin: 0 auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
         }
-        :host > span, :host > div, :host > p, :host > ul, :host > ol, :host > section, :host > h1, :host > h2, :host > h3, :host > h4, :host > h5 {
+        :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5 {
           width: var(--content-width-not-web-component-mobile, 90%);
         }
         h1 {
@@ -145,5 +155,18 @@ export default class Body extends Shadow() {
         }
       }
     `
+  }
+
+  /**
+   * renders the a-link html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    const main = this.root.appendChild(document.createElement('main'))
+    Array.from(this.root.children).forEach(node => {
+      if (node === main || node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      main.appendChild(node)
+    })
   }
 }
