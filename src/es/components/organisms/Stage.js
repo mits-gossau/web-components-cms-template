@@ -26,7 +26,10 @@ export default class Stage extends Shadow() {
     super(...args)
 
     const section = document.createElement('section')
-    Array.from(this.root.children).forEach(node => section.appendChild(node))
+    Array.from(this.root.children).forEach(node => {
+      if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      section.appendChild(node)
+    })
     this.html = section
     this.clickEventListenerTimeout = null
     this.clickEventListener = event => {
@@ -110,6 +113,7 @@ export default class Stage extends Shadow() {
         animation: bounce 3s infinite;
         bottom: calc(var(--content-spacing, 40px) / 2);
         position: absolute;
+        user-select: none;
       }
       :host > section {
         bottom: var(--bottom, 100px);

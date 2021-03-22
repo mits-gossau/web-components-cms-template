@@ -135,6 +135,7 @@ export default class WideTeaser extends Shadow() {
       }
       :host figcaption a-arrow {
         margin-right: 5px;
+        user-select: none;
       }
     `
   }

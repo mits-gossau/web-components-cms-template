@@ -48,10 +48,9 @@ export default class MacroCarousel extends Shadow() {
     this.macroCarousel = document.createElement('macro-carousel')
     // copy all kids into the macro-carousel
     Array.from(this.root.children).forEach(node => {
-      if (!node.getAttribute('slot') && node.tagName !== 'STYLE') {
-        node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
-        this.macroCarousel.appendChild(node)
-      }
+      if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
+      this.macroCarousel.appendChild(node)
     })
     // forward all attributes
     Array.from(this.attributes).forEach(attribute => {

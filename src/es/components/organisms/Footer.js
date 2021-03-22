@@ -33,7 +33,8 @@ export default class Footer extends Shadow() {
     this.footer = document.createElement('footer')
     this.footer.hidden = true
     Array.from(this.root.children).forEach(node => {
-      if (!node.getAttribute('slot')) this.footer.appendChild(node)
+      if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      this.footer.appendChild(node)
     })
     this.root.appendChild(this.footer)
 
@@ -43,7 +44,7 @@ export default class Footer extends Shadow() {
       clearTimeout(timeout)
       timeout = setTimeout(() => {
         if (this.logoContainer) {
-          if (!!this.logoContainer.children.length) {
+          if (this.logoContainer.children.length) {
             const children = Array.from(this.logoContainer.children)
             const top = children.pop().getBoundingClientRect().top
             if (children.some(child => top !== child.getBoundingClientRect().top)) return this.logoContainer.classList.add('wrapped')

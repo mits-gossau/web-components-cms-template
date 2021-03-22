@@ -138,7 +138,8 @@ export default class Header extends Shadow() {
   renderHTML () {
     const header = this.root.appendChild(document.createElement('header'))
     Array.from(this.root.children).forEach(node => {
-      if (node !== header) header.appendChild(node)
+      if (node === header || node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      header.appendChild(node)
     })
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {

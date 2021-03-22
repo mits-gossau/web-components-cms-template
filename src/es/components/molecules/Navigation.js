@@ -44,7 +44,8 @@ export default class Navigation extends Shadow() {
     this.nav = document.createElement('nav')
     this.nav.hidden = true
     Array.from(this.root.children).forEach(node => {
-      if (!node.getAttribute('slot')) this.nav.appendChild(node)
+      if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      this.nav.appendChild(node)
     })
     this.root.appendChild(this.nav)
   }
@@ -97,6 +98,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li > a-arrow {
         display: none;
+        user-select: none;
         visibility: hidden;
       }
       :host > nav > ul li ul{
