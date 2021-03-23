@@ -18,6 +18,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *    source [string]
  *    type [string] e.g. image/jpg, image/webp, etc.
  *  }, {...}, {...}]
+ *  {string} [title] title-text for the image
  * }
  * @css {
  *  --width [100%]
@@ -92,7 +93,7 @@ export default class Video extends Shadow() {
           width="100%" height="100%"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowfullscreen
-          title="Koooooooter"
+          title="${this.getAttribute('title')}"
         >`
       })
     }
