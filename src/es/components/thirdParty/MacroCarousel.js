@@ -18,6 +18,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {boolean} [loop=false]
  *  {boolean} [navigation=false]
  *  {boolean} [pagination=false]
+ *  {number} [slides-per-view=1]
  * }
  * @css {
  *  --content-width [100%]

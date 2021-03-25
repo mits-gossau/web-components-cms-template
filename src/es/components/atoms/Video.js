@@ -20,27 +20,23 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  }, {...}, {...}] analog: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
  * }
  * @css {
-var(--filter, none);
-var(--display, block);
-var(--width, unset);
-var(--height, unset);
-var(--overflow, initial);
-var(--transition, none);
-var(--margin, 0);
-var(--transform, none);
-var(--filter-hover, var(--filter, none));
-var(--video-display, inline);
-var(--video-width, 100%);
-var(--video-min-width);
-var(--video-max-width, 100%);
-var(--video-height, auto);
-var(--video-min-height, 100%);
-var(--video-max-height);
-var(--video-object-fit, cover);
-var(--transition-mobile, none);
-var(--transform-mobile, none);
-var(--filter-mobile, none);
-var(--width-mobile, 100%);
+ *  --display [block]
+ *  --filter [none]
+ *  --height [auto]
+ *  --margin [0 auto]
+ *  --max-height
+ *  --max-width [100%]
+ *  --min-height [100%]
+ *  --min-width
+ *  --transform [none]
+ *  --transition [none]
+ *  --width [100%]
+ *  --filter-hover [none]
+ *  --video-object-fit [cover]
+ *  --filter-mobile [none]
+ *  --transform-mobile [none]
+ *  --transition-mobile [none]
+ *  --width-mobile [100%]
  * }
  */
 export default class Video extends Shadow() {
@@ -79,37 +75,32 @@ export default class Video extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-    :host {
-      filter: var(--filter, none);
+    :host video, :host iframe {
       display: var(--display, block);
-      width: var(--width, unset);
-      height: var(--height, unset);
-      overflow: var(--overflow, initial);
-      transition: var(--transition, none);
-      margin: var(--margin, 0);
+      filter: var(--filter, none);
+      height: var(--height, auto);
+      margin: var(--margin, 0 auto);
+      max-height: var(--max-height);
+      max-width: var(--max-width, 100%);
+      min-height: var(--min-height, 100%);
+      min-width: var(--min-width);
+      outline: var(--outline, none);
       transform: var(--transform, none);
+      transition: var(--transition, none);
+      width: var(--width, 100%);
     }
-    :host:hover {
+    :host video:hover, :host iframe:hover {
       filter: var(--filter-hover, var(--filter, none));
     }
-    :host video, :host iframe {
-      display: var(--video-display, inline);
-      width: var(--video-width, 100%);
-      min-width: var(--video-min-width);
-      max-width: var(--video-max-width, 100%);
-      height: var(--video-height, auto);
-      min-height: var(--video-min-height, 100%);
-      max-height: var(--video-max-height);
-    }
-    :host video, :host iframe {
+    :host video {
       object-fit: var(--video-object-fit, cover);
     }
 
     @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-      :host {
-        transition: var(--transition-mobile, none);
-        transform: var(--transform-mobile, none);
+      :host video, :host iframe {
         filter: var(--filter-mobile, none);
+        transform: var(--transform-mobile, none);
+        transition: var(--transition-mobile, none);
         width: var(--width-mobile, 100%);
       }
     }
@@ -132,6 +123,12 @@ export default class Video extends Shadow() {
 
     if (this.sources && this.sources.every(i => {
       if (i.src !== '' && i.type !== '') return this.video.innerHTML += `<source src="${i.src}" type="${i.type}">`
-    })) this.html = this.video
+    }) || this.video.querySelector('source')) {
+      // forward all attributes
+      Array.from(this.attributes).forEach(attribute => {
+        if (attribute.name) this.video.setAttribute(attribute.name, attribute.value || 'true')
+      })
+      this.html = this.video
+    }
   }
 }

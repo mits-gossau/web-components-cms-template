@@ -20,8 +20,43 @@
         }
       </style>
       <main>
-          <a-video sources="[{'src':'bahh', 'type':'mp4'}]">
+          <a-video>
+            <style>
+              :host {
+                --width: 300px;
+                --height: 200px;
+                --filter: grayscale(100%);
+                --filter-hover: grayscale(0%);
+              }
+            </style>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/J---aiyznGQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </a-video>
+          <hr />
+          <a-video>
+            <style>
+              :host {
+                --width: 100%;
+                --height: 400px;
+                --filter: grayscale(0%);
+                --filter-hover: grayscale(100%);
+              }
+            </style>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/J---aiyznGQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </a-video>
+          <hr />
+          <a-video controls>
+            <source type="video/mp4" src="https://gateway.ipfs.io/ipfs/QmRjXPrLb4wyvNQNfqaeZxT7tchAcznbTJimdey8aLRmJ9?filename=no_coast_drift_hd_stock_video.mp4">
+          </a-video>
+          <hr />
+          <a-video controls sources="[{'src':'https://gateway.ipfs.io/ipfs/QmRjXPrLb4wyvNQNfqaeZxT7tchAcznbTJimdey8aLRmJ9?filename=no_coast_drift_hd_stock_video.mp4', 'type':'video/mp4'}]">
+            <style>
+              :host {
+                --width: 200px;
+                --filter: grayscale(100%);
+                --filter-hover: grayscale(0%);
+                --outline: 2px pink solid;
+              }
+            </style>
           </a-video>
         </third-party-macro-carousel>
       </main> 
