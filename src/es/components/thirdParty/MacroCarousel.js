@@ -19,6 +19,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {boolean} [navigation=false]
  *  {boolean} [pagination=false]
  *  {number} [slides-per-view=1]
+ *  {number} [slides-per-view-mobile=1]
  * }
  * @css {
  *  --content-width [100%]
@@ -55,14 +56,29 @@ export default class MacroCarousel extends Shadow() {
     })
     // forward all attributes
     Array.from(this.attributes).forEach(attribute => {
-      if (attribute.name) this.macroCarousel.setAttribute(attribute.name, attribute.value || 'true')
+      if (attribute.name) {
+        // only grab the slides-per-view-mobile if mobile else without
+        if (attribute.name.includes('slides-per-view')) {
+          this.macroCarousel.setAttribute('slides-per-view', this.getAttribute(`slides-per-view${this.getMedia()}`) || '1')
+        } else {
+          this.macroCarousel.setAttribute(attribute.name, attribute.value || 'true')
+        }
+      }
     })
+    this.resizeListener = event => {
+      this.macroCarousel.setAttribute('slides-per-view', this.getAttribute(`slides-per-view${this.getMedia()}`) || '1')
+    }
     this.interval = null
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+    self.addEventListener('resize', this.resizeListener)
+  }
+
+  disconnectedCallback () {
+    self.removeEventListener('resize', this.resizeListener)
   }
 
   /**
@@ -200,6 +216,12 @@ export default class MacroCarousel extends Shadow() {
   setInterval () {
     clearInterval(this.interval)
     this.interval = setInterval(() => this.macroCarousel.next(), Number(this.getAttribute('interval')))
+  }
+
+  getMedia () {
+    // @ts-ignore ignoring self.Environment error
+    const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+    return self.matchMedia(`(min-width: calc(${breakpoint} + 1px))`).matches ? '' : '-mobile'
   }
 
   get scripts () {
