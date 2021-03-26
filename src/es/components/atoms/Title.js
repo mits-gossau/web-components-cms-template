@@ -48,7 +48,7 @@ export default class Title extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host{
+      :host {
         margin: var(--margin, min(9vw, 60px) 0 0 0);
       }
       :host h1{

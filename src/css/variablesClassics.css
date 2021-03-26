@@ -46,6 +46,7 @@ html {
   --h2-line-height: normal;
   --h2-text-align: var(--h1-text-align);
   --h2-text-transform: uppercase;
+  --h2-margin: 15% auto 0 auto;
   --h3-text-align: var(--h1-text-align);
   --h3-font-size: 1rem;
   --h3-margin: 30px auto 0 auto;
@@ -55,6 +56,7 @@ html {
   --header-background-color: var(--background-color); 
   --header-color: var(--color);
   --header-content-spacing: var(--content-spacing);
+  --header-content-spacing-mobile: 20px;
   --header-content-width-mobile: var(--content-width-mobile);
   --header-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
   --header-content-width-not-web-component: var(--content-width-not-web-component);
@@ -71,16 +73,9 @@ html {
   --header-logo-margin: 10px 0 0;
   --header-logo-max-height: max(100px, 5vw);
   --header-padding: 0;
-  --header-picture-filter: var(--picture-filter);
-  --header-picture-img-width: var(--picture-img-width);
-  --header-picture-margin: 30px auto 45px;
-  --header-picture-margin: var(--picture-margin);
-  --header-picture-transition: var(--picture-transition);
-  --header-picture-width-mobile: var(--picture-width-mobile);
-  --header-picture-width: var(--picture-width);
   --header-position: static;
   --header-text-align: center;
-  --header-title-margin: 0;
+  --header-title-margin: 0 auto 30px auto;
   --header-title-color-secondary: var(--color-secondary);
   --header-title-font-family-bold: var(--font-family-bold);
   --highlight-list-border-bottom: none;
@@ -90,7 +85,6 @@ html {
   --highlight-list-content-width: 80%;
   --highlight-list-flex-direction: column;
   --hr-color: transparent;
-  --img-max-width: 65%;
   --line-height-mobile: 1.4rem;
   --margin: 0;
   --navigation-background-color: var(--header-background-color); 
@@ -104,12 +98,9 @@ html {
   --a-display: block;
   --a-text-align: center;
   --p-text-align: center;
-  --picture-filter: grayscale(100%);
-  --picture-img-width: 100%;
-  --picture-margin: 30px auto;
-  --picture-transition: filter 0.8s ease;
-  --picture-width-mobile: 100%;
-  --picture-width: 100%;
+  --picture-width: 40%;
+  --picture-margin: 10px auto 0 auto;
+  --picture-display: block;
   --text-decoration-a: underline;
   --text-underline-offset-a: 0.2em;
   --section-width-mobile: var(--content-width-not-web-component-mobile);

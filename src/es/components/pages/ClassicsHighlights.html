@@ -14,11 +14,11 @@
 </head>
 <body>
   <p-general>
-    <o-header namespace="header-">
+    <o-header namespace="header-" role="header">
       <a-title namespace="header-title-">Highlights</a-title>
     </o-header>
     <o-body>
-      <main>
+      <main role="main">
         <!-- @silvan kannst du hier mal einen slider mit test-content einfügen? -->
         <div style="width: 100vw; height: 500px; background-color: #ffff00; color: #009fe3;display: flex;justify-content: center;align-items: center;">
           <p style="font-weight: bold;font-size: 30px;">Slider goes here</p>
@@ -29,10 +29,19 @@
         <!-- @silvan using a-link throws error in shadow.js:202 -->
         <!-- @silvan should i add the same styles from body.js to link.js? link.js uses different variables/values -->
         <a href="#">Mehr erfahren</a>
+
+        <h2>Aktuell</h2>
+        <a-picture namespace=picture- defaultSource="../../../img/Classics_Joana-Mallwitz.png" alt="Joana Mallwitz" loading="lazy"></a-picture>
+        <h3>Joanna Mallwitz im Gespräch</h3>
+        <p>Sie ist die erste Dirigentin, die bei den Salzburger Festspielen eine Oper dirigiert: Joana Mallwitz, 34 Jahre alt, Leidenschaftliche Mozart-Liebhaberin.</p>
+        <a href="#">Zum Gespräch</a>
+        
+        <h2>Programm</h2>
+        <p>Die Saison- und Abendprogramme von Migros-Kulturprozent-Classics der letzten Jahre stehen hier für den Download bereit</p>
       </main>
     </o-body>
-    <o-footer>
-
+    <o-footer role="footer">
+      <h1>Footer</h1>
     </o-footer>
   </p-general>
   <script rel=preload type=module>
