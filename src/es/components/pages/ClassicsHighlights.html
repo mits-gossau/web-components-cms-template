@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang=de>
+<head>
+  <meta charset=UTF-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="Erfahre hier die neusten Informationen über die Klub-Konzerte des Migros-Kulturprozent-Classics.">
+  <link href=../../../favicon/classics/FAVICON_CLASSICS_YELLOW.ico rel="shortcut icon" type=image/x-icon>
+  <link href=../../../css/variablesClassics.css rel=stylesheet>
+  <link href=../../../css/misc.css rel=stylesheet>
+  <link href=../../../css/fonts.css rel=stylesheet>
+  <!-- NOTE: Remove line Debugging.js below for none localhost -->
+  <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <title>Classics</title>
+</head>
+<body>
+  <p-general>
+    <o-header namespace="header-" role="header">
+      <a-title namespace="header-title-">Highlights</a-title>
+    </o-header>
+    <o-body>
+      <main role="main">
+        <!-- @silvan kannst du hier mal einen slider mit test-content einfügen? -->
+        <div style="width: 100vw; height: 500px; background-color: #ffff00; color: #009fe3;display: flex;justify-content: center;align-items: center;">
+          <p style="font-weight: bold;font-size: 30px;">Slider goes here</p>
+        </div>
+
+        <h3>Daniel Müller-Schott</h3>
+        <p>Der Münchner Cellist Daniel Müller-Schott wurde als Gewinner des Ersten Preises beim Tschaikowsky-Wettbewerb in Moskau 1992 bekannt und durfte als Preisträger der <br>Anne-Sophie-Mutter-Stiftung unter anderem ein Jahr lang mit Mtislav Rostropowitsch studieren.</p>
+        <!-- @silvan using a-link throws error in shadow.js:202 -->
+        <!-- @silvan should i add the same styles from body.js to link.js? link.js uses different variables/values -->
+        <a href="#">Mehr erfahren</a>
+
+        <h2>Aktuell</h2>
+        <a-picture namespace=picture- defaultSource="../../../img/Classics_Joana-Mallwitz.png" alt="Joana Mallwitz" loading="lazy"></a-picture>
+        <h3>Joanna Mallwitz im Gespräch</h3>
+        <p>Sie ist die erste Dirigentin, die bei den Salzburger Festspielen eine Oper dirigiert: Joana Mallwitz, 34 Jahre alt, Leidenschaftliche Mozart-Liebhaberin.</p>
+        <a href="#">Zum Gespräch</a>
+        
+        <h2>Programm</h2>
+        <p>Die Saison- und Abendprogramme von Migros-Kulturprozent-Classics der letzten Jahre stehen hier für den Download bereit</p>
+      </main>
+    </o-body>
+    <o-footer role="footer">
+      <h1>Footer</h1>
+    </o-footer>
+  </p-general>
+  <script rel=preload type=module>
+    self.Environment = {
+      mobileBreakpoint: '600px'
+    }
+
+    /**
+    * First level controllers and organisms are loaded and defined here (loadChildComponents)
+    */
+    Promise.all([
+    // Controllers
+    import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
+    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
+    import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
+    import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
+    import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
+    import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
+    import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
+    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
+    import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
+    import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
+    import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
+    import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
+    ]).then(elements => elements.forEach(element => {
+      // don't define already existing customElements
+      if (element && !customElements.get(element[0])) customElements.define(...element)
+    }))
+  </script>
+  <!-- fonts -->
+  <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
+  <!-- /fonts -->
+</body>
+</html>
