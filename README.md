@@ -6,6 +6,7 @@ A complete, ultra flexible web components template for any cms rendering engine
 1. @joel: Classics CSS + HTML page example based on [sketch](https://www.sketch.com/s/a7fc25f0-4297-4c38-832e-6c61ef4e1860/a/rb9PqPq)
 1. Fullscreen modal / message hint
 1. PDF Component http://bencreasy.com/object-versus-embed/
+1. Cancelled Component
 1. Snapshot Testing eg. [jest](https://jestjs.io/docs/snapshot-testing)
 1. language switch if browser lang disagrees with domain lang
 1. Web Component analyzer/editor/tester
