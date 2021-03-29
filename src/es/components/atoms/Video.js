@@ -121,9 +121,10 @@ export default class Video extends Shadow() {
       if (node.nodeName === 'SOURCE') this.video.appendChild(node)
     })
 
-    if (this.sources && this.sources.every(i => {
-      if (i.src !== '' && i.type !== '') return this.video.innerHTML += `<source src="${i.src}" type="${i.type}">`
-    }) || this.video.querySelector('source')) {
+    if ((this.sources && this.sources.every(i => {
+      if (i.src !== '' && i.type !== '') return (this.video.innerHTML += `<source src="${i.src}" type="${i.type}">`)
+      return false
+    })) || this.video.querySelector('source')) {
       // forward all attributes
       Array.from(this.attributes).forEach(attribute => {
         if (attribute.name) this.video.setAttribute(attribute.name, attribute.value || 'true')

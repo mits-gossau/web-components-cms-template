@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
+/* global CustomEvent */
 
 /**
  * Picture

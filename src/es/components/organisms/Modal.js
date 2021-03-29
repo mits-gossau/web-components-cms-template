@@ -1,9 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global self */
-/* global Link */
-/* global customElements */
+/* global HTMLElement */
 
 /**
  * Modal is sticky and hosts uls
@@ -35,7 +33,7 @@ export default class Modal extends Shadow() {
     // TODO: closeIcon, animation, align content, docs
     this.clickListener = event => this.removeAttribute('open')
   }
-  
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML();
@@ -47,7 +45,7 @@ export default class Modal extends Shadow() {
     (this.hasAttribute('listen-at-body') ? document.body : this).removeEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener)
     this.removeEventListener('click', this.clickListener)
   }
-  
+
   attributeChangedCallback (name, oldValue, newValue) {
     if (name === 'open') document.body.classList[this.hasAttribute('open') ? 'add' : 'remove'](this.getAttribute('no-scroll') || 'no-scroll')
   }
