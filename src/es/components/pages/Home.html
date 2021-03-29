@@ -246,6 +246,7 @@
     </style>
   </msrc-cookie-banner>
   <c-tag-manager id=UA-38442413-12></c-tag-manager>
+  <o-modal class="open"><span>Hello Modal</span></o-modal>
   <script rel=preload type=module>
     self.Environment = {
       mobileBreakpoint: '600px'
@@ -267,7 +268,8 @@
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
     import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default]),
     import('../../../es/components/msrc/CookieBanner.js').then(module => ['msrc-cookie-banner', module.default]),
-    import('../../../es/components/controllers/TagManager.js').then(module => ['c-tag-manager', module.default])
+    import('../../../es/components/controllers/TagManager.js').then(module => ['c-tag-manager', module.default]),
+    import('../../../es/components/organisms/Modal.js').then(module => ['o-modal', module.default]),
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)
