@@ -18,9 +18,17 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Modal extends Shadow() {
+  static get observedAttributes () {
+    return ['open']
+  }
+  
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+  }
+  
+  attributeChangedCallback (name, oldValue, newValue) {
+    if (name === 'open') document.body.classList[this.hasAttribute('open') ? 'add' : 'remove'](this.getAttribute('no-scroll') || 'no-scroll')
   }
 
   /**
@@ -51,7 +59,7 @@ export default class Modal extends Shadow() {
       :host > section {
         display: none;
       }
-      :host(.open) > section {
+      :host([open]) > section {
         background-color: var(--background-color, rgba(0, 0, 0, 0.8));
         display: var(--display, block);
         height: var(--height, 100%);
@@ -76,6 +84,5 @@ export default class Modal extends Shadow() {
       this.modal.appendChild(node)
     })
     this.html = this.modal
-    console.log('changed', this.classList);
   }
 }

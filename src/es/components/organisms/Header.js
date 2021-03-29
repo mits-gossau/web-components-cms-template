@@ -33,6 +33,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {boolean} [show]
  *  {string} mobile-breakpoint
  *  {boolean} [menu-icon=false]
+ *  {string} [no-scroll="no-scroll"]
  * }
  */
 export default class Header extends Shadow() {
@@ -147,12 +148,12 @@ export default class Header extends Shadow() {
         MenuIcon.addEventListener('click', event => {
           header.classList.toggle('open')
           const isOpen = header.classList.contains('open')
-          document.body.classList[isOpen ? 'add' : 'remove']('no-scroll')
+          document.body.classList[isOpen ? 'add' : 'remove'](this.getAttribute('no-scroll') || 'no-scroll')
         })
         header.appendChild(MenuIcon)
       })
     }
-    self.addEventListener('resize', event => document.body.classList.remove('no-scroll'))
+    self.addEventListener('resize', event => document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
   }
 
   /**

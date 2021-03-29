@@ -17,6 +17,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} href used for the link reference
  *  {string} mobile-breakpoint
  *  {string} alt
+ *  {string} [logo-load="logo-load"]
  * }
  * @css {
  *  --content-spacing [40px]
@@ -143,7 +144,7 @@ export default class Logo extends Shadow() {
     // calculated css style
     this.img.addEventListener('load', event => {
       this.resizeListener(event)
-      this.dispatchEvent(new CustomEvent('logo-load', {
+      this.dispatchEvent(new CustomEvent(this.getAttribute('logo-load') || 'logo-load', {
         bubbles: true,
         cancelable: true,
         composed: true
