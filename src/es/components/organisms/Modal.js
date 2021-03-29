@@ -21,10 +21,31 @@ export default class Modal extends Shadow() {
   static get observedAttributes () {
     return ['open']
   }
+
+  constructor (...args) {
+    super(...args)
+
+    this.appendChildListener = event => {
+      if (event.detail.child && event.detail.child instanceof HTMLElement) {
+        this.section.innerHTML = ''
+        this.section.appendChild(event.detail.cloneNode ? event.detail.child.cloneNode() : event.detail.child)
+        this.setAttribute('open', '')
+      }
+    }
+    // TODO: closeIcon, animation, align content, docs
+    this.clickListener = event => this.removeAttribute('open')
+  }
   
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.shouldComponentRenderHTML()) this.renderHTML()
+    if (this.shouldComponentRenderHTML()) this.renderHTML();
+    (this.hasAttribute('listen-at-body') ? document.body : this).addEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener)
+    this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    (this.hasAttribute('listen-at-body') ? document.body : this).removeEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener)
+    this.removeEventListener('click', this.clickListener)
   }
   
   attributeChangedCallback (name, oldValue, newValue) {
@@ -46,7 +67,7 @@ export default class Modal extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return !this.modal
+    return !this.section
   }
 
   /**
@@ -78,11 +99,11 @@ export default class Modal extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.modal = document.createElement('section')
+    this.section = document.createElement('section')
     Array.from(this.root.children).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
-      this.modal.appendChild(node)
+      this.section.appendChild(node)
     })
-    this.html = this.modal
+    this.html = this.section
   }
 }

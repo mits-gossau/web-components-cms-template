@@ -23,6 +23,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [defaultSource] the default source for the img-tag
  *  {string} [alt] alt-text for the image
  *  {string} [loading=lazy] image loading
+ *  {string} [click-modal=n.a.] does emit event append-child which can be reacted on by eg. organisms/Modal.js
+ *  {string} [append-child=""] defines the emitted event name
  * }
  * @css {
  *  --width [100%]
@@ -42,11 +44,26 @@ export default class Picture extends Shadow() {
     this.sources = (this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources'))) || null
     this.defaultSource = this.getAttribute('defaultSource') ? this.getAttribute('defaultSource') : ''
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
+
+    this.clickListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('append-child') || 'append-child', {
+      detail: {
+        child: this,
+        cloneNode: true
+      },
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }))
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+    if (this.hasAttribute('click-modal')) this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    if (this.hasAttribute('click-modal')) this.removeEventListener('click', this.clickListener)
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
