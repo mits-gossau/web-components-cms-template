@@ -19,12 +19,29 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} alt
  * }
  * @css {
- *  --content-spacing [40px]
- *  --height  [85px]
- *  --height-mobile [50px]
- *  --height [calc(var(--height , 85px) - var(--content-spacing, 40px))]
- *  --max-height [none]
+ *  --height [85px - var(--content-spacing, 40px)]
+ *  --align-items [center]
+ *  --align-self [auto]
+ *  --flex-flow [row]
+ *  --justify-content [center]
  *  --margin [0px]
+ *  --height [calc(var(--height, 85px) - var(--content-spacing, 40px))]
+ *  --max-height [none]
+ *  --width [auto]
+ *  --max-width [80vw]
+ *  --text-box-sizing [content-box]
+ *  --text-color [pink]
+ *  --text-font-size [1rem]
+ *  --text-line-height [normal]
+ *  --text-padding [0]
+ *  --text-margin [0]
+ *  --text-a-color [green]
+ *  --text-a-text-decoration [none]
+ *  --text-a-color-hover [green]
+ *  --text-a-text-decoration-hover [none]
+ *  --height-mobile [65px]
+ *  --max-height-mobile [none]
+ *  --width-mobile [auto]
  * }
  */
 export default class Logo extends Shadow() {
@@ -101,7 +118,7 @@ export default class Logo extends Shadow() {
         max-width: var(--max-width, 80vw);
       }
       ${this.textSelector}{
-        box-sizing: border-box;
+        box-sizing: var(--text-box-sizing, content-box);
         color: var(--text-color, pink);
         font-size: var(--text-font-size, 1rem);
         line-height: var(--text-line-height, normal);

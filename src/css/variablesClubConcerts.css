@@ -108,7 +108,7 @@ html {
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
   --p-date-text-transform: uppercase;
-  --p-margin: 0;
+  --p-text-align: center;
   --picture-filter-hover: none;
   --picture-filter: grayscale(100%);
   --picture-img-width: 100%;
