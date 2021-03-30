@@ -46,10 +46,10 @@ html {
   --h2-line-height: normal;
   --h2-text-align: var(--h1-text-align);
   --h2-text-transform: uppercase;
-  --h2-margin: 15% auto 0 auto;
+  --h2-margin: 0 auto;
   --h3-text-align: var(--h1-text-align);
   --h3-font-size: 1rem;
-  --h3-margin: 30px auto 0 auto;
+  --h3-margin: 0 auto;
   --h3-text-transform: uppercase;
   --h4-text-align: var(--h1-text-align);
   --h5-text-align: var(--h1-text-align);
@@ -87,6 +87,8 @@ html {
   --hr-color: transparent;
   --line-height-mobile: 1.4rem;
   --margin: 0;
+  --module-wrapper-margin: 15% 0 0 0;
+  --module-wrapper-margin-mobile: 20% 0 0 0;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
   --navigation-color: var(--color-secondary);
@@ -101,6 +103,8 @@ html {
   --picture-width: 40%;
   --picture-margin: 10px auto 0 auto;
   --picture-display: block;
+  --video-width: var(--picture-width);
+  --video-margin: var(--picture-margin);
   --text-decoration-a: underline;
   --text-underline-offset-a: 0.2em;
   --section-width-mobile: var(--content-width-not-web-component-mobile);
