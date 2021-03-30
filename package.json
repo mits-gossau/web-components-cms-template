@@ -4,11 +4,13 @@
   "description": "A Web Component collection for CMS templates",
   "main": "./index.html",
   "scripts": {
-    "fix": "standard --fix"
+    "fix": "standard --fix",
+    "test": "./node_modules/.bin/backstop test --config='backstop.config.js'"
   },
   "author": "weedshaker@gmail.com, https://github.com/joeljxse",
   "license": "MIT",
   "devDependencies": {
+    "backstopjs": "^5.3.0",
     "standard": "*"
   }
 }
