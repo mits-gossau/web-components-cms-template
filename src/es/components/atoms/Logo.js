@@ -118,7 +118,7 @@ export default class Logo extends Shadow() {
         max-width: var(--max-width, 80vw);
       }
       ${this.textSelector}{
-        box-sizing: var(--text-box-sizing, content-box);
+        box-sizing: var(--text-box-sizing, border-box);
         color: var(--text-color, pink);
         font-size: var(--text-font-size, 1rem);
         line-height: var(--text-line-height, normal);
