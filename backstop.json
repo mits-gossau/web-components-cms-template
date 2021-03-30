@@ -2,19 +2,9 @@
   "id": "backstop_default",
   "viewports": [
     {
-      "label": "tiny",
-      "width": 150,
-      "height": 480
-    },
-    {
       "label": "phone",
       "width": 320,
       "height": 480
-    },
-    {
-      "label": "tablet",
-      "width": 1024,
-      "height": 768
     },
     {
       "label": "desktop",
@@ -30,9 +20,9 @@
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:4200/src/es/components/pages/ClubConcerts.html",
       "referenceUrl": "",
-      "readyEvent": "",
+      "readyEvent": "test-ready",
       "readySelector": "",
-      "delay": 0,
+      "delay": 1000,
       "hideSelectors": [],
       "removeSelectors": [],
       "hoverSelector": "",
