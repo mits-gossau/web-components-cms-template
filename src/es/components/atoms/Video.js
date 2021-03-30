@@ -78,7 +78,7 @@ export default class Video extends Shadow() {
     :host video, :host iframe {
       display: var(--display, block);
       filter: var(--filter, none);
-      height: var(--height, auto);
+      /*height: var(--height, auto);*/
       margin: var(--margin, 0 auto);
       max-height: var(--max-height);
       max-width: var(--max-width, 100%);

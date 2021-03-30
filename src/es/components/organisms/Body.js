@@ -54,8 +54,8 @@ export default class Body extends Shadow() {
         background-color: var(--background-color, white);
         grid-area: body;
       }
-      :host > main > *:not(.module-wrapper),
-      :host > main > .module-wrapper > * {
+      :host > main > *:not([no-default-style="true"]):not(.module-wrapper),
+      :host > main > .module-wrapper > *:not([no-default-style="true"]) {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
@@ -146,8 +146,8 @@ export default class Body extends Shadow() {
       }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host > main > *:not(.module-wrapper),
-        :host > main > .module-wrapper > * {
+        :host > main > *:not([no-default-style="true"]):not(.module-wrapper),
+        :host > main > .module-wrapper > *:not([no-default-style="true"]) {
           margin: 0 auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
         }

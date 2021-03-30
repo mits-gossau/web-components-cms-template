@@ -13,7 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class PlaylistItem
  * @type {CustomElementConstructor}
  * @attribute {
- *  
+ *  {boolean} [top-border-first-child] show top border on first playlist-item
  * }
  * @css {
  *  
@@ -40,8 +40,29 @@ export default class Highlight extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
+      :host {
+        display: block;
+        width: var(--width, 80%);
+        margin: var(--margin, unset auto);
+      }
+      :host > *:first-child {
+        border-top: ${this.getAttribute("top-border-first-child") === "true" ? "var(--border-top, unset)" : "unset"};
+      }
+      :host > * {
+        border-bottom: var(--border-bottom, unset);
+      }
+      
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        
+        :host {
+          width: var(--width-mobile, var(--width, 100%));
+          margin: var(--margin-mobile, var(--margin, unset auto));
+        }
+        :host > *:first-child {
+          border-top: ${this.getAttribute("top-border-first-child") === "true" ? "var(--border-top-mobile, var(--border-top, unset))" : "unset"};
+        }
+        :host > * {
+          border-bottom: var(--border-bottom-mobile, var(--border-bottom, unset));
+        }
       }
     `
   }
