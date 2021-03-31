@@ -4,11 +4,22 @@
   "description": "A Web Component collection for CMS templates",
   "main": "./index.html",
   "scripts": {
-    "fix": "standard --fix"
+    "fix": "standard --fix",
+    "serve": "live-server --port=4200 --host=localhost",
+    "test": "./node_modules/.bin/backstop test",
+    "test-approve": "./node_modules/.bin/backstop approve",
+    "test-reference": "./node_modules/.bin/backstop reference"
   },
   "author": "weedshaker@gmail.com, https://github.com/joeljxse",
   "license": "MIT",
   "devDependencies": {
+    "backstopjs": "^5.3.0",
+    "live-server": "^1.2.1",
     "standard": "*"
+  },
+  "standard": {
+    "ignore": [
+      "/backstop_data/"
+    ]
   }
 }
