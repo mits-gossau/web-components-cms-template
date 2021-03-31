@@ -54,12 +54,12 @@ export default class Body extends Shadow() {
         background-color: var(--background-color, white);
         grid-area: body;
       }
-      :host > main > *:not([no-default-style="true"]):not(.module-wrapper),
-      :host > main > .module-wrapper > *:not([no-default-style="true"]) {
+
+      :host > main > * {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
-      :host > main > div:not(.module-wrapper), :host > main > span, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5,
+      :host > main > div, :host > main > span, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5,
       :host > main > .module-wrapper > div, :host > main > .module-wrapper > span, :host > main > .module-wrapper > p, :host > main > .module-wrapper > ul, :host > main > .module-wrapper > ol, :host > main > .module-wrapper > section, :host > main > .module-wrapper > h1, :host > main > .module-wrapper > h2, :host > main > .module-wrapper > h3, :host > main > .module-wrapper > h4, :host > main > .module-wrapper > h5 {
         width: var(--content-width-not-web-component, 80%);
       }

@@ -115,4 +115,10 @@ html {
   --text-underline-offset-a: 0.2em;
   --video-margin: var(--picture-margin);
   --video-width: var(--picture-width);
+  --carousel-pagination-position: absolute;
+  --carousel-pagination-bottom: 10px;
+  --carousel-pagination-background-color: var(--color-secondary);
+  --carousel-pagination-background-color-selected: white;
+  --carousel-pagination-width: 10px;
+  --carousel-transition-duration: 1.6s;
 }

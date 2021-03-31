@@ -76,9 +76,10 @@ export default class Video extends Shadow() {
   renderCSS () {
     this.css = /* css */`
     :host video, :host iframe {
+      ${this.getAttribute("height") ? `height: ${this.getAttribute("height")}` : ""}
+      ${this.getAttribute("width") ? `width: ${this.getAttribute("width")}` : ""}
       display: var(--display, block);
       filter: var(--filter, none);
-      /*height: var(--height, auto);*/
       margin: var(--margin, 0 auto);
       max-height: var(--max-height);
       max-width: var(--max-width, 100%);
@@ -87,7 +88,6 @@ export default class Video extends Shadow() {
       outline: var(--outline, none);
       transform: var(--transform, none);
       transition: var(--transition, none);
-      width: var(--width, 100%);
     }
     :host video:hover, :host iframe:hover {
       filter: var(--filter-hover, var(--filter, none));
