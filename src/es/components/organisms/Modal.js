@@ -23,15 +23,25 @@ export default class Modal extends Shadow() {
   constructor (...args) {
     super(...args)
 
+    this.childNodeClone = null
     this.appendChildListener = event => {
       if (event.detail.child && event.detail.child instanceof HTMLElement) {
         this.section.innerHTML = ''
-        this.section.appendChild(event.detail.cloneNode ? event.detail.child.cloneNode() : event.detail.child)
+        event.detail.child.replaceWith(this.childNodeClone = event.detail.child.cloneNode(true))
+        this.childNodeClone.setAttribute('clone', true)
+        this.section.appendChild(event.detail.child)
         this.setAttribute('open', '')
       }
     }
     // TODO: closeIcon, animation, align content, docs
-    this.clickListener = event => this.removeAttribute('open')
+    this.clickListener = event => {
+      this.removeAttribute('open')
+      if (this.childNodeClone && this.childNode) {
+        console.log('changed', this.childNodeClone.getAttribute('clone'), this.childNode.getAttribute('clone'), this.childNodeClone === this.childNode);
+        this.childNodeClone.replaceWith(this.childNode)
+        this.childNodeClone = null
+      }
+    }
   }
 
   connectedCallback () {
@@ -104,5 +114,9 @@ export default class Modal extends Shadow() {
       this.section.appendChild(node)
     })
     this.html = this.section
+  }
+
+  get childNode () {
+    return this.section.childNodes[0]
   }
 }
