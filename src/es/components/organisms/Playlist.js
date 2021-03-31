@@ -40,15 +40,12 @@ export default class Highlight extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host {
-        display: block;
-        width: var(--width, 80%);
-        margin: var(--margin, unset auto);
-      }
       :host > *:first-child {
+        margin: var(--margin-first-child, unset); 
         border-top: ${this.getAttribute("top-border-first-child") === "true" ? "var(--border-top, unset)" : "unset"};
       }
       :host > * {
+        width: var(--width, 80%);
         border-bottom: var(--border-bottom, unset);
       }
       

@@ -51,7 +51,7 @@ html {
   --h2-text-align: var(--h1-text-align);
   --h2-text-transform: uppercase;
   --h3-font-size: 1rem;
-  --h3-margin: 0 auto;
+  --h3-margin: 15px;
   --h3-text-align: var(--h1-text-align);
   --h3-text-transform: uppercase;
   --h4-text-align: var(--h1-text-align);
@@ -113,7 +113,7 @@ html {
   --section-width-mobile: var(--content-width-not-web-component-mobile);
   --text-decoration-a: underline;
   --text-underline-offset-a: 0.2em;
-  --video-margin: var(--picture-margin);
+  --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
   --carousel-pagination-position: absolute;
   --carousel-pagination-bottom: 10px;
@@ -121,4 +121,5 @@ html {
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-width: 10px;
   --carousel-transition-duration: 1.6s;
+  --playlist-margin-first-child: 30px 0 0 0;
 }

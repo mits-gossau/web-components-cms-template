@@ -18,11 +18,12 @@ import { Shadow } from '../prototypes/Shadow.js'
  *    source [string]
  *    type [string?=undefined] e.g. image/jpg, image/webp, etc.
  *  }, {...}, {...}] analog: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
+ *  {string} [width]
+ *  {string} [height]
  * }
  * @css {
  *  --display [block]
  *  --filter [none]
- *  --height [auto]
  *  --margin [0 auto]
  *  --max-height
  *  --max-width [100%]
@@ -30,7 +31,6 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --min-width
  *  --transform [none]
  *  --transition [none]
- *  --width [100%]
  *  --filter-hover [none]
  *  --video-object-fit [cover]
  *  --filter-mobile [none]
