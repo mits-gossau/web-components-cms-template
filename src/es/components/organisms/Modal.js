@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global HTMLElement */
+/* global self */
 
 /**
  * Modal is sticky and hosts uls
@@ -22,22 +23,22 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [open-modal=open-modal] event name to which to listen to
  *  {string} [no-scroll=no-scroll] class to be set on body when modal is open
  * }
- * @css { 
- * --background-color, rgba(0, 0, 0, 0.8) 
- * --height, 100% 
- * --padding, min(50px, 4vw) 
- * --position, fixed 
- * --top, 0 
- * --width, 100% 
- * --z-index, 9999 
- * --align-items, start 
- * --display, flex 
- * --flex-direction, row 
- * --justify-content, center 
- * --close-margin, 0 10px 
- * --padding-mobile, min(50px, 4vw) 
- * --align-items-mobile, start 
- * --flex-direction-mobile, row 
+ * @css {
+ * --background-color, rgba(0, 0, 0, 0.8)
+ * --height, 100%
+ * --padding, min(50px, 4vw)
+ * --position, fixed
+ * --top, 0
+ * --width, 100%
+ * --z-index, 9999
+ * --align-items, start
+ * --display, flex
+ * --flex-direction, row
+ * --justify-content, center
+ * --close-margin, 0 10px
+ * --padding-mobile, min(50px, 4vw)
+ * --align-items-mobile, start
+ * --flex-direction-mobile, row
  * --justify-content-mobile, center
  * }
  */
