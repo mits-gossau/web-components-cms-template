@@ -46,23 +46,23 @@ export default class Modal extends Shadow() {
       }
     }
   }
-  
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML();
     (this.getAttribute('listen-at') ? document.querySelector(this.getAttribute('listen-at')) : document.body).addEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener);
     (this.closeBtn ? this.closeBtn : this).addEventListener('click', this.clickListener)
   }
-  
+
   disconnectedCallback () {
     (this.getAttribute('listen-at') ? document.querySelector(this.getAttribute('listen-at')) : document.body).removeEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener);
     (this.closeBtn ? this.closeBtn : this).removeEventListener('click', this.clickListener)
   }
-  
+
   attributeChangedCallback (name, oldValue, newValue) {
     if (name === 'open') document.body.classList[this.hasAttribute('open') ? 'add' : 'remove'](this.getAttribute('no-scroll') || 'no-scroll')
   }
-  
+
   /**
    * evaluates if a render is necessary
    *
@@ -71,7 +71,7 @@ export default class Modal extends Shadow() {
   shouldComponentRenderCSS () {
     return !this.root.querySelector('style[_css]')
   }
-  
+
   /**
    * evaluates if a render is necessary
    *
