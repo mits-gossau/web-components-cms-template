@@ -5,6 +5,9 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
+  --a-display: block;
+  --a-margin: 0 auto;
+  --a-text-align: center;
   --background-color: #009fe3;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color-secondary);
@@ -44,19 +47,19 @@ html {
   --h2-font-size: 3rem;
   --h2-line-height-mobile: var(--h2-line-height);
   --h2-line-height: normal;
+  --h2-margin: 0 auto;
   --h2-text-align: var(--h1-text-align);
   --h2-text-transform: uppercase;
-  --h2-margin: 15% auto 0 auto;
-  --h3-text-align: var(--h1-text-align);
   --h3-font-size: 1rem;
-  --h3-margin: 30px auto 0 auto;
+  --h3-margin: 15px;
+  --h3-text-align: var(--h1-text-align);
   --h3-text-transform: uppercase;
   --h4-text-align: var(--h1-text-align);
   --h5-text-align: var(--h1-text-align);
   --header-background-color: var(--background-color); 
   --header-color: var(--color);
-  --header-content-spacing: var(--content-spacing);
   --header-content-spacing-mobile: 20px;
+  --header-content-spacing: var(--content-spacing);
   --header-content-width-mobile: var(--content-width-mobile);
   --header-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
   --header-content-width-not-web-component: var(--content-width-not-web-component);
@@ -75,9 +78,9 @@ html {
   --header-padding: 0;
   --header-position: static;
   --header-text-align: center;
-  --header-title-margin: 0 auto 30px auto;
   --header-title-color-secondary: var(--color-secondary);
   --header-title-font-family-bold: var(--font-family-bold);
+  --header-title-margin: 0 auto 30px auto;
   --highlight-list-border-bottom: none;
   --highlight-list-border-top: none;
   --highlight-list-content-spacing: 40px 0;
@@ -86,22 +89,37 @@ html {
   --highlight-list-flex-direction: column;
   --hr-color: transparent;
   --line-height-mobile: 1.4rem;
+  --li-margin: 0 12px;
   --margin: 0;
+  --module-wrapper-margin-mobile: 20% 0 0 0;
+  --module-wrapper-margin: 15% 0 0 0;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
   --p-date-text-transform: uppercase;
+  --padding: 15px 0;
   --p-margin: 0 auto;
-  --a-margin: 0 auto;
-  --a-display: block;
-  --a-text-align: center;
+  --p-line-height: var(--font-size);
   --p-text-align: center;
-  --picture-width: 40%;
-  --picture-margin: 10px auto 0 auto;
   --picture-display: block;
+  --picture-margin: 10px auto 0 auto;
+  --picture-width: 40%;
+  --playlist-width: 100%;
+  --playlist-margin: 30px 0 10% 0;
+  --playlist-border-top: 2px solid white; 
+  --playlist-border-bottom: 2px solid white;
+  --section-width-mobile: var(--content-width-not-web-component-mobile);
   --text-decoration-a: underline;
   --text-underline-offset-a: 0.2em;
-  --section-width-mobile: var(--content-width-not-web-component-mobile);
+  --video-margin: 70px auto 0 auto;
+  --video-width: var(--picture-width);
+  --carousel-pagination-position: absolute;
+  --carousel-pagination-bottom: 10px;
+  --carousel-pagination-background-color: var(--color-secondary);
+  --carousel-pagination-background-color-selected: white;
+  --carousel-pagination-width: 10px;
+  --carousel-transition-duration: 1.6s;
+  --playlist-margin-first-child: 30px 0 0 0;
 }

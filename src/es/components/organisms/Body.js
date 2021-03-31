@@ -131,6 +131,10 @@ export default class Body extends Shadow() {
         text-align: var(--outro-text-text-align, center);
         margin-top: var(--outro-text-margin-top, 100px);
       }
+      .spacer {
+        display: block;
+        height: var(--spacer-height, 15vw);
+      }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > main > * {
@@ -177,6 +181,9 @@ export default class Body extends Shadow() {
         }
         .outro-text {
           margin-top: var(--outro-text-margin-top-mobile, 50px);
+        }
+        .spacer {
+          height: var(--spacer-height-mobile, 15vw);
         }
       }
     `

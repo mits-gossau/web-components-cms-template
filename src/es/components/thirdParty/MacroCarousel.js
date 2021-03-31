@@ -107,9 +107,6 @@ export default class MacroCarousel extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host > macro-carousel {
-        --height: auto;
-        --width: auto;
-        --width-mobile: auto;
         width: var(--content-width, 100%);
         margin: var(--margin, 0 auto);
       }
@@ -160,7 +157,7 @@ export default class MacroCarousel extends Shadow() {
         --macro-carousel-navigation-icon-size: var(--navigation-icon-size, 24px);
         --macro-carousel-navigation-icon-mask: var(--navigation-icon-mask, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E %3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E %3C/svg%3E"));
       }
-    `
+    `.replace(/var\(--/g, `var(--${this.namespace}`)
   }
 
   /**
