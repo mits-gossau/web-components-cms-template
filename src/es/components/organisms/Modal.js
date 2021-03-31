@@ -21,45 +21,48 @@ export default class Modal extends Shadow() {
   }
 
   constructor (...args) {
-    super(...args)
+    super({ mode: 'open' }, ...args)
 
-    this.childNodeClone = null
+    this.clone = null
     this.appendChildListener = event => {
-      if (event.detail.child && event.detail.child instanceof HTMLElement) {
+      event.stopImmediatePropagation()
+      let child
+      if (!this.clone && (child = event.detail.child) && child instanceof HTMLElement) {
         this.section.innerHTML = ''
-        event.detail.child.replaceWith(this.childNodeClone = event.detail.child.cloneNode(true))
-        this.childNodeClone.setAttribute('clone', true)
-        this.section.appendChild(event.detail.child)
-        this.setAttribute('open', '')
+        // clone node to have a placeholder keeping the space a picture would occupy
+        child.replaceWith(this.clone = child.cloneNode())
+        this.section.appendChild(child)
       }
+      if (this.closeBtn) this.section.appendChild(this.closeBtn)
+      this.setAttribute('open', '')
     }
-    // TODO: closeIcon, animation, align content, docs
     this.clickListener = event => {
       this.removeAttribute('open')
-      if (this.childNodeClone && this.childNode) {
-        console.log('changed', this.childNodeClone.getAttribute('clone'), this.childNode.getAttribute('clone'), this.childNodeClone === this.childNode);
-        this.childNodeClone.replaceWith(this.childNode)
-        this.childNodeClone = null
+      if (this.closeBtn) this.appendChild(this.closeBtn)
+      let child
+      if (this.clone && (child = this.section.childNodes[0])) {
+        this.clone.replaceWith(child)
+        this.clone = null
       }
     }
   }
-
+  
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML();
-    (this.hasAttribute('listen-at-body') ? document.body : this).addEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener)
-    this.addEventListener('click', this.clickListener)
+    (this.getAttribute('listen-at') ? document.querySelector(this.getAttribute('listen-at')) : document.body).addEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener);
+    (this.closeBtn ? this.closeBtn : this).addEventListener('click', this.clickListener)
   }
-
+  
   disconnectedCallback () {
-    (this.hasAttribute('listen-at-body') ? document.body : this).removeEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener)
-    this.removeEventListener('click', this.clickListener)
+    (this.getAttribute('listen-at') ? document.querySelector(this.getAttribute('listen-at')) : document.body).removeEventListener(this.getAttribute('append-child') || 'append-child', this.appendChildListener);
+    (this.closeBtn ? this.closeBtn : this).removeEventListener('click', this.clickListener)
   }
-
+  
   attributeChangedCallback (name, oldValue, newValue) {
     if (name === 'open') document.body.classList[this.hasAttribute('open') ? 'add' : 'remove'](this.getAttribute('no-scroll') || 'no-scroll')
   }
-
+  
   /**
    * evaluates if a render is necessary
    *
@@ -68,7 +71,7 @@ export default class Modal extends Shadow() {
   shouldComponentRenderCSS () {
     return !this.root.querySelector('style[_css]')
   }
-
+  
   /**
    * evaluates if a render is necessary
    *
@@ -84,6 +87,7 @@ export default class Modal extends Shadow() {
    * @return {void}
    */
   renderCSS () {
+    // TODO: animation, align content, flex-direction,... , docs
     this.css = /* css */`
       :host > section {
         display: none;
@@ -110,13 +114,14 @@ export default class Modal extends Shadow() {
   renderHTML () {
     this.section = document.createElement('section')
     Array.from(this.root.children).forEach(node => {
+      if (node.id === 'close') {
+        // move close btn outside of shadow
+        this.appendChild(this.closeBtn = node)
+        return false
+      }
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       this.section.appendChild(node)
     })
     this.html = this.section
-  }
-
-  get childNode () {
-    return this.section.childNodes[0]
   }
 }

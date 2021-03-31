@@ -48,8 +48,7 @@ export default class Picture extends Shadow() {
 
     this.clickListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('append-child') || 'append-child', {
       detail: {
-        child: this,
-        cloneNode: true
+        child: this
       },
       bubbles: true,
       cancelable: true,
