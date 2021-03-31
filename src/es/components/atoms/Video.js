@@ -76,8 +76,8 @@ export default class Video extends Shadow() {
   renderCSS () {
     this.css = /* css */`
     :host video, :host iframe {
-      ${this.getAttribute("height") ? `height: ${this.getAttribute("height")}` : ""}
-      ${this.getAttribute("width") ? `width: ${this.getAttribute("width")}` : ""}
+      ${this.getAttribute('height') ? `height: ${this.getAttribute('height')}` : ''}
+      ${this.getAttribute('width') ? `width: ${this.getAttribute('width')}` : ''}
       display: var(--display, block);
       filter: var(--filter, none);
       margin: var(--margin, 0 auto);

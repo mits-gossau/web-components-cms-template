@@ -13,13 +13,27 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class PlaylistItem
  * @type {CustomElementConstructor}
  * @attribute {
- *  
+ *
  * }
  * @css {
- *  
+ * --text-align, center
+ * --padding, 0
+ * --text-transform, uppercase
+ * --p-margin, 0
+ * --p-line-height, normal
+ * --h4-margin, 0
+ * --h4-font-family, var(--font-family-bold)
+ * --ul-flex-direction, row
+ * --ul-justify-content, center
+ * --ul-margin, 0
+ * --ul-padding, 0
+ * --ul-list-style-type, none
+ * --li-margin, unset
+ * --ul-justify-content-mobile, space-around
+ * --li-margin-mobile, unset
  * }
  */
-export default class Highlight extends Shadow() {
+export default class PlaylistItem extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
@@ -34,7 +48,7 @@ export default class Highlight extends Shadow() {
   }
 
   /**
-   * renders the m-Highlight css
+   * renders the m-PlaylistItem css
    *
    * @return {void}
    */
@@ -42,7 +56,7 @@ export default class Highlight extends Shadow() {
     this.css = /* css */`
       :host {
         display: block;
-        text-align: center;
+        text-align: var(--text-align, center);
         padding: var(--padding, 0);
       }
       :host p, :host h4, :host ul li {
@@ -59,17 +73,17 @@ export default class Highlight extends Shadow() {
       :host ul {
         display: flex;
         flex-direction: var(--ul-flex-direction, row);
-        justify-content: var(--justify-content, center);
+        justify-content: var(--ul-justify-content, center);
         margin: var(--ul-margin, 0);
         padding: var(--ul-padding, 0);
-        list-style-type: var(--list-style-type, none);
+        list-style-type: var(--ul-list-style-type, none);
       }
       :host ul li {
         margin: var(--li-margin, unset);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host ul {
-          justify-content: var(--justify-content-mobile, space-around);
+          justify-content: var(--ul-justify-content-mobile, space-around);
         }
         :host ul li {
           margin: var(--li-margin-mobile, unset);

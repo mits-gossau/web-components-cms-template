@@ -13,13 +13,20 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class PlaylistItem
  * @type {CustomElementConstructor}
  * @attribute {
- *  {boolean} [top-border-first-child] show top border on first playlist-item
+ *  {boolean} [border-top-first-child] show top border on first playlist-item
  * }
  * @css {
- *  
+ * --margin-first-child, unset
+ * --border-top, unset)" : "unset
+ * --width, 80
+ * --border-bottom, unset
+ * --width-mobile, var(--width, 100%
+ * --margin-mobile, var(--margin, unset auto
+ * --border-top-mobile, var(--border-top, unset))" : "unset
+ * --border-bottom-mobile, var(--border-bottom, unset
  * }
  */
-export default class Highlight extends Shadow() {
+export default class Playlist extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
@@ -34,7 +41,7 @@ export default class Highlight extends Shadow() {
   }
 
   /**
-   * renders the m-Highlight css
+   * renders the m-Playlist css
    *
    * @return {void}
    */
@@ -42,7 +49,7 @@ export default class Highlight extends Shadow() {
     this.css = /* css */`
       :host > *:first-child {
         margin: var(--margin-first-child, unset); 
-        border-top: ${this.getAttribute("top-border-first-child") === "true" ? "var(--border-top, unset)" : "unset"};
+        border-top: ${this.getAttribute('border-top-first-child') === 'true' ? 'var(--border-top, unset)' : 'unset'};
       }
       :host > * {
         width: var(--width, 80%);
@@ -55,7 +62,7 @@ export default class Highlight extends Shadow() {
           margin: var(--margin-mobile, var(--margin, unset auto));
         }
         :host > *:first-child {
-          border-top: ${this.getAttribute("top-border-first-child") === "true" ? "var(--border-top-mobile, var(--border-top, unset))" : "unset"};
+          border-top: ${this.getAttribute('border-top-first-child') === 'true' ? 'var(--border-top-mobile, var(--border-top, unset))' : 'unset'};
         }
         :host > * {
           border-bottom: var(--border-bottom-mobile, var(--border-bottom, unset));

@@ -132,6 +132,7 @@ export default class Body extends Shadow() {
         margin-top: var(--outro-text-margin-top, 100px);
       }
       .spacer {
+        display: block;
         height: var(--spacer-height, 15vw);
       }
 
