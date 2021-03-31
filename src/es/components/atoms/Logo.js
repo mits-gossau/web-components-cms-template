@@ -139,6 +139,11 @@ export default class Logo extends Shadow() {
           max-height: var(--max-height-mobile, none);
           width: var(--width-mobile, auto);
         }
+        ${this.textSelector}{
+          box-sizing: var(--text-box-sizing-mobile, border-box);
+          font-size: var(--text-font-size-mobile, 1rem);
+          padding: var(--text-padding-mobile, 0);
+        }
       }
     `
   }
