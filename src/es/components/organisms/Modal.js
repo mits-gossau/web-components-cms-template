@@ -80,6 +80,7 @@ export default class Modal extends Shadow() {
       }
       :host([open]) > section {
         background-color: var(--background-color, rgba(0, 0, 0, 0.8));
+        box-sizing: border-box;
         display: var(--display, block);
         height: var(--height, 100%);
         padding: var(--padding, min(50px, 4vw));
