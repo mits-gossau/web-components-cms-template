@@ -48,7 +48,8 @@ export default class Logo extends Shadow() {
   constructor (...args) {
     super(...args)
 
-    this.textSelector = ':host > :not(img):not(a):not(style)'
+    this.textSelector = ':not(img):not(a):not(style)'
+    this.setAttribute('lang', document.documentElement.getAttribute('lang') || 'de')
 
     let timeout = null
     this.resizeListener = event => {
@@ -56,7 +57,7 @@ export default class Logo extends Shadow() {
       timeout = setTimeout(() => {
         if (this.text) {
           this.css = /* css */`
-          ${this.textSelector}{
+          :host > ${this.textSelector}{
             width: ${this.img.getBoundingClientRect().width}px;
           }
         `
@@ -117,7 +118,7 @@ export default class Logo extends Shadow() {
         width: var(--width, auto);
         max-width: var(--max-width, 80vw);
       }
-      ${this.textSelector}{
+      :host > ${this.textSelector}{
         box-sizing: var(--text-box-sizing, border-box);
         color: var(--text-color, pink);
         font-size: var(--text-font-size, 1rem);
@@ -125,11 +126,17 @@ export default class Logo extends Shadow() {
         padding: var(--text-padding, 0);
         margin: var(--text-margin, 0);
       }
-      ${this.textSelector} a{
+      :host([lang="en"]) > ${this.textSelector}{
+        padding: var(--text-padding-en, var(--text-padding, 0));
+      }
+      :host([lang="fr"]) > ${this.textSelector}{
+        padding: var(--text-padding-fr, var(--text-padding, 0));
+      }
+      :host > ${this.textSelector} a{
         color: var(--text-a-color, green);
         text-decoration: var(--text-a-text-decoration, none);
       }
-      ${this.textSelector} a:hover{
+      :host > ${this.textSelector} a:hover{
         color: var(--text-a-color-hover, green);
         text-decoration: var(--text-a-text-decoration-hover, none);
       }
@@ -139,10 +146,16 @@ export default class Logo extends Shadow() {
           max-height: var(--max-height-mobile, none);
           width: var(--width-mobile, auto);
         }
-        ${this.textSelector}{
+        :host > ${this.textSelector}{
           box-sizing: var(--text-box-sizing-mobile, border-box);
           font-size: var(--text-font-size-mobile, 1rem);
           padding: var(--text-padding-mobile, 0);
+        }
+        :host([lang="en"]) > ${this.textSelector}{
+          padding: var(--text-padding-mobile-en, var(--text-padding-mobile, 0));
+        }
+        :host([lang="fr"]) > ${this.textSelector}{
+          padding: var(--text-padding-mobile-fr, var(--text-padding-mobile, 0));
         }
       }
     `

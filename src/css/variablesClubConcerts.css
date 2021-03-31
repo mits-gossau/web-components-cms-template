@@ -46,7 +46,6 @@ html {
   --footer-logo-text-font-size-mobile: var(--footer-a-link-font-size-mobile);
   --footer-logo-text-font-size: var(--footer-a-link-font-size);
   --footer-logo-text-line-height: 1.4em;
-  --footer-logo-text-padding: 0 0 0 32.5%;
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
   --footer-padding-top-mobile: 3vh;
