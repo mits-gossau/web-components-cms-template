@@ -46,7 +46,7 @@ export default class Picture extends Shadow() {
     this.defaultSource = this.getAttribute('defaultSource') ? this.getAttribute('defaultSource') : ''
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
 
-    this.clickListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('append-child') || 'append-child', {
+    this.clickListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('open-modal') || 'open-modal', {
       detail: {
         child: this
       },
