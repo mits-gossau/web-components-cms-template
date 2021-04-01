@@ -29,6 +29,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --max-height [none]
  *  --width [auto]
  *  --max-width [80vw]
+ *  --position [static]
  *  --text-box-sizing [content-box]
  *  --text-color [pink]
  *  --text-font-size [1rem]
@@ -101,7 +102,7 @@ export default class Logo extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host{
+      :host {
         align-items: var(--align-items, center);
         align-self: var(--align-self, auto);
         display: flex;
@@ -109,6 +110,7 @@ export default class Logo extends Shadow() {
         justify-content: var(--justify-content, center);
         box-sizing: border-box;
         margin: var(--margin, 0px);
+        position: var(--position, static);
       }
       :host img{
         display: block;
@@ -141,6 +143,11 @@ export default class Logo extends Shadow() {
         text-decoration: var(--text-a-text-decoration-hover, none);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          position: var(--position-mobile, static);
+          align-self: var(--align-self-mobile, center);
+          margin: var(--margin-mobile, 0);
+        }
         :host img{
           height: var(--height-mobile, 65px);
           max-height: var(--max-height-mobile, none);
