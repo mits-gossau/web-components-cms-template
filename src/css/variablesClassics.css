@@ -56,6 +56,7 @@ html {
   --h3-text-transform: uppercase;
   --h4-text-align: var(--h1-text-align);
   --h5-text-align: var(--h1-text-align);
+  --h6-text-align: var(--h1-text-align);
   --header-background-color: var(--background-color); 
   --header-color: var(--color);
   --header-content-spacing-mobile: 20px;
@@ -113,6 +114,7 @@ html {
   --section-width-mobile: var(--content-width-not-web-component-mobile);
   --text-decoration-a: underline;
   --text-underline-offset-a: 0.2em;
+  --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
   --carousel-pagination-position: absolute;

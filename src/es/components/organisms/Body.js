@@ -111,6 +111,16 @@ export default class Body extends Shadow() {
         text-transform: var(--h5-text-transform, normal);
         margin: var(--h5-margin, var(--content-spacing, unset)) auto;
       }
+      :host > main h6 {
+        color: var(--h6-color, var(--color, black));
+        font-size: var(--h6-font-size, min(1.5rem, 10vw));
+        font-family: var(--h6-font-family, var(--font-family-secondary));
+        line-height: var(--h6-line-height, normal);
+        text-align: var(--h6-text-align, start);
+        word-break: var(--h6-word-break, normal);
+        text-transform: var(--h6-text-transform, normal);
+        margin: var(--h6-margin, var(--content-spacing, unset)) auto;
+      }
       :host > main p {
         font-family: var(--font-family-secondary);
         text-align: var(--p-text-align, start);
@@ -126,6 +136,10 @@ export default class Body extends Shadow() {
       }
       :host > main a:hover {
         color: var(--a-color-hover, var(--color-hover-secondary, green));
+      }
+
+      :host > main ul {
+        text-align: var(--ul-text-align, start);
       }
       .outro-text {
         text-align: var(--outro-text-text-align, center);
@@ -178,6 +192,13 @@ export default class Body extends Shadow() {
           word-break: var(--h5-word-break-mobile, var(--h5-word-break, normal));
           text-transform: var(--h5-text-transform-mobile, var(--h5-text-transform, normal));
           margin: var(--h5-margin-mobile, var(--h5-margin));
+        }
+        :host > main h6 {
+          font-size: var(--h6-font-size-mobile, var(--h6-font-size, min(1.5rem, 14vw)));
+          line-height: var(--h6-line-height-mobile, var(--h6-line-height, normal));
+          word-break: var(--h6-word-break-mobile, var(--h6-word-break, normal));
+          text-transform: var(--h6-text-transform-mobile, var(--h6-text-transform, normal));
+          margin: var(--h6-margin-mobile, var(--h6-margin));
         }
         .outro-text {
           margin-top: var(--outro-text-margin-top-mobile, 50px);
