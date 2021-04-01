@@ -137,6 +137,10 @@ export default class Body extends Shadow() {
       :host > main a:hover {
         color: var(--a-color-hover, var(--color-hover-secondary, green));
       }
+
+      :host > main ul {
+        text-align: var(--ul-text-align, start);
+      }
       .outro-text {
         text-align: var(--outro-text-text-align, center);
         margin-top: var(--outro-text-margin-top, 100px);
