@@ -27,6 +27,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --list-style [none]
  *  --align-items [start]
  *  --font-size [1rem]
+ *  --p-margin [0]
  * }
  */
 export default class Footer extends Shadow() {
@@ -211,6 +212,37 @@ export default class Footer extends Shadow() {
         }
       `
       /* ----------------------------------------------------------------------------- */
+
+      /* ----------------------------------------- CLASSICS CSS ------------------------------------------------- */
+    } else if (this.getAttribute('theme') === 'classics') {
+      this.css = /* css */`
+        :host > footer {
+          display: var(--display, flex);
+          justify-content: var(--justify-content, flex-end);
+          flex-direction: var(--flex-direction, row);
+        }
+        :host > footer ul {
+          flex-grow: 1;
+          list-style-type: none;
+          padding: var(--ul-padding, 0);
+          margin: var(--ul-margin, 30px auto);
+        }
+        :host > footer ul > li {
+          text-align: center;
+        }
+        :host > footer ul > li p {
+          margin: var(--p-margin, 0);
+        }
+        @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+          :host > footer {
+            flex-direction: var(--flex-direction-mobile, column);
+          }
+          :host > footer ul {
+            margin: var(--ul-margin-mobile, 10px auto);
+          }
+        }
+      `
+      /* ----------------------------------------------------------------------------- */
     } else {
       this.css = /* css */`
         :host ul {
@@ -255,9 +287,9 @@ export default class Footer extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
+    this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).reverse().forEach(a => {
       const li = a.parentElement
-      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
+      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || ''})
       aLink.setAttribute('text-transform', 'uppercase')
       a.replaceWith(aLink)
       li.prepend(aLink)
