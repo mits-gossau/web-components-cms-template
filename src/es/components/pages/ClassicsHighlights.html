@@ -18,7 +18,7 @@
       <a-title namespace="header-title-">Highlights</a-title>
     </o-header>
     <o-body>
-      <main role="main">
+      <main>
         <third-party-macro-carousel pagination loop interval="5000" namespace="carousel-">
           <a-picture defaultSource="https://picsum.photos/1200/316" alt="randomized image" sources='[{
             "src": "https://picsum.photos/770/544",
@@ -202,7 +202,7 @@
         </o-playlist>
       </main>
     </o-body>
-    <o-footer role="footer" theme="classics" namespace="footer-">
+    <o-footer theme="classics" namespace="footer-">
       <ul>
         <li><p>© 2021 Migros-Kulturprozent</p></li>
         <li><p><a href="#">Newsletter bestellen</a></p></li>
@@ -210,14 +210,25 @@
         <br>
         <li>
           <p>
-            <a href="#">Impressum<span>, </span></a>
-            <a href="#">Datenschutz<span>, </span></a>
-            <a href="#">Rechtliche Hinweise<span>, </span></a>
-            <a href="#">Kontakt</a>
+            <a-link namespace="footer-" text-transform="uppercase">
+              <a href="#">Impressum</a>
+              <span>, </span>
+            </a-link>
+            <a-link namespace="footer-" text-transform="uppercase">
+              <a href="#">Datenschutz</a>
+              <span>, </span>
+            </a-link>
+            <a-link namespace="footer-" text-transform="uppercase">
+              <a href="#">Rechtliche Hinweise</a>
+              <span>, </span>
+            </a-link>
+            <a-link namespace="footer-" text-transform="uppercase">
+              <a href="#">Kontakt</a>
+            </a-link>
           </p>
         </li>
       </ul>
-      <a-logo src=../../../img/ClubConcertLogo.svg alt="Kulturprozent Classics Logo" href="#" namespace="footer-logo-"></a-logo>
+      <a-logo src=../../../img/ClubConcertLogo_cyan.svg alt="Kulturprozent Classics Logo" href="#" namespace="footer-logo-"></a-logo>
     </o-footer>
   </p-general>
   <script rel=preload type=module>

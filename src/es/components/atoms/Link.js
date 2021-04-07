@@ -82,7 +82,7 @@ export default class Link extends Shadow() {
         :host > a {
           display: var(--a-display-mobile, block);
         }
-        :host > a span {
+        :host > span {
           display: none;
         }
       }
