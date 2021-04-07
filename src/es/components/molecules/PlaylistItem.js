@@ -59,34 +59,43 @@ export default class PlaylistItem extends Shadow() {
         text-align: var(--text-align, center);
         padding: var(--padding, 0);
       }
+      :host > * {
+        margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+        width: var(--content-width, 80%);
+      }
       :host p, :host h4, :host ul li {
         text-transform: var(--text-transform, uppercase);
       }
       :host p {
-        margin: var(--p-margin, 0);
+        margin: var(--p-margin, 0) auto;
         line-height: var(--p-line-height, normal);
       }
       :host h4 {
-        margin: var(--h4-margin, 0);
+        margin: var(--h4-margin, 0) auto;
         font-family: var(--h4-font-family, var(--font-family-bold));
       }
       :host ul {
         display: flex;
         flex-direction: var(--ul-flex-direction, row);
+        flex-wrap: var(--ul-flex-wrap, wrap);
         justify-content: var(--ul-justify-content, center);
-        margin: var(--ul-margin, 0);
+        margin: var(--ul-margin, 0) auto;
         padding: var(--ul-padding, 0);
         list-style-type: var(--ul-list-style-type, none);
       }
       :host ul li {
-        margin: var(--li-margin, unset);
+        margin: var(--li-margin, 0 5px);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > * {
+          margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+          width: var(--content-width-mobile, 90%);
+        }
         :host ul {
           justify-content: var(--ul-justify-content-mobile, space-around);
         }
         :host ul li {
-          margin: var(--li-margin-mobile, unset);
+          margin: var(--li-margin-mobile, 0 5px);
         }
       }
     `
