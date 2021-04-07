@@ -50,6 +50,7 @@ html {
   --footer-min-height: 50px;
   --footer-padding-top-mobile: 3vh;
   --footer-padding-top: 5vh;
+  --footer-text-align: center;
   --h1-text-align: center;
   --h2-font-size-mobile: min(2.5rem, 14vw);
   --h2-font-size: 3rem;
