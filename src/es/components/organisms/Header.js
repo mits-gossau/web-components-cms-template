@@ -110,20 +110,21 @@ export default class Header extends Shadow() {
         :host > header > m-navigation {
           left: 0;
           height: var(--m-navigation-height-mobile, 0);
-          max-height: var(--m-navigation-max-height-mobile, calc(100vh - var(--height-mobile, 50px)));
           overflow: hidden;
           position: var(--m-navigation-position-mobile, absolute);
-          transition: var(--m-navigation-transition, height 0.2s ease);
+          transition: var(--m-navigation-transition, all 0.2s ease);
           top: var(--height-mobile, 50px);
           width: 100%;
         }
         :host > header.open > m-navigation{
           height: var(--m-navigation-height-open-mobile, 100vh);
-          max-height: var(--m-navigation-max-height-open-mobile, none);
           overflow-y: var(--m-navigation-overflow-y-open-mobile, auto);
         }
         :host  > header > a-menu-icon{
-          display: block;
+          display: var(--a-menu-icon-display-mobile, block);
+        }
+        :host  > header.open > a-menu-icon{
+          display: var(--a-menu-icon-display-open-mobile, block);
         }
         :host > header > a-logo{
           flex-grow: 1;
@@ -148,8 +149,11 @@ export default class Header extends Shadow() {
         const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '' })
         MenuIcon.addEventListener('click', event => {
           header.classList.toggle('open')
-          const isOpen = header.classList.contains('open')
-          document.body.classList[isOpen ? 'add' : 'remove'](this.getAttribute('no-scroll') || 'no-scroll')
+          const prop = header.classList.contains('open') ? 'add' : 'remove'
+          document.body.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
+          Array.from(header.children).forEach(node => {
+            node.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
+          })
         })
         header.appendChild(MenuIcon)
       })

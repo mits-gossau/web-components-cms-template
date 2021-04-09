@@ -71,6 +71,7 @@ export default class Link extends Shadow() {
         text-align: var(--text-align, left);
         text-decoration: none;
         text-transform: var(--text-transform, none);
+        transition: var(--transition, all 0.2s ease);
         width: 100%;
       }
       :host > a:hover{

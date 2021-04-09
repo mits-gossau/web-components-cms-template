@@ -74,9 +74,17 @@ export default class Navigation extends Shadow() {
       :host{
         color: black;
       }
-      :host a-link {
+      :host a-link, :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
         --padding: var(--a-link-content-spacing, 14px 10px);
         --font-size: var(--a-link-font-size, 1rem);
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link,
+      ${(this.getAttribute('hover') === 'true' &&
+        `:host > nav > ul li:hover ul a-link,
+        :host > nav > ul li ul:hover a-link,`) || ''}
+      :host > nav > ul li:focus-within ul a-link {
+        --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
+        --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
       }
       :host ul{
         background-color: var(--background-color, black);
@@ -88,7 +96,10 @@ export default class Navigation extends Shadow() {
         align-items: var(--align-items, center);
         display: flex;
         flex-direction: var(--flex-direction, row);
-        padding: calc(var(--content-spacing, 40px) / 2) 0;
+        padding: var(--padding, calc(var(--content-spacing, 40px) / 2) 0);
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul {
+        padding: var(--padding-${this.getAttribute('no-scroll') || 'no-scroll'}, calc(var(--content-spacing, 40px) / 2) 0);
       }
       :host > nav > ul > li{
         display: block;
@@ -103,10 +114,10 @@ export default class Navigation extends Shadow() {
         visibility: hidden;
       }
       :host > nav > ul li ul{
-        display: none;
+        display: var(--li-ul-display, none);
         padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
-        position: absolute;
-        width: max-content;
+        position: var(--li-ul-position, absolute);
+        width: var(--li-ul-width, max-content);
       }
       :host > nav > ul li:last-child ul{
         right: 0;
@@ -134,7 +145,9 @@ export default class Navigation extends Shadow() {
         :host a-link {
           --font-size: var(--a-link-font-size-mobile, 2rem);
           --text-align: var(--a-link-text-align-mobile, center);
-
+        }
+        :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
+          --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, 2rem);
         }
         :host > nav > ul{
           flex-direction: var(--flex-direction-mobile, var(--flex-direction, column));
