@@ -74,17 +74,26 @@ export default class Navigation extends Shadow() {
       :host{
         color: black;
       }
-      :host a-link, :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
+      :host a-link {
         --padding: var(--a-link-content-spacing, 14px 10px);
         --font-size: var(--a-link-font-size, 1rem);
+        --font-weight: var(--a-link-font-weight);
       }
-      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link,
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
+        --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
+        --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
+        --font-weight: var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
+        --font-size: var(--a-link-second-level-font-size, 1rem);
+        --font-weight: var(--a-link-second-level-font-weight);
+      }
       ${(this.getAttribute('hover') === 'true' &&
         `:host > nav > ul li:hover ul a-link,
         :host > nav > ul li ul:hover a-link,`) || ''}
       :host > nav > ul li:focus-within ul a-link {
-        --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
-        --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
+        --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
+        --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
       }
       :host ul{
         background-color: var(--background-color, black);

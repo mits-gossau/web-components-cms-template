@@ -110,6 +110,9 @@ html {
   --navigation-a-link-content-spacing: 0;
   --navigation-a-link-font-size-nav-open: 1rem;
   --navigation-a-link-font-size: 0;
+  --navigation-a-link-second-level-font-size-nav-open: 1rem;
+  --navigation-a-link-second-level-font-size: 0;
+  --navigation-a-link-second-level-font-weight-nav-open: normal;
   --navigation-background-color: var(--header-background-color); 
   --navigation-color-hover: white;
   --navigation-color: var(--color-secondary);
@@ -121,6 +124,7 @@ html {
   --navigation-li-ul-position: static;
   --navigation-li-ul-width: 100%;
   --navigation-padding: 0;
+  --navigation-padding-top: 0;
   --navigation-text-align: center;
   --navigation-transition: font-size 0.3s ease, padding 0.1s ease;
   --p-date-text-transform: uppercase;
