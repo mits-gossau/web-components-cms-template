@@ -13,6 +13,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @export
  * @class Footer
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} [logo-load="logo-load"]
+ * }
  * @css {
  *  NOTE: grid-area: footer;
  *  --background-color [black]
@@ -59,12 +62,12 @@ export default class Footer extends Shadow() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     this.renderHTML()
     self.addEventListener('resize', this.wrappedListener)
-    this.addEventListener('logo-load', this.wrappedListener)
+    this.addEventListener(this.getAttribute('logo-load') || 'logo-load', this.wrappedListener)
   }
 
   disconnectedCallback () {
     self.removeEventListener('resize', this.wrappedListener)
-    this.removeEventListener('logo-load', this.wrappedListener)
+    this.removeEventListener(this.getAttribute('logo-load') || 'logo-load', this.wrappedListener)
   }
 
   /**

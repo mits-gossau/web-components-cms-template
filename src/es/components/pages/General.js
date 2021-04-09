@@ -19,10 +19,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --color [black]
  *  --font-family [FuturaT, (fallback)]
  *  --font-family-bold [OPTIFutura-ExtraBlackCond, (fallback)]
- *
  * }
  * @attribute {
  *  {string} mobile-breakpoint
+ *  {string} [no-scroll="no-scroll"]
  * }
  */
 export default class General extends Shadow() {
@@ -82,7 +82,7 @@ export default class General extends Shadow() {
         overflow-x: hidden;
       }
       /* navigation open */
-      body.no-scroll {
+      body.${this.getAttribute('no-scroll') || 'no-scroll'} {
         overflow: hidden;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {

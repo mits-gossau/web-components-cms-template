@@ -95,11 +95,11 @@
           </style>
           <h1 style="color:pink;">Hello Down!</h1><img src=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fd1w7fb2mkkr3kw.cloudfront.net%2Fassets%2Fimages%2Fbook%2Flrg%2F9781%2F5892%2F9781589256361.jpg&f=1&nofb=1>
         </m-flyer>
-        <m-highlight href=./baaahh>
+        <m-highlight>
           <h5>Demotape Clinic: Sende dein Demo ein! </h5>
           <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
           <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
-          <img src=../../../img/GiuliaDabala.png />
+          <a-picture click-modal loading=eager defaultSource=../../../img/GiuliaDabala.png alt="GiuliaDabala"></a-picture>
         </m-highlight>
         <m-flyer
           direction=left
@@ -108,8 +108,8 @@
         >
           <h1 style="color:blue">Hello Fixed!</h1><img src=https://i.pinimg.com/originals/57/62/ed/5762edaaf446bdcf3fdcf42b79c7ea0f.png>
         </m-flyer>
-        <m-highlight href=#>
-          <img src=../../../img/GiuliaDabala.png />
+        <m-highlight>
+          <a-picture click-modal loading=eager defaultSource=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fexternal-preview.redd.it%2FjIVRt-WRF9LMCPwbublHv_O1Z2T_2vZvjROQojjqcao.jpg%3Fauto%3Dwebp%26s%3D9e391ba27e35c2435003a142e2a663f571ff772f&f=1&nofb=1 alt="flyer"></a-picture>
           <h5>Demotape Clinic: Sende dein Demo ein! </h5>
           <h2>m4music sucht die besten Newcomer-Songs 2021</h2>
           <p>Jetzt anmelden und Awards im Gesamtwert von 17’000 Franken gewinnen</p>
@@ -246,6 +246,7 @@
     </style>
   </msrc-cookie-banner>
   <c-tag-manager id=UA-38442413-12></c-tag-manager>
+  <o-modal transition=500><span id=close style="font-size: 45px;color:red;">&cross;</span><span style="color:white;">If event.detail has no child property holding HTMLElement as value, you will see this</span></o-modal>
   <script rel=preload type=module>
     self.Environment = {
       mobileBreakpoint: '600px'
@@ -267,7 +268,9 @@
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
     import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default]),
     import('../../../es/components/msrc/CookieBanner.js').then(module => ['msrc-cookie-banner', module.default]),
-    import('../../../es/components/controllers/TagManager.js').then(module => ['c-tag-manager', module.default])
+    import('../../../es/components/controllers/TagManager.js').then(module => ['c-tag-manager', module.default]),
+    import('../../../es/components/organisms/Modal.js').then(module => ['o-modal', module.default]),
+    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)

@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
-        "test": "../bitmaps_test/20210331-154703/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
+        "test": "../bitmaps_test/20210407-103934/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
         "selector": "document",
         "fileName": "backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
         "label": "club.migros-kulturprozent-classics.ch",
@@ -20,17 +20,15 @@ report({
             "width": 0,
             "height": 0
           },
-          "misMatchPercentage": "0.20",
-          "analysisTime": 39
-        },
-        "diffImage": "../bitmaps_test/20210331-154703/failed_diff_backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
-        "test": "../bitmaps_test/20210331-154703/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
+        "test": "../bitmaps_test/20210407-103934/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
         "selector": "document",
         "fileName": "backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
         "label": "club.migros-kulturprozent-classics.ch",
