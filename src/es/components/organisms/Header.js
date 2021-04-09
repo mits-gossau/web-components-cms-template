@@ -109,17 +109,18 @@ export default class Header extends Shadow() {
         }
         :host > header > m-navigation {
           left: 0;
-          height: 0;
-          max-height: calc(100vh - var(--height-mobile, 50px));
+          height: var(--m-navigation-height-mobile, 0);
+          max-height: var(--m-navigation-max-height-mobile, calc(100vh - var(--height-mobile, 50px)));
           overflow: hidden;
-          position: absolute;
-          transition: height 0.2s ease;
+          position: var(--m-navigation-position-mobile, absolute);
+          transition: var(--m-navigation-transition, height 0.2s ease);
           top: var(--height-mobile, 50px);
           width: 100%;
         }
         :host > header.open > m-navigation{
-          height: 100vh;
-          overflow-y: auto;
+          height: var(--m-navigation-height-open-mobile, 100vh);
+          max-height: var(--m-navigation-max-height-open-mobile, none);
+          overflow-y: var(--m-navigation-overflow-y-open-mobile, auto);
         }
         :host  > header > a-menu-icon{
           display: block;

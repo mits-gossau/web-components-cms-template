@@ -105,7 +105,14 @@ html {
   --navigation-color-hover: white;
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
+  --navigation-flex-direction: column;
   --navigation-hr-color: var(--navigation-color);
+  --header-m-navigation-position-mobile: static;
+  --header-m-navigation-height-mobile: auto;
+  --header-m-navigation-max-height-mobile: 0px;
+  --header-m-navigation-max-height-open-mobile: 300px;
+  --header-m-navigation-transition: max-height 0.2s ease;
+  --header-m-navigation-overflow-y-open-mobile: hidden;
   --p-date-text-transform: uppercase;
   --p-line-height: var(--font-size);
   --p-margin: 0 auto;

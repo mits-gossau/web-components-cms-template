@@ -87,6 +87,7 @@ export default class Navigation extends Shadow() {
       :host > nav > ul{
         align-items: var(--align-items, center);
         display: flex;
+        flex-direction: var(--flex-direction, row);
         padding: calc(var(--content-spacing, 40px) / 2) 0;
       }
       :host > nav > ul > li{
@@ -136,7 +137,7 @@ export default class Navigation extends Shadow() {
 
         }
         :host > nav > ul{
-          flex-direction: column;
+          flex-direction: var(--flex-direction-mobile, var(--flex-direction, column));
           padding: 0;
         }
         :host > nav > ul li{
