@@ -127,15 +127,16 @@ export default class Body extends Shadow() {
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       :host > main a {
-        color: var(--a-color, var(--color-secondary, pink));
+        color: var(--a-color, var(--color-secondary, var(--color, pink)));
         text-align: var(--a-text-align, unset);
-        text-decoration: var(--text-decoration-a, none);
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
         text-underline-offset: var(--text-underline-offset-a, unset);
         display: var(--a-display, inline);
         margin: var(--a-margin, var(--content-spacing, unset)) auto;
       }
       :host > main a:hover {
-        color: var(--a-color-hover, var(--color-hover-secondary, green));
+        color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
 
       :host > main ul {

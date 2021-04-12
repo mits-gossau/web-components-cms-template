@@ -72,8 +72,13 @@ export default class General extends Shadow() {
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
       }
       html a {
-        color: var(--a-color, var(--color-secondary, blue));
+        color: var(--a-color, var(--color-secondary, var(--color, blue)));
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+      }
+      html a:hover {
+        color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, blue))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
       /* sticky footer */
       body {
