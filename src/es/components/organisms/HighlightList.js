@@ -51,10 +51,10 @@ export default class HighlightList extends Shadow() {
         display: block;
       }
       :host > m-highlight:first-Child {
-        border-top: var(--border-top, 1px solid var(--hr-color, black));
+        border-top: var(--border-top, 1px solid var(--hr-color, var(--color, black)));
       }
       :host > m-highlight {
-        border-bottom: var(--border-bottom, 1px solid var(--hr-color, black));
+        border-bottom: var(--border-bottom, 1px solid var(--hr-color, var(--color, black)));
         display: flex;
         flex-direction: var(--flex-direction, row);
         gap: calc(var(--content-spacing, 40px) / 2);

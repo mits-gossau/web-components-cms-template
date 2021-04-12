@@ -86,7 +86,7 @@ export default class WideTeaser extends Shadow() {
         width: 100%;
       }
       :host(:hover) {
-        background-color: var(--background-color-hover, #810917);
+        background-color: var(--background-color-hover, var(--background-color, #810917));
       }
       :host figure {
         display: flex;
@@ -113,8 +113,13 @@ export default class WideTeaser extends Shadow() {
         display: flex;
       }
       :host .moreLink a {
-        text-decoration: none;
+        color: var(--a-color, var(--color-secondary, var(--color, green)));
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
         font-size: var(--h4-font-size, 1.2rem);
+      }
+      :host .moreLink a:hover {
+        color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
       :host picture, :host figcaption {
         box-sizing: border-box;

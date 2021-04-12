@@ -121,7 +121,7 @@ export default class Logo extends Shadow() {
       }
       :host > ${this.textSelector}{
         box-sizing: var(--text-box-sizing, border-box);
-        color: var(--text-color, pink);
+        color: var(--text-color, var(--color, pink));
         font-size: var(--text-font-size, 1rem);
         line-height: var(--text-line-height, normal);
         padding: var(--text-padding, 0);
@@ -134,12 +134,12 @@ export default class Logo extends Shadow() {
         padding: var(--text-padding-fr, var(--text-padding, 0));
       }
       :host > ${this.textSelector} a{
-        color: var(--text-a-color, green);
-        text-decoration: var(--text-a-text-decoration, none);
+        color: var(--text-a-color, var(--color, green));
+        text-decoration: var(--text-a-text-decoration, var(--text-decoration, none));
       }
       :host > ${this.textSelector} a:hover{
-        color: var(--text-a-color-hover, green);
-        text-decoration: var(--text-a-text-decoration-hover, none);
+        color: var(--text-a-color-hover, var(--color-hover, var(--color, green)));
+        text-decoration: var(--text-a-text-decoration-hover, var(--text-decoration-hover, var(--text-decoration, none)));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host img{

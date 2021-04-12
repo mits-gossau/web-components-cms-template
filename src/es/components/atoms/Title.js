@@ -53,14 +53,14 @@ export default class Title extends Shadow() {
       }
       :host h1{
         text-transform: uppercase;
-        color: var(--color,white);
+        color: var(--color, white);
         font-size: var(--font-size, max(79px, 4vw));
         font-family: var(--font-family-bold, 'OPTIFutura-ExtraBlackCond');
         margin: 0;
         line-height: var(--line-height, max(69px, 3.5vw));
       }
       :host h1 .secondary-color {
-        color: var(--color-secondary, white);
+        color: var(--color-secondary, var(--color, white));
       }
       :host h1 span {
         display: block;

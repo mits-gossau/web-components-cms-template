@@ -145,7 +145,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul > li > ul > li:first-child{
         padding-top: var(--padding-top, 6px);
-        border-top: 1px solid var(--hr-color, white);
+        border-top: 1px solid var(--hr-color, var(--color, white));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
@@ -163,7 +163,7 @@ export default class Navigation extends Shadow() {
           padding: 0;
         }
         :host > nav > ul li{
-          border-top: 1px solid var(--hr-color, white);
+          border-top: 1px solid var(--hr-color, var(--color, white));
           display: flex;
           flex-wrap: wrap;
           justify-content: var(--justify-content-mobile, center);
@@ -171,7 +171,7 @@ export default class Navigation extends Shadow() {
           width: 100%;
         }
         :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
-          --color: var(--a-arrow-color-hover, var(--color-hover, white));
+          --color: var(--a-arrow-color-hover, var(--color-hover, var(--color, white)));
         }
         :host > nav > ul li > a-link{
           flex-grow: 1;
@@ -180,7 +180,7 @@ export default class Navigation extends Shadow() {
           visibility: visible;
         }
         :host > nav > ul > li a-arrow {
-          --color: var(--a-arrow-color, #777);
+          --color: var(--a-arrow-color, var(--color, #777));
           display: block;
           min-height: var(--min-height-mobile, 50px);
           min-width: var(--min-width-mobile, 50px);
