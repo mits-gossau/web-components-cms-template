@@ -58,7 +58,7 @@ export default class Body extends Shadow() {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
-      :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5 {
+      :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5, :host > main > h6 {
         width: var(--content-width-not-web-component, 80%);
       }
       :host > main h1 {
@@ -140,7 +140,10 @@ export default class Body extends Shadow() {
       }
 
       :host > main ul {
-        text-align: var(--ul-text-align, start);
+        text-align: var(--ul-text-align, var(--ol-text-align, start));
+      }
+      :host > main ol {
+        text-align: var(--ol-text-align, var(--ul-text-align, start));
       }
       .outro-text {
         text-align: var(--outro-text-text-align, center);
@@ -156,7 +159,7 @@ export default class Body extends Shadow() {
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
         }
-        :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5 {
+        :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5, :host > main > h6 {
           width: var(--content-width-not-web-component-mobile, 90%);
         }
         :host > main h1 {
