@@ -89,6 +89,10 @@ export default class Header extends Shadow() {
         height: var(--height , 85px);
         justify-content: var(--justify-content , space-between);
         padding: var(--padding, 0 calc(var(--content-spacing, 40px) / 2));
+        transition: var(--transition, all 0.2s ease);
+      }
+      :host > header.open {
+        background-color: var(--background-color-open, var(--background-color, black));
       }
       :host  > header > a-menu-icon{
         display: none;
@@ -121,10 +125,12 @@ export default class Header extends Shadow() {
           overflow-y: var(--m-navigation-overflow-y-open-mobile, auto);
         }
         :host  > header > a-menu-icon{
+          --a-menu-icon-height: var(--a-menu-icon-height);
           display: var(--a-menu-icon-display-mobile, block);
         }
         :host  > header.open > a-menu-icon{
-          display: var(--a-menu-icon-display-open-mobile, block);
+          --a-menu-icon-height: var(--a-menu-icon-height-open-mobile);
+          display: var(--a-menu-icon-display-open-mobile, var(--a-menu-icon-display-mobile, block));
         }
         :host > header > a-logo{
           flex-grow: 1;

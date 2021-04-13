@@ -67,6 +67,7 @@ export default class Link extends Shadow() {
         color: var(--color, red);
         display: var(--display, block);
         font-size: var(--font-size, 1rem);
+        line-height: var(--line-height, normal);
         font-weight: var(--font-weight, 300);
         height: 100%;
         padding: var(--padding, 14px 10px);
@@ -87,6 +88,7 @@ export default class Link extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > a {
           display: var(--display-mobile, var(--display, block));
+          line-height: var(--line-height-mobile, var(--line-height, normal));
         }
         :host > span {
           display: var(--span-display-mobile, var(--span-display, none));
