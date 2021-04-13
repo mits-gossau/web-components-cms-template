@@ -78,15 +78,18 @@ export default class Navigation extends Shadow() {
         --padding: var(--a-link-content-spacing, 14px 10px);
         --font-size: var(--a-link-font-size, 1rem);
         --font-weight: var(--a-link-font-weight);
+        --line-height: var(--a-link-line-height, var(--line-height, normal));
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
         --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
         --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
         --font-weight: var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
+        --line-height: var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--line-height, normal));
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
         --font-size: var(--a-link-second-level-font-size, 1rem);
         --font-weight: var(--a-link-second-level-font-weight);
+        --line-height: var(--a-link-second-level-line-height, var(--line-height, normal));
       }
       ${(this.getAttribute('hover') === 'true' &&
         `:host > nav > ul li:hover ul a-link,
@@ -94,6 +97,7 @@ export default class Navigation extends Shadow() {
       :host > nav > ul li:focus-within ul a-link {
         --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
         --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
+        --line-height: var(--a-link-second-level-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--line-height, normal));
       }
       :host ul{
         background-color: var(--background-color, black);
@@ -154,9 +158,11 @@ export default class Navigation extends Shadow() {
         :host a-link {
           --font-size: var(--a-link-font-size-mobile, 2rem);
           --text-align: var(--a-link-text-align-mobile, center);
+          --line-height: var(--a-link-line-height-mobile, var(--a-link-line-height, var(--line-height-mobile, var(--line-height, normal))));
         }
         :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
           --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, 2rem);
+          --line-height: var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--line-height-mobile, var(--line-height, normal))));
         }
         :host > nav > ul{
           flex-direction: var(--flex-direction-mobile, var(--flex-direction, column));

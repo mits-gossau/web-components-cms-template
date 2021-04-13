@@ -171,11 +171,11 @@ export default class Highlight extends Shadow() {
         }
         :host h2 {
           font-size: var(--h2-font-size-mobile, 2.5rem);
-          line-height: var(--h2-line-height-mobile, 2.5rem);
+          line-height: var(--h2-line-height-mobile, var(--h2-line-height, 2.5rem));
         }
         :host h5 {
           font-size: var(--h5-font-size-mobile, 1.5rem);
-          line-height: var(--h5-line-height-mobile, 1.5rem);
+          line-height: var(--h5-line-height-mobile, var(--h5-line-height, 1.5rem));
         }
         :host p {
           margin: var(--p-margin-mobile, 3px 0);

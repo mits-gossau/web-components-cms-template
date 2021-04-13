@@ -206,6 +206,7 @@ html {
   --navigation-a-link-content-spacing: 0;
   --navigation-a-link-font-size-nav-open: 1rem;
   --navigation-a-link-font-size: 0;
+  --navigation-a-link-line-height: normal;
   --navigation-a-link-second-level-font-size-nav-open: 1rem;
   --navigation-a-link-second-level-font-size: 0;
   --navigation-a-link-second-level-font-weight-nav-open: normal;
