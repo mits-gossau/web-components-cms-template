@@ -220,7 +220,7 @@ html {
   --playlist-width: 100%;
   --section-width-mobile: var(--content-width-not-web-component-mobile);
   --a-text-decoration: underline;
-  --text-underline-offset-a: 0.2em;
+  --a-text-underline-offset: 0.2em;
   --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
