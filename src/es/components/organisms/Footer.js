@@ -127,6 +127,8 @@ export default class Footer extends Shadow() {
       }
       :host a-link {
         --padding: var(--a-link-content-spacing, 0);
+        --display: var(--a-link-display);
+        --display-mobile: var(--a-link-display-mobile);
       }
       :host > footer ul > li {
         color: var(--color, red);
@@ -232,10 +234,14 @@ export default class Footer extends Shadow() {
         :host > footer ul > li {
           text-align: center;
         }
+        
         :host > footer ul > li p {
           margin: var(--p-margin, 0);
         }
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+          .language-switcher a-link {
+            --display-mobile: inline;
+          }
           :host > footer {
             flex-direction: var(--flex-direction-mobile, column);
           }

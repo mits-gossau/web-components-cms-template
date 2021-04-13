@@ -10,15 +10,98 @@
   <link href=../../../css/fonts.css rel=stylesheet>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
-  <title>Classics</title>
+  <title>Navigation Classics</title>
 </head>
 <body>
   <p-general>
-    <o-header namespace="header-" role="header">
+    <o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-" role="header">
       <a-title namespace="header-title-">Highlights</a-title>
+      <m-navigation mobile-breakpoint="0vw" hover="false" namespace=navigation- no-scroll="nav-open">
+        <ul>
+          <li>
+            <a href="#">News</a>
+            <ul>
+              <li>
+                <a target="_blank" href="/de/highlight">Highlights</a>
+              </li>
+              <li>
+                <a href="/de/aktuell">Aktuell</a>
+              </li>
+              <li>
+                <a href="/de/Programm">Programm</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Konzerte</a>
+            <ul>
+              <li>
+                <a href="/de/spielplan">Spielplan</a>
+              </li>
+              <li>
+                <a href="/de/Orchester">Orchester</a>
+              </li>
+              <li>
+                <a href="/de/dirigent">Dirigent*innen</a>
+              </li>
+              <li>
+                <a href="/de/solist">Solist*innen</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Tickets</a>
+            <ul>
+              <li>
+                <a href="/de/bern">Bern</a>
+              </li>
+              <li>
+                <a href="/de/Luzern">Luzern</a>
+              </li>
+              <li>
+                <a href="/de/Genf">Genf</a>
+              </li>
+              <li>
+                <a href="/de/Zurich">Zürich</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Backstage</a>
+            <ul>
+              <li>
+                <a href="/de/werk">Werkeinführung</a>
+              </li>
+              <li>
+                <a href="/de/archiv">Archiv</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">About</a>
+            <ul>
+              <li>
+                <a href="/de/idee">Idee</a>
+              </li>
+              <li>
+                <a href="/de/intendanz">Intendanz</a>
+              </li>
+              <li>
+                <a href="/de/Talentförderung">Talentförderung</a>
+              </li>
+              <li>
+                <a href="/de/Kontakt">Kontakt</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/de/search">Search</a>
+          </li>
+        </ul>
+      </m-navigation>
     </o-header>
     <o-body>
-      <main>
+      <main role="main">
         <third-party-macro-carousel pagination loop interval="5000" namespace="carousel-">
           <a-picture defaultSource="https://picsum.photos/1200/316" alt="randomized image" sources='[{
             "src": "https://picsum.photos/770/544",
@@ -141,14 +224,14 @@
         <div class="spacer"></div>
 
         <a-video namespace="video-">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/fMUR4tFOG_c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/J---aiyznGQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </a-video>
         <h3>Happy Birthday, Mr. Britten</h3>
         <p>(Aktuell B) Wunderkind, Pazifist, Exilant: Der erfolgreichste englische Komponist des 20. Jahrhunderts bietet gleich eine Vielzahl von Facetten.</p>
         <a href="#">Video ARTE</a>
 
         <a-video namespace="video-">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/fMUR4tFOG_c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/J---aiyznGQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </a-video>
         <h3>Teodor Currentzis Backstage</h3>
         <p>(Aktuell C) «Es ist mein Job zu träumen», sagt Teodor Currentzis. Überraschend offene Einsichten in seine Innenwelt gewährt uns der Chefdirigent des SWR Symphonieorchesters im Backstage Talk.</p>
@@ -159,108 +242,51 @@
         <h2>Programm</h2>
         <p>Die Saison- und Abendprogramme von Migros-Kulturprozent-Classics der letzten Jahre stehen hier für den Download bereit</p>
         <o-playlist namespace="playlist-" border-top-first-child="true">
-          <m-playlist-item  namespace="playlist-item-">
+          <m-playlist-item>
             <p>2020*21</p>
             <h4>Saisonprogramm</h4>
             <ul>
-              <li><a href="#">Bern</a></li>
-              <li><a href="#">Genf</a></li>
-              <li><a href="#">Luzern</a></li>
-              <li><a href="#">Zürich</a></li>
+              <li>Bern</li>
+              <li>Genf</li>
+              <li>Luzern</li>
+              <li>Zürich</li>
             </ul>
           </m-playlist-item>
-          <m-playlist-item  namespace="playlist-item-">
+          <m-playlist-item>
             <p>2019*20</p>
             <h4>Saisonprogramm</h4>
             <ul>
-              <li><a href="#">Bern</a></li>
-              <li><a href="#">Genf</a></li>
-              <li><a href="#">Luzern</a></li>
-              <li><a href="#">Zürich</a></li>
+              <li>Bern</li>
+              <li>Genf</li>
+              <li>Luzern</li>
+              <li>Zürich</li>
             </ul>
           </m-playlist-item>
-          <m-playlist-item  namespace="playlist-item-">
+          <m-playlist-item>
             <p>2018*19</p>
             <h4>Saisonprogramm</h4>
             <ul>
-              <li><a href="#">Bern</a></li>
-              <li><a href="#">Genf</a></li>
-              <li><a href="#">Luzern</a></li>
-              <li><a href="#">Zürich</a></li>
+              <li>Bern</li>
+              <li>Genf</li>
+              <li>Luzern</li>
+              <li>Zürich</li>
             </ul>
           </m-playlist-item>
-          <m-playlist-item  namespace="playlist-item-">
+          <m-playlist-item>
             <p>2017*18</p>
             <h4>Saisonprogramm</h4>
             <ul>
-              <li><a href="#">Bern</a></li>
-              <li><a href="#">Genf</a></li>
-              <li><a href="#">Luzern</a></li>
-              <li><a href="#">Zürich</a></li>
+              <li>Bern</li>
+              <li>Genf</li>
+              <li>Luzern</li>
+              <li>Zürich</li>
             </ul>
           </m-playlist-item>
         </o-playlist>
       </main>
     </o-body>
-    <o-footer theme="classics" namespace="footer-">
-          <a-logo class="hide-mobile" namespace="footer-engagement-logo-" src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg" href="https://migros-engagement.ch" target="_blank" lang="de">
-            <p>
-                Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
-                <br />
-                <strong>
-                    <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
-                </strong>
-            </p>
-        </a-logo>
-      <ul>
-        <li><p><a href="#">CLASSICS-Newsletter bestellen</a></p></li>
-        <li><p><a href="#">Programm Archiv</a></p></li>
-        <li>
-          <p>
-            <a-link namespace="footer-" text-transform="uppercase">
-              <a href="#">DE</a>
-            </a-link>
-            <a-link namespace="footer-" text-transform="uppercase">
-              <a href="#">FR</a>
-            </a-link>
-            <a-link namespace="footer-" text-transform="uppercase">
-              <a href="#">EN</a>
-            </a-link>
-          </p>
-        </li>
-        <br>
-        <li>
-          <p>
-            <a-link namespace="footer-" text-transform="uppercase">
-              <a href="#">Impressum</a>
-              <span>, </span>
-            </a-link>
-            <a-link namespace="footer-" text-transform="uppercase">
-              <a href="#">Datenschutz</a>
-              <span>, </span>
-            </a-link>
-            <a-link namespace="footer-" text-transform="uppercase">
-              <a href="#">Rechtliche Hinweise</a>
-              <span>, </span>
-            </a-link>
-            <a-link namespace="footer-" text-transform="uppercase">
-              <a href="#">Kontakt</a>
-            </a-link>
-          </p>
-        </li>
-      </ul>
-      <div class="logo-container">
-        <a-logo class="hide-desktop" namespace="footer-engagement-logo-" src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg" href="https://migros-engagement.ch" target="_blank" lang="de">
-          <p>
-              Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
-              <br />
-              <strong>
-                  <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
-              </strong>
-          </p>
-        </a-logo>
-        <a-logo src=../../../img/ClubConcertLogo_cyan.svg alt="Kulturprozent Classics Logo" href="#" namespace="footer-logo-"></a-logo>
-      </div>
+    <o-footer role="footer">
+      <h1>Footer</h1>
     </o-footer>
   </p-general>
   <script rel=preload type=module>
@@ -279,6 +305,7 @@
     import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
     import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
     import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
+    import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
     import('../../../es/components/organisms/Playlist.js').then(module => ['o-playlist', module.default]),
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
