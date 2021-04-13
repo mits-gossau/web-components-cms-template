@@ -5,6 +5,7 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
+  --a-text-decoration: none;
   --background-color: black;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color-secondary);
@@ -30,7 +31,9 @@ html {
   --footer-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
   --footer-content-width-not-web-component: var(--content-width-not-web-component);
   --footer-content-width: var(--content-width);
+  --footer-flex-direction: column;
   --footer-flex-wrap: wrap;
+  --footer-logo-align-items: center;
   --footer-logo-container-flex-wrap-mobile: var(--footer-flex-wrap);
   --footer-logo-container-flex-wrap: var(--footer-flex-wrap);
   --footer-logo-container-justify-content-wrapped-mobile: var(--footer-logo-container-justify-content-wrapped);
@@ -48,8 +51,8 @@ html {
   --footer-logo-text-line-height: 1.4em;
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
-  --footer-padding-top-mobile: 3vh;
-  --footer-padding-top: 5vh;
+  --footer-padding-mobile: 3vh 0 0;
+  --footer-padding: 5vh 0 0;
   --footer-text-align: center;
   --h1-text-align: center;
   --h2-font-size-mobile: min(2.5rem, 14vw);
@@ -117,5 +120,4 @@ html {
   --picture-width-mobile: 100%; 
   --picture-width: 100%;
   --section-width-mobile: var(--content-width-not-web-component-mobile);
-  --a-text-decoration: none;
 }
