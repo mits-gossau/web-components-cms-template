@@ -73,6 +73,7 @@ export default class Link extends Shadow() {
         text-align: var(--text-align, left);
         text-decoration: var(--text-decoration, none);
         text-transform: var(--text-transform, none);
+        transition: var(--transition, all 0.2s ease);
         width: 100%;
       }
       :host > a:hover{
@@ -85,10 +86,10 @@ export default class Link extends Shadow() {
       
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > a {
-          display: var(--a-display-mobile, block);
+          display: var(--display-mobile, var(--display, block));
         }
         :host > span {
-          display: var(--span-display-mobile, none);
+          display: var(--span-display-mobile, var(--span-display, none));
         }
       }
     `
