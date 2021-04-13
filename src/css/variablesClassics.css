@@ -43,8 +43,8 @@ html {
   --font-size: max(22px, 1vw);
   --font-weight: 300;
   --footer-a-display: inline;
-  --footer-a-link-display: inline;
   --footer-a-link-display-mobile: block;
+  --footer-a-link-display: inline;
   --footer-a-link-font-size-mobile: 0.8rem;
   --footer-a-link-font-size: 0.73rem;
   --footer-align-content: flex-start;
@@ -85,8 +85,8 @@ html {
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
   --footer-padding-mobile: 15px;
-  --footer-padding: 20px;
   --footer-padding-mobile: 1vh 10%;
+  --footer-padding: 20px;
   --footer-padding: 2vh 0;
   --footer-text-align: center;
   --footer-text-decoration-hover: underline;
