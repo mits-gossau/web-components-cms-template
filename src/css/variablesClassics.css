@@ -61,6 +61,7 @@ html {
   --footer-engagement-logo-max-height-mobile: 40px;
   --footer-engagement-logo-max-height: 40px;
   --footer-engagement-logo-text-a-color: #f60;
+  --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
   --footer-engagement-logo-text-color: black;
   --footer-engagement-logo-text-font-size-mobile: 0.4rem;
   --footer-engagement-logo-text-font-size: 0.4rem;
