@@ -87,8 +87,6 @@ html {
   --concerts-playlist-margin: 30px 0 10% 0;
   --concerts-playlist-width: 100%;
   --concerts-ul-text-align: var(--h1-text-align);
-  --color-hover: var(--color);
-  --color: #FFED00;
   --content-spacing: 20px;
   --content-width-mobile: 100%;
   --content-width-not-web-component-mobile: 90%;
@@ -142,6 +140,7 @@ html {
   --footer-padding-mobile: 15px 10%;
   --footer-padding: 20px 0;
   --footer-text-align: center;
+  --footer-a-link-display: inline;
   --footer-text-decoration-hover: underline;
   --footer-ul-margin: 0;
   --h1-text-align: center;
@@ -159,9 +158,8 @@ html {
   --h4-text-align: var(--h1-text-align);
   --h5-text-align: var(--h1-text-align);
   --h6-text-align: var(--h1-text-align);
-  --header-background-color: white;
-  --header-a-menu-icon-display-open-mobile: none;
   --header-a-menu-icon-background-color: var(--background-color);
+  --header-a-menu-icon-display-open-mobile: none;
   --header-background-color: white;
   --header-color: var(--color);
   --header-content-spacing-mobile: var(--header-content-spacing);
@@ -170,10 +168,10 @@ html {
   --header-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
   --header-content-width-not-web-component: var(--content-width-not-web-component-mobile);
   --header-content-width: var(--content-width-mobile);
-  --header-flex-direction: column;
   --header-flex-direction-mobile: column;
-  --header-height: auto;
+  --header-flex-direction: column;
   --header-height-mobile: auto;
+  --header-height: auto;
   --header-intro-p-margin: 0;
   --header-intro-section-width-mobile: var(--content-width-not-web-component-mobile);
   --header-justify-content-mobile: end;
@@ -224,7 +222,7 @@ html {
   --navigation-padding-top: 0;
   --navigation-padding: 0;
   --navigation-text-align: center;
-  --navigation-transition: font-size 0.15s linear, padding 0.15s linear;
+  --navigation-transition: font-size 0.1s linear, padding 0.1s linear;
   --p-date-text-transform: uppercase;
   --p-line-height: var(--font-size);
   --p-margin: 0 auto;
@@ -242,8 +240,6 @@ html {
   --playlist-margin: 30px 0 10% 0;
   --playlist-width: 100%;
   --section-width-mobile: var(--content-width-not-web-component-mobile);
-  --a-text-decoration: underline;
-  --a-text-underline-offset: 0.2em;
   --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);

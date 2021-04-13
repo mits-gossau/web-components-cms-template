@@ -127,6 +127,7 @@ export default class Footer extends Shadow() {
       }
       :host a-link {
         --padding: var(--a-link-content-spacing, 0);
+        --display: var(--a-link-display);
       }
       :host > footer ul > li {
         color: var(--color, red);
