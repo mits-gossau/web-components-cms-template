@@ -110,6 +110,7 @@ export default class Body extends Shadow() {
         word-break: var(--h5-word-break, normal);
         text-transform: var(--h5-text-transform, normal);
         margin: var(--h5-margin, var(--content-spacing, unset)) auto;
+        margin-top: var(--h5-margin-top, var(--h5-margin, var(--content-spacing, unset)));
       }
       :host > main h6 {
         color: var(--h6-color, var(--color, black));
@@ -121,9 +122,21 @@ export default class Body extends Shadow() {
         text-transform: var(--h6-text-transform, normal);
         margin: var(--h6-margin, var(--content-spacing, unset)) auto;
       }
+      .orchestra a {
+        --a-text-decoration: var(--orchestra-a-text-decoration);
+      }
+      .orchestra p {
+        --p-margin: var(--orchestra-p-margin);
+        --p-text-transform: var(--orchestra-p-text-transform);
+      }
+      .tickets a {
+        --a-text-decoration: var(--tickets-a-text-decoration);
+        --a-display: var(--tickets-a-display);
+      }
       :host > main p {
         font-family: var(--font-family-secondary);
         text-align: var(--p-text-align, start);
+        text-transform: vaR(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       :host > main a {
@@ -138,7 +151,6 @@ export default class Body extends Shadow() {
         color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
         text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
-
       :host > main ul {
         text-align: var(--ul-text-align, var(--ol-text-align, start));
       }
@@ -196,6 +208,7 @@ export default class Body extends Shadow() {
           word-break: var(--h5-word-break-mobile, var(--h5-word-break, normal));
           text-transform: var(--h5-text-transform-mobile, var(--h5-text-transform, normal));
           margin: var(--h5-margin-mobile, var(--h5-margin)) auto;
+          margin-top: var(--h5-margin-top-mobile, var(--h5-margin-mobile, var(--h5-margin)));
         }
         :host > main h6 {
           font-size: var(--h6-font-size-mobile, var(--h6-font-size, min(1.5rem, 14vw)));
