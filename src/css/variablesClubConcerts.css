@@ -51,8 +51,8 @@ html {
   --footer-logo-text-line-height: 1.4em;
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
-  --footer-padding-top-mobile: 3vh;
-  --footer-padding-top: 5vh;
+  --footer-padding-mobile: 3vh 0 0;
+  --footer-padding: 5vh 0 0;
   --footer-text-align: center;
   --h1-text-align: center;
   --h2-font-size-mobile: min(2.5rem, 14vw);
