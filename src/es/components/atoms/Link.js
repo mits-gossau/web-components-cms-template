@@ -65,7 +65,7 @@ export default class Link extends Shadow() {
       :host > a {
         box-sizing: border-box;
         color: var(--color, red);
-        display: block;
+        display: var(--display, block);
         font-size: var(--font-size, 1rem);
         font-weight: var(--font-weight, 300);
         height: 100%;
