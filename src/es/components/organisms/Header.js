@@ -94,7 +94,22 @@ export default class Header extends Shadow() {
       :host > header.open {
         background-color: var(--background-color-open, var(--background-color, black));
       }
-      :host  > header > a-menu-icon{
+      :host > header > a {
+        color: var(--a-color, var(--color));
+        font-family: var(--a-font-family, var(--font-family));
+        font-size: var(--a-font-size, var(--font-size));
+        order: 1;
+        text-decoration: var(--a-text-decoration, none);
+        text-transform: var(--a-text-transform, uppercase);
+        transition: var(--a-transition, all 0.2s ease);
+      }
+      :host > header > a:hover {
+        color: var(--a-color-hover, var(--a-color-hover, var(--a-color, var(--color))));
+      }
+      :host > header.open > a {
+        font-size: var(--a-font-size-open, var(--font-size-open, var(--a-font-size, var(--font-size))));
+      }
+      :host > header > a-menu-icon {
         display: none;
         --background-color: var(--color, #777);
       }
@@ -129,6 +144,7 @@ export default class Header extends Shadow() {
         }
         :host  > header.open > a-menu-icon{
           --a-menu-icon-height: var(--a-menu-icon-height-open-mobile);
+          --a-menu-icon-margin: var(--a-menu-icon-margin-open-mobile);
           display: var(--a-menu-icon-display-open-mobile, var(--a-menu-icon-display-mobile, block));
         }
         :host > header > a-logo{

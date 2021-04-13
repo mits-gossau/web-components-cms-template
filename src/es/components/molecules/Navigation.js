@@ -79,9 +79,11 @@ export default class Navigation extends Shadow() {
         --font-size: var(--a-link-font-size, 1rem);
         --font-weight: var(--a-link-font-weight);
         --line-height: var(--a-link-line-height);
+        --text-transform: var(--a-link-text-transform);
+        font-family: var(--a-link-font-family);
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
-        --color: var(--color-${this.getAttribute('no-scroll') || 'no-scroll'});
+        --color: var(--a-link-color-${this.getAttribute('no-scroll') || 'no-scroll'});
         --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
         --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
         --font-weight: var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
@@ -91,10 +93,11 @@ export default class Navigation extends Shadow() {
         --font-size: var(--a-link-second-level-font-size, 1rem);
         --font-weight: var(--a-link-second-level-font-weight);
         --line-height: var(--a-link-second-level-line-height);
+        font-family: var(--a-link-second-level-font-family);
       }
       ${(this.getAttribute('hover') === 'true' &&
-        `:host > nav > ul li:hover ul a-link,
-        :host > nav > ul li ul:hover a-link,`) || ''}
+      `:host > nav > ul li:hover ul a-link,
+      :host > nav > ul li ul:hover a-link,`) || ''}
       :host > nav > ul li:focus-within ul a-link {
         --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
         --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
@@ -105,6 +108,10 @@ export default class Navigation extends Shadow() {
         list-style: var(--list-style, none);
         margin: 0;
         padding: 0;
+        transition: var(--transition, all 0.2s ease);
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) ul {
+        background-color: var(--background-color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--background-color, black));
       }
       :host > nav > ul{
         align-items: var(--align-items, center);
@@ -130,8 +137,16 @@ export default class Navigation extends Shadow() {
       :host > nav > ul li ul{
         display: var(--li-ul-display, none);
         padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
+        margin: var(--li-ul-margin);
         position: var(--li-ul-position, absolute);
         width: var(--li-ul-width, max-content);
+        transition: var(--transition, all 0.2s ease);
+      }
+      ${(this.getAttribute('hover') === 'true' &&
+      `:host > nav > ul li:hover ul,
+      :host > nav > ul li ul:hover,`) || ''}
+      :host > nav > ul li:focus-within ul {
+        margin: var(--li-ul-margin-${this.getAttribute('no-scroll') || 'no-scroll'});
       }
       :host > nav > ul li:last-child ul{
         right: 0;
@@ -150,7 +165,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul > li > ul > li:first-child{
         padding-top: var(--padding-top, 6px);
-        border-top: 1px solid var(--hr-color, var(--color, white));
+        border-top: var(--border-top, 1px solid) var(--hr-color, var(--color, white));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
