@@ -144,15 +144,15 @@ export default class MacroCarousel extends Shadow() {
         bottom: var(--pagination-bottom);
       }
       :host div ::slotted(macro-carousel-pagination-indicator) {
-        --macro-carousel-pagination-color: var(--pagination-background-color, black);
-        --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected, pink);
+        --macro-carousel-pagination-color: var(--pagination-background-color, var(--background-color, black));
+        --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected, var(--background-color-selected, var(--background-color, pink)));
         --macro-carousel-pagination-size-dot: var(--pagination-width, 5px);
       }
       :host div ::slotted(macro-carousel-nav-button) {
-        --macro-carousel-navigation-color: var(--navigation-color, black);
-        --macro-carousel-navigation-color-focus: var(--navigation-color-focus, black);
-        --macro-carousel-navigation-color-background: var(--navigation-background-color, transparent);
-        --macro-carousel-navigation-color-background-focus: var(--navigation-background-color-focus, rgba(0, 0, 0, 0.2));
+        --macro-carousel-navigation-color: var(--navigation-color, var(--color, black));
+        --macro-carousel-navigation-color-focus: var(--navigation-color-focus, var(--color-focus, var(--color, black)));
+        --macro-carousel-navigation-color-background: var(--navigation-background-color, var(--background-color, transparent));
+        --macro-carousel-navigation-color-background-focus: var(--navigation-background-color-focus, var(--navigation-background-color, var(--background-color, rgba(0, 0, 0, 0.2)));
         --macro-carousel-navigation-button-size: var(--navigation-button-size, 48px);
         --macro-carousel-navigation-icon-size: var(--navigation-icon-size, 24px);
         --macro-carousel-navigation-icon-mask: var(--navigation-icon-mask, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E %3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E %3C/svg%3E"));

@@ -100,7 +100,7 @@ export default class Highlight extends Shadow() {
       }
       ${this.getAttribute('href')
         ? `section h2:hover {
-          color: var(--color-hover, #8d4674);
+          color: var(--color-hover, var(--color, #8d4674));
         }`
         : ''
       }
@@ -136,11 +136,12 @@ export default class Highlight extends Shadow() {
         text-transform: var(--p-date-text-transform, none);
       }
       :host a {
-        color: var(--a-color, var(--color-secondary, pink));
-        text-decoration: none;
+        color: var(--a-color, var(--color-secondary, var(--color, pink)));
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
       }
       :host a:hover {
-        color: var(--a-color-hover, var(--color-hover-secondary, green));
+        color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
       :host ul {
         list-style-type: none;
@@ -148,10 +149,10 @@ export default class Highlight extends Shadow() {
         padding: 0;
       }
       :host ul li a {
-        color: var(--ul-a-color, var(--a-color, var(--color-secondary, pink)));
+        color: var(--ul-a-color, var(--a-color, var(--color-secondary, var(--color, pink))));
       }
       :host ul li a:hover {
-        color: var(--ul-a-color-hover, var(--a-color-hover, var(--color-hover-secondary, green)));
+        color: var(--ul-a-color-hover, var(--a-color-hover, var(--color-hover-secondary, var(--color-secondary, var(--color, green)))));
       }
       img {
         filter: var(--filter, none);

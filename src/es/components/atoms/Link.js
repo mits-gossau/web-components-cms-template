@@ -63,19 +63,19 @@ export default class Link extends Shadow() {
       :host > a {
         box-sizing: border-box;
         color: var(--color, red);
-        display: var(--a-display, block);
+        display: block;
         font-size: var(--font-size, 1rem);
         font-weight: var(--font-weight, 300);
         height: 100%;
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);
-        text-decoration: none;
+        text-decoration: var(--text-decoration, none);
         text-transform: var(--text-transform, none);
         width: 100%;
       }
-      :host > a:hover {
-        color: var(--color-hover, yellow);
-        text-decoration: var(--text-decoration-hover, none);
+      :host > a:hover{
+        color: var(--color-hover, var(--color, yellow));
+        text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
       }
       :host > span {
         display: var(--span-display, inline);

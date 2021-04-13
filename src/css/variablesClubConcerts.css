@@ -117,5 +117,5 @@ html {
   --picture-width-mobile: 100%; 
   --picture-width: 100%;
   --section-width-mobile: var(--content-width-not-web-component-mobile);
-  --text-decoration-a: none;
+  --a-text-decoration: none;
 }
