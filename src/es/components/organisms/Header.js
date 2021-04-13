@@ -125,7 +125,6 @@ export default class Header extends Shadow() {
           overflow-y: var(--m-navigation-overflow-y-open-mobile, auto);
         }
         :host  > header > a-menu-icon{
-          --a-menu-icon-height: var(--a-menu-icon-height);
           display: var(--a-menu-icon-display-mobile, block);
         }
         :host  > header.open > a-menu-icon{
