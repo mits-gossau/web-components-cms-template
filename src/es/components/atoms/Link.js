@@ -1,6 +1,8 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
+/* global self */
+
 /**
  * Link is a wrapper for an a-tag
  * Example at: /src/es/components/pages/Home.html
@@ -60,7 +62,7 @@ export default class Link extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host > a{
+      :host > a {
         box-sizing: border-box;
         color: var(--color, red);
         display: block;
@@ -76,6 +78,18 @@ export default class Link extends Shadow() {
       :host > a:hover{
         color: var(--color-hover, var(--color, yellow));
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
+      }
+      :host > span {
+        display: var(--span-display, inline);
+      }
+      
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > a {
+          display: var(--a-display-mobile, block);
+        }
+        :host > span {
+          display: var(--span-display-mobile, none);
+        }
       }
     `
   }

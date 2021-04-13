@@ -27,6 +27,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --list-style [none]
  *  --align-items [start]
  *  --font-size [1rem]
+ *  --p-margin [0]
  * }
  */
 export default class Footer extends Shadow() {
@@ -90,9 +91,39 @@ export default class Footer extends Shadow() {
         grid-area: footer;
         z-index: var(--z-index, 100);
       }
+      :host > * {
+        width: var(--content-width, 80%);
+        margin: var(--content-spacing, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+      }
+      :host > span, :host > div, :host > p, :host > ul, :host > ol {
+        width: var(--content-width-not-web-component, 80%);
+      }
       :host > footer {
+        display: var(--display, flex);
         background-color: var(--background-color, black);
-        height: 100%;
+        justify-content: var(--justify-content, normal);
+        flex-direction: var(--flex-direction, row);
+        align-content: var(--align-content, normal);
+        padding: var(--padding, 0);
+        box-sizing: var(--box-sizing, content-box);
+      }
+      :host .logo-container {
+        display: flex;
+        flex-wrap: var(--logo-container-flex-wrap, nowrap);
+        justify-content: var(--logo-container-justify-content, space-between);
+        align-content: var(--logo-container-align-content, normal);
+      }
+      :host .logo-container.wrapped {
+        justify-content: var(--logo-container-justify-content-wrapped, var(--logo-container-justify-content, space-between));
+      }
+      :host .logo-container:first-child {
+        --logo-height: var(--logo-height-first, max(65px, 4.8vw));
+        --logo-height-mobile: var(--logo-height-first-mobile, 48px);
+      }
+      :host .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
       }
       :host a-link {
         --padding: var(--a-link-content-spacing, 0);
@@ -110,40 +141,37 @@ export default class Footer extends Shadow() {
       :host > footer ul > li > ul a-link {
         --font-size: var(--a-link-font-size-2, 1rem);
       }
+
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > * {
+          width: var(--content-width-mobile, 90%);
+          margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+        }
+        :host > footer {
+          padding: var(--padding-mobile, 0);
+        }
+        :host > span, :host > div, :host > p, :host > ul, :host > ol {
+          width: var(--content-width-not-web-component-mobile, 90%);
+        }
+        :host .logo-container {
+          flex-wrap: var(--logo-container-flex-wrap-mobile, nowrap);
+          justify-content: var(--logo-container-justify-content-mobile, space-between);
+        }
+        :host .logo-container.wrapped {
+          justify-content: var(--logo-container-justify-content-wrapped-mobile, var(--logo-container-justify-content-mobile, space-between));
+        }
+        :host .logo-container:first-child {
+          --logo-height: var(--logo-height-first-mobile, 50px);
+        }
+        :host .footer-links {
+          flex-direction: column;
+       }
+      }
     `
     /* ----------------------------------------- CLUB CONCERT CSS ------------------------------------------------- */
     if (this.getAttribute('theme') === 'simple') {
       this.css = /* css */`
-        :host > * {
-          width: var(--content-width, 80%);
-          margin: var(--content-spacing, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
-        }
-        :host > span, :host > div, :host > p, :host > ul, :host > ol {
-          width: var(--content-width-not-web-component, 80%);
-        }
-        :host footer {
-          display: flex;
-          flex-direction: column;
-          justify-content: var(--justify-content, flex-end);
-          padding-top: var(--padding-top, auto);
-        }
-        :host .logo-container {
-          display: flex;
-          flex-wrap: var(--logo-container-flex-wrap, nowrap);
-          justify-content: var(--logo-container-justify-content, space-between);
-        }
-        :host .logo-container.wrapped {
-          justify-content: var(--logo-container-justify-content-wrapped, var(--logo-container-justify-content, space-between));
-        }
-        :host .logo-container:first-child {
-          --logo-height: var(--logo-height-first, max(65px, 4.8vw));
-          --logo-height-mobile: var(--logo-height-first-mobile, 48px);
-        }
-        :host .footer-links {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
+        
         :host ul, :host .language-switcher {
           display: flex;
           flex-direction: row;
@@ -163,29 +191,6 @@ export default class Footer extends Shadow() {
           margin-left: 15px;
         }
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-          :host > * {
-            width: var(--content-width-mobile, 90%);
-            margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
-          }
-          :host footer {
-            padding-top: var(--padding-top-mobile, auto);
-          }
-          :host > span, :host > div, :host > p, :host > ul, :host > ol {
-            width: var(--content-width-not-web-component-mobile, 90%);
-          }
-          :host .logo-container {
-            flex-wrap: var(--logo-container-flex-wrap-mobile, nowrap);
-            justify-content: var(--logo-container-justify-content-mobile, space-between);
-          }
-          :host .logo-container.wrapped {
-            justify-content: var(--logo-container-justify-content-wrapped-mobile, var(--logo-container-justify-content-mobile, space-between));
-          }
-          :host .logo-container:first-child {
-            --logo-height: var(--logo-height-first-mobile, 50px);
-          }
-          :host .footer-links {
-            flex-direction: column;
-          }
           :host ul {
             flex-direction: column;
           }
@@ -207,6 +212,35 @@ export default class Footer extends Shadow() {
           }
           :host > footer ul > li > a-link {
             --font-size: var(--a-link-font-size-mobile, 1rem);
+          }
+        }
+      `
+      /* ----------------------------------------------------------------------------- */
+
+      /* ----------------------------------------- CLASSICS CSS ------------------------------------------------- */
+    } else if (this.getAttribute('theme') === 'classics') {
+      this.css = /* css */`
+        .logo-container {
+          display: flex;
+        }
+        :host > footer ul {
+          flex-grow: var(--ul-flex-grow, 0);
+          list-style-type: none;
+          padding: var(--ul-padding, 0);
+          margin: var(--ul-margin, 30px 0);
+        }
+        :host > footer ul > li {
+          text-align: center;
+        }
+        :host > footer ul > li p {
+          margin: var(--p-margin, 0);
+        }
+        @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+          :host > footer {
+            flex-direction: var(--flex-direction-mobile, column);
+          }
+          :host > footer ul {
+            margin: var(--ul-margin-mobile, 10px auto);
           }
         }
       `
