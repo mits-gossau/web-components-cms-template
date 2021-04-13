@@ -7,6 +7,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 /**
  * Dependencies: https://github.com/ciampo/macro-carousel
  * Example at: /src/es/components/organisms/MacroCarousel.html
+ * !!! NOTE: If this component has a namespace you need to add the namespace to all children for attributes like "height" to work !!!
  *
  * @attribute {
  *  {number + px} height

@@ -62,12 +62,21 @@ export default class PlaylistItem extends Shadow() {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
-      :host p, :host h4, :host ul li {
+      :host h4, :host ul li {
         text-transform: var(--text-transform, uppercase);
       }
       :host p {
         margin: var(--p-margin, 0) auto;
         line-height: var(--p-line-height, normal);
+      }
+      :host a {
+        text-decoration: var(--a-text-decoration, none);
+        text-transform: var(--a-text-transform, uppercase);
+        color: var(--a-color, green);
+      }
+      :host a:hover {
+        text-decoration: var(--a-text-decoration-hover, underline);
+        color: var(--a-color-hover, var(--color, pink));
       }
       :host h4 {
         margin: var(--h4-margin, 0) auto;
