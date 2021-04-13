@@ -46,6 +46,9 @@ export default class Playlist extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
+      :host {
+        color: var(--color);
+      }
       :host > *:first-child {
         margin: var(--margin-first-child, unset); 
         border-top: ${this.getAttribute('border-top-first-child') === 'true' ? 'var(--border-top, unset)' : 'unset'};

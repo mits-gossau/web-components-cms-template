@@ -22,7 +22,6 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @css {
  *  --height [85px - var(--content-spacing, 40px)]
  *  --align-items [center]
- *  --align-self [auto]
  *  --flex-flow [row]
  *  --justify-content [center]
  *  --margin [0px]
@@ -30,7 +29,6 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --max-height [none]
  *  --width [auto]
  *  --max-width [80vw]
- *  --position [static]
  *  --text-box-sizing [content-box]
  *  --text-color [pink]
  *  --text-font-size [1rem]
@@ -105,13 +103,18 @@ export default class Logo extends Shadow() {
     this.css = /* css */`
       :host {
         align-items: var(--align-items, center);
-        align-self: var(--align-self, auto);
-        display: flex;
+        display: flex; /* @ask: is display always flex for a reason? even if there are no children?*/
         flex-flow: var(--flex-flow, row);
+        flex-grow: var(--flex-grow, 0);
         justify-content: var(--justify-content, center);
         box-sizing: border-box;
         margin: var(--margin, 0px);
-        position: var(--position, static);
+      }
+      :host(.hide-desktop) {
+        display: none;
+      }
+      :host(.hide-mobile) {
+        display: flex; /* @ask: is display always flex for a reason? even if there are no children?*/
       }
       :host img{
         display: block;
@@ -144,10 +147,11 @@ export default class Logo extends Shadow() {
         text-decoration: var(--text-a-text-decoration-hover, none);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host {
-          position: var(--position-mobile, static);
-          align-self: var(--align-self-mobile, center);
-          margin: var(--margin-mobile, 0);
+        :host(.hide-desktop) {
+          display: flex;
+        }
+        :host(.hide-mobile) {
+          display: none;
         }
         :host img{
           height: var(--height-mobile, 65px);

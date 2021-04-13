@@ -77,13 +77,16 @@ export default class Link extends Shadow() {
         color: var(--color-hover, yellow);
         text-decoration: var(--text-decoration-hover, none);
       }
+      :host > span {
+        display: var(--span-display, inline);
+      }
       
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > a {
           display: var(--a-display-mobile, block);
         }
         :host > span {
-          display: none;
+          display: var(--span-display-mobile, none);
         }
       }
     `

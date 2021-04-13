@@ -129,8 +129,8 @@ export default class Body extends Shadow() {
       :host > main a {
         color: var(--a-color, var(--color-secondary, pink));
         text-align: var(--a-text-align, unset);
-        text-decoration: var(--text-decoration-a, none);
-        text-underline-offset: var(--text-underline-offset-a, unset);
+        text-decoration: var(--a-text-decoration, none);
+        text-underline-offset: var(--a-text-underline-offset, unset);
         display: var(--a-display, inline);
         margin: var(--a-margin, var(--content-spacing, unset)) auto;
       }
