@@ -64,6 +64,7 @@ html {
   --h5-text-align: var(--h1-text-align);
   --h6-text-align: var(--h1-text-align);
   --header-a-menu-icon-display-open-mobile: none;
+  --header-a-menu-icon-background-color: var(--background-color);
   --header-background-color: white;
   --header-color: var(--color);
   --header-content-spacing-mobile: var(--header-content-spacing);
@@ -119,14 +120,14 @@ html {
   --navigation-content-spacing: 0;
   --navigation-flex-direction: column;
   --navigation-font-weight: 700;
-  --navigation-hr-color: var(--navigation-color);
+  --navigation-hr-color: transparent;
   --navigation-li-ul-display: block;
   --navigation-li-ul-position: static;
   --navigation-li-ul-width: 100%;
   --navigation-padding-top: 0;
   --navigation-padding: 0;
   --navigation-text-align: center;
-  --navigation-transition: font-size 0.3s ease, padding 0.1s ease;
+  --navigation-transition: font-size 0.15s linear, padding 0.15s linear;
   --p-date-text-transform: uppercase;
   --p-line-height: var(--font-size);
   --p-margin: 0 auto;
