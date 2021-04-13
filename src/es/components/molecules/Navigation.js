@@ -81,6 +81,7 @@ export default class Navigation extends Shadow() {
         --line-height: var(--a-link-line-height, var(--line-height, normal));
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
+        --color: var(--color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--color, white));
         --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
         --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
         --font-weight: var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
