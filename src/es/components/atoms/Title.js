@@ -65,7 +65,9 @@ export default class Title extends Shadow() {
       }
       :host h1 .secondary-color {
         color: var(--color-secondary, var(--color, white));
+        font-size: var(--secondary-color-font-size, var(--font-size));
         font-family: var(--secondary-color-font-family, var(--font-family-bold, 'OPTIFutura-ExtraBlackCond'));
+        font-weight: var(--secondary-font-weight);
         text-transform: var(--secondary-color-text-transform, var(--text-transform, uppercase));
         transition: var(--secondary-transition, var(--transition, all 0.2s ease));
       }
@@ -79,6 +81,9 @@ export default class Title extends Shadow() {
         :host h1{
           font-size: var(--font-size-mobile, min(14vw, 49px));
           line-height: var(--line-height-mobile, var(--line-height, min(14vw, 43px)));
+        }
+        :host h1 .secondary-color {
+          font-size: var(--secondary-color-font-size-mobile, var(--font-size-mobile));
         }
       }
     `

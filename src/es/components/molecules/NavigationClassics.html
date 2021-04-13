@@ -99,9 +99,41 @@
           </li>
         </ul>
       </m-navigation>
+      <a href="/de/home">Home</a>
     </o-header>
     <o-body>
       <main role="main">
+        <m-flyer
+          direction=left
+          timer=1000
+          namespace="flyer-"
+          position="false"
+        >
+          <style>
+            :host {
+              --flyer-transform: translateX(-20px);
+              --flyer-position: static;
+            }
+            :host > div > div {
+              transform: translate(90px, -90px) rotate(-14deg);
+            }
+            :host > div > div h3, :host > div > div p {
+              font-size: max(19px, 1vw)
+            }
+            :host > div > div h3 {
+              font-family: var(--font-family-bold);
+              margin: 0;
+            }
+            :host > div > div p {
+              margin: 0;
+            }
+          </style>
+          <img src="../../../img/vildeFrang.png">
+          <div>
+            <h3>Vilde Frang</h3>
+            <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+          </div>
+        </m-flyer>
         <third-party-macro-carousel pagination loop interval="5000" namespace="carousel-">
           <a-picture defaultSource="https://picsum.photos/1200/316" alt="randomized image" sources='[{
             "src": "https://picsum.photos/770/544",
@@ -285,9 +317,66 @@
         </o-playlist>
       </main>
     </o-body>
-    <o-footer role="footer">
-      <h1>Footer</h1>
-    </o-footer>
+    <o-footer theme="classics" namespace="footer-">
+      <a-logo class="hide-mobile" namespace="footer-engagement-logo-" src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg" href="https://migros-engagement.ch" target="_blank" lang="de">
+        <p>
+            Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
+            <br />
+            <strong>
+                <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
+            </strong>
+        </p>
+    </a-logo>
+  <ul>
+    <li><p><a href="#">CLASSICS-Newsletter bestellen</a></p></li>
+    <li><p><a href="#">Programm Archiv</a></p></li>
+    <li>
+      <p>
+        <a-link namespace="footer-" text-transform="uppercase">
+          <a href="#">DE</a>
+        </a-link>
+        <a-link namespace="footer-" text-transform="uppercase">
+          <a href="#">FR</a>
+        </a-link>
+        <a-link namespace="footer-" text-transform="uppercase">
+          <a href="#">EN</a>
+        </a-link>
+      </p>
+    </li>
+    <br>
+    <li>
+      <p>
+        <a-link namespace="footer-" text-transform="uppercase">
+          <a href="#">Impressum</a>
+          <span>, </span>
+        </a-link>
+        <a-link namespace="footer-" text-transform="uppercase">
+          <a href="#">Datenschutz</a>
+          <span>, </span>
+        </a-link>
+        <a-link namespace="footer-" text-transform="uppercase">
+          <a href="#">Rechtliche Hinweise</a>
+          <span>, </span>
+        </a-link>
+        <a-link namespace="footer-" text-transform="uppercase">
+          <a href="#">Kontakt</a>
+        </a-link>
+      </p>
+    </li>
+  </ul>
+  <div class="logo-container">
+    <a-logo class="hide-desktop" namespace="footer-engagement-logo-" src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg" href="https://migros-engagement.ch" target="_blank" lang="de">
+      <p>
+          Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
+          <br />
+          <strong>
+              <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
+          </strong>
+      </p>
+    </a-logo>
+    <a-logo src=../../../img/ClubConcertLogo_cyan.svg alt="Kulturprozent Classics Logo" href="#" namespace="footer-logo-"></a-logo>
+  </div>
+</o-footer>
   </p-general>
   <script rel=preload type=module>
     self.Environment = {
@@ -311,6 +400,7 @@
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
     import('../../../es/components/molecules/PlaylistItem.js').then(module => ['m-playlist-item', module.default]),
+    import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default]),
     import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
