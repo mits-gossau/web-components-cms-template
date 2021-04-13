@@ -100,6 +100,7 @@ export default class Footer extends Shadow() {
       }
       :host > footer {
         display: var(--display, flex);
+        background-color: var(--background-color, black);
         justify-content: var(--justify-content, normal);
         flex-direction: var(--flex-direction, row);
         align-content: var(--align-content, normal);
@@ -124,10 +125,6 @@ export default class Footer extends Shadow() {
         justify-content: center;
         flex-wrap: wrap;
       }
-      :host > footer {
-        background-color: var(--background-color, black);
-        height: 100%;
-      }
       :host a-link {
         --padding: var(--a-link-content-spacing, 0);
       }
@@ -150,7 +147,7 @@ export default class Footer extends Shadow() {
           width: var(--content-width-mobile, 90%);
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         }
-        :host footer {
+        :host > footer {
           padding: var(--padding-mobile, 0);
         }
         :host > span, :host > div, :host > p, :host > ul, :host > ol {
