@@ -156,7 +156,7 @@ html {
   --header-padding: 2vh 0;
   --header-position: static;
   --header-text-align: center;
-  --header-title-color-nav-open: var(--background-color);
+  --header-title-color-nav-open: var(--color);
   --header-title-color-secondary-nav-open: var(--header-title-color-nav-open);
   --header-title-color: var(--color);
   --header-title-font-family-bold: var(--font-family-bold);
