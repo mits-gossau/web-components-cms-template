@@ -113,6 +113,7 @@
             :host {
               --flyer-transform: translateX(-20px);
               --flyer-position: static;
+              --picture-margin: 0;
             }
             :host > div > div {
               transform: translate(min(104px, 11vw), -9vw) rotate(-14deg)
@@ -128,7 +129,7 @@
               margin: 0;
             }
           </style>
-          <img src="../../../img/vildeFrang.png">
+          <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
           <div>
             <h3>Vilde Frang</h3>
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
@@ -238,7 +239,6 @@
             "size": "extra-large"
           }]'></a-picture>
         </third-party-macro-carousel>
-
         <h3>Daniel Müller-Schott</h3>
         <p>Der Münchner Cellist Daniel Müller-Schott wurde als Gewinner des Ersten Preises beim Tschaikowsky-Wettbewerb in Moskau 1992 bekannt und durfte als Preisträger der <br>Anne-Sophie-Mutter-Stiftung unter anderem ein Jahr lang mit Mtislav Rostropowitsch studieren.</p>
         <!-- @ask using a-link throws error in shadow.js:202 -->
@@ -269,6 +269,35 @@
         <p>(Aktuell C) «Es ist mein Job zu träumen», sagt Teodor Currentzis. Überraschend offene Einsichten in seine Innenwelt gewährt uns der Chefdirigent des SWR Symphonieorchesters im Backstage Talk.</p>
         <a href="#">Backstage Talk 3:36 min</a>
 
+        <div class="spacer"></div>
+        <o-intersection-scroll-effect css-property=transform effect=translateX max-value=-40vw>
+          <style>
+            :host {
+              margin: 0 !important;
+              --picture-margin: 0;
+            }
+            :host > div > div {
+              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg)
+            }
+            :host > div > div h3, :host > div > div p {
+              font-size: max(19px, 1vw);
+            }
+            :host > div > div h3 {
+              font-family: var(--font-family-bold);
+              margin: 0;
+            }
+            :host > div > div p {
+              margin: 0;
+            }
+          </style>
+          <div>
+            <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
+            <div>
+              <h3>Vilde Frang</h3>
+              <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+            </div>
+          </div>
+        </o-intersection-scroll-effect>
         <div class="spacer"></div>
 
         <h2>Programm</h2>
@@ -405,6 +434,7 @@
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
     import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
+    import('../../../es/components/organisms/IntersectionScrollEffect.js').then(module => ['o-intersection-scroll-effect', module.default]),
     import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default])
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
