@@ -145,7 +145,9 @@ export default class Navigation extends Shadow() {
       ${(this.getAttribute('hover') === 'true' &&
       `:host > nav > ul li:hover ul,
       :host > nav > ul li ul:hover,`) || ''}
-      :host > nav > ul li:focus-within ul {
+      :host > nav > ul li:focus-within ul,
+      :host > nav > ul li a-link.open ~ ul {
+        display: block;
         margin: var(--li-ul-margin-${this.getAttribute('no-scroll') || 'no-scroll'});
       }
       :host > nav > ul li:last-child ul{
@@ -153,12 +155,6 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li:hover{
         cursor: pointer;
-      }
-      ${(this.getAttribute('hover') === 'true' &&
-        `:host > nav > ul li:hover ul,
-        :host > nav > ul li ul:hover,`) || ''}
-      :host > nav > ul li:focus-within ul{
-        display: block;
       }
       :host > nav > ul li ul li {
         min-width: var(--min-width, 100px);
@@ -250,7 +246,11 @@ export default class Navigation extends Shadow() {
         if (event.target) {
           arrowClickListener()
           let a = null
-          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) event.preventDefault()
+          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) {
+            event.preventDefault()
+            Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+            event.target.classList.add('open')
+          }
         }
       })
       li.prepend(arrow)
