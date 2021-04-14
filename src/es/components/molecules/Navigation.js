@@ -98,7 +98,7 @@ export default class Navigation extends Shadow() {
       ${(this.getAttribute('hover') === 'true' &&
       `:host > nav > ul li:hover ul a-link,
       :host > nav > ul li ul:hover a-link,`) || ''}
-      :host > nav > ul li:focus-within ul a-link {
+      :host > nav > ul li a-link.open ~ ul a-link {
         --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
         --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
         --line-height: var(--a-link-second-level-line-height-${this.getAttribute('no-scroll') || 'no-scroll'});
@@ -145,7 +145,8 @@ export default class Navigation extends Shadow() {
       ${(this.getAttribute('hover') === 'true' &&
       `:host > nav > ul li:hover ul,
       :host > nav > ul li ul:hover,`) || ''}
-      :host > nav > ul li:focus-within ul {
+      :host > nav > ul li a-link.open ~ ul {
+        display: block;
         margin: var(--li-ul-margin-${this.getAttribute('no-scroll') || 'no-scroll'});
       }
       :host > nav > ul li:last-child ul{
@@ -153,12 +154,6 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li:hover{
         cursor: pointer;
-      }
-      ${(this.getAttribute('hover') === 'true' &&
-        `:host > nav > ul li:hover ul,
-        :host > nav > ul li ul:hover,`) || ''}
-      :host > nav > ul li:focus-within ul{
-        display: block;
       }
       :host > nav > ul li ul li {
         min-width: var(--min-width, 100px);
@@ -214,7 +209,7 @@ export default class Navigation extends Shadow() {
           width: 100%;
         }
         :host > nav > ul li:hover ul,
-        :host > nav > ul li:focus-within ul,
+        :host > nav > ul li:not(.open) a-link.open ~ ul,
         :host > nav > ul li ul:hover{
           display: none;
         }
@@ -238,7 +233,6 @@ export default class Navigation extends Shadow() {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
       const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
-      aLink.setAttribute('text-transform', 'uppercase')
       const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
@@ -250,7 +244,11 @@ export default class Navigation extends Shadow() {
         if (event.target) {
           arrowClickListener()
           let a = null
-          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) event.preventDefault()
+          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) {
+            event.preventDefault()
+            Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+            event.target.classList.add('open')
+          }
         }
       })
       li.prepend(arrow)

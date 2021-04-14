@@ -61,6 +61,7 @@ html {
   --footer-engagement-logo-max-height-mobile: 40px;
   --footer-engagement-logo-max-height: 40px;
   --footer-engagement-logo-text-a-color: #f60;
+  --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
   --footer-engagement-logo-text-color: black;
   --footer-engagement-logo-text-font-size-mobile: 0.4rem;
   --footer-engagement-logo-text-font-size: 0.4rem;
@@ -155,7 +156,7 @@ html {
   --header-padding: 2vh 0;
   --header-position: static;
   --header-text-align: center;
-  --header-title-color-nav-open: var(--background-color);
+  --header-title-color-nav-open: #009fe3;
   --header-title-color-secondary-nav-open: var(--header-title-color-nav-open);
   --header-title-color: var(--color);
   --header-title-font-family-bold: var(--font-family-bold);
@@ -187,7 +188,7 @@ html {
   --margin: 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
   --module-wrapper-margin: 15% 0 0 0;
-  --navigation-a-link-color-nav-open: var(--header-background-color);
+  --navigation-a-link-color-nav-open: #009fe3;
   --navigation-a-link-content-spacing-nav-open: 0;
   --navigation-a-link-content-spacing: 0;
   --navigation-a-link-font-family: var(--font-family-bold);
@@ -203,8 +204,8 @@ html {
   --navigation-background-color-nav-open: white;
   --navigation-background-color: var(--header-background-color);
   --navigation-border-top: 0;
-  --navigation-color-hover: var(--header-background-color);
-  --navigation-color: var(--color);
+  --navigation-color-hover: #FFED00;
+  --navigation-color: #009fe3;
   --navigation-content-spacing: 0;
   --navigation-flex-direction: column;
   --navigation-font-weight: 700;

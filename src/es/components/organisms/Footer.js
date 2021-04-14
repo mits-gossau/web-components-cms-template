@@ -298,7 +298,6 @@ export default class Footer extends Shadow() {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
-      aLink.setAttribute('text-transform', 'uppercase')
       a.replaceWith(aLink)
       li.prepend(aLink)
       this.footer.hidden = false
