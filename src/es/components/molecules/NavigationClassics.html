@@ -135,6 +135,35 @@
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
           </div>
         </m-flyer>
+        <div>
+          <m-details>
+            <details>
+              <summary>System Requirements</summary>
+              <p>Requires a computer running an operating system. The computer
+              must have some memory and ideally some kind of long-term storage.
+              An input device as well as some form of output device is
+              recommended.</p>
+            </details>
+          </m-details>
+          <m-details>
+            <details>
+              <summary>System Requirements</summary>
+              <p>Requires a computer running an operating system. The computer
+              must have some memory and ideally some kind of long-term storage.
+              An input device as well as some form of output device is
+              recommended.</p>
+            </details>
+          </m-details>
+          <m-details>
+            <details>
+              <summary>System Requirements</summary>
+              <p>Requires a computer running an operating system. The computer
+              must have some memory and ideally some kind of long-term storage.
+              An input device as well as some form of output device is
+              recommended.</p>
+            </details>
+          </m-details>
+        </div>
         <third-party-macro-carousel pagination loop interval="5000" namespace="carousel-">
           <a-picture defaultSource="https://picsum.photos/1200/316" alt="randomized image" sources='[{
             "src": "https://picsum.photos/770/544",
@@ -240,6 +269,17 @@
           }]'></a-picture>
         </third-party-macro-carousel>
         <h3>Daniel Müller-Schott</h3>
+        <div>
+          <m-details>
+            <details>
+              <summary>System Requirements</summary>
+              <p>Requires a computer running an operating system. The computer
+              must have some memory and ideally some kind of long-term storage.
+              An input device as well as some form of output device is
+              recommended.</p>
+            </details>
+          </m-details>
+        </div>
         <p>Der Münchner Cellist Daniel Müller-Schott wurde als Gewinner des Ersten Preises beim Tschaikowsky-Wettbewerb in Moskau 1992 bekannt und durfte als Preisträger der <br>Anne-Sophie-Mutter-Stiftung unter anderem ein Jahr lang mit Mtislav Rostropowitsch studieren.</p>
         <!-- @ask using a-link throws error in shadow.js:202 -->
         <!-- should i add the same styles from body.js to link.js? link.js uses different variables/values -->
@@ -429,6 +469,7 @@
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
     import('../../../es/components/molecules/PlaylistItem.js').then(module => ['m-playlist-item', module.default]),
+    import('../../../es/components/molecules/Details.js').then(module => ['m-details', module.default]),
     import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default]),
     import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
