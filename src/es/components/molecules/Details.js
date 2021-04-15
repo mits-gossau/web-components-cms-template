@@ -81,7 +81,7 @@ export default class Details extends Mutation() {
   }
 
   get openEventName () {
-    return this.getAttribute('openEventName') || 'open'
+    return this.getAttribute('open-event-name') || 'open'
   }
 
   get details () {
