@@ -54,7 +54,7 @@ export default class IntersectionScrollEffect extends Intersection() {
             display: block; /* fix: google chrome wrong measurements */
           }
           ${this.getAttribute('transition') && this.getAttribute('css-property') && !this.getAttribute('css-property').includes('--')
-            ? /* CSS */`:host > * {
+            ? /* CSS */`:host > *:not(style) {
               transition: ${this.getAttribute('css-property')} ${this.getAttribute('transition')};
             }`
             : ''
@@ -87,7 +87,7 @@ export default class IntersectionScrollEffect extends Intersection() {
       if (!isNaN(outputValue)) {
         this.css = '' // resets css
         this.css = /* css */ `
-            :host > * {
+            :host > *:not(style) {
               ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.getAttribute('max-value')}));
             }
           `
