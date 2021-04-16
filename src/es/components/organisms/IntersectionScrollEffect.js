@@ -85,7 +85,6 @@ export default class IntersectionScrollEffect extends Intersection() {
       outputValue = this.clamp(outputValue, 0, 1)
       // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
       outputValue = this.getAttribute('invert') === 'true' ? 1 - outputValue : outputValue
-
       if (!isNaN(outputValue)) {
         this.css = '' // resets css
         this.css = /* css */ `
@@ -154,8 +153,7 @@ export default class IntersectionScrollEffect extends Intersection() {
       * @param {number} decimalsAmount
       */
   round (value, decimalsAmount) {
-    decimalsAmount = decimalsAmount < 1 ? 1 : decimalsAmount
-    return Math.round((value + Number.EPSILON) * (10 * decimalsAmount)) / (10 * decimalsAmount)
+    return value.toFixed(decimalsAmount < 1 ? 1 : decimalsAmount)
   }
 
   /**
