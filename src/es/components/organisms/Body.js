@@ -153,9 +153,16 @@ export default class Body extends Shadow() {
       }
       :host > main ul {
         text-align: var(--ul-text-align, var(--ol-text-align, start));
+        display: var(--ul-display, var(--ol-display, block));
+        flex-direction: var(--ul-flex-direction, var(--ol-flex-direction, column));
+      }
+      :host > main ul li, :host > main ol li {
+        align-self: var(--li-align-self, auto);
       }
       :host > main ol {
         text-align: var(--ol-text-align, var(--ul-text-align, start));
+        display: var(--ol-display, var(--ul-display, block));
+        flex-direction: var(--ol-flex-direction, var(--ul-flex-direction, column));
       }
       .outro-text {
         text-align: var(--outro-text-text-align, center);

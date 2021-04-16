@@ -184,6 +184,7 @@ html {
   --icon-width-mobile: 35px;
   --icon-width: 35px;
   --li-margin: 0 12px;
+  --li-align-self: center;
   --line-height-mobile: 1.4rem;
   --margin: 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
@@ -245,6 +246,7 @@ html {
   --tickets-a-display: inline;
   --tickets-a-text-decoration: underline;
   --ul-text-align: var(--h1-text-align);
+  --ul-display: flex;
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
 }
