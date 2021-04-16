@@ -47,6 +47,8 @@ export default class IntersectionScrollEffect extends Intersection() {
     this.isFirstIntersection = true
     /** @type {boolean} */
     this.hasRequiredAttributes = this.getAttribute('css-property') && this.getAttribute('effect') && this.getAttribute('max-value')
+    /** @type {boolean | null} for saving the media type */
+    this.cachedMedia = null
 
     this.html = /* HTML */`
         <style _css="" protected="true">
@@ -63,7 +65,7 @@ export default class IntersectionScrollEffect extends Intersection() {
       `
 
     this.scrollListener = event => {
-      const offset = self.innerHeight / 100 * Number(this.getAttribute('offset'))
+      const offset = self.innerHeight / 100 * Number(this.checkMedia('mobile') ? this.getAttribute('offset-mobile') || this.getAttribute('offset') : this.getAttribute('offset'))
       const boundingRect = this.getBoundingClientRect()
       const recalculate = this.elementHeight !== boundingRect.height
 
@@ -88,13 +90,14 @@ export default class IntersectionScrollEffect extends Intersection() {
         this.css = '' // resets css
         this.css = /* css */ `
             :host > *:not(style) {
-              ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.getAttribute('max-value')}));
+              ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.checkMedia('mobile') ? this.getAttribute('max-value-mobile') || this.getAttribute('max-value') : this.getAttribute('max-value')}));
             }
           `
       }
     }
 
     this.resizeListener = event => {
+      this.cachedMedia = null
       if (this.hasRequiredAttributes) {
         if (this.checkMedia()) {
           this.intersectionObserveStart()
@@ -108,20 +111,28 @@ export default class IntersectionScrollEffect extends Intersection() {
     }
   }
 
-  checkMedia () {
+  /**
+   *
+   *
+   * @param {'mobile' | 'desktop'} [media=this.getAttribute('media')]
+   * @returns {boolean}
+   * @memberof IntersectionScrollEffect
+   */
+  checkMedia (media = this.getAttribute('media')) {
+    if (!media) return true
+    if (this.cachedMedia) return this.cachedMedia === media
     // @ts-ignore ignoring self.Environment error
     const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-    switch (this.getAttribute('media')) {
-      case 'mobile': return self.matchMedia(`(max-width: ${breakpoint})`).matches
-      case 'desktop': return self.matchMedia(`(min-width: calc(${breakpoint} + 1px))`).matches
-      default: return true
-    }
+    const isDesktop = self.matchMedia(`(min-width: ${breakpoint}`).matches
+    this.cachedMedia = isDesktop ? 'desktop' : 'mobile'
+    return (this.cachedMedia === media)
   }
 
   connectedCallback () {
     if (this.hasRequiredAttributes) {
       if (this.checkMedia()) super.connectedCallback() // this.intersectionObserveStart()
       self.addEventListener('resize', this.resizeListener)
+      this.scrollListener() // write first calculation
     }
   }
 
