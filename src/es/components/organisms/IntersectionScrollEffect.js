@@ -70,39 +70,38 @@ export default class IntersectionScrollEffect extends Intersection() {
       `
 
     this.scrollListener = event => {
-      if (!this.requestAnimationFrameId) {
-        this.requestAnimationFrameId = self.requestAnimationFrame(timeStamp => {
-          const offset = self.innerHeight / 100 * Number(this.checkMedia('mobile') ? this.getAttribute('offset-mobile') || this.getAttribute('offset') : this.getAttribute('offset'))
-          const boundingRect = this.getBoundingClientRect()
-          const recalculate = this.elementHeight !== boundingRect.height
-    
-          // saving measurements in variables to avoid redundant calculations
-          if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
-          if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
-          if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - offset - this.center
-    
-          // TODO wrong boundingRect.height onload
-          // TODO add optional min-value? max(minValue, outputValue * maxValue)
-    
-          // get distance from center (abs)
-          const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
-          // get output [0..1]
-          let outputValue = this.round(difference / this.maxDistanceFromCenter, this.digits)
-          // clamp value to avoid inaccuracies from scrolling too fast
-          outputValue = this.clamp(outputValue, 0, 1)
-          // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
-          outputValue = this.getAttribute('invert') === 'true' ? 1 - outputValue : outputValue
-          if (!isNaN(outputValue)) {
-            this.css = '' // resets css
-            this.css = /* css */ `
-                :host > *:not(style) {
-                  ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.checkMedia('mobile') ? this.getAttribute('max-value-mobile') || this.getAttribute('max-value') : this.getAttribute('max-value')}));
-                }
-              `
-          }
-          this.requestAnimationFrameId = null
-        })
-      }
+      if (this.requestAnimationFrameId) self.cancelAnimationFrame(this.requestAnimationFrameId)
+      this.requestAnimationFrameId = self.requestAnimationFrame(timeStamp => {
+        const offset = self.innerHeight / 100 * Number(this.checkMedia('mobile') ? this.getAttribute('offset-mobile') || this.getAttribute('offset') : this.getAttribute('offset'))
+        const boundingRect = this.getBoundingClientRect()
+        const recalculate = this.elementHeight !== boundingRect.height
+  
+        // saving measurements in variables to avoid redundant calculations
+        if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
+        if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
+        if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - offset - this.center
+  
+        // TODO wrong boundingRect.height onload
+        // TODO add optional min-value? max(minValue, outputValue * maxValue)
+  
+        // get distance from center (abs)
+        const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
+        // get output [0..1]
+        let outputValue = this.round(difference / this.maxDistanceFromCenter, this.digits)
+        // clamp value to avoid inaccuracies from scrolling too fast
+        outputValue = this.clamp(outputValue, 0, 1)
+        // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
+        outputValue = this.getAttribute('invert') === 'true' ? 1 - outputValue : outputValue
+        if (!isNaN(outputValue)) {
+          this.css = '' // resets css
+          this.css = /* css */ `
+              :host > *:not(style) {
+                ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.checkMedia('mobile') ? this.getAttribute('max-value-mobile') || this.getAttribute('max-value') : this.getAttribute('max-value')}));
+              }
+            `
+        }
+        this.requestAnimationFrameId = null
+      })
     }
 
     this.resizeListener = event => {
