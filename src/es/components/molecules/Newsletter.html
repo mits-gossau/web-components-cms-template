@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang=de>
+<head>
+  <meta charset=UTF-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="Erfahre hier die neusten Informationen über die Klub-Konzerte des Migros-Kulturprozent-Classics.">
+  <link href=../../../favicon/classics/FAVICON_CLASSICS_YELLOW.ico rel="shortcut icon" type=image/x-icon>
+  <link href=../../../css/variablesClassics.css rel=stylesheet>
+  <link href=../../../css/misc.css rel=stylesheet>
+  <link href=../../../css/fonts.css rel=stylesheet>
+  <!-- NOTE: Remove line Debugging.js below for none localhost -->
+  <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <title>Classics</title>
+</head>
+<body>
+    <m-newsletter namespace="newsletter-">
+        <form method="post">
+          <label class="label">
+            <input type="radio" class="radio" name="geschlecht" value="herr">
+            <span>Herr</span>
+          </label>
+          <label class="label">
+            <input type="radio" class="radio" name="geschlecht" value="frau">
+            <span>Frau</span>
+          </label>
+          <br>
+          <label for="name">Name, Vorname</label> <input type="text" class="input-Text" name="name"> <br>
+          <label for="number">PLZ</label> <input type="number" class="input-Text" ="plz" min="1000" max="9999"> <br>
+          <label for="ort">Ort</label> <input type="text" class="input-Text" name="ort"> <br>
+          <label for="mail">E-Mail</label> <input type="email" class="input-Text" name="mail"> <br>
+          <input type="checkbox" name="policy">Ich akzeptiere die Datenschutzbestimmungen.</input> <br>
+          <input type="submit" value="Abschicken">
+        </form>
+    </m-newsletter>
+  <script rel=preload type=module>
+    self.Environment = {
+      mobileBreakpoint: '600px'
+    }
+
+    /**
+    * First level controllers and organisms are loaded and defined here (loadChildComponents)
+    */
+    Promise.all([
+    // Controllers
+    import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
+    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
+    import('../../../es/components/thirdParty/MacroCarousel.js').then(module => ['third-party-macro-carousel', module.default]),
+    import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
+    import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
+    import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
+    import('../../../es/components/organisms/Playlist.js').then(module => ['o-playlist', module.default]),
+    import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
+    import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
+    import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
+    import('../../../es/components/molecules/PlaylistItem.js').then(module => ['m-playlist-item', module.default]),
+    import('../../../es/components/molecules/Newsletter.js').then(module => ['m-newsletter', module.default]),
+    import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
+    import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
+    import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
+    import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
+    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default])
+    ]).then(elements => elements.forEach(element => {
+      // don't define already existing customElements
+      if (element && !customElements.get(element[0])) customElements.define(...element)
+    }))
+  </script>
+  <!-- fonts -->
+  <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
+  <!-- /fonts -->
+</body>
+</html>
