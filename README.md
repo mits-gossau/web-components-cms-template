@@ -6,11 +6,15 @@ powered by Umbraco CMS: [Club Concerts Live](https://club.migros-kulturprozent-c
 
 ## TODO:
 
-1. @joel: Classics CSS + HTML page example based on [sketch](https://www.sketch.com/s/a7fc25f0-4297-4c38-832e-6c61ef4e1860/a/rb9PqPq)
-1. navigation
-1. Cancelled Component
+1. Newsletter (lg)
+1. Search Component (jj)
+1. Details (Accordion) (sst)
+1. Cancelled Component (Stamp) (sst)
 1. language switch if browser lang disagrees with domain lang
-1. PDF Component http://bencreasy.com/object-versus-embed/
+
+## Tide up - TODO:
+
+1. Accessibility
 1. Web Component analyzer/editor/tester (like https://storybook.js.org/)
 1. useful functions to shadow static function eg. Footer.js wrappedListener L: 43
 1. heavy calcs to web workers eg. IntersectionScrollEffect
