@@ -12,6 +12,9 @@ html {
   --a-text-decoration: none;
   --a-text-underline-offset: 0.2em;
   --background-color: #009fe3;
+  --border-top: 2px solid white;
+  --border-left: 2px solid white;
+  --border-bottom: 2px solid white;
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
   --carousel-pagination-bottom: 10px;
@@ -36,6 +39,7 @@ html {
   --content-width-not-web-component-mobile: 90%;
   --content-width-not-web-component: var(--content-width);
   --content-width: 65%;
+  --flex-grow: 1;
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
@@ -183,6 +187,10 @@ html {
   --icon-margin: 15px auto 0 auto;
   --icon-width-mobile: 35px;
   --icon-width: 35px;
+  --search-icon-display: block;
+  --search-icon-margin: 0;
+  --search-icon-width-mobile: 35px;
+  --search-icon-width: 50px;
   --li-margin: 0 12px;
   --li-align-self: center;
   --line-height-mobile: 1.4rem;
