@@ -31,6 +31,7 @@ import { Intersection } from '../prototypes/Intersection.js'
   *  {string} [invert] if set to "true" the filter will be applied inverted (default is: 0% filter in the center of the viewport, 100% filter at the edges)
   *  {number} [offset=0] in percentage to self.innerHeight
   *  {string} [transition] set if the effect shall have a transition e.g. "0.2s ease"
+  *  {number} [digits=4] for rounding the css value
   * }
   */
 export default class IntersectionScrollEffect extends Intersection() {
@@ -49,6 +50,8 @@ export default class IntersectionScrollEffect extends Intersection() {
     this.hasRequiredAttributes = this.getAttribute('css-property') && this.getAttribute('effect') && this.getAttribute('max-value')
     /** @type {boolean | null} for saving the media type */
     this.cachedMedia = null
+    /** @type {number} for rounding the css value */
+    this.digits = this.getAttribute('digits') ? Number(this.getAttribute('digits')) : 4
 
     this.html = /* HTML */`
         <style _css="" protected="true">
@@ -80,7 +83,7 @@ export default class IntersectionScrollEffect extends Intersection() {
       // get distance from center (abs)
       const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
       // get output [0..1]
-      let outputValue = this.round(difference / this.maxDistanceFromCenter, 4)
+      let outputValue = this.round(difference / this.maxDistanceFromCenter, this.digits)
       // clamp value to avoid inaccuracies from scrolling too fast
       outputValue = this.clamp(outputValue, 0, 1)
       // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
