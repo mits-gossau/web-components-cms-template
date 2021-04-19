@@ -6,6 +6,8 @@ import { Shadow } from '../prototypes/Shadow.js'
 /**
  * Title is the navigation Title
  * Example at: /src/es/components/pages/Home.html
+ * Title-Text gets split by spaces. Each word is wrapped with a <span> and the last <span> receives the class "secondary-color".
+ * 
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
