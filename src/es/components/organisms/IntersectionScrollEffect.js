@@ -70,7 +70,10 @@ export default class IntersectionScrollEffect extends Intersection() {
       `
 
     this.scrollListener = event => {
-      if (this.requestAnimationFrameId) self.cancelAnimationFrame(this.requestAnimationFrameId)
+      /* 
+        // TODO: horizontal (x) transition has not been smooth
+        if (this.requestAnimationFrameId) self.cancelAnimationFrame(this.requestAnimationFrameId)
+      */
       this.requestAnimationFrameId = self.requestAnimationFrame(timeStamp => {
         const offset = self.innerHeight / 100 * Number(this.checkMedia('mobile') ? this.getAttribute('offset-mobile') || this.getAttribute('offset') : this.getAttribute('offset'))
         const boundingRect = this.getBoundingClientRect()
