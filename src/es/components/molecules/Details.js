@@ -1,8 +1,7 @@
 // @ts-check
 import { Mutation } from '../prototypes/Mutation.js'
 
-/* global location */
-/* global self */
+/* global CustomEvent */
 
 /**
  * Details (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) aka. Bootstrap accordion
@@ -37,6 +36,7 @@ export default class Details extends Mutation() {
 
   connectedCallback () {
     super.connectedCallback()
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
     document.body.addEventListener(this.openEventName, this.openEventListener)
   }
 
@@ -47,14 +47,16 @@ export default class Details extends Mutation() {
 
   mutationCallback (mutationList, observer) {
     mutationList.forEach(mutation => {
-      if (mutation.target.hasAttribute('open')) this.dispatchEvent(new CustomEvent(this.openEventName, {
-        detail: {
-          child: this
-        },
-        bubbles: true,
-        cancelable: true,
-        composed: true
-      }))
+      if (mutation.target.hasAttribute('open')) {
+        this.dispatchEvent(new CustomEvent(this.openEventName, {
+          detail: {
+            child: this
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        }))
+      }
     })
   }
 
@@ -74,8 +76,9 @@ export default class Details extends Mutation() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host {
-        
+      :host details summary::marker {
+        display: none;
+        content: "";
       }
     `
   }
