@@ -4,12 +4,12 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global self */
 
 /**
- * FormWrapper is a wrapper for a form
+ * Form is a wrapper for a form
  * Example at: /src/es/components/pages/ClassicsSearch.html
  * As a molecule, this component shall hold Atoms
  *
  * @export
- * @class FormWrapper
+ * @class Form
  * @type {CustomElementConstructor}
  * @attribute {
  *  
@@ -23,7 +23,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --form-align-items-mobile [center]
  * }
  */
-export default class Link extends Shadow() {
+export default class Form extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
