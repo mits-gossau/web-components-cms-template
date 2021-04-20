@@ -77,17 +77,50 @@ export default class Navigation extends Shadow() {
       :host a-link {
         --padding: var(--a-link-content-spacing, 14px 10px);
         --font-size: var(--a-link-font-size, 1rem);
+        --font-weight: var(--a-link-font-weight);
+        --line-height: var(--a-link-line-height);
+        --text-transform: var(--a-link-text-transform);
+        font-family: var(--a-link-font-family);
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
+        --color: var(--a-link-color-${this.getAttribute('no-scroll') || 'no-scroll'});
+        --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
+        --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
+        --font-weight: var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
+        --line-height: var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'});
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
+        --font-size: var(--a-link-second-level-font-size, 1rem);
+        --font-weight: var(--a-link-second-level-font-weight);
+        --line-height: var(--a-link-second-level-line-height);
+        font-family: var(--a-link-second-level-font-family);
+      }
+      ${(this.getAttribute('hover') === 'true' &&
+      `:host > nav > ul li:hover ul a-link,
+      :host > nav > ul li ul:hover a-link,`) || ''}
+      :host > nav > ul li a-link.open ~ ul a-link {
+        --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
+        --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
+        --line-height: var(--a-link-second-level-line-height-${this.getAttribute('no-scroll') || 'no-scroll'});
       }
       :host ul{
         background-color: var(--background-color, black);
         list-style: var(--list-style, none);
         margin: 0;
         padding: 0;
+        transition: var(--transition, all 0.2s ease);
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) ul {
+        background-color: var(--background-color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--background-color, black));
       }
       :host > nav > ul{
         align-items: var(--align-items, center);
         display: flex;
-        padding: calc(var(--content-spacing, 40px) / 2) 0;
+        flex-direction: var(--flex-direction, row);
+        padding: var(--padding, calc(var(--content-spacing, 40px) / 2) 0);
+      }
+      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul {
+        padding: var(--padding-${this.getAttribute('no-scroll') || 'no-scroll'}, calc(var(--content-spacing, 40px) / 2) 0);
       }
       :host > nav > ul > li{
         display: block;
@@ -102,10 +135,19 @@ export default class Navigation extends Shadow() {
         visibility: hidden;
       }
       :host > nav > ul li ul{
-        display: none;
+        display: var(--li-ul-display, none);
         padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
-        position: absolute;
-        width: max-content;
+        margin: var(--li-ul-margin);
+        position: var(--li-ul-position, absolute);
+        width: var(--li-ul-width, max-content);
+        transition: var(--transition, all 0.2s ease);
+      }
+      ${(this.getAttribute('hover') === 'true' &&
+      `:host > nav > ul li:hover ul,
+      :host > nav > ul li ul:hover,`) || ''}
+      :host > nav > ul li a-link.open ~ ul {
+        display: block;
+        margin: var(--li-ul-margin-${this.getAttribute('no-scroll') || 'no-scroll'});
       }
       :host > nav > ul li:last-child ul{
         right: 0;
@@ -113,18 +155,12 @@ export default class Navigation extends Shadow() {
       :host > nav > ul li:hover{
         cursor: pointer;
       }
-      ${(this.getAttribute('hover') === 'true' &&
-        `:host > nav > ul li:hover ul,
-        :host > nav > ul li ul:hover,`) || ''}
-      :host > nav > ul li:focus-within ul{
-        display: block;
-      }
       :host > nav > ul li ul li {
         min-width: var(--min-width, 100px);
       }
       :host > nav > ul > li > ul > li:first-child{
         padding-top: var(--padding-top, 6px);
-        border-top: 1px solid var(--hr-color, white);
+        border-top: var(--border-top, 1px solid) var(--hr-color, var(--color, white));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
@@ -133,14 +169,18 @@ export default class Navigation extends Shadow() {
         :host a-link {
           --font-size: var(--a-link-font-size-mobile, 2rem);
           --text-align: var(--a-link-text-align-mobile, center);
-
+          --line-height: var(--a-link-line-height-mobile, var(--a-link-line-height, var(--line-height-mobile)));
+        }
+        :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
+          --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, 2rem);
+          --line-height: var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--line-height-mobile)));
         }
         :host > nav > ul{
-          flex-direction: column;
+          flex-direction: var(--flex-direction-mobile, var(--flex-direction, column));
           padding: 0;
         }
         :host > nav > ul li{
-          border-top: 1px solid var(--hr-color, white);
+          border-top: 1px solid var(--hr-color, var(--color, white));
           display: flex;
           flex-wrap: wrap;
           justify-content: var(--justify-content-mobile, center);
@@ -148,7 +188,7 @@ export default class Navigation extends Shadow() {
           width: 100%;
         }
         :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
-          --color: var(--a-arrow-color-hover, var(--color-hover, white));
+          --color: var(--a-arrow-color-hover, var(--color-hover));
         }
         :host > nav > ul li > a-link{
           flex-grow: 1;
@@ -157,7 +197,7 @@ export default class Navigation extends Shadow() {
           visibility: visible;
         }
         :host > nav > ul > li a-arrow {
-          --color: var(--a-arrow-color, #777);
+          --color: var(--a-arrow-color);
           display: block;
           min-height: var(--min-height-mobile, 50px);
           min-width: var(--min-width-mobile, 50px);
@@ -169,7 +209,7 @@ export default class Navigation extends Shadow() {
           width: 100%;
         }
         :host > nav > ul li:hover ul,
-        :host > nav > ul li:focus-within ul,
+        :host > nav > ul li:not(.open) a-link.open ~ ul,
         :host > nav > ul li ul:hover{
           display: none;
         }
@@ -193,7 +233,6 @@ export default class Navigation extends Shadow() {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
       const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
-      aLink.setAttribute('text-transform', 'uppercase')
       const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
@@ -205,7 +244,11 @@ export default class Navigation extends Shadow() {
         if (event.target) {
           arrowClickListener()
           let a = null
-          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) event.preventDefault()
+          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) {
+            event.preventDefault()
+            Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+            event.target.classList.add('open')
+          }
         }
       })
       li.prepend(arrow)

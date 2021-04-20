@@ -70,13 +70,13 @@ export default class CookieBanner extends Shadow() {
         box-shadow: var(--box-shadow-color, white) 0px -3px 3px !important;
       }
       #msrc-widget button {
-        background-color: var(--button-background-color, var(--color-secondary, orange)) !important;
-        border-color: var(--button-border-color, var(--color-secondary, orange)) !important;
+        background-color: var(--button-background-color, var(--color-secondary, var(--color, orange))) !important;
+        border-color: var(--button-border-color, var(--color-secondary, var(--color, orange))) !important;
         color: var(--button-color, var(--background-color, white)) !important;
         font-family: var(--font-family-bold) !important;
       }
       #msrc-widget a {
-        color: var(--a-color, var(--color-secondary, white)) !important;
+        color: var(--a-color, var(--color-secondary, var(--color, white))) !important;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         #msrc-widget div, #msrc-widget a, #msrc-widget button {

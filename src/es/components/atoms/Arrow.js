@@ -71,7 +71,7 @@ export default class Arrow extends Shadow() {
         width: 100%;
       }
       :host > span:hover{
-        color: var(--color-hover, white);
+        color: var(--color-hover, var(--color, white));
       }
       :host > span.up{
         transform: rotate(90deg);

@@ -72,8 +72,13 @@ export default class General extends Shadow() {
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
       }
       html a {
-        color: var(--a-color, var(--color-secondary, blue));
+        color: var(--a-color, var(--color-secondary, var(--color, blue)));
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+      }
+      html a:hover {
+        color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, blue))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
       /* sticky footer */
       body {
@@ -92,7 +97,7 @@ export default class General extends Shadow() {
         /* global css set by page */
         html {
           font-size: var(--font-size-mobile, 10px);
-          line-height: var(--line-height-mobile, normal);
+          line-height: var(--line-height-mobile, var(--line-height, normal));
           word-break: var(--word-break-mobile, normal);
         }
       }

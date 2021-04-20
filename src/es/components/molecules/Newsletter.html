@@ -13,6 +13,7 @@
   <title>Classics</title>
 </head>
 <body>
+  <main>
     <m-newsletter namespace="newsletter-">
         <form method="post">
           <label class="label">
@@ -25,13 +26,14 @@
           </label>
           <br>
           <label for="name">Name, Vorname</label> <input type="text" class="input-Text" name="name"> <br>
-          <label for="number">PLZ</label> <input type="number" class="input-Text" ="plz" min="1000" max="9999"> <br>
+          <label for="number">PLZ</label> <input type="number" class="input-Text" name="plz" min="1000" max="9999"> <br>
           <label for="ort">Ort</label> <input type="text" class="input-Text" name="ort"> <br>
           <label for="mail">E-Mail</label> <input type="email" class="input-Text" name="mail"> <br>
           <input type="checkbox" name="policy">Ich akzeptiere die Datenschutzbestimmungen.</input> <br>
           <input type="submit" value="Abschicken">
         </form>
     </m-newsletter>
+  </main>
   <script rel=preload type=module>
     self.Environment = {
       mobileBreakpoint: '600px'

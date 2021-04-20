@@ -108,7 +108,7 @@ export default class Stage extends Shadow() {
         width: 100%;
       }
       :host > a-arrow {
-        --color: var(--arrow-color, white);
+        --color: var(--arrow-color);
         --font-size: var(--arrow-font-size, 3rem);
         animation: bounce 3s infinite;
         bottom: calc(var(--content-spacing, 40px) / 2);

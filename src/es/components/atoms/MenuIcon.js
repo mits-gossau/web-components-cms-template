@@ -66,6 +66,8 @@ export default class MenuIcon extends Shadow() {
         cursor: pointer;
         transition: var(--transition, 0.2s);
         padding: 0 calc(var(--width, 35px) / 4) !important;
+        margin: var(--margin, 0);
+        transition: var(--transition, 0.2s);
       }
       :host(.${this.openClass}) {
         padding: 0 calc(var(--width, 35px) / 4) !important;
@@ -78,7 +80,7 @@ export default class MenuIcon extends Shadow() {
         transition: var(--transition, 0.2s);
       }
       .${this.barClass}2 {
-        margin: var(--height, 5px) 0;
+        margin: var(--spacing, var(--height, 5px)) 0;
         transition: var(--transition, 0.2s);
       }
       /* Rotate first ${this.barClass} */

@@ -107,8 +107,9 @@ export default class Flyer extends Intersection() {
         display: block;
         box-sizing: border-box;
         left: 0;
-        position: absolute;
+        position: var(--position, absolute);
         width: 100%;
+        margin: var(--margin, 0) !important;
       }
       :host > div {
         background-color: var(--background-color, transparent);
@@ -185,7 +186,7 @@ export default class Flyer extends Intersection() {
   }
 
   get isPositionFixed () {
-    return this.getAttribute('position') === 'fixed' || !this.getAttribute('position') || this.getAttribute('timer') || this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down'
+    return this.getAttribute('position') === 'fixed' || !this.getAttribute('position') || this.getAttribute('direction') === 'up' || this.getAttribute('direction') === 'down'
   }
 
   get closeBtn () {

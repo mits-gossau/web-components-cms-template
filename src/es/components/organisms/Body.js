@@ -58,7 +58,7 @@ export default class Body extends Shadow() {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
-      :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5 {
+      :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5, :host > main > h6 {
         width: var(--content-width-not-web-component, 80%);
       }
       :host > main h1 {
@@ -110,6 +110,7 @@ export default class Body extends Shadow() {
         word-break: var(--h5-word-break, normal);
         text-transform: var(--h5-text-transform, normal);
         margin: var(--h5-margin, var(--content-spacing, unset)) auto;
+        margin-top: var(--h5-margin-top, var(--h5-margin, var(--content-spacing, unset)));
       }
       :host > main h6 {
         color: var(--h6-color, var(--color, black));
@@ -121,25 +122,47 @@ export default class Body extends Shadow() {
         text-transform: var(--h6-text-transform, normal);
         margin: var(--h6-margin, var(--content-spacing, unset)) auto;
       }
+      .orchestra a {
+        --a-text-decoration: var(--orchestra-a-text-decoration);
+      }
+      .orchestra p {
+        --p-margin: var(--orchestra-p-margin);
+        --p-text-transform: var(--orchestra-p-text-transform);
+      }
+      .tickets a {
+        --a-text-decoration: var(--tickets-a-text-decoration);
+        --a-display: var(--tickets-a-display);
+      }
       :host > main p {
         font-family: var(--font-family-secondary);
         text-align: var(--p-text-align, start);
+        text-transform: vaR(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       :host > main a {
-        color: var(--a-color, var(--color-secondary, pink));
+        color: var(--a-color, var(--color-secondary, var(--color, pink)));
         text-align: var(--a-text-align, unset);
-        text-decoration: var(--text-decoration-a, none);
-        text-underline-offset: var(--text-underline-offset-a, unset);
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+        text-underline-offset: var(--a-text-underline-offset, unset);
         display: var(--a-display, inline);
         margin: var(--a-margin, var(--content-spacing, unset)) auto;
       }
       :host > main a:hover {
-        color: var(--a-color-hover, var(--color-hover-secondary, green));
+        color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
-
       :host > main ul {
-        text-align: var(--ul-text-align, start);
+        text-align: var(--ul-text-align, var(--ol-text-align, start));
+        display: var(--ul-display, var(--ol-display, block));
+        flex-direction: var(--ul-flex-direction, var(--ol-flex-direction, column));
+      }
+      :host > main ul li, :host > main ol li {
+        align-self: var(--li-align-self, auto);
+      }
+      :host > main ol {
+        text-align: var(--ol-text-align, var(--ul-text-align, start));
+        display: var(--ol-display, var(--ul-display, block));
+        flex-direction: var(--ol-flex-direction, var(--ul-flex-direction, column));
       }
       .outro-text {
         text-align: var(--outro-text-text-align, center);
@@ -155,7 +178,7 @@ export default class Body extends Shadow() {
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
         }
-        :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5 {
+        :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5, :host > main > h6 {
           width: var(--content-width-not-web-component-mobile, 90%);
         }
         :host > main h1 {
@@ -192,6 +215,7 @@ export default class Body extends Shadow() {
           word-break: var(--h5-word-break-mobile, var(--h5-word-break, normal));
           text-transform: var(--h5-text-transform-mobile, var(--h5-text-transform, normal));
           margin: var(--h5-margin-mobile, var(--h5-margin)) auto;
+          margin-top: var(--h5-margin-top-mobile, var(--h5-margin-mobile, var(--h5-margin)));
         }
         :host > main h6 {
           font-size: var(--h6-font-size-mobile, var(--h6-font-size, min(1.5rem, 14vw)));
