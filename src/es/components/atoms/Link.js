@@ -1,6 +1,8 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
+/* global self */
+
 /**
  * Link is a wrapper for an a-tag
  * Example at: /src/es/components/pages/Home.html
@@ -60,21 +62,37 @@ export default class Link extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host > a{
+      :host > a {
         box-sizing: border-box;
         color: var(--color, red);
-        display: block;
+        display: var(--display, block);
         font-size: var(--font-size, 1rem);
+        line-height: var(--line-height, normal);
         font-weight: var(--font-weight, 300);
         height: 100%;
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);
-        text-decoration: none;
+        text-decoration: var(--text-decoration, none);
         text-transform: var(--text-transform, none);
+        transition: var(--transition, all 0.2s ease);
         width: 100%;
       }
       :host > a:hover{
-        color: var(--color-hover, yellow);
+        color: var(--color-hover, var(--color, yellow));
+        text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
+      }
+      :host > span {
+        display: var(--span-display, inline);
+      }
+      
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > a {
+          display: var(--display-mobile, var(--display, block));
+          line-height: var(--line-height-mobile, var(--line-height, normal));
+        }
+        :host > span {
+          display: var(--span-display-mobile, var(--span-display, none));
+        }
       }
     `
   }

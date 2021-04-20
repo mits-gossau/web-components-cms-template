@@ -31,6 +31,7 @@ import { Intersection } from '../prototypes/Intersection.js'
   *  {string} [invert] if set to "true" the filter will be applied inverted (default is: 0% filter in the center of the viewport, 100% filter at the edges)
   *  {number} [offset=0] in percentage to self.innerHeight
   *  {string} [transition] set if the effect shall have a transition e.g. "0.2s ease"
+  *  {number} [digits=4] for rounding the css value
   * }
   */
 export default class IntersectionScrollEffect extends Intersection() {
@@ -47,6 +48,12 @@ export default class IntersectionScrollEffect extends Intersection() {
     this.isFirstIntersection = true
     /** @type {boolean} */
     this.hasRequiredAttributes = this.getAttribute('css-property') && this.getAttribute('effect') && this.getAttribute('max-value')
+    /** @type {boolean | null} for saving the media type */
+    this.cachedMedia = null
+    /** @type {number} for rounding the css value */
+    this.digits = this.getAttribute('digits') ? Number(this.getAttribute('digits')) : 4
+    /** @type {number | null} */
+    this.requestAnimationFrameId = null
 
     this.html = /* HTML */`
         <style _css="" protected="true">
@@ -54,7 +61,7 @@ export default class IntersectionScrollEffect extends Intersection() {
             display: block; /* fix: google chrome wrong measurements */
           }
           ${this.getAttribute('transition') && this.getAttribute('css-property') && !this.getAttribute('css-property').includes('--')
-            ? /* CSS */`:host > * {
+            ? /* CSS */`:host > *:not(style) {
               transition: ${this.getAttribute('css-property')} ${this.getAttribute('transition')};
             }`
             : ''
@@ -63,38 +70,45 @@ export default class IntersectionScrollEffect extends Intersection() {
       `
 
     this.scrollListener = event => {
-      const offset = self.innerHeight / 100 * Number(this.getAttribute('offset'))
-      const boundingRect = this.getBoundingClientRect()
-      const recalculate = this.elementHeight !== boundingRect.height
-
-      // saving measurements in variables to avoid redundant calculations
-      if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
-      if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
-      if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - offset - this.center
-
-      // TODO wrong boundingRect.height onload
-      // TODO add optional min-value? max(minValue, outputValue * maxValue)
-
-      // get distance from center (abs)
-      const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
-      // get output [0..1]
-      let outputValue = this.round(difference / this.maxDistanceFromCenter, 4)
-      // clamp value to avoid inaccuracies from scrolling too fast
-      outputValue = this.clamp(outputValue, 0, 1)
-      // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
-      outputValue = this.getAttribute('invert') === 'true' ? 1 - outputValue : outputValue
-
-      if (!isNaN(outputValue)) {
-        this.css = '' // resets css
-        this.css = /* css */ `
-            :host > * {
-              ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.getAttribute('max-value')}));
-            }
-          `
-      }
+      /* 
+        // TODO: horizontal (x) transition has not been smooth
+        if (this.requestAnimationFrameId) self.cancelAnimationFrame(this.requestAnimationFrameId)
+      */
+      this.requestAnimationFrameId = self.requestAnimationFrame(timeStamp => {
+        const offset = self.innerHeight / 100 * Number(this.checkMedia('mobile') ? this.getAttribute('offset-mobile') || this.getAttribute('offset') : this.getAttribute('offset'))
+        const boundingRect = this.getBoundingClientRect()
+        const recalculate = this.elementHeight !== boundingRect.height
+  
+        // saving measurements in variables to avoid redundant calculations
+        if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
+        if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
+        if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - offset - this.center
+  
+        // TODO wrong boundingRect.height onload
+        // TODO add optional min-value? max(minValue, outputValue * maxValue)
+  
+        // get distance from center (abs)
+        const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
+        // get output [0..1]
+        let outputValue = this.round(difference / this.maxDistanceFromCenter, this.digits)
+        // clamp value to avoid inaccuracies from scrolling too fast
+        outputValue = this.clamp(outputValue, 0, 1)
+        // invert effect behaviour in relation to scroll-position (define where 0% and 100% are)
+        outputValue = this.getAttribute('invert') === 'true' ? 1 - outputValue : outputValue
+        if (!isNaN(outputValue)) {
+          this.css = '' // resets css
+          this.css = /* css */ `
+              :host > *:not(style) {
+                ${this.getAttribute('css-property')}: ${this.getAttribute('effect')}(calc(${outputValue} * ${this.checkMedia('mobile') ? this.getAttribute('max-value-mobile') || this.getAttribute('max-value') : this.getAttribute('max-value')}));
+              }
+            `
+        }
+        this.requestAnimationFrameId = null
+      })
     }
 
     this.resizeListener = event => {
+      this.cachedMedia = null
       if (this.hasRequiredAttributes) {
         if (this.checkMedia()) {
           this.intersectionObserveStart()
@@ -108,20 +122,28 @@ export default class IntersectionScrollEffect extends Intersection() {
     }
   }
 
-  checkMedia () {
+  /**
+   *
+   *
+   * @param {'mobile' | 'desktop'} [media=this.getAttribute('media')]
+   * @returns {boolean}
+   * @memberof IntersectionScrollEffect
+   */
+  checkMedia (media = this.getAttribute('media')) {
+    if (!media) return true
+    if (this.cachedMedia) return this.cachedMedia === media
     // @ts-ignore ignoring self.Environment error
     const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-    switch (this.getAttribute('media')) {
-      case 'mobile': return self.matchMedia(`(max-width: ${breakpoint})`).matches
-      case 'desktop': return self.matchMedia(`(min-width: calc(${breakpoint} + 1px))`).matches
-      default: return true
-    }
+    const isDesktop = self.matchMedia(`(min-width: ${breakpoint}`).matches
+    this.cachedMedia = isDesktop ? 'desktop' : 'mobile'
+    return (this.cachedMedia === media)
   }
 
   connectedCallback () {
     if (this.hasRequiredAttributes) {
       if (this.checkMedia()) super.connectedCallback() // this.intersectionObserveStart()
       self.addEventListener('resize', this.resizeListener)
+      this.scrollListener() // write first calculation
     }
   }
 
@@ -143,8 +165,7 @@ export default class IntersectionScrollEffect extends Intersection() {
       * @param {number} decimalsAmount
       */
   round (value, decimalsAmount) {
-    decimalsAmount = decimalsAmount < 1 ? 1 : decimalsAmount
-    return Math.round((value + Number.EPSILON) * (10 * decimalsAmount)) / (10 * decimalsAmount)
+    return value.toFixed(decimalsAmount < 1 ? 1 : decimalsAmount)
   }
 
   /**

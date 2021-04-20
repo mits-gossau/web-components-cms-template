@@ -22,7 +22,6 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @css {
  *  --height [85px - var(--content-spacing, 40px)]
  *  --align-items [center]
- *  --align-self [auto]
  *  --flex-flow [row]
  *  --justify-content [center]
  *  --margin [0px]
@@ -102,14 +101,20 @@ export default class Logo extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host{
+      :host {
         align-items: var(--align-items, center);
-        align-self: var(--align-self, auto);
-        display: flex;
+        display: flex; /* @ask: is display always flex for a reason? even if there are no children?*/
         flex-flow: var(--flex-flow, row);
+        flex-grow: var(--flex-grow, 0);
         justify-content: var(--justify-content, center);
         box-sizing: border-box;
         margin: var(--margin, 0px);
+      }
+      :host(.hide-desktop) {
+        display: none;
+      }
+      :host(.hide-mobile) {
+        display: flex; /* @ask: is display always flex for a reason? even if there are no children?*/
       }
       :host img{
         display: block;
@@ -121,7 +126,7 @@ export default class Logo extends Shadow() {
       }
       :host > ${this.textSelector}{
         box-sizing: var(--text-box-sizing, border-box);
-        color: var(--text-color, pink);
+        color: var(--text-color, var(--color, pink));
         font-size: var(--text-font-size, 1rem);
         line-height: var(--text-line-height, normal);
         padding: var(--text-padding, 0);
@@ -134,14 +139,20 @@ export default class Logo extends Shadow() {
         padding: var(--text-padding-fr, var(--text-padding, 0));
       }
       :host > ${this.textSelector} a{
-        color: var(--text-a-color, green);
-        text-decoration: var(--text-a-text-decoration, none);
+        color: var(--text-a-color, var(--color, green));
+        text-decoration: var(--text-a-text-decoration, var(--text-decoration, none));
       }
       :host > ${this.textSelector} a:hover{
-        color: var(--text-a-color-hover, green);
-        text-decoration: var(--text-a-text-decoration-hover, none);
+        color: var(--text-a-color-hover, var(--color-hover, var(--color, green)));
+        text-decoration: var(--text-a-text-decoration-hover, var(--text-decoration-hover, var(--text-decoration, none)));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host(.hide-desktop) {
+          display: flex;
+        }
+        :host(.hide-mobile) {
+          display: none;
+        }
         :host img{
           height: var(--height-mobile, 65px);
           max-height: var(--max-height-mobile, none);

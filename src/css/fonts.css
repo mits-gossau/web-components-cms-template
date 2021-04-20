@@ -9,7 +9,7 @@
         url('../fonts/FuturaT/FuturaT-Book.woff2') format('woff2'),
         url('../fonts/FuturaT/FuturaT-Book.woff') format('woff');
     font-style: normal;
-    font-display: swap;
+    font-display: block;
 }
 @font-face {
     font-family: 'OPTIFutura-ExtraBlackCond';
@@ -18,7 +18,7 @@
         url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot'),
         url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot?#iefix') format('embedded-opentype'); 
     font-weight: normal;
-    font-style: swap;
+    font-style: block;
 }
 
 /**
@@ -26,6 +26,11 @@
  * <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
  * The contents below are taken from: <link href="https://fast.fonts.net/cssapi/2b52b456-d052-418d-8595-f1c46d3439fb.css" rel="stylesheet" />
  * NOTE: use it inline like below, since the extra request to fast.fonts.net is not necessary
+ * D A N G E R: This font has a very bad hit-area and this can't yet be solved by css, it is in discussion though:
+ *  https://www.w3.org/TR/css-inline-3/#leading-trim
+ *  https://www.w3.org/TR/css-inline-3/#propdef-text-edge
+ *  https://css-tricks.com/leading-trim-the-future-of-digital-typesetting/
+ *  https://caniuse.com/?search=leading-trim
  */
 @import url(/t/1.css?apiType=css&projectid=2b52b456-d052-418d-8595-f1c46d3439fb);
 @font-face{

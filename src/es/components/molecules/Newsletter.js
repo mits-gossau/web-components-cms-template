@@ -48,9 +48,6 @@ export default class Newsletter extends Shadow() {
         padding: var(--padding, 0);
         color: var(--color, yellow);
       }
-      :host > * {
-        margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
-      }
       :host label {
         text-transform: uppercase;
         font-weight: bold;
