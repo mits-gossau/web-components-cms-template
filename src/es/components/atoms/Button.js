@@ -15,7 +15,21 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  
  * }
  * @css {
- *  
+ * 
+ * --border [2px solid var(--color)] 
+ * --width [unset]
+ * --height [unset]
+ * --display [block]
+ * --color [green]
+ * --button-width [70px]
+ * --button-height [85px]
+ * --button-transition [0.3s all]
+ * --button-border [none]
+ * --button-padding [0]
+ * --button-cursor [pointer]
+ * --background-color [red]
+ * --button-font-size [0.8rem]
+ * --font-family-bold
  * }
  */
 export default class Button extends Shadow() {
@@ -54,14 +68,22 @@ export default class Button extends Shadow() {
         height: var(--button-height, 85px);
         transition: var(--button-transition, 0.3s all);
         border: var(--button-border, none);
+
+        /* set via attribute */
         background: url(../../../img/search_icon_yellow.png) var(--background-color) no-repeat center;
+
         padding: var(--button-padding, 0);
         cursor: var(--button-cursor, pointer);
+        color: var(--color, green);
+        font-family: var(--font-family-bold);
+        font-size: var(--button-font-size, 0.8rem);
       }
       :host button:focus,
       :host button:hover,
       :host button:active {
+        /* set via attribute */
         background: url(../../../img/search_icon_blue.png) var(--color) no-repeat center;
+        color: var(--background-color, red);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
       }
