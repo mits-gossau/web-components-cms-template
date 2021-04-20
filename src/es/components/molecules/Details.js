@@ -32,17 +32,23 @@ export default class Details extends Mutation() {
     this.openEventListener = event => {
       if (this.details && event.detail.child && event.detail.child !== this) this.details.removeAttribute('open')
     }
+
+    this.clickEventListener = event => {
+      if (this.details && event.target && event.target.classList.contains('close')) this.details.removeAttribute('open')
+    }
   }
 
   connectedCallback () {
     super.connectedCallback()
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     document.body.addEventListener(this.openEventName, this.openEventListener)
+    this.root.addEventListener('click', this.clickEventListener)
   }
 
   disconnectedCallback () {
     super.disconnectedCallback()
     document.body.removeEventListener(this.openEventName, this.openEventListener)
+    this.root.removeEventListener('click', this.clickEventListener)
   }
 
   mutationCallback (mutationList, observer) {
@@ -76,9 +82,51 @@ export default class Details extends Mutation() {
    */
   renderCSS () {
     this.css = /* css */`
+      :host details {
+        text-align: var(--text-align, center);
+        margin: var(--margin, 0);
+        padding: var(--padding, 0);
+      }
       :host details summary::marker {
-        display: none;
-        content: "";
+        display: var(--marker-display, none);
+        content: var(--marker-content, "");
+      }
+      :host details summary {
+        cursor: var(--summary-cursor, pointer);
+        text-decoration: var(--summary-text-decoration, underline);
+        outline: var(--summary-outline, none);
+        margin: var(--summary-margin, 0);
+        padding: var(--summary-padding, 0);
+      }
+      :host details[open] summary {
+        text-decoration: var(--summary-text-decoration-open, none);
+      }
+      :host details summary > * {
+        margin: var(--summary-child-margin, revert);
+        padding: var(--summary-child-padding, revert);
+      }
+      :host details[open] summary > * {
+        margin: var(--summary-child-margin-open, 0);
+        padding: var(--summary-child-padding-open, 0);
+      }
+      :host details summary ~ * {
+        margin: var(--child-margin, revert);
+        padding: var(--child-padding, revert);
+      }
+      :host details[open] summary ~ * {
+        animation: open var(--animation, 0.1s ease);
+        margin: var(--child-margin-open, 0);
+        padding: var(--child-padding-open, 0);
+      }
+      :host details .close {
+        cursor: var(--close-cursor, pointer);
+        display: var(--close-display, block);
+        text-decoration: var(--close-text-decoration, underline);
+        text-transform: var(--close-text-transform, uppercase);
+      }
+      @keyframes open {
+        0% {font-size: 0}
+        100% {font-size: inherit}
       }
     `
   }
