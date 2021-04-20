@@ -21,24 +21,12 @@
     <o-body>
       <main>
         <m-form>
-          <!-- <style>
-            button {
-              width: 70px;
-              height: var(--button-height, 85px);
-              transition: var(--button-transition, 0.3s all);
-              border: var(--button-border, none);
-              background: url(../../../img/search_icon_yellow.png) var(--background-color) no-repeat center;
-              padding: var(--button-padding, 0);
-              cursor: var(--button-cursor, pointer);
-            }
-          </style> -->
           <form action="/suche/" enctype="multipart/form-data" method="post">
             <a-text-field>
               <label for="Suche">Suche</label>
               <input id="SearchTerm" name="SearchTerm" type="text" value="" placeholder="Suchbegriff hier eingeben...">
             </a-text-field>
-            <!-- <button type="submit" aria-label="Search"></button> -->
-            <a-button>
+            <a-button icon-src="../../../img/search_icon_yellow.png" icon-src-secondary="../../../img/search_icon_blue.png">
               <button type="submit" aria-label="Search"></button>
             </a-button>
           </form>

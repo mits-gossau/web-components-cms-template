@@ -64,14 +64,11 @@ export default class Button extends Shadow() {
         display: var(--display, block)
       }
       :host button {
+        background: ${this.getAttribute("icon-src") ? `url("${this.getAttribute("icon-src")}") var(--background-color) no-repeat center` : "var(--background-color)"};
         width: var(--button-width, 70px);
         height: var(--button-height, 85px);
         transition: var(--button-transition, 0.3s all);
         border: var(--button-border, none);
-
-        /* set via attribute */
-        background: url(../../../img/search_icon_yellow.png) var(--background-color) no-repeat center;
-
         padding: var(--button-padding, 0);
         cursor: var(--button-cursor, pointer);
         color: var(--color, green);
@@ -81,8 +78,7 @@ export default class Button extends Shadow() {
       :host button:focus,
       :host button:hover,
       :host button:active {
-        /* set via attribute */
-        background: url(../../../img/search_icon_blue.png) var(--color) no-repeat center;
+        background: ${this.getAttribute("icon-src-secondary") ? `url("${this.getAttribute("icon-src-secondary")}") var(--color) no-repeat center` : "var(--color)"};
         color: var(--background-color, red);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
