@@ -4,12 +4,12 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global self */
 
 /**
- * TextfieldWrapper is a wrapper for an input- & label-tag
+ * Textfield is a wrapper for an input- & label-tag
  * Example at: /src/es/components/pages/ClassicsSearch.html
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
- * @class TextFieldWrapper
+ * @class TextField
  * @type {CustomElementConstructor}
  * @attribute {
  *  
@@ -44,7 +44,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * --p-font-size
  * }
  */
-export default class Link extends Shadow() {
+export default class TextField extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }

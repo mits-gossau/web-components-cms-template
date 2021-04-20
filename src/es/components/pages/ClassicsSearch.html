@@ -20,7 +20,7 @@
     </o-header>
     <o-body>
       <main>
-        <m-form-wrapper>
+        <m-form>
           <!-- <style>
             button {
               width: 70px;
@@ -33,16 +33,16 @@
             }
           </style> -->
           <form action="/suche/" enctype="multipart/form-data" method="post">
-            <a-text-field-wrapper>
+            <a-text-field>
               <label for="Suche">Suche</label>
               <input id="SearchTerm" name="SearchTerm" type="text" value="" placeholder="Suchbegriff hier eingeben...">
-            </a-text-field-wrapper>
+            </a-text-field>
             <!-- <button type="submit" aria-label="Search"></button> -->
-            <a-button-wrapper>
+            <a-button>
               <button type="submit" aria-label="Search"></button>
-            </a-button-wrapper>
+            </a-button>
           </form>
-      </m-form-wrapper>
+      </m-form>
       </main>
     </o-body>
     <o-footer theme="classics" namespace="footer-">
@@ -128,9 +128,9 @@
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
     import('../../../es/components/molecules/PlaylistItem.js').then(module => ['m-playlist-item', module.default]),
     import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
-    import('../../../es/components/molecules/FormWrapper.js').then(module => ['m-form-wrapper', module.default]),
-    import('../../../es/components/atoms/TextFieldWrapper.js').then(module => ['a-text-field-wrapper', module.default]),
-    import('../../../es/components/atoms/ButtonWrapper.js').then(module => ['a-button-wrapper', module.default]),
+    import('../../../es/components/molecules/Form.js').then(module => ['m-form', module.default]),
+    import('../../../es/components/atoms/TextField.js').then(module => ['a-text-field', module.default]),
+    import('../../../es/components/atoms/Button.js').then(module => ['a-button', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
     import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
