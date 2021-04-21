@@ -34,8 +34,10 @@ export default class Details extends Mutation() {
     }
 
     this.clickEventListener = event => {
-      alert(this.details && event.target && event.target.classList.contains('close'))
-      if (this.details && event.target && event.target.classList.contains('close')) this.details.removeAttribute('open')
+      if (this.details && event.target && event.target.classList.contains('close')) {
+        event.preventDefault()
+        this.details.removeAttribute('open')
+      }
     }
   }
 
@@ -120,6 +122,7 @@ export default class Details extends Mutation() {
         padding: var(--child-padding-open, 0);
       }
       :host details .close {
+        color: var(--a-color, var(--color));
         cursor: var(--close-cursor, pointer);
         display: var(--close-display, block);
         text-decoration: var(--close-text-decoration, underline);
