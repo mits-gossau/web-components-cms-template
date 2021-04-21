@@ -35,12 +35,25 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class Button extends Shadow() {
   constructor (...args) {
     super(...args)
+
+    this.clickEventListener = event => {
+      this.dispatchEvent(new CustomEvent("form-submit", {
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.getAttribute("src")) this.applyImageIfExists(this, this.getAttribute("src"), "src")
     if (this.getAttribute("src-secondary")) this.applyImageIfExists(this, this.getAttribute("src-secondary"), "src-secondary")
+    this.root.addEventListener("click", this.clickEventListener)
+  }
+
+  disconnectedCallback () {
+    this.root.removeEventListener("click", this.clickEventListener)
   }
 
   /**

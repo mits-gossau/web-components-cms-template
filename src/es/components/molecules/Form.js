@@ -24,8 +24,21 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Form extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.submitEventListener = event =>  {
+      if (this.form) this.form.submit()
+    }
+  }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.addEventListener("form-submit", this.submitEventListener)
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener("form-submit", this.submitEventListener)
   }
 
   /**
@@ -62,6 +75,10 @@ export default class Form extends Shadow() {
         }
       }
     `
+  }
+
+  get form () {
+    return this.root.querySelector('form')
   }
 
 }
