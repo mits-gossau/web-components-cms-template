@@ -9,6 +9,7 @@ import { Intersection } from '../prototypes/Intersection.js'
 * Examples:
 *   <o-intersection-scroll-effect css-property=filter, effect=brightness, max-value=100%>
 *   <o-intersection-scroll-effect css-property=--transform-mobile, effect=translateX, max-value=50px>
+*   src/es/components/molecules/NavigationClassics.html
 *
 * NOTE: When using a CSS-Variable for the css-property, the component where the effect should be applied needs to have a line where the CSS-variable gets used
 * => e.g.: filter: var(--filter-mobile, none)

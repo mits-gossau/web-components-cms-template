@@ -116,10 +116,18 @@
               --picture-margin: 0;
             }
             :host > div > div {
-              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg)
+              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg);
             }
-            :host > div > div h3, :host > div > div p {
-              font-size: max(19px, 1vw);
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
+              max-width: 55vw;
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -128,11 +136,28 @@
             :host > div > div p {
               margin: 0;
             }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
           </style>
           <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
           <div>
             <h3>Vilde Frang</h3>
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+            <a href="#">Hello Link</a>
           </div>
         </m-flyer>
         <m-flyer
@@ -149,10 +174,19 @@
               float: right;
             }
             :host > div > div {
-              transform: translate(min(-25px, -11vw), -9vw) rotate(14deg)
+              float: right;
+              transform: translate(max(-104px, -11vw), -2vw) rotate(14deg);
             }
-            :host > div > div h3, :host > div > div p {
-              font-size: max(19px, 1vw);
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
+              max-width: 55vw;
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -161,11 +195,28 @@
             :host > div > div p {
               margin: 0;
             }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
           </style>
           <a-picture namespace=picture- defaultSource="../../../img/classics_2.png" alt="vildeFrang"></a-picture>
           <div>
             <h3>Vilde Frau</h3>
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+            <a href="#">Hello Link</a>
           </div>
         </m-flyer>
         <div style="clear:both;"></div>
@@ -349,14 +400,22 @@
         <o-intersection-scroll-effect css-property=transform effect=translateX max-value-mobile=-100% max-value=-40% transition="0.1s linear" offset-mobile="30" digits="6">
           <style>
             :host {
-              margin: 0 !important;
               --picture-margin: 0;
+              margin: 0 !important;
             }
             :host > div > div {
-              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg)
+              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg);
             }
-            :host > div > div h3, :host > div > div p {
-              font-size: max(19px, 1vw);
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
+              max-width: 55vw;
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -365,15 +424,88 @@
             :host > div > div p {
               margin: 0;
             }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
           </style>
           <div>
             <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
             <div>
               <h3>Vilde Frang</h3>
               <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+              <a href="#">Hello Link</a>
             </div>
           </div>
         </o-intersection-scroll-effect>
+        <div class="spacer"></div>
+        <o-intersection-scroll-effect css-property=transform effect=translateX max-value-mobile=100% max-value=40% transition="0.1s linear" offset-mobile="30" digits="6">
+          <style>
+            :host {
+              --picture-margin: 0 0 0 auto;
+              margin: 0 0 0 auto !important;
+            }
+            :host > div > div {
+              float: right;
+              transform: translate(max(-104px, -11vw), -2vw) rotate(14deg);
+            }
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
+              max-width: 55vw;
+            }
+            :host > div > div h3 {
+              font-family: var(--font-family-bold);
+              margin: 0;
+            }
+            :host > div > div p {
+              margin: 0;
+            }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
+          </style>
+          <div>
+            <a-picture namespace=picture- defaultSource="../../../img/classics_2.png" alt="vildeFrang"></a-picture>
+            <div>
+              <h3>Vilde Frau</h3>
+              <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+              <a href="#">Hello Link</a>
+            </div>
+          </div>
+        </o-intersection-scroll-effect>
+        <div style="clear:both;"></div>
         <div class="spacer"></div>
 
         <h2>Programm</h2>
