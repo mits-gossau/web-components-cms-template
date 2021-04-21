@@ -77,10 +77,12 @@ export default class Stamp extends Intersection() {
         transform: var(--rotate, rotate(-15deg)) scale(1);
         transition: var(--transition, opacity 0.2s ease);
         width: var(--content-width, 100%);
+        z-index: -1;
       }
       :host([show]) {
         animation: pulse var(--animation, 0.5s ease);
         opacity: 1;
+        z-index: var(--z-index, 99);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
