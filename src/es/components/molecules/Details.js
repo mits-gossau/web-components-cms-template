@@ -34,6 +34,7 @@ export default class Details extends Mutation() {
     }
 
     this.clickEventListener = event => {
+      alert(this.details && event.target && event.target.classList.contains('close'))
       if (this.details && event.target && event.target.classList.contains('close')) this.details.removeAttribute('open')
     }
   }
