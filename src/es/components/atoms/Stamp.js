@@ -74,7 +74,9 @@ export default class Stamp extends Intersection() {
         text-align: var(--text-align, center);
         transform: var(--rotate, rotate(-15deg)) scale(1);
         transition: var(--transition, opacity 0.2s ease);
-        width: 100% !important;
+        width: 90% !important;
+        left: 0;
+        margin: 0 5% !important;
         z-index: -1;
       }
       :host([show]) {
