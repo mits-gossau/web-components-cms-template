@@ -123,7 +123,7 @@
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
-              max-width: 55vw;
+              max-width: 40vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
@@ -182,7 +182,7 @@
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
-              max-width: 55vw;
+              max-width: 40vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
@@ -230,6 +230,10 @@
               recommended.<a href="#" class="close">Schliessen</a></p>
             </details>
           </m-details>
+          <a-stamp>
+            <span style="font-size:2em;font-family:var(--font-family-bold);text-transform:uppercase;color:red;">!!!!Abgesagt!!!</span><br>
+            <a href="#" class="close">Schliesse</a>
+          </a-stamp>
           <m-details>
             <details>
               <summary><h3>System Requirements</h3></summary>
@@ -411,7 +415,7 @@
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
-              max-width: 55vw;
+              max-width: 40vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
@@ -466,7 +470,7 @@
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
-              max-width: 55vw;
+              max-width: 40vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
@@ -643,6 +647,7 @@
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
     import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
+    import('../../../es/components/atoms/Stamp.js').then(module => ['a-stamp', module.default]),
     import('../../../es/components/organisms/IntersectionScrollEffect.js').then(module => ['o-intersection-scroll-effect', module.default]),
     import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default])
     ]).then(elements => elements.forEach(element => {
