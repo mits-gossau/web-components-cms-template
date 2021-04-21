@@ -135,6 +135,40 @@
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
           </div>
         </m-flyer>
+        <m-flyer
+          direction=right
+          timer=1000
+          namespace="flyer-"
+          position="false"
+        >
+          <style>
+            :host {
+              --flyer-transform: translateX(20px);
+              --flyer-position: static;
+              --picture-margin: 0 0 0 auto;
+              float: right;
+            }
+            :host > div > div {
+              transform: translate(min(-25px, -11vw), -9vw) rotate(14deg)
+            }
+            :host > div > div h3, :host > div > div p {
+              font-size: max(19px, 1vw);
+            }
+            :host > div > div h3 {
+              font-family: var(--font-family-bold);
+              margin: 0;
+            }
+            :host > div > div p {
+              margin: 0;
+            }
+          </style>
+          <a-picture namespace=picture- defaultSource="../../../img/classics_2.png" alt="vildeFrang"></a-picture>
+          <div>
+            <h3>Vilde Frau</h3>
+            <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+          </div>
+        </m-flyer>
+        <div style="clear:both;"></div>
         <div>
           <m-details>
             <details>
