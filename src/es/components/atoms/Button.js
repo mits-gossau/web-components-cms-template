@@ -4,12 +4,12 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global self */
 
 /**
- * ButtonWrapper is a wrapper for a button element
+ * Button is a wrapper for a button element
  * Example at: /src/es/components/pages/ClassicsSearch.html
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
- * @class ButtonWrapper
+ * @class Button
  * @type {CustomElementConstructor}
  * @attribute {
  *  
@@ -18,7 +18,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  
  * }
  */
-export default class Link extends Shadow() {
+export default class Button extends Shadow() {
   constructor (...args) {
     super(...args)
   }
