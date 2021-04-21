@@ -15,7 +15,7 @@
 <body>
   <main>
     <m-newsletter namespace="newsletter-">
-      <form action="/suche/" enctype="multipart/form-data" method="post">
+      <form method="post">
           <label class="label">
             <input type="radio" class="radio" name="geschlecht" value="herr">
             <span>Herr</span>
@@ -67,7 +67,6 @@
     import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
-    import('../../../es/components/molecules/Form.js').then(module => ['m-form', module.default]),
     import('../../../es/components/molecules/PlaylistItem.js').then(module => ['m-playlist-item', module.default]),
     import('../../../es/components/molecules/Newsletter.js').then(module => ['m-newsletter', module.default]),
     import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
