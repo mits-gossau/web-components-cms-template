@@ -62,16 +62,18 @@ export default class Form extends Shadow() {
       }
       :host form {
         display: var(--form-display, flex);
+        flex-direction: var(--form-flex-direction, column);
         align-items: var(--form-align-items, center);
       }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
-          display: var(--display-mobile, block);
+          display: var(--display-mobile, var(--display, block));
         }
         :host form {
-          display: var(--form-display-mobile, flex);
-          align-items: var(--form-align-items-mobile, center);
+          display: var(--form-display-mobile, var(--form-display, flex));
+          flex-direction: var(--form-flex-direction-mobile, var(--form-flex-direction, column));
+          align-items: var(--form-align-items-mobile, var(--form-align-items, center));
         }
       }
     `
