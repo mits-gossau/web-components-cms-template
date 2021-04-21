@@ -20,7 +20,6 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  --text-align, center
  *  --rotate, rotate(-15deg)) scale(1
  *  --transition, opacity 0.2s ease
- *  --content-width, 100%
  *  --animation, 0.5s ease
  *  --rotate, rotate(-15deg)) scale(1
  *  --content-width-mobile, var(--content-width, 100%)
