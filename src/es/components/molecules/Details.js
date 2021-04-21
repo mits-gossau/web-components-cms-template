@@ -87,7 +87,7 @@ export default class Details extends Mutation() {
         margin: var(--margin, 0);
         padding: var(--padding, 0);
       }
-      :host details summary::marker {
+      :host details summary::marker, :host details summary::-webkit-details-marker {
         display: var(--marker-display, none);
         content: var(--marker-content, "");
       }

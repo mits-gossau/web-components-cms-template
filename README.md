@@ -8,7 +8,6 @@ powered by Umbraco CMS: [Club Concerts Live](https://club.migros-kulturprozent-c
 
 1. Newsletter (lg)
 1. Search Component (jj)
-1. Details (Accordion) (sst)
 1. Cancelled Component (Stamp) (sst)
 1. language switch if browser lang disagrees with domain lang
 
