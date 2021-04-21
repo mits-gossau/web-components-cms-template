@@ -40,6 +40,7 @@ html {
   --content-width-not-web-component: var(--content-width);
   --content-width: 65%;
   --flex-grow: 1;
+  --form-flex-direction: row;
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
@@ -197,6 +198,16 @@ html {
   --margin: 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
   --module-wrapper-margin: 15% 0 0 0;
+  --newsletter-submit-margin: 30px auto;
+  --newsletter-submit-button-text-transform: uppercase;
+  --newsletter-submit-color: var(--color);
+  --newsletter-submit-background-color: var(--background-color);
+  --newsletter-submit-button-font-family: var(--font-family-bold);
+  --newsletter-submit-button-font-size: 1rem;
+  --newsletter-submit-width: 15%;
+  --newsletter-submit-height: 45px;
+  --newsletter-submit-button-width: 100%;
+  --newsletter-submit-button-height: 100%;
   --navigation-a-link-color-nav-open: #009fe3;
   --navigation-a-link-content-spacing-nav-open: 0;
   --navigation-a-link-content-spacing: 0;

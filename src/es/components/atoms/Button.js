@@ -29,18 +29,31 @@ import { Shadow } from '../prototypes/Shadow.js'
  * --button-cursor [pointer]
  * --background-color [red]
  * --button-font-size [0.8rem]
- * --font-family-bold
+ * --button-font-family [var(--font-family-bold)]
  * }
  */
 export default class Button extends Shadow() {
   constructor (...args) {
     super(...args)
+
+    this.clickEventListener = event => {
+      this.dispatchEvent(new CustomEvent("form-submit", {
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.getAttribute('src')) this.applyImageIfExists(this, this.getAttribute('src'), 'src')
-    if (this.getAttribute('src-secondary')) this.applyImageIfExists(this, this.getAttribute('src-secondary'), 'src-secondary')
+    if (this.getAttribute("src")) this.applyImageIfExists(this, this.getAttribute("src"), "src")
+    if (this.getAttribute("src-secondary")) this.applyImageIfExists(this, this.getAttribute("src-secondary"), "src-secondary")
+    this.root.addEventListener("click", this.clickEventListener)
+  }
+
+  disconnectedCallback () {
+    this.root.removeEventListener("click", this.clickEventListener)
   }
 
   /**
@@ -93,7 +106,8 @@ export default class Button extends Shadow() {
         border: var(--border, 2px solid var(--color)); 
         width: var(--width, unset);
         height: var(--height, unset);
-        display: var(--display, block)
+        display: var(--display, block);
+        margin: var(--margin, 0);
       }
       :host button {
         width: var(--button-width, 70px);
@@ -104,8 +118,9 @@ export default class Button extends Shadow() {
         cursor: var(--button-cursor, pointer);
         color: var(--color, green);
         background: var(--backgrond-color);
-        font-family: var(--font-family-bold);
+        font-family: var(--button-font-family, var(--font-family-bold));
         font-size: var(--button-font-size, 0.8rem);
+        text-transform: var(--button-text-transform, none);
       }
       :host button:focus,
       :host button:hover,
