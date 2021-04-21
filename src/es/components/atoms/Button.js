@@ -15,7 +15,21 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  
  * }
  * @css {
- *  
+ * 
+ * --border [2px solid var(--color)] 
+ * --width [unset]
+ * --height [unset]
+ * --display [block]
+ * --color [green]
+ * --button-width [70px]
+ * --button-height [85px]
+ * --button-transition [0.3s all]
+ * --button-border [none]
+ * --button-padding [0]
+ * --button-cursor [pointer]
+ * --background-color [red]
+ * --button-font-size [0.8rem]
+ * --font-family-bold
  * }
  */
 export default class Button extends Shadow() {
@@ -25,6 +39,8 @@ export default class Button extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.getAttribute("src")) this.applyImageIfExists(this, this.getAttribute("src"), "src")
+    if (this.getAttribute("src-secondary")) this.applyImageIfExists(this, this.getAttribute("src-secondary"), "src-secondary")
   }
 
   /**
@@ -34,6 +50,36 @@ export default class Button extends Shadow() {
    */
   shouldComponentRenderCSS () {
     return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * checks if image exists and apply as background if it does
+   */
+  applyImageIfExists(outerThis, src, name) {
+    const xhr = new XMLHttpRequest()
+    xhr.open("HEAD", src, true)
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          if (name === "src") {
+            outerThis.css = /* css */`
+              :host button {
+                background: url(${src}) var(--background-color) no-repeat center;
+              }
+          `
+          } else if (name === "src-secondary") {
+            outerThis.css = /* css */`
+              :host button:focus,
+              :host button:hover,
+              :host button:active {
+                background: url(${src}) var(--color) no-repeat center;
+              }
+            `
+          }
+        }
+      }
+    }
+    xhr.send(null) 
   }
 
   /**
@@ -54,14 +100,18 @@ export default class Button extends Shadow() {
         height: var(--button-height, 85px);
         transition: var(--button-transition, 0.3s all);
         border: var(--button-border, none);
-        background: url(../../../img/search_icon_yellow.png) var(--background-color) no-repeat center;
         padding: var(--button-padding, 0);
         cursor: var(--button-cursor, pointer);
+        color: var(--color, green);
+        background: var(--backgrond-color);
+        font-family: var(--font-family-bold);
+        font-size: var(--button-font-size, 0.8rem);
       }
       :host button:focus,
       :host button:hover,
       :host button:active {
-        background: url(../../../img/search_icon_blue.png) var(--color) no-repeat center;
+        background: var(--color);
+        color: var(--background-color, red);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
       }
