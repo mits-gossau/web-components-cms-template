@@ -111,15 +111,23 @@
         >
           <style>
             :host {
-              --flyer-transform: translateX(-20px);
+              --flyer-padding: 0;
               --flyer-position: static;
               --picture-margin: 0;
             }
             :host > div > div {
-              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg)
+              transform: translate(min(104px, 11vw), -6vw) rotate(-14deg);
             }
-            :host > div > div h3, :host > div > div p {
-              font-size: max(19px, 1vw);
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+              max-width: 40vw;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -128,39 +136,122 @@
             :host > div > div p {
               margin: 0;
             }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
           </style>
           <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
           <div>
             <h3>Vilde Frang</h3>
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+            <a href="#">Hello Link</a>
           </div>
         </m-flyer>
+        <m-flyer
+          direction=right
+          timer=1000
+          namespace="flyer-"
+          position="false"
+        >
+          <style>
+            :host {
+              --flyer-padding: 0;
+              --flyer-position: static;
+              --picture-margin: 0 0 0 auto;
+              float: right;
+            }
+            :host > div > div {
+              float: right;
+              transform: translate(max(-104px, -11vw), -2vw) rotate(14deg);
+            }
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+              max-width: 40vw;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
+            }
+            :host > div > div h3 {
+              font-family: var(--font-family-bold);
+              margin: 0;
+            }
+            :host > div > div p {
+              margin: 0;
+            }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
+          </style>
+          <a-picture namespace=picture- defaultSource="../../../img/classics_2.png" alt="vildeFrang"></a-picture>
+          <div>
+            <h3>Vilde Frau</h3>
+            <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+            <a href="#">Hello Link</a>
+          </div>
+        </m-flyer>
+        <div style="clear:both;"></div>
         <div>
           <m-details>
             <details>
-              <summary>System Requirements</summary>
+              <summary><h3>System Requirements</h3></summary>
+              <p>Requires a computer running an operating system. The computer
+              must have some memory and ideally some kind of long-term storage.
+              An input device as well as some form of output device is
+              recommended.<a href="#" class="close">Schliessen</a></p>
+            </details>
+          </m-details>
+          <a-stamp>
+            <span style="font-size:2em;font-family:var(--font-family-bold);text-transform:uppercase;color:red;">!!!!Abgesagt!!!</span>
+            <a href="#" class="close">Schliesse</a>
+          </a-stamp>
+          <m-details>
+            <details>
+              <summary><h3>System Requirements</h3></summary>
               <p>Requires a computer running an operating system. The computer
               must have some memory and ideally some kind of long-term storage.
               An input device as well as some form of output device is
               recommended.</p>
+              <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
+              <a href="#" class="close">Schliesse</a>
             </details>
           </m-details>
           <m-details>
             <details>
-              <summary>System Requirements</summary>
+              <summary><h3>System Requirements</h3></summary>
               <p>Requires a computer running an operating system. The computer
               must have some memory and ideally some kind of long-term storage.
               An input device as well as some form of output device is
-              recommended.</p>
-            </details>
-          </m-details>
-          <m-details>
-            <details>
-              <summary>System Requirements</summary>
-              <p>Requires a computer running an operating system. The computer
-              must have some memory and ideally some kind of long-term storage.
-              An input device as well as some form of output device is
-              recommended.</p>
+              recommended.<a href="#" class="close">Schliesse</a></p>
             </details>
           </m-details>
         </div>
@@ -272,13 +363,34 @@
         <div>
           <m-details>
             <details>
-              <summary>System Requirements</summary>
+              <summary><h3>System Requirements</h3></summary>
               <p>Requires a computer running an operating system. The computer
               must have some memory and ideally some kind of long-term storage.
               An input device as well as some form of output device is
-              recommended.</p>
+              recommended.<a href="#" class="close">Schliesse</a></p>
             </details>
           </m-details>
+          <a-stamp>
+            <style>
+              /* shared text styling between flyers */
+              :host > * {
+                font-size:var(--font-size);
+                font-family:var(--font-family-bold);
+                text-transform:uppercase;
+                color:var(--background-color);
+                background-color:var(--color);
+                padding: 0 5%;
+                line-height: ar(--line-height, normal);
+              }
+              @media only screen and (max-width: 600px) {
+                :host > * {
+                  font-size: var(--font-size-mobile, var(--font-size));
+                  line-height: var(--line-height-mobile, var(--line-height, normal));
+                }
+              }
+            </style>
+            <span>!!!!Abgesagt!!!</span>
+          </a-stamp>
         </div>
         <p>Der Münchner Cellist Daniel Müller-Schott wurde als Gewinner des Ersten Preises beim Tschaikowsky-Wettbewerb in Moskau 1992 bekannt und durfte als Preisträger der <br>Anne-Sophie-Mutter-Stiftung unter anderem ein Jahr lang mit Mtislav Rostropowitsch studieren.</p>
         <!-- @ask using a-link throws error in shadow.js:202 -->
@@ -310,17 +422,25 @@
         <a href="#">Backstage Talk 3:36 min</a>
 
         <div class="spacer"></div>
-        <o-intersection-scroll-effect css-property=transform effect=translateX max-value-mobile=-100% max-value=-40% transition="0.1s linear" offset-mobile="30" digits="6">
+        <o-intersection-scroll-effect css-property=transform effect=translateX max-value-mobile=-100% max-value=-40% transition="0.1s linear" offset-mobile="30" digits="7">
           <style>
             :host {
-              margin: 0 !important;
               --picture-margin: 0;
+              margin: 0 !important;
             }
             :host > div > div {
-              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg)
+              transform: translate(min(104px, 11vw), -6vw) rotate(-14deg);
             }
-            :host > div > div h3, :host > div > div p {
-              font-size: max(19px, 1vw);
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+              max-width: 40vw;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -329,15 +449,88 @@
             :host > div > div p {
               margin: 0;
             }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
           </style>
           <div>
             <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
             <div>
               <h3>Vilde Frang</h3>
               <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+              <a href="#">Hello Link</a>
             </div>
           </div>
         </o-intersection-scroll-effect>
+        <div class="spacer"></div>
+        <o-intersection-scroll-effect css-property=transform effect=translateX max-value-mobile=100% max-value=40% transition="0.1s linear" offset-mobile="30" digits="7">
+          <style>
+            :host {
+              --picture-margin: 0 0 0 auto;
+              margin: 0 0 0 auto !important;
+            }
+            :host > div > div {
+              float: right;
+              transform: translate(max(-104px, -11vw), -2vw) rotate(14deg);
+            }
+          </style>
+          <style>
+            /* shared text styling between flyers */
+            :host > div > div {
+              text-align: left;
+              max-width: 40vw;
+            }
+            :host > div > div h3, :host > div > div p, :host > div > div a {
+              font-size: var(--font-size);
+              line-height: var(--line-height, normal);
+            }
+            :host > div > div h3 {
+              font-family: var(--font-family-bold);
+              margin: 0;
+            }
+            :host > div > div p {
+              margin: 0;
+            }
+            :host > div > div a {
+              color: var(--a-color, var(--color-secondary, var(--color, pink)));
+              display: block;
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-underline-offset: var(--a-text-underline-offset, unset);
+            }
+            :host > div > div a:hover {
+              color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+            }
+            @media only screen and (max-width: 600px) {
+              :host > div > div h3, :host > div > div p, :host > div > div a {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
+          </style>
+          <div>
+            <a-picture namespace=picture- defaultSource="../../../img/classics_2.png" alt="vildeFrang"></a-picture>
+            <div>
+              <h3>Vilde Frau</h3>
+              <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
+              <a href="#">Hello Link</a>
+            </div>
+          </div>
+        </o-intersection-scroll-effect>
+        <div style="clear:both;"></div>
         <div class="spacer"></div>
 
         <h2>Programm</h2>
@@ -475,6 +668,7 @@
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
     import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
+    import('../../../es/components/atoms/Stamp.js').then(module => ['a-stamp', module.default]),
     import('../../../es/components/organisms/IntersectionScrollEffect.js').then(module => ['o-intersection-scroll-effect', module.default]),
     import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default])
     ]).then(elements => elements.forEach(element => {
@@ -485,5 +679,10 @@
   <!-- fonts -->
   <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
   <!-- /fonts -->
+  <style>
+    body {
+      overflow: auto;
+    }
+  </style>
 </body>
 </html>

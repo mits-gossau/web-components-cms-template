@@ -12,7 +12,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Form
  * @type {CustomElementConstructor}
  * @attribute {
- *  
+ *
  * }
  * @css {
  *  --display [block]

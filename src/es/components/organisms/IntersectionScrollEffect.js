@@ -9,6 +9,7 @@ import { Intersection } from '../prototypes/Intersection.js'
 * Examples:
 *   <o-intersection-scroll-effect css-property=filter, effect=brightness, max-value=100%>
 *   <o-intersection-scroll-effect css-property=--transform-mobile, effect=translateX, max-value=50px>
+*   src/es/components/molecules/NavigationClassics.html
 *
 * NOTE: When using a CSS-Variable for the css-property, the component where the effect should be applied needs to have a line where the CSS-variable gets used
 * => e.g.: filter: var(--filter-mobile, none)
@@ -59,6 +60,7 @@ export default class IntersectionScrollEffect extends Intersection() {
         <style _css="" protected="true">
           :host {
             display: block; /* fix: google chrome wrong measurements */
+            overflow: var(--overflow, hidden);
           }
           ${this.getAttribute('transition') && this.getAttribute('css-property') && !this.getAttribute('css-property').includes('--')
             ? /* CSS */`:host > *:not(style) {
@@ -70,7 +72,7 @@ export default class IntersectionScrollEffect extends Intersection() {
       `
 
     this.scrollListener = event => {
-      /* 
+      /*
         // TODO: horizontal (x) transition has not been smooth
         if (this.requestAnimationFrameId) self.cancelAnimationFrame(this.requestAnimationFrameId)
       */
@@ -78,15 +80,15 @@ export default class IntersectionScrollEffect extends Intersection() {
         const offset = self.innerHeight / 100 * Number(this.checkMedia('mobile') ? this.getAttribute('offset-mobile') || this.getAttribute('offset') : this.getAttribute('offset'))
         const boundingRect = this.getBoundingClientRect()
         const recalculate = this.elementHeight !== boundingRect.height
-  
+
         // saving measurements in variables to avoid redundant calculations
         if (!this.elementHeight || recalculate) this.elementHeight = this.round(boundingRect.height, 2)
         if (!this.center || recalculate) this.center = this.round(self.innerHeight / 2 - this.elementHeight / 2, 2)
         if (!this.maxDistanceFromCenter || recalculate) this.maxDistanceFromCenter = self.innerHeight - offset - this.center
-  
+
         // TODO wrong boundingRect.height onload
         // TODO add optional min-value? max(minValue, outputValue * maxValue)
-  
+
         // get distance from center (abs)
         const difference = this.round(this.center > boundingRect.top ? this.center - boundingRect.top : boundingRect.top - this.center, 2)
         // get output [0..1]

@@ -12,7 +12,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class TextField
  * @type {CustomElementConstructor}
  * @attribute {
- *  
+ *
  * }
  * @css {
  * --display [flex]
@@ -116,5 +116,4 @@ export default class TextField extends Shadow() {
       }
     `
   }
-
 }

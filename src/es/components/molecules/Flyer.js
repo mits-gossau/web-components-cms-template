@@ -7,6 +7,7 @@ import { Intersection } from '../prototypes/Intersection.js'
 /**
  * Flyer can hold anything which shall fly into the viewport on intersection
  * Example at: /src/es/components/pages/Home.html
+ *    src/es/components/molecules/NavigationClassics.html
  * As a molecule, this component shall hold Atoms
  *
  * @export
@@ -110,6 +111,7 @@ export default class Flyer extends Intersection() {
         position: var(--position, absolute);
         width: 100%;
         margin: var(--margin, 0) !important;
+        overflow: var(--overflow, hidden);
       }
       :host > div {
         background-color: var(--background-color, transparent);
