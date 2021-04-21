@@ -111,6 +111,7 @@ export default class Flyer extends Intersection() {
         position: var(--position, absolute);
         width: 100%;
         margin: var(--margin, 0) !important;
+        overflow: var(--overflow, hidden);
       }
       :host > div {
         background-color: var(--background-color, transparent);
