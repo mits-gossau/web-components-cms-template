@@ -111,23 +111,23 @@
         >
           <style>
             :host {
-              --flyer-transform: translateX(-20px);
+              --flyer-padding: 0;
               --flyer-position: static;
               --picture-margin: 0;
             }
             :host > div > div {
-              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg);
+              transform: translate(min(104px, 11vw), -6vw) rotate(-14deg);
             }
           </style>
           <style>
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
+              max-width: 55vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
               line-height: var(--line-height, normal);
-              max-width: 55vw;
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -168,7 +168,7 @@
         >
           <style>
             :host {
-              --flyer-transform: translateX(30px);
+              --flyer-padding: 0;
               --flyer-position: static;
               --picture-margin: 0 0 0 auto;
               float: right;
@@ -182,11 +182,11 @@
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
+              max-width: 55vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
               line-height: var(--line-height, normal);
-              max-width: 55vw;
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -402,21 +402,20 @@
             :host {
               --picture-margin: 0;
               margin: 0 !important;
-              transform: translateX(-10px);
             }
             :host > div > div {
-              transform: translate(min(104px, 11vw), -9vw) rotate(-14deg);
+              transform: translate(min(104px, 11vw), -6vw) rotate(-14deg);
             }
           </style>
           <style>
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
+              max-width: 55vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
               line-height: var(--line-height, normal);
-              max-width: 55vw;
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -457,7 +456,6 @@
             :host {
               --picture-margin: 0 0 0 auto;
               margin: 0 0 0 auto !important;
-              transform: translateX(10px);
             }
             :host > div > div {
               float: right;
@@ -468,11 +466,11 @@
             /* shared text styling between flyers */
             :host > div > div {
               text-align: left;
+              max-width: 55vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
               line-height: var(--line-height, normal);
-              max-width: 55vw;
             }
             :host > div > div h3 {
               font-family: var(--font-family-bold);
@@ -655,5 +653,10 @@
   <!-- fonts -->
   <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
   <!-- /fonts -->
+  <style>
+    body {
+      overflow: auto;
+    }
+  </style>
 </body>
 </html>
