@@ -2,7 +2,6 @@
 import { Intersection } from '../prototypes/Intersection.js'
 
 /* global self */
-/* global CustomEvent */
 
 /**
  * Stamp fly down from above
