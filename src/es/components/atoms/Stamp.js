@@ -73,21 +73,17 @@ export default class Stamp extends Intersection() {
         position: var(--position, absolute);
         text-align: var(--text-align, center);
         transform: var(--rotate, rotate(-15deg)) scale(1);
-        transition: var(--transition, opacity 0.2s ease);
+        transition: var(--transition, opacity 0.5s ease);
         width: 90% !important;
         left: 0;
         margin: 0 5% !important;
-        z-index: -1;
+        pointer-events: none;
+        z-index: var(--z-index, 99);
       }
       :host([show]) {
         animation: pulse var(--animation, 0.5s ease);
         opacity: 1;
-        z-index: var(--z-index, 99);
-      }
-      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host {
-          width: var(--content-width-mobile, var(--content-width, 100%));
-        }
+        pointer-events: auto;
       }
       @keyframes pulse{
         0%{
