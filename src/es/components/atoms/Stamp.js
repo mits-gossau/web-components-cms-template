@@ -12,6 +12,20 @@ import { Intersection } from '../prototypes/Intersection.js'
  * @export
  * @class Stamp
  * @type {CustomElementConstructor}
+ * @css {
+ *  --align-items, center
+ *  --display, flex
+ *  --flex-direction, column
+ *  --justify-content, center
+ *  --position, absolute
+ *  --text-align, center
+ *  --rotate, rotate(-15deg)) scale(1
+ *  --transition, opacity 0.2s ease
+ *  --content-width, 100%
+ *  --animation, 0.5s ease
+ *  --rotate, rotate(-15deg)) scale(1
+ *  --content-width-mobile, var(--content-width, 100%)
+ * }
  */
 export default class Stamp extends Intersection() {
   constructor (options = {}, ...args) {
@@ -53,15 +67,25 @@ export default class Stamp extends Intersection() {
   renderCSS () {
     this.css = /* css */`
       :host {
-        display: block;
+        align-items: var(--align-items, center);
+        display: var(--display, flex);
+        flex-direction: var(--flex-direction, column);
+        justify-content: var(--justify-content, center);
         opacity: 0;
-        transition: var(--transition, opacity 0.2s ease);
-        transform: var(--rotate, rotate(-15deg)) scale(1);
+        position: var(--position, absolute);
         text-align: var(--text-align, center);
+        transform: var(--rotate, rotate(-15deg)) scale(1);
+        transition: var(--transition, opacity 0.2s ease);
+        width: var(--content-width, 100%);
       }
       :host([show]) {
         animation: pulse var(--animation, 0.5s ease);
         opacity: 1;
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          width: var(--content-width-mobile, var(--content-width, 100%));
+        }
       }
       @keyframes pulse{
         0%{

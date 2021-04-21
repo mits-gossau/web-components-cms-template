@@ -12,7 +12,31 @@ import { Mutation } from '../prototypes/Mutation.js'
  * @class Details
  * @type {CustomElementConstructor}
  * @css {
- *  --**
+ *  --text-align, center
+ *  --margin, 0
+ *  --padding, 0
+ *  --marker-display, none
+ *  --marker-content, ""
+ *  --summary-cursor, pointer
+ *  --summary-text-decoration, underline
+ *  --summary-outline, none
+ *  --summary-margin, 0
+ *  --summary-padding, 0
+ *  --summary-text-decoration-open, none
+ *  --summary-child-margin, 0
+ *  --summary-child-padding, 0
+ *  --summary-child-margin-open, 0
+ *  --summary-child-padding-open, 0
+ *  --child-margin, 0
+ *  --child-padding, 0
+ *  --animation, 0.1s ease
+ *  --child-margin-open, 0
+ *  --child-padding-open, 0
+ *  --a-color, var(--color)
+ *  --close-cursor, pointer
+ *  --close-display, block
+ *  --close-text-decoration, underline
+ *  --close-text-transform, uppercase
  * }
  * @attribute {
  *  {boolean} [open=false] opens the details
@@ -105,16 +129,16 @@ export default class Details extends Mutation() {
         text-decoration: var(--summary-text-decoration-open, none);
       }
       :host details summary > * {
-        margin: var(--summary-child-margin, revert);
-        padding: var(--summary-child-padding, revert);
+        margin: var(--summary-child-margin, 0);
+        padding: var(--summary-child-padding, 0);
       }
       :host details[open] summary > * {
         margin: var(--summary-child-margin-open, 0);
         padding: var(--summary-child-padding-open, 0);
       }
       :host details summary ~ * {
-        margin: var(--child-margin, revert);
-        padding: var(--child-padding, revert);
+        margin: var(--child-margin, 0);
+        padding: var(--child-padding, 0);
       }
       :host details[open] summary ~ * {
         animation: open var(--animation, 0.1s ease);
