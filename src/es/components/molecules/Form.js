@@ -75,7 +75,7 @@ export default class Form extends Shadow() {
       const inputArray = [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].map(i =>
         JSON.parse(
         `{
-          "${i.getAttribute("name")}": "${i.getAttribute("value")}", "page": "null"
+          "${i.getAttribute("name")}": "${i.getAttribute("value")}"
         }`
       ))
       return JSON.stringify(inputArray)
