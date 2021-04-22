@@ -132,4 +132,8 @@ export default class Button extends Shadow() {
       }
     `
   }
+
+  get button() {
+    return this.root.querySelector("button")
+  }
 }
