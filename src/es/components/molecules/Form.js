@@ -28,30 +28,29 @@ export default class Form extends Shadow() {
     super(...args)
 
     this.submitEventListener = event =>  {
-      if (this.form) this.form.submit()
-      // if (this.form) {
-      //   const xhr = new XMLHttpRequest()
-      //   const method = this.form.getAttribute("method") || "POST"
-      //   const action = this.form.getAttribute("action") || ""
+      // if (this.form) this.form.submit()
+      if (this.form) {
+        const xhr = new XMLHttpRequest()
+        const method = this.form.getAttribute("method") || "POST"
+        const action = this.form.getAttribute("action") || ""
 
-      //   xhr.open(method, action, false) // TODO async?
-      //   // xhr.onload = function (e) {
-      //   //   if (xhr.readyState === 4) {
-      //   //     if (xhr.status === 200) {
-      //   //       console.log(xhr.responseText)
-      //   //     } else {
-      //   //       console.error(xhr.statusText)
-      //   //     }
-      //   //   }
-      //   // }
-      //   xhr.onerror = function (e) {
-      //     console.error(xhr.statusText)
-      //   }
+        xhr.open(method, action, false) // TODO async?
+        // xhr.onload = function (e) {
+        //   if (xhr.readyState === 4) {
+        //     if (xhr.status === 200) {
+        //       console.log(xhr.responseText)
+        //     } else {
+        //       console.error(xhr.statusText)
+        //     }
+        //   }
+        // }
+        xhr.onerror = function (e) {
+          console.error(xhr.statusText)
+        }
 
-      //   const body = this.getAllInputValues(this.form)
-      //   console.log(body);
-      //   xhr.send(body)
-      // }
+        const body = this.getAllInputValues(this.form)
+        xhr.send(body)
+      }
     }
   }
 
@@ -66,22 +65,19 @@ export default class Form extends Shadow() {
 
 
   /**
-   * extracts all input values and returns as JSON object
+   * extracts all input values and returns as FormData
    *
-   * @return {string}
+   * @return {FormData}
    */
   getAllInputValues(form) {
     if (form) {
-      
-      const inputArray = [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].map(i =>
-        JSON.parse(
-        `{
-          "${i.getAttribute("name")}": "${i.getAttribute("value")}"
-        }`
-      ))
-      return JSON.stringify(inputArray)
+      let formData = new FormData();
+      [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].forEach(i => 
+        formData.append(i.getAttribute("name"), i.getAttribute("value"))
+      );
+      return formData;
     }
-    return "[{}]"
+    return new FormData();
   }
 
   /**
