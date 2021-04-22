@@ -370,16 +370,15 @@
               recommended.<a href="#" class="close">Schliesse</a></p>
             </details>
           </m-details>
-          <a-stamp>
+          <a-stamp animation>
             <style>
-              /* shared text styling between flyers */
               :host > * {
                 font-size:var(--font-size);
                 font-family:var(--font-family-bold);
                 text-transform:uppercase;
                 color:var(--background-color);
                 background-color:var(--color);
-                padding: 0 5%;
+                padding: 0 5% 3px;
                 line-height: ar(--line-height, normal);
               }
               @media only screen and (max-width: 600px) {
@@ -404,7 +403,29 @@
         <h3>Joanna Mallwitz im Gespräch</h3>
         <p>Sie ist die erste Dirigentin, die bei den Salzburger Festspielen eine Oper dirigiert: Joana Mallwitz, 34 Jahre alt, Leidenschaftliche Mozart-Liebhaberin.</p>
         <a href="#">Zum Gespräch</a>
-
+        <a-stamp>
+          <style>
+            :host {
+              --opacity: 0.8;
+            }
+            :host > * {
+              font-size:var(--font-size);
+              font-family:var(--font-family-bold);
+              text-transform:uppercase;
+              color:var(--background-color);
+              background-color:var(--color);
+              padding: 0 5% 3px;
+              line-height: ar(--line-height, normal);
+            }
+            @media only screen and (max-width: 600px) {
+              :host > * {
+                font-size: var(--font-size-mobile, var(--font-size));
+                line-height: var(--line-height-mobile, var(--line-height, normal));
+              }
+            }
+          </style>
+          <span>!!!!Abgesagt!!!</span>
+        </a-stamp>
         <div class="spacer"></div>
 
         <a-video namespace="video-">
@@ -475,6 +496,10 @@
             </div>
           </div>
         </o-intersection-scroll-effect>
+        <a-stamp animation once>
+          <span style="font-size:2em;font-family:var(--font-family-bold);text-transform:uppercase;color:red;">!!!!Abgesagt!!!</span>
+          <a href="#" class="close">Schliesse einmal und komm nicht wieder</a>
+        </a-stamp>
         <div class="spacer"></div>
         <o-intersection-scroll-effect css-property=transform effect=translateX max-value-mobile=100% max-value=40% transition="0.1s linear" offset-mobile="30" digits="7">
           <style>

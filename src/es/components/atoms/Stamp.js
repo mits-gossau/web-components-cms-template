@@ -11,6 +11,10 @@ import { Intersection } from '../prototypes/Intersection.js'
  * @export
  * @class Stamp
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {boolean} [once=false] if there is a close button, only show it once
+ *  {boolean} [animation=false] if stamp animation is wished
+ * }
  * @css {
  *  --align-items, center
  *  --display, flex
@@ -20,7 +24,6 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  --text-align, center
  *  --rotate, rotate(-15deg)) scale(1
  *  --transition, opacity 0.2s ease
- *  --content-width, 100%
  *  --animation, 0.5s ease
  *  --rotate, rotate(-15deg)) scale(1
  *  --content-width-mobile, var(--content-width, 100%)
@@ -34,6 +37,7 @@ export default class Stamp extends Intersection() {
       if (event.target && event.target.classList.contains('close')) {
         event.preventDefault()
         this.removeAttribute('show')
+        if (this.hasAttribute('once')) this.intersectionObserveStop()
       }
     }
   }
@@ -74,19 +78,17 @@ export default class Stamp extends Intersection() {
         position: var(--position, absolute);
         text-align: var(--text-align, center);
         transform: var(--rotate, rotate(-15deg)) scale(1);
-        transition: var(--transition, opacity 0.2s ease);
-        width: var(--content-width, 100%);
-        z-index: -1;
-      }
-      :host([show]) {
-        animation: pulse var(--animation, 0.5s ease);
-        opacity: 1;
+        ${this.hasAnimation || this.hasClose ? 'transition: var(--transition, opacity 0.5s ease)' : ''};
+        width: 90% !important;
+        left: 0;
+        margin: 0 5% !important;
+        pointer-events: none;
         z-index: var(--z-index, 99);
       }
-      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host {
-          width: var(--content-width-mobile, var(--content-width, 100%));
-        }
+      :host([show]) {
+        ${this.hasAnimation ? 'animation: pulse var(--animation, 0.5s ease)' : ''};
+        opacity: var(--opacity, 1);
+        pointer-events: auto;
       }
       @keyframes pulse{
         0%{
@@ -99,7 +101,7 @@ export default class Stamp extends Intersection() {
           transition: all .3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
         }
         100%{
-          opacity:1;
+          opacity: var(--opacity, 1);
           transform: var(--rotate, rotate(-15deg)) scale(1);
         }
       }
@@ -114,5 +116,13 @@ export default class Stamp extends Intersection() {
         this.removeAttribute('show')
       }
     }
+  }
+
+  get hasAnimation () {
+    return this.hasAttribute('animation') && this.getAttribute('animation') !== 'false'
+  }
+
+  get hasClose () {
+    return !!this.root.querySelector('.close')
   }
 }
