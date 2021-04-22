@@ -33,7 +33,7 @@ export default class Form extends Shadow() {
         const method = this.form.getAttribute("method") || "POST"
         const action = this.form.getAttribute("action") || ""
 
-        xhr.open(method, action, false) // async?
+        xhr.open(method, action, false) // TODO async?
         xhr.onload = function (e) {
           if (xhr.readyState === 4) {
             if (xhr.status === 200) {
@@ -48,6 +48,7 @@ export default class Form extends Shadow() {
         }
 
         const body = this.getAllInputValues(this.form)
+        console.log(body);
         xhr.send(body)
       }
     }
@@ -70,10 +71,11 @@ export default class Form extends Shadow() {
    */
   getAllInputValues(form) {
     if (form) {
-      const inputArray = [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].map(i => JSON.parse(
+      
+      const inputArray = [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].map(i =>
+        JSON.parse(
         `{
-          "name": "${i.getAttribute("name")}",
-          "value": "${i.getAttribute("value")}" 
+          "${i.getAttribute("name")}": "${i.getAttribute("value")}"
         }`
       ))
       return JSON.stringify(inputArray)
