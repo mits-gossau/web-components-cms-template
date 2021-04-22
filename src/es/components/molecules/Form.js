@@ -28,7 +28,28 @@ export default class Form extends Shadow() {
     super(...args)
 
     this.submitEventListener = event =>  {
-      if (this.form) this.form.submit()
+      if (this.form) {
+        const xhr = new XMLHttpRequest()
+        const method = this.form.getAttribute("method") || "POST"
+        const action = this.form.getAttribute("action") || ""
+
+        xhr.open(method, action, false) // async?
+        xhr.onload = function (e) {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              console.log(xhr.responseText)
+            } else {
+              console.error(xhr.statusText)
+            }
+          }
+        }
+        xhr.onerror = function (e) {
+          console.error(xhr.statusText)
+        }
+
+        const body = this.getAllInputValues(this.form)
+        xhr.send(body)
+      }
     }
   }
 
@@ -39,6 +60,25 @@ export default class Form extends Shadow() {
 
   disconnectedCallback() {
     this.removeEventListener("form-submit", this.submitEventListener)
+  }
+
+
+  /**
+   * extracts all input values and returns as JSON object
+   *
+   * @return {string}
+   */
+  getAllInputValues(form) {
+    if (form) {
+      const inputArray = [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].map(i => JSON.parse(
+        `{
+          "name": "${i.getAttribute("name")}",
+          "value": "${i.getAttribute("value")}" 
+        }`
+      ))
+      return JSON.stringify(inputArray)
+    }
+    return "[{}]"
   }
 
   /**
