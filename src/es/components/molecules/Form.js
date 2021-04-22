@@ -72,7 +72,7 @@ export default class Form extends Shadow() {
   getAllInputValues(form) {
     if (form) {
       let formData = new FormData();
-      [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].forEach(i => 
+      [...this.root.querySelectorAll("a-text-field, a-radio, a-select, input, radio, select")].forEach(i => 
         formData.append(i.getAttribute("name"), i.getAttribute("value"))
       );
       return formData;
