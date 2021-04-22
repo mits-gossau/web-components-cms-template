@@ -73,7 +73,7 @@ export default class Form extends Shadow() {
     if (form) {
       let formData = new FormData();
       // TODO in a future step automatically convert all native inputs to have the WC-Wrappers
-      [...this.root.querySelectorAll("a-text-field, a-radio, a-select, input, radio, select")].forEach(i => 
+      [...this.root.querySelectorAll("a-text-field, a-radio, a-checkbox, a-select, a-date, input")].forEach(i => 
         formData.append(i.getAttribute("name"), i.getAttribute("value"))
       );
       return formData;
