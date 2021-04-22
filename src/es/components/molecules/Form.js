@@ -34,15 +34,15 @@ export default class Form extends Shadow() {
         const action = this.form.getAttribute("action") || ""
 
         xhr.open(method, action, false) // TODO async?
-        xhr.onload = function (e) {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              console.log(xhr.responseText)
-            } else {
-              console.error(xhr.statusText)
-            }
-          }
-        }
+        // xhr.onload = function (e) {
+        //   if (xhr.readyState === 4) {
+        //     if (xhr.status === 200) {
+        //       console.log(xhr.responseText)
+        //     } else {
+        //       console.error(xhr.statusText)
+        //     }
+        //   }
+        // }
         xhr.onerror = function (e) {
           console.error(xhr.statusText)
         }
@@ -75,7 +75,7 @@ export default class Form extends Shadow() {
       const inputArray = [...this.root.querySelectorAll("a-text-field, a-radio, a-select")].map(i =>
         JSON.parse(
         `{
-          "${i.getAttribute("name")}": "${i.getAttribute("value")}"
+          "${i.getAttribute("name")}": "${i.getAttribute("value")}", "page": "null"
         }`
       ))
       return JSON.stringify(inputArray)
