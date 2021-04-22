@@ -28,29 +28,30 @@ export default class Form extends Shadow() {
     super(...args)
 
     this.submitEventListener = event =>  {
-      if (this.form) {
-        const xhr = new XMLHttpRequest()
-        const method = this.form.getAttribute("method") || "POST"
-        const action = this.form.getAttribute("action") || ""
+      if (this.form) this.form.submit()
+      // if (this.form) {
+      //   const xhr = new XMLHttpRequest()
+      //   const method = this.form.getAttribute("method") || "POST"
+      //   const action = this.form.getAttribute("action") || ""
 
-        xhr.open(method, action, false) // TODO async?
-        // xhr.onload = function (e) {
-        //   if (xhr.readyState === 4) {
-        //     if (xhr.status === 200) {
-        //       console.log(xhr.responseText)
-        //     } else {
-        //       console.error(xhr.statusText)
-        //     }
-        //   }
-        // }
-        xhr.onerror = function (e) {
-          console.error(xhr.statusText)
-        }
+      //   xhr.open(method, action, false) // TODO async?
+      //   // xhr.onload = function (e) {
+      //   //   if (xhr.readyState === 4) {
+      //   //     if (xhr.status === 200) {
+      //   //       console.log(xhr.responseText)
+      //   //     } else {
+      //   //       console.error(xhr.statusText)
+      //   //     }
+      //   //   }
+      //   // }
+      //   xhr.onerror = function (e) {
+      //     console.error(xhr.statusText)
+      //   }
 
-        const body = this.getAllInputValues(this.form)
-        console.log(body);
-        xhr.send(body)
-      }
+      //   const body = this.getAllInputValues(this.form)
+      //   console.log(body);
+      //   xhr.send(body)
+      // }
     }
   }
 
