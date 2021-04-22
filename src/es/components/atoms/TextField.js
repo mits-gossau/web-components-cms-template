@@ -49,7 +49,7 @@ export default class TextField extends Shadow() {
     super()
 
     this.onChange = event => {
-      this.setAttribute("name", event.target.name)
+      if (!this.getAttribute("name")) this.setAttribute("name", event.target.name)
       this.setAttribute("value", event.target.value)
     }
   }
