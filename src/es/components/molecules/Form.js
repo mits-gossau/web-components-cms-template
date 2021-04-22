@@ -27,11 +27,11 @@ export default class Form extends Shadow() {
   constructor (...args) {
     super(...args)
 
-    this.submitEventListener = event =>  {
+    this.submitEventListener = event => {
       if (this.form) {
         const xhr = new XMLHttpRequest()
-        const method = this.form.getAttribute("method")
-        const action = this.form.getAttribute("action")
+        const method = this.form.getAttribute('method')
+        const action = this.form.getAttribute('action')
 
         xhr.open(method, action, false) // TODO async?
         // xhr.onload = function (e) {
@@ -44,7 +44,7 @@ export default class Form extends Shadow() {
         //   }
         // }
         xhr.onerror = function (e) {
-          console.error("error submitting form: ", xhr.statusText)
+          console.error('error submitting form: ', xhr.statusText)
         }
 
         const body = this.getAllInputValues(this.form)
@@ -55,13 +55,12 @@ export default class Form extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    this.addEventListener("form-submit", this.submitEventListener)
+    this.addEventListener('form-submit', this.submitEventListener)
   }
 
-  disconnectedCallback() {
-    this.removeEventListener("form-submit", this.submitEventListener)
+  disconnectedCallback () {
+    this.removeEventListener('form-submit', this.submitEventListener)
   }
-
 
   /**
    * Extracts all input values and returns the name/value pairs as FormData for submitting
@@ -69,16 +68,16 @@ export default class Form extends Shadow() {
    *
    * @return {FormData}
    */
-  getAllInputValues(form) {
+  getAllInputValues (form) {
     if (form) {
-      let formData = new FormData();
+      const formData = new FormData();
       // TODO in a future step automatically convert all native inputs to have the WC-Wrappers
-      [...this.root.querySelectorAll("a-text-field, a-radio, a-checkbox, a-select, a-date, input")].forEach(i => 
-        formData.append(i.getAttribute("name"), i.getAttribute("value"))
-      );
-      return formData;
+      [...this.root.querySelectorAll('a-text-field, a-radio, a-checkbox, a-select, a-date, input')].forEach(i =>
+        formData.append(i.getAttribute('name'), i.getAttribute('value'))
+      )
+      return formData
     }
-    return new FormData();
+    return new FormData()
   }
 
   /**
@@ -122,5 +121,4 @@ export default class Form extends Shadow() {
   get form () {
     return this.root.querySelector('form')
   }
-
 }

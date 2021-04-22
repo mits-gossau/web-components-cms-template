@@ -37,7 +37,7 @@ export default class Button extends Shadow() {
     super(...args)
 
     this.clickEventListener = event => {
-      this.dispatchEvent(new CustomEvent("form-submit", {
+      this.dispatchEvent(new CustomEvent('form-submit', {
         bubbles: true,
         cancelable: true,
         composed: true
@@ -47,13 +47,13 @@ export default class Button extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.getAttribute("src")) this.applyImageIfExists(this, this.getAttribute("src"), "src")
-    if (this.getAttribute("src-secondary")) this.applyImageIfExists(this, this.getAttribute("src-secondary"), "src-secondary")
-    this.root.addEventListener("click", this.clickEventListener)
+    if (this.getAttribute('src')) this.applyImageIfExists(this, this.getAttribute('src'), 'src')
+    if (this.getAttribute('src-secondary')) this.applyImageIfExists(this, this.getAttribute('src-secondary'), 'src-secondary')
+    this.root.addEventListener('click', this.clickEventListener)
   }
 
   disconnectedCallback () {
-    this.root.removeEventListener("click", this.clickEventListener)
+    this.root.removeEventListener('click', this.clickEventListener)
   }
 
   /**
@@ -133,7 +133,7 @@ export default class Button extends Shadow() {
     `
   }
 
-  get button() {
-    return this.root.querySelector("button")
+  get button () {
+    return this.root.querySelector('button')
   }
 }

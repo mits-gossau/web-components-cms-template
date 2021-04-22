@@ -49,22 +49,24 @@ export default class TextField extends Shadow() {
     super()
 
     this.onChange = event => {
-      if (!this.getAttribute("name")) this.setAttribute("name", event.target.name)
-      this.setAttribute("value", event.target.value)
+      if (!this.getAttribute('name')) this.setAttribute('name', event.target.name)
+      this.setAttribute('value', event.target.value)
     }
   }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.input) {
-      this.input.addEventListener("keyup", this.onChange)
-      this.input.addEventListener("change", this.onChange)
-    } 
+      this.input.addEventListener('keyup', this.onChange)
+      this.input.addEventListener('change', this.onChange)
+    }
   }
+
   disconnectedCallback () {
     if (this.input) {
-      this.input.removeEventListener("keyup", this.onChange)
-      this.input.removeEventListener("change", this.onChange)
-    } 
+      this.input.removeEventListener('keyup', this.onChange)
+      this.input.removeEventListener('change', this.onChange)
+    }
   }
 
   /**
@@ -136,9 +138,10 @@ export default class TextField extends Shadow() {
   }
 
   get label () {
-    return this.root.querySelector("label")
+    return this.root.querySelector('label')
   }
+
   get input () {
-    return this.root.querySelector("input")
+    return this.root.querySelector('input')
   }
 }
