@@ -27,18 +27,57 @@ export default class Form extends Shadow() {
   constructor (...args) {
     super(...args)
 
-    this.submitEventListener = event =>  {
-      if (this.form) this.form.submit()
+    this.submitEventListener = event => {
+      if (this.form) {
+        const xhr = new XMLHttpRequest()
+        const method = this.form.getAttribute('method')
+        const action = this.form.getAttribute('action')
+
+        xhr.open(method, action, false) // TODO async?
+        // xhr.onload = function (e) {
+        //   if (xhr.readyState === 4) {
+        //     if (xhr.status === 200) {
+        //       console.log(xhr.responseText)
+        //     } else {
+        //       console.error(xhr.statusText)
+        //     }
+        //   }
+        // }
+        xhr.onerror = function (e) {
+          console.error('error submitting form: ', xhr.statusText)
+        }
+
+        const body = this.getAllInputValues(this.form)
+        xhr.send(body)
+      }
     }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    this.addEventListener("form-submit", this.submitEventListener)
+    this.addEventListener('form-submit', this.submitEventListener)
   }
 
-  disconnectedCallback() {
-    this.removeEventListener("form-submit", this.submitEventListener)
+  disconnectedCallback () {
+    this.removeEventListener('form-submit', this.submitEventListener)
+  }
+
+  /**
+   * Extracts all input values and returns the name/value pairs as FormData for submitting
+   * Values are being manually extracted because form does not see the inputs inside the web components due to the Shadow-DOM
+   *
+   * @return {FormData}
+   */
+  getAllInputValues (form) {
+    if (form) {
+      const formData = new FormData();
+      // TODO in a future step automatically convert all native inputs to have the WC-Wrappers
+      [...this.root.querySelectorAll('a-text-field, a-radio, a-checkbox, a-select, a-date, input')].forEach(i =>
+        formData.append(i.getAttribute('name'), i.getAttribute('value'))
+      )
+      return formData
+    }
+    return new FormData()
   }
 
   /**
@@ -82,5 +121,4 @@ export default class Form extends Shadow() {
   get form () {
     return this.root.querySelector('form')
   }
-
 }
