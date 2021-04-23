@@ -1,7 +1,7 @@
 // @ts-check
 import { Intersection } from '../prototypes/Intersection.js'
 
-/* global self */
+/* global Audio */
 
 /**
  * Stamp fly down from above
@@ -41,7 +41,7 @@ export default class Stamp extends Intersection() {
       }
     }
 
-    if (this.hasSound) this.audio = new Audio(this.soundSource);
+    if (this.hasSound) this.audio = new Audio(this.soundSource)
   }
 
   connectedCallback () {
