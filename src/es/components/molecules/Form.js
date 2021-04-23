@@ -68,12 +68,12 @@ export default class Form extends Shadow() {
       if (this.searchResultsContainer) {
         this.searchResultsContainer.innerHTML = response.body
       } else {
-        console.error('.searchResultsContainer for adding search-results to was not found')
+        console.error('<div class="searchResultsContainer"> for adding search-results was not found')
       }
     } else if (type === 'newsletter') {
       // TODO display success message
     } else {
-      console.log('Form submit was successful, but type is missing on <m-form>');
+      console.warn('Form submit was successful, but type is missing on <m-form>');
     }
   }
 
@@ -148,6 +148,6 @@ export default class Form extends Shadow() {
     return this.root.querySelector('form')
   }
   get searchResultsContainer () {
-    return this.root.querySelector('.searchResultsContainer')
+    return this.parentElement.querySelector(".searchResultsContainer")
   }
 }
