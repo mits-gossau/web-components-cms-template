@@ -34,12 +34,14 @@ export default class Stamp extends Intersection() {
     super(Object.assign(options, { mode: 'open', intersectionObserverInit: { rootMargin: '-100px 0px -150px 0px' } }), ...args)
 
     this.clickEventListener = event => {
-      if (event.target && event.target.classList.contains('close')) {
+      if (this.hasClose && event.target && (!event.target.getAttribute('href') || event.target.getAttribute('href') === '#')) {
         event.preventDefault()
         this.removeAttribute('show')
         if (this.hasAttribute('once')) this.intersectionObserveStop()
       }
     }
+
+    if (this.hasSound) this.audio = new Audio(this.soundSource);
   }
 
   connectedCallback () {
@@ -112,6 +114,7 @@ export default class Stamp extends Intersection() {
     if (entries && entries[0]) {
       if (entries[0].isIntersecting) {
         this.setAttribute('show', true)
+        if (this.audio) this.audio.play()
       } else {
         this.removeAttribute('show')
       }
@@ -120,6 +123,18 @@ export default class Stamp extends Intersection() {
 
   get hasAnimation () {
     return this.hasAttribute('animation') && this.getAttribute('animation') !== 'false'
+  }
+
+  get hasSound () {
+    return this.hasAttribute('sound') && this.getAttribute('sound') !== 'false'
+  }
+
+  get isSoundDefault () {
+    return this.getAttribute('sound') && this.getAttribute('sound') !== 'true'
+  }
+
+  get soundSource () {
+    return this.isSoundDefault ? this.getAttribute('sound') : 'https://www.fesliyanstudios.com/soundeffects-download.php?id=2035'
   }
 
   get hasClose () {

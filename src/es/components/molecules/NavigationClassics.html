@@ -496,7 +496,7 @@
             </div>
           </div>
         </o-intersection-scroll-effect>
-        <a-stamp animation once>
+        <a-stamp animation once sound>
           <span style="font-size:2em;font-family:var(--font-family-bold);text-transform:uppercase;color:red;">!!!!Abgesagt!!!</span>
           <a href="#" class="close">Schliesse einmal und komm nicht wieder</a>
         </a-stamp>
@@ -560,6 +560,49 @@
 
         <h2>Programm</h2>
         <p>Die Saison- und Abendprogramme von Migros-Kulturprozent-Classics der letzten Jahre stehen hier für den Download bereit</p>
+        <a-stamp>
+          <style>
+            :host {
+              --opacity: 0.9;
+            }
+            :host * {
+              color:var(--background-color);
+              font-size:var(--font-size);
+              line-height:var(--line-height,normal);
+              font-family:var(--font-family-bold);
+              text-transform:uppercase;
+
+            }
+            :host > a {
+              text-decoration:none;
+              background-color:var(--color);
+              padding:0 5% 3px;
+              position: relative;
+            }
+            :host > a > p {
+              margin: 0;
+            }
+            :host > a > p > span.close {
+              position: absolute;
+              right: 1%;
+              top: -2%;
+              font-size: calc(0.6 * var(--font-size));
+            }
+            @media only screen and (max-width:600px){
+              :host * {
+                font-size:var(--font-size-mobile,var(--font-size));
+                line-height:var(--line-height-mobile,var(--line-height,normal));
+              }
+              :host > a > p > span.close {
+                font-size: calc(0.6 * var(--font-size-mobile,var(--font-size)));
+              }
+              :host > a > p > span.close {
+                right: 1%;
+                top: -10%;
+              }
+            }</style>
+          <a href="#" class="close"><p><span class="close">X</span>Verschoben auf den <span>13*08*21</span></p></a>
+        </a-stamp>
         <o-playlist namespace="playlist-" border-top-first-child="true">
           <m-playlist-item>
             <p>2020*21</p>
