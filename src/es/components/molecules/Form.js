@@ -66,7 +66,10 @@ export default class Form extends Shadow() {
   submitSuccess (response, type) {
     if (type === 'search') {
       if (this.searchResultsContainer) {
-        this.searchResultsContainer.innerHTML = response.text()
+        response.text().then(results => {
+          console.log(results);
+          this.searchResultsContainer.innerHTML = results
+        })
       } else {
         console.error('<div class="searchResultsContainer"> for adding search-results was not found')
       }
