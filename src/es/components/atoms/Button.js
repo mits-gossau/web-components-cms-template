@@ -69,17 +69,16 @@ export default class Button extends Shadow() {
    * checks if image exists and apply as background if it does
    */
   applyImageIfExists (outerThis, src, name) {
-    fetch(src, {method: 'HEAD'})
+    fetch(src, { method: 'HEAD' })
       .then(response => {
-        if (response.ok)
+        if (response.ok) {
           if (name === 'src') {
             outerThis.css = /* css */`
               :host button {
                 background: url(${src}) var(--background-color) no-repeat center;
               }
             `
-          }
-          else if (name === 'src-secondary') {
+          } else if (name === 'src-secondary') {
             outerThis.css = /* css */`
               :host button:focus,
               :host button:hover,
@@ -88,6 +87,7 @@ export default class Button extends Shadow() {
               }
             `
           }
+        }
       })
       .catch(error => {
         console.log('Error while checking if image exists: ', error)

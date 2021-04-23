@@ -12,7 +12,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Form
  * @type {CustomElementConstructor}
  * @attribute {
- *  {string} [type] used to determine what should happen on form-submit success/failure 
+ *  {string} [type] used to determine what should happen on form-submit success/failure
  * }
  * @css {
  *  --display [block]
@@ -57,7 +57,6 @@ export default class Form extends Shadow() {
     this.removeEventListener('form-submit', this.submitEventListener)
   }
 
-
   /**
    * Form-submit success function
    *
@@ -67,7 +66,6 @@ export default class Form extends Shadow() {
     if (type === 'search') {
       if (this.searchResultsContainer) {
         response.text().then(results => {
-          console.log(results);
           this.searchResultsContainer.innerHTML = results
         })
       } else {
@@ -76,7 +74,7 @@ export default class Form extends Shadow() {
     } else if (type === 'newsletter') {
       // TODO display success message
     } else {
-      console.warn('Form submit was successful, but type is missing on <m-form>');
+      console.warn('Form submit was successful, but type is missing on <m-form>')
     }
   }
 
@@ -88,8 +86,6 @@ export default class Form extends Shadow() {
   submitFailure (response, type) {
     console.error(`Error submitting form of type ${type}: `, response)
   }
-
-  
 
   /**
    * Extracts all input values and returns the name/value pairs as FormData for submitting
@@ -150,7 +146,8 @@ export default class Form extends Shadow() {
   get form () {
     return this.root.querySelector('form')
   }
+
   get searchResultsContainer () {
-    return this.parentElement.querySelector(".searchResultsContainer")
+    return this.parentElement.querySelector('.searchResultsContainer')
   }
 }
