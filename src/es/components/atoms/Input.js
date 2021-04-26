@@ -4,15 +4,15 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global self */
 
 /**
- * Textfield is a wrapper for an input- & label-tag
+ * Input is a wrapper for any form input
  * Example at: /src/es/components/pages/ClassicsSearch.html
  * As an atom, this component can not hold further children (those would be quantum)
  *
  * @export
- * @class TextField
+ * @class Input
  * @type {CustomElementConstructor}
  * @attribute {
- *
+ *  {string} [type] the input type (text, radio, select, checkbox, etc.)
  * }
  * @css {
  * --display [flex]
@@ -44,7 +44,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * --p-font-size
  * }
  */
-export default class TextField extends Shadow() {
+export default class Input extends Shadow() {
   constructor (...args) {
     super()
 
@@ -137,9 +137,6 @@ export default class TextField extends Shadow() {
     `
   }
 
-  get label () {
-    return this.root.querySelector('label')
-  }
 
   get input () {
     return this.root.querySelector('input')

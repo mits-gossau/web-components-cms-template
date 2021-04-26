@@ -42,7 +42,7 @@ export default class Form extends Shadow() {
             }
           })
           .catch(error => {
-            console.error('Error submitting form: ', error)
+            this.submitFailure(error, this.getAttribute('type'))
           })
       }
     }

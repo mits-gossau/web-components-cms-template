@@ -22,10 +22,10 @@
       <main>
         <m-form type="search">
           <form action="/" enctype="multipart/form-data" method="post">
-            <a-text-field>
+            <a-input>
               <label for="searchTerm">Suche</label>
               <input id="searchTerm" name="searchTerm" type="text" value="" placeholder="Suchbegriff hier eingeben...">
-            </a-text-field>
+            </a-input>
             <a-button src="../../../img/search_icon_yellow.png" src-secondary="../../../img/search_icon_blue.png">
               <button type="submit" aria-label="Search"></button>
             </a-button>
@@ -120,7 +120,7 @@
     import('../../../es/components/molecules/PlaylistItem.js').then(module => ['m-playlist-item', module.default]),
     import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
     import('../../../es/components/molecules/Form.js').then(module => ['m-form', module.default]),
-    import('../../../es/components/atoms/TextField.js').then(module => ['a-text-field', module.default]),
+    import('../../../es/components/atoms/Input.js').then(module => ['a-input', module.default]),
     import('../../../es/components/atoms/Button.js').then(module => ['a-button', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
