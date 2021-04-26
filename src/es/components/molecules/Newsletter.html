@@ -25,10 +25,8 @@
             <span>Frau</span>
           </label>
           <br>
-          <a-text-field>
           <label for="name">Name, Vorname</label>
           <input type="text" class="input-Text" name="name">
-        </a-text-field>
           <br>
           <label for="number">PLZ</label>
           <input type="number" class="input-Text" name="plz" min="1000" max="9999">
@@ -41,6 +39,14 @@
           <br>
           <input type="checkbox" name="policy">Ich akzeptiere die Datenschutzbestimmungen.</input>
           <br>
+          <button type="submit">Absenden</button>
+
+          <ul>
+            <li>
+              <a href="#">hello</a>
+            </li>
+          </ul>
+
           <a-button namespace="newsletter-submit-">
             <button type="submit">Absenden</button>
           </a-button>
@@ -74,7 +80,9 @@
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
     import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
-    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default])
+    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
+    import('../../../es/components/atoms/TextField.js').then(module => ['a-text-field', module.default])
+
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)

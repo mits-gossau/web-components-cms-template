@@ -22,8 +22,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  */
 export default class Newsletter extends Shadow() {
   connectedCallback () {
-    // if (this.shouldComponentRenderCSS())
-    this.renderCSS()
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.renderHTML()
   }
 
   /**
@@ -48,10 +48,6 @@ export default class Newsletter extends Shadow() {
         padding: var(--padding, 0);
         color: var(--color, yellow);
       }
-      :host label {
-        text-transform: uppercase;
-        font-weight: bold;
-      }
       :host .input-Text {
         margin-top: 20px;
         margin-bottom: 5px;
@@ -65,9 +61,72 @@ export default class Newsletter extends Shadow() {
         display: none;
       }
       
+      :host a-text-field {
+        --text-transform: var(--a-text-field-text-transform, uppercase);
+      }
+
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         
       }
     `
+  }
+
+  /**
+  * renders the a-text-field html
+  *
+  * @return {void}
+  */
+  renderHTML() {
+    console.log("renderHTML")
+    this.loadChildComponents().then(children =>{
+      Array.from(this.root.querySelectorAll('input')).forEach(input => {
+        const label = this.root.querySelector(`label[for=${input.getAttribute("name")}]`);
+        console.log(label, `label[for=${input.getAttribute("name")}]`)
+        const aLink = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || '' })
+        input.replaceWith(aLink)
+      })
+      Array.from(this.root.querySelectorAll('button')).forEach(button => {
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace') || '' })
+        button.replaceWith(aButton)
+      })
+    })
+  }
+
+  /**
+   * fetch children when first needed
+   *
+   * @returns {Promise<[string, CustomElementConstructor][]>}
+   */
+  loadChildComponents () {
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let textFieldPromise
+    try {
+      textFieldPromise = Promise.resolve({ default: TextField })
+    } catch (error) {
+      textFieldPromise = import('../atoms/TextField.js')
+    }
+    let buttonPromise
+    try {
+      buttonPromise = Promise.resolve({ default: Button })
+    } catch (error) {
+      buttonPromise = import('../atoms/Button.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      textFieldPromise.then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-text-field', module.default]
+      ),
+      buttonPromise.then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-button', module.default]
+      )
+    ]).then(elements => {
+      elements.forEach(element => {
+        // don't define already existing customElements
+        // @ts-ignore
+        if (!customElements.get(element[0])) customElements.define(...element)
+      })
+      return elements
+    }))
   }
 }
