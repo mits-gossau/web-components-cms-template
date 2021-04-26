@@ -12,7 +12,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Form
  * @type {CustomElementConstructor}
  * @attribute {
- *
+ *  {string} [type] used to determine what should happen on form-submit success/failure
  * }
  * @css {
  *  --display [block]
@@ -29,26 +29,21 @@ export default class Form extends Shadow() {
 
     this.submitEventListener = event => {
       if (this.form) {
-        const xhr = new XMLHttpRequest()
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
-
-        xhr.open(method, action, false) // TODO async?
-        // xhr.onload = function (e) {
-        //   if (xhr.readyState === 4) {
-        //     if (xhr.status === 200) {
-        //       console.log(xhr.responseText)
-        //     } else {
-        //       console.error(xhr.statusText)
-        //     }
-        //   }
-        // }
-        xhr.onerror = function (e) {
-          console.error('error submitting form: ', xhr.statusText)
-        }
-
         const body = this.getAllInputValues(this.form)
-        xhr.send(body)
+
+        fetch(action, { method, body })
+          .then(response => {
+            if (response.ok) {
+              this.submitSuccess(response, this.getAttribute('type'))
+            } else {
+              this.submitFailure(response, this.getAttribute('type'))
+            }
+          })
+          .catch(error => {
+            console.error('Error submitting form: ', error)
+          })
       }
     }
   }
@@ -60,6 +55,36 @@ export default class Form extends Shadow() {
 
   disconnectedCallback () {
     this.removeEventListener('form-submit', this.submitEventListener)
+  }
+
+  /**
+   * Form-submit success function
+   *
+   * @return {void}
+   */
+  submitSuccess (response, type) {
+    if (type === 'search') {
+      if (this.searchResultsContainer) {
+        response.text().then(results => {
+          this.searchResultsContainer.innerHTML = results
+        })
+      } else {
+        console.error('<div class="searchResultsContainer"> for adding search-results was not found')
+      }
+    } else if (type === 'newsletter') {
+      // TODO display success message
+    } else {
+      console.warn('Form submit was successful, but type is missing on <m-form>')
+    }
+  }
+
+  /**
+   * Form-submit success function
+   *
+   * @return {void}
+   */
+  submitFailure (response, type) {
+    console.error(`Error submitting form of type ${type}: `, response)
   }
 
   /**
@@ -120,5 +145,9 @@ export default class Form extends Shadow() {
 
   get form () {
     return this.root.querySelector('form')
+  }
+
+  get searchResultsContainer () {
+    return this.parentElement.querySelector('.searchResultsContainer')
   }
 }

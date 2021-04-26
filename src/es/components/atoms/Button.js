@@ -69,17 +69,15 @@ export default class Button extends Shadow() {
    * checks if image exists and apply as background if it does
    */
   applyImageIfExists (outerThis, src, name) {
-    const xhr = new XMLHttpRequest()
-    xhr.open('HEAD', src, true)
-    xhr.onload = function (e) {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
+    fetch(src, { method: 'HEAD' })
+      .then(response => {
+        if (response.ok) {
           if (name === 'src') {
             outerThis.css = /* css */`
               :host button {
                 background: url(${src}) var(--background-color) no-repeat center;
               }
-          `
+            `
           } else if (name === 'src-secondary') {
             outerThis.css = /* css */`
               :host button:focus,
@@ -90,9 +88,10 @@ export default class Button extends Shadow() {
             `
           }
         }
-      }
-    }
-    xhr.send(null)
+      })
+      .catch(error => {
+        console.log('Error while checking if image exists: ', error)
+      })
   }
 
   /**
