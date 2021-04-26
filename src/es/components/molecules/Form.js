@@ -148,6 +148,11 @@ export default class Form extends Shadow() {
   }
 
   get searchResultsContainer () {
-    return this.parentElement.querySelector('.searchResultsContainer')
+    if (this.root.querySelector('.searchResultsContainer'))
+      return this.root.querySelector('.searchResultsContainer')
+    
+    const searchResultsContainer = document.createElement('DIV').classList.add('searchResultsContainer')
+    this.html = searchResultsContainer
+    return searchResultsContainer
   }
 }
