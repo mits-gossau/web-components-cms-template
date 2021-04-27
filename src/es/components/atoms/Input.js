@@ -98,6 +98,7 @@ export default class Input extends Shadow() {
       }
       :host > input {
         background: var(--input-background, none);
+        padding: var(--input-padding, 0 15px);
         border: var(--input-border, none);
         font-family: var(--font-family);
         font-size: var(--p-font-size);

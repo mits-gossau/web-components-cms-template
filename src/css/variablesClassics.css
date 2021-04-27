@@ -12,9 +12,9 @@ html {
   --a-text-decoration: none;
   --a-text-underline-offset: 0.2em;
   --background-color: #009fe3;
-  --border-top: 2px solid white;
-  --border-left: 2px solid white;
-  --border-bottom: 2px solid white;
+  --border-top: 2px solid var(--color);
+  --border-left: 2px solid var(--color);
+  --border-bottom: 2px solid var(--color);
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
   --carousel-pagination-bottom: 10px;
