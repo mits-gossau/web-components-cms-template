@@ -35,6 +35,7 @@ export default class Form extends Shadow() {
 
         fetch(action, { method, body })
           .then(response => {
+            event.detail.button.disabled = false
             if (response.ok) {
               this.submitSuccess(response, this.getAttribute('type'))
             } else {
@@ -42,6 +43,7 @@ export default class Form extends Shadow() {
             }
           })
           .catch(error => {
+            event.detail.button.disabled = false
             this.submitFailure(error, this.getAttribute('type'))
           })
       }
