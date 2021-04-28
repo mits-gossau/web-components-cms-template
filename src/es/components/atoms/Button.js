@@ -39,15 +39,15 @@ export default class Button extends Shadow() {
     this.clickEventListener = event => {
       // disable button while loading results, prevent spamming requests
       event.target.disabled = true
-      this.dispatchEvent(new CustomEvent('form-submit', 
-      {
-        detail: {
-          button: event.target
-        },
-        bubbles: true,
-        cancelable: true,
-        composed: true
-      }))
+      this.dispatchEvent(new CustomEvent('form-submit',
+        {
+          detail: {
+            button: event.target
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        }))
     }
   }
 

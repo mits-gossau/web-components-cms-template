@@ -101,7 +101,7 @@ export default class Title extends Shadow() {
    */
   renderHTML () {
     this.html = this.h1 = document.createElement('h1')
-    if (this.getAttribute("wrap") === "only-last") {
+    if (this.getAttribute('wrap') === 'only-last') {
       this.textContent.split(' ').forEach((text, i, arr) => {
         if (i === arr.length - 1) {
           const span = document.createElement('span')
@@ -111,13 +111,13 @@ export default class Title extends Shadow() {
         } else {
           this.h1.append(`${text} `)
         }
-      }) 
+      })
     } else {
       this.textContent.split(' ').forEach((text, i, arr) => {
-          const span = document.createElement('span')
-          span.textContent = text
-          if (i === arr.length - 1) span.classList.add('secondary-color')
-          this.h1.appendChild(span)
+        const span = document.createElement('span')
+        span.textContent = text
+        if (i === arr.length - 1) span.classList.add('secondary-color')
+        this.h1.appendChild(span)
       })
     }
   }

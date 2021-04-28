@@ -158,7 +158,6 @@ export default class Input extends Shadow() {
     `
   }
 
-
   get input () {
     return this.root.querySelector('input')
   }

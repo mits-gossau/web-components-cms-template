@@ -220,9 +220,8 @@ export default class Form extends Shadow() {
   }
 
   get searchResultsContainer () {
-    if (this.root.querySelector('.searchResultsContainer'))
-      return this.root.querySelector('.searchResultsContainer')
-    
+    if (this.root.querySelector('.searchResultsContainer')) { return this.root.querySelector('.searchResultsContainer') }
+
     const searchResultsContainer = document.createElement('DIV')
     searchResultsContainer.classList.add('searchResultsContainer')
     this.html = searchResultsContainer
