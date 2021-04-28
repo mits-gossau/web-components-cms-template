@@ -167,7 +167,7 @@ export default class Form extends Shadow() {
         display: var(--a-display, inline);
         margin: var(--a-margin, var(--content-spacing, unset)) auto;
       }
-      .searchResultsContainer a:hover {
+      .searchResultsContainer a:hover, .searchResultsContainer a:focus, .searchResultsContainer a:active {
         color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
         text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
