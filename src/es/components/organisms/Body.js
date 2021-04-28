@@ -20,9 +20,23 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Body extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.clickAnchorEventListener = event => {
+      let element = null
+      if (event && event.detail && (element = this.root.querySelector(event.detail.selector))) element.scrollIntoView({behavior: "smooth"})
+    }
+  }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+    document.body.addEventListener(this.getAttribute('click-anchor') || 'click-anchor', this.clickAnchorEventListener)
+  }
+
+  disconnectedCallback () {
+    document.body.removeEventListener(this.getAttribute('click-anchor') || 'click-anchor', this.clickAnchorEventListener)
   }
 
   /**

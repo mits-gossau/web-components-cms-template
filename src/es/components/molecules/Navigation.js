@@ -244,10 +244,19 @@ export default class Navigation extends Shadow() {
         if (event.target) {
           arrowClickListener()
           let a = null
-          if (event.target.root && (a = event.target.root.querySelector('a')) && (!a.getAttribute('href') || a.getAttribute('href') === '#')) {
-            event.preventDefault()
-            Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
-            event.target.classList.add('open')
+          if (event.target.root && (a = event.target.root.querySelector('a'))) {
+            if (!a.getAttribute('href') || a.getAttribute('href') === '#') {
+              event.preventDefault()
+              Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+              event.target.classList.add('open')
+            } else if (a.getAttribute('href')[0] === '#') this.dispatchEvent(new CustomEvent(this.getAttribute('click-anchor') || 'click-anchor', {
+              detail: {
+                selector: a.getAttribute('href')
+              },
+              bubbles: true,
+              cancelable: true,
+              composed: true
+            }))
           }
         }
       })
