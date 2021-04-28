@@ -37,11 +37,17 @@ export default class Button extends Shadow() {
     super(...args)
 
     this.clickEventListener = event => {
-      this.dispatchEvent(new CustomEvent('form-submit', {
-        bubbles: true,
-        cancelable: true,
-        composed: true
-      }))
+      // disable button while loading results, prevent spamming requests
+      event.target.disabled = true
+      this.dispatchEvent(new CustomEvent('form-submit',
+        {
+          detail: {
+            button: event.target
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        }))
     }
   }
 
@@ -127,6 +133,9 @@ export default class Button extends Shadow() {
         background: var(--color);
         color: var(--background-color, red);
       }
+      /*:host button:disabled {
+        // search submit takes too little time for disabled style to make sense, maybe for newsletter?
+      }*/
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
       }
     `
