@@ -109,7 +109,11 @@ export default class Input extends Shadow() {
         color: var(--color, red);
       }
       :host > input:focus {
-        outline: none;
+        outline: var(--input-outline, none);
+      }
+      ::placeholder {
+        color: var(--color);
+        opacity: var(--placeholder-opacity, 0.6);
       }
       :host > label {
         font-family: var(--font-family-bold);
