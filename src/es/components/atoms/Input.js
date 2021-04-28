@@ -50,7 +50,15 @@ export default class Input extends Shadow() {
 
     this.onChange = event => {
       if (!this.getAttribute('name')) this.setAttribute('name', event.target.name)
-      this.setAttribute('value', event.target.value)
+      if (event.key === 'Enter') {
+        this.dispatchEvent(new CustomEvent('form-submit', {
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        }))
+      } else {
+        this.setAttribute('value', event.target.value)
+      }
     }
   }
 
