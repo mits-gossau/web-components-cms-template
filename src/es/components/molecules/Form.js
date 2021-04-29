@@ -1,6 +1,8 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
+/* global fetch */
+/* global FormData */
 /* global self */
 
 /**

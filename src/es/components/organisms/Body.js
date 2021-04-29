@@ -1,6 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
+/* global location */
 /* global self */
 
 /**
@@ -23,9 +24,22 @@ export default class Body extends Shadow() {
   constructor (...args) {
     super(...args)
 
-    this.clickAnchorEventListener = event => {
+    this.clickAnchorEventListener = (event, waitMs = 50) => {
       let element = null
-      if (event && event.detail && (element = this.root.querySelector(event.detail.selector))) element.scrollIntoView({behavior: "smooth"})
+      if (event && event.detail && (element = this.root.querySelector(event.detail.selector))) {
+        let timeout = null
+        // recursive check if the element is in the viewport aligned, this can be offset due to lazy loaded images
+        const scrollEventListener = scrollEvent => {
+          clearTimeout(timeout)
+          timeout = setTimeout(() => {
+            const y = element.getBoundingClientRect().y
+            if ((y >= -1 && y <= 1) || (document.documentElement.scrollTop === document.documentElement.scrollHeight - document.documentElement.clientHeight)) document.removeEventListener('scroll', scrollEventListener)
+            element.scrollIntoView({ behavior: 'smooth' })
+          }, waitMs)
+        }
+        document.addEventListener('scroll', scrollEventListener)
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
   }
 
@@ -33,6 +47,7 @@ export default class Body extends Shadow() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     document.body.addEventListener(this.getAttribute('click-anchor') || 'click-anchor', this.clickAnchorEventListener)
+    if (location.hash) self.addEventListener('load', event => this.clickAnchorEventListener({ detail: { selector: location.hash } }), { once: true })
   }
 
   disconnectedCallback () {

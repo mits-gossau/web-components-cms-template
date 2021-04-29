@@ -5,6 +5,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 /* global Link */
 /* global Arrow */
 /* global customElements */
+/* global CustomEvent */
 
 /**
  * Navigation hosts uls
@@ -249,14 +250,16 @@ export default class Navigation extends Shadow() {
               event.preventDefault()
               Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
               event.target.classList.add('open')
-            } else if (a.getAttribute('href')[0] === '#') this.dispatchEvent(new CustomEvent(this.getAttribute('click-anchor') || 'click-anchor', {
-              detail: {
-                selector: a.getAttribute('href')
-              },
-              bubbles: true,
-              cancelable: true,
-              composed: true
-            }))
+            } else if (a.getAttribute('href')[0] === '#') {
+              this.dispatchEvent(new CustomEvent(this.getAttribute('click-anchor') || 'click-anchor', {
+                detail: {
+                  selector: a.getAttribute('href')
+                },
+                bubbles: true,
+                cancelable: true,
+                composed: true
+              }))
+            }
           }
         }
       })
