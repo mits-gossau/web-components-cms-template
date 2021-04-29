@@ -3,6 +3,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
 /* global customElements */
+/* global CustomEvent */
 
 /**
  * Dependencies: https://github.com/ciampo/macro-carousel
@@ -99,7 +100,7 @@ export default class MacroCarousel extends Shadow() {
         }
       }
     }
-  
+
     this.interval = null
   }
 
