@@ -13,6 +13,9 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @export
  * @class Title
  * @type {CustomElementConstructor}
+ * @attribute {
+ *  {string} [wrap] if left unset it wraps each word with span, if set to "only-last" it only gives the last word a <span> wrapper
+ * }
  * @css {
  *  --font-family-bold [OPTIFutura-ExtraBlackCond]
  *  --color [white]
@@ -98,11 +101,24 @@ export default class Title extends Shadow() {
    */
   renderHTML () {
     this.html = this.h1 = document.createElement('h1')
-    this.textContent.split(' ').forEach((text, i, arr) => {
-      const span = document.createElement('span')
-      span.textContent = text
-      if (i === arr.length - 1) span.classList.add('secondary-color')
-      this.h1.appendChild(span)
-    })
+    if (this.getAttribute('wrap') === 'only-last') {
+      this.textContent.split(' ').forEach((text, i, arr) => {
+        if (i === arr.length - 1) {
+          const span = document.createElement('span')
+          span.textContent = text
+          span.classList.add('secondary-color')
+          this.h1.appendChild(span)
+        } else {
+          this.h1.append(`${text} `)
+        }
+      })
+    } else {
+      this.textContent.split(' ').forEach((text, i, arr) => {
+        const span = document.createElement('span')
+        span.textContent = text
+        if (i === arr.length - 1) span.classList.add('secondary-color')
+        this.h1.appendChild(span)
+      })
+    }
   }
 }

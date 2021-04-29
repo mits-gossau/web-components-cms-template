@@ -151,21 +151,10 @@ export default class Body extends Shadow() {
         text-transform: var(--h6-text-transform, normal);
         margin: var(--h6-margin, var(--content-spacing, unset)) auto;
       }
-      .orchestra a {
-        --a-text-decoration: var(--orchestra-a-text-decoration);
-      }
-      .orchestra p {
-        --p-margin: var(--orchestra-p-margin);
-        --p-text-transform: var(--orchestra-p-text-transform);
-      }
-      .tickets a {
-        --a-text-decoration: var(--tickets-a-text-decoration);
-        --a-display: var(--tickets-a-display);
-      }
       :host > main p {
         font-family: var(--font-family-secondary);
         text-align: var(--p-text-align, start);
-        text-transform: vaR(--p-text-transform, none);
+        text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       :host > main a {
@@ -176,7 +165,7 @@ export default class Body extends Shadow() {
         display: var(--a-display, inline);
         margin: var(--a-margin, var(--content-spacing, unset)) auto;
       }
-      :host > main a:hover {
+      :host > main a:hover, :host > main a:active, :host > main a:focus {
         color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
         text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
@@ -192,6 +181,17 @@ export default class Body extends Shadow() {
         text-align: var(--ol-text-align, var(--ul-text-align, start));
         display: var(--ol-display, var(--ul-display, block));
         flex-direction: var(--ol-flex-direction, var(--ul-flex-direction, column));
+      }
+      .orchestra a {
+        --a-text-decoration: var(--orchestra-a-text-decoration);
+      }
+      .orchestra p {
+        --p-margin: var(--orchestra-p-margin);
+        --p-text-transform: var(--orchestra-p-text-transform);
+      }
+      .tickets a {
+        --a-text-decoration: var(--tickets-a-text-decoration);
+        --a-display: var(--tickets-a-display);
       }
       .outro-text {
         text-align: var(--outro-text-text-align, center);
