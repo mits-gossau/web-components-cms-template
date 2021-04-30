@@ -103,7 +103,6 @@ export default class Form extends Shadow() {
   getAllInputValues (form) {
     if (form) {
       const formData = new FormData();
-      // TODO in a future step automatically convert all native inputs to have the <a-input type="[...]"> wrapper
       [...this.root.querySelectorAll('a-input, input')].forEach(i =>
         formData.append(i.getAttribute('name'), i.getAttribute('value'))
       )

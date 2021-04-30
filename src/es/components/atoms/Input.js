@@ -132,6 +132,7 @@ export default class Input extends Shadow() {
         text-align: var(--text-align, center);
         color: var(--color, red);
       }
+
       :host > label {
         text-transform: var(--text-transform, uppercase);
         font-family: var(--font-family-bold);
