@@ -101,7 +101,7 @@ export default class Newsletter extends Shadow() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let textFieldPromise
     try {
-      textFieldPromise = Promise.resolve({ default: InputField })
+      textFieldPromise = Promise.resolve({ default: Input })
     } catch (error) {
       textFieldPromise = import('../atoms/Input.js')
     }
