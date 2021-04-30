@@ -230,17 +230,26 @@
   --navigation-text-align: center;
   --navigation-transition: font-size 0.1s linear, padding 0.1s linear, margin 0.1s linear, background-color 0.3s ease;
   --newsletter-background-color: var(--background-color);
+  --newsletter-border-bottom: 1px solid rgb(230, 230, 230);
+  --newsletter-border-bottom: 2px solid var(--color);
+  --newsletter-border-left: 2px solid var(--color);
+  --newsletter-border-right: 2px solid var(--color);
+  --newsletter-border-top: 2px solid var(--color);
   --newsletter-button-font-family: var(--font-family-bold);
   --newsletter-button-font-size: 1rem;
   --newsletter-button-height: 100%;
   --newsletter-button-text-transform: uppercase;
   --newsletter-button-width: 100%;
   --newsletter-color: var(--color);
-  --newsletter-height: 45px;
-  --newsletter-margin: 30px auto;
-  --newsletter-width: 15%;
-  --newsletter-border-bottom: 1px solid rgb(230, 230, 230);
+  --newsletter-color: var(--color);
+  --newsletter-flex-grow: 1;
   --newsletter-font-family-bold: var(--font-family-bold);
+  --newsletter-font-family-bold: var(--font-family-bold);
+  --newsletter-font-family: var(--font-family);
+  --newsletter-form-flex-direction: column;
+  --newsletter-height: 55px;
+  --newsletter-margin: 0 auto;
+  --newsletter-width: 100%;
   --orchestra-a-text-decoration: underline;
   --orchestra-p-margin: 20px;
   --orchestra-p-text-transform: uppercase;
@@ -275,5 +284,4 @@
   --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
-  
 }
