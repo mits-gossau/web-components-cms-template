@@ -4,7 +4,7 @@
  * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
  * - if a component holds other components you should share the attribute namespace with its children
  */
-html {
+:root {
   --a-display: block;
   --a-margin: 0 auto;
   --a-text-align: center;
@@ -12,9 +12,14 @@ html {
   --a-text-decoration: none;
   --a-text-underline-offset: 0.2em;
   --background-color: #009fe3;
-  --border-bottom: 2px solid white;
-  --border-left: 2px solid white;
-  --border-top: 2px solid white;
+  --border-bottom: 2px solid var(--color);
+  --border-left: 2px solid var(--color);
+  --border-top: 2px solid var(--color);
+  --carousel-a-text-decoration-hover: var(--a-text-decoration-hover);
+  --carousel-a-text-decoration: var(--a-text-decoration);
+  --carousel-a-text-underline-offset: var(--a-text-underline-offset);
+  --carousel-color-hover: var(--color-hover);
+  --carousel-color: var(--color);
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
   --carousel-pagination-bottom: 10px;

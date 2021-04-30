@@ -3,6 +3,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
 /* global customElements */
+/* global CustomEvent */
 
 /**
  * Dependencies: https://github.com/ciampo/macro-carousel
@@ -19,8 +20,12 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {boolean} [loop=false]
  *  {boolean} [navigation=false]
  *  {boolean} [pagination=false]
+ *  {boolean} [disable-drag=false]
  *  {number} [slides-per-view=1]
  *  {number} [slides-per-view-mobile=1]
+ *  {boolean} [reduced-motion=false]
+ *  {boolean} [auto-focus=false]
+ *  {number} [sync-id=undefined] used to sync carousels on 'macro-carousel-selected-changed' only one of the synced elements is allowed to have an interval
  * }
  * @css {
  *  --content-width [100%]
@@ -66,9 +71,36 @@ export default class MacroCarousel extends Shadow() {
         }
       }
     })
+
     this.resizeListener = event => {
       this.macroCarousel.setAttribute('slides-per-view', this.getAttribute(`slides-per-view${this.getMedia()}`) || '1')
     }
+
+    this.macroCarouselSelectedChangedListener = event => {
+      this.dispatchEvent(new CustomEvent((this.getAttribute('macro-carousel-selected-changed') || 'macro-carousel-selected-changed') + this.getAttribute('sync-id'), {
+        detail: {
+          slide: event.detail
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    }
+    this.macroCarouselSelectedChangedListenerSyncId = event => {
+      if (event && event.detail) {
+        // to support loop function and at end or beginning not go the opposite direction, use next and previous if possible
+        // current slide is last and going to first
+        if (event.detail.slide === 0 && Number(this.macroCarousel.getAttribute('selected')) === this.macroCarousel.querySelectorAll('[role=listitem]').length - 1) {
+          this.macroCarousel.next()
+        // current slide is first and going to the last
+        } else if (event.detail.slide === this.macroCarousel.querySelectorAll('[role=listitem]').length - 1 && Number(this.macroCarousel.getAttribute('selected')) === 0) {
+          this.macroCarousel.previous()
+        } else {
+          this.macroCarousel.setAttribute('selected', event.detail.slide)
+        }
+      }
+    }
+
     this.interval = null
   }
 
@@ -76,10 +108,24 @@ export default class MacroCarousel extends Shadow() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     self.addEventListener('resize', this.resizeListener)
+    if (this.hasAttribute('sync-id')) {
+      if (this.getAttribute('interval')) {
+        this.macroCarousel.addEventListener('macro-carousel-selected-changed', this.macroCarouselSelectedChangedListener)
+      } else {
+        document.body.addEventListener((this.getAttribute('macro-carousel-selected-changed') || 'macro-carousel-selected-changed') + this.getAttribute('sync-id'), this.macroCarouselSelectedChangedListenerSyncId)
+      }
+    }
   }
 
   disconnectedCallback () {
     self.removeEventListener('resize', this.resizeListener)
+    if (this.hasAttribute('sync-id')) {
+      if (this.getAttribute('interval')) {
+        this.macroCarousel.removeEventListener('macro-carousel-selected-changed', this.macroCarouselSelectedChangedListener)
+      } else {
+        document.body.removeEventListener((this.getAttribute('macro-carousel-selected-changed') || 'macro-carousel-selected-changed') + this.getAttribute('sync-id'), this.macroCarouselSelectedChangedListenerSyncId)
+      }
+    }
   }
 
   /**
@@ -125,6 +171,18 @@ export default class MacroCarousel extends Shadow() {
       :host > macro-carousel *:focus {
         outline: var(--outline-focus, 0);
       }
+      :host a {
+        color: var(--a-color, var(--color-secondary, var(--color, pink)));
+        text-align: var(--a-text-align, unset);
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+        text-underline-offset: var(--a-text-underline-offset, unset);
+        display: var(--a-display, inline);
+        margin: var(--a-margin, var(--content-spacing, unset)) auto;
+      }
+      :host a:hover, :host a:active, :host a:focus {
+        color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > macro-carousel {
           width: var(--content-width-mobile, 100%);
@@ -153,7 +211,7 @@ export default class MacroCarousel extends Shadow() {
         --macro-carousel-navigation-color: var(--navigation-color, var(--color, black));
         --macro-carousel-navigation-color-focus: var(--navigation-color-focus, var(--color-focus, var(--color, black)));
         --macro-carousel-navigation-color-background: var(--navigation-background-color, var(--background-color, transparent));
-        --macro-carousel-navigation-color-background-focus: var(--navigation-background-color-focus, var(--navigation-background-color, var(--background-color, rgba(0, 0, 0, 0.2)));
+        --macro-carousel-navigation-color-background-focus: var(--navigation-background-color-focus, var(--navigation-background-color, var(--background-color, rgba(0, 0, 0, 0.2))));
         --macro-carousel-navigation-button-size: var(--navigation-button-size, 48px);
         --macro-carousel-navigation-icon-size: var(--navigation-icon-size, 24px);
         --macro-carousel-navigation-icon-mask: var(--navigation-icon-mask, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E %3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E %3C/svg%3E"));

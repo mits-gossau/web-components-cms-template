@@ -1,6 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
+/* global CustomEvent */
 /* global self */
 
 /**
@@ -55,7 +56,15 @@ export default class Input extends Shadow() {
 
     this.onChange = event => {
       if (!this.getAttribute('name')) this.setAttribute('name', event.target.name)
-      this.setAttribute('value', event.target.value)
+      if (event.key === 'Enter') {
+        this.dispatchEvent(new CustomEvent('form-submit', {
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        }))
+      } else {
+        this.setAttribute('value', event.target.value)
+      }
     }
   }
 
@@ -112,8 +121,12 @@ export default class Input extends Shadow() {
         border-right: var(--border-right, none);
         text-align: var(--text-align, center);
       }
+      :host(:focus-within) {
+        box-shadow: var(--input-box-shadow, inset 0 0 2px 2px var(--color));
+      }
       :host > input {
         background: var(--input-background, none);
+        padding: var(--input-padding, 0 15px);
         border: var(--input-border, none);
         font-family: var(--font-family);
         font-size: var(--p-font-size);
@@ -123,7 +136,14 @@ export default class Input extends Shadow() {
       :host label {
         text-transform: var(--text-transform, uppercase);
         font-weight: bold;
-        font-family: var(--font-family-bold, );
+        font-family: var(--font-family-bold);
+      }
+      :host > input:focus {
+        outline: var(--input-outline, none);
+      }
+      ::placeholder {
+        color: var(--color);
+        opacity: var(--placeholder-opacity, 0.6);
       }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
@@ -137,6 +157,9 @@ export default class Input extends Shadow() {
           border-left: var(--border-left-mobile, var(--border-left, none));
           border-right: var(--border-right-mobile, var(--border-right, none));
           text-align: var(--text-align-mobile, var(--text-align, center));
+        }
+        :host(:focus-within) {
+          box-shadow: var(--input-box-shadow-mobile, inset 0 0 1.5px 1.5px var(--color));
         }
         :host > input {
           background: var(--background-mobile, var(--input-background, none));
