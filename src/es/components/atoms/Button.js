@@ -35,9 +35,11 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Button extends Shadow() {
-  constructor (...args) {
+  constructor (button, ...args) {
     super(...args)
 
+    this.button = button
+ 
     this.clickEventListener = event => {
       // disable button while loading results, prevent spamming requests
       event.target.disabled = true
@@ -55,6 +57,7 @@ export default class Button extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (this.getAttribute('src')) this.applyImageIfExists(this, this.getAttribute('src'), 'src')
     if (this.getAttribute('src-secondary')) this.applyImageIfExists(this, this.getAttribute('src-secondary'), 'src-secondary')
     this.root.addEventListener('click', this.clickEventListener)
@@ -71,6 +74,15 @@ export default class Button extends Shadow() {
    */
   shouldComponentRenderCSS () {
     return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.root.querySelector('button')
   }
 
   /**
@@ -143,7 +155,12 @@ export default class Button extends Shadow() {
     `
   }
 
-  get button () {
-    return this.root.querySelector('button')
+  /**
+   * renders the html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    this.html = this.button
   }
 }

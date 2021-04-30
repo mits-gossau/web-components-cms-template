@@ -229,16 +229,18 @@
   --navigation-padding: 0;
   --navigation-text-align: center;
   --navigation-transition: font-size 0.1s linear, padding 0.1s linear, margin 0.1s linear, background-color 0.3s ease;
-  --newsletter-submit-background-color: var(--background-color);
-  --newsletter-submit-button-font-family: var(--font-family-bold);
-  --newsletter-submit-button-font-size: 1rem;
-  --newsletter-submit-button-height: 100%;
-  --newsletter-submit-button-text-transform: uppercase;
-  --newsletter-submit-button-width: 100%;
-  --newsletter-submit-color: var(--color);
-  --newsletter-submit-height: 45px;
-  --newsletter-submit-margin: 30px auto;
-  --newsletter-submit-width: 15%;
+  --newsletter-background-color: var(--background-color);
+  --newsletter-button-font-family: var(--font-family-bold);
+  --newsletter-button-font-size: 1rem;
+  --newsletter-button-height: 100%;
+  --newsletter-button-text-transform: uppercase;
+  --newsletter-button-width: 100%;
+  --newsletter-color: var(--color);
+  --newsletter-height: 45px;
+  --newsletter-margin: 30px auto;
+  --newsletter-width: 15%;
+  --newsletter-border-bottom: 1px solid rgb(230, 230, 230);
+  --newsletter-font-family-bold: var(--font-family-bold);
   --orchestra-a-text-decoration: underline;
   --orchestra-p-margin: 20px;
   --orchestra-p-text-transform: uppercase;
@@ -273,4 +275,5 @@
   --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
+  
 }

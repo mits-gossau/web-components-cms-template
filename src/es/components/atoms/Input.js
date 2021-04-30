@@ -13,7 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Input
  * @type {CustomElementConstructor}
  * @attribute {
- *  {string} [type] the input type (text, radio, select, checkbox, etc.)
+ *  {string} [type=text] the input type (text, radio, select, checkbox, etc.)
  * }
  * @css {
  * --display [flex]
@@ -45,9 +45,14 @@ import { Shadow } from '../prototypes/Shadow.js'
  * --p-font-size
  * }
  */
+
 export default class Input extends Shadow() {
-  constructor (...args) {
-    super()
+  constructor (input, label, ...args) {
+    super(...args)
+
+    this._input = input
+    this._label =label
+    console.log(label,input)
 
     this.onChange = event => {
       if (!this.getAttribute('name')) this.setAttribute('name', event.target.name)
@@ -65,6 +70,7 @@ export default class Input extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (this.input) {
       this.input.addEventListener('keyup', this.onChange)
       this.input.addEventListener('change', this.onChange)
@@ -88,17 +94,27 @@ export default class Input extends Shadow() {
   }
 
   /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.root.querySelector('input') || !this.root.querySelector('label')
+  }
+
+  /**
    * renders the css
    *
    * @return {void}
    */
   renderCSS () {
+    console.log(this.getAttribute('type'))
     this.css = /* css */`
       :host {
         display: var(--display, flex);
         flex-grow: var(--flex-grow, 0);
         flex-direction: var(--flex-direction, column);
-        height: var(--height, 85px);     
+        height: var(--height, 85px); 
         border-top: var(--border-top, none);
         border-bottom: var(--border-bottom, none);
         border-left: var(--border-left, none);
@@ -117,15 +133,17 @@ export default class Input extends Shadow() {
         text-align: var(--text-align, center);
         color: var(--color, red);
       }
+      :host label {
+        text-transform: var(--text-transform, uppercase);
+        font-weight: bold;
+        font-family: var(--font-family-bold);
+      }
       :host > input:focus {
         outline: var(--input-outline, none);
       }
       ::placeholder {
         color: var(--color);
         opacity: var(--placeholder-opacity, 0.6);
-      }
-      :host > label {
-        font-family: var(--font-family-bold);
       }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
@@ -159,7 +177,21 @@ export default class Input extends Shadow() {
     `
   }
 
+  /**
+   * renders the html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    
+    this.html = [this.label, this.input]
+  }
+
+  get label () {
+    return this._label || this.root.querySelector('label')
+  }
+
   get input () {
-    return this.root.querySelector('input')
+    return this._input || this.root.querySelector('input')
   }
 }
