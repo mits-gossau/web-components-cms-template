@@ -1,4 +1,6 @@
 // @ts-check
+import Button from '../atoms/Button.js'
+import Input from '../atoms/Input.js'
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global fetch */
@@ -54,6 +56,7 @@ export default class Form extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.renderHTML()
     this.addEventListener('form-submit', this.submitEventListener)
   }
 
@@ -215,6 +218,64 @@ export default class Form extends Shadow() {
         }
       }
     `
+  }
+
+  /**
+  * renders the a-text-field html
+  *
+  * @return {void}
+  */
+   renderHTML() {
+    this.loadChildComponents().then(children => {
+      Array.from(this.root.querySelectorAll('input')).forEach(input => {
+        const label = this.root.querySelector(`label[for=${input.getAttribute("name")}]`);
+        const aInput = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || ''})
+        aInput.setAttribute('type', input.getAttribute('type'))
+        input.replaceWith(aInput)
+      })
+      Array.from(this.root.querySelectorAll('button')).forEach(button => {
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace') || '' })
+        button.replaceWith(aButton)
+      })
+    })
+  }
+
+  /**
+   * fetch children when first needed
+   *
+   * @returns {Promise<[string, CustomElementConstructor][]>}
+   */
+  loadChildComponents () {
+    if (this.childComponentsPromise) return this.childComponentsPromise
+    let inputPromise
+    try {
+      inputPromise = Promise.resolve({ default: Input })
+    } catch (error) {
+      inputPromise = import('../atoms/Input.js')
+    }
+    let buttonPromise
+    try {
+      buttonPromise = Promise.resolve({ default: Button })
+    } catch (error) {
+      buttonPromise = import('../atoms/Button.js')
+    }
+    return (this.childComponentsPromise = Promise.all([
+      inputPromise.then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-input', module.default]
+      ),
+      buttonPromise.then(
+        /** @returns {[string, CustomElementConstructor]} */
+        module => ['a-button', module.default]
+      )
+    ]).then(elements => {
+      elements.forEach(element => {
+        // don't define already existing customElements
+        // @ts-ignore
+        if (!customElements.get(element[0])) customElements.define(...element)
+      })
+      return elements
+    }))
   }
 
   get form () {

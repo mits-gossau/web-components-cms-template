@@ -14,8 +14,8 @@
 </head>
 <body>
   <main>
-    <m-newsletter namespace="newsletter-" boarder="none">
-      <m-form type="search">
+    <m-newsletter>
+      <m-form type="newsletter" namespace="newsletter-">
         <form action="/" enctype="multipart/form-data" method="post">
           <input type="radio" name="geschlecht" value="herr">
           <label class="label" for="geschlecht">Herr</label>
@@ -32,6 +32,7 @@
           <label for="policy">Ich akzeptiere die Datenschutzbestimmungen</label>
           <input type="checkbox" name="policy"></input>
           <button type="submit">Absenden</button>
+          
         </form>
       </m-form>
     </m-newsletter>
@@ -64,7 +65,8 @@
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
     import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
     import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
-    import('../../../es/components/atoms/Input.js').then(module => ['a-input', module.default])
+    import('../../../es/components/atoms/Input.js').then(module => ['a-input', module.default]),
+    import('../../../es/components/molecules/Form.js').then(module => ['m-form', module.default])
 
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements

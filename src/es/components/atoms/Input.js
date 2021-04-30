@@ -52,7 +52,6 @@ export default class Input extends Shadow() {
 
     this._input = input
     this._label =label
-    console.log(label,input)
 
     this.onChange = event => {
       if (!this.getAttribute('name')) this.setAttribute('name', event.target.name)
@@ -108,10 +107,10 @@ export default class Input extends Shadow() {
    * @return {void}
    */
   renderCSS () {
-    console.log(this.getAttribute('type'))
     this.css = /* css */`
       :host {
         display: var(--display, flex);
+        width: var(--width, unset);
         flex-grow: var(--flex-grow, 0);
         flex-direction: var(--flex-direction, column);
         height: var(--height, 85px); 
@@ -133,9 +132,8 @@ export default class Input extends Shadow() {
         text-align: var(--text-align, center);
         color: var(--color, red);
       }
-      :host label {
+      :host > label {
         text-transform: var(--text-transform, uppercase);
-        font-weight: bold;
         font-family: var(--font-family-bold);
       }
       :host > input:focus {
