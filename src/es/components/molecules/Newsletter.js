@@ -23,7 +23,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class Newsletter extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    //this.renderHTML()
+    this.renderHTML()
   }
 
   /**
