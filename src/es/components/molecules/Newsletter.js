@@ -77,13 +77,13 @@ export default class Newsletter extends Shadow() {
   * @return {void}
   */
   renderHTML() {
-    console.log("renderHTML")
     this.loadChildComponents().then(children =>{
       Array.from(this.root.querySelectorAll('input')).forEach(input => {
         const label = this.root.querySelector(`label[for=${input.getAttribute("name")}]`);
         console.log(label, `label[for=${input.getAttribute("name")}]`)
-        const aLink = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || '' })
-        input.replaceWith(aLink)
+        const aInput = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || ''})
+        console.log(aInput, input.getAttribute('type'), this.getAttribute('namespace'))
+        input.replaceWith(aInput)
       })
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
         const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace') || '' })
@@ -101,9 +101,9 @@ export default class Newsletter extends Shadow() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let textFieldPromise
     try {
-      textFieldPromise = Promise.resolve({ default: TextField })
+      textFieldPromise = Promise.resolve({ default: InputField })
     } catch (error) {
-      textFieldPromise = import('../atoms/TextField.js')
+      textFieldPromise = import('../atoms/Input.js')
     }
     let buttonPromise
     try {
@@ -114,7 +114,7 @@ export default class Newsletter extends Shadow() {
     return (this.childComponentsPromise = Promise.all([
       textFieldPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
-        module => ['a-text-field', module.default]
+        module => ['a-input', module.default]
       ),
       buttonPromise.then(
         /** @returns {[string, CustomElementConstructor]} */

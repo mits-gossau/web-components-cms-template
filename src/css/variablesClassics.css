@@ -234,6 +234,8 @@ html {
   --newsletter-height: 45px;
   --newsletter-margin: 30px auto;
   --newsletter-width: 15%;
+  --newsletter-border-bottom: 1px solid rgb(230, 230, 230);
+  --newsletter-font-family-bold: var(--font-family-bold);
   --orchestra-a-text-decoration: underline;
   --orchestra-p-margin: 20px;
   --orchestra-p-text-transform: uppercase;

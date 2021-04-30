@@ -12,8 +12,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Input
  * @type {CustomElementConstructor}
  * @attribute {
- *  {string} [type] the input type (text, radio, select, checkbox, etc.)
- *  {white | none} [border=white] set the boarder of the element. Default is a white boarder.
+ *  {string} [type=text] the input type (text, radio, select, checkbox, etc.)
  * }
  * @css {
  * --display [flex]
@@ -46,7 +45,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 
-export default class TextField extends Shadow() {
+export default class Input extends Shadow() {
   constructor (input, label, ...args) {
     super(...args)
 
@@ -100,17 +99,17 @@ export default class TextField extends Shadow() {
    * @return {void}
    */
   renderCSS () {
+    console.log(this.getAttribute('type'))
     this.css = /* css */`
       :host {
         display: var(--display, flex);
         flex-grow: var(--flex-grow, 0);
         flex-direction: var(--flex-direction, column);
-        height: var(--height, 85px);     
+        height: var(--height, 85px); 
         border-top: var(--border-top, none);
         border-bottom: var(--border-bottom, none);
         border-left: var(--border-left, none);
         border-right: var(--border-right, none);
-        ${this.getAttribute('border') === 'none' ? 'border: none' : '' }
         text-align: var(--text-align, center);
       }
       :host > input {
@@ -124,10 +123,7 @@ export default class TextField extends Shadow() {
       :host label {
         text-transform: var(--text-transform, uppercase);
         font-weight: bold;
-      }
-
-      :host > label {
-        font-family: var(--font-family-bold);
+        font-family: var(--font-family-bold, );
       }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
@@ -140,7 +136,6 @@ export default class TextField extends Shadow() {
           border-bottom: var(--border-bottom-mobile, var(--border-bottom, none));
           border-left: var(--border-left-mobile, var(--border-left, none));
           border-right: var(--border-right-mobile, var(--border-right, none));
-          ${this.getAttribute('border') === 'none' ? 'border: none' : '' }
           text-align: var(--text-align-mobile, var(--text-align, center));
         }
         :host > input {
@@ -165,6 +160,7 @@ export default class TextField extends Shadow() {
    * @return {void}
    */
   renderHTML () {
+    
     this.html = [this.label, this.input]
   }
 
