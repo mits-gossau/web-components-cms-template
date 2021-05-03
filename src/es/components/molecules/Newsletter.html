@@ -14,37 +14,27 @@
 </head>
 <body>
   <main>
-    <m-newsletter namespace="newsletter-">
-      <form method="post">
-          <label class="label">
-            <input type="radio" class="radio" name="geschlecht" value="herr">
-            <span>Herr</span>
-          </label>
-          <label class="label">
-            <input type="radio" class="radio" name="geschlecht" value="frau">
-            <span>Frau</span>
-          </label>
-          <br>
-          <a-text-field>
+    <m-newsletter>
+      <m-form type="newsletter" namespace="newsletter-">
+        <form action="/" enctype="multipart/form-data" method="post">
+          <input type="radio" name="geschlecht" value="herr">
+          <label class="label" for="geschlecht">Herr</label>
+          <input type="radio" name="geschlecht" value="frau">
+          <label class="label" for="geschlecht">Frau</label>
           <label for="name">Name, Vorname</label>
-          <input type="text" class="input-Text" name="name">
-        </a-text-field>
-          <br>
-          <label for="number">PLZ</label>
-          <input type="number" class="input-Text" name="plz" min="1000" max="9999">
-          <br>
+          <input type="text" name="name">
+          <label for="plz">PLZ</label>
+          <input type="number" name="plz" min="1000" max="9999">
           <label for="ort">Ort</label>
-          <input type="text" class="input-Text" name="ort">
-          <br>
+          <input type="text" name="ort">
           <label for="mail">E-Mail</label>
-          <input type="email" class="input-Text" name="mail">
-          <br>
-          <input type="checkbox" name="policy">Ich akzeptiere die Datenschutzbestimmungen.</input>
-          <br>
-          <a-button namespace="newsletter-submit-">
-            <button type="submit">Absenden</button>
-          </a-button>
+          <input type="email" name="mail">
+          <label for="policy">Ich akzeptiere die Datenschutzbestimmungen</label>
+          <input type="checkbox" name="policy"></input>
+          <button type="submit">Absenden</button>
+          
         </form>
+      </m-form>
     </m-newsletter>
   </main>
   <script rel=preload type=module>
@@ -74,7 +64,10 @@
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
     import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
     import('../../../es/components/atoms/Title.js').then(module => ['a-title', module.default]),
-    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default])
+    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
+    import('../../../es/components/atoms/Input.js').then(module => ['a-input', module.default]),
+    import('../../../es/components/molecules/Form.js').then(module => ['m-form', module.default])
+
     ]).then(elements => elements.forEach(element => {
       // don't define already existing customElements
       if (element && !customElements.get(element[0])) customElements.define(...element)

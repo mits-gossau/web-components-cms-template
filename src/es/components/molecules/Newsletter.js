@@ -22,8 +22,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  */
 export default class Newsletter extends Shadow() {
   connectedCallback () {
-    // if (this.shouldComponentRenderCSS())
-    this.renderCSS()
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
 
   /**
@@ -44,15 +43,11 @@ export default class Newsletter extends Shadow() {
     this.css = /* css */`
       :host {
         display: block;
-        text-align: var(--text-align, center);
-        padding: var(--padding, 0);
         color: var(--color, yellow);
       }
-      :host label {
-        text-transform: uppercase;
-        font-weight: bold;
-      }
-      :host .input-Text {
+
+      /*>@Laurin Input styles verschieben nach Input.js und mit this.getAttribute('type') arbeiten für spezifische styles */
+      /*:host .input-Text {
         margin-top: 20px;
         margin-bottom: 5px;
         background-color: var(--background-color);
@@ -65,9 +60,14 @@ export default class Newsletter extends Shadow() {
         display: none;
       }
       
+      :host a-text-field {
+        --text-transform: var(--a-text-field-text-transform, uppercase);
+      }*/
+
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         
       }
     `
   }
+  
 }
