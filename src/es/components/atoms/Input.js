@@ -124,7 +124,6 @@ export default class Input extends Shadow() {
         box-shadow: var(--input-box-shadow, inset 0 0 2px 2px var(--color));
       }
       :host > input {
-        ${this.getAttribute('type') == 'checkbox' ? 'display: none;' : ''}
         background: var(--input-background, none);
         padding: var(--input-padding, 0 15px);
         border: var(--input-border, none);
@@ -182,8 +181,11 @@ export default class Input extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    
-    this.html = [this.label, this.input]
+    if(this.input.getAttribute('type') == 'radio' || this.input.getAttribute('type') == 'checkbox') {
+      this.html = [this.input, this.label]
+    } else{
+      this.html = [this.label, this.input]
+    }
   }
 
   get label () {
