@@ -124,6 +124,7 @@ export default class Input extends Shadow() {
         box-shadow: var(--input-box-shadow, inset 0 0 2px 2px var(--color));
       }
       :host > input {
+        ${this.getAttribute('type') == 'checkbox' ? 'display: none;' : ''}
         background: var(--input-background, none);
         padding: var(--input-padding, 0 15px);
         border: var(--input-border, none);
@@ -143,11 +144,7 @@ export default class Input extends Shadow() {
         color: var(--color);
         opacity: var(--placeholder-opacity, 0.6);
       }
-      :host > input:checked {
-        margin-left: 200px;
-      }
-
-
+      
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           display: var(--display-mobile, var(--display, flex));
