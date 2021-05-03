@@ -143,6 +143,10 @@ export default class Input extends Shadow() {
         color: var(--color);
         opacity: var(--placeholder-opacity, 0.6);
       }
+      :host > input:checked {
+        margin-left: 200px;
+      }
+
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
