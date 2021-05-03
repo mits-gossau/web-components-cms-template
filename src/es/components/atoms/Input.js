@@ -143,7 +143,7 @@ export default class Input extends Shadow() {
         color: var(--color);
         opacity: var(--placeholder-opacity, 0.6);
       }
-
+      
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           display: var(--display-mobile, var(--display, flex));
@@ -181,8 +181,11 @@ export default class Input extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    
-    this.html = [this.label, this.input]
+    if(this.input.getAttribute('type') == 'radio' || this.input.getAttribute('type') == 'checkbox') {
+      this.html = [this.input, this.label]
+    } else{
+      this.html = [this.label, this.input]
+    }
   }
 
   get label () {
