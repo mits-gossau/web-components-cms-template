@@ -97,7 +97,8 @@ export default class Picture extends Shadow() {
     this.css = /* css */`
       :host picture {
         filter: var(--filter, none);
-        display: var(--display, inline-block);
+        display: var(--display, flex);
+        justify-content: var(--justify-content, center);
         width: var(--width, unset);
         height: var(--height, unset);
         overflow: var(--overflow, initial);
