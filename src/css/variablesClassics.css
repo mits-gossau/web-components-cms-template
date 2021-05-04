@@ -191,8 +191,10 @@
   --hr-color: transparent;
   --icon-display: block;
   --icon-margin: 15px auto 0 auto;
-  --icon-width-mobile: 35px;
-  --icon-width: 35px;
+  --icon-width-mobile: 45px;
+  --icon-width: 45px;
+  --icon-height-mobile: 45px;
+  --icon-height: 45px;
   --li-align-self: center;
   --li-margin: 0 12px;
   --line-height-mobile: 1.4rem;

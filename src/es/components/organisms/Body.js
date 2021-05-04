@@ -201,6 +201,9 @@ export default class Body extends Shadow() {
         display: block;
         height: var(--spacer-height, 15vw);
       }
+      .bold {
+        font-family: var(--font-family-bold);
+      }
 
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > main > * {

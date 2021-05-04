@@ -167,6 +167,7 @@ export default class Input extends Shadow() {
           text-align: var(--text-align-mobile, var(--text-align, center));
           color: var(--color-mobile, var(--color, red));
           border: var(--border-mobile, var(--input-border, none));
+          height: var(--input-height-mobile, 100%);
         }
 
         :host > label {
