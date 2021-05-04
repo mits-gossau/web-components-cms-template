@@ -204,7 +204,7 @@ export default class Body extends Shadow() {
         display: block;
         height: var(--spacer-height, 15vw);
       }
-      :host > main .bold {
+      :host > main .bold, :host > main strong {
         font-family: var(--font-family-bold);
       }
 
