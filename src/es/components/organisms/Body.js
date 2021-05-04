@@ -83,6 +83,9 @@ export default class Body extends Shadow() {
         background-color: var(--background-color, white);
         grid-area: body;
       }
+      :host > main {
+        padding: var(--main-padding, 0);
+      }
       :host > main > * {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);

@@ -196,6 +196,7 @@ html {
   --li-align-self: center;
   --li-margin: 0 12px;
   --line-height-mobile: 1.4rem;
+  --main-padding: var(--content-spacing) 0;
   --margin: 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
   --module-wrapper-margin: 15% 0 0 0;
