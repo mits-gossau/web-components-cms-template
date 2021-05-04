@@ -4,7 +4,7 @@
  * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
  * - if a component holds other components you should share the attribute namespace with its children
  */
-:root {
+html {
   --a-display: block;
   --a-margin: 0 auto;
   --a-text-align: center;
@@ -22,7 +22,7 @@
   --carousel-color: var(--color);
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
-  --carousel-pagination-bottom: 10px;
+  --carousel-pagination-bottom: min(20px, 2vw);
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
   --carousel-transition-duration: 1.6s;
@@ -198,6 +198,7 @@
   --li-align-self: center;
   --li-margin: 0 12px;
   --line-height-mobile: 1.4rem;
+  --main-padding: var(--content-spacing) 0;
   --margin: 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
   --module-wrapper-margin: 15% 0 0 0;
@@ -233,10 +234,9 @@
   --navigation-transition: font-size 0.1s linear, padding 0.1s linear, margin 0.1s linear, background-color 0.3s ease;
   --newsletter-background-color: var(--background-color);
   --newsletter-border-bottom: 1px solid rgb(230, 230, 230);
-  --newsletter-border-bottom: 2px solid var(--color);
-  --newsletter-border-left: 2px solid var(--color);
-  --newsletter-border-right: 2px solid var(--color);
-  --newsletter-border-top: 2px solid var(--color);
+  --newsletter-border-left: none;
+  --newsletter-border-right: none;
+  --newsletter-border-top: none;
   --newsletter-button-font-family: var(--font-family-bold);
   --newsletter-button-font-size: 1rem;
   --newsletter-button-height: 100%;
@@ -249,7 +249,6 @@
   --newsletter-font-family-bold: var(--font-family-bold);
   --newsletter-font-family: var(--font-family);
   --newsletter-form-flex-direction: column;
-  --newsletter-height: 55px;
   --newsletter-margin: 0 auto;
   --newsletter-width: 100%;
   --orchestra-a-text-decoration: underline;

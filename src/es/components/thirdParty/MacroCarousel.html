@@ -961,16 +961,33 @@
           }]'></a-picture>
         </third-party-macro-carousel>
         <third-party-macro-carousel loop namespace="carousel-" sync-id="1" disable-drag>
-          <div><p style="text-align: var(--p-text-align);">Text 1 synced to id 1<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 2 this must have no interval to be able to sync<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 3 the synced element with interval must have the same id<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 4 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 5 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 6 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 7 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 8 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 9 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div>
-          <div><p style="text-align: var(--p-text-align);">Text 10 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div>
+          <style>
+            :host > macro-carousel > div.text {
+              align-items: start;
+            }
+            :host > macro-carousel > div.text > div {
+              text-align: center;
+              width: var(--content-width, 80%);
+            }
+            :host > macro-carousel > div.text > div p {
+              text-align: var(--p-text-align);
+            }
+            @media only screen and (max-width:600px){
+              :host > macro-carousel > div.text > div {
+                width: var(--content-width-mobile, 90%);
+              }
+            }
+          </style>
+          <div class=text><div><p>Text 1 synced to id 1<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 2 this must have no interval to be able to sync<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 3 the synced element with interval must have the same id<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 4 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 5 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 6 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 7 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 8 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 9 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div></div>
+          <div class=text><div><p>Text 10 it is recommended to have the same number of slides between synced elements<br><a href="#">Hello</a></p></div></div>
         </third-party-macro-carousel>
       </main> 
     </o-body>

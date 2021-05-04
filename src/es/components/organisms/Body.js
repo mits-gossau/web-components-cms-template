@@ -83,11 +83,14 @@ export default class Body extends Shadow() {
         background-color: var(--background-color, white);
         grid-area: body;
       }
+      :host > main {
+        padding: var(--main-padding, 0);
+      }
       :host > main > * {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
-      :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5, :host > main > h6 {
+      :host > main > span, :host > main > div, :host > main > p, :host > main > article, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5, :host > main > h6 {
         width: var(--content-width-not-web-component, 80%);
       }
       :host > main h1 {
