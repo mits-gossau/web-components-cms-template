@@ -126,6 +126,7 @@ export default class Picture extends Shadow() {
           transform: var(--transform-mobile, none);
           filter: var(--filter-mobile, none);
           width: var(--width-mobile, 100%);
+          height: var(--height-mobile, unset);
         }
       }
     `
