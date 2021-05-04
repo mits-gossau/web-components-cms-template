@@ -51,7 +51,7 @@ export default class Input extends Shadow() {
     super(...args)
 
     this._input = input
-    this._label =label
+    this._label = label
 
     this.onChange = event => {
       if (!this.getAttribute('name')) this.setAttribute('name', event.target.name)
@@ -183,9 +183,9 @@ export default class Input extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    if(this.input.getAttribute('type') == 'radio' || this.input.getAttribute('type') == 'checkbox') {
+    if (this.input.getAttribute('type') == 'radio' || this.input.getAttribute('type') == 'checkbox') {
       this.html = [this.input, this.label]
-    } else{
+    } else {
       this.html = [this.label, this.input]
     }
   }

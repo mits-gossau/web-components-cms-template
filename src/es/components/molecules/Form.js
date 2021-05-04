@@ -224,15 +224,15 @@ export default class Form extends Shadow() {
   *
   * @return {void}
   */
-   renderHTML() {
+  renderHTML () {
     this.loadChildComponents().then(children => {
       Array.from(this.root.querySelectorAll('input'))
-      .filter(i => i.getAttribute('type') != "hidden").forEach(input => {
-        const label = this.root.querySelector(`label[for=${input.getAttribute("name")}]`) || this.root.querySelector(`label[for=${input.getAttribute("id")}]`);
-        const aInput = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || ''})
-        aInput.setAttribute('type', input.getAttribute('type'))
-        input.replaceWith(aInput)
-      })
+        .filter(i => i.getAttribute('type') != 'hidden').forEach(input => {
+          const label = this.root.querySelector(`label[for=${input.getAttribute('name')}]`) || this.root.querySelector(`label[for=${input.getAttribute('id')}]`)
+          const aInput = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || '' })
+          aInput.setAttribute('type', input.getAttribute('type'))
+          input.replaceWith(aInput)
+        })
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
         const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace') || '' })
         button.replaceWith(aButton)

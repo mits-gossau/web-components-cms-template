@@ -39,7 +39,7 @@ export default class Button extends Shadow() {
     super(...args)
 
     this.button = button
- 
+
     this.clickEventListener = event => {
       // disable button while loading results, prevent spamming requests
       event.target.disabled = true
