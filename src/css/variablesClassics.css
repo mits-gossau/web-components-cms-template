@@ -22,7 +22,7 @@
   --carousel-color: var(--color);
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
-  --carousel-pagination-bottom: 10px;
+  --carousel-pagination-bottom: min(20px, 2vw);
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
   --carousel-transition-duration: 1.6s;
