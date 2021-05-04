@@ -39,7 +39,7 @@ export default class Button extends Shadow() {
     super(...args)
 
     this.button = button
- 
+
     this.clickEventListener = event => {
       // disable button while loading results, prevent spamming requests
       event.target.disabled = true
@@ -96,6 +96,7 @@ export default class Button extends Shadow() {
             outerThis.css = /* css */`
               :host button {
                 background: url(${src}) var(--background-color) no-repeat center;
+                background-size: var(--background-size, 45px);
               }
             `
           } else if (name === 'src-secondary') {
@@ -104,6 +105,7 @@ export default class Button extends Shadow() {
               :host button:hover,
               :host button:active {
                 background: url(${src}) var(--color) no-repeat center;
+                background-size: var(--background-size, 45px);
               }
             `
           }
@@ -123,20 +125,19 @@ export default class Button extends Shadow() {
     this.css = /* css */`
       :host {
         border: var(--border, 2px solid var(--color)); 
-        width: var(--width, unset);
-        height: var(--height, unset);
-        display: var(--display, block);
+        width: var(--width, 70px);
+        height: var(--height, 85px);
         margin: var(--margin, 0);
       }
       :host button {
-        width: var(--button-width, 70px);
-        height: var(--button-height, 85px);
+        width: var(--button-width, 100%);
+        height: var(--button-height, 100%);
         transition: var(--button-transition, 0.3s all);
         border: var(--button-border, none);
         padding: var(--button-padding, 0);
         cursor: var(--button-cursor, pointer);
         color: var(--color, green);
-        background: var(--backgrond-color);
+        background-color: var(--background-color);
         font-family: var(--button-font-family, var(--font-family-bold));
         font-size: var(--button-font-size, 0.8rem);
         text-transform: var(--button-text-transform, none);
@@ -144,7 +145,7 @@ export default class Button extends Shadow() {
       :host button:focus,
       :host button:hover,
       :host button:active {
-        background: var(--color);
+        background-color: var(--color);
         color: var(--background-color, red);
       }
       /*:host button:disabled {

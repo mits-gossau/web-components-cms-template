@@ -69,5 +69,4 @@ export default class Newsletter extends Shadow() {
       }
     `
   }
-  
 }
