@@ -33,7 +33,7 @@ export default class Body extends Shadow() {
           clearTimeout(timeout)
           timeout = setTimeout(() => {
             const y = element.getBoundingClientRect().y
-            if ((y >= -1 && y <= 1) || (document.documentElement.scrollTop === document.documentElement.scrollHeight - document.documentElement.clientHeight)) document.removeEventListener('scroll', scrollEventListener)
+            if ((y >= -10 && y <= 10) || (document.documentElement.scrollTop === document.documentElement.scrollHeight - document.documentElement.clientHeight)) document.removeEventListener('scroll', scrollEventListener)
             element.scrollIntoView({ behavior: 'smooth' })
           }, waitMs)
         }
