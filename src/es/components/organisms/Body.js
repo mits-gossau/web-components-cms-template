@@ -155,7 +155,7 @@ export default class Body extends Shadow() {
         margin: var(--h6-margin, var(--content-spacing, unset)) auto;
       }
       :host > main p {
-        font-family: var(--font-family-secondary);
+        font-family: var(--p-font-family, var(--font-family-secondary));
         text-align: var(--p-text-align, start);
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
@@ -185,6 +185,10 @@ export default class Body extends Shadow() {
         display: var(--ol-display, var(--ul-display, block));
         flex-direction: var(--ol-flex-direction, var(--ul-flex-direction, column));
       }
+      :host > main .bold, :host > main strong {
+        font-family: var(--strong-font-family, var(--font-family-bold));
+        text-transform: var(--strong-text-transform, none);
+      }
       .orchestra a {
         --a-text-decoration: var(--orchestra-a-text-decoration);
       }
@@ -204,10 +208,6 @@ export default class Body extends Shadow() {
         display: block;
         height: var(--spacer-height, 15vw);
       }
-      :host > main .bold, :host > main strong {
-        font-family: var(--font-family-bold);
-      }
-
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > main {
           padding: var(--main-padding-mobile, 0);
