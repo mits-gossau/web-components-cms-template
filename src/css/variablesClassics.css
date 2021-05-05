@@ -299,6 +299,7 @@ html {
   --spacer-height-mobile: 20vw;
   --spacer-height: 10vw;
   --strong-text-transform: uppercase;
+  --summary-text-transform: var(--h1-text-transform);
   --tickets-a-display: inline;
   --tickets-a-text-decoration: underline;
   --ul-display: flex;
