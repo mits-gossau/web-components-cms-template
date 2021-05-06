@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
-        "test": "../bitmaps_test/20210505-201004/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
+        "test": "../bitmaps_test/20210506-164716/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
         "selector": "document",
         "fileName": "backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
         "label": "club.migros-kulturprozent-classics.ch",
@@ -15,22 +15,22 @@ report({
         "expect": 0,
         "viewportLabel": "phone",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -25
+            "height": 0
           },
-          "misMatchPercentage": "16.35",
-          "analysisTime": 53
+          "misMatchPercentage": "0.61",
+          "analysisTime": 67
         },
-        "diffImage": "../bitmaps_test/20210505-201004/failed_diff_backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png"
+        "diffImage": "../bitmaps_test/20210506-164716/failed_diff_backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
-        "test": "../bitmaps_test/20210505-201004/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
+        "test": "../bitmaps_test/20210506-164716/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
         "selector": "document",
         "fileName": "backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
         "label": "club.migros-kulturprozent-classics.ch",
@@ -41,17 +41,16 @@ report({
         "expect": 0,
         "viewportLabel": "desktop",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -141
+            "height": 0
           },
-          "misMatchPercentage": "6.80",
-          "analysisTime": 953
-        },
-        "diffImage": "../bitmaps_test/20210505-201004/failed_diff_backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png"
+          "misMatchPercentage": "0.02",
+          "analysisTime": 716
+        }
       },
-      "status": "fail"
+      "status": "pass"
     }
   ],
   "id": "backstop_default"

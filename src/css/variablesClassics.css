@@ -45,6 +45,8 @@ html {
   --content-width-not-web-component: var(--content-width);
   --content-width: 65%;
   --flex-grow: 1;
+  --flyer-duration: 1.5s;
+  --flyer-timing: cubic-bezier(0.43, 1.77, 0, 0.43);
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
@@ -148,10 +150,10 @@ html {
   --header-a-font-size-open: 0;
   --header-a-menu-icon-background-color: var(--color);
   --header-a-menu-icon-height-open-mobile: 0;
-  --header-a-menu-icon-height: min(3px, 0.7vw);
+  --header-a-menu-icon-height: min(4px, 0.7vw);
   --header-a-menu-icon-margin-open-mobile: 0;
   --header-a-menu-icon-margin: 3vh 0 0;
-  --header-a-menu-icon-spacing: min(9px, 1.5vw);
+  --header-a-menu-icon-spacing: min(7px, 1.5vw);
   --header-a-menu-icon-transition: 0.05s;
   --header-a-menu-icon-width: min(70px, 15vw);
   --header-a-padding: 0.2em 0 0;
@@ -251,7 +253,7 @@ html {
   --navigation-padding-top: 0;
   --navigation-padding: 0;
   --navigation-text-align: center;
-  --navigation-transition: font-size 0.1s linear, padding 0.1s linear, margin 0.1s linear, background-color 0.3s ease;
+  --navigation-transition: font-size 0.2s linear, padding 0.2s linear, margin 0.2s linear, background-color 0.3s ease;
   --newsletter-background-color: var(--background-color);
   --newsletter-border-bottom: 1px solid rgb(230, 230, 230);
   --newsletter-border-left: none;

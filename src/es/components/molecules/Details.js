@@ -142,7 +142,7 @@ export default class Details extends Mutation() {
         padding: var(--child-padding, 0);
       }
       :host details[open] summary ~ * {
-        animation: open var(--animation, 0.1s ease);
+        animation: open var(--animation, 0.2s ease);
         margin: var(--child-margin-open, 0);
         padding: var(--child-padding-open, 0);
       }
