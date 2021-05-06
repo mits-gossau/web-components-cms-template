@@ -24,22 +24,9 @@ export default class Body extends Shadow() {
   constructor (...args) {
     super(...args)
 
-    this.clickAnchorEventListener = (event, waitMs = 50) => {
+    this.clickAnchorEventListener = event => {
       let element = null
-      if (event && event.detail && event.detail.selector && (element = this.root.querySelector(event.detail.selector))) {
-        let timeout = null
-        // recursive check if the element is in the viewport aligned, this can be offset due to lazy loaded images
-        const scrollEventListener = scrollEvent => {
-          clearTimeout(timeout)
-          timeout = setTimeout(() => {
-            const y = element.getBoundingClientRect().y
-            if ((y >= -10 && y <= 10) || (document.documentElement.scrollTop === document.documentElement.scrollHeight - document.documentElement.clientHeight)) document.removeEventListener('scroll', scrollEventListener)
-            element.scrollIntoView({ behavior: 'smooth' })
-          }, waitMs)
-        }
-        document.addEventListener('scroll', scrollEventListener)
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
+      if (event && event.detail && event.detail.selector && (element = this.root.querySelector(event.detail.selector))) element.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
