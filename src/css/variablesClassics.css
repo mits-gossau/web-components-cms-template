@@ -45,7 +45,7 @@ html {
   --content-width-not-web-component: var(--content-width);
   --content-width: 65%;
   --flex-grow: 1;
-  --flyer-duration: 2s;
+  --flyer-duration: 1.5s;
   --flyer-timing: cubic-bezier(0.43, 1.77, 0, 0.43);
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
