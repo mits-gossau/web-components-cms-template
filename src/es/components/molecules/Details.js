@@ -121,6 +121,7 @@ export default class Details extends Mutation() {
       :host details summary {
         cursor: var(--summary-cursor, pointer);
         text-decoration: var(--summary-text-decoration, underline);
+        text-transform: var(--summary-text-transform, none);
         outline: var(--summary-outline, none);
         margin: var(--summary-margin, 0);
         padding: var(--summary-padding, 0);

@@ -98,6 +98,7 @@ export default class Header extends Shadow() {
         color: var(--a-color, var(--color));
         font-family: var(--a-font-family, var(--font-family));
         font-size: var(--a-font-size, var(--font-size));
+        padding: var(--a-padding, 0);
         order: 1;
         text-decoration: var(--a-text-decoration, none);
         text-transform: var(--a-text-transform, uppercase);

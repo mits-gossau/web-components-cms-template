@@ -100,7 +100,7 @@ export default class Body extends Shadow() {
         line-height: var(--h1-line-height, normal);
         text-align: var(--h1-text-align, start);
         word-break: var(--h1-word-break, normal);
-        text-transform: var(--h1-text-transform, normal);
+        text-transform: var(--h1-text-transform, none);
         margin: var(--h1-margin, var(--content-spacing, unset)) auto;
       }
       :host > main h2 {
@@ -110,7 +110,7 @@ export default class Body extends Shadow() {
         line-height: var(--h2-line-height, normal);
         text-align: var(--h2-text-align, start);
         word-break: var(--h2-word-break, normal);
-        text-transform: var(--h2-text-transform, normal);
+        text-transform: var(--h2-text-transform, none);
         margin: var(--h2-margin, var(--content-spacing, unset)) auto;
       }
       :host > main h3 {
@@ -120,7 +120,7 @@ export default class Body extends Shadow() {
         line-height: var(--h3-line-height, normal);
         text-align: var(--h3-text-align, start);
         word-break: var(--h3-word-break, normal);
-        text-transform: var(--h3-text-transform, normal);
+        text-transform: var(--h3-text-transform, none);
         margin: var(--h3-margin, var(--content-spacing, unset)) auto;
       }
       :host > main h4 {
@@ -130,7 +130,7 @@ export default class Body extends Shadow() {
         line-height: var(--h4-line-height, normal);
         text-align: var(--h4-text-align, start);
         word-break: var(--h4-word-break, normal);
-        text-transform: var(--h4-text-transform, normal);
+        text-transform: var(--h4-text-transform, none);
         margin: var(--h4-margin, var(--content-spacing, unset)) auto;
       }
       :host > main h5 {
@@ -140,7 +140,7 @@ export default class Body extends Shadow() {
         line-height: var(--h5-line-height, normal);
         text-align: var(--h5-text-align, start);
         word-break: var(--h5-word-break, normal);
-        text-transform: var(--h5-text-transform, normal);
+        text-transform: var(--h5-text-transform, none);
         margin: var(--h5-margin, var(--content-spacing, unset)) auto;
         margin-top: var(--h5-margin-top, var(--h5-margin, var(--content-spacing, unset)));
       }
@@ -151,11 +151,11 @@ export default class Body extends Shadow() {
         line-height: var(--h6-line-height, normal);
         text-align: var(--h6-text-align, start);
         word-break: var(--h6-word-break, normal);
-        text-transform: var(--h6-text-transform, normal);
+        text-transform: var(--h6-text-transform, none);
         margin: var(--h6-margin, var(--content-spacing, unset)) auto;
       }
       :host > main p {
-        font-family: var(--font-family-secondary);
+        font-family: var(--p-font-family, var(--font-family-secondary));
         text-align: var(--p-text-align, start);
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
@@ -185,6 +185,10 @@ export default class Body extends Shadow() {
         display: var(--ol-display, var(--ul-display, block));
         flex-direction: var(--ol-flex-direction, var(--ul-flex-direction, column));
       }
+      :host > main .bold, :host > main strong {
+        font-family: var(--strong-font-family, var(--font-family-bold));
+        text-transform: var(--strong-text-transform, none);
+      }
       .orchestra a {
         --a-text-decoration: var(--orchestra-a-text-decoration);
       }
@@ -204,11 +208,10 @@ export default class Body extends Shadow() {
         display: block;
         height: var(--spacer-height, 15vw);
       }
-      :host > main .bold, :host > main strong {
-        font-family: var(--font-family-bold);
-      }
-
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > main {
+          padding: var(--main-padding-mobile, 0);
+        }
         :host > main > * {
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
           width: var(--content-width-mobile, 90%);
