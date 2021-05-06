@@ -124,7 +124,7 @@ export default class Flyer extends Intersection() {
         margin: var(--margin, 0);
         text-align: var(--text-align, ${this.getAttribute('direction') === 'right' ? 'right' : 'left'});
         transform: ${this.getAttribute('direction') === 'up' ? 'translateY(-100vh)' : this.getAttribute('direction') === 'right' ? 'translateX(100vw)' : this.getAttribute('direction') === 'down' ? 'translateY(100vh)' : 'translateX(-100vw)'};
-        transition: all var(--duration, 0.7s) ease;
+        transition: all var(--duration, 0.7s) var(--timing, ease);
         visibility: hidden;
         z-index: var(--z-index, 99);
       }
