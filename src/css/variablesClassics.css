@@ -148,10 +148,10 @@ html {
   --header-a-font-size-open: 0;
   --header-a-menu-icon-background-color: var(--color);
   --header-a-menu-icon-height-open-mobile: 0;
-  --header-a-menu-icon-height: min(3px, 0.7vw);
+  --header-a-menu-icon-height: min(4px, 0.7vw);
   --header-a-menu-icon-margin-open-mobile: 0;
   --header-a-menu-icon-margin: 3vh 0 0;
-  --header-a-menu-icon-spacing: min(9px, 1.5vw);
+  --header-a-menu-icon-spacing: min(7px, 1.5vw);
   --header-a-menu-icon-transition: 0.05s;
   --header-a-menu-icon-width: min(70px, 15vw);
   --header-a-padding: 0.2em 0 0;
