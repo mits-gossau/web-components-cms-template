@@ -102,6 +102,10 @@ export default class MacroCarousel extends Shadow() {
     }
 
     this.interval = null
+
+    // stop interval when clicking outside window eg. iframe, etc.
+    this.blurEventListener = event => this.clearInterval()
+    this.focusEventListener = event => this.setInterval()
   }
 
   connectedCallback () {
@@ -115,6 +119,12 @@ export default class MacroCarousel extends Shadow() {
         document.body.addEventListener((this.getAttribute('macro-carousel-selected-changed') || 'macro-carousel-selected-changed') + this.getAttribute('sync-id'), this.macroCarouselSelectedChangedListenerSyncId)
       }
     }
+    if (this.getAttribute('interval')) {
+      self.addEventListener('blur', this.blurEventListener)
+      self.addEventListener('focus', this.focusEventListener)
+      document.body.addEventListener('play', this.blurEventListener, true)
+      document.body.addEventListener('pause', this.focusEventListener, true)
+    }
   }
 
   disconnectedCallback () {
@@ -125,6 +135,12 @@ export default class MacroCarousel extends Shadow() {
       } else {
         document.body.removeEventListener((this.getAttribute('macro-carousel-selected-changed') || 'macro-carousel-selected-changed') + this.getAttribute('sync-id'), this.macroCarouselSelectedChangedListenerSyncId)
       }
+    }
+    if (this.getAttribute('interval')) {
+      self.removeEventListener('blur', this.blurEventListener)
+      self.removeEventListener('focus', this.focusEventListener)
+      document.body.removeEventListener('play', this.blurEventListener)
+      document.body.removeEventListener('pause', this.focusEventListener)
     }
   }
 
@@ -272,6 +288,10 @@ export default class MacroCarousel extends Shadow() {
   setInterval () {
     clearInterval(this.interval)
     this.interval = setInterval(() => this.macroCarousel.next(), Number(this.getAttribute('interval')))
+  }
+
+  clearInterval () {
+    clearInterval(this.interval)
   }
 
   getMedia () {
