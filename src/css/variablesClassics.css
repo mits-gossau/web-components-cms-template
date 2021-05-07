@@ -280,9 +280,9 @@ html {
   --p-margin: 0;
   --p-text-align: center;
   --padding: 15px 0;
-  --picture-display: block;
-  --picture-margin: 10px auto 0 auto;
-  --picture-width: 40%;
+  --picture-margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+  --picture-width-mobile: 100%;
+  --picture-width: var(--content-width, 80%);
   --playlist-border-bottom: 2px solid white;
   --playlist-border-top: 2px solid white; 
   --playlist-item-a-color-hover: var(--color);
