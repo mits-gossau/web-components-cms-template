@@ -10,7 +10,7 @@ html {
   --a-text-align: center;
   --a-text-decoration-hover: none;
   --a-text-decoration: underline;
-  --a-text-underline-offset: auto; /* should be 6px but not visible */
+  --a-text-underline-offset: 0.2em; /* should be 6px but not visible */
   --background-color: #009fe3;
   --border-bottom: 2px solid var(--color);
   --border-left: 2px solid var(--color);
