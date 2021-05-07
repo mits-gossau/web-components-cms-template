@@ -58,6 +58,7 @@ html {
   --footer-a-link-display: inline;
   --footer-a-link-font-size-mobile: var(--footer-a-link-font-size);
   --footer-a-link-font-size: 1em;
+  --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
   --footer-background-color: white;
   --footer-box-sizing: border-box;
@@ -157,6 +158,8 @@ html {
   --header-a-menu-icon-transition: 0.05s;
   --header-a-menu-icon-width: min(70px, 15vw);
   --header-a-padding: 0.2em 0 0;
+  --header-a-text-decoration-hover: var(--a-text-decoration);
+  --header-a-text-underline-offset: var(--a-text-underline-offset);
   --header-a-transition: font-size 0.1s ease;
   --header-background-color-open: white;
   --header-background-color: var(--background-color);
@@ -287,6 +290,9 @@ html {
   --playlist-border-top: 2px solid white; 
   --playlist-item-a-color-hover: var(--color);
   --playlist-item-a-color: var(--color);
+  --playlist-item-a-text-decoration-hover: var(--a-text-decoration-hover);
+  --playlist-item-a-text-decoration: var(--a-text-decoration);
+  --playlist-item-a-text-underline-offset: var(--a-text-underline-offset);
   --playlist-item-content-width-mobile: var(--content-width-not-web-component-mobile);
   --playlist-item-h4-font-family: var(--h4-font-family);
   --playlist-item-padding: var(--padding);

@@ -71,6 +71,7 @@ export default class PlaylistItem extends Shadow() {
       }
       :host a {
         text-decoration: var(--a-text-decoration, none);
+        text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--a-text-transform, uppercase);
         color: var(--a-color, green);
       }

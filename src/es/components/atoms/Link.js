@@ -73,6 +73,7 @@ export default class Link extends Shadow() {
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);
         text-decoration: var(--text-decoration, none);
+        text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--text-transform, none);
         transition: var(--transition, all 0.2s ease);
         width: 100%;

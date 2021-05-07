@@ -100,12 +100,14 @@ export default class Header extends Shadow() {
         font-size: var(--a-font-size, var(--font-size));
         padding: var(--a-padding, 0);
         order: 1;
-        text-decoration: var(--a-text-decoration, none);
+        text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+        text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--a-text-transform, uppercase);
         transition: var(--a-transition, all 0.2s ease);
       }
       :host > header > a:hover {
         color: var(--a-color-hover, var(--a-color-hover, var(--a-color, var(--color))));
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
       :host > header.open > a {
         font-size: var(--a-font-size-open, var(--font-size-open, var(--a-font-size, var(--font-size))));

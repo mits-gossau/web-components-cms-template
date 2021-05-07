@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
-        "test": "../bitmaps_test/20210507-165350/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
+        "test": "../bitmaps_test/20210507-193324/backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
         "selector": "document",
         "fileName": "backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png",
         "label": "club.migros-kulturprozent-classics.ch",
@@ -28,7 +28,7 @@ report({
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
-        "test": "../bitmaps_test/20210507-165350/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
+        "test": "../bitmaps_test/20210507-193324/backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
         "selector": "document",
         "fileName": "backstop_default_clubmigros-kulturprozent-classicsch_0_document_1_desktop.png",
         "label": "club.migros-kulturprozent-classics.ch",
@@ -45,7 +45,7 @@ report({
             "height": 0
           },
           "misMatchPercentage": "0.02",
-          "analysisTime": 739
+          "analysisTime": 867
         }
       },
       "status": "pass"
