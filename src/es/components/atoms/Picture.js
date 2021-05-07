@@ -120,7 +120,7 @@ export default class Picture extends Shadow() {
         object-fit: var(--img-object-fit, cover);
       }
 
-      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+      @media only screen and (max-width: ${this.maxWidthMobile}) {
         :host picture {
           transition: var(--transition-mobile, none);
           transform: var(--transform-mobile, none);
@@ -150,13 +150,13 @@ export default class Picture extends Shadow() {
         if (i.src !== '' && i.type !== '' && i.size !== '') {
           switch (i.size) {
             case 'small':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(max-width: 767px)">`
+              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(max-width: 400px)">`
               break
             case 'medium':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 768px) and (max-width: 990px)">`
+              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 401px) and (max-width: ${this.maxWidthMobile})">`
               break
             case 'large':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 991px) and (max-width: 1200px)">`
+              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: ${this.minWidthDesktop}) and (max-width: 1200px)">`
               break
             case 'extra-large':
               this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
@@ -184,5 +184,13 @@ export default class Picture extends Shadow() {
 
   get img () {
     return this.root.querySelector('img')
+  }
+
+  get maxWidthMobile () {
+    return this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+  }
+
+  get minWidthDesktop () {
+    return `${Number(this.maxWidthMobile().replace('px', '')) + 1}px`
   }
 }
