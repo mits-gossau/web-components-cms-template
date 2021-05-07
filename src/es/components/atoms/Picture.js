@@ -191,6 +191,6 @@ export default class Picture extends Shadow() {
   }
 
   get minWidthDesktop () {
-    return `${Number(this.maxWidthMobile().replace('px', '')) + 1}px`
+    return `${Number(this.maxWidthMobile.replace('px', '')) + 1}px`
   }
 }
