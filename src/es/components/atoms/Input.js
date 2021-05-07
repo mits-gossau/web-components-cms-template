@@ -183,7 +183,7 @@ export default class Input extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    if (this.input.getAttribute('type') == 'radio' || this.input.getAttribute('type') == 'checkbox') {
+    if (this.input.getAttribute('type') === 'radio' || this.input.getAttribute('type') === 'checkbox') {
       this.html = [this.input, this.label]
     } else {
       this.html = [this.label, this.input]
