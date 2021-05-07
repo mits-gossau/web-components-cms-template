@@ -120,11 +120,15 @@ export default class Details extends Mutation() {
       }
       :host details summary {
         cursor: var(--summary-cursor, pointer);
-        text-decoration: var(--summary-text-decoration, underline);
+        text-decoration: var(--summary-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
+        text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--summary-text-transform, none);
         outline: var(--summary-outline, none);
         margin: var(--summary-margin, 0);
         padding: var(--summary-padding, 0);
+      }
+      :host details summary:hover, :host details summary:active, :host details summary:focus {
+        text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
       :host details[open] summary {
         text-decoration: var(--summary-text-decoration-open, none);
@@ -150,8 +154,12 @@ export default class Details extends Mutation() {
         color: var(--a-color, var(--color));
         cursor: var(--close-cursor, pointer);
         display: var(--close-display, block);
-        text-decoration: var(--close-text-decoration, underline);
+        text-decoration: var(--close-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
+        text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--close-text-transform, uppercase);
+      }
+      :host details .close:hover, :host details .close:active, :host details .close:focus {
+        text-decoration: var(--close-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
       @keyframes open {
         0% {font-size: 0}
