@@ -20,12 +20,12 @@ html {
   --carousel-a-text-underline-offset: var(--a-text-underline-offset);
   --carousel-color-hover: var(--color-hover);
   --carousel-color: var(--color);
-  --carousel-img-max-height: var(--picture-img-max-height);
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
   --carousel-pagination-bottom: min(20px, 2vw);
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
+  --carousel-picture-img-max-height: var(--picture-img-max-height);
   --carousel-transition-duration: 1.6s;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color);
