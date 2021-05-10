@@ -54,7 +54,13 @@ export default class Details extends Mutation() {
     }
 
     this.openEventListener = event => {
-      if (this.details && event.detail.child && event.detail.child !== this) this.details.removeAttribute('open')
+      if (this.details && event.detail.child) {
+        if (event.detail.child === this) {
+          this.details.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          this.details.removeAttribute('open')
+        }
+      }
     }
 
     this.clickEventListener = event => {

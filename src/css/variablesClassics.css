@@ -20,6 +20,7 @@ html {
   --carousel-a-text-underline-offset: var(--a-text-underline-offset);
   --carousel-color-hover: var(--color-hover);
   --carousel-color: var(--color);
+  --carousel-img-max-height: var(--picture-img-max-height);
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
   --carousel-pagination-bottom: min(20px, 2vw);
@@ -283,6 +284,7 @@ html {
   --p-margin: 0;
   --p-text-align: center;
   --padding: 15px 0;
+  --picture-img-max-height: 80vh;
   --picture-margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
   --picture-width-mobile: 100%;
   --picture-width: var(--content-width, 80%);
