@@ -37,7 +37,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  */
 export default class Picture extends Shadow() {
   static get observedAttributes () {
-    return ['loading']
+    return ['loading', 'pointer-events']
   }
 
   constructor (...args) {
@@ -67,7 +67,17 @@ export default class Picture extends Shadow() {
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
-    if (name === 'loading' && this.img) this.img.setAttribute(name, newValue)
+    if (this.img) {
+      if (name === 'loading') {
+        this.img.setAttribute(name, newValue)
+      } else if (name === 'pointer-events') {
+        this.css = /* css */`
+          :host picture img {
+            pointer-events: ${newValue};
+          }
+        `
+      }
+    }
   }
 
   /**
@@ -119,7 +129,6 @@ export default class Picture extends Shadow() {
         max-height: var(--img-max-height);
         object-fit: var(--img-object-fit, cover);
       }
-
       @media only screen and (max-width: ${this.maxWidthMobile}) {
         :host picture {
           transition: var(--transition-mobile, none);

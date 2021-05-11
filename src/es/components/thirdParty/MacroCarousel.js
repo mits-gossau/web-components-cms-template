@@ -58,6 +58,7 @@ export default class MacroCarousel extends Shadow() {
     Array.from(this.root.children).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
+      if (node.nodeName !== 'A') node.setAttribute('pointer-events', 'none') // firefox would drag the ghost image and interrupt the carousel
       this.macroCarousel.appendChild(node)
     })
     // forward all attributes
