@@ -7,7 +7,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 
 /**
  * Footer is sticky and hosts uls
- * Example at: /src/es/components/pages/Home.html
+ * Example at: /src/es/components/organisms/Playlist.html
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
