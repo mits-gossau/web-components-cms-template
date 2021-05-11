@@ -17,7 +17,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  * @css {
  * --display [flex]
- * --height [85px]
+ * --height [95px]
  * --input-background [none]
  * --color [red]
  * --input-border [none]
@@ -112,8 +112,9 @@ export default class Input extends Shadow() {
         display: var(--display, flex);
         width: var(--width, unset);
         flex-grow: var(--flex-grow, 0);
+        padding: var(--padding, 0);
         flex-direction: var(--flex-direction, column);
-        height: var(--height, 85px); 
+        height: var(--height, 95px); 
         border-top: var(--border-top, none);
         border-bottom: var(--border-bottom, none);
         border-left: var(--border-left, none);
@@ -131,6 +132,9 @@ export default class Input extends Shadow() {
         font-size: var(--p-font-size);
         text-align: var(--text-align, center);
         color: var(--color, red);
+        width: var(--input-width, 40%);
+        align-self: var(--input-align-self, center);
+        height: var(--input-height, 100%);
       }
 
       :host > label {
@@ -168,6 +172,7 @@ export default class Input extends Shadow() {
           color: var(--color-mobile, var(--color, red));
           border: var(--border-mobile, var(--input-border, none));
           height: var(--input-height-mobile, 100%);
+          width: var(--input-width-mobile, 100%);
         }
 
         :host > label {
