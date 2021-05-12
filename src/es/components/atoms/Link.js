@@ -13,6 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  {string} href used for the link reference
+ *  {boolean} [hit-area=false] this lets you define a hit-area of your link, to avoid too large focus (hit-area) by fonts too large line-height, which can't be overwritten with css: https://github.com/mits-gossau/web-components-cms-template/issues/53
  * }
  * @css {
  *  --text-transform [none]
@@ -62,7 +63,26 @@ export default class Link extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      :host > a {
+      ${this.hitArea ? /* css */`
+        :host {
+          display: grid;
+        }
+        :host > a {
+          z-index: 1;
+        }
+        :host > ${this.hitAreaTagName} {
+          z-index: 0;
+        }
+        :host > a, :host > ${this.hitAreaTagName} {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        :host > a:hover ~ ${this.hitAreaTagName} {
+          color: var(--color-hover, var(--color, yellow));
+          text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
+        }
+      ` : ''}
+      :host > a, :host > ${this.hitAreaTagName} {
         box-sizing: border-box;
         color: var(--color, red);
         display: var(--display, block);
@@ -78,16 +98,15 @@ export default class Link extends Shadow() {
         transition: var(--transition, all 0.2s ease);
         width: 100%;
       }
-      :host > a:hover{
+      :host > a:hover {
         color: var(--color-hover, var(--color, yellow));
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
       }
       :host > span {
         display: var(--span-display, inline);
       }
-      
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host > a {
+        :host > a, :host > ${this.hitAreaTagName} {
           display: var(--display-mobile, var(--display, block));
           line-height: var(--line-height-mobile, var(--line-height, normal));
         }
@@ -105,5 +124,18 @@ export default class Link extends Shadow() {
    */
   renderHTML () {
     this.html = this.a
+    if (this.hitArea) {
+      this.hitArea.textContent = this.a.textContent
+      this.a.textContent = ''
+      this.root.appendChild(this.hitArea)
+    }
+  }
+
+  get hitArea () {
+    return this.getAttribute('hit-area') && this.getAttribute('hit-area') !== 'false' ? this._hitArea || (this._hitArea = document.createElement(this.hitAreaTagName)) : null
+  }
+
+  get hitAreaTagName () {
+    return 'div'
   }
 }
