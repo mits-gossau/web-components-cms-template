@@ -15,6 +15,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  {string} [logo-load="logo-load"]
+ *  {boolean} [homepage] for classics homepage styles (only one logo at right side)
  * }
  * @css {
  *  NOTE: grid-area: footer;
@@ -100,7 +101,7 @@ export default class Footer extends Shadow() {
       }
       :host > footer {
         display: var(--display, flex);
-        background-color: var(--background-color, black);
+        background-color: var(${this.getAttribute("homepage") === "true" ? "--homepage-background-color" : "--background-color"}, black);
         justify-content: var(--justify-content, normal);
         flex-direction: var(--flex-direction, row);
         align-content: var(--align-content, normal);
@@ -108,6 +109,7 @@ export default class Footer extends Shadow() {
         box-sizing: var(--box-sizing, content-box);
       }
       :host .logo-container {
+        width: ${this.getAttribute("homepage") === "true" ? "100%" : "unset"};
         display: flex;
         flex-wrap: var(--logo-container-flex-wrap, nowrap);
         justify-content: var(--logo-container-justify-content, space-between);

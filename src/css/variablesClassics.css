@@ -60,6 +60,7 @@ html {
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
   --footer-background-color: white;
+  --footer-homepage-background-color: #009fe3;
   --footer-box-sizing: border-box;
   --footer-color-hover: #009fe3;
   --footer-color: #009fe3;
