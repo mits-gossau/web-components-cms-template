@@ -63,25 +63,27 @@ export default class Link extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
-      ${this.hitArea ? /* css */`
-        :host {
-          display: grid;
-        }
-        :host > a {
-          z-index: 1;
-        }
-        :host > ${this.hitAreaTagName} {
-          z-index: 0;
-        }
-        :host > a, :host > ${this.hitAreaTagName} {
-          grid-column: 1;
-          grid-row: 1;
-        }
-        :host > a:hover ~ ${this.hitAreaTagName} {
-          color: var(--color-hover, var(--color, yellow));
-          text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
-        }
-      ` : ''}
+      ${this.hitArea
+        ? /* css */`
+          :host {
+            display: grid;
+          }
+          :host > a {
+            z-index: 1;
+          }
+          :host > ${this.hitAreaTagName} {
+            z-index: 0;
+          }
+          :host > a, :host > ${this.hitAreaTagName} {
+            grid-column: 1;
+            grid-row: 1;
+          }
+          :host > a:hover ~ ${this.hitAreaTagName} {
+            color: var(--color-hover, var(--color, yellow));
+            text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
+          }
+        `
+        : ''}
       :host > a, :host > ${this.hitAreaTagName} {
         box-sizing: border-box;
         color: var(--color, red);
