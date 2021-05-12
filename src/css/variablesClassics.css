@@ -327,6 +327,8 @@ html {
   --search-h3-line-height: var(--h1-line-height);
   --search-h3-margin: 15px;
   --search-h3-text-align: var(--h1-text-align);
+  --search-field-input-box-shadow: inset 0 0 2px 2px white;
+  --search-field-input-box-shadow-mobile: var(--search-field-input-box-shadow);
   --search-h3-text-transform: uppercase;
   --search-icon-display: block;
   --search-icon-margin: 0;
