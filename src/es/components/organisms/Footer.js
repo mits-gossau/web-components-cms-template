@@ -101,7 +101,9 @@ export default class Footer extends Shadow() {
       }
       :host > footer {
         display: var(--display, flex);
-        background-color: var(${this.getAttribute("homepage") === "true" ? "--homepage-background-color" : "--background-color"}, black);
+        background-color: var(${this.getAttribute("homepage") === "true" 
+          ? "--homepage-background-color"
+          : "--background-color"}, black);
         justify-content: var(--justify-content, normal);
         flex-direction: var(--flex-direction, row);
         align-content: var(--align-content, normal);
@@ -110,9 +112,11 @@ export default class Footer extends Shadow() {
       }
       :host .logo-container {
         width: ${this.getAttribute("homepage") === "true" ? "100%" : "unset"};
+        justify-content: var(${this.getAttribute("homepage") === "true" 
+          ? "--homepage-logo-container-justify-content" 
+          : "--logo-container-justify-content"}, space-between);
         display: flex;
         flex-wrap: var(--logo-container-flex-wrap, nowrap);
-        justify-content: var(--logo-container-justify-content, space-between);
         align-content: var(--logo-container-align-content, normal);
       }
       :host .logo-container.wrapped {
