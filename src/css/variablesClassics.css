@@ -60,6 +60,7 @@ html {
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
   --footer-background-color: white;
+  --footer-homepage-background-color: #009fe3;
   --footer-box-sizing: border-box;
   --footer-color-hover: #009fe3;
   --footer-color: #009fe3;
@@ -82,12 +83,13 @@ html {
   --footer-engagement-logo-text-padding-mobile-fr: 10px 0 0 27%;
   --footer-engagement-logo-text-padding-mobile: 10px 0 0 34%;
   --footer-engagement-logo-text-padding: 10px 0 0 32%;
-  --footer-flex-wrap: wrap;
+  --footer-flex-wrap: wrap; 
   --footer-font-size-mobile: var(--footer-a-link-font-size-mobile);
   --footer-font-size: var(--footer-a-link-font-size);
   --footer-justify-content: space-between;
   --footer-logo-align-items: flex-end;
   --footer-logo-container-flex-wrap-mobile: wrap;
+  --footer-homepage-logo-container-justify-content: flex-end;
   --footer-logo-container-justify-content-wrapped-mobile: var(--footer-logo-container-justify-content-wrapped);
   --footer-logo-container-justify-content-wrapped: center;
   --footer-logo-height-mobile: var(--footer-logo-height);
