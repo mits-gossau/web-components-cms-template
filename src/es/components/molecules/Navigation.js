@@ -17,6 +17,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  {boolean} [hover=false]
+ *  {boolean} [hit-area=true] this lets you define a hit-area of your link, to avoid too large focus (hit-area) by fonts too large line-height, which can't be overwritten with css: https://github.com/mits-gossau/web-components-cms-template/issues/53
  * }
  * @css {
  *  --content-spacing [40px]
@@ -234,6 +235,7 @@ export default class Navigation extends Shadow() {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
       const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
+      aLink.setAttribute('hit-area', this.getAttribute('hit-area') || 'true')
       const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {

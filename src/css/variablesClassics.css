@@ -232,8 +232,8 @@ html {
   --navigation-a-link-font-family: var(--font-family-bold);
   --navigation-a-link-font-size-nav-open: var(--h1-font-size);
   --navigation-a-link-font-size: 0;
-  --navigation-a-link-line-height-nav-open: 1.35em;
-  --navigation-a-link-line-height: normal;
+  --navigation-a-link-line-height-nav-open: 1em;
+  --navigation-a-link-line-height: var(--navigation-a-link-line-height-nav-open);
   --navigation-a-link-second-level-font-size-nav-open: var(--navigation-a-link-font-size-nav-open);
   --navigation-a-link-second-level-font-size: 0;
   --navigation-a-link-second-level-font-weight-nav-open: normal;
