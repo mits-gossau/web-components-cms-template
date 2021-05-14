@@ -19,13 +19,13 @@
     </o-header>
     <o-body>
       <main>
-        <m-form type="search">
+        <m-form type="search" namespace="search-">
           <form action="/" enctype="multipart/form-data" method="post">
-            <a-input type="text">
+            <a-input type="text" namespace="search-field-">
               <label for="searchTerm">Suche</label>
               <input id="searchTerm" name="searchTerm" type="text" value="" placeholder="Suchbegriff hier eingeben...">
             </a-input>
-            <a-button src="../../../img/yellow/LUPE_YELLOW.svg" src-secondary="../../../img/cyan/LUPE_CYAN.svg">
+            <a-button src="../../../img/yellow/LUPE_YELLOW.svg">
               <button type="submit" aria-label="Search"></button>
             </a-button>
           </form>
@@ -33,17 +33,17 @@
             <h3>Suchresultate</h3>
             <p>Ihre Suche nach "Bern" lieferte 5 Treffer</p>
               <div>
-                  <h4>Testkonzert</h4>
+                  <h3>Testkonzert</h3>
                   <p>Dies ist ein Testkonzert</p>
                   <a href="/konzerte/spielplan/testkonzert/">Mehr erfahren</a>
               </div>
               <div>
-                  <h4>Testkonzert 3</h4>
+                  <h3>Testkonzert 3</h3>
                   <p>Anrisstext für Testkonzert 3</p>
                   <a href="/konzerte/spielplan/testkonzert-3/">Mehr erfahren</a>
               </div>
               <div>
-                  <h4>Programm</h4>
+                  <h3>Programm</h3>
                   <p>Unser Programm</p>
                       <p>Der Suchbegriff 'Bern' wurde in verlinkten PDF Dokumenten gefunden:</p>
                           <ul>
@@ -58,7 +58,7 @@
                   <a href="/news/programm/">Mehr erfahren</a>
               </div>
               <div>
-                  <h4>Testkonzert 2</h4>
+                  <h3>Testkonzert 2</h3>
                   <p>gdfsgsd</p>
                   <a href="/konzerte/spielplan/testkonzert-2/">Mehr erfahren</a>
               </div>

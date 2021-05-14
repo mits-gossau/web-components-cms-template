@@ -15,15 +15,17 @@ report({
         "expect": 0,
         "viewportLabel": "phone",
         "diff": {
-          "isSameDimensions": true,
+          "isSameDimensions": false,
           "dimensionDifference": {
             "width": 0,
-            "height": 0
+            "height": 16
           },
-          "misMatchPercentage": "0.00"
-        }
+          "misMatchPercentage": "7.08",
+          "analysisTime": 57
+        },
+        "diffImage": "..\\bitmaps_test\\20210511-160500\\failed_diff_backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
@@ -48,7 +50,7 @@ report({
           "analysisTime": 740
         }
       },
-      "status": "pass"
+      "status": "fail"
     }
   ],
   "id": "backstop_default"

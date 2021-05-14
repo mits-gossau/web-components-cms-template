@@ -133,6 +133,7 @@ export default class Form extends Shadow() {
       }
       :host form {
         display: var(--form-display, flex);
+        margin: var(--form-margin, 0 0 50px 0);
         flex-direction: var(--form-flex-direction, column);
         align-items: var(--form-align-items, center);
       }

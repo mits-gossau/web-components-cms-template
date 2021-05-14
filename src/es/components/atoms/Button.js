@@ -24,7 +24,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * --display [block]
  * --color [green]
  * --button-width [70px]
- * --button-height [85px]
+ * --button-height [95px]
  * --button-transition [0.3s all]
  * --button-border [none]
  * --button-padding [0]
@@ -95,8 +95,8 @@ export default class Button extends Shadow() {
           if (name === 'src') {
             outerThis.css = /* css */`
               :host button {
-                background: url(${src}) var(--background-color) no-repeat center;
-                background-size: var(--background-size, 45px);
+                background: url(${src}) var(--button-background-color, transparent) no-repeat center;
+                background-size: var(--background-size, 45px); /* background-size up here bc will be overwritten otherwise */
               }
             `
           } else if (name === 'src-secondary') {
@@ -104,7 +104,7 @@ export default class Button extends Shadow() {
               :host button:focus,
               :host button:hover,
               :host button:active {
-                background: url(${src}) var(--color) no-repeat center;
+                background: url(${src}) var(--button-background-color-secondary, transparent) no-repeat center;
                 background-size: var(--background-size, 45px);
               }
             `
@@ -126,8 +126,14 @@ export default class Button extends Shadow() {
       :host {
         border: var(--border, 2px solid var(--color)); 
         width: var(--width, 70px);
-        height: var(--height, 85px);
+        height: var(--height, 95px);
         margin: var(--margin, 0);
+        position: var(--position, static);
+        top: var(--top, auto);
+        right: var(--right, auto);
+        bottom: var(--bottom, auto);
+        left: var(--left, auto);
+        transform: var(--transform, none);
       }
       :host button {
         width: var(--button-width, 100%);
@@ -137,7 +143,7 @@ export default class Button extends Shadow() {
         padding: var(--button-padding, 0);
         cursor: var(--button-cursor, pointer);
         color: var(--color, green);
-        background-color: var(--background-color);
+        background-color: var(--button-background-color, transparent);
         font-family: var(--button-font-family, var(--font-family-bold));
         font-size: var(--button-font-size, 0.8rem);
         text-transform: var(--button-text-transform, none);
@@ -145,13 +151,25 @@ export default class Button extends Shadow() {
       :host button:focus,
       :host button:hover,
       :host button:active {
-        background-color: var(--color);
+        background-color: var(--button-background-color-secondary, transparent);
         color: var(--background-color, red);
       }
       /*:host button:disabled {
         // search submit takes too little time for disabled style to make sense, maybe for newsletter?
       }*/
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          position: var(--position-mobile, var(--position, static));
+          top: var(--top-mobile, var(--top, auto));
+          right: var(--right-mobile, var(--right, auto));
+          bottom: var(--bottom-mobile, var(--bottom, auto));
+          left: var(--left-mobile, var(--left, auto));
+          transform: var(--transform-mobile, var(--transform, none));
+        }
+
+        :host button {
+          border: var(--button-border-mobile, var(--button-border, none));
+        }
       }
     `
   }
