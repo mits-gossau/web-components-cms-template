@@ -274,6 +274,7 @@ html {
   --newsletter-form-flex-direction: column;
   --newsletter-margin: 0 auto;
   --newsletter-width: 100%;
+  --orchestra-a-display: block;
   --orchestra-a-text-decoration: var(--a-text-decoration);
   --orchestra-p-margin: 20px;
   --orchestra-p-text-transform: uppercase;

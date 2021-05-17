@@ -179,6 +179,7 @@ export default class Body extends Shadow() {
         text-transform: var(--strong-text-transform, none);
       }
       .orchestra a {
+        --any-a-display: var(--orchestra-a-display);
         --a-text-decoration: var(--orchestra-a-text-decoration);
       }
       .orchestra p {
@@ -187,7 +188,7 @@ export default class Body extends Shadow() {
       }
       .tickets a {
         --a-text-decoration: var(--tickets-a-text-decoration);
-        --a-display: var(--tickets-a-display);
+        --any-a-display: var(--tickets-a-display);
       }
       .outro-text {
         text-align: var(--outro-text-text-align, center);
