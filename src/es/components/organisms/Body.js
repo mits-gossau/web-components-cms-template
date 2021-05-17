@@ -129,7 +129,6 @@ export default class Body extends Shadow() {
         word-break: var(--h5-word-break, normal);
         text-transform: var(--h5-text-transform, none);
         margin: var(--h5-margin, var(--content-spacing, unset)) auto;
-        margin-top: var(--h5-margin-top, var(--h5-margin, var(--content-spacing, unset)));
       }
       :host > main h6 {
         color: var(--h6-color, var(--color, black));
@@ -200,57 +199,63 @@ export default class Body extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > main {
-          padding: var(--main-padding-mobile, 0);
+          padding: var(--main-padding-mobile, var(--main-padding, 0));
         }
         :host > main > * {
-          margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
-          width: var(--content-width-mobile, 90%);
+          margin: var(--content-spacing-mobile, var(--content-spacing, unset)) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+          width: var(--content-width-mobile, var(--content-width, 90%));
         }
         :host > main > span, :host > main > div, :host > main > p, :host > main > ul, :host > main > ol, :host > main > section, :host > main > h1, :host > main > h2, :host > main > h3, :host > main > h4, :host > main > h5, :host > main > h6 {
-          width: var(--content-width-not-web-component-mobile, 90%);
+          width: var(--content-width-not-web-component-mobile, var(--content-width-not-web-component, var(--content-width-mobile, var(--content-width, 90%))));
         }
         :host > main h1 {
           font-size: var(--h1-font-size-mobile, var(--h1-font-size, min(5rem, 14vw)));
           line-height: var(--h1-line-height-mobile, var(--h1-line-height, normal));
           word-break: var(--h1-word-break-mobile, var(--h1-word-break, normal));
           text-transform: var(--h1-text-transform-mobile, var(--h1-text-transform, normal));
-          margin: var(--h1-margin-mobile, var(--h1-margin)) auto;
+          margin: var(--h1-margin-mobile, var(--h1-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
         }
         :host > main h2 {
           font-size: var(--h2-font-size-mobile, var(--h2-font-size, min(4rem, 14vw)));
           line-height: var(--h2-line-height-mobile, var(--h2-line-height, normal));
           word-break: var(--h2-word-break-mobile, var(--h2-word-break, normal));
           text-transform: var(--h2-text-transform-mobile, var(--h2-text-transform, normal));
-          margin: var(--h2-margin-mobile, var(--h2-margin)) auto;
+          margin: var(--h2-margin-mobile, var(--h2-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
         }
         :host > main h3 {
           font-size: var(--h3-font-size-mobile, var(--h3-font-size, min(3rem, 14vw)));
           line-height: var(--h3-line-height-mobile, var(--h3-line-height, normal));
           word-break: var(--h3-word-break-mobile, var(--h3-word-break, normal));
           text-transform: var(--h3-text-transform-mobile, var(--h3-text-transform, normal));
-          margin: var(--h3-margin-mobile, var(--h3-margin)) auto;
+          margin: var(--h3-margin-mobile, var(--h3-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
         }
         :host > main h4 {
           font-size: var(--h4-font-size-mobile, var(--h4-font-size, min(2rem, 14vw)));
           line-height: var(--h4-line-height-mobile, var(--h4-line-height, normal));
           word-break: var(--h4-word-break-mobile, var(--h4-word-break, normal));
           text-transform: var(--h4-text-transform-mobile, var(--h4-text-transform, normal));
-          margin: var(--h4-margin-mobile, var(--h4-margin)) auto;
+          margin: var(--h4-margin-mobile, var(--h4-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
         }
         :host > main h5 {
           font-size: var(--h5-font-size-mobile, var(--h5-font-size, min(1.5rem, 14vw)));
           line-height: var(--h5-line-height-mobile, var(--h5-line-height, normal));
           word-break: var(--h5-word-break-mobile, var(--h5-word-break, normal));
           text-transform: var(--h5-text-transform-mobile, var(--h5-text-transform, normal));
-          margin: var(--h5-margin-mobile, var(--h5-margin)) auto;
-          margin-top: var(--h5-margin-top-mobile, var(--h5-margin-mobile, var(--h5-margin)));
+          margin: var(--h5-margin-mobile, var(--h5-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
         }
         :host > main h6 {
           font-size: var(--h6-font-size-mobile, var(--h6-font-size, min(1.5rem, 14vw)));
           line-height: var(--h6-line-height-mobile, var(--h6-line-height, normal));
           word-break: var(--h6-word-break-mobile, var(--h6-word-break, normal));
           text-transform: var(--h6-text-transform-mobile, var(--h6-text-transform, normal));
-          margin: var(--h6-margin-mobile, var(--h6-margin));
+          margin: var(--h6-margin-mobile, var(--h6-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
+        }
+        :host > main p {
+          text-transform: var(--p-text-transform-mobile, var(--p-text-transform, none));
+          margin: var(--p-margin-mobile, var(--p-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
+        }
+        :host > main a {
+          margin: var(--a-margin-mobile, var(--a-margin, var(--content-spacing-mobile, var(--content-spacing, unset)))) auto;
         }
         .outro-text {
           margin-top: var(--outro-text-margin-top-mobile, 50px) auto;

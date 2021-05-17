@@ -6,7 +6,7 @@
  */
 html {
   --a-display: block;
-  --a-margin: 0 auto;
+  --a-margin: 0;
   --a-text-align: center;
   --a-text-decoration-hover: none;
   --a-text-decoration: underline;
@@ -38,6 +38,7 @@ html {
   --concerts-playlist-margin: 30px 0 10% 0;
   --concerts-playlist-width: 100%;
   --concerts-ul-text-align: var(--h1-text-align);
+  --content-spacing-mobile: 0;
   --content-spacing: 20px;
   --content-width-mobile: 100%;
   --content-width-not-web-component-mobile: 90%;
@@ -138,9 +139,7 @@ html {
   --h5-font-size: var(--h1-font-size);
   --h5-line-height-mobile: var(--h1-line-height-mobile);
   --h5-line-height: var(--h1-line-height);
-  --h5-margin-top-mobile: 20px;
-  --h5-margin-top: 20px;
-  --h5-margin: 0;
+  --h5-margin: 20px auto 0;
   --h5-text-align: var(--h1-text-align);
   --h5-text-transform: uppercase;
   --h6-font-size-mobile: var(--h1-font-size-mobile);
