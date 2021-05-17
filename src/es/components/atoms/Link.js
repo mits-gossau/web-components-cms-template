@@ -128,6 +128,9 @@ export default class Link extends Shadow() {
     this.html = this.a
     if (this.hitArea) {
       this.hitArea.textContent = this.a.textContent
+      this.hitArea.setAttribute('data-href', this.a.getAttribute('href'))
+      this.hitArea.setAttribute('role', 'link')
+      this.a.setAttribute('aria-label', this.a.textContent)
       this.a.textContent = ''
       this.root.appendChild(this.hitArea)
     }
