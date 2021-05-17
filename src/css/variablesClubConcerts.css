@@ -112,6 +112,7 @@ html {
   --navigation-hr-color: var(--navigation-color);
   --p-date-text-transform: uppercase;
   --p-text-align: center;
+  --picture-display: inline-block; /* chrome has a bug and does not apply the filter on images if display: flex; */
   --picture-filter-hover: none;
   --picture-filter: grayscale(100%);
   --picture-img-width: 100%;
