@@ -11,8 +11,8 @@ html {
   --a-text-decoration-hover: none;
   --a-text-decoration: underline;
   --a-text-underline-offset: 0.2em; /* should be 6px but not visible */
+  --any-a-display: inline;
   --background-color: #009fe3;
-  --border: 0;
   --carousel-a-text-decoration-hover: var(--a-text-decoration-hover);
   --carousel-a-text-decoration: var(--a-text-decoration);
   --carousel-a-text-underline-offset: var(--a-text-underline-offset);
@@ -41,8 +41,8 @@ html {
   --content-spacing: 20px;
   --content-width-mobile: 100%;
   --content-width-not-web-component-mobile: 90%;
-  --content-width-not-web-component: var(--content-width);
-  --content-width: 65%;
+  --content-width-not-web-component: 65%;
+  --content-width: 45%;
   --flex-grow: 1;
   --flyer-duration: 1.5s;
   --flyer-timing: cubic-bezier(0.43, 1.77, 0, 0.43);
@@ -56,11 +56,10 @@ html {
   --footer-a-link-display-mobile: block;
   --footer-a-link-display: inline;
   --footer-a-link-font-size-mobile: var(--footer-a-link-font-size);
-  --footer-a-link-font-size: 1em;
+  --footer-a-link-font-size: 0.8rem;
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
   --footer-background-color: white;
-  --footer-homepage-background-color: #009fe3;
   --footer-box-sizing: border-box;
   --footer-color-hover: #009fe3;
   --footer-color: #009fe3;
@@ -86,10 +85,11 @@ html {
   --footer-flex-wrap: wrap; 
   --footer-font-size-mobile: var(--footer-a-link-font-size-mobile);
   --footer-font-size: var(--footer-a-link-font-size);
+  --footer-homepage-background-color: #009fe3;
+  --footer-homepage-logo-container-justify-content: flex-end;
   --footer-justify-content: space-between;
   --footer-logo-align-items: flex-end;
   --footer-logo-container-flex-wrap-mobile: wrap;
-  --footer-homepage-logo-container-justify-content: flex-end;
   --footer-logo-container-justify-content-wrapped-mobile: var(--footer-logo-container-justify-content-wrapped);
   --footer-logo-container-justify-content-wrapped: center;
   --footer-logo-height-mobile: var(--footer-logo-height);
@@ -225,7 +225,6 @@ html {
   --line-height: 1.5em;
   --main-padding-mobile: calc(var(--spacer-height-mobile)/2) 0 var(--spacer-height-mobile) 0;
   --main-padding: calc(var(--spacer-height)/2) 0 var(--spacer-height) 0;
-  --margin: 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
   --module-wrapper-margin: 15% 0 0 0;
   --navigation-a-link-color-nav-open: #009fe3;
@@ -301,9 +300,6 @@ html {
   --playlist-margin-first-child: 30px 0 0 0;
   --playlist-margin: 30px 0 10% 0;
   --playlist-width: 100%;
-  --position: absolute;
-  --right-mobile: 0;
-  --right: 30%;
   --search-a-color: var(--color);
   --search-a-display: var(--a-display);
   --search-a-margin: var(--a-margin);
@@ -311,6 +307,13 @@ html {
   --search-a-text-decoration-hover: var(--a-text-decoration-hover);
   --search-a-text-decoration: var(--a-text-decoration);
   --search-a-text-underline-offset: var(--a-text-underline-offset); 
+  --search-button-border: 0;
+  --search-button-margin: 0;
+  --search-button-position: absolute;
+  --search-button-right-mobile: 0;
+  --search-button-right: 30%;
+  --search-button-transform-mobile: none;
+  --search-button-transform: translateX(100%);
   --search-color-hover: var(--color);
   --search-display: inline;
   --search-field-border-bottom: 2px solid white;
@@ -318,6 +321,8 @@ html {
   --search-field-color: var(--color);
   --search-field-flex-grow: var(--flex-grow);
   --search-field-font-family-bold: var(--search-font-family-bold);
+  --search-field-input-box-shadow-mobile: var(--search-field-input-box-shadow);
+  --search-field-input-box-shadow: inset 0 0 2px 2px white;
   --search-field-input-width-mobile: calc(100% - 140px);
   --search-font-family-bold: var(--font-family-bold);
   --search-font-family-secondary: var(--font-family);
@@ -329,8 +334,6 @@ html {
   --search-h3-line-height: var(--h1-line-height);
   --search-h3-margin: 15px;
   --search-h3-text-align: var(--h1-text-align);
-  --search-field-input-box-shadow: inset 0 0 2px 2px white;
-  --search-field-input-box-shadow-mobile: var(--search-field-input-box-shadow);
   --search-h3-text-transform: uppercase;
   --search-icon-display: block;
   --search-icon-margin: 0;
@@ -348,8 +351,6 @@ html {
   --summary-text-transform: var(--h1-text-transform);
   --tickets-a-display: inline;
   --tickets-a-text-decoration: var(--a-text-decoration);
-  --transform-mobile: none;
-  --transform: translateX(100%);
   --ul-display: flex;
   --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
