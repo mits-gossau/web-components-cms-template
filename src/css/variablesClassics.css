@@ -276,7 +276,7 @@ html {
   --newsletter-form-flex-direction: column;
   --newsletter-margin: 0 auto;
   --newsletter-width: 100%;
-  --orchestra-a-text-decoration: underline;
+  --orchestra-a-text-decoration: var(--a-text-decoration);
   --orchestra-p-margin: 20px;
   --orchestra-p-text-transform: uppercase;
   --p-date-text-transform: uppercase;
@@ -347,7 +347,7 @@ html {
   --strong-text-transform: uppercase;
   --summary-text-transform: var(--h1-text-transform);
   --tickets-a-display: inline;
-  --tickets-a-text-decoration: underline;
+  --tickets-a-text-decoration: var(--a-text-decoration);
   --transform-mobile: none;
   --transform: translateX(100%);
   --ul-display: flex;
