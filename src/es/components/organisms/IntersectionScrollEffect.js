@@ -191,6 +191,7 @@ export default class IntersectionScrollEffect extends Intersection() {
         if (this.isFirstIntersection) {
           this.scrollListener()
           setTimeout(() => this.scrollListener(), 100)
+          self.addEventListener('load', event => this.scrollListener(), { once: true }) // incase the page is not fully loaded on intersection
           this.isFirstIntersection = false
         }
         self.addEventListener('scroll', this.scrollListener)
