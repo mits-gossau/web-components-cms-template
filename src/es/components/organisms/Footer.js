@@ -107,7 +107,9 @@ export default class Footer extends Shadow() {
         justify-content: var(--justify-content, normal);
         flex-direction: var(--flex-direction, row);
         align-content: var(--align-content, normal);
-        padding: var(--padding, 0);
+        padding: var(${this.getAttribute("homepage") === "true" 
+          ? "--homepage-padding"
+          : "--padding"}, 0);
         box-sizing: var(--box-sizing, content-box);
       }
       :host .logo-container {
@@ -122,10 +124,13 @@ export default class Footer extends Shadow() {
       :host .logo-container.wrapped {
         justify-content: var(--logo-container-justify-content-wrapped, var(--logo-container-justify-content, space-between));
       }
+      ${this.getAttribute("homepage") === "true" ? ""
+      : /*css*/`
       :host .logo-container:first-child {
         --logo-height: var(--logo-height-first, max(65px, 4.8vw));
         --logo-height-mobile: var(--logo-height-first-mobile, 48px);
-      }
+      }`}
+      
       :host .footer-links {
         display: flex;
         justify-content: center;
@@ -156,14 +161,18 @@ export default class Footer extends Shadow() {
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         }
         :host > footer {
-          padding: var(--padding-mobile, 0);
+          padding: var(${this.getAttribute("homepage") === "true" 
+          ? "--homepage-padding-mobile"
+          : "--padding-mobile"}, 0);
         }
         :host > span, :host > div, :host > p, :host > ul, :host > ol {
           width: var(--content-width-not-web-component-mobile, 90%);
         }
         :host .logo-container {
           flex-wrap: var(--logo-container-flex-wrap-mobile, nowrap);
-          justify-content: var(--logo-container-justify-content-mobile, space-between);
+          justify-content: var(${this.getAttribute("homepage") === "true" 
+          ? "--homepage-logo-container-justify-content" 
+          : "--logo-container-justify-content-mobile"}, space-between);
         }
         :host .logo-container.wrapped {
           justify-content: var(--logo-container-justify-content-wrapped-mobile, var(--logo-container-justify-content-mobile, space-between));
