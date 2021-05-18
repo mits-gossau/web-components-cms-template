@@ -147,6 +147,9 @@ export default class Logo extends Shadow() {
         text-decoration: var(--text-a-text-decoration-hover, var(--text-decoration-hover, var(--text-decoration, none)));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          margin: var(--margin-mobile, 0px);
+        }
         :host(.hide-desktop) {
           display: flex;
         }
