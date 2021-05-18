@@ -11,6 +11,7 @@ html {
   --color-hover: var(--color-secondary);
   --color-secondary: #FFED00;
   --color: white;
+  --content-spacing-mobile: 0;
   --content-spacing: 20px;
   --content-width-mobile: 100%;
   --content-width-not-web-component-mobile: 90%;
@@ -112,6 +113,7 @@ html {
   --navigation-hr-color: var(--navigation-color);
   --p-date-text-transform: uppercase;
   --p-text-align: center;
+  --picture-display: inline-block; /* chrome has a bug and does not apply the filter on images if display: flex; */
   --picture-filter-hover: none;
   --picture-filter: grayscale(100%);
   --picture-img-width: 100%;
