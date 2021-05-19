@@ -71,7 +71,7 @@ export default class Flyer extends Intersection() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.hasAttribute('picture-load')) {
-      this.addEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener)
+      this.addEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener, {once: true})
     } else if (this.getAttribute('timer')) {
       this.triggerTimeout()
     } else {
