@@ -33,6 +33,7 @@ import { Intersection } from '../prototypes/Intersection.js'
  *  {number} [timer=false] if any number all intersection settings will be ignored and the flyer will appear after the timeout
  *  {string} [href=falsy] used for the link reference
  *  {up, right, down, left} [direction=left] position will always be fixed when "up" or "down"
+ *  {string} [picture-load=""] does listen to an event with name set by picture-load and then triggerTimeout once the picture is loaded to avoid any loading/image composition while the flyer is already within its own animation
  * }
  */
 export default class Flyer extends Intersection() {
@@ -57,22 +58,22 @@ export default class Flyer extends Intersection() {
       event.stopPropagation()
       this.div.classList.remove('visible')
     }
+    this.pictureLoadListener = event => {
+      if (this.getAttribute('timer')) {
+        this.triggerTimeout()
+      } else {
+        // only connect intersection callback if no timer is set
+        super.connectedCallback()
+      }
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.getAttribute('timer')) {
-      setTimeout(() => {
-        this.css = /* css */`
-          :host {
-            ${this.varTop};
-            ${this.varRight}
-            ${this.varBottom};
-            ${this.varLeft}
-          }
-        `
-        this.div.classList.add('visible')
-      }, Number(this.getAttribute('timer')))
+    if (this.hasAttribute('picture-load')) {
+      this.addEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener)
+    } else if (this.getAttribute('timer')) {
+      this.triggerTimeout()
     } else {
       // only connect intersection callback if no timer is set
       super.connectedCallback()
@@ -82,7 +83,9 @@ export default class Flyer extends Intersection() {
   }
 
   disconnectedCallback () {
-    if (!this.getAttribute('timer')) super.disconnectedCallback()
+    if (this.hasAttribute('picture-load')) {
+      this.removeEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener)
+    } else if (!this.getAttribute('timer')) super.disconnectedCallback()
     this.removeEventListener('click', this.clickListener)
     if (this.closeBtn) this.closeBtn.removeEventListener('click', this.closeClickListener)
   }
@@ -160,6 +163,20 @@ export default class Flyer extends Intersection() {
         this.div.classList.remove('visible')
       }
     }
+  }
+
+  triggerTimeout () {
+    setTimeout(() => {
+      this.css = /* css */`
+        :host {
+          ${this.varTop};
+          ${this.varRight}
+          ${this.varBottom};
+          ${this.varLeft}
+        }
+      `
+      this.div.classList.add('visible')
+    }, Number(this.getAttribute('timer')))
   }
 
   get topMiddle () {

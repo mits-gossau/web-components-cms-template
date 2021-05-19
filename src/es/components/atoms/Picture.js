@@ -24,8 +24,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [defaultSource] the default source for the img-tag
  *  {string} [alt] alt-text for the image
  *  {string} [loading=lazy] image loading
- *  {string} [click-modal=n.a.] does emit event append-child which can be reacted on by eg. organisms/Modal.js
- *  {string} [append-child=""] defines the emitted event name
+ *  {string} [open-modal=""] does emit event with name set by open-modal which can be reacted on by eg. organisms/Modal.js
+ *  {string} [picture-load=""] does emit event with name set by picture-load which can be reacted on by eg. molecules/Flyer.js
  * }
  * @css {
  *  --width [100%]
@@ -48,6 +48,7 @@ export default class Picture extends Shadow() {
 
     this.clickListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('open-modal') || 'open-modal', {
       detail: {
+        origEvent: event,
         child: this
       },
       bubbles: true,
@@ -59,11 +60,11 @@ export default class Picture extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
-    if (this.hasAttribute('click-modal')) this.addEventListener('click', this.clickListener)
+    if (this.hasAttribute('open-modal')) this.addEventListener('click', this.clickListener)
   }
 
   disconnectedCallback () {
-    if (this.hasAttribute('click-modal')) this.removeEventListener('click', this.clickListener)
+    if (this.hasAttribute('open-modal')) this.removeEventListener('click', this.clickListener)
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
@@ -187,8 +188,18 @@ export default class Picture extends Shadow() {
     } else {
       console.warn(`a-picture defaultSource ${this.alt === '' ? '& alt ' : ''}is missing`)
     }
-
     this.img.setAttribute('loading', this.getAttribute('loading') || 'lazy')
+    if (this.hasAttribute('picture-load')) this.img.addEventListener('load', event => this.dispatchEvent(new CustomEvent(this.getAttribute('picture-load') || 'picture-load', {
+      detail: {
+        origEvent: event,
+        child: this,
+        img: this.img,
+        picture: this.picture
+      },
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    })))
   }
 
   get img () {
