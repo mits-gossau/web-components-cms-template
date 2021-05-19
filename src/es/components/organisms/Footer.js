@@ -112,6 +112,7 @@ export default class Footer extends Shadow() {
           : "--padding"}, 0);
         box-sizing: var(--box-sizing, content-box);
       }
+      
       :host .logo-container {
         width: ${this.getAttribute("homepage") === "true" ? "100%" : "unset"};
         justify-content: var(${this.getAttribute("homepage") === "true" 
@@ -249,7 +250,12 @@ export default class Footer extends Shadow() {
         :host > footer ul > li {
           text-align: center;
         }
-        
+        :host > footer > div:not(.footer-ul-wrapper) {
+          flex: 1;
+        }
+        :host > footer > div:first-of-type > * {
+          width: max-content;
+        }
         :host > footer ul > li p {
           margin: var(--p-margin, 0);
         }

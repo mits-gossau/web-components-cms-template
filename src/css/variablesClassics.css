@@ -90,8 +90,8 @@ html {
   --footer-homepage-logo-container-justify-content: flex-end;
   --footer-logo-align-items: flex-end;
   --footer-logo-container-flex-wrap-mobile: wrap;
-  --footer-logo-container-justify-content-wrapped-mobile: var(--footer-logo-container-justify-content-wrapped);
-  --footer-logo-container-justify-content-wrapped: center;
+  --footer-logo-container-justify-content-wrapped: flex-end;
+  --footer-logo-container-justify-content-wrapped-mobile: center;
   --footer-logo-height-mobile: max(50px, 16vw);
   --footer-logo-height: max(65px, 8vw);
   --footer-logo-margin: 0;
