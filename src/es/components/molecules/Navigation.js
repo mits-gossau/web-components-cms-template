@@ -18,6 +18,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @attribute {
  *  {boolean} [hover=false]
  *  {boolean} [hit-area=true] this lets you define a hit-area of your link, to avoid too large focus (hit-area) by fonts too large line-height, which can't be overwritten with css: https://github.com/mits-gossau/web-components-cms-template/issues/53
+ *  {boolean} [focus-lost-close=false] tell it to close when focus is lost
  * }
  * @css {
  *  --content-spacing [40px]
@@ -54,7 +55,7 @@ export default class Navigation extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    this.renderHTML()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
 
   /**
@@ -64,6 +65,15 @@ export default class Navigation extends Shadow() {
    */
   shouldComponentRenderCSS () {
     return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return this.nav.hidden
   }
 
   /**
@@ -250,6 +260,7 @@ export default class Navigation extends Shadow() {
           if (event.target.root && (a = event.target.root.querySelector('a'))) {
             if (!a.getAttribute('href') || a.getAttribute('href') === '#') {
               event.preventDefault()
+              if (this.focusLostClose) event.stopPropagation()
               Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
               event.target.classList.add('open')
             } else if (a.getAttribute('href')[0] === '#') {
@@ -265,6 +276,7 @@ export default class Navigation extends Shadow() {
           }
         }
       })
+      if (this.focusLostClose) self.addEventListener('click', event => Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open')))
       li.prepend(arrow)
       a.replaceWith(aLink)
       li.prepend(aLink)
@@ -307,5 +319,9 @@ export default class Navigation extends Shadow() {
       })
       return elements
     }))
+  }
+
+  get focusLostClose () {
+    return this.hasAttribute('focus-lost-close') && this.getAttribute('focus-lost-close') !== 'false'
   }
 }

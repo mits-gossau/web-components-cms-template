@@ -223,6 +223,7 @@ export default class MacroCarousel extends Shadow() {
         --macro-carousel-pagination-color: var(--pagination-background-color, var(--background-color, black));
         --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected, var(--background-color-selected, var(--background-color, pink)));
         --macro-carousel-pagination-size-dot: var(--pagination-width, 5px);
+        opacity: var(--pagination-opacity, 1);
       }
       :host div ::slotted(macro-carousel-nav-button) {
         --macro-carousel-navigation-color: var(--navigation-color, var(--color, black));
