@@ -104,7 +104,7 @@ html {
   --footer-padding: 2vh max(2.2vw, 15px) max(1.3vw, 10px) max(2.2vw, 15px);
   --footer-homepage-padding: var(--footer-padding);
   --footer-padding-mobile: 3vh 10%;
-  --footer-homepage-padding-mobile: var(--footer-padding-mobile);
+  --footer-homepage-padding-mobile: 0 10px 5px 0;
   --footer-text-align: center;
   --footer-text-decoration-hover: underline;
   --footer-ul-margin: 0 20px;

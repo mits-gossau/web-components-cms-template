@@ -137,6 +137,10 @@ export default class Form extends Shadow() {
         flex-direction: var(--form-flex-direction, column);
         align-items: var(--form-align-items, center);
       }
+      .searchResultsContainer {
+        width: var(--content-width, 100%);
+        margin: 0 auto;
+      }
       .searchResultsContainer div {
         margin: var(--div-margin, 30px) auto;
       }
