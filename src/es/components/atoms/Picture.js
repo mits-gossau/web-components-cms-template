@@ -188,18 +188,22 @@ export default class Picture extends Shadow() {
     } else {
       console.warn(`a-picture defaultSource ${this.alt === '' ? '& alt ' : ''}is missing`)
     }
-    this.img.setAttribute('loading', this.getAttribute('loading') || 'lazy')
-    if (this.hasAttribute('picture-load')) this.img.addEventListener('load', event => this.dispatchEvent(new CustomEvent(this.getAttribute('picture-load') || 'picture-load', {
-      detail: {
-        origEvent: event,
-        child: this,
-        img: this.img,
-        picture: this.picture
-      },
-      bubbles: true,
-      cancelable: true,
-      composed: true
-    })))
+    if (this.hasAttribute('picture-load')) {
+      this.img.addEventListener('load', event => this.dispatchEvent(new CustomEvent(this.getAttribute('picture-load') || 'picture-load', {
+        detail: {
+          origEvent: event,
+          child: this,
+          img: this.img,
+          picture: this.picture
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      })))
+      this.img.setAttribute('loading', 'eager') // must load eager, not that the loading event doesn't trigger emit picture-load
+    } else {
+      this.img.setAttribute('loading', this.getAttribute('loading') || 'lazy')
+    }
   }
 
   get img () {
