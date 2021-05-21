@@ -46,7 +46,7 @@ html {
   --content-width: 45%;
   --flex-grow: 1;
   --flyer-duration: 1.2s;
-  --flyer-timing: cubic-bezier(0.6, 1.77, 0, 0.5);
+  --flyer-timing: cubic-bezier(0.88, 1.96, 0, 0.15);
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
@@ -152,14 +152,14 @@ html {
   --header-a-line-height: 1.3em;
   --header-a-menu-icon-background-color: var(--header-color);
   --header-a-menu-icon-height-open-mobile: 0;
-  --header-a-menu-icon-height: min(4px, 0.7vw);
+  --header-a-menu-icon-height: min(3px, 0.6vw);
   --header-a-menu-icon-margin-open-mobile: 0;
-  --header-a-menu-icon-margin: 1.5vh 0 0;
-  --header-a-menu-icon-spacing: min(7px, 1.5vw);
+  --header-a-menu-icon-margin: 0;
+  --header-a-menu-icon-spacing: min(6px, 1.4vw);
   --header-a-menu-icon-transition: 0;
   --header-a-menu-icon-width: min(55px, 13vw);
   --header-a-padding: 0;
-  --header-a-text-decoration-hover: var(--a-text-decoration);
+  --header-a-text-decoration-hover: none;
   --header-a-text-underline-offset: var(--a-text-underline-offset);
   --header-a-transition: none;
   --header-background-color-open: white;
@@ -186,8 +186,8 @@ html {
   --header-m-navigation-height-open-mobile: auto;
   --header-m-navigation-overflow-y-open-mobile: hidden;
   --header-m-navigation-position-mobile: static;
-  --header-padding-mobile: 1vh 10%;
-  --header-padding: 2vh 0;
+  --header-padding-mobile: 2vh 10% 1vh;
+  --header-padding: 4vh 0 2vh;
   --header-position: static;
   --header-text-align: center;
   --header-title-color-nav-open: #009fe3;
@@ -205,7 +205,7 @@ html {
   --header-title-secondary-color-text-transform: lowercase;
   --header-title-secondary-font-weight: normal;
   --header-title-transition: none;
-  --header-transition: none;
+  --header-transition: background-color 0.3s ease;
   --highlight-list-border-bottom: none;
   --highlight-list-border-top: none;
   --highlight-list-content-spacing: 40px 0;
