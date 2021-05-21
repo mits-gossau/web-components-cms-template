@@ -99,6 +99,9 @@ export default class Footer extends Shadow() {
       :host > span, :host > div, :host > p, :host > ul, :host > ol {
         width: var(--content-width-not-web-component, 80%);
       }
+      :host div p {
+        line-height: var(--p-line-height, 1em);
+      }
       :host > footer {
         display: var(--display, flex);
         background-color: var(${this.getAttribute('homepage') === 'true'
@@ -242,7 +245,6 @@ export default class Footer extends Shadow() {
           display: flex;
         }
         :host > footer ul {
-          flex-grow: var(--ul-flex-grow, 0);
           list-style-type: none;
           padding: var(--ul-padding, 0);
           margin: var(--ul-margin, 30px 0);
@@ -255,6 +257,7 @@ export default class Footer extends Shadow() {
         }
         :host > footer > div:first-of-type > * {
           width: max-content;
+          height: 100%;
         }
         :host > footer ul > li p {
           margin: var(--p-margin, 0);
@@ -268,6 +271,7 @@ export default class Footer extends Shadow() {
           }
           :host > footer ul {
             margin: var(--ul-margin-mobile, 10px auto);
+            padding: var(--ul-padding-mobile, 0);
           }
         }
       `

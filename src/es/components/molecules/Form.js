@@ -151,7 +151,7 @@ export default class Form extends Shadow() {
           line-height: var(--h3-line-height, normal);
           text-align: var(--h3-text-align, start);
           word-break: var(--h3-word-break, normal);
-          text-transform: var(--h3-text-transform, normal);
+          text-transform: var(--h3-text-transform, none);
           margin: var(--h3-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer h4 {        
