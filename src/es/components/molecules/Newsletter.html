@@ -16,7 +16,8 @@
   <main>
     <m-newsletter>
       <m-form type="newsletter" namespace="newsletter-">
-        <form action="/" enctype="multipart/form-data" method="post">
+        <form action="https://nlink.migros-kulturprozent-classics.ch/dispatcher/service" method="post" id="online_form" redirect="https://peerweb.site/#ipfs:QmNzbP6F52d5cSn3FbaX2YmkFF4qfTZkMoJSBpbZUrVt88">
+          <!--
           <input type="radio" id="gender1" name="gender" value="herr">
           <label for="gender1">Herr</label>
           <input type="radio" id="gender2" name="gender" value="frau">
@@ -32,7 +33,33 @@
           <label for="policy">Ich akzeptiere die Datenschutzbestimmungen</label>
           <input type="checkbox" name="policy">
           <button type="submit">Absenden</button>
-          <input type="hidden" name="tets">          
+          -->
+          <input type="hidden" name="tets">   
+          <input type="hidden" name="ac" value="reg">
+          <input type="hidden" name="clientCode" value="ASrrB9ASTmKaGVqEBe">
+          <input type="hidden" name="doubleOptin" value="1">
+          <input type="hidden" name="xp_sendBackParams" value="0">
+          <input type="hidden" name="trackId" value="null" id="trackId">
+          <label for="Sprache" class="required">Sprache</label>
+          <select name="Sprache" id="Sprache" class="required">
+              <option value="EN">Englisch</option>
+              <option value="DE">Deutsch</option>
+              <option value="FR">Französisch</option>
+          </select>
+          <label class="required" for="Email">Email</label>
+          <input id="Email" type="email" required="" value="" name="Email">
+          <label for="Anrede" class="required">Anrede</label>
+          <select name="Anrede" id="Anrede" class="required">
+              <option value="0">keine Anrede</option>
+              <option value="2">Herr</option>
+              <option value="1">Frau</option>
+          </select>
+          <label class="required" for="Firstname">Vorname</label>
+          <input id="Firstname" type="text" required="" value="" name="Vorname">
+          <label class="required" for="Name">Name</label>
+          <input id="Name" type="text" required="" value="" name="Name">
+          <button type="submit">Registrieren</button>
+          <p class="footer"></p>
         </form>
       </m-form>
     </m-newsletter>

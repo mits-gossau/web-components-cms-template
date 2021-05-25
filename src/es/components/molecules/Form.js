@@ -80,7 +80,7 @@ export default class Form extends Shadow() {
         console.error('<div class="searchResultsContainer"> for adding search-results was not found')
       }
     } else if (type === 'newsletter') {
-      // TODO display success message
+      if (this.form.getAttribute('redirect')) location.href = this.form.getAttribute('redirect')
     } else {
       console.warn('Form submit was successful, but type is missing on <m-form>')
     }
@@ -106,7 +106,10 @@ export default class Form extends Shadow() {
       const formData = new FormData();
       [...this.root.querySelectorAll('a-input, input')].forEach(i =>
         formData.append(i.getAttribute('name'), i.getAttribute('value'))
-      )
+      );
+      [...this.root.querySelectorAll('a-select, select')].forEach(i =>
+        formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
+      );
       return formData
     }
     return new FormData()
