@@ -76,7 +76,7 @@ export default class Form extends Shadow() {
     const form = document.createElement('form')
     form.setAttribute('method', method)
     form.setAttribute('action', action);
-    [...formData].forEach(([key,val]) => {
+    [...formData].forEach(([key, val]) => {
       const input = document.createElement('input')
       input.setAttribute('name', key)
       input.setAttribute('value', val)
@@ -134,7 +134,7 @@ export default class Form extends Shadow() {
       );
       [...this.root.querySelectorAll('a-select, select')].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
-      );
+      )
       return formData
     }
     return new FormData()
