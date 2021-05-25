@@ -136,6 +136,9 @@ export default class Input extends Shadow() {
         align-self: var(--input-align-self, center);
         height: var(--input-height, 100%);
       }
+      :host > input:not(:focus):invalid {
+        color: var(--color-invalid, red);
+      }
 
       :host > label {
         text-transform: var(--text-transform, uppercase);

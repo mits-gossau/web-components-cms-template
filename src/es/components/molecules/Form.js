@@ -18,6 +18,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  {string} [type] used to determine what should happen on form-submit success/failure
+ *  {string} [redirect=n.a.] controls for type newsletter if and where it shall be redirected on success
+ *  {has} [use-html-submit=n.a.] controls if the form shall fetch or use plain html action, which then creates a form and triggers it by button[submit].click
  * }
  * @css {
  *  --display [block]
@@ -37,20 +39,25 @@ export default class Form extends Shadow() {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
+        // TODO: add validation ether here on return from getAllInputValues or inside getAllInputValues
 
-        fetch(action, { method, body })
-          .then(response => {
-            if (event.detail && event.detail.button) event.detail.button.disabled = false
-            if (response.ok) {
-              this.submitSuccess(response, this.getAttribute('type'))
-            } else {
-              this.submitFailure(response, this.getAttribute('type'))
-            }
-          })
-          .catch(error => {
-            if (event.detail && event.detail.button) event.detail.button.disabled = false
-            this.submitFailure(error, this.getAttribute('type'))
-          })
+        if (this.hasAttribute('use-html-submit')) {
+          this.submitByHTML(body, method, action)
+        } else {
+          fetch(action, { method, body })
+            .then(response => {
+              if (event.detail && event.detail.button) event.detail.button.disabled = false
+              if (response.ok) {
+                this.submitSuccess(response, this.getAttribute('type'))
+              } else {
+                this.submitFailure(response, this.getAttribute('type'))
+              }
+            })
+            .catch(error => {
+              if (event.detail && event.detail.button) event.detail.button.disabled = false
+              this.submitFailure(error, this.getAttribute('type'))
+            })
+        }
       }
     }
   }
@@ -63,6 +70,24 @@ export default class Form extends Shadow() {
 
   disconnectedCallback () {
     this.removeEventListener('form-submit', this.submitEventListener)
+  }
+
+  submitByHTML (formData, method, action) {
+    const form = document.createElement('form')
+    form.setAttribute('method', method)
+    form.setAttribute('action', action);
+    [...formData].forEach(([key,val]) => {
+      const input = document.createElement('input')
+      input.setAttribute('name', key)
+      input.setAttribute('value', val)
+      form.appendChild(input)
+    })
+    const button = document.createElement('button')
+    button.setAttribute('type', 'submit')
+    form.appendChild(button)
+    document.body.appendChild(form)
+    form.hidden = true
+    //button.click()
   }
 
   /**
