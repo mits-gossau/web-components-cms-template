@@ -77,7 +77,7 @@ export default class MenuIcon extends Shadow() {
         height: var(--height, 5px);
         background-color: var(--background-color, white);
         margin: 0;
-        transition: var(--transition, 0.2s);
+        transition: var(--transition, all 0.2s ease);
       }
       .${this.barClass}2 {
         margin: var(--spacing, var(--height, 5px)) 0;

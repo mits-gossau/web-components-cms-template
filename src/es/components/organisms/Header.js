@@ -34,12 +34,31 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} mobile-breakpoint
  *  {boolean} [menu-icon=false]
  *  {string} [no-scroll="no-scroll"]
+ *  {has} [flyer-transitionend=n.a.] trigger the animate class animations and early set children to no-scroll aka. open
  * }
  */
 export default class Header extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.transitionendListener = event => {
+      if (!this.header.classList.contains('open')) {
+        this.header.classList.add('animate')
+        if (this.header) Array.from(this.header.children).forEach(node => {
+          node.classList.add(this.getAttribute('no-scroll') || 'no-scroll')
+        })
+      }
+    }
+  }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+    if (this.hasAttribute('flyer-transitionend')) document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, {once: true})
+  }
+
+  disconnectedCallback () {
+    if (this.hasAttribute('flyer-transitionend')) document.body.removeEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener)
   }
 
   /**
@@ -94,6 +113,15 @@ export default class Header extends Shadow() {
       :host > header.open {
         background-color: var(--background-color-open, var(--background-color, black));
       }
+      :host > header.animate {
+        background: linear-gradient(to bottom, var(--background-color-open) 0%, var(--background-color-open) 50%, var(--background-color) 50%, var(--background-color) 100%);
+        animation: backgroundAnimation var(--background-animation, 0.5s ease);
+        background-size: 100% 200%;
+        background-position-y: 0%;
+      }
+      :host > header.animate > a-menu-icon {
+        --a-menu-icon-background-color: var(--background-color, #777);
+      }
       :host > header > a {
         color: var(--a-color, var(--color));
         font-family: var(--a-font-family, var(--font-family));
@@ -115,7 +143,11 @@ export default class Header extends Shadow() {
       }
       :host > header > a-menu-icon {
         display: none;
-        --background-color: var(--color, #777);
+        --a-menu-icon-background-color: var(--color, #777);
+      }
+      @keyframes backgroundAnimation {
+        0%{background-position-y:100%}
+        100%{background-position-y:0%}
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > * {
@@ -166,23 +198,23 @@ export default class Header extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    const header = this.root.appendChild(document.createElement('header'))
+    this.header = this.root.appendChild(document.createElement('header'))
     Array.from(this.root.children).forEach(node => {
-      if (node === header || node.getAttribute('slot') || node.nodeName === 'STYLE') return false
-      header.appendChild(node)
+      if (node === this.header || node.getAttribute('slot') || node.nodeName === 'STYLE') return false
+      this.header.appendChild(node)
     })
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {
         const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '' })
         MenuIcon.addEventListener('click', event => {
-          header.classList.toggle('open')
-          const prop = header.classList.contains('open') ? 'add' : 'remove'
+          this.header.classList.toggle('open')
+          const prop = this.header.classList.contains('open') ? 'add' : 'remove'
           document.body.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
-          Array.from(header.children).forEach(node => {
+          Array.from(this.header.children).forEach(node => {
             node.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           })
         })
-        header.appendChild(MenuIcon)
+        this.header.appendChild(MenuIcon)
       })
     }
     self.addEventListener('resize', event => document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))

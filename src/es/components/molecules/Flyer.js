@@ -66,6 +66,15 @@ export default class Flyer extends Intersection() {
         super.connectedCallback()
       }
     }
+    this.transitionendListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', {
+      detail: {
+        origEvent: event,
+        child: this
+      },
+      bubbles: true,
+      cancelable: true,
+      composed: true
+    }))
   }
 
   connectedCallback () {
@@ -80,6 +89,7 @@ export default class Flyer extends Intersection() {
     }
     this.addEventListener('click', this.clickListener)
     if (this.closeBtn) this.closeBtn.addEventListener('click', this.closeClickListener)
+    if (this.hasAttribute('flyer-transitionend')) this.div.addEventListener('transitionend', this.transitionendListener, {once: true})
   }
 
   disconnectedCallback () {
@@ -88,6 +98,7 @@ export default class Flyer extends Intersection() {
     } else if (!this.getAttribute('timer')) super.disconnectedCallback()
     this.removeEventListener('click', this.clickListener)
     if (this.closeBtn) this.closeBtn.removeEventListener('click', this.closeClickListener)
+    if (this.hasAttribute('flyer-transitionend')) this.div.removeEventListener('transitionend', this.transitionendListener)
   }
 
   /**
