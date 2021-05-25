@@ -87,7 +87,7 @@ export default class Form extends Shadow() {
     form.appendChild(button)
     document.body.appendChild(form)
     form.hidden = true
-    //button.click()
+    button.click()
   }
 
   /**
