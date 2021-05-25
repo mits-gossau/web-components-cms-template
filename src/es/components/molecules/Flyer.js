@@ -1,6 +1,7 @@
 // @ts-check
 import { Intersection } from '../prototypes/Intersection.js'
 
+/* global CustomEvent */
 /* global location */
 /* global self */
 
@@ -80,7 +81,7 @@ export default class Flyer extends Intersection() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.hasAttribute('picture-load')) {
-      this.addEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener, {once: true})
+      this.addEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener, { once: true })
     } else if (this.getAttribute('timer')) {
       this.triggerTimeout()
     } else {
@@ -89,7 +90,7 @@ export default class Flyer extends Intersection() {
     }
     this.addEventListener('click', this.clickListener)
     if (this.closeBtn) this.closeBtn.addEventListener('click', this.closeClickListener)
-    if (this.hasAttribute('flyer-transitionend')) this.div.addEventListener('transitionend', this.transitionendListener, {once: true})
+    if (this.hasAttribute('flyer-transitionend')) this.div.addEventListener('transitionend', this.transitionendListener, { once: true })
   }
 
   disconnectedCallback () {

@@ -44,9 +44,11 @@ export default class Header extends Shadow() {
     this.transitionendListener = event => {
       if (!this.header.classList.contains('open')) {
         this.header.classList.add('animate')
-        if (this.header) Array.from(this.header.children).forEach(node => {
-          node.classList.add(this.getAttribute('no-scroll') || 'no-scroll')
-        })
+        if (this.header) {
+          Array.from(this.header.children).forEach(node => {
+            node.classList.add(this.getAttribute('no-scroll') || 'no-scroll')
+          })
+        }
       }
     }
   }
@@ -54,7 +56,7 @@ export default class Header extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
-    if (this.hasAttribute('flyer-transitionend')) document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, {once: true})
+    if (this.hasAttribute('flyer-transitionend')) document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, { once: true })
   }
 
   disconnectedCallback () {
