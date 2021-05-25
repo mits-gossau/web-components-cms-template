@@ -296,6 +296,7 @@ html {
   --picture-width-mobile: 100%;
   --picture-width: var(--content-width, 80%);
   --playlist-border-bottom: 2px solid white;
+  --playlist-item-li-margin: 0 30px;
   --playlist-border-top: 2px solid white; 
   --playlist-item-a-color-hover: var(--color);
   --playlist-item-a-color: var(--color);
