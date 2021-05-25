@@ -23,17 +23,6 @@
   </style>
   <p-general>
     <o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-" role="header">
-      <!--
-      <style>
-        .background {
-          width:100%;
-          height:100%;
-          float: left;
-          background-color: white;
-        }
-      </style>
-      <div class=background></div>
-    -->
       <a-title namespace="header-title-" no-scroll="nav-open">Migros-Kulturprozent-Classics präsentiert</a-title>
       <m-navigation mobile-breakpoint="0vw" hover="false" namespace=navigation- no-scroll="nav-open">
         <ul>
@@ -133,17 +122,29 @@
               --flyer-padding: 0;
               --flyer-position: relative;
               --picture-margin: 0;
-              transform: translateY(-94px);
+              transform: translateY(-50%);
               z-index: 1000;
+              pointer-events: none;
+            }
+            :host > div > * {
+              pointer-events: all;
             }
             :host > div > div {
               transform: translate(min(104px,11vw),-6vw) rotate(-19deg);
               margin-left: 7%;
               margin-top: 2%;
             }
+            @media only screen and (max-width: 600px) {
+              :host {
+                transform: translateY(-20%);
+              }
+            }
           </style>
           <style>
             /* shared text styling between flyers */
+            :host {
+              --content-width: 65%;
+            }
             :host > div > div {
               text-align: left;
               max-width: 36vw;
@@ -177,7 +178,9 @@
               }
             }
           </style>
-          <a-picture picture-load namespace=picture- defaultSource="../../../img/daniel-harding_gedreht.png" alt="daniel-harding"></a-picture>
+          <a href="/en/concerts/playlist/london-symphony-orchestra/">
+            <a-picture picture-load namespace=picture- defaultSource="../../../img/daniel-harding_gedreht.png" alt="daniel-harding"></a-picture>
+          </a>
           <div><a href="/en/concerts/orchestras/"><h3>Vilde Frang</h3><p>Einziges Konzert in der Schweiz</p></a></div>
         </m-flyer>
       </main>

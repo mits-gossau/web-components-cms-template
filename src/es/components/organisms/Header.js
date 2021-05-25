@@ -131,6 +131,7 @@ export default class Header extends Shadow() {
           justify-content: var(--justify-content-mobile, space-between);
         }
         :host > header > m-navigation {
+          display: var(--m-navigation-display-mobile, none);
           left: 0;
           height: var(--m-navigation-height-mobile, 0);
           overflow: hidden;
@@ -140,6 +141,7 @@ export default class Header extends Shadow() {
           width: 100%;
         }
         :host > header.open > m-navigation{
+          display: var(--m-navigation-display-open-mobile, var(--m-navigation-display-mobile, block));
           height: var(--m-navigation-height-open-mobile, 100vh);
           overflow-y: var(--m-navigation-overflow-y-open-mobile, auto);
         }
