@@ -25,6 +25,8 @@ html {
   --carousel-pagination-width: 10px;
   --carousel-picture-img-max-height: var(--picture-img-max-height);
   --carousel-transition-duration: 1.6s;
+  --carousel-h3-text-transform: uppercase;
+  --carousel-p-margin: 0;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color);
   --color: #FFED00;
@@ -69,7 +71,7 @@ html {
   --footer-content-width-not-web-component: var(--content-width-not-web-component);
   --footer-content-width: 100%;
   --footer-engagement-logo-flex-flow: column-reverse;
-  --footer-engagement-logo-margin: 10px;
+  --footer-engagement-logo-margin: 0;
   --footer-engagement-logo-max-height-mobile: 40px;
   --footer-engagement-logo-max-height: 40px;
   --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
@@ -108,6 +110,7 @@ html {
   --footer-text-align: center;
   --footer-text-decoration-hover: underline;
   --footer-ul-margin: 0 20px;
+  --footer-ul-padding: 27px 0 13px 0;
   --footer-ul-margin-mobile: 0 auto 15px auto;
   --form-flex-direction: row;
   --h1-font-size-mobile: var(--h1-font-size);
@@ -293,6 +296,7 @@ html {
   --picture-width-mobile: 100%;
   --picture-width: var(--content-width, 80%);
   --playlist-border-bottom: 2px solid white;
+  --playlist-item-li-margin: 0 30px;
   --playlist-border-top: 2px solid white; 
   --playlist-item-a-color-hover: var(--color);
   --playlist-item-a-color: var(--color);
