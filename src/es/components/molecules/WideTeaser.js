@@ -18,7 +18,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --h4-color [white]
  *  --p-color [white]
  *  --p-font-size [1.2rem]
- *  --p-font-weight [300]
+ *  --p-font-weight [normal]
  *  --h4-font-size [1.1rem]
  *  --font-family ['Roboto', (fallback)]
  *  --justify-content [center]
@@ -106,7 +106,7 @@ export default class WideTeaser extends Shadow() {
       }
       :host p {
         font-size: var(--p-font-size, 1.2rem);
-        font-weight: var(--p-font-weight, 300);
+        font-weight: var(--p-font-weight, var(--font-weight, normal));
         margin: 0 0 15px 0;
       }
       :host .moreLink {

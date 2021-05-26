@@ -18,7 +18,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --color [black]
  *  --font-family-secondary
  *  --font-size [2.5rem]
- *  --font-weight [300]
+ *  --font-weight [normal]
  *  --text-align [center]
  *  --text-transform [uppercase]
  * }
@@ -67,7 +67,7 @@ export default class HighlightList extends Shadow() {
         display: block;
         font-family: var(--font-family-secondary);
         font-size: var(--font-size, 2.5rem);
-        font-weight: var(--font-weight, 300);
+        font-weight: var(--font-weight, normal);
         text-align: var(--text-align, center);
         text-transform: var(--text-transform, uppercase);
       }
