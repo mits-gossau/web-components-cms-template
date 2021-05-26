@@ -15,7 +15,6 @@
 <body>
   <p-general>
     <o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-" role="header">
-      <a-title namespace="header-title-" no-scroll="nav-open">Migros-Kulturprozent-Classics präsentiert</a-title>
       <m-navigation mobile-breakpoint="0vw" hover="false" namespace=navigation- no-scroll="nav-open">
         <ul>
           <li>
@@ -95,7 +94,7 @@
             </ul>
           </li>
           <li>
-            <a href="/de/search" style="transform: rotate(112deg);">&#9740;</a>
+            <a href="/de/search"><img style="height: 45px; padding-top: 0.3em;" src=/src/img/cyan/LUPE_CYAN.svg /></a>
           </li>
         </ul>
       </m-navigation>
@@ -108,6 +107,7 @@
           timer=5000
           namespace="flyer-"
           position="false"
+          picture-load
         >
           <style>
             :host {
@@ -154,7 +154,7 @@
               }
             }
           </style>
-          <a-picture namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
+          <a-picture picture-load namespace=picture- defaultSource="../../../img/vildeFrang.png" alt="vildeFrang"></a-picture>
           <div>
             <h3>Vilde Frang</h3>
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
@@ -166,6 +166,7 @@
           timer=1000
           namespace="flyer-"
           position="false"
+          picture-load
         >
           <style>
             :host {
@@ -214,7 +215,7 @@
               }
             }
           </style>
-          <a-picture namespace=picture- defaultSource="../../../img/classics_2.png" alt="vildeFrang"></a-picture>
+          <a-picture picture-load namespace=picture- defaultSource="../../../img/classics_2.png" alt="vildeFrang"></a-picture>
           <div>
             <h3>Vilde Frau</h3>
             <p>Einziges Konzert in der Schweiz:<br>Tonhalle Maag Zurich</p>
@@ -223,7 +224,7 @@
         </m-flyer>
         <div style="clear:both;"></div>
         <div>
-          <m-details>
+          <m-details scroll-into-view>
             <details>
               <summary><h3>System Requirements</h3></summary>
               <p>Requires a computer running an operating system. The computer
