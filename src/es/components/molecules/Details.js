@@ -41,6 +41,7 @@ import { Mutation } from '../prototypes/Mutation.js'
  * @attribute {
  *  {boolean} [open=false] opens the details
  *  {string} [openEventName='open'] the event to which it listens on body
+ *  {has} [scroll-into-view=n.a.] scrolls into view if set
  * }
  */
 export default class Details extends Mutation() {
@@ -56,7 +57,7 @@ export default class Details extends Mutation() {
     this.openEventListener = event => {
       if (this.details && event.detail.child) {
         if (event.detail.child === this) {
-          this.details.scrollIntoView({ behavior: 'smooth' })
+          if (this.hasAttribute('scroll-into-view')) this.details.scrollIntoView({ behavior: 'smooth' })
         } else {
           this.details.removeAttribute('open')
         }

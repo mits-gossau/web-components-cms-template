@@ -1,4 +1,4 @@
-report({
+{
   "testSuite": "BackstopJS",
   "tests": [
     {
@@ -15,17 +15,15 @@ report({
         "expect": 0,
         "viewportLabel": "phone",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -16
+            "height": 0
           },
-          "misMatchPercentage": "7.12",
-          "analysisTime": 55
-        },
-        "diffImage": "..\\bitmaps_test\\20210525-184734\\failed_diff_backstop_default_clubmigros-kulturprozent-classicsch_0_document_0_phone.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
@@ -41,10 +39,10 @@ report({
         "expect": 0,
         "viewportLabel": "desktop",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -76
+            "height": 0
           },
           "misMatchPercentage": "20.52",
           "analysisTime": 1582
@@ -55,4 +53,4 @@ report({
     }
   ],
   "id": "backstop_default"
-});
+}
