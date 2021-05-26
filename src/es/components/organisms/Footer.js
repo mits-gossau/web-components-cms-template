@@ -252,6 +252,9 @@ export default class Footer extends Shadow() {
         :host > footer ul > li {
           text-align: center;
         }
+        .footer-ul-wrapper {
+          padding-top: 15px;
+        }
         :host > footer > div:not(.footer-ul-wrapper) {
           flex: 1;
         }

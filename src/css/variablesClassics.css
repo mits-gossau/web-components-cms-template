@@ -82,8 +82,7 @@ html {
   --footer-p-line-height: normal;
   --footer-engagement-logo-text-font-size-mobile: 0.42rem;
   --footer-engagement-logo-text-font-size: 0.49rem;
-  /*TODO test if text in FR & EN also need "padding-bottom: 10px" to align with center-links and logo*/
-  --footer-engagement-logo-text-padding: 10px 0 10px 32%;
+  --footer-engagement-logo-text-padding: 10px 0 0 32%;
   --footer-engagement-logo-text-padding-en: 10px 0 0 25%;
   --footer-engagement-logo-text-padding-fr: 10px 0 0 27%;
   --footer-engagement-logo-text-padding-mobile-en: 10px 0 0 25%;
