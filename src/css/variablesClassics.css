@@ -77,15 +77,18 @@ html {
   --footer-engagement-logo-max-height: 40px;
   --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
   --footer-engagement-logo-text-a-color: #009fe3;
-  --footer-engagement-logo-text-color: black;
+  --footer-engagement-logo-text-color: #009fe3;
+  --footer-engagement-logo-text-line-height: 11px;
+  --footer-p-line-height: normal;
   --footer-engagement-logo-text-font-size-mobile: 0.42rem;
   --footer-engagement-logo-text-font-size: 0.49rem;
+  /*TODO test if text in FR & EN also need "padding-bottom: 10px" to align with center-links and logo*/
+  --footer-engagement-logo-text-padding: 10px 0 10px 32%;
   --footer-engagement-logo-text-padding-en: 10px 0 0 25%;
   --footer-engagement-logo-text-padding-fr: 10px 0 0 27%;
   --footer-engagement-logo-text-padding-mobile-en: 10px 0 0 25%;
   --footer-engagement-logo-text-padding-mobile-fr: 10px 0 0 27%;
   --footer-engagement-logo-text-padding-mobile: 10px 0 0 34%;
-  --footer-engagement-logo-text-padding: 10px 0 0 32%;
   --footer-flex-wrap: wrap; 
   --footer-font-size-mobile: var(--footer-a-link-font-size-mobile);
   --footer-font-size: var(--footer-a-link-font-size);
@@ -101,6 +104,8 @@ html {
   --footer-logo-height: max(65px, 8vw);
   --footer-logo-margin: 0;
   --footer-logo-margin-mobile: 10px 15px;
+  --footer-logo-padding: 0;
+  --footer-logo-margin-mobile: 0;
   --footer-logo-max-height: max(120px, 5vw);
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
@@ -344,6 +349,7 @@ html {
   --search-h3-line-height: var(--h1-line-height);
   --search-h3-margin: 15px;
   --search-h3-text-align: var(--h1-text-align);
+  --search-h3-word-break-mobile: break-word;
   --search-h3-text-transform: uppercase;
   --search-icon-display: block;
   --search-icon-margin: 0;
@@ -354,6 +360,8 @@ html {
   --search-p-text-align: var(--p-text-align);
   --search-ul-display: var(--ul-display);
   --search-ul-text-align: var(--ul-text-align);
+  --search-content-width: 65%;
+  --search-content-width-mobile: var(--content-width-mobile);
   --section-width-mobile: var(--content-width-not-web-component-mobile);
   --spacer-height-mobile: 20vw;
   --spacer-height: 10vw;

@@ -235,6 +235,9 @@ export default class Form extends Shadow() {
           flex-direction: var(--form-flex-direction-mobile, var(--form-flex-direction, column));
           align-items: var(--form-align-items-mobile, var(--form-align-items, center));
         }
+        .searchResultsContainer {
+          width: var(--content-width-mobile, 100%);
+        }
         .searchResultsContainer h3 {
           font-size: var(--h3-font-size-mobile, var(--h3-font-size, min(3rem, 14vw)));
           line-height: var(--h3-line-height-mobile, var(--h3-line-height, normal));

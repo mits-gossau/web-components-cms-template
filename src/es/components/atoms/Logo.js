@@ -109,6 +109,7 @@ export default class Logo extends Shadow() {
         justify-content: var(--justify-content, center);
         box-sizing: border-box;
         margin: var(--margin, 0px);
+        padding: var(--padding, 0px);
       }
       :host(.hide-desktop) {
         display: none;
@@ -149,6 +150,7 @@ export default class Logo extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           margin: var(--margin-mobile, var(--margin, 0px));
+          padding: var(--padding-mobile, var(--padding, 0px));
         }
         :host(.hide-desktop) {
           display: flex;
@@ -165,6 +167,7 @@ export default class Logo extends Shadow() {
           box-sizing: var(--text-box-sizing-mobile, border-box);
           font-size: var(--text-font-size-mobile, 1rem);
           padding: var(--text-padding-mobile, 0);
+          line-height: var(--text-line-height-mobile, normal);
         }
         :host([lang="en"]) > ${this.textSelector}{
           padding: var(--text-padding-mobile-en, var(--text-padding-mobile, 0));
