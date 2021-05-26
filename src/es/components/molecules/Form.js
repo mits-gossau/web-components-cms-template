@@ -76,7 +76,7 @@ export default class Form extends Shadow() {
     const form = document.createElement('form')
     form.setAttribute('method', method)
     form.setAttribute('action', action);
-    [...formData].forEach(([key,val]) => {
+    [...formData].forEach(([key, val]) => {
       const input = document.createElement('input')
       input.setAttribute('name', key)
       input.setAttribute('value', val)
@@ -134,7 +134,7 @@ export default class Form extends Shadow() {
       );
       [...this.root.querySelectorAll('a-select, select')].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
-      );
+      )
       return formData
     }
     return new FormData()
@@ -179,7 +179,7 @@ export default class Form extends Shadow() {
           line-height: var(--h3-line-height, normal);
           text-align: var(--h3-text-align, start);
           word-break: var(--h3-word-break, normal);
-          text-transform: var(--h3-text-transform, normal);
+          text-transform: var(--h3-text-transform, none);
           margin: var(--h3-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer h4 {        
