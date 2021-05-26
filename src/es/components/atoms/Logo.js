@@ -103,7 +103,7 @@ export default class Logo extends Shadow() {
     this.css = /* css */`
       :host {
         align-items: var(--align-items, center);
-        display: flex; /* @ask: is display always flex for a reason? even if there are no children?*/
+        display: flex;
         flex-flow: var(--flex-flow, row);
         flex-grow: var(--flex-grow, 0);
         justify-content: var(--justify-content, center);
@@ -114,7 +114,7 @@ export default class Logo extends Shadow() {
         display: none;
       }
       :host(.hide-mobile) {
-        display: flex; /* @ask: is display always flex for a reason? even if there are no children?*/
+        display: flex;
       }
       :host img{
         display: block;
@@ -147,6 +147,9 @@ export default class Logo extends Shadow() {
         text-decoration: var(--text-a-text-decoration-hover, var(--text-decoration-hover, var(--text-decoration, none)));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          margin: var(--margin-mobile, var(--margin, 0px));
+        }
         :host(.hide-desktop) {
           display: flex;
         }
