@@ -26,6 +26,7 @@ html {
   --carousel-picture-img-max-height: var(--picture-img-max-height);
   --carousel-transition-duration: 1.6s;
   --carousel-h3-text-transform: uppercase;
+  --carousel-h3-font-family: var(--font-family-bold);
   --carousel-p-margin: 0;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color);
