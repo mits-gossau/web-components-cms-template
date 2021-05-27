@@ -124,7 +124,6 @@ export default class Button extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
-        border: var(--border, 2px solid var(--color)); 
         width: var(--width, 70px);
         height: var(--height, 95px);
         margin: var(--margin, 0);
@@ -145,18 +144,22 @@ export default class Button extends Shadow() {
         color: var(--color, green);
         background-color: var(--button-background-color, transparent);
         font-family: var(--button-font-family, var(--font-family-bold));
-        font-size: var(--button-font-size, 0.8rem);
+        font-weight: var(--button-font-weight, var(--font-weight, normal));
+        font-size: var(--button-font-size, 1em);
         text-transform: var(--button-text-transform, none);
+        text-decoration: var(--button-text-decoration, none);
+        text-underline-offset: var(--a-text-underline-offset, unset);
       }
       :host button:focus,
       :host button:hover,
       :host button:active {
-        background-color: var(--button-background-color-secondary, transparent);
-        color: var(--background-color, red);
+        background-color: var(--button-background-color-hover, transparent);
+        color: var(--button-color-hover, var(--color));
+        text-decoration: var(--button-text-decoration-hover, var(--button-text-decoration));
       }
-      /*:host button:disabled {
-        // search submit takes too little time for disabled style to make sense, maybe for newsletter?
-      }*/
+      :host button:disabled {
+        background-color: var(--button-background-color-disabled, gray);
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           position: var(--position-mobile, var(--position, static));

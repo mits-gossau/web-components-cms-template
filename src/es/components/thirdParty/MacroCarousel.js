@@ -190,6 +190,7 @@ export default class MacroCarousel extends Shadow() {
       }
       :host > macro-carousel h3 {
         font-family: var(--h3-font-family, var(--font-family-bold, var(--font-family)));
+        font-weight: var(--h3-font-weight, var(--font-weight, normal));
         text-transform: var(--h3-text-transform, none);
       }
       :host > macro-carousel *:focus {

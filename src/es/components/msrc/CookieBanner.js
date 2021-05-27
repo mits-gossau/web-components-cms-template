@@ -77,6 +77,11 @@ export default class CookieBanner extends Shadow() {
       }
       #msrc-widget a {
         color: var(--a-color, var(--color-secondary, var(--color, white))) !important;
+        text-decoration: var(--a-text-decoration, var(--text-decoration, underline)) !important;
+      }
+      #msrc-widget a:hover {
+        color: var(--a-color-hover, var(--color-secondary-hover, var(--color-hover))) !important;
+        text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover)) !important;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         #msrc-widget div, #msrc-widget a, #msrc-widget button {

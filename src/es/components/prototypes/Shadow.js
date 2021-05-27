@@ -158,7 +158,10 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
     if (!style) {
       this._css.textContent = ''
     } else {
-      if (!this.hasShadowRoot) style = style.replace(/:host\s{0,5}/g, `${this.cssSelector} `)
+      if (!this.hasShadowRoot) {
+        style = style.replace(/:host\s{0,5}\((.*?)\)/g, `${this.cssSelector}$1 `) // remove :host([...]) selector brackets
+        style = style.replace(/:host\s{0,5}/g, `${this.cssSelector} `)
+      }
       if (this.namespace) style = style.replace(/--/g, `--${this.namespace}`)
       this._css.textContent += style
     }
@@ -201,6 +204,8 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
     // @ts-ignore
     if (innerHTML.length === undefined) innerHTML = [innerHTML]
     // @ts-ignore
-    Array.from(innerHTML).forEach(node => this.root.appendChild(node))
+    Array.from(innerHTML).forEach(node => {
+      if (node) this.root.appendChild(node)
+    })
   }
 }

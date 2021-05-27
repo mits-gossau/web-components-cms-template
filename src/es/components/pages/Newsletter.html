@@ -13,57 +13,51 @@
   <title>Classics</title>
 </head>
 <body>
-  <main>
-    <m-newsletter>
-      <m-form type="newsletter" namespace="newsletter-" use-html-submit>
-        <form action="https://nlink.migros-kulturprozent-classics.ch/dispatcher/service" method="post" id="online_form">
-          <!--
-          <input type="radio" id="gender1" name="gender" value="herr">
-          <label for="gender1">Herr</label>
-          <input type="radio" id="gender2" name="gender" value="frau">
-          <label for="gender2">Frau</label>
-          <label for="name">Name, Vorname</label>
-          <input type="text" name="name">
-          <label for="zip">PLZ</label>
-          <input type="number" name="zip" min="1000" max="9999">
-          <label for="place">Ort</label>
-          <input type="text" name="place">
-          <label for="mail">E-Mail</label>
-          <input type="email" name="mail">
-          <label for="policy">Ich akzeptiere die Datenschutzbestimmungen</label>
-          <input type="checkbox" name="policy">
-          <button type="submit">Absenden</button>
-          -->
-          <input type="hidden" name="tets">   
-          <input type="hidden" name="ac" value="reg">
-          <input type="hidden" name="clientCode" value="ASrrB9ASTmKaGVqEBe">
-          <input type="hidden" name="doubleOptin" value="1">
-          <input type="hidden" name="xp_sendBackParams" value="0">
-          <input type="hidden" name="trackId" value="null" id="trackId">
-          <label for="Sprache" class="required">Sprache</label>
-          <select name="Sprache" id="Sprache" class="required">
-              <option value="EN">Englisch</option>
-              <option value="DE">Deutsch</option>
-              <option value="FR">Französisch</option>
-          </select>
-          <label class="required" for="Email">Email</label>
-          <input id="Email" type="email" required="" value="" name="Email">
-          <label for="Anrede" class="required">Anrede</label>
-          <select name="Anrede" id="Anrede" class="required">
-              <option value="0">keine Anrede</option>
-              <option value="2">Herr</option>
-              <option value="1">Frau</option>
-          </select>
-          <label class="required" for="Firstname">Vorname</label>
-          <input id="Firstname" type="text" required="" value="" name="Vorname">
-          <label class="required" for="Name">Name</label>
-          <input id="Name" type="text" required="" value="" name="Name">
-          <button type="submit">Registrieren</button>
-          <p class="footer"></p>
-        </form>
+  <p-general>
+    <o-body>
+      <h2>NEWSLETTER</h2>
+      <p>Hier gibts den Newsletter</p>
+      <br>
+      <m-form type="newsletter" namespace="search-" namespace-children="search-field-" use-html-submit>
+          <style>
+            :host {
+              --search-field-radio-height: auto;
+              --search-field-checkbox-height: auto;
+              --search-field-input-radio-margin: 10px 0;
+              --search-field-input-checkbox-margin: 10px 0;
+            }
+            :host form {
+              display: inline !important;
+            }
+          </style>
+          <form action="https://nlink.migros-kulturprozent-classics.ch/dispatcher/service" method="post" id="online_form">
+            <input type="hidden" name="ac" value="reg">
+            <input type="hidden" name="clientCode" value="ASrrB9ASTmKaGVqEBe">
+            <input type="hidden" name="doubleOptin" value="1">
+            <input type="hidden" name="xp_sendBackParams" value="0">
+            <input type="hidden" name="trackId" value="null" id="trackId">
+            <input type="hidden" name="Sprache" value="@CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToUpper()" id="Sprache">
+            <label for="Email">E-Mail</label>
+            <input id="Email" type="email" required="" value="" name="Email" placeholder="Email hier eingeben...">
+            <label for="anrede1">Herr</label>
+            <input id="anrede1" name="Anrede" type="radio" value="2" />
+            <label for="anrede2">Frau</label>
+            <input id="anrede2" name="Anrede" type="radio" value="1" />
+            <label for="Firstname">Vorname</label>
+            <input id="Firstname" type="text" required="" value="" name="Vorname" placeholder="Vorname hier eingeben...">
+            <label for="Name">Name</label>
+            <input id="Name" type="text" required="" value="" name="Name" placeholder="Name hier eingeben...">
+            <label class="normal" for="Policy">Ich bestätige, dass ich die <a href="https://www.migros.ch/de/datenschutz.html" target="_blank">Datenschutzerklärung</a> und die darin umschriebene Bearbeitung meiner Personendaten zur Kenntnis genommen haben.</label>
+            <input reverse id="Policy" name="Policy" required="" type="checkbox" value="false" />
+            <button type="submit">Registrieren</button>
+            <div class="form-group fusp" style="visibility:hidden">
+                <label for="FuSb">Website</label>
+                <input type="text" name="FuSb" id="FuSb" value="" />
+            </div>
+          </form>
       </m-form>
-    </m-newsletter>
-  </main>
+    </o-body>
+  </p-general>
   <script rel=preload type=module>
     self.Environment = {
       mobileBreakpoint: '600px'
@@ -85,7 +79,6 @@
     import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
     import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
     import('../../../es/components/molecules/PlaylistItem.js').then(module => ['m-playlist-item', module.default]),
-    import('../../../es/components/molecules/Newsletter.js').then(module => ['m-newsletter', module.default]),
     import('../../../es/components/atoms/Link.js').then(module => ['a-link', module.default]),
     import('../../../es/components/atoms/Button.js').then(module => ['a-button', module.default]),
     import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),

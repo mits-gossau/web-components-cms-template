@@ -127,6 +127,7 @@ export default class Header extends Shadow() {
       :host > header > a {
         color: var(--a-color, var(--color));
         font-family: var(--a-font-family, var(--font-family));
+        font-weight: var(--a-font-weight, var(--font-weight, normal));
         font-size: var(--a-font-size, var(--font-size));
         padding: var(--a-padding, 0);
         line-height: var(--a-line-height, 0);

@@ -123,6 +123,7 @@ export default class Teaser extends Shadow() {
       }
       :host h3, :host p {
         font-family: var(--font-family, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif);
+        font-weight: var(--h3-font-weight, var(--font-weight, normal));
       }
       :host h3 {
          margin: 0 0 10px 0;

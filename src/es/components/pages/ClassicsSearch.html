@@ -18,8 +18,13 @@
       <a-title namespace="header-title-" wrap="only-last">Migros-Kulturprozent-Classics presents</a-title>
     </o-header>
     <o-body>
-      <main>
-        <m-form type="search" namespace="search-">
+      <m-form type="search" namespace="search-">
+          <style>
+            :host {
+              --search-field-input-width: calc(var(--content-width-not-web-component) - min(250px, 35vw));
+              --search-field-input-width-mobile: calc(var(--content-width-not-web-component-mobile) - min(250px, 35vw));
+            }
+          </style>
           <form action="/" enctype="multipart/form-data" method="post">
             <a-input type="text" namespace="search-field-">
               <label for="searchTerm">Suche</label>
@@ -64,7 +69,6 @@
               </div>
             </div>
       </m-form>
-      </main>
     </o-body>
     <o-footer theme="classics" namespace="footer-">
           <a-logo class="hide-mobile" namespace="footer-engagement-logo-" src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg" href="https://migros-engagement.ch" target="_blank" lang="de">

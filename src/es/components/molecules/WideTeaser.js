@@ -98,6 +98,7 @@ export default class WideTeaser extends Shadow() {
       }
       :host p, :host h4, :host a {
         font-family: var(--font-family, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif);
+        font-weight: var(--font-weight, normal);
         color: var(--color, white);
       }
       :host h4 {
