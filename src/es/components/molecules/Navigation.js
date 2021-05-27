@@ -93,6 +93,7 @@ export default class Navigation extends Shadow() {
         --line-height: var(--a-link-line-height);
         --text-transform: var(--a-link-text-transform);
         font-family: var(--a-link-font-family);
+        font-weight: var(--a-font-weight, var(--font-weight, normal));
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
         --color: var(--a-link-color-${this.getAttribute('no-scroll') || 'no-scroll'});
@@ -106,6 +107,7 @@ export default class Navigation extends Shadow() {
         --font-weight: var(--a-link-second-level-font-weight, var(--a-link-font-weight));
         --line-height: var(--a-link-second-level-line-height);
         font-family: var(--a-link-second-level-font-family);
+        font-weight: var(--a-font-weight, var(--font-weight, normal));
       }
       ${(this.getAttribute('hover') === 'true' &&
       `:host > nav > ul li:hover ul a-link,

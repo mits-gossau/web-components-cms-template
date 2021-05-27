@@ -125,30 +125,32 @@ export default class Input extends Shadow() {
         box-shadow: var(--input-box-shadow, inset 0 0 2px 2px var(--color));
       }
       :host > input {
-        background: var(--input-background, none);
-        padding: var(--input-padding, 0 15px);
-        border: var(--input-border, none);
-        font-family: var(--font-family);
-        font-size: var(--p-font-size);
-        text-align: var(--text-align, center);
-        color: var(--color, red);
-        width: var(--input-width, 40%);
-        align-self: var(--input-align-self, center);
-        height: var(--input-height, 100%);
+        background: var(--input-background, var(--background, none));
+        padding: var(--input-padding, var(--padding, 0 15px));
+        border: var(--input-border, var(--border, none));
+        font-family: var(--input-font-family, var(--font-family));
+        font-weight: var(--input-font-weight, var(--font-weight, normal));
+        font-size: var(--input-font-size, var(--p-font-size, var(--font-size)));
+        text-align: var(--input-text-align, var(--text-align, center));
+        color: var(--input-color, var(--color, red));
+        width: var(--input-width, var(--width, 40%));
+        align-self: var(--input-align-self, var(--align-self, center));
+        height: var(--input-height, var(--height, 100%));
       }
       :host > input:not(:focus):invalid {
-        color: var(--color-invalid, red);
+        color: var(--input-color-invalid, var(--color-invalid, red));
       }
 
       :host > label {
         text-transform: var(--text-transform, uppercase);
         font-family: var(--font-family-bold);
+        font-weight: var(--font-weight, normal);
       }
       :host > input:focus {
         outline: var(--input-outline, none);
       }
       ::placeholder {
-        color: var(--color);
+        color: var(--placeholder-color, var(--color));
         opacity: var(--placeholder-opacity, 0.6);
       }
       
@@ -168,18 +170,20 @@ export default class Input extends Shadow() {
           box-shadow: var(--input-box-shadow-mobile, inset 0 0 1.5px 1.5px var(--color));
         }
         :host > input {
-          background: var(--background-mobile, var(--input-background, none));
-          font-family: var(--font-family-mobile, var(--font-family));
-          font-size: var(--font-size-mobile, var(--p-font-size));
-          text-align: var(--text-align-mobile, var(--text-align, center));
-          color: var(--color-mobile, var(--color, red));
-          border: var(--border-mobile, var(--input-border, none));
-          height: var(--input-height-mobile, 100%);
-          width: var(--input-width-mobile, 100%);
+          background: var(--input-background-mobile, var(--background-mobile, var(--input-background, var(--background, none))));
+          font-family: var(--input-font-family-mobile, var(--font-family-mobile, var(--input-font-family, var(--font-family))));
+          font-weight: var(--input-font-weight-mobile, var(--font-weight-mobile, var(--input-font-weight, var(--font-weight, normal))));
+          font-size: var(--input-font-size-mobile, var(--input-font-size, var(--p-font-size, var(--font-size))));
+          text-align: var(--input-text-align-mobile, var(--text-align-mobile, var(--input-text-align, var(--text-align, center))));
+          color: var(--input-color-mobile, var(--color-mobile, var(--input-color, var(--color, red))));
+          border: var(--input-border-mobile, var(--border-mobile, var(--input-border, var(--border, none))));
+          height: var(--input-height-mobile, var(--height-mobile, var(--input-height, var(--height, 100%))));
+          width: var(--input-width-mobile, var(--width-mobile, var(--input-width, var(--width, 100%))));
         }
 
         :host > label {
           font-family: var(--font-family-bold-mobile, var(--font-family-bold));
+          font-weight: var(--font-weight-mobile, var(--font-weight));
         }
       }
     `

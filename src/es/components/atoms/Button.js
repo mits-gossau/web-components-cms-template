@@ -145,6 +145,7 @@ export default class Button extends Shadow() {
         color: var(--color, green);
         background-color: var(--button-background-color, transparent);
         font-family: var(--button-font-family, var(--font-family-bold));
+        font-weight: var(--button-font-weight, var(--font-weight, normal));
         font-size: var(--button-font-size, 0.8rem);
         text-transform: var(--button-text-transform, none);
       }

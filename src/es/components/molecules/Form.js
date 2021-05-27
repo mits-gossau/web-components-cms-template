@@ -177,6 +177,7 @@ export default class Form extends Shadow() {
           color: var(--h3-color, var(--color, black));
           font-size: var(--h3-font-size, min(3rem, 10vw));
           font-family: var(--h3-font-family, var(--font-family-bold));
+          font-weight: var(--h3-font-weight, var(--font-weight, normal));
           line-height: var(--h3-line-height, normal);
           text-align: var(--h3-text-align, start);
           word-break: var(--h3-word-break, normal);
@@ -186,7 +187,8 @@ export default class Form extends Shadow() {
       .searchResultsContainer h4 {        
           color: var(--h4-color, var(--color, black));
           font-size: var(--h4-font-size, min(2rem, 10vw));
-          font-family: var(--h4-font-family);
+          font-family: var(--h4-font-family, var(--font-family));
+          font-weight: var(--h4-font-weight, var(--font-weight, normal));
           line-height: var(--h4-line-height, normal);
           text-align: var(--h4-text-align, start);
           word-break: var(--h4-word-break, normal);
@@ -194,13 +196,15 @@ export default class Form extends Shadow() {
           margin: var(--h4-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer p {
-        font-family: var(--font-family-secondary);
+        font-family: var(--p-font-family, var(--font-family-secondary));
+        font-weight: var(--p-font-weight, var(--font-weight, normal));
         text-align: var(--p-text-align, start);
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer a {
         font-size: var(--a-font-size, 0.9rem);
+        font-weight: var(--a-font-weight, var(--font-weight, normal));
         color: var(--a-color, var(--color-secondary, var(--color, pink)));
         text-align: var(--a-text-align, unset);
         text-decoration: var(--a-text-decoration, var(--text-decoration, none));
