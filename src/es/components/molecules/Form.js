@@ -35,6 +35,7 @@ export default class Form extends Shadow() {
   constructor (...args) {
     super(...args)
 
+    this.hasRendered = false // TODO: somehow the umbraco bundled js does execute the connectedCallback twice
     this.submitEventListener = event => {
       event.preventDefault()
       if (this.form) {
@@ -157,7 +158,7 @@ export default class Form extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return !this.root.querySelector('a-input')
+    return !this.hasRendered
   }
 
   /**
@@ -295,6 +296,7 @@ export default class Form extends Shadow() {
   * @return {void}
   */
   renderHTML () {
+    this.hasRendered = true
     this.loadChildComponents().then(children => {
       Array.from(this.root.querySelectorAll('input'))
         .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {

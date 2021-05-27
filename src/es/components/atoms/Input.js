@@ -210,6 +210,26 @@ export default class Input extends Shadow() {
         color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
         text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
       }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover, 
+      input:-webkit-autofill:focus {
+        border: 0;
+        -webkit-text-fill-color: var(--label-color, var(--color));
+        caret-color: var(--label-color, var(--color));
+        text-fill-color: var(--label-color, var(--color));
+        box-shadow: 0;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+      input:autofill,
+      input:autofill:hover, 
+      input:autofill:focus {
+        border: 0;
+        -webkit-text-fill-color: var(--label-color, var(--color));
+        caret-color: var(--label-color, var(--color));
+        text-fill-color: var(--label-color, var(--color));
+        box-shadow: 0;
+        transition: background-color 5000s ease-in-out 0s;
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           display: var(--display-mobile, var(--display, flex));
