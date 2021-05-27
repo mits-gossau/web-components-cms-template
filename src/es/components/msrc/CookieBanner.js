@@ -78,6 +78,7 @@ export default class CookieBanner extends Shadow() {
       #msrc-widget a {
         color: var(--a-color, var(--color-secondary, var(--color, white))) !important;
         text-decoration: var(--a-text-decoration, var(--text-decoration, underline)) !important;
+        text-underline-offset: var(--a-text-underline-offset, 0.2em) !important;
       }
       #msrc-widget a:hover {
         color: var(--a-color-hover, var(--color-secondary-hover, var(--color-hover))) !important;
