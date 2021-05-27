@@ -36,17 +36,17 @@
             <input type="hidden" name="doubleOptin" value="1">
             <input type="hidden" name="xp_sendBackParams" value="0">
             <input type="hidden" name="trackId" value="null" id="trackId">
-            <input type="hidden" name="Sprache" value="@CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToUpper()" id="Sprache">
+            <input type="hidden" name="Sprache" value="en" id="Sprache">
             <label for="Email">E-Mail</label>
-            <input id="Email" type="email" required="" value="" name="Email" placeholder="Email hier eingeben...">
+            <input id="Email" type="email" required="" value="" name="Email" placeholder="Email hier eingeben..." validation-message="Ungültige Email">
             <label for="anrede1">Herr</label>
             <input id="anrede1" name="Anrede" type="radio" value="2" />
             <label for="anrede2">Frau</label>
             <input id="anrede2" name="Anrede" type="radio" value="1" />
             <label for="Firstname">Vorname</label>
-            <input id="Firstname" type="text" required="" value="" name="Vorname" placeholder="Vorname hier eingeben...">
+            <input id="Firstname" type="text" required="" value="" name="Vorname" placeholder="Vorname hier eingeben..." validation-message="Vorname ist ungültig">
             <label for="Name">Name</label>
-            <input id="Name" type="text" required="" value="" name="Name" placeholder="Name hier eingeben...">
+            <input id="Name" type="text" required="" value="" name="Name" placeholder="Name hier eingeben..."  validation-message="Name ist ungültig">
             <label class="normal" for="Policy">Ich bestätige, dass ich die <a href="https://www.migros.ch/de/datenschutz.html" target="_blank">Datenschutzerklärung</a> und die darin umschriebene Bearbeitung meiner Personendaten zur Kenntnis genommen haben.</label>
             <input reverse id="Policy" name="Policy" required="" type="checkbox" value="false" />
             <button type="submit">Registrieren</button>

@@ -66,7 +66,7 @@ export default class Form extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    this.renderHTML()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
     this.addEventListener('form-submit', this.submitEventListener)
   }
 
@@ -149,6 +149,15 @@ export default class Form extends Shadow() {
    */
   shouldComponentRenderCSS () {
     return !this.root.querySelector('style[_css]')
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.root.querySelector('a-input')
   }
 
   /**
