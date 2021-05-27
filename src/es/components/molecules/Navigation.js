@@ -31,7 +31,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --padding-top [6px] first list item at second level
  *  --hr-color [white]
  *  --a-link-font-size-mobile [2rem]
- *  --font-weight-mobile [600]
+ *  --font-weight-mobile [normal]
  *  --a-link-text-align-mobile [center]
  *  --justify-content-mobile [center]
  *  --a-arrow-color-hover [--color-hover, white]
@@ -103,7 +103,7 @@ export default class Navigation extends Shadow() {
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
         --font-size: var(--a-link-second-level-font-size, 1rem);
-        --font-weight: var(--a-link-second-level-font-weight);
+        --font-weight: var(--a-link-second-level-font-weight, var(--a-link-font-weight));
         --line-height: var(--a-link-second-level-line-height);
         font-family: var(--a-link-second-level-font-family);
       }
@@ -112,7 +112,7 @@ export default class Navigation extends Shadow() {
       :host > nav > ul li ul:hover a-link,`) || ''}
       :host > nav > ul li a-link.open ~ ul a-link {
         --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
-        --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
+        --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'}));
         --line-height: var(--a-link-second-level-line-height-${this.getAttribute('no-scroll') || 'no-scroll'});
       }
       :host ul{
@@ -176,7 +176,7 @@ export default class Navigation extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
-          --font-weight: var(--font-weight-mobile, 600);
+          --font-weight: var(--font-weight-mobile, normal);
         }
         :host a-link {
           --font-size: var(--a-link-font-size-mobile, 2rem);

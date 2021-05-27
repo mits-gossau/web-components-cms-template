@@ -72,7 +72,7 @@ export default class Title extends Shadow() {
         color: var(--color-secondary, var(--color, white));
         font-size: var(--secondary-color-font-size, var(--font-size));
         font-family: var(--secondary-color-font-family, var(--font-family-bold, 'OPTIFutura-ExtraBlackCond'));
-        font-weight: var(--secondary-font-weight);
+        font-weight: var(--secondary-font-weight, var(--font-weight, normal));
         text-transform: var(--secondary-color-text-transform, var(--text-transform, uppercase));
         transition: var(--secondary-transition, var(--transition, all 0.2s ease));
       }

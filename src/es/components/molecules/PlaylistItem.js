@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
+/* global location */
 
 /**
  * PlaylistItem can be wrapped by src/es/components/organisms/Playlist.js and expects p, h4, ul > li
@@ -33,8 +34,21 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class PlaylistItem extends Shadow() {
+  constructor (...args) {
+    super(...args)
+
+    this.clickListener = event => {
+      if (this.getAttribute('href')) location.href = this.getAttribute('href')
+    }
+  }
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    this.removeEventListener('click', this.clickListener)
   }
 
   /**
@@ -54,6 +68,7 @@ export default class PlaylistItem extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
+        cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
         display: block;
         text-align: var(--text-align, center);
         padding: var(--padding, 0);
@@ -75,7 +90,7 @@ export default class PlaylistItem extends Shadow() {
         text-transform: var(--a-text-transform, uppercase);
         color: var(--a-color, green);
       }
-      :host a:hover {
+      :host a:hover, :host([href]:hover) a {
         text-decoration: var(--a-text-decoration-hover, underline);
         color: var(--a-color-hover, var(--color, pink));
       }
