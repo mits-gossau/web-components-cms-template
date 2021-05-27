@@ -200,6 +200,9 @@ export default class Form extends Shadow() {
         border-bottom: var(--a-input-border-bottom, none);
         border-left: var(--a-input-border-left, none);
       }
+      :host form #oceans {
+        display: none;
+      }
       .searchResultsContainer {
         width: var(--content-width, 100%);
         margin: 0 auto;
