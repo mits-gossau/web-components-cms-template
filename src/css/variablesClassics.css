@@ -5,6 +5,7 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
+  --animation: none;
   --a-display: block;
   --a-margin: 0;
   --a-text-align: center;
