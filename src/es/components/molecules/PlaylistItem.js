@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
+/* global location */
 
 /**
  * PlaylistItem can be wrapped by src/es/components/organisms/Playlist.js and expects p, h4, ul > li
