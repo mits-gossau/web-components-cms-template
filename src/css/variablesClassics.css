@@ -5,13 +5,13 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
-  --animation: none;
   --a-display: block;
   --a-margin: 0;
   --a-text-align: center;
   --a-text-decoration-hover: none;
   --a-text-decoration: underline;
   --a-text-underline-offset: 0.2em; /* should be 6px but not visible */
+  --animation: none;
   --any-a-display: inline;
   --background-color: #009fe3;
   --carousel-a-text-decoration-hover: var(--a-text-decoration-hover);
@@ -19,6 +19,7 @@ html {
   --carousel-a-text-underline-offset: var(--a-text-underline-offset);
   --carousel-color-hover: var(--color-hover);
   --carousel-color: var(--color);
+  --carousel-h3-font-family: var(--font-family-bold);
   --carousel-h3-text-transform: uppercase;
   --carousel-p-margin: 0;
   --carousel-pagination-background-color-selected: white;
@@ -27,9 +28,6 @@ html {
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
   --carousel-transition-duration: 1.6s;
-  --carousel-h3-text-transform: uppercase;
-  --carousel-h3-font-family: var(--font-family-bold);
-  --carousel-p-margin: 0;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color);
   --color: #FFED00;
@@ -80,17 +78,15 @@ html {
   --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
   --footer-engagement-logo-text-a-color: #009fe3;
   --footer-engagement-logo-text-color: #009fe3;
-  --footer-engagement-logo-text-line-height: 11px;
-  --footer-p-line-height: normal;
   --footer-engagement-logo-text-font-size-mobile: 0.42rem;
   --footer-engagement-logo-text-font-size: 0.49rem;
-  /*TODO test if text in FR & EN also need "padding-bottom: 10px" to align with center-links and logo*/
-  --footer-engagement-logo-text-padding: 10px 0 10px 32%;
+  --footer-engagement-logo-text-line-height: 11px;
   --footer-engagement-logo-text-padding-en: 10px 0 0 25%;
   --footer-engagement-logo-text-padding-fr: 10px 0 0 27%;
   --footer-engagement-logo-text-padding-mobile-en: 10px 0 0 25%;
   --footer-engagement-logo-text-padding-mobile-fr: 10px 0 0 27%;
   --footer-engagement-logo-text-padding-mobile: 10px 0 0 34%;
+  --footer-engagement-logo-text-padding: 10px 0 10px 32%;
   --footer-flex-wrap: wrap; 
   --footer-font-size-mobile: var(--footer-a-link-font-size-mobile);
   --footer-font-size: var(--footer-a-link-font-size);
@@ -105,13 +101,13 @@ html {
   --footer-logo-container-justify-content-wrapped: flex-end;
   --footer-logo-height-mobile: max(50px, 16vw);
   --footer-logo-height: max(65px, 8vw);
-  --footer-logo-margin-mobile: 10px 15px;
-  --footer-logo-padding: 0;
   --footer-logo-margin-mobile: 0;
   --footer-logo-margin: 0;
   --footer-logo-max-height: max(120px, 5vw);
+  --footer-logo-padding: 0;
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
+  --footer-p-line-height: normal;
   --footer-padding-mobile: 3vh 10%;
   --footer-padding: 2vh max(2.2vw, 15px) max(1.3vw, 10px);
   --footer-text-align: center;
@@ -279,7 +275,6 @@ html {
   --newsletter-button-text-transform: uppercase;
   --newsletter-button-width: 100%;
   --newsletter-color: var(--color);
-  --newsletter-color: var(--color);
   --newsletter-flex-grow: 1;
   --newsletter-font-family-bold: var(--font-family-bold);
   --newsletter-font-family: var(--font-family);
@@ -328,6 +323,8 @@ html {
   --search-button-transform-mobile: none;
   --search-button-transform: translateX(100%);
   --search-color-hover: var(--color);
+  --search-content-width-mobile: var(--content-width-mobile);
+  --search-content-width: 65%;
   --search-display: inline;
   --search-field-border-bottom: 2px solid white;
   --search-field-border-top: 2px solid white;
@@ -347,8 +344,8 @@ html {
   --search-h3-line-height: var(--h1-line-height);
   --search-h3-margin: 15px;
   --search-h3-text-align: var(--h1-text-align);
-  --search-h3-word-break-mobile: break-word;
   --search-h3-text-transform: uppercase;
+  --search-h3-word-break-mobile: break-word;
   --search-icon-display: block;
   --search-icon-margin: 0;
   --search-icon-position: absolute;
@@ -358,8 +355,6 @@ html {
   --search-p-text-align: var(--p-text-align);
   --search-ul-display: var(--ul-display);
   --search-ul-text-align: var(--ul-text-align);
-  --search-content-width: 65%;
-  --search-content-width-mobile: var(--content-width-mobile);
   --section-width-mobile: var(--content-width-not-web-component-mobile);
   --spacer-height-mobile: 20vw;
   --spacer-height: 10vw;
@@ -371,4 +366,5 @@ html {
   --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
+  /*TODO test if text in FR & EN also need "padding-bottom: 10px" to align with center-links and logo*/
 }
