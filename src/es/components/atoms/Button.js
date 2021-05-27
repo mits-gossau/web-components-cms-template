@@ -41,8 +41,6 @@ export default class Button extends Shadow() {
     this.button = button
 
     this.clickEventListener = event => {
-      // disable button while loading results, prevent spamming requests
-      event.target.disabled = true
       this.dispatchEvent(new CustomEvent('form-submit',
         {
           detail: {
@@ -158,7 +156,7 @@ export default class Button extends Shadow() {
         text-decoration: var(--button-text-decoration-hover, var(--button-text-decoration));
       }
       :host button:disabled {
-        background-color: var(--button-background-color-disabled, gray);
+        background-color: var(--button-background-color-disabled, transparent);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {

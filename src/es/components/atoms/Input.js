@@ -185,7 +185,7 @@ export default class Input extends Shadow() {
         margin: var(--input-checkbox-margin, var(--input-margin, var(--margin)));
       }
       :host > input:not(:focus):invalid {
-        color: var(--input-color-invalid, var(--color-invalid, red));
+        color: var(--input-color-invalid, var(--color-invalid, var(--color, red)));
       }
       :host > input:focus {
         outline: var(--input-outline, none);
