@@ -190,6 +190,9 @@ export default class Logo extends Shadow() {
     if (this.getAttribute('href')) {
       a = document.createElement('a')
       a.setAttribute('href', this.getAttribute('href'))
+      if (this.getAttribute('target')) {
+        a.setAttribute('target', this.getAttribute('target'))
+      }
       a.innerHTML = img
     }
     this.html = a || img
