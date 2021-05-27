@@ -25,8 +25,6 @@ html {
   --carousel-pagination-bottom: min(20px, 2vw);
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
-  --carousel-picture-img-max-height: var(--picture-img-max-height);
-  --carousel-picture-margin: var(--picture-margin);
   --carousel-transition-duration: 1.6s;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color);
@@ -53,7 +51,7 @@ html {
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
   --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
-  --font-size-mobile: min(18px, 4vw);
+  --font-size-mobile: min(18px, 5vw);
   --font-size: max(18px, 0.9vw);
   --font-weight: normal;
   --footer-a-display: inline;
