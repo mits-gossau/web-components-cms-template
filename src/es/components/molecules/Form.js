@@ -5,6 +5,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 
 /* global fetch */
 /* global FormData */
+/* global location */
 /* global self */
 /* global customElements */
 

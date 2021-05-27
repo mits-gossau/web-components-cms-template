@@ -84,6 +84,7 @@ export default class Body extends Shadow() {
         color: var(--h1-color, var(--color, black));
         font-size: var(--h1-font-size, min(5rem, 10vw));
         font-family: var(--h1-font-family, var(--font-family-bold));
+        font-weight: var(--h1-font-weight, var(--font-weight, normal));
         line-height: var(--h1-line-height, normal);
         text-align: var(--h1-text-align, start);
         word-break: var(--h1-word-break, normal);
@@ -94,6 +95,7 @@ export default class Body extends Shadow() {
         color: var(--h2-color, var(--color, black));
         font-size: var(--h2-font-size, min(4rem, 10vw));
         font-family: var(--h2-font-family, var(--font-family-bold));
+        font-weight: var(--h2-font-weight, var(--font-weight, normal));
         line-height: var(--h2-line-height, normal);
         text-align: var(--h2-text-align, start);
         word-break: var(--h2-word-break, normal);
@@ -104,6 +106,7 @@ export default class Body extends Shadow() {
         color: var(--h3-color, var(--color, black));
         font-size: var(--h3-font-size, min(3rem, 10vw));
         font-family: var(--h3-font-family, var(--font-family-bold));
+        font-weight: var(--h3-font-weight, var(--font-weight, normal));
         line-height: var(--h3-line-height, normal);
         text-align: var(--h3-text-align, start);
         word-break: var(--h3-word-break, normal);
@@ -114,6 +117,7 @@ export default class Body extends Shadow() {
         color: var(--h4-color, var(--color, black));
         font-size: var(--h4-font-size, min(2rem, 10vw));
         font-family: var(--h4-font-family);
+        font-weight: var(--h4-font-weight, var(--font-weight, normal));
         line-height: var(--h4-line-height, normal);
         text-align: var(--h4-text-align, start);
         word-break: var(--h4-word-break, normal);
@@ -124,6 +128,7 @@ export default class Body extends Shadow() {
         color: var(--h5-color, var(--color, black));
         font-size: var(--h5-font-size, min(1.5rem, 10vw));
         font-family: var(--h5-font-family, var(--font-family-secondary));
+        font-weight: var(--h5-font-weight, var(--font-weight, normal));
         line-height: var(--h5-line-height, normal);
         text-align: var(--h5-text-align, start);
         word-break: var(--h5-word-break, normal);
@@ -134,6 +139,7 @@ export default class Body extends Shadow() {
         color: var(--h6-color, var(--color, black));
         font-size: var(--h6-font-size, min(1.5rem, 10vw));
         font-family: var(--h6-font-family, var(--font-family-secondary));
+        font-weight: var(--h6-font-weight, var(--font-weight, normal));
         line-height: var(--h6-line-height, normal);
         text-align: var(--h6-text-align, start);
         word-break: var(--h6-word-break, normal);
@@ -142,12 +148,14 @@ export default class Body extends Shadow() {
       }
       :host > main p {
         font-family: var(--p-font-family, var(--font-family-secondary));
+        font-weight: var(--p-font-weight, var(--font-weight, normal));
         text-align: var(--p-text-align, start);
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       :host > main a {
         color: var(--a-color, var(--color-secondary, var(--color, pink)));
+        font-weight: var(--a-font-weight, var(--font-weight, normal));
         text-align: var(--a-text-align, unset);
         text-decoration: var(--a-text-decoration, var(--text-decoration, none));
         text-underline-offset: var(--a-text-underline-offset, unset);

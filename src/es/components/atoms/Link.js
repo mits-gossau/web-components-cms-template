@@ -19,7 +19,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --text-transform [none]
  *  --color [red]
  *  --font-size [1rem]
- *  --font-weight [300]
+ *  --font-weight [normal]
  *  --padding [14px 10px]
  *  --text-align [left]
  *  --text-transform [none]
@@ -90,7 +90,7 @@ export default class Link extends Shadow() {
         display: var(--display, block);
         font-size: var(--font-size, 1rem);
         line-height: var(--line-height, normal);
-        font-weight: var(--font-weight, 300);
+        font-weight: var(--font-weight, normal);
         height: 100%;
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);

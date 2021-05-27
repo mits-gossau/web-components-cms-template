@@ -133,12 +133,15 @@ export default class Details extends Mutation() {
         outline: var(--summary-outline, none);
         margin: var(--summary-margin, 0);
         padding: var(--summary-padding, 0);
+        font-family: var(--summary-font-family, var(--font-family, var(--font-family-bold)));
+        font-weight: var(--summary-font-weight, var(--font-weight, normal));
       }
       :host details summary:hover, :host details summary:active, :host details summary:focus {
         text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
       :host details[open] summary {
         text-decoration: var(--summary-text-decoration-open, none);
+        font-family: var(--summary-font-family, var(--font-family-bold, var(--font-family)));
       }
       :host details summary > * {
         margin: var(--summary-child-margin, 0);
@@ -153,7 +156,7 @@ export default class Details extends Mutation() {
         padding: var(--child-padding, 0);
       }
       :host details[open] summary ~ * {
-        animation: open var(--animation, 0.2s ease);
+        animation: var(--animation, open 0.2s ease);
         margin: var(--child-margin-open, 0);
         padding: var(--child-padding-open, 0);
       }

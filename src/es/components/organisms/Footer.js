@@ -128,12 +128,15 @@ export default class Footer extends Shadow() {
       :host .logo-container.wrapped {
         justify-content: var(--logo-container-justify-content-wrapped, var(--logo-container-justify-content, space-between));
       }
-      ${this.getAttribute('homepage') === 'true' ? ''
-      : /* css */`
-      :host .logo-container:first-child {
-        --logo-height: var(--logo-height-first, max(65px, 4.8vw));
-        --logo-height-mobile: var(--logo-height-first-mobile, 48px);
-      }`}
+      ${this.getAttribute('homepage') === 'true'
+        ? ''
+        : /* css */`
+          :host .logo-container:first-child {
+            --logo-height: var(--logo-height-first, max(65px, 4.8vw));
+            --logo-height-mobile: var(--logo-height-first-mobile, 48px);
+          }
+        `
+      }
       
       :host .footer-links {
         display: flex;
