@@ -36,6 +36,7 @@ export default class Form extends Shadow() {
     super(...args)
 
     this.submitEventListener = event => {
+      event.preventDefault()
       if (this.form) {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
@@ -166,6 +167,24 @@ export default class Form extends Shadow() {
         flex-direction: var(--form-flex-direction, column);
         align-items: var(--form-align-items, center);
       }
+      :host form a-input:last-of-type {
+        border-top: var(--a-input-border-top-last, none);
+        border-right: var(--a-input-border-right-last, none);
+        border-bottom: var(--a-input-border-bottom-last, none);
+        border-left: var(--a-input-border-left-last, none);
+      }
+      :host form a-input:first-of-type {
+        border-top: var(--a-input-border-top-first, none);
+        border-right: var(--a-input-border-right-first, none);
+        border-bottom: var(--a-input-border-bottom-first, none);
+        border-left: var(--a-input-border-left-first, none);
+      }
+      :host form a-input {
+        border-top: var(--a-input-border-top, none);
+        border-right: var(--a-input-border-right, none);
+        border-bottom: var(--a-input-border-bottom, none);
+        border-left: var(--a-input-border-left, none);
+      }
       .searchResultsContainer {
         width: var(--content-width, 100%);
         margin: 0 auto;
@@ -270,13 +289,14 @@ export default class Form extends Shadow() {
     this.loadChildComponents().then(children => {
       Array.from(this.root.querySelectorAll('input'))
         .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
-          const label = this.root.querySelector(`label[for=${input.getAttribute('name')}]`) || this.root.querySelector(`label[for=${input.getAttribute('id')}]`)
-          const aInput = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || '' })
+          const label = this.root.querySelector(`label[for=${input.getAttribute('id')}]`) || this.root.querySelector(`label[for=${input.getAttribute('name')}]`)
+          const aInput = new children[0][1](input, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
           aInput.setAttribute('type', input.getAttribute('type'))
+          if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
           input.replaceWith(aInput)
         })
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
-        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace') || '' })
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
         button.replaceWith(aButton)
       })
     })
