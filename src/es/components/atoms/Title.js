@@ -60,6 +60,7 @@ export default class Title extends Shadow() {
         color: var(--color, white);
         font-size: var(--font-size, max(79px, 4vw));
         font-family: var(--font-family-bold, 'OPTIFutura-ExtraBlackCond');
+        font-weight: var(--font-weight, normal);
         margin: 0;
         line-height: var(--line-height, max(69px, 3.5vw));
         text-transform: var(--text-transform, uppercase);

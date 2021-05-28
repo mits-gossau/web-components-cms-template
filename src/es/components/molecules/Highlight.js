@@ -115,18 +115,21 @@ export default class Highlight extends Shadow() {
       }
       :host h2 {
         font-family: var(--h2-font-family, var(--font-family-bold));
+        font-weight: var(--h2-font-weight, var(--font-weight, normal));
         font-size: var(--h2-font-size, 4rem);
         line-height: var(--h2-line-height, normal);
         text-transform: var(--h2-text-transform, none);
       }
       :host h5 {
         font-family: var(--h5-font-family, var(--font-family-secondary));
+        font-weight: var(--h5-font-weight, var(--font-weight, normal));
         font-size: var(--h5-font-size, 1.5rem);
         line-height: var(--h5-line-height, normal);
         text-transform: var(--h5-text-transform, uppercase);
       }
       :host p {
         font-family: var(--p-font-family, var(--font-family-secondary));
+        font-weight: var(--p-font-weight, var(--font-weight, normal));
         font-size: var(--p-font-size, 1rem);
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, 3px 0);

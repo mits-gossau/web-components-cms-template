@@ -35,12 +35,15 @@ export default class Form extends Shadow() {
   constructor (...args) {
     super(...args)
 
+    this.hasRendered = false // TODO: somehow the umbraco bundled js does execute the connectedCallback twice
+    this.inputFields = []
+    this.validateFunctions = []
     this.submitEventListener = event => {
-      if (this.form) {
+      event.preventDefault()
+      if ((!this.emptyInput || !this.emptyInput.value) && this.form && this.inputFields.every(input => input.validity.valid)) {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
-        // TODO: add validation ether here on return from getAllInputValues or inside getAllInputValues
 
         if (this.hasAttribute('use-html-submit')) {
           this.submitByHTML(body, method, action)
@@ -59,13 +62,15 @@ export default class Form extends Shadow() {
               this.submitFailure(error, this.getAttribute('type'))
             })
         }
+      } else {
+        this.validateFunctions.forEach(func => func())
       }
     }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    this.renderHTML()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
     this.addEventListener('form-submit', this.submitEventListener)
   }
 
@@ -130,10 +135,10 @@ export default class Form extends Shadow() {
   getAllInputValues (form) {
     if (form) {
       const formData = new FormData();
-      [...this.root.querySelectorAll('a-input, input')].forEach(i =>
-        formData.append(i.getAttribute('name'), i.getAttribute('value'))
-      );
-      [...this.root.querySelectorAll('a-select, select')].forEach(i =>
+      [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
+        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') && (i.getAttribute('type') !== 'radio' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+      });
+      [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
       )
       return formData
@@ -151,6 +156,15 @@ export default class Form extends Shadow() {
   }
 
   /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.hasRendered
+  }
+
+  /**
    * renders the css
    *
    * @return {void}
@@ -158,6 +172,8 @@ export default class Form extends Shadow() {
   renderCSS () {
     this.css = /* css */`
       :host {
+        --balloon-color: var(--background-color, white);
+        --balloon-text-color: var(--color, #009fe3);
         display: var(--display, block);
       }
       :host form {
@@ -165,6 +181,27 @@ export default class Form extends Shadow() {
         margin: var(--form-margin, 0 0 50px 0);
         flex-direction: var(--form-flex-direction, column);
         align-items: var(--form-align-items, center);
+      }
+      :host form a-input:last-of-type {
+        border-top: var(--a-input-border-top-last, none);
+        border-right: var(--a-input-border-right-last, none);
+        border-bottom: var(--a-input-border-bottom-last, none);
+        border-left: var(--a-input-border-left-last, none);
+      }
+      :host form a-input:first-of-type {
+        border-top: var(--a-input-border-top-first, none);
+        border-right: var(--a-input-border-right-first, none);
+        border-bottom: var(--a-input-border-bottom-first, none);
+        border-left: var(--a-input-border-left-first, none);
+      }
+      :host form a-input {
+        border-top: var(--a-input-border-top, none);
+        border-right: var(--a-input-border-right, none);
+        border-bottom: var(--a-input-border-bottom, none);
+        border-left: var(--a-input-border-left, none);
+      }
+      :host form #oceans {
+        display: none;
       }
       .searchResultsContainer {
         width: var(--content-width, 100%);
@@ -177,6 +214,7 @@ export default class Form extends Shadow() {
           color: var(--h3-color, var(--color, black));
           font-size: var(--h3-font-size, min(3rem, 10vw));
           font-family: var(--h3-font-family, var(--font-family-bold));
+          font-weight: var(--h3-font-weight, var(--font-weight, normal));
           line-height: var(--h3-line-height, normal);
           text-align: var(--h3-text-align, start);
           word-break: var(--h3-word-break, normal);
@@ -186,7 +224,8 @@ export default class Form extends Shadow() {
       .searchResultsContainer h4 {        
           color: var(--h4-color, var(--color, black));
           font-size: var(--h4-font-size, min(2rem, 10vw));
-          font-family: var(--h4-font-family);
+          font-family: var(--h4-font-family, var(--font-family));
+          font-weight: var(--h4-font-weight, var(--font-weight, normal));
           line-height: var(--h4-line-height, normal);
           text-align: var(--h4-text-align, start);
           word-break: var(--h4-word-break, normal);
@@ -194,13 +233,15 @@ export default class Form extends Shadow() {
           margin: var(--h4-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer p {
-        font-family: var(--font-family-secondary);
+        font-family: var(--p-font-family, var(--font-family-secondary));
+        font-weight: var(--p-font-weight, var(--font-weight, normal));
         text-align: var(--p-text-align, start);
         text-transform: var(--p-text-transform, none);
         margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer a {
         font-size: var(--a-font-size, 0.9rem);
+        font-weight: var(--a-font-weight, var(--font-weight, normal));
         color: var(--a-color, var(--color-secondary, var(--color, pink)));
         text-align: var(--a-text-align, unset);
         text-decoration: var(--a-text-decoration, var(--text-decoration, none));
@@ -254,6 +295,143 @@ export default class Form extends Shadow() {
           margin: var(--h4-margin-mobile, var(--h4-margin)) auto;
         }
       }
+      /* https://kazzkiq.github.io/balloon.css/ */
+      /* https://raw.githubusercontent.com/kazzkiq/balloon.css/master/balloon.css */
+      :root {
+        --balloon-border-radius: 2px;
+        --balloon-color: rgba(16, 16, 16, 0.95);
+        --balloon-text-color: #fff;
+        --balloon-font-size: 12px;
+        --balloon-move: 4px; }
+      
+      button[aria-label][data-balloon-pos] {
+        overflow: visible; }
+      
+      [aria-label][data-balloon-pos] {
+        position: relative;
+        cursor: pointer; }
+        [aria-label][data-balloon-pos]:after {
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.18s ease-out 0.18s;
+          text-indent: 0;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+          font-weight: normal;
+          font-style: normal;
+          text-shadow: none;
+          font-size: var(--balloon-font-size);
+          background: var(--balloon-color);
+          border-radius: 2px;
+          color: var(--balloon-text-color);
+          border-radius: var(--balloon-border-radius);
+          content: attr(aria-label);
+          padding: .5em 1em;
+          position: absolute;
+          white-space: nowrap;
+          z-index: 10; }
+        [aria-label][data-balloon-pos]:before {
+          width: 0;
+          height: 0;
+          border: 5px solid transparent;
+          border-top-color: var(--balloon-color);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.18s ease-out 0.18s;
+          content: "";
+          position: absolute;
+          z-index: 10; }
+        [aria-label][data-balloon-pos]:hover:before, [aria-label][data-balloon-pos]:hover:after, [aria-label][data-balloon-pos][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-visible]:after, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:before, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:after {
+          opacity: 1;
+          pointer-events: none; }
+        [aria-label][data-balloon-pos].font-awesome:after {
+          font-family: FontAwesome, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }
+        [aria-label][data-balloon-pos][data-balloon-break]:after {
+          white-space: pre; }
+        [aria-label][data-balloon-pos][data-balloon-break][data-balloon-length]:after {
+          white-space: pre-line;
+          word-break: break-word; }
+        [aria-label][data-balloon-pos][data-balloon-blunt]:before, [aria-label][data-balloon-pos][data-balloon-blunt]:after {
+          transition: none; }
+        [aria-label][data-balloon-pos][data-balloon-pos="up"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="up"][data-balloon-visible]:after, [aria-label][data-balloon-pos][data-balloon-pos="down"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="down"][data-balloon-visible]:after {
+          transform: translate(-50%, 0); }
+        [aria-label][data-balloon-pos][data-balloon-pos="up"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos="up"][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-pos="down"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos="down"][data-balloon-visible]:before {
+          transform: translate(-50%, 0); }
+        [aria-label][data-balloon-pos][data-balloon-pos*="-left"]:after {
+          left: 0; }
+        [aria-label][data-balloon-pos][data-balloon-pos*="-left"]:before {
+          left: 5px; }
+        [aria-label][data-balloon-pos][data-balloon-pos*="-right"]:after {
+          right: 0; }
+        [aria-label][data-balloon-pos][data-balloon-pos*="-right"]:before {
+          right: 5px; }
+        [aria-label][data-balloon-pos][data-balloon-pos*="-left"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos*="-left"][data-balloon-visible]:after, [aria-label][data-balloon-pos][data-balloon-pos*="-right"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos*="-right"][data-balloon-visible]:after {
+          transform: translate(0, 0); }
+        [aria-label][data-balloon-pos][data-balloon-pos*="-left"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos*="-left"][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-pos*="-right"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos*="-right"][data-balloon-visible]:before {
+          transform: translate(0, 0); }
+        [aria-label][data-balloon-pos][data-balloon-pos^="up"]:before, [aria-label][data-balloon-pos][data-balloon-pos^="up"]:after {
+          bottom: 100%;
+          transform-origin: top;
+          transform: translate(0, var(--balloon-move)); }
+        [aria-label][data-balloon-pos][data-balloon-pos^="up"]:after {
+          margin-bottom: 10px; }
+        [aria-label][data-balloon-pos][data-balloon-pos="up"]:before, [aria-label][data-balloon-pos][data-balloon-pos="up"]:after {
+          left: 50%;
+          transform: translate(-50%, var(--balloon-move)); }
+        [aria-label][data-balloon-pos][data-balloon-pos^="down"]:before, [aria-label][data-balloon-pos][data-balloon-pos^="down"]:after {
+          top: 100%;
+          transform: translate(0, calc(var(--balloon-move) * -1)); }
+        [aria-label][data-balloon-pos][data-balloon-pos^="down"]:after {
+          margin-top: 10px; }
+        [aria-label][data-balloon-pos][data-balloon-pos^="down"]:before {
+          width: 0;
+          height: 0;
+          border: 5px solid transparent;
+          border-bottom-color: var(--balloon-color); }
+        [aria-label][data-balloon-pos][data-balloon-pos="down"]:after, [aria-label][data-balloon-pos][data-balloon-pos="down"]:before {
+          left: 50%;
+          transform: translate(-50%, calc(var(--balloon-move) * -1)); }
+        [aria-label][data-balloon-pos][data-balloon-pos="left"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="left"][data-balloon-visible]:after, [aria-label][data-balloon-pos][data-balloon-pos="right"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="right"][data-balloon-visible]:after {
+          transform: translate(0, -50%); }
+        [aria-label][data-balloon-pos][data-balloon-pos="left"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos="left"][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-pos="right"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos="right"][data-balloon-visible]:before {
+          transform: translate(0, -50%); }
+        [aria-label][data-balloon-pos][data-balloon-pos="left"]:after, [aria-label][data-balloon-pos][data-balloon-pos="left"]:before {
+          right: 100%;
+          top: 50%;
+          transform: translate(var(--balloon-move), -50%); }
+        [aria-label][data-balloon-pos][data-balloon-pos="left"]:after {
+          margin-right: 10px; }
+        [aria-label][data-balloon-pos][data-balloon-pos="left"]:before {
+          width: 0;
+          height: 0;
+          border: 5px solid transparent;
+          border-left-color: var(--balloon-color); }
+        [aria-label][data-balloon-pos][data-balloon-pos="right"]:after, [aria-label][data-balloon-pos][data-balloon-pos="right"]:before {
+          left: 100%;
+          top: 50%;
+          transform: translate(calc(var(--balloon-move) * -1), -50%); }
+        [aria-label][data-balloon-pos][data-balloon-pos="right"]:after {
+          margin-left: 10px; }
+        [aria-label][data-balloon-pos][data-balloon-pos="right"]:before {
+          width: 0;
+          height: 0;
+          border: 5px solid transparent;
+          border-right-color: var(--balloon-color); }
+        [aria-label][data-balloon-pos][data-balloon-length]:after {
+          white-space: normal; }
+        [aria-label][data-balloon-pos][data-balloon-length="small"]:after {
+          width: 80px; }
+        [aria-label][data-balloon-pos][data-balloon-length="medium"]:after {
+          width: 150px; }
+        [aria-label][data-balloon-pos][data-balloon-length="large"]:after {
+          width: 260px; }
+        [aria-label][data-balloon-pos][data-balloon-length="xlarge"]:after {
+          width: 380px; }
+          @media screen and (max-width: 768px) {
+            [aria-label][data-balloon-pos][data-balloon-length="xlarge"]:after {
+              width: 90vw; } }
+        [aria-label][data-balloon-pos][data-balloon-length="fit"]:after {
+          width: 100%; }
+      
     `
   }
 
@@ -263,16 +441,45 @@ export default class Form extends Shadow() {
   * @return {void}
   */
   renderHTML () {
+    this.hasRendered = true
     this.loadChildComponents().then(children => {
       Array.from(this.root.querySelectorAll('input'))
         .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
-          const label = this.root.querySelector(`label[for=${input.getAttribute('name')}]`) || this.root.querySelector(`label[for=${input.getAttribute('id')}]`)
-          const aInput = new children[0][1](input, label, { namespace: this.getAttribute('namespace') || '' })
+          this.inputFields.push(input)
+          const label = this.root.querySelector(`label[for=${input.getAttribute('id')}]`) || this.root.querySelector(`label[for=${input.getAttribute('name')}]`)
+          const aInput = new children[0][1](input, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
           aInput.setAttribute('type', input.getAttribute('type'))
+          if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
           input.replaceWith(aInput)
+          if (input.hasAttribute('validation-message')) {
+            const changeListener = event => {
+              if (input.validity.valid) {
+                label.removeAttribute('data-balloon-visible')
+                label.removeAttribute('aria-label')
+                label.removeAttribute('data-balloon-pos')
+              } else {
+                label.setAttribute('data-balloon-visible', 'true')
+                label.setAttribute('aria-label', input.getAttribute('validation-message'))
+                label.setAttribute('data-balloon-pos', 'up')
+              }
+            }
+            this.validateFunctions.push(changeListener)
+            input.addEventListener('blur', changeListener)
+            input.addEventListener('blur', event => {
+              input.addEventListener('change', changeListener)
+              input.addEventListener('keyup', changeListener)
+            }, { once: true })
+          }
         })
+      // spam protection
+      if (this.getAttribute('type') === 'newsletter') {
+        this.emptyInput = document.createElement('input')
+        this.emptyInput.type = 'text'
+        this.emptyInput.id = 'oceans'
+        this.form.appendChild(this.emptyInput)
+      }
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
-        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace') || '' })
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
         button.replaceWith(aButton)
       })
     })

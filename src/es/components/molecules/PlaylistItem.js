@@ -97,6 +97,7 @@ export default class PlaylistItem extends Shadow() {
       :host h4 {
         margin: var(--h4-margin, 0) auto;
         font-family: var(--h4-font-family, var(--font-family-bold));
+        font-weight: var(--h4-font-weight, var(--font-weight, normal));
       }
       :host ul {
         display: flex;

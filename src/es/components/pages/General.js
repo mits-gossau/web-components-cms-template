@@ -70,10 +70,12 @@ export default class General extends Shadow() {
       :host, html {
         color: var(--color, black);
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
+        font-weight: var(--font-weight, normal);
       }
       html a {
         color: var(--a-color, var(--color-secondary, var(--color, blue)));
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
+        font-weight: var(--font-weight, normal);
         text-decoration: var(--a-text-decoration, var(--text-decoration, none));
       }
       html a:hover {
