@@ -65,6 +65,7 @@ export default class Details extends Mutation() {
     }
 
     this.clickEventListener = event => {
+      console.log('changed', event.target);
       if (this.details && event.target && event.target.classList.contains('close')) {
         event.preventDefault()
         this.details.removeAttribute('open')

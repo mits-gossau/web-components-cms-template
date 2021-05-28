@@ -306,6 +306,7 @@ html {
   --search-a-text-decoration-hover: var(--a-text-decoration-hover);
   --search-a-text-decoration: var(--a-text-decoration);
   --search-a-text-underline-offset: var(--a-text-underline-offset); 
+  --search-balloon-font-size: min(var(--font-size-mobile), 3vw);
   --search-button-margin: 0;
   --search-button-position: absolute;
   --search-button-right-mobile: 0;
