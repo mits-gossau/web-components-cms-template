@@ -40,7 +40,7 @@ export default class Form extends Shadow() {
     this.validateFunctions = []
     this.submitEventListener = event => {
       event.preventDefault()
-      if (!this.emptyInput.value && this.form && this.inputFields.every(input => input.validity.valid)) {
+      if ((!this.emptyInput || !this.emptyInput.value) && this.form && this.inputFields.every(input => input.validity.valid)) {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
@@ -135,10 +135,10 @@ export default class Form extends Shadow() {
   getAllInputValues (form) {
     if (form) {
       const formData = new FormData();
-      [...this.root.querySelectorAll('input')].forEach(i => {
-        if (i.id !== 'Policy' && (i.getAttribute('type') !== 'radio' || i.checked)) formData.append(i.getAttribute('name'), i.value)
+      [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
+        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') && (i.getAttribute('type') !== 'radio' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
       });
-      [...this.root.querySelectorAll('select')].forEach(i =>
+      [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
       )
       return formData
@@ -472,10 +472,12 @@ export default class Form extends Shadow() {
           }
         })
       // spam protection
-      this.emptyInput = document.createElement('input')
-      this.emptyInput.type = 'text'
-      this.emptyInput.id = 'oceans'
-      this.form.appendChild(this.emptyInput)
+      if (this.getAttribute('type') === 'newsletter') {
+        this.emptyInput = document.createElement('input')
+        this.emptyInput.type = 'text'
+        this.emptyInput.id = 'oceans'
+        this.form.appendChild(this.emptyInput)
+      }
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
         const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
         button.replaceWith(aButton)
