@@ -383,7 +383,7 @@ export default class Form extends Shadow() {
           left: 50%;
           transform: translate(-50%, var(--balloon-move)); }
         [aria-label][data-balloon-pos][data-balloon-pos^="down"]:before, [aria-label][data-balloon-pos][data-balloon-pos^="down"]:after {
-          top: 100%;
+          top: var(--balloon-top, 0%);
           transform: translate(0, calc(var(--balloon-move) * -1)); }
         [aria-label][data-balloon-pos][data-balloon-pos^="down"]:after {
           margin-top: 10px; }
@@ -465,7 +465,7 @@ export default class Form extends Shadow() {
               } else {
                 label.setAttribute('data-balloon-visible', 'true')
                 label.setAttribute('aria-label', input.getAttribute('validation-message'))
-                label.setAttribute('data-balloon-pos', 'up')
+                label.setAttribute('data-balloon-pos', input.hasAttribute('reverse') ? 'down' : 'up')
               }
             }
             this.validateFunctions.push(changeListener)
