@@ -28,6 +28,8 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class General extends Shadow() {
   constructor (...args) {
     super({ mode: 'false' }, ...args) // disabling shadow-DOM to control root font-size on html-tag
+
+    if (this.detectIOS()) document.documentElement.classList.add('ios')
   }
 
   connectedCallback () {
@@ -104,5 +106,16 @@ export default class General extends Shadow() {
         }
       }
     `
+  }
+
+  detectIOS () {
+    return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ].includes(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
   }
 }

@@ -136,8 +136,11 @@ export default class Details extends Mutation() {
         font-family: var(--summary-font-family, var(--font-family, var(--font-family-bold)));
         font-weight: var(--summary-font-weight, var(--font-weight, normal));
       }
-      @supports (-webkit-touch-callout: none) and (hover: none) {
-        /* safari has a bug which can not display the text-decoration: underline;, this is a workaround for mobile */
+      :host details summary:hover, :host details summary:active, :host details summary:focus {
+        text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
+      }
+      ${document.documentElement.classList.contains('ios') ? /* css */`
+        /* safari has a bug which can not display the text-decoration: underline;, this is a workaround for mobile. NOTE: :host-context(.ios) also doesn't work on Safari :-(  */
         :host details summary {
           text-decoration: none;
           border-bottom: 1px solid var(--color, black);
@@ -150,7 +153,10 @@ export default class Details extends Mutation() {
           width: auto;
           margin: var(--summary-margin, 0);
         }
-      }
+        :host details summary:hover, :host details summary:active, :host details summary:focus {
+          border-bottom-color: transparent;
+        }
+      ` : ''}
       :host details[open] summary {
         text-decoration: var(--summary-text-decoration-open, none);
         font-family: var(--summary-font-family, var(--font-family-bold, var(--font-family)));
