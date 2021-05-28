@@ -119,8 +119,8 @@ html {
   --footer-ul-margin: 0 20px;
   --footer-ul-padding: 27px 0 13px 0;
   --form-flex-direction: row;
-  --h1-font-size-mobile: 1.8em;
-  --h1-font-size: 2.223em;
+  --h1-font-size-mobile: var(--h1-font-size);
+  --h1-font-size: min(2.223em, 9vw);
   --h1-line-height-mobile: var(--h1-line-height);
   --h1-line-height: 1.1em;
   --h1-text-align: center;
