@@ -499,12 +499,12 @@
             :host > div > div a {
               color: var(--a-color, var(--color-secondary, var(--color, pink)));
               display: block;
-              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
+              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
               text-underline-offset: var(--a-text-underline-offset, unset);
             }
             :host > div > div a:hover {
               color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
-              text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+              text-decoration: var(--a-text-decoration, var(--text-decoration, none));
             }
             @media only screen and (max-width: 600px) {
               :host > div {
