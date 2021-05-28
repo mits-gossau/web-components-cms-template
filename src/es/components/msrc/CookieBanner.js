@@ -18,6 +18,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  *    'theme': 'mgb',
  *    'webAPIKey': '5re...'
  *  }"]
+ *  {has} [flyer-transitionend=n.a.] trigger the render
+ *  {number} [timeout=n.a.] timeout to trigger the render
  * }
  * @css {
  * --color, black
@@ -35,10 +37,28 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class CookieBanner extends Shadow() {
   constructor (...args) {
     super({ mode: 'false' }, ...args) // disabling shadow-DOM to have msrc styles flow into the node
+
+    this.transitionendListener = event => {
+      if (this.getAttribute('timeout') && this.getAttribute('timeout') !== null) {
+        setTimeout(() => {
+          if (this.shouldComponentRenderHTML()) this.render()
+        }, Number(this.getAttribute('timeout')))
+      } else if (this.shouldComponentRenderHTML()) this.render()
+    }
   }
 
   connectedCallback () {
-    if (this.shouldComponentRenderHTML()) this.render()
+    if (this.hasAttribute('flyer-transitionend')) {
+      document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, { once: true })
+    } else if (this.getAttribute('timeout') && this.getAttribute('timeout') !== null) {
+      setTimeout(() => {
+        if (this.shouldComponentRenderHTML()) this.render()
+      }, Number(this.getAttribute('timeout')))
+    } else if (this.shouldComponentRenderHTML()) this.render()
+  }
+
+  disconnectedCallback () {
+    if (this.hasAttribute('flyer-transitionend')) document.body.removeEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener)
   }
 
   /**
@@ -67,7 +87,7 @@ export default class CookieBanner extends Shadow() {
       }
       #msrc-widget > div {
         background-color: var(--background-color, white) !important;
-        box-shadow: var(--box-shadow-color, white) 0px -3px 3px !important;
+        box-shadow: var(--box-shadow-color, white 0px -3px 3px) !important;
       }
       #msrc-widget button {
         background-color: var(--button-background-color, var(--color-secondary, var(--color, orange))) !important;

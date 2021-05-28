@@ -50,7 +50,9 @@ html {
   --content-width-not-web-component: 65%;
   --content-width: 45%;
   --flex-grow: 1;
+  --flyer-duration-mobile: 0.8s;
   --flyer-duration: 1.2s;
+  --flyer-timing-mobile: cubic-bezier(0.43, 1.77, 0, 0.43);
   --flyer-timing: cubic-bezier(0.88, 1.96, 0, 0.15);
   --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
@@ -119,8 +121,8 @@ html {
   --footer-ul-margin: 0 20px;
   --footer-ul-padding: 27px 0 13px 0;
   --form-flex-direction: row;
-  --h1-font-size-mobile: 1.8em;
-  --h1-font-size: 2.223em;
+  --h1-font-size-mobile: var(--h1-font-size);
+  --h1-font-size: min(2.223em, 9vw);
   --h1-line-height-mobile: var(--h1-line-height);
   --h1-line-height: 1.1em;
   --h1-text-align: center;
