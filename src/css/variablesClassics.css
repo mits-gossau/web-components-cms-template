@@ -102,7 +102,7 @@ html {
   --footer-logo-container-flex-wrap-mobile: wrap;
   --footer-logo-container-justify-content-wrapped-mobile: center;
   --footer-logo-container-justify-content-wrapped: flex-end;
-  --footer-logo-height-mobile: max(50px, 16vw);
+  --footer-logo-height-mobile: max(50px, 15vw);
   --footer-logo-height: max(65px, 8vw);
   --footer-logo-margin-mobile: 8px 0 0;
   --footer-logo-margin: 0;
@@ -111,7 +111,7 @@ html {
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
   --footer-p-line-height: normal;
-  --footer-padding-mobile: 3vh 10%;
+  --footer-padding-mobile: 3vh 1vw;
   --footer-padding: 2vh max(2.2vw, 15px) max(1.3vw, 10px);
   --footer-text-align: center;
   --footer-text-decoration-hover: underline;
