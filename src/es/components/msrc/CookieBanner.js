@@ -42,18 +42,18 @@ export default class CookieBanner extends Shadow() {
       if (this.getAttribute('timeout') && this.getAttribute('timeout') !== null) {
         setTimeout(() => {
           if (this.shouldComponentRenderHTML()) this.render()
-        }, Number(this.getAttribute('timeout')));
+        }, Number(this.getAttribute('timeout')))
       } else if (this.shouldComponentRenderHTML()) this.render()
     }
   }
 
-  connectedCallback () {  
+  connectedCallback () {
     if (this.hasAttribute('flyer-transitionend')) {
       document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, { once: true })
     } else if (this.getAttribute('timeout') && this.getAttribute('timeout') !== null) {
       setTimeout(() => {
         if (this.shouldComponentRenderHTML()) this.render()
-      }, Number(this.getAttribute('timeout')));
+      }, Number(this.getAttribute('timeout')))
     } else if (this.shouldComponentRenderHTML()) this.render()
   }
 
