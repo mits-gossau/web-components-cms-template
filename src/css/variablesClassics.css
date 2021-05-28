@@ -26,7 +26,7 @@ html {
   --carousel-p-margin: 0;
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
-  --carousel-pagination-bottom: min(20px, 2vw);
+  --carousel-pagination-bottom: 10%;
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
   --carousel-transition-duration: 1.6s;
@@ -237,7 +237,7 @@ html {
   --icon-width: 45px;
   --li-align-self: center;
   --li-margin: 0 12px;
-  --line-height-mobile: var(--line-height);
+  --line-height-mobile: 1.7em;
   --line-height: 1.5em;
   --main-padding-mobile: calc(var(--spacer-height-mobile)/2) 0 var(--spacer-height-mobile) 0;
   --main-padding: calc(var(--spacer-height)/2) 0 var(--spacer-height) 0;
