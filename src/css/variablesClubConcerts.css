@@ -84,6 +84,7 @@ html {
   --header-logo-margin: 10px 0 0;
   --header-logo-max-height: max(100px, 5vw);
   --header-padding: 0;
+  --header-picture-display: inline-block; /* chrome has a bug and does not apply the filter on images if display: flex; */
   --header-picture-filter-hover: var(--picture-filter-hover);
   --header-picture-filter: var(--picture-filter);
   --header-picture-img-width: var(--picture-img-width);
