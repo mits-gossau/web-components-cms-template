@@ -154,6 +154,11 @@ export default class Flyer extends Intersection() {
       :host #close {
         cursor: pointer;
       }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host > div {
+          transition: all var(--duration-mobile, var(--duration, 0.7s)) var(--timing-mobile, var(--timing, ease));
+        }
+      }
     `
   }
 

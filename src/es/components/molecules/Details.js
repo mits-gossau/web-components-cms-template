@@ -136,8 +136,10 @@ export default class Details extends Mutation() {
         font-family: var(--summary-font-family, var(--font-family, var(--font-family-bold)));
         font-weight: var(--summary-font-weight, var(--font-weight, normal));
       }
-      :host details summary:hover, :host details summary:active, :host details summary:focus {
-        text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
+      @media (hover: hover) and (pointer: fine) {
+        :host details summary:hover, :host details summary:active, :host details summary:focus {
+          text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
+        }
       }
       :host details[open] summary {
         text-decoration: var(--summary-text-decoration-open, none);

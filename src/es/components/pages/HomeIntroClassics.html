@@ -129,7 +129,7 @@
               --content-width: 85%;
               --content-width-mobile: calc(100% - max(2.2vw, 15px));
               --flyer-padding: 0;
-              --flyer-position: relative;
+              --flyer-position: absolute;
               --picture-margin: 0;
               transform: translateY(-2vh);
               z-index: 1000;
@@ -154,13 +154,16 @@
           </style>
           <style>
             /* shared text styling between flyers */
+            :host > div {
+              max-width: calc(100vw - max(2.2vw, 15px));
+            }
             :host > div > div {
               text-align: left;
               max-width: 36vw;
             }
             :host > div > div h3, :host > div > div p, :host > div > div a {
               font-size: var(--font-size);
-              line-height: var(--line-height, normal);
+              line-height: 1.3em;
             }
             :host > div > div h3 {
               text-transform: var(--h1-text-transform);
@@ -181,12 +184,15 @@
               text-decoration: var(--a-text-decoration, var(--text-decoration, none));
             }
             @media only screen and (max-width: 600px) {
+              :host > div {
+                max-width: calc(100vw - 10px);
+              }
               :host > div > div {
                 max-width: 80vw;
               }
               :host > div > div h3, :host > div > div p, :host > div > div a {
                 font-size: var(--font-size-mobile, var(--font-size));
-                line-height: var(--line-height-mobile, var(--line-height, normal));
+                line-height: 1.3em;
               }
             }
           </style>

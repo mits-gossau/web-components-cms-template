@@ -311,6 +311,9 @@ export default class Form extends Shadow() {
         position: relative;
         cursor: pointer; }
         [aria-label][data-balloon-pos]:after {
+          /* custom */
+          max-width: 100vw;
+          /* /custom */
           opacity: 0;
           pointer-events: none;
           transition: all 0.18s ease-out 0.18s;
@@ -341,7 +344,8 @@ export default class Form extends Shadow() {
           position: absolute;
           z-index: 10; }
         [aria-label][data-balloon-pos]:hover:before, [aria-label][data-balloon-pos]:hover:after, [aria-label][data-balloon-pos][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-visible]:after, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:before, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:after {
-          opacity: 1;
+          /* custom */
+          opacity: var(--balloon-opacity, 0.8);
           pointer-events: none; }
         [aria-label][data-balloon-pos].font-awesome:after {
           font-family: FontAwesome, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }
@@ -369,7 +373,8 @@ export default class Form extends Shadow() {
         [aria-label][data-balloon-pos][data-balloon-pos*="-left"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos*="-left"][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-pos*="-right"]:hover:before, [aria-label][data-balloon-pos][data-balloon-pos*="-right"][data-balloon-visible]:before {
           transform: translate(0, 0); }
         [aria-label][data-balloon-pos][data-balloon-pos^="up"]:before, [aria-label][data-balloon-pos][data-balloon-pos^="up"]:after {
-          bottom: 100%;
+          /* custom */
+          bottom: var(--balloon-bottom, 0%);
           transform-origin: top;
           transform: translate(0, var(--balloon-move)); }
         [aria-label][data-balloon-pos][data-balloon-pos^="up"]:after {
@@ -378,7 +383,7 @@ export default class Form extends Shadow() {
           left: 50%;
           transform: translate(-50%, var(--balloon-move)); }
         [aria-label][data-balloon-pos][data-balloon-pos^="down"]:before, [aria-label][data-balloon-pos][data-balloon-pos^="down"]:after {
-          top: 100%;
+          top: var(--balloon-top, 0%);
           transform: translate(0, calc(var(--balloon-move) * -1)); }
         [aria-label][data-balloon-pos][data-balloon-pos^="down"]:after {
           margin-top: 10px; }
@@ -460,7 +465,7 @@ export default class Form extends Shadow() {
               } else {
                 label.setAttribute('data-balloon-visible', 'true')
                 label.setAttribute('aria-label', input.getAttribute('validation-message'))
-                label.setAttribute('data-balloon-pos', 'up')
+                label.setAttribute('data-balloon-pos', input.hasAttribute('reverse') ? 'down' : 'up')
               }
             }
             this.validateFunctions.push(changeListener)
