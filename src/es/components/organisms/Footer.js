@@ -268,6 +268,9 @@ export default class Footer extends Shadow() {
         :host > footer ul > li p {
           margin: var(--p-margin, 0);
         }
+        :host > footer ul > li:last-of-type {
+          padding: var(--li-last-of-type-padding, 10px 0 0);
+        }
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
           .language-switcher a-link {
             --display-mobile: inline;
