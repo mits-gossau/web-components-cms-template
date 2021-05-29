@@ -92,13 +92,15 @@ export default class Footer extends Shadow() {
         grid-area: footer;
         z-index: var(--z-index, 100);
       }
-      ${this.getAttribute('homepage') === 'true' ? /* css */`
-        :host {
-          position: fixed;
-          bottom: 0;
-          right: 0;
-        }
-      ` : ''}
+      ${this.getAttribute('homepage') === 'true'
+        ? /* css */`
+          :host {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+          }
+        `
+        : ''}
       :host > * {
         width: var(--content-width, 80%);
         margin: var(--content-spacing, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
