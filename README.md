@@ -2,12 +2,8 @@
 A complete, ultra flexible web components template for any cms rendering engine
 
 # Releases
-powered by Umbraco CMS: [Club Concerts Live](https://club.migros-kulturprozent-classics.ch/en/)
-
-## TODO:
-
-1. Newsletter (lg)
-1. Search Component (jj)
+powered by Umbraco CMS Release 31.05.2021: [Classics Concerts](http://www.migros-kulturprozent-classics.ch/)
+powered by Umbraco CMS: [Club Concerts Live](https://www.club-konzerte.ch/)
 
 ## Tide up - TODO:
 
