@@ -69,7 +69,7 @@ export default class Details extends Mutation() {
       if (this.details && event.target && event.target.classList.contains('close')) {
         event.preventDefault()
         this.details.removeAttribute('open')
-        this.details.scrollIntoView({ behavior: 'smooth' })
+        if (this.summary.getBoundingClientRect().top < 0) this.details.scrollIntoView({ behavior: 'smooth' })
       }
     }
   }
