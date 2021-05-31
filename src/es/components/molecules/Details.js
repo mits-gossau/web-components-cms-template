@@ -48,6 +48,7 @@ export default class Details extends Mutation() {
   constructor (options = {}, ...args) {
     super(Object.assign(options, { mutationObserverInit: { attributes: true, attributeFilter: ['open'] } }), ...args)
 
+    this.hasRendered = false
     // overwrite default Mutation observer parent function created at super
     this.mutationObserveStart = () => {
       // @ts-ignore
@@ -68,6 +69,7 @@ export default class Details extends Mutation() {
       if (this.details && event.target && event.target.classList.contains('close')) {
         event.preventDefault()
         this.details.removeAttribute('open')
+        this.details.scrollIntoView({ behavior: 'smooth' })
       }
     }
   }
@@ -75,6 +77,7 @@ export default class Details extends Mutation() {
   connectedCallback () {
     super.connectedCallback()
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
     document.body.addEventListener(this.openEventName, this.openEventListener)
     this.root.addEventListener('click', this.clickEventListener)
   }
@@ -110,6 +113,15 @@ export default class Details extends Mutation() {
   }
 
   /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+  shouldComponentRenderHTML () {
+    return !this.hasRendered
+  }
+
+  /**
    * renders the m-Details css
    *
    * @return {void}
@@ -125,7 +137,7 @@ export default class Details extends Mutation() {
         display: var(--marker-display, none);
         content: var(--marker-content, "");
       }
-      :host details summary {
+      :host details summary > div {
         cursor: var(--summary-cursor, pointer);
         text-decoration: var(--summary-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
         text-underline-offset: var(--a-text-underline-offset, unset);
@@ -136,38 +148,18 @@ export default class Details extends Mutation() {
         font-family: var(--summary-font-family, var(--font-family, var(--font-family-bold)));
         font-weight: var(--summary-font-weight, var(--font-weight, normal));
       }
-      :host details summary:hover, :host details summary:active, :host details summary:focus {
+      :host details summary > div:hover, :host details summary > div:active, :host details summary > div:focus {
         text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
-      ${document.documentElement.classList.contains('ios')
-        ? /* css */`
-          /* safari has a bug which can not display the text-decoration: underline;, this is a workaround for mobile. NOTE: :host-context(.ios) also doesn't work on Safari :-(  */
-          :host details summary {
-            text-decoration: none;
-            border-bottom: 1px solid var(--color, black);
-            width: fit-content;
-            margin: 0 auto;
-          }
-          :host details[open] summary {
-            text-decoration: unset;
-            border-bottom: 0;
-            width: auto;
-            margin: var(--summary-margin, 0);
-          }
-          :host details summary:hover, :host details summary:active, :host details summary:focus {
-            border-bottom-color: transparent;
-          }
-        `
-      : ''}
-      :host details[open] summary {
+      :host details[open] summary > div {
         text-decoration: var(--summary-text-decoration-open, none);
         font-family: var(--summary-font-family, var(--font-family-bold, var(--font-family)));
       }
-      :host details summary > * {
+      :host details summary > div > * {
         margin: var(--summary-child-margin, 0);
         padding: var(--summary-child-padding, 0);
       }
-      :host details[open] summary > * {
+      :host details[open] summary > div > * {
         margin: var(--summary-child-margin-open, 0);
         padding: var(--summary-child-padding-open, 0);
       }
@@ -198,11 +190,30 @@ export default class Details extends Mutation() {
     `
   }
 
+  /**
+   * renders the html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    this.hasRendered = true
+    Array.from(this.summary.childNodes).forEach(node => this.divSummary.appendChild(node))
+    this.summary.appendChild(this.divSummary)
+  }
+
   get openEventName () {
     return this.getAttribute('open-event-name') || 'open'
   }
 
+  get summary () {
+    return this.root.querySelector('summary')
+  }
+
   get details () {
     return this.root.querySelector('details')
+  }
+
+  get divSummary () {
+    return this._divSummary || (this._divSummary = document.createElement('div'))
   }
 }
