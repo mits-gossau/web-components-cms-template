@@ -34,5 +34,9 @@ html {
   --navigation-color: var(--color-secondary);
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
+  --picture-img-max-height: 80vh;
+  --picture-margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+  --picture-width-mobile: 100%;
+  --picture-width: var(--content-width, 80%);
   --stage-arrow-color: var(--color-secondary);
 }
