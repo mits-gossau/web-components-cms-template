@@ -184,6 +184,7 @@ export default class Body extends Shadow() {
       }
       :host > main .bold, :host > main strong {
         font-family: var(--strong-font-family, var(--font-family-bold));
+        font-weight: var(--strong-font-weight, var(--font-weight, normal));
         text-transform: var(--strong-text-transform, none);
       }
       .orchestra a {
