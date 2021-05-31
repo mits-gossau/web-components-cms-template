@@ -137,6 +137,9 @@ export default class Details extends Mutation() {
         display: var(--marker-display, none);
         content: var(--marker-content, "");
       }
+      :host details summary, :host details summary:focus {
+        outline: none;
+      }
       :host details summary > div {
         cursor: var(--summary-cursor, pointer);
         text-decoration: var(--summary-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
