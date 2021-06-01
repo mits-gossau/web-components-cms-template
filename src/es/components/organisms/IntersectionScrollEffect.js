@@ -138,14 +138,16 @@ export default class IntersectionScrollEffect extends Intersection() {
     const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
     const isDesktop = self.matchMedia(`(min-width: ${breakpoint}`).matches
     this.cachedMedia = isDesktop ? 'desktop' : 'mobile'
-    return (this.cachedMedia === media)
+    return this.cachedMedia === media
   }
 
   connectedCallback () {
     if (this.hasRequiredAttributes) {
-      if (this.checkMedia()) super.connectedCallback() // this.intersectionObserveStart()
+      if (this.checkMedia()) {
+        super.connectedCallback() // this.intersectionObserveStart()
+        this.scrollListener() // write first calculation
+      }
       self.addEventListener('resize', this.resizeListener)
-      this.scrollListener() // write first calculation
     }
   }
 
@@ -189,9 +191,11 @@ export default class IntersectionScrollEffect extends Intersection() {
     if (entries && entries[0]) {
       if (entries[0].isIntersecting) {
         if (this.isFirstIntersection) {
+          // trigger
           this.scrollListener()
           setTimeout(() => this.scrollListener(), 100)
           self.addEventListener('load', event => this.scrollListener(), { once: true }) // incase the page is not fully loaded on intersection
+          this.addEventListener(this.getAttribute('picture-load') || 'picture-load', event => this.scrollListener(), { once: true }) // adjust when picture is loaded
           this.isFirstIntersection = false
         }
         self.addEventListener('scroll', this.scrollListener)
