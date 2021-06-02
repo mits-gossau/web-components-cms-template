@@ -76,11 +76,11 @@ html {
   --footer-content-width-not-web-component: var(--content-width-not-web-component);
   --footer-content-width: 100%;
   --footer-engagement-logo-flex-flow: column-reverse;
+  --footer-engagement-logo-justify-content: flex-start;
   --footer-engagement-logo-margin: 0;
   --footer-engagement-logo-max-height-mobile: 40px;
   --footer-engagement-logo-max-height: 40px;
   --footer-engagement-logo-padding: 24px 0 0;
-  --footer-engagement-logo-justify-content: flex-start;
   --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
   --footer-engagement-logo-text-a-color: #009fe3;
   --footer-engagement-logo-text-color: #009fe3;
@@ -113,8 +113,8 @@ html {
   --footer-logo-padding: 0;
   --footer-min-height-mobile: 50px;
   --footer-min-height: 50px;
-  --footer-p-margin: -3px 0px;
   --footer-p-line-height: normal;
+  --footer-p-margin: -3px 0px;
   --footer-padding-mobile: 3vh 2vw;
   --footer-padding: calc(2.4vw - 15px) 10px 2.4vw 10px;
   --footer-text-align: center;
@@ -167,6 +167,7 @@ html {
   --h6-text-align: var(--h1-text-align);
   --h6-text-transform: uppercase;
   --header-a-font-size-open: 0;
+  --header-a-font-size: var(--font-size-mobile);
   --header-a-line-height: 1.3em;
   --header-a-menu-icon-background-color: var(--header-color);
   --header-a-menu-icon-height-open-mobile: 0;
