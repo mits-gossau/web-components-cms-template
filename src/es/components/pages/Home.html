@@ -8,6 +8,7 @@
   <link href=../../../css/variablesM4music.css rel=stylesheet>
   <link href=../../../css/misc.css rel=stylesheet>
   <link href=../../../css/fonts.css rel=stylesheet>
+  <script type="text/javascript" src="/wc-config.js?baseUrl=/src/es/components/&directories=[{'selector': 'a-', 'url': 'baaahhh/atoms/'}]"></script>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
   <title>m4music & umbraco</title>
@@ -248,34 +249,5 @@
   </msrc-cookie-banner>
   <c-tag-manager id=UA-38442413-12></c-tag-manager>
   <o-modal transition=500><span id=close style="font-size: 45px;color:red;">&cross;</span><span style="color:white;">If event.detail has no child property holding HTMLElement as value, you will see this</span></o-modal>
-  <script rel=preload type=module>
-    self.Environment = {
-      mobileBreakpoint: '600px'
-    }
-    /**
-    * First level controllers and organisms are loaded and defined here (loadChildComponents)
-    */
-    Promise.all([
-    // Controllers
-    import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
-    import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
-    import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
-    import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
-    import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
-    import('../../../es/components/organisms/Stage.js').then(module => ['o-stage', module.default]),
-    import('../../../es/components/organisms/HighlightList.js').then(module => ['o-highlight-list', module.default]),
-    import('../../../es/components/molecules/Highlight.js').then(module => ['m-highlight', module.default]),
-    import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default]),
-    import('../../../es/components/molecules/Flyer.js').then(module => ['m-flyer', module.default]),
-    import('../../../es/components/msrc/CookieBanner.js').then(module => ['msrc-cookie-banner', module.default]),
-    import('../../../es/components/controllers/TagManager.js').then(module => ['c-tag-manager', module.default]),
-    import('../../../es/components/organisms/Modal.js').then(module => ['o-modal', module.default]),
-    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
-    ]).then(elements => elements.forEach(element => {
-      // don't define already existing customElements
-      if (element && !customElements.get(element[0])) customElements.define(...element)
-    }))
-  </script>
 </body>
 </html>
