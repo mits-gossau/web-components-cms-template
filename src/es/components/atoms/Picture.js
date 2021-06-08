@@ -116,6 +116,7 @@ export default class Picture extends Shadow() {
         transition: var(--transition, none);
         margin: var(--margin, 0);
         transform: var(--transform, none);
+        text-align: var(--text-align, center);
       }
       :host picture:hover {
         filter: var(--filter-hover, var(--filter, none));
@@ -189,17 +190,20 @@ export default class Picture extends Shadow() {
       console.warn(`a-picture defaultSource ${this.alt === '' ? '& alt ' : ''}is missing`)
     }
     if (this.hasAttribute('picture-load')) {
-      this.img.addEventListener('load', event => this.dispatchEvent(new CustomEvent(this.getAttribute('picture-load') || 'picture-load', {
-        detail: {
-          origEvent: event,
-          child: this,
-          img: this.img,
-          picture: this.picture
-        },
-        bubbles: true,
-        cancelable: true,
-        composed: true
-      })))
+      this.img.addEventListener('load', event => {
+        this.setAttribute('loaded', 'true')
+        this.dispatchEvent(new CustomEvent(this.getAttribute('picture-load') || 'picture-load', {
+          detail: {
+            origEvent: event,
+            child: this,
+            img: this.img,
+            picture: this.picture
+          },
+          bubbles: true,
+          cancelable: true,
+          composed: true
+        }))
+      })
       this.img.setAttribute('loading', 'eager') // must load eager, not that the loading event doesn't trigger emit picture-load
     } else {
       this.img.setAttribute('loading', this.getAttribute('loading') || 'lazy')

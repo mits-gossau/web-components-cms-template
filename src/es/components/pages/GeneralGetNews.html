@@ -10,6 +10,7 @@
   <link href=../../../css/fonts.css rel=stylesheet>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <script type="text/javascript" src="../../../../wc-config.js"></script>
   <title>m4music & umbraco</title>
 </head>
 <body>
@@ -154,23 +155,5 @@
       </ul>
     </o-footer>
   </p-general>
-  <script rel=preload type=module>
-    /**
-    * First level controllers and organisms are loaded and defined here (loadChildComponents)
-    */
-    Promise.all([
-    // Controllers
-    import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
-    import('../../../es/components/organisms/Header.js').then(module => ['o-header', module.default]),
-    import('../../../es/components/atoms/Logo.js').then(module => ['a-logo', module.default]),
-    import('../../../es/components/molecules/Navigation.js').then(module => ['m-navigation', module.default]),
-    import('../../../es/components/organisms/BodyGetNews.js').then(module => ['o-body-get-news', module.default]),
-    import('../../../es/components/organisms/Footer.js').then(module => ['o-footer', module.default])
-    ]).then(elements => elements.forEach(element => {
-      // don't define already existing customElements
-      if (element && !customElements.get(element[0])) customElements.define(...element)
-    }))
-  </script>
 </body>
 </html>

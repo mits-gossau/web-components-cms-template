@@ -200,7 +200,7 @@ export default class Highlight extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    Array.from(this.root.children).forEach(node => {
+    Array.from(this.root.children).filter(child => child !== this.figure && child !== this.section).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       if (this.belongsToFigure(node)) {
         this.figure.appendChild(node)
