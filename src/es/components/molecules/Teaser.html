@@ -6,11 +6,12 @@
   <link href=../../../../favicon.ico rel="shortcut icon" type=image/x-icon>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <script type="text/javascript" src="../../../../wc-config.js"></script>
   <title>teaser</title>
 </head>
 <body>
   <p-general>
-    <o-general>
+    <div>
       <style>
         main {
           width: 80%;
@@ -395,25 +396,7 @@
             </figure>
           </m-wide-teaser>
       </main> 
-    </o-general>
+    </div>
   </p-general>
-  
-  <script rel=preload type=module>
-    /**
-    * First level controllers and organisms are loaded and defined here (loadChildComponents)
-    */
-    Promise.all([
-      // Controllers
-      import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-      import('../../../es/components/molecules/Teaser.js').then(module => ['m-teaser', module.default]),
-      import('../../../es/components/molecules/WideTeaser.js').then(module => ['m-wide-teaser', module.default]),
-      import('../../../es/components/organisms/TeaserWrapper.js').then(module => ['o-teaser-wrapper', module.default]),
-      import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
-      import('../../../es/components/atoms/Arrow.js').then(module => ['a-arrow', module.default])
-    ]).then(elements => elements.forEach(element => {
-      // don't define already existing customElements
-      if (element && !customElements.get(element[0])) customElements.define(...element)
-    }))
-  </script>
 </body>
 </html>

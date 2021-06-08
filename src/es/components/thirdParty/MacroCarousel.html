@@ -9,6 +9,7 @@
   <link href=../../../css/fonts.css rel=stylesheet>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <script type="text/javascript" src="../../../../wc-config.js"></script>
   <title>teaser</title>
 </head>
 <body>
@@ -992,23 +993,5 @@
       </main> 
     </o-body>
   </p-general>
-  
-  <script rel=preload type=module>
-    /**
-    * First level controllers and organisms are loaded and defined here (loadChildComponents)
-    */
-    Promise.all([
-    // Controllers
-    import('../../../es/components/pages/General.js').then(module => ['p-general', module.default]),
-    import('../../../es/components/organisms/Body.js').then(module => ['o-body', module.default]),
-    import('../../../es/components/prototypes/Shadow.js').then(module => null), // preload the dependency
-    import('../../../es/components/atoms/Picture.js').then(module => ['a-picture', module.default]),
-    import('../../../es/components/thirdParty/MacroCarousel.js').then(module => ['third-party-macro-carousel', module.default]),
-    import('../../../es/components/atoms/Video.js').then(module => ['a-video', module.default]),
-    ]).then(elements => elements.forEach(element => {
-      // don't define already existing customElements
-      if (element && !customElements.get(element[0])) customElements.define(...element)
-    }))
-  </script>
 </body>
 </html>

@@ -20,7 +20,7 @@
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
       "url": "http://localhost:4200/src/es/components/pages/ClubConcerts.html",
       "referenceUrl": "",
-      "readyEvent": "test-ready",
+      "readyEvent": "wc-config-load",
       "readySelector": "",
       "delay": 1000,
       "hideSelectors": [],

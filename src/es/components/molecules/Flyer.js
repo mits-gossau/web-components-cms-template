@@ -81,7 +81,11 @@ export default class Flyer extends Intersection() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.hasAttribute('picture-load')) {
-      this.addEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener, { once: true })
+      if (this.root.querySelectorAll(`[${this.getAttribute('picture-load') || 'picture-load'}][loaded=true]`).length) {
+        this.pictureLoadListener()
+      } else {
+        this.addEventListener(this.getAttribute('picture-load') || 'picture-load', this.pictureLoadListener, { once: true })
+      }
     } else if (this.getAttribute('timer')) {
       this.triggerTimeout()
     } else {
