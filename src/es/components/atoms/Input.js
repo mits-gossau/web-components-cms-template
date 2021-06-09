@@ -174,6 +174,9 @@ export default class Input extends Shadow() {
         font-family: var(--label-font-family-normal, var(--label-font-family, var(--font-family)));
         text-transform: var(--label-text-transform-normal, var(--label-text-transform, var(--text-transform)));
       }
+      :host > input[type=radio], :host > input[type=checkbox] {
+        width: auto; /* safari only swallows auto otherwise it will hang at left edge */
+      }
       :host > input[type=radio] {
         height: var(--input-radio-height, var(--input-height, var(--height, auto)));
         padding: var(--input-radio-padding, var(--input-padding, var(--padding)));
