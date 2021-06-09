@@ -72,7 +72,7 @@
   }
   // finding all not defined web component nodes in the dom and forwarding their tagNames to the load function
   self.addEventListener('load', event => {
-    const imports = [];
+    const imports = []
     Array.from(document.querySelectorAll(`${src.searchParams.get('querySelector') || ''}:not(:defined)`)).reduce((nodes, currentNode) => {
       const index = nodes.findIndex(node => node.tagName === currentNode.tagName)
       if (index !== -1) {
