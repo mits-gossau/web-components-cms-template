@@ -9,11 +9,31 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  {string} id
+ *  {has} [wc-config-load=n.a.] trigger the render
+ *  {number} [timeout=n.a.] timeout to trigger the render
  * }
  */
 export default class TagManager extends Shadow() {
+  constructor (...args) {
+    super(...args) // disabling shadow-DOM to have msrc styles flow into the node
+
+    this.wcConfigLoadListener = event => {
+      if (this.getAttribute('timeout') && this.getAttribute('timeout') !== null) {
+        setTimeout(() => {
+          if (this.shouldComponentRenderHTML()) this.render()
+        }, Number(this.getAttribute('timeout')))
+      } else if (this.shouldComponentRenderHTML()) this.render()
+    }
+  }
+
   connectedCallback () {
-    if (this.shouldComponentRenderHTML()) this.render()
+    if (this.hasAttribute('wc-config-load')) {
+      document.body.addEventListener(this.getAttribute('wc-config-load') || 'wc-config-load', this.wcConfigLoadListener, { once: true })
+    } else if (this.getAttribute('timeout') && this.getAttribute('timeout') !== null) {
+      setTimeout(() => {
+        if (this.shouldComponentRenderHTML()) this.render()
+      }, Number(this.getAttribute('timeout')))
+    } else if (this.shouldComponentRenderHTML()) this.render()
   }
 
   /**
