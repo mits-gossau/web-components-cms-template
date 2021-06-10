@@ -7,7 +7,6 @@
 html {
   --a-text-decoration: none;
   --background-color: black;
-  --html-background-color: black;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color-secondary);
   --color-secondary: #FFED00;
@@ -105,6 +104,7 @@ html {
   --highlight-list-content-width: 80%;
   --highlight-list-flex-direction: column;
   --hr-color: transparent;
+  --html-background-color: var(--background-color);
   --img-max-width: 65%;
   --line-height-mobile: 1.4rem;
   --margin: 0;
