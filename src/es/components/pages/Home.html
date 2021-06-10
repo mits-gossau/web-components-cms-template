@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href=../../../css/variables.css rel=stylesheet>
+  <link href=../../../css/misc.css rel=stylesheet>
+  <link href=../../../css/fonts.css rel=stylesheet>
+  <script type="text/javascript" src="../../../../wc-config.js"></script>
+  <!-- NOTE: Remove line Debugging.js below for none localhost -->
+  <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+  <title>Mindustry</title>
+</head>
+<body>
+  <p-general>
+    <o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-">
+      <m-navigation hover="false" namespace="navigation-" mobile-breakpoint="0vw" no-scroll="nav-open">
+        <ul>
+          <li>
+            <a href="/about/" target="">About</a>
+          </li>
+          <li>
+            <a href="/forderung/" target="">Förderung</a>
+          </li>
+          <li>
+            <a href="/kosmos/" target="">Kosmos</a>
+          </li>
+          <li>
+            <a href="/studios/" target="">Studios</a>
+          </li>
+          <li>
+            <a href="/news/" target="">News</a>
+            <ul>
+              <li>
+                <a href="/news/neue-mindustry-home-page/" target="">Neue Mindustry Home Page</a>
+              </li>
+              <li>
+                <a href="/news/noch-eine-neue-news/" target="">Noch eine neue News</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/netzwerk/" target="">Netzwerk</a>
+          </li>
+        </ul>
+      </m-navigation>
+    </o-header>
+    <o-body>
+      <div>
+        <a-picture namespace="picture-" defaultsource="../../../img/sparx-test.png" alt="Mindustry Test">
+          <style>:host{--picture-width:min(,var(--content-width,100%));--picture-width-mobile:min(,var(--content-width-mobile,100%))}</style>
+        </a-picture>
+      </div>
+      <mindustry-a-marquee>
+        <div>
+          <span>
+            <a href="/news/noch-eine-neue-news/">   Natürlich können auch mehrere solche PUSH-News erfasst werden!</a>
+          </span> 
+          <span>
+            <a href="/news/neue-mindustry-home-page/">Neue Mindustry Home Page (soll der Page Title auch in die News-Leiste??)   Endlich ist die neue mindustry-Seite Online - Juhui!!</a>
+          </span>
+        </div>
+      </mindustry-a-marquee>
+    </o-body>
+    <o-footer namespace="footer-">
+      <div>
+        <a-logo class="hide-mobile" namespace="footer-engagement-logo-" src="../../../img/logo_fge_mk_rgb_neg_300dpi_de.png" href="https://www.migros-engagement.ch/engagement" target="_blank" lang="de">
+          <p>mindustry ist ein Projekt des Migros-Kulturprozent, Teil des gesellschaftlichen Engagements der Migros-Gruppe:  <br> <strong> <a style="color:#f60;font-size:var(--footer-engagement-logo-text-color)" href="https://www.migros-engagement.ch" target="_blank">https://www.migros-engagement.ch</a> </strong>
+          </p>
+        </a-logo>
+      </div>
+      <div class="footer-ul-wrapper">
+        <ul>
+          <li>
+            <p>© 2021</p>
+          </li>
+          <li>
+            <p class="language-switcher">
+              <a href="http://testadmin.mindustry-space.ch/"> EN </a> <a href="http://testadmin.mindustry-space.ch/"> FR </a>
+            </p>
+          </li>
+          <br>
+          <li>
+            <p></p>
+          </li>
+        </ul>
+      </div>
+      <div class="logo-container">
+        <a-logo class="hide-desktop" namespace="footer-engagement-logo-" src="../../../img/logo_fge_mk_rgb_neg_300dpi_de.png" href="https://www.migros-engagement.ch/engagement" target="_blank" lang="de">
+          <p>mindustry ist ein Projekt des Migros-Kulturprozent, Teil des gesellschaftlichen Engagements der Migros-Gruppe:  <br> <strong> <a class="test" href="https://www.migros-engagement.ch" target="_blank">https://www.migros-engagement.ch</a> </strong> SO EIN ARSCH SO EIN ARSCH</p>
+        </a-logo>
+      </div>
+    </o-footer>
+  </p-general>
+  <script rel=preload type=module>
+    self.Environment = {
+      mobileBreakpoint: '600px'
+    }
+  </script>
+  </body>
+</html>

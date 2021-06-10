@@ -1,0 +1,16 @@
+{
+  "name": "web-components-cms-template-mindustry",
+  "version": "0.0.1",
+  "description": "Using web-components-cms-template Repository",
+  "main": "./index.html",
+  "scripts": {
+    "fix": "standard --fix",
+    "serve": "live-server --port=4200 --host=localhost"
+  },
+  "author": "weedshaker@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "standard": "*"
+  }
+}
