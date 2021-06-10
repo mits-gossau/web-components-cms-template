@@ -1,0 +1,3 @@
+[submodule "src/es/components/web-components-cms-template"]
+	path = src/es/components/web-components-cms-template
+	url = https://github.com/mits-gossau/web-components-cms-template.git
