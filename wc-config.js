@@ -18,6 +18,7 @@
 //  6) {boolean}[urlAttributeLastTrumpsAll=true] set to false if it is desired that the first node with the url attribute has the final say about the files location
 //  7) {string, false}[wc-config-load='wc-config-load'] the name under which the application will Promise.all.finally execute the console.info and emit the CustomEvent(Name) at document.body, set to false if Event and Log shall be suppressed
 //  8) {boolean}[debug=true] assumes we are on debug and does post the result on console.info. Set to 'false' to suppress the console.info
+//  9) {boolean}[resolveImmediately=false] if true, customElements.define all elements immediately after import promise resolved. This can lead to the blitz/flashing when web components already connect while others are not. shadow doms then possibly prevent css rules like ":not(:defined) {display: none;}" to be effective
 (function (self, document, baseUrl, directories) {
   /**
    * Directory sets selector and url by which a reference between tagName/selector and url/file can be done (customElements.define(name aka. tagName, constructor))
@@ -29,7 +30,11 @@
       selector: string, // finds first most specific/longest selector (selector.length) matching the node.tagName
       url: string, // url pointing to the javascript file or to a directory which contains javascript files (for directories the selector should end with a trailing hyphen)
     }} Directory
-  */
+   */
+  /**
+   * @typedef {Promise<[string, CustomElementConstructor] | string>} ImportEl
+   */
+  /** @type {URL} */
   // @ts-ignore
   const src = new URL(document.currentScript.src)
   /**
@@ -38,13 +43,40 @@
    */
   const urlAttributeName = src.searchParams.get('urlAttributeName') || 'url'
   /**
+   * the event and console.info name used to signal when imports are done
+   * @type {string}
+   */
+  const wcConfigLoad = src.searchParams.get('wc-config-load') || 'wc-config-load'
+  /**
    * the baseUrl should point to the components folder and is only used if the url is relative / url.charAt(0) is not "." nor "/"
    * @type {string}
    */
   baseUrl = src.searchParams.get('baseUrl') || baseUrl
   /** @type {Directory[]} */
   directories = JSON.parse((src.searchParams.get('directories') || '').replace(/'/g, '"') || '[]').concat(src.searchParams.get('useDefaultDirectories') !== 'false' ? directories : []).sort((a, b) => b.selector.length - a.selector.length) // list must be sorted by longest and most specific selector first (selector string length descending)
-  // loading and defining the web components by its tagNames
+  /**
+   * loading and defining the web components by its tagNames
+   *
+   * @param {ImportEl[]} imports
+   * @returns {void}
+   */
+  const resolve = imports => {
+    imports.forEach((importEl, i) => {
+      importEl.then(element => {
+        if (Array.isArray(element)) {
+          if (customElements.get(element[0])) return imports.splice(i, 1, Promise.resolve(`${element[0]} is already defined @resolve`))
+          customElements.define(...element)
+        }
+      })
+    })
+  }
+  /**
+   * loading the web components by its tagNames
+   *
+   * @param {string} tagName
+   * @param {string} url
+   * @returns {ImportEl}
+   */
   const load = (tagName, url) => {
     // baseUrl is only used if url is relative / does not start with "." nor "/"
     if (!customElements.get(tagName)) {
@@ -56,23 +88,24 @@
        */
       url = url || directory.url
       if (url) {
-        // if the url points to a javascript file the fileName will be an empty string '' else it will replace the directory.selector from tagName, if possible, then it will convert hyphen separated tagNames to camel case example: playlist-item => PlaylistItem
-        const fileName = /.[m]{0,1}js/.test(url) ? '' : `${(tagName.replace(directory.selector, '') || tagName).charAt(0).toUpperCase()}${(tagName.replace(directory.selector, '') || tagName).slice(1).replaceAll(/-([a-z]{1})/g, (match, p1) => p1.toUpperCase())}.js`
-        return import(`${/[./]{1}/.test(url.charAt(0)) ? '' : baseUrl}${url}${fileName}`).then(module => {
-          if (!customElements.get(tagName)) {
-            customElements.define(tagName, module.default)
-            return [tagName, module.default]
-          }
-          return `${tagName} is already defined`
-        })
+        /**
+         * if the url points to a javascript file the fileName will be an empty string '' else it will replace the directory.selector from tagName, if possible, then it will convert hyphen separated tagNames to camel case example: playlist-item => PlaylistItem
+         * @type {string}
+         */
+        const fileName = /.[m]{0,1}js/.test(url) ? '' : `${(tagName.replace(directory.selector, '') || tagName).charAt(0).toUpperCase()}${(tagName.replace(directory.selector, '') || tagName).slice(1).replace(/-([a-z]{1})/g, (match, p1) => p1.toUpperCase())}.js`
+        /** @type {ImportEl} */
+        const importEl = import(`${/[./]{1}/.test(url.charAt(0)) ? '' : baseUrl}${url}${fileName}`).then(module => /** @returns {[string, CustomElementConstructor]} */ [tagName, module.default])
+        if (src.searchParams.get('resolveImmediately') === 'true') resolve([importEl])
+        return importEl
       }
-      return `${tagName} url has not been found within the directories nor is an attribute url aka. ${urlAttributeName} present on node`
+      return Promise.resolve(`${tagName} url has not been found within the directories nor is an attribute ${urlAttributeName}, used as path to the web component, present on node`)
     }
-    return `${tagName} is already defined`
+    return Promise.resolve(`${tagName} is already defined @load`)
   }
-  // finding all not defined web component nodes in the dom and forwarding their tagNames to the load function
   self.addEventListener('load', event => {
+    /** @type {ImportEl[]} */
     const imports = []
+    // finding all not defined web component nodes in the dom and forwarding their tagNames to the load function
     Array.from(document.querySelectorAll(`${src.searchParams.get('querySelector') || ''}:not(:defined)`)).reduce((nodes, currentNode) => {
       const index = nodes.findIndex(node => node.tagName === currentNode.tagName)
       if (index !== -1) {
@@ -81,9 +114,15 @@
       }
       return [...nodes, currentNode]
     }, []).forEach(node => imports.push(load(node.tagName.toLowerCase(), node.getAttribute(urlAttributeName) || '')))
-    Promise.all(imports).finally(() => {
+    // after all the imports have started we can resolve and do customElements.define
+    Promise.all(imports).then(elements => {
+      if (src.searchParams.get('resolveImmediately') !== 'true') resolve(imports)
+    }).catch(error => {
+      console.error(wcConfigLoad, error)
+      if (src.searchParams.get('resolveImmediately') !== 'true') resolve(imports)
+    }).finally(() => {
+      // finally is not properly supported but we resolve on success as well as on error. Important is to wait for all, to avoid UI blitz/flashes
       if (src.searchParams.get('wc-config-load') !== 'false') {
-        const wcConfigLoad = src.searchParams.get('wc-config-load') || 'wc-config-load'
         if (src.searchParams.get('debug') !== 'false') console.info(wcConfigLoad, imports)
         document.body.dispatchEvent(new CustomEvent(wcConfigLoad,
           {
