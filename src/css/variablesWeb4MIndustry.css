@@ -6,9 +6,9 @@
  */
 html {
   --color-hover:#ffffff;
-  --color-secondary:#d9adff;
-  --color:#d9adff;
-  --background-color:#272727;
+  --color-secondary:#b70e0c;
+  --color: #646464;
+  --background-color: #ffffff;
   --html-background-color: var(--background-color);
   --font-family:'Wendy One',sans-serif;
   --font-size:1.3rem;
