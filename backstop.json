@@ -33,6 +33,25 @@
       "expect": 0,
       "misMatchThreshold" : 0.1,
       "requireSameDimensions": true
+    },
+    {
+      "label": "migros-kulturprozent-classics.ch newsletter",
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "url": "http://localhost:4200/src/es/components/pages/Newsletter.html",
+      "referenceUrl": "",
+      "readyEvent": "wc-config-load",
+      "readySelector": "",
+      "delay": 1000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": [],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold" : 0.1,
+      "requireSameDimensions": true
     }
   ],
   "paths": {

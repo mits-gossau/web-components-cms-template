@@ -13,8 +13,8 @@
   "author": "weedshaker@gmail.com, https://github.com/joeljxse",
   "license": "MIT",
   "devDependencies": {
-    "backstopjs": "^5.3.0",
-    "live-server": "^1.2.1",
+    "backstopjs": "*",
+    "live-server": "*",
     "standard": "*"
   },
   "standard": {
