@@ -46,8 +46,6 @@ export default class IntersectionScrollEffect extends Intersection() {
     /** @type {number} */
     this.maxDistanceFromCenter = 0
     /** @type {boolean} */
-    this.isFirstIntersection = true
-    /** @type {boolean} */
     this.hasRequiredAttributes = this.getAttribute('css-property') && this.getAttribute('effect') && this.getAttribute('max-value')
     /** @type {boolean | null} for saving the media type */
     this.cachedMedia = null
@@ -118,7 +116,6 @@ export default class IntersectionScrollEffect extends Intersection() {
           this.intersectionObserveStop()
           self.removeEventListener('scroll', this.scrollListener)
           this.css = '' // resets css
-          this.isFirstIntersection = true
         }
       }
     }
@@ -146,6 +143,8 @@ export default class IntersectionScrollEffect extends Intersection() {
       if (this.checkMedia()) {
         super.connectedCallback() // this.intersectionObserveStart()
         this.scrollListener() // write first calculation
+        self.addEventListener('load', event => this.scrollListener(), { once: true }) // incase the page is not fully loaded on intersection
+        this.addEventListener(this.getAttribute('picture-load') || 'picture-load', event => this.scrollListener(), { once: true }) // adjust when picture is loaded
       }
       self.addEventListener('resize', this.resizeListener)
     }
@@ -157,7 +156,6 @@ export default class IntersectionScrollEffect extends Intersection() {
         super.disconnectedCallback() // this.intersectionObserveStop()
         self.removeEventListener('scroll', this.scrollListener)
         this.css = '' // resets css
-        this.isFirstIntersection = true
       }
       self.removeEventListener('resize', this.resizeListener)
     }
@@ -189,15 +187,8 @@ export default class IntersectionScrollEffect extends Intersection() {
       */
   intersectionCallback (entries, observer) {
     if (entries && entries[0]) {
+      this.scrollListener()
       if (entries[0].isIntersecting) {
-        if (this.isFirstIntersection) {
-          // trigger
-          this.scrollListener()
-          setTimeout(() => this.scrollListener(), 100)
-          self.addEventListener('load', event => this.scrollListener(), { once: true }) // incase the page is not fully loaded on intersection
-          this.addEventListener(this.getAttribute('picture-load') || 'picture-load', event => this.scrollListener(), { once: true }) // adjust when picture is loaded
-          this.isFirstIntersection = false
-        }
         self.addEventListener('scroll', this.scrollListener)
       } else {
         self.removeEventListener('scroll', this.scrollListener)
