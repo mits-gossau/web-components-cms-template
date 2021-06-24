@@ -10,8 +10,12 @@ html {
   --color: #646464;
   --background-color: #ffffff;
   --html-background-color: var(--background-color);
-  --font-family:'Wendy One',sans-serif;
-  --font-size:1.3rem;
+  --h1-font-size: 200%;
+  --h1-line-height: 40px;
+  --h2-font-size: var(--h1-font-size);
+  --h2-line-height: var(--h1-line-height);
+  --font-family:"Roboto",sans-serif;
+  --font-size:10px;
   --header-background-color:var(--background-color);
   --navigation-a-link-color-nav-open:var(--color);
   --footer-background-color:var(--background-color);
