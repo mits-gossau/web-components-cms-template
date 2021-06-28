@@ -18,7 +18,7 @@ html {
   --font-size:10px;
   --header-background-color:var(--background-color);
   --navigation-a-link-color-nav-open:var(--color);
-  --footer-background-color:var(--background-color);
+  --footer-background-color: #c2262f;
   --footer-color:var(--color);
   --footer-engagement-logo-text-color:#fff;
   --navigation-background-color:var(--background-color);
