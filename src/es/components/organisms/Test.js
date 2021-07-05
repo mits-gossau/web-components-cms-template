@@ -1,5 +1,5 @@
 // @ts-check
-import { Footer } from '../web-components-cms-template/src/es/components/organisms/Footer.js'
+// import { Footer } from '../web-components-cms-template/src/es/components/organisms/Footer.js'
 
 
 /* global self */
