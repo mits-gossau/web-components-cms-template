@@ -1,6 +1,6 @@
 // @ts-check
 import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
-
+import { BaseFooter } from '../web-components-cms-template/src/es/components/organisms/Footer.js'
 
 /* global self */
 /* global Link */
@@ -32,14 +32,12 @@ import { Shadow } from '../web-components-cms-template/src/es/components/prototy
  *  --p-margin [0]
  * }
  */
-export default class Footer extends Shadow() {
+export default class Footer extends BaseFooter() {
   constructor (...args) {
     super()
   }
 
-
   connectedCallback () {
-    console.log("connected");
     this.html = `<h1>test</h1>`
   }
 }
