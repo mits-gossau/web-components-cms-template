@@ -23,6 +23,8 @@ html {
   --footer-background-color: #c2262f;
   --footer-color: white;
   --footer-content-width: 100%;
+  --p-font-weight: 300;
+  --p-font-size: 95%;
   --footer-engagement-logo-text-color:#fff;
   --navigation-background-color:var(--background-color);
   --header-background-color-open:var(--background-color)
