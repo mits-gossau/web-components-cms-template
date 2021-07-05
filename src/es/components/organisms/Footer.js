@@ -38,7 +38,8 @@ export default class Footer extends Shadow() {
   }
 
 
-  connectedCallback = () => {
+  connectedCallback () {
+    console.log("connected");
     this.html = `<h1>test</h1>`
   }
 }
