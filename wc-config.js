@@ -170,6 +170,14 @@
     {
       selector: 'mindustry-a-',
       url: 'atoms/'
+    },
+    {
+      selector: 'mindustry-m-',
+      url: 'molecules/'
+    },
+    {
+      selector: 'mindustry-o-',
+      url: 'organisms/'
     }
   ] // directories
   // ↑↑↑ adjustable ↑↑↑
