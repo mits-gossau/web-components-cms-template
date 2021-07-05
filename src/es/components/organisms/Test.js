@@ -1,6 +1,7 @@
 // @ts-check
 import { Footer } from '../web-components-cms-template/src/es/components/organisms/Footer.js'
 
+
 /* global self */
 /* global Link */
 /* global customElements */
@@ -31,9 +32,8 @@ import { Footer } from '../web-components-cms-template/src/es/components/organis
  *  --p-margin [0]
  * }
  */
-export default class Test extends Footer() {
+export default class Test {
   constructor (...args) {
-    super(...args)
   }
 
 
