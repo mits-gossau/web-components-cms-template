@@ -32,7 +32,7 @@ import { Shadow } from '../web-components-cms-template/src/es/components/prototy
  *  --p-margin [0]
  * }
  */
-export default class Test extends Shadow() {
+export default class Footer extends Shadow() {
   constructor (...args) {
     super()
   }
