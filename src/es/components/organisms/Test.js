@@ -31,7 +31,7 @@ import { Footer } from '../web-components-cms-template/src/es/components/organis
  *  --p-margin [0]
  * }
  */
-export default class MIndustryFooter extends Footer() {
+export default class Test extends Footer() {
   constructor (...args) {
     super(...args)
   }
