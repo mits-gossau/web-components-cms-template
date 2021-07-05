@@ -1,5 +1,5 @@
 // @ts-check
-// import { Footer } from '../web-components-cms-template/src/es/components/organisms/Footer.js'
+import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
 
 
 /* global self */
@@ -32,8 +32,9 @@
  *  --p-margin [0]
  * }
  */
-export default class Test {
+export default class Test extends Shadow() {
   constructor (...args) {
+    super()
   }
 
 
