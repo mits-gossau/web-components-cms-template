@@ -9,6 +9,8 @@ html {
   --color-secondary:#b70e0c;
   --color: #646464;
   --background-color: #ffffff;
+  --content-width: 1170px;
+  --content-spacing: 0;
   --html-background-color: var(--background-color);
   --h1-font-size: 200%;
   --h1-line-height: 40px;
