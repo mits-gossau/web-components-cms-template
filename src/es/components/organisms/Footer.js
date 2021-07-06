@@ -1,5 +1,5 @@
 // @ts-check
-import { BaseFooter } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
+import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
 
 /* global self */
 /* global Link */
@@ -30,7 +30,7 @@ import { BaseFooter } from '../web-components-cms-template/src/es/components/pro
  *  --p-margin [0]
  * }
  */
-export default class Footer extends BaseFooter() {
+export default class Footer extends Shadow() {
   constructor (...args) {
     super()
   }
