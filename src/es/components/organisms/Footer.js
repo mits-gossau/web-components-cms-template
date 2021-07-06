@@ -32,7 +32,7 @@ import Footer from '../web-components-cms-template/src/es/components/organisms/F
  */
 export default class MIndustryFooter extends Footer {
   constructor (...args) {
-    super()
+    super(...args)
   }
 
   connectedCallback () {
