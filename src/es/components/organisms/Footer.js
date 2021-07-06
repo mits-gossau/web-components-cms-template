@@ -34,7 +34,4 @@ export default class MIndustryFooter extends Footer {
   constructor (...args) {
     super(...args)
   }
-
-  connectedCallback () {
-  }
 }
