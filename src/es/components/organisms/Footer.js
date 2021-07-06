@@ -1,5 +1,5 @@
 // @ts-check
-import { BaseFooter } from '../web-components-cms-template/src/es/components/organisms/Footer.js'
+import { BaseFooter } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
 
 /* global self */
 /* global Link */
