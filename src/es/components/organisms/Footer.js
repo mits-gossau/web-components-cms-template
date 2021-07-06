@@ -36,6 +36,5 @@ export default class MIndustryFooter extends Footer {
   }
 
   connectedCallback () {
-    this.html = `<h1>Testing</h1>`
   }
 }
