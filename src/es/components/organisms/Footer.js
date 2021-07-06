@@ -1,5 +1,4 @@
 // @ts-check
-import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
 import { BaseFooter } from '../web-components-cms-template/src/es/components/organisms/Footer.js'
 
 /* global self */
@@ -7,8 +6,7 @@ import { BaseFooter } from '../web-components-cms-template/src/es/components/org
 /* global customElements */
 
 /**
- * Footer is sticky and hosts uls
- * Example at: /src/es/components/organisms/Playlist.html
+ * MIndustry Footer
  * As an organism, this component shall hold molecules and/or atoms
  *
  * @export
@@ -38,6 +36,6 @@ export default class Footer extends BaseFooter() {
   }
 
   connectedCallback () {
-    this.html = `<h1>test</h1>`
+    this.html = `<h1>Testing</h1>`
   }
 }
