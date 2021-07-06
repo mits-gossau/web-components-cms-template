@@ -34,4 +34,31 @@ export default class MIndustryFooter extends Footer {
   constructor (...args) {
     super(...args)
   }
+
+  connectedCallback() {
+    if (this.shouldComponentRenderCSS()) this.renderCSS()
+  }
+
+  /**
+   * evaluates if a render is necessary
+   *
+   * @return {boolean}
+   */
+   shouldComponentRenderCSS () {
+    return !this.root.querySelector('style[_css]')
+  }
+
+/**
+   * renders the mindustry-o-footer css
+   *
+   * @return {void}
+   */
+ renderCSS () {
+  this.css = /* css */`
+    .testingclass {
+      background-color: red;
+    }
+  `;
+ }
+
 }
