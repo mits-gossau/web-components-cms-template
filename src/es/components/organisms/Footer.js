@@ -54,11 +54,12 @@ export default class MIndustryFooter extends Footer {
    * @return {void}
    */
  renderCSS () {
-  this.css += /* css */`
-    .testingclass {
-      background-color: red;
-    }
-  `;
+   super.renderCSS()
+    this.css = /* css */`
+      .testingclass {
+        background-color: red;
+      }
+    `;
  }
 
 }
