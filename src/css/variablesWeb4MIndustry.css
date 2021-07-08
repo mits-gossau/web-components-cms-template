@@ -26,6 +26,7 @@ html {
   --footer-background-color: var(--background-color-secondary);
   --footer-color: var(--background-color);
   --footer-content-width: 100%;
+  --footer-links-width: var(--content-width);
   --p-font-weight: 300;
   --p-font-size: 95%;
   --p-line-height: 175%;

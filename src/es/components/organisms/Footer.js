@@ -56,8 +56,8 @@ export default class MIndustryFooter extends Footer {
  renderCSS () {
    super.renderCSS()
     this.css = /* css */`
-      .testingclass {
-        background-color: red;
+      :host .footer-links {
+        width: var(--links-width, 100%);
       }
     `;
  }
