@@ -21,8 +21,11 @@ export default class CheckboxWrapper extends Shadow() {
     this.changeEventListener = event => {
       if (this.hasAttribute('min')) {
         const isValid = this.checkedCount >= Number(this.getAttribute('min'))
-        this.setAttribute('valid', isValid ? 'true' : 'false')
-        if (this.checkboxes[0]) this.checkboxes[0].setAttribute('valid', isValid)
+        this.setAttribute('valid', isValid)
+        if (this.checkboxes[0]) {
+          this.checkboxes[0].setAttribute('valid', isValid)
+          if (typeof this.checkboxes[0].changeListener === 'function') this.checkboxes[0].changeListener()
+        }
       }
       if (this.checkedCount >= Number(this.getAttribute('max'))) {
         this.disableAllUnchecked()

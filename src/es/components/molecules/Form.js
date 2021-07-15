@@ -469,6 +469,7 @@ export default class Form extends Shadow() {
               }
             }
             this.validateFunctions.push(changeListener)
+            input.changeListener = changeListener
             input.addEventListener('blur', changeListener)
             input.addEventListener('blur', event => {
               input.addEventListener('change', changeListener)
