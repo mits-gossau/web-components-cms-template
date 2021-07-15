@@ -11,6 +11,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  {number} [max] maximum checked checkboxes
+ *  {number} [min] minimum checked checkboxes
  * }
  */
 export default class CheckboxWrapper extends Shadow() {
@@ -18,6 +19,7 @@ export default class CheckboxWrapper extends Shadow() {
     super({ mode: 'false' }, ...args) // disabling shadow-DOM to keep default form submit working
 
     this.changeEventListener = event => {
+      if (this.hasAttribute('min')) this.setAttribute('valid', this.checkedCount >= Number(this.getAttribute('min')) ? 'true' : 'false')
       if (this.checkedCount >= Number(this.getAttribute('max'))) {
         this.disableAllUnchecked()
       } else {
@@ -28,6 +30,7 @@ export default class CheckboxWrapper extends Shadow() {
 
   connectedCallback () {
     this.addEventListener('change', this.changeEventListener)
+    this.changeEventListener()
   }
 
   disconnectedCallback () {

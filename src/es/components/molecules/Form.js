@@ -40,7 +40,7 @@ export default class Form extends Shadow() {
     this.validateFunctions = []
     this.submitEventListener = event => {
       event.preventDefault()
-      if ((!this.emptyInput || !this.emptyInput.value) && this.form && this.inputFields.every(input => input.validity.valid)) {
+      if ((!this.emptyInput || !this.emptyInput.value) && this.form && this.inputFields.every(input => input.validity.valid) && this.valids.every(valid => valid.getAttribute('valid') === 'true')) {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
@@ -539,5 +539,9 @@ export default class Form extends Shadow() {
     searchResultsContainer.classList.add('searchResultsContainer')
     this.html = searchResultsContainer
     return searchResultsContainer
+  }
+
+  get valids () {
+    return Array.from(this.root.querySelectorAll('[valid]'))
   }
 }
