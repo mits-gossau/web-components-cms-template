@@ -458,7 +458,7 @@ export default class Form extends Shadow() {
           input.replaceWith(aInput)
           if (input.hasAttribute('validation-message')) {
             const changeListener = event => {
-              if (input.validity.valid) {
+              if (input.hasAttribute('valid') ? input.getAttribute('valid') === 'true' : input.validity.valid) {
                 label.removeAttribute('data-balloon-visible')
                 label.removeAttribute('aria-label')
                 label.removeAttribute('data-balloon-pos')

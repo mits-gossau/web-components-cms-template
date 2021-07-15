@@ -19,7 +19,11 @@ export default class CheckboxWrapper extends Shadow() {
     super({ mode: 'false' }, ...args) // disabling shadow-DOM to keep default form submit working
 
     this.changeEventListener = event => {
-      if (this.hasAttribute('min')) this.setAttribute('valid', this.checkedCount >= Number(this.getAttribute('min')) ? 'true' : 'false')
+      if (this.hasAttribute('min')) {
+        const isValid = this.checkedCount >= Number(this.getAttribute('min'))
+        this.setAttribute('valid', isValid ? 'true' : 'false')
+        if (this.checkboxes[0]) this.checkboxes[0].setAttribute('valid', isValid)
+      }
       if (this.checkedCount >= Number(this.getAttribute('max'))) {
         this.disableAllUnchecked()
       } else {
@@ -38,7 +42,7 @@ export default class CheckboxWrapper extends Shadow() {
   }
 
   enableAll () {
-    this.checkboxes.forEach(checkbox => checkbox.disabled = false)
+    this.checkboxes.forEach(checkbox => (checkbox.disabled = false))
   }
 
   disableAllUnchecked () {
