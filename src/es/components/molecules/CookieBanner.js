@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
+/* global location */
 
 /**
  * CookieBanner
@@ -67,7 +68,7 @@ export default class CookieBanner extends Shadow() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     this.addEventListener('click', this.clickListener)
-    if (!this.shown) setTimeout(() => this.section.classList.add('show'), this.getAttribute('timeout') || 2000);
+    if (!this.shown) setTimeout(() => this.section.classList.add('show'), this.getAttribute('timeout') || 2000)
   }
 
   disconnectedCallback () {
@@ -169,7 +170,7 @@ export default class CookieBanner extends Shadow() {
       <section></section>
     `
     Array.from(this.root.children).forEach(node => {
-      if (node !== this.section && !node.getAttribute('slot') && node.tagName !== "STYLE") this.section.appendChild(node)
+      if (node !== this.section && !node.getAttribute('slot') && node.tagName !== 'STYLE') this.section.appendChild(node)
     })
   }
 
