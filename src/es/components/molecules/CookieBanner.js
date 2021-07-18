@@ -13,7 +13,6 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  * @attribute {
  *  getAttribute('timeout') || 2000);
- *  getAttribute('transition') || 'bottom 2s ease'};
  *  getAttribute('storage')
  *  getAttribute('storage-name') || `${location.origin}-${this.tagName}-shown`
  * }
@@ -32,6 +31,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  var(--height, auto);
  *  var(--justify-content, space-between);
  *  var(--padding, 10px);
+ *  var(--transistion, bottom 2s ease);
  *  var(--a-color, var(--color, blue));
  *  var(--a-transition, all 0.5s ease);
  *  var(--a-color-focus, var(--color, coral));
@@ -119,7 +119,7 @@ export default class CookieBanner extends Shadow() {
         justify-content: var(--justify-content, space-between);
         padding: var(--padding, 10px);
         position: fixed;
-        transition: ${this.getAttribute('transition') || 'bottom 2s ease'};
+        transition: var(--transition, bottom 2s ease);
         width: 100%;
       }
       :host > section.show {
