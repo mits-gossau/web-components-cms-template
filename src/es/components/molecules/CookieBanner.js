@@ -65,10 +65,12 @@ export default class CookieBanner extends Shadow() {
   }
 
   connectedCallback () {
-    if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.shouldComponentRenderHTML()) this.renderHTML()
-    this.addEventListener('click', this.clickListener)
-    if (!this.shown) setTimeout(() => this.section.classList.add('show'), this.getAttribute('timeout') || 2000)
+    if (!this.shown) {
+      if (this.shouldComponentRenderCSS()) this.renderCSS()
+      if (this.shouldComponentRenderHTML()) this.renderHTML()
+      this.addEventListener('click', this.clickListener)
+      setTimeout(() => this.section.classList.add('show'), this.getAttribute('timeout') || 2000)
+    }
   }
 
   disconnectedCallback () {
