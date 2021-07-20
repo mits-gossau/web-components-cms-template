@@ -37,6 +37,7 @@ export default class MIndustryFooter extends Footer {
 
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.renderHTML()
   }
 
   /**
@@ -61,5 +62,14 @@ export default class MIndustryFooter extends Footer {
       }
     `;
  }
+
+ /**
+   * renders the a-link html
+   *
+   * @return {void}
+   */
+  renderHTML () {
+    super.renderHTML()
+  }
 
 }
