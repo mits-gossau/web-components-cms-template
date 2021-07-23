@@ -57,10 +57,85 @@ export default class MIndustryFooter extends Footer {
  renderCSS () {
    super.renderCSS()
     this.css = /* css */`
-      :host .footer-links {
-        width: var(--links-width, 100%);
+      :host footer {
+        display: flex;
+        flex-direction: column;
+        padding-top: 50px;
       }
+      :host h3 {
+        margin: 0;
+        padding-bottom: 15px;
+        line-height: 28px;
+        letter-spacing: 0.5px;
+      }
+      :host ul {
+        margin: 0;
+      }
+      :host ul li {
+        padding-bottom: 15px;
+      }
+      :host .footer-links {
+        width: var(--width, 100%);
+        margin: var(--margin, 0) auto;
+      }
+      :host .footer-links > ul {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: -30px;
+      }
+      :host .footer-links > ul > li {
+        padding: 0 15px;
+        width: 25%;
+        line-height: 20px;
+      }
+      :host .footer-bottom {
+        background-color: var(--bottom-background-color, --background-color);
+        margin-top: var(--bottom-spacer-height, 130px);
+      }
+      :host .footer-bottom > div {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 15px 20px 15px;
+        width: var(--width, 100%);
+        margin: var(--margin, 0) auto;
+      }
+      :host .logo-container {
+        height: var(--logo-height, unset);
+      }
+      :host .footer-bottom ul li {
+        padding: 0;
+      }
+      :host .footer-bottom ul li a-link {
+        --font-size: 12px;
+        --line-height: 60px;
+        --letter-spacing: normal;
+        padding-right: 5px;
+      }
+      :host .footer-bottom ul li span { 
+        font-size: 12px;
+        line-height: 60px;
+        padding-right: 5px;
+      }
+      :host .footer-bottom ul li:last-of-type span {
+        margin-left: 30px;
+      }
+
+      @media only screen and (max-width: 992px) {
+        :host h3 {
+          line-height: 20px;
+        }
+        :host .footer-links {
+          width: var(--width-mobile, 100%);
+        }
+        :host .footer-bottom > div {
+          width: var(--width-mobile, 100%);
+        }
+
+      }
+
     `;
+
  }
 
  /**
