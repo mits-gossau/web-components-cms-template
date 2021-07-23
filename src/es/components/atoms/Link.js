@@ -90,6 +90,7 @@ export default class Link extends Shadow() {
         display: var(--display, block);
         font-size: var(--font-size, 1rem);
         line-height: var(--line-height, normal);
+        letter-spacing: var(--letter-spacing, normal);
         font-weight: var(--font-weight, normal);
         height: 100%;
         padding: var(--padding, 14px 10px);
