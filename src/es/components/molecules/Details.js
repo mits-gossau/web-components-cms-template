@@ -74,12 +74,19 @@ import Details from '../web-components-cms-template/src/es/components/molecules/
       :host details summary {
         padding: var(--summary-padding, 0 0 20px 0);
       }
+      :host details summary:focus {
+        outline: 1px solid white;
+      }
       :host details summary > div,
       :host details summary h3 {
         display: inline;
       }
       :host details summary h3 {
         font-weight: var(--summary-h3-font-weight, 400);
+      }
+      :host details summary::marker {
+        display: var(--marker-display, list-item);
+        content: var(--marker-content, initial);
       }
       :host details summary h3,
       :host details summary::marker {
