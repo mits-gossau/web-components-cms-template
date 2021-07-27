@@ -105,6 +105,9 @@ export default class Link extends Shadow() {
         color: var(--color-hover, var(--color, yellow));
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
       }
+      :host > a:focus {
+        text-decoration: var(--text-decoration-focus, unset);
+      }
       :host > span {
         display: var(--span-display, inline);
       }
