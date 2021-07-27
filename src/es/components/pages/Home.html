@@ -1,101 +1,145 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href=../../../css/variables.css rel=stylesheet>
+  <link href=../../../css/variablesWeb4MIndustry.css rel=stylesheet>
   <link href=../../../css/misc.css rel=stylesheet>
   <link href=../../../css/fonts.css rel=stylesheet>
   <script type="text/javascript" src="../../../../wc-config.js"></script>
-  <!-- NOTE: Remove line Debugging.js below for none localhost -->
-  <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
-  <title>Mindustry</title>
+  <title>Willkommen bei der Migros Industrie</title>
+  <meta name="title" content="">
+  <meta name="description" content="">
+  <meta property="og:description" content="">
+  <meta name="keywords" content="">
 </head>
+
 <body>
   <p-general>
     <o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-">
+      <ul class="language-switcher">
+        <li><a href="http://umb.mindustry.local/">EN</a></li>
+      </ul>
+      <a-logo
+        src="/media/y0efb1so/logo_mi_rgb.png?anchor=center&mode=crop&height=100&format=png&quality=80&rnd=132675508422070000"
+        href="/" namespace="header-logo-"></a-logo>
       <m-navigation hover="false" namespace="navigation-" mobile-breakpoint="0vw" no-scroll="nav-open">
         <ul>
-          <li>
-            <a href="/about/" target="">About</a>
-          </li>
-          <li>
-            <a href="/forderung/" target="">Förderung</a>
-          </li>
-          <li>
-            <a href="/kosmos/" target="">Kosmos</a>
-          </li>
-          <li>
-            <a href="/studios/" target="">Studios</a>
-          </li>
-          <li>
-            <a href="/news/" target="">News</a>
+          <li><a href="#" target="">Kategorien</a>
             <ul>
-              <li>
-                <a href="/news/neue-mindustry-home-page/" target="">Neue Mindustry Home Page</a>
+              <li><a href="/kategorien/ubersicht/" target="">Übersicht</a></li>
+              <li><a href="/kategorien/ubersicht/biscuits/" target="">Biscuits</a></li>
+              <li><a href="/kategorien/ubersicht/brot-back-und-teigwaren/" target="">Brot, Back- und Teigwaren</a></li>
+              <li><a href="/kategorien/ubersicht/eiscreme/" target="">Eiscreme</a></li>
+              <li><a href="/kategorien/ubersicht/fleisch-geflugel-fisch/" target="">Fleisch, Geflügel, Fisch</a></li>
+              <li><a href="/kategorien/ubersicht/food-convenience-fruchte/" target="">Food & Convenience, Früchte</a>
               </li>
-              <li>
-                <a href="/news/noch-eine-neue-news/" target="">Noch eine neue News</a>
-              </li>
+              <li><a href="/kategorien/ubersicht/getranke/" target="">Getränke</a></li>
+              <li><a href="/kategorien/ubersicht/joghurt-und-saucen/" target="">Joghurt und Saucen</a></li>
+              <li><a href="/kategorien/ubersicht/kaffee/" target="">Kaffee</a></li>
+              <li><a href="/kategorien/ubersicht/kase-und-milch/" target="">Käse und Milch</a></li>
+              <li><a href="/kategorien/ubersicht/kaugummi/" target="">Kaugummi</a></li>
+              <li><a href="/kategorien/ubersicht/milch-und-fleischersatzprodukte/" target="">Milch- und
+                  Fleischersatzprodukte</a></li>
+              <li><a href="/kategorien/ubersicht/reis/" target="">Reis</a></li>
+              <li><a href="/kategorien/ubersicht/schokolade/" target="">Schokolade</a></li>
+              <li><a href="/kategorien/ubersicht/home-care/" target="">Home Care</a></li>
+              <li><a href="/kategorien/ubersicht/personal-care/" target="">Personal Care</a></li>
             </ul>
           </li>
-          <li>
-            <a href="/netzwerk/" target="">Netzwerk</a>
+          <li><a href="#" target="">Über uns</a>
+            <ul>
+              <li><a href="/uber-uns/ubersicht/" target="">Übersicht</a></li>
+              <li><a href="/uber-uns/ubersicht/mission/" target="">Mission</a></li>
+              <li><a href="/uber-uns/ubersicht/geschichte/" target="">Geschichte</a></li>
+              <li><a href="/uber-uns/ubersicht/internationale-ausrichtung/" target="">Internationale Ausrichtung</a>
+              </li>
+              <li><a href="/uber-uns/ubersicht/zahlen-und-fakten/" target="">Zahlen und Fakten</a></li>
+              <li><a href="/uber-uns/ubersicht/services/" target="">Services</a></li>
+              <li><a href="/uber-uns/ubersicht/nachhaltigkeit/" target="">Nachhaltigkeit</a></li>
+              <li><a href="/uber-uns/ubersicht/alz/" target="">ALZ</a></li>
+            </ul>
           </li>
+          <li><a href="#" target="">Kontakt</a>
+            <ul>
+              <li><a href="/kontakt/ubersicht/" target="">Übersicht</a></li>
+              <li><a href="/kontakt/ubersicht/jobs/" target="">Jobs</a></li>
+              <li><a href="/kontakt/ubersicht/medien/" target="">Medien</a></li>
+              <li><a href="/kontakt/ubersicht/messen/" target="">Messen</a></li>
+            </ul>
+          </li>
+          <li>searchbox</li>
         </ul>
       </m-navigation>
     </o-header>
     <o-body>
-      <div>
-        <a-picture namespace="picture-" defaultsource="../../../img/sparx-test.png" alt="Mindustry Test">
-          <style>:host{--picture-width:min(,var(--content-width,100%));--picture-width-mobile:min(,var(--content-width-mobile,100%))}</style>
-        </a-picture>
-      </div>
-      <mindustry-a-marquee>
-        <div>
-          <span>
-            <a href="/news/noch-eine-neue-news/">   Natürlich können auch mehrere solche PUSH-News erfasst werden!</a>
-          </span> 
-          <span>
-            <a href="/news/neue-mindustry-home-page/">Neue Mindustry Home Page (soll der Page Title auch in die News-Leiste??)   Endlich ist die neue mindustry-Seite Online - Juhui!!</a>
-          </span>
-        </div>
-      </mindustry-a-marquee>
+      <h1>Willkommen bei der Migros Industrie</h1>
+      <h1>DIE MIGROS INDUSTRIE IM ÜBERBLICK</h1>
+      <article>
+        <p>Die Migros Industrie gehört mit ihren über 20 Unternehmen in der Schweiz und den Betrieben im Ausland zur
+          Schweizer <a rel="noopener noreferrer" href="http://www.migros.ch/" target="_blank">Migros-Gruppe.</a> Sie
+          bietet über 20 000 hochwertige <a href="https://www.mindustry.com/de/kategorien">Food- und
+            Non-Food-Produkte</a> zum besten Preis-Leistungs-Verhältnis an und ist damit einer der grössten
+          Eigenmarkenproduzenten weltweit.</p>
+        <p>Als Industriegruppe der Migros, der Nummer eins im Schweizer Detailhandel, ist sie nahe am Markt, setzt
+          Trends und überrascht immer wieder mit innovativen Produkten und Dienstleistungen. Zu ihren <a
+            href="https://www.mindustry.com/de/ueber-uns/uebersicht/services">Kernkompetenzen</a> gehört die Produktion
+          von Private Labels, die sie in Schweizer Qualität in rund 50 Länder verkauft. Namhafte internationale
+          Grosskonzerne zählen zu den Kunden der Migros Industrie.</p>
+      </article>
+      <div class="spacer"></div>
     </o-body>
-    <o-footer namespace="footer-">
-      <div>
-        <a-logo class="hide-mobile" namespace="footer-engagement-logo-" src="../../../img/logo_fge_mk_rgb_neg_300dpi_de.png" href="https://www.migros-engagement.ch/engagement" target="_blank" lang="de">
-          <p>mindustry ist ein Projekt des Migros-Kulturprozent, Teil des gesellschaftlichen Engagements der Migros-Gruppe:  <br> <strong> <a style="color:#f60;font-size:var(--footer-engagement-logo-text-color)" href="https://www.migros-engagement.ch" target="_blank">https://www.migros-engagement.ch</a> </strong>
-          </p>
-        </a-logo>
-      </div>
-      <div class="footer-ul-wrapper">
+    <mindustry-o-footer namespace="footer-" theme="simple">
+      <div class="footer-links">
         <ul>
           <li>
-            <p>© 2021</p>
+            <h3>Kategorien</h3>
+            <ul>
+              <li><a href="/kategorien/ubersicht/biscuits/">Biscuits</a></li>
+              <li><a href="/kategorien/ubersicht/brot-back-und-teigwaren/">Brot, Back- und Teigwaren</a></li>
+              <li><a href="/kategorien/ubersicht/eiscreme/">Eiscreme</a></li>
+              <li><a href="/kategorien/ubersicht/fleisch-geflugel-fisch/">Fleisch, Geflügel, Fisch</a></li>
+              <li><a href="/kategorien/ubersicht/food-convenience-fruchte/">Food & Convenience, Früchte</a></li>
+              <li><a href="/kategorien/ubersicht/getranke/">Getränke</a></li>
+              <li><a href="/kategorien/ubersicht/joghurt-und-saucen/">Joghurt und Saucen</a></li>
+              <li><a href="/kategorien/ubersicht/kaffee/">Kaffee</a></li>
+              <li><a href="/kategorien/ubersicht/kase-und-milch/">Käse und Milch</a></li>
+              <li><a href="/kategorien/ubersicht/kaugummi/">Kaugummi</a></li>
+              <li><a href="/kategorien/ubersicht/milch-und-fleischersatzprodukte/">Milch- und Fleischersatzprodukte</a></li>
+              <li><a href="/kategorien/ubersicht/reis/">Reis</a></li>
+              <li><a href="/kategorien/ubersicht/schokolade/">Schokolade</a></li>
+              <li><a href="/kategorien/ubersicht/home-care/">Home Care</a></li>
+              <li><a href="/kategorien/ubersicht/personal-care/">Personal Care</a></li>
+            </ul>
           </li>
           <li>
-            <p class="language-switcher">
-              <a href="http://testadmin.mindustry-space.ch/"> EN </a> <a href="http://testadmin.mindustry-space.ch/"> FR </a>
-            </p>
+            <h3>Über uns</h3>
+            <ul>
+              <li><a href="/uber-uns/ubersicht/mission/">Mission</a></li>
+              <li><a href="/uber-uns/ubersicht/geschichte/">Geschichte</a></li>
+              <li><a href="/uber-uns/ubersicht/internationale-ausrichtung/">Internationale Ausrichtung</a></li>
+              <li><a href="/uber-uns/ubersicht/zahlen-und-fakten/">Zahlen und Fakten</a></li>
+              <li><a href="/uber-uns/ubersicht/services/">Services</a></li>
+              <li><a href="/uber-uns/ubersicht/nachhaltigkeit/">Nachhaltigkeit</a></li>
+              <li><a href="/uber-uns/ubersicht/alz/">ALZ</a></li>
+            </ul>
           </li>
-          <br>
           <li>
-            <p></p>
+            <h3>Kontakt</h3>
+            <ul>
+              <li><a href="/kontakt/ubersicht/jobs/">Jobs</a></li>
+              <li><a href="/kontakt/ubersicht/medien/">Medien</a></li>
+              <li><a href="/kontakt/ubersicht/messen/">Messen</a></li>
+            </ul>
           </li>
         </ul>
       </div>
-      <div class="logo-container">
-        <a-logo class="hide-desktop" namespace="footer-engagement-logo-" src="../../../img/logo_fge_mk_rgb_neg_300dpi_de.png" href="https://www.migros-engagement.ch/engagement" target="_blank" lang="de">
-          <p>mindustry ist ein Projekt des Migros-Kulturprozent, Teil des gesellschaftlichen Engagements der Migros-Gruppe:  <br> <strong> <a class="test" href="https://www.migros-engagement.ch" target="_blank">https://www.migros-engagement.ch</a> </strong> SO EIN ARSCH SO EIN ARSCH</p>
-        </a-logo>
-      </div>
-    </o-footer>
+    </mindustry-o-footer>
   </p-general>
-  <script rel=preload type=module>
-    self.Environment = {
-      mobileBreakpoint: '600px'
-    }
-  </script>
-  </body>
+  <script>self.Environment = { mobileBreakpoint: '600px' }</script>
+  <script async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
+  <script src="/web-components-cms-template-mindustry/wc-config.js?baseUrl=/web-components-cms-template-mindustry/src/es/components/"></script>
+</body>
+
 </html>

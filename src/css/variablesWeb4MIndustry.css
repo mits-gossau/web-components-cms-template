@@ -5,22 +5,42 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 html {
-  --color-hover:#ffffff;
-  --color-secondary:#b70e0c;
+  --background-color-secondary: #c2262f;
+  --background-color: white;
+  --color-hover: var(--background-color);
+  --color-secondary: var(--background-color);
   --color: #646464;
-  --background-color: #ffffff;
-  --html-background-color: var(--background-color);
+  --content-spacing: 0;
+  --content-width: 1170px;
+  --font-family:"Roboto",sans-serif;
+  --font-size: 16px;
+  --footer-a-link-font-size-2: 14px;
+  --footer-a-link-font-size: 19px;
+  --footer-background-color: var(--background-color-secondary);
+  --footer-bottom-background-color: #941619;
+  --footer-color: var(--background-color);
+  --footer-content-spacing: 0;
+  --footer-content-width-mobile: var(--footer-content-width);
+  --footer-content-width: 100%;
+  --footer-engagement-logo-text-color:var(--background-color);
+  --footer-font-weight: 300;
+  --footer-letter-spacing: 0.5px;
+  --footer-line-height: 20px;
+  --footer-logo-height-first: 60px;
+  --footer-logo-width: 120px;
+  --footer-text-decoration-hover: underline;
+  --footer-width-mobile: 750px;
+  --footer-width: 984px;
   --h1-font-size: 200%;
   --h1-line-height: 40px;
   --h2-font-size: var(--h1-font-size);
   --h2-line-height: var(--h1-line-height);
-  --font-family:"Roboto",sans-serif;
-  --font-size:10px;
+  --header-background-color-open:var(--background-color);
   --header-background-color:var(--background-color);
+  --html-background-color: var(--background-color);
   --navigation-a-link-color-nav-open:var(--color);
-  --footer-background-color:var(--background-color);
-  --footer-color:var(--color);
-  --footer-engagement-logo-text-color:#fff;
   --navigation-background-color:var(--background-color);
-  --header-background-color-open:var(--background-color)
+  --p-font-size: 95%;
+  --p-font-weight: 300;
+  --p-line-height: 175%;
 }
