@@ -57,6 +57,12 @@ export default class MIndustryFooter extends Footer {
  renderCSS () {
    super.renderCSS()
     this.css = /* css */`
+      :host .footer-mobile {
+        display: none;
+      }
+      :host .footer-links, :host .footer-bottom {
+        display: block;
+      }
       :host footer {
         display: flex;
         flex-direction: column;
@@ -82,7 +88,6 @@ export default class MIndustryFooter extends Footer {
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        margin-left: -30px;
       }
       :host .footer-links > ul > li {
         padding: 0 15px;
@@ -130,6 +135,28 @@ export default class MIndustryFooter extends Footer {
         }
         :host .footer-bottom > div {
           width: var(--width-mobile, 100%);
+        }
+
+      }
+
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host footer { 
+          padding: var(--padding-mobile, 0 0 40px 0);
+        }
+        :host .footer-mobile {
+          display: block;
+        }
+        :host .footer-mobile ul li span {
+          font-size: var(--span-font-size-mobile, 15px);
+          font-weight: var(--span-font-weight, 300);
+          line-height: var(--span-line-height-mobile, 30px);
+          padding: var(--span-padding-mobile, 20px 0 0 0);
+        }
+        :host .footer-mobile ul li a-link {
+          --font-size: 12px;
+        }
+        :host .footer-links, :host .footer-bottom {
+          display: none;
         }
 
       }
