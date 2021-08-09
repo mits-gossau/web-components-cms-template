@@ -451,8 +451,7 @@ export default class Form extends Shadow() {
       Array.from(this.root.querySelectorAll('input'))
         .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
           this.inputFields.push(input)
-          console.log("YEAH");
-          const label = this.root.querySelector(`label[for=${input.getAttribute('id')}]`) || this.root.querySelector(`label[for=${input.getAttribute('name')}]`)
+          const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`) || this.root.querySelector(`label[for='${input.getAttribute('name')}']`)
           const aInput = new children[0][1](input, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
           aInput.setAttribute('type', input.getAttribute('type'))
           if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
