@@ -44,7 +44,7 @@ export default class Form extends Shadow() {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
-
+        
         if (this.hasAttribute('use-html-submit')) {
           this.submitByHTML(body, method, action)
         } else {
@@ -83,10 +83,15 @@ export default class Form extends Shadow() {
     form.setAttribute('method', method)
     form.setAttribute('action', action);
     [...formData].forEach(([key, val]) => {
-      const input = document.createElement('input')
-      input.setAttribute('name', key)
-      input.setAttribute('value', val)
-      form.appendChild(input)
+      if (key !== 'ufprt') {
+        const input = document.createElement('input')
+        input.setAttribute('name', key)
+        input.setAttribute('value', val)
+        form.appendChild(input)
+      } else {
+        const input = this.form.querySelector('input[name="ufprt"]').cloneNode()
+        form.appendChild(input)
+      }
     })
     const button = document.createElement('button')
     button.setAttribute('type', 'submit')
