@@ -93,6 +93,7 @@ export default class Body extends Shadow() {
         word-break: var(--h1-word-break, normal);
         text-transform: var(--h1-text-transform, none);
         margin: var(--h1-margin, var(--content-spacing, unset)) auto;
+        padding: var(--h1-padding, unset);
       }
       :host > main h2 {
         color: var(--h2-color, var(--color, black));
@@ -104,6 +105,7 @@ export default class Body extends Shadow() {
         word-break: var(--h2-word-break, normal);
         text-transform: var(--h2-text-transform, none);
         margin: var(--h2-margin, var(--content-spacing, unset)) auto;
+        padding: var(--h2-padding, unset);
       }
       :host > main h3 {
         color: var(--h3-color, var(--color, black));
@@ -115,6 +117,7 @@ export default class Body extends Shadow() {
         word-break: var(--h3-word-break, normal);
         text-transform: var(--h3-text-transform, none);
         margin: var(--h3-margin, var(--content-spacing, unset)) auto;
+        padding: var(--h3-padding, unset);
       }
       :host > main h4 {
         color: var(--h4-color, var(--color, black));
@@ -126,6 +129,7 @@ export default class Body extends Shadow() {
         word-break: var(--h4-word-break, normal);
         text-transform: var(--h4-text-transform, none);
         margin: var(--h4-margin, var(--content-spacing, unset)) auto;
+        padding: var(--h4-padding, unset);
       }
       :host > main h5 {
         color: var(--h5-color, var(--color, black));
@@ -137,6 +141,7 @@ export default class Body extends Shadow() {
         word-break: var(--h5-word-break, normal);
         text-transform: var(--h5-text-transform, none);
         margin: var(--h5-margin, var(--content-spacing, unset)) auto;
+        padding: var(--h5-padding, unset);
       }
       :host > main h6 {
         color: var(--h6-color, var(--color, black));
@@ -148,6 +153,7 @@ export default class Body extends Shadow() {
         word-break: var(--h6-word-break, normal);
         text-transform: var(--h6-text-transform, none);
         margin: var(--h6-margin, var(--content-spacing, unset)) auto;
+        padding: var(--h6-padding, unset);
       }
       :host > main p {
         font-family: var(--p-font-family, var(--font-family-secondary));
