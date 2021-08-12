@@ -141,7 +141,9 @@ export default class Form extends Shadow() {
     if (form) {
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
-        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') && (i.getAttribute('type') !== 'radio' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') 
+            && (i.getAttribute('type') !== 'radio' || i.checked) 
+            && (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
       });
       [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
