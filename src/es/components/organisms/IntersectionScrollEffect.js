@@ -54,20 +54,19 @@ export default class IntersectionScrollEffect extends Intersection() {
     /** @type {number | null} */
     this.requestAnimationFrameId = null
 
-    this.html = /* HTML */`
-        <style _css="" protected="true">
-          :host {
-            display: block; /* fix: google chrome wrong measurements */
-            overflow: var(--overflow, hidden);
-          }
-          ${this.getAttribute('transition') && this.getAttribute('css-property') && !this.getAttribute('css-property').includes('--')
-            ? /* CSS */`:host > *:not(style) {
-              transition: ${this.getAttribute('css-property')} ${this.getAttribute('transition')};
-            }`
-            : ''
-          }
-        </style>
-      `
+    this.css = /* css */`
+      :host {
+        display: block; /* fix: google chrome wrong measurements */
+        overflow: var(--overflow, hidden);
+      }
+      ${this.getAttribute('transition') && this.getAttribute('css-property') && !this.getAttribute('css-property').includes('--')
+        ? /* CSS */`:host > *:not(style) {
+          transition: ${this.getAttribute('css-property')} ${this.getAttribute('transition')};
+        }`
+        : ''
+      }
+    `
+    this.html = this._css = this._css.cloneNode() // set the clone as this.css reference and by that safe the original away to never be overwritten by the this.css setter
 
     this.scrollListener = event => {
       /*

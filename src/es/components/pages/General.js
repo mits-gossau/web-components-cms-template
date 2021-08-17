@@ -58,7 +58,7 @@ export default class General extends Shadow() {
                              "body"
                              "footer";
         grid-template-columns: 100%;
-        grid-template-rows: var(--header-height , 85px) 1fr minmax(var(--footer-min-height , 250px), auto);
+        grid-template-rows: var(--header-height , 85px) 1fr minmax(var(--footer-min-height, 250px), auto);
         min-height: 100vh;
       }
       /* global css set by page */
