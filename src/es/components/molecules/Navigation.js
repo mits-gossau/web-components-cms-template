@@ -194,6 +194,9 @@ export default class Navigation extends Shadow() {
         padding-top: var(--padding-top, 6px);
         border-top: var(--border-top, 1px solid) var(--hr-color, var(--color, white));
       }
+      :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
+        --font-family: var(--font-family-open);
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           --font-weight: var(--font-weight-mobile, normal);
