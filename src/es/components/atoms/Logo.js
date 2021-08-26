@@ -128,7 +128,7 @@ export default class Logo extends Shadow() {
         object-fit: var(--object-fit, scale-down);
         width: var(--width, auto);
         max-width: var(--max-width, 80vw);
-        margin: var(--margin, 0);
+        margin: var(--img-margin, 0);
       }
       :host > ${this.textSelector}{
         box-sizing: var(--text-box-sizing, border-box);
