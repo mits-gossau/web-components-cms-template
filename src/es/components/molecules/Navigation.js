@@ -82,6 +82,7 @@ export default class Navigation extends Shadow() {
    * @return {void}
    */
   renderCSS () {
+    const firstLevelCount = this.root.querySelectorAll('nav > ul > li').length;
     this.css = /* css */`
       :host{
         color: black;
@@ -129,7 +130,9 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul{
         align-items: var(--align-items, center);
+        justify-content: var(--justify-content, normal);
         display: flex;
+        flex-wrap: var(--flex-wrap, nowrap);
         flex-direction: var(--flex-direction, row);
         padding: var(--padding, calc(var(--content-spacing, 40px) / 2) 0);
       }
@@ -138,10 +141,11 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul > li{
         display: block;
-        padding: 0 calc(var(--content-spacing, 40px) / 4);
+        padding: var(--li-padding, 0 calc(var(--content-spacing, 40px) / 4));
       }
       :host > nav > ul li{
         position: relative;
+        margin-bottom: var(--margin-bottom, 0);
       }
       :host > nav > ul li > a-arrow {
         display: none;
@@ -153,8 +157,19 @@ export default class Navigation extends Shadow() {
         padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
         margin: var(--li-ul-margin);
         position: var(--li-ul-position, absolute);
+        top: var(--li-ul-top, unset);
+        right: var(--li-ul-right, unset);
+        bottom: var(--li-ul-bottom, unset);
+        left: var(--li-ul-left, unset);
         width: var(--li-ul-width, max-content);
         transition: var(--transition, all 0.2s ease);
+        z-index: var(--li-ul-z-index, auto);
+      }
+      :host > nav > ul li:nth-child(n+${firstLevelCount / 2 + 1}) ul{
+        top: var(--li-ul-top-second-half, unset);
+        right: var(--li-ul-right-second-half, unset);
+        bottom: var(--li-ul-bottom-second-half, unset);
+        left: var(--li-ul-left-second-half, unset);
       }
       ${(this.getAttribute('hover') === 'true' &&
       `:host > nav > ul li:hover ul,
@@ -168,6 +183,9 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li:hover{
         cursor: pointer;
+      }
+      :host > nav > ul > li > ul li {
+        margin-bottom: var(--li-ul-margin-bottom, 0);
       }
       :host > nav > ul li ul li {
         min-width: var(--min-width, 100px);
@@ -200,6 +218,7 @@ export default class Navigation extends Shadow() {
           justify-content: var(--justify-content-mobile, center);
           padding: 0;
           width: 100%;
+          margin-bottom: var(--margin-bottom-mobile, 0);
         }
         :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
           --color: var(--a-arrow-color-hover, var(--color-hover));
@@ -212,7 +231,7 @@ export default class Navigation extends Shadow() {
         }
         :host > nav > ul > li a-arrow {
           --color: var(--a-arrow-color);
-          display: block;
+          display: var(--arrow-display, 'block');
           min-height: var(--min-height-mobile, 50px);
           min-width: var(--min-width-mobile, 50px);
         }
@@ -232,6 +251,7 @@ export default class Navigation extends Shadow() {
         }
         :host > nav > ul > li > ul li {
           flex-wrap: unset;
+          margin-bottom: var(--li-ul-margin-bottom-mobile, 0);
         }
       }
     `
@@ -251,6 +271,7 @@ export default class Navigation extends Shadow() {
       const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
+        if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
         li.classList.toggle('open')
         arrow.setAttribute('direction', li.classList.contains('open') ? 'up' : 'down')
       }
@@ -278,7 +299,10 @@ export default class Navigation extends Shadow() {
           }
         }
       })
-      if (this.focusLostClose) self.addEventListener('click', event => Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open')))
+      if (this.focusLostClose) self.addEventListener('click', event => {
+        Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+        if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
+      })
       li.prepend(arrow)
       a.replaceWith(aLink)
       li.prepend(aLink)

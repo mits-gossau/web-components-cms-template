@@ -101,9 +101,10 @@ export default class Link extends Shadow() {
         transition: var(--transition, all 0.2s ease);
         width: 100%;
       }
-      :host > a:hover {
+      :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName} {
         color: var(--color-hover, var(--color, yellow));
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
+        font-family: var(--font-family-hover);
       }
       :host > a:focus {
         text-decoration: var(--text-decoration-focus, unset);

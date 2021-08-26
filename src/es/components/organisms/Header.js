@@ -168,12 +168,18 @@ export default class Header extends Shadow() {
         :host > header > m-navigation {
           display: var(--m-navigation-display-mobile, none);
           left: 0;
+          background-color: var(--m-navigation-background-color-mobile, transparent);
           height: var(--m-navigation-height-mobile, 0);
           overflow: hidden;
           position: var(--m-navigation-position-mobile, absolute);
+          align-items: var(--m-navigation-align-items-mobile, normal);
+          justify-content: var(--m-navigation-justify-content-mobile, normal);
           transition: var(--m-navigation-transition, all 0.2s ease);
-          top: var(--height-mobile, 50px);
+          top: var(--m-navigation-top-mobile, var(--height-mobile, 50px));
           width: 100%;
+        }
+        :host > header > a-title {
+          z-index: var(--a-title-z-index, auto);
         }
         :host > header.open > m-navigation{
           display: var(--m-navigation-display-open-mobile, var(--m-navigation-display-mobile, block));

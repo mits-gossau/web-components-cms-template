@@ -117,13 +117,18 @@ export default class Logo extends Shadow() {
       :host(.hide-mobile) {
         display: flex;
       }
+      :host a{
+        height: var(--a-height, auto);
+        width: var(--a-width, auto);
+      }
       :host img{
         display: block;
         height: var(--height, calc(var(--height, 85px) - var(--content-spacing, 40px)));
         max-height: var(--max-height, none);
-        object-fit: scale-down;
+        object-fit: var(--object-fit, scale-down);
         width: var(--width, auto);
         max-width: var(--max-width, 80vw);
+        margin: var(--margin, 0);
       }
       :host > ${this.textSelector}{
         box-sizing: var(--text-box-sizing, border-box);

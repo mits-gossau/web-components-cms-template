@@ -65,12 +65,12 @@ export default class MenuIcon extends Shadow() {
         display: inline-block;
         cursor: pointer;
         transition: var(--transition, 0.2s);
-        padding: 0 calc(var(--width, 35px) / 4) !important;
+        padding: var(--padding, 0 calc(var(--width, 35px) / 4)) !important;
         margin: var(--margin, 0);
         transition: var(--transition, 0.2s);
       }
       :host(.${this.openClass}) {
-        padding: 0 calc(var(--width, 35px) / 4) !important;
+        padding: var(--padding-open, 0 calc(var(--width, 35px) / 4)) !important;
       }
       .${this.barClass}1, .${this.barClass}2, .${this.barClass}3 {
         width: var(--width, 35px);
