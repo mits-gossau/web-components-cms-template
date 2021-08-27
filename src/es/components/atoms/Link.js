@@ -102,7 +102,7 @@ export default class Link extends Shadow() {
         width: 100%;
         font-family: var(--font-family);
       }
-      :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName} {
+      :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName}, :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
         color: var(--color-hover, var(--color, yellow));
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
         font-family: var(--font-family-hover);
@@ -140,6 +140,8 @@ export default class Link extends Shadow() {
       this.a.innerHTML = ''
       this.root.appendChild(this.hitArea)
     }
+    console.log('changed', this, location.href, this.a.getAttribute('href'));
+    if (this.hasAttribute('set-active') && location.href.includes(this.a.getAttribute('href'))) this.classList.add('active')
   }
 
   get hitArea () {
