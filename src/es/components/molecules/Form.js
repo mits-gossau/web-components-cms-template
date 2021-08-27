@@ -274,7 +274,11 @@ export default class Form extends Shadow() {
         display: var(--ol-display, var(--ul-display, block));
         flex-direction: var(--ol-flex-direction, var(--ul-flex-direction, column));
       }
-
+      :host .highlight {
+        color: var(--highlight-color, var(--background-color));
+        background-color: var(--highlight-background-color, var(--color));
+        padding: var(--highlight-padding, 0 0.2em);
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           display: var(--display-mobile, var(--display, block));

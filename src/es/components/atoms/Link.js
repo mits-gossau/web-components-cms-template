@@ -140,7 +140,6 @@ export default class Link extends Shadow() {
       this.a.innerHTML = ''
       this.root.appendChild(this.hitArea)
     }
-    console.log('changed', this, location.href, this.a.getAttribute('href'));
     if (this.hasAttribute('set-active') && location.href.includes(this.a.getAttribute('href'))) this.classList.add('active')
   }
 
