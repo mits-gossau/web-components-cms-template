@@ -48,6 +48,11 @@ export default class Teaser extends Shadow() {
     this.clickListener = event => {
       if (this.getAttribute('href')) location.href = this.getAttribute('href')
     }
+    // link behavior made accessible
+    if (this.hasAttribute('href')) {
+      this.setAttribute('data-href', this.getAttribute('href'))
+      this.setAttribute('role', 'link')
+    }
   }
 
   connectedCallback () {
