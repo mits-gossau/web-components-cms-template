@@ -132,6 +132,7 @@ export default class Details extends Mutation() {
         display: var(--display, block);
         border-top: var(--border-top, 0);
         border-bottom:var(--border-bottom, 0);
+        border-color: var(--color);
       }
       :host(:last-of-type) {
         border-bottom:var(--border-bottom-last, var(--border-bottom, 0));
@@ -201,11 +202,11 @@ export default class Details extends Mutation() {
         justify-content: var(--icon-justify-content, center);
         align-items: var(--icon-align-items, flex-start);
       }
-      :host details .icon > img {
+      :host details .icon > img, :host details .icon > div > svg {
         transition: var(--icon-transition, transform 0.15s ease);
         margin: var(--icon-margin, 0 1rem) !important;
       }
-      :host details[open] .icon > img  {
+      :host details[open] .icon > img, :host details[open] .icon > div > svg  {
         transform: var(--icon-transform-open, rotate(180deg));
       }
       @keyframes open {
@@ -213,7 +214,7 @@ export default class Details extends Mutation() {
         100% {font-size: inherit}
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host details .icon > img {
+        :host details .icon > img, :host details .icon > div > svg {
           width: var(--icon-width-mobile, min(1.7rem, 10vw))
         }
       }
@@ -228,11 +229,26 @@ export default class Details extends Mutation() {
   renderHTML() {
     this.hasRendered = true
     Array.from(this.summary.childNodes).forEach(node => this.divSummary.appendChild(node))
-    if (this.hasAttribute('icon-image')) {
+    if (this.getAttribute('icon-image')) {
       const iconImg = new Image()
       iconImg.src = this.getAttribute('icon-image')
       iconImg.alt = "close detail"
       this.divSummary.append(iconImg)
+      this.divSummary.classList.add('icon')
+    } else if (this.hasAttribute('icon-image')) {
+      const iconSvg = document.createElement('div')
+      iconSvg.innerHTML = `
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg width="35px" height="20px" viewBox="0 0 35 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+            <title>Mobile Pfeil</title>
+            <desc>Created with Sketch.</desc>
+            <g id="Mobile-Pfeil" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <polyline id="Path-2" stroke="var(--color, --${this.namespace}color)" stroke-width="3" points="2 3 17 18 32 3"></polyline>
+            </g>
+        </svg>
+      `
+      this.divSummary.append(iconSvg)
       this.divSummary.classList.add('icon')
     }
     this.summary.appendChild(this.divSummary)
