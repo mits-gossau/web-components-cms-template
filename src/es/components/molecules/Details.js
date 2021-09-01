@@ -127,25 +127,27 @@ export default class Details extends Mutation() {
    * @return {void}
    */
   renderCSS() {
-    this.css = /* css */`
-      
-    :host details {
+    this.css = /* css */` 
+      :host {
+        display: block;
+        border-top: var(--border-top, 0);
+        border-bottom:var(--border-bottom, 0);
+      }
+      :host(:last-of-type) {
+        border-bottom:var(--border-bottom-last, var(--border-bottom, 0));
+      }
+      :host details {
         text-align: var(--text-align, center);
         margin: var(--margin, 0);
         padding: var(--padding, 0);
-        border-top: var(--border-top, 0);
-        border-bottom:var(${this.hasAttribute('last') ? '--border-bottom-last' : '--border-bottom'}, 0);
       }
-      
       :host details summary::marker, :host details summary::-webkit-details-marker {
         display: var(--marker-display, none);
         content: var(--marker-content, "");
       }
-      
       :host details summary, :host details summary:focus {
         outline: none;
       }
-      
       :host details summary > div {
         cursor: var(--summary-cursor, pointer);
         font-family: var(--summary-font-family, var(--font-family, var(--font-family-bold)));
@@ -158,37 +160,30 @@ export default class Details extends Mutation() {
         text-transform: var(--summary-text-transform, none);
         text-underline-offset: var(--a-text-underline-offset, unset);
       }
-
       :host details summary > div:hover, :host details summary > div:active, :host details summary > div:focus {
         text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
-
       :host details[open] summary > div {
         text-decoration: var(--summary-text-decoration-open, none);
         font-family: var(--summary-font-family, var(--font-family-bold, var(--font-family)));
       }
-
       :host details summary > div > * {
         margin: var(--summary-child-margin, 0);
         padding: var(--summary-child-padding, 0);
       }
-
       :host details[open] summary > div > * {
         margin: var(--summary-child-margin-open, 0);
         padding: var(--summary-child-padding-open, 0);
       }
-
       :host details summary ~ * {
         margin: var(--child-margin, 0);
         padding: var(--child-padding, 0);
       }
-
       :host details[open] summary ~ * {
         animation: var(--animation, open 0.2s ease);
         margin: var(--child-margin-open, 0);
         padding: var(--child-padding-open, 0);
       }
-
       :host details .close {
         color: var(--a-color, var(--color));
         cursor: var(--close-cursor, pointer);
@@ -197,32 +192,26 @@ export default class Details extends Mutation() {
         text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--close-text-transform, uppercase);
       }
-
       :host details .close:hover, :host details .close:active, :host details .close:focus {
         text-decoration: var(--close-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
-
       :host details .icon {
         display: var(--icon-display, flex);
         flex-direction: var(--icon-row, row);
         justify-content: var(--icon-justify-content, center);
         align-items: var(--icon-align-items, flex-start);
       }
-
       :host details .icon > img {
         transition: var(--icon-transition, transform 0.15s ease);
         margin: var(--icon-margin, 0 1rem) !important;
       }
-
       :host details[open] .icon > img  {
         transform: var(--icon-transform-open, rotate(180deg));
       }
-
       @keyframes open {
         0% {font-size: 0}
         100% {font-size: inherit}
       }
-
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host details .icon > img {
           width: var(--icon-width-mobile, min(1.7rem, 10vw))
