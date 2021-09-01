@@ -45,7 +45,7 @@ import { Mutation } from '../prototypes/Mutation.js'
  * }
  */
 export default class Details extends Mutation() {
-  constructor (options = {}, ...args) {
+  constructor(options = {}, ...args) {
     super(Object.assign(options, { mutationObserverInit: { attributes: true, attributeFilter: ['open'] } }), ...args)
 
     this.hasRendered = false
@@ -74,7 +74,7 @@ export default class Details extends Mutation() {
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     super.connectedCallback()
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
@@ -82,13 +82,13 @@ export default class Details extends Mutation() {
     this.root.addEventListener('click', this.clickEventListener)
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     super.disconnectedCallback()
     document.body.removeEventListener(this.openEventName, this.openEventListener)
     this.root.removeEventListener('click', this.clickEventListener)
   }
 
-  mutationCallback (mutationList, observer) {
+  mutationCallback(mutationList, observer) {
     mutationList.forEach(mutation => {
       if (mutation.target.hasAttribute('open')) {
         this.dispatchEvent(new CustomEvent(this.openEventName, {
@@ -108,7 +108,7 @@ export default class Details extends Mutation() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -117,7 +117,7 @@ export default class Details extends Mutation() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.hasRendered
   }
 
@@ -126,55 +126,69 @@ export default class Details extends Mutation() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
-      :host details {
+      
+    :host details {
         text-align: var(--text-align, center);
         margin: var(--margin, 0);
         padding: var(--padding, 0);
+        border-top: var(--border-top, 0);
+        border-bottom:var(${this.hasAttribute('last') ? '--border-bottom-last' : '--border-bottom'}, 0);
       }
+      
       :host details summary::marker, :host details summary::-webkit-details-marker {
         display: var(--marker-display, none);
         content: var(--marker-content, "");
       }
+      
       :host details summary, :host details summary:focus {
         outline: none;
       }
+      
       :host details summary > div {
         cursor: var(--summary-cursor, pointer);
-        text-decoration: var(--summary-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
-        text-underline-offset: var(--a-text-underline-offset, unset);
-        text-transform: var(--summary-text-transform, none);
-        outline: var(--summary-outline, none);
-        margin: var(--summary-margin, 0);
-        padding: var(--summary-padding, 0);
         font-family: var(--summary-font-family, var(--font-family, var(--font-family-bold)));
+        font-size:var(--summary-font-size, inherit);
         font-weight: var(--summary-font-weight, var(--font-weight, normal));
+        margin: var(--summary-margin, 0);
+        outline: var(--summary-outline, none);
+        padding: var(--summary-padding, 0);
+        text-decoration: var(--summary-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
+        text-transform: var(--summary-text-transform, none);
+        text-underline-offset: var(--a-text-underline-offset, unset);
       }
+
       :host details summary > div:hover, :host details summary > div:active, :host details summary > div:focus {
         text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
+
       :host details[open] summary > div {
         text-decoration: var(--summary-text-decoration-open, none);
         font-family: var(--summary-font-family, var(--font-family-bold, var(--font-family)));
       }
+
       :host details summary > div > * {
         margin: var(--summary-child-margin, 0);
         padding: var(--summary-child-padding, 0);
       }
+
       :host details[open] summary > div > * {
         margin: var(--summary-child-margin-open, 0);
         padding: var(--summary-child-padding-open, 0);
       }
+
       :host details summary ~ * {
         margin: var(--child-margin, 0);
         padding: var(--child-padding, 0);
       }
+
       :host details[open] summary ~ * {
         animation: var(--animation, open 0.2s ease);
         margin: var(--child-margin-open, 0);
         padding: var(--child-padding-open, 0);
       }
+
       :host details .close {
         color: var(--a-color, var(--color));
         cursor: var(--close-cursor, pointer);
@@ -183,12 +197,36 @@ export default class Details extends Mutation() {
         text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--close-text-transform, uppercase);
       }
+
       :host details .close:hover, :host details .close:active, :host details .close:focus {
         text-decoration: var(--close-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
+
+      :host details .icon {
+        display: var(--icon-display, flex);
+        flex-direction: var(--icon-row, row);
+        justify-content: var(--icon-justify-content, center);
+        align-items: var(--icon-align-items, flex-start);
+      }
+
+      :host details .icon > img {
+        transition: var(--icon-transition, transform 0.15s ease);
+        margin: var(--icon-margin, 0 1rem) !important;
+      }
+
+      :host details[open] .icon > img  {
+        transform: var(--icon-transform-open, rotate(180deg));
+      }
+
       @keyframes open {
         0% {font-size: 0}
         100% {font-size: inherit}
+      }
+
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host details .icon > img {
+          width: var(--icon-width-mobile, min(1.7rem, 10vw))
+        }
       }
     `
   }
@@ -198,25 +236,32 @@ export default class Details extends Mutation() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.hasRendered = true
     Array.from(this.summary.childNodes).forEach(node => this.divSummary.appendChild(node))
+    if (this.hasAttribute('icon-image')) {
+      const iconImg = new Image()
+      iconImg.src = this.getAttribute('icon-image')
+      iconImg.alt = "close detail"
+      this.divSummary.append(iconImg)
+      this.divSummary.classList.add('icon')
+    }
     this.summary.appendChild(this.divSummary)
   }
 
-  get openEventName () {
+  get openEventName() {
     return this.getAttribute('open-event-name') || 'open'
   }
 
-  get summary () {
+  get summary() {
     return this.root.querySelector('summary')
   }
 
-  get details () {
+  get details() {
     return this.root.querySelector('details')
   }
 
-  get divSummary () {
+  get divSummary() {
     return this._divSummary || (this._divSummary = document.createElement('div'))
   }
 }
