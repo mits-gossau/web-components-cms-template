@@ -129,7 +129,7 @@ export default class Details extends Mutation() {
   renderCSS() {
     this.css = /* css */` 
       :host {
-        display: block;
+        display: var(--display, block);
         border-top: var(--border-top, 0);
         border-bottom:var(--border-bottom, 0);
       }
