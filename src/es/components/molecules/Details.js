@@ -42,6 +42,7 @@ import { Mutation } from '../prototypes/Mutation.js'
  *  {boolean} [open=false] opens the details
  *  {string} [openEventName='open'] the event to which it listens on body
  *  {has} [scroll-into-view=n.a.] scrolls into view if set
+ *  {has} [icon-image=n.a] add open/close icon
  * }
  */
 export default class Details extends Mutation() {
