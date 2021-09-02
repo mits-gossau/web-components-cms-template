@@ -136,6 +136,7 @@ export default class Details extends Mutation() {
       }
       :host(:last-of-type) {
         border-bottom:var(--border-bottom-last, var(--border-bottom, 0));
+        border-color: var(--color);
       }
       :host details {
         text-align: var(--text-align, center);
