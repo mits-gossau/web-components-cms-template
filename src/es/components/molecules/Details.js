@@ -187,6 +187,10 @@ export default class Details extends Mutation() {
         margin: var(--child-margin-open, 0);
         padding: var(--child-padding-open, 0);
       }
+      :host details summary ~ ul, :host details[open] summary ~ ul {
+        display: var(--ul-display, inline-block);
+        margin: var(--ul-margin, 0 0 0 1em);
+      }
       :host details .close {
         color: var(--a-color, var(--color));
         cursor: var(--close-cursor, pointer);
