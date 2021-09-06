@@ -21,57 +21,16 @@ export default class MIndustryNavigation extends Navigation {
   }
 
   renderCSS () {
+    super.renderCSS();
     this.css = /* css */`
-      :host {
-        color: black;
-        background-color: var(--background-color);
-      }
-      :host a-link {
-        --padding: var(--a-link-content-spacing, 14px 10px);
-        --font-size: var(--a-link-font-size, 1rem);
-        --font-weight: var(--a-link-font-weight);
-        --line-height: var(--a-link-line-height);
-        --text-transform: var(--a-link-text-transform);
-        font-family: var(--a-link-font-family);
-        font-weight: var(--a-font-weight, var(--font-weight, normal));
-      }
-      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
-        --color: var(--a-link-color-${this.getAttribute('no-scroll') || 'no-scroll'});
-        --padding: var(--a-link-content-spacing-${this.getAttribute('no-scroll') || 'no-scroll'}, 14px 10px);
-        --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
-        --font-weight: var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'});
-        --line-height: var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'});
-      }
-      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
-        --font-size: var(--a-link-second-level-font-size, 1rem);
-        --font-weight: var(--a-link-second-level-font-weight, var(--a-link-font-weight));
-        --line-height: var(--a-link-second-level-line-height);
-        font-family: var(--a-link-second-level-font-family);
-        font-weight: var(--a-font-weight, var(--font-weight, normal));
-      }
-      ${(this.getAttribute('hover') === 'true' &&
-      `:host > nav > ul li:hover ul a-link,
-      :host > nav > ul li ul:hover a-link,`) || ''}
-      :host > nav > ul li a-link.open ~ ul a-link {
-        --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
-        --font-weight: var(--a-link-second-level-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--a-link-font-weight-${this.getAttribute('no-scroll') || 'no-scroll'}));
-        --line-height: var(--a-link-second-level-line-height-${this.getAttribute('no-scroll') || 'no-scroll'});
-      }
       :host ul{
-        background-color: var(--background-color, black);
         list-style: var(--list-style, none);
         margin: 0;
         padding: 0;
         transition: var(--transition, all 0.2s ease);
       }
-      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) ul {
-        background-color: var(--background-color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--background-color, black));
-      }
-      :host > nav > ul{
-        align-items: var(--align-items, center);
-        display: flex;
-        flex-direction: var(--flex-direction, row);
-        padding: var(--padding, calc(var(--content-spacing, 40px) / 2) 0);
+      :host > nav {
+        float: var(--float);
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul {
         padding: var(--padding-${this.getAttribute('no-scroll') || 'no-scroll'}, calc(var(--content-spacing, 40px) / 2) 0);
@@ -83,18 +42,13 @@ export default class MIndustryNavigation extends Navigation {
       :host > nav > ul li{
         position: relative;
       }
+      :host > nav > ul > li > .open {
+        background-color: white;
+      }
       :host > nav > ul li > a-arrow {
         display: none;
         user-select: none;
         visibility: hidden;
-      }
-      :host > nav > ul li ul{
-        display: var(--li-ul-display, none);
-        padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
-        margin: var(--li-ul-margin);
-        position: var(--li-ul-position, absolute);
-        width: var(--li-ul-width, max-content);
-        transition: var(--transition, all 0.2s ease);
       }
       ${(this.getAttribute('hover') === 'true' &&
       `:host > nav > ul li:hover ul,
@@ -102,6 +56,9 @@ export default class MIndustryNavigation extends Navigation {
       :host > nav > ul li a-link.open ~ ul {
         display: block;
         margin: var(--li-ul-margin-${this.getAttribute('no-scroll') || 'no-scroll'});
+        background-color: white;
+        padding-top: 0;
+        margin-top: 41px;
       }
       :host > nav > ul li:last-child ul{
         right: 0;
@@ -111,10 +68,28 @@ export default class MIndustryNavigation extends Navigation {
       }
       :host > nav > ul li ul li {
         min-width: var(--min-width, 100px);
+        padding-left: 30px;
+        height: 30px;
+      }
+      :host > nav > ul li ul li::before {
+        position: absolute;
+        margin-top: 7px;
+        left: 20px;
+        top:30%;
+        content: "";
+        width: 14px;
+        height: 16px;
+        background: url(../../../img/arrow.svg) left center no-repeat;
+        background-size: 8px 9px;
       }
       :host > nav > ul > li > ul > li:first-child{
-        padding-top: var(--padding-top, 6px);
-        border-top: var(--border-top, 1px solid) var(--hr-color, var(--color, white));
+        padding: var(--first-padding);
+      }
+      :host > nav > ul > li > ul > li:first-child::before{
+        background: none;
+      }
+      :host > nav > ul > li > ul > li:first-child > a-link {
+        --color: var(--color-open);
       }
     `
   }
@@ -126,6 +101,14 @@ export default class MIndustryNavigation extends Navigation {
    */
   renderHTML () {
     console.log('render')
+    var search = this.nav.firstChild.lastChild.previousSibling
+    search.innerHTML = '';
+    var lens = document.createElement('img');
+    lens.src = '../../../img/Lupe.svg';
+    var a = document.createElement('a');
+    a.appendChild(lens)
+    search.appendChild(a);
+    
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
@@ -166,43 +149,6 @@ export default class MIndustryNavigation extends Navigation {
       a.replaceWith(aLink)
       li.prepend(aLink)
       this.nav.hidden = false
-    }))
-  }
-
-  /**
-   * fetch children when first needed
-   *
-   * @returns {Promise<[string, CustomElementConstructor][]>}
-   */
-  loadChildComponents () {
-    if (this.childComponentsPromise) return this.childComponentsPromise
-    let linkPromise, arrowPromise
-    try {
-      linkPromise = Promise.resolve({ default: Link })
-    } catch (error) {
-      linkPromise = import('../web-components-cms-template/src/es/components/atoms/Link.js')
-    }
-    try {
-      arrowPromise = Promise.resolve({ default: Arrow })
-    } catch (error) {
-      arrowPromise = import('../web-components-cms-template/src/es/components/atoms/Arrow.js')
-    }
-    return (this.childComponentsPromise = Promise.all([
-      linkPromise.then(
-        /** @returns {[string, CustomElementConstructor]} */
-        module => ['a-link', module.default]
-      ),
-      arrowPromise.then(
-        /** @returns {[string, CustomElementConstructor]} */
-        module => ['a-arrow', module.default]
-      )
-    ]).then(elements => {
-      elements.forEach(element => {
-        // don't define already existing customElements
-        // @ts-ignore
-        if (!customElements.get(element[0])) customElements.define(...element)
-      })
-      return elements
     }))
   }
 }
