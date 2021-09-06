@@ -196,6 +196,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
         --font-family: var(--font-family-open);
+        --color: var(--color-open);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
@@ -255,6 +256,10 @@ export default class Navigation extends Shadow() {
         :host > nav > ul > li > ul li {
           flex-wrap: unset;
           margin-bottom: var(--li-ul-margin-bottom-mobile, 0);
+        }
+        :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
+          --font-family: var(--font-family-open-mobile, var(--font-family-open));
+          --color: var(--color-open-mobile, var(--color-open));
         }
       }
     `
