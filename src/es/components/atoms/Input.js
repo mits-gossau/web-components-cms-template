@@ -146,6 +146,7 @@ export default class Input extends Shadow() {
         padding: var(--input-padding, var(--padding, 0 15px));
         margin: var(--input-margin, var(--margin, 0));
         border: var(--input-border, var(--border, none));
+        border-radius: var(--input-border-radius, var(--border-radius, 0px));
         font-family: var(--input-font-family, var(--font-family));
         font-weight: var(--input-font-weight, var(--font-weight, normal));
         font-size: var(--input-font-size, var(--p-font-size, var(--font-size)));
@@ -160,6 +161,7 @@ export default class Input extends Shadow() {
         padding: var(--label-padding, var(--padding, 0 15px));
         margin: var(--label-margin, var(--margin, 0));
         border: var(--label-border, var(--border, none));
+        border-radius: var(--label-border-radius, var(--border-radius, 0px));
         font-family: var(--label-font-family-bold, var(--font-family-bold));
         font-weight: var(--label-font-weight, var(--font-weight, normal));
         font-size: var(--label-font-size, var(--p-font-size, var(--font-size)));
@@ -252,6 +254,7 @@ export default class Input extends Shadow() {
           text-align: var(--input-text-align-mobile, var(--text-align-mobile, var(--input-text-align, var(--text-align, center))));
           color: var(--input-color-mobile, var(--color-mobile, var(--input-color, var(--color, red))));
           border: var(--input-border-mobile, var(--border-mobile, var(--input-border, var(--border, none))));
+          border-radius: var(--input-border-radius-mobile, var(--border-radius-mobile, var(--input-border-radius, var(--border-radius, 0px))));
           height: var(--input-height-mobile, var(--height-mobile, var(--input-height, var(--height, 100%))));
           width: var(--input-width-mobile, var(--width-mobile, var(--input-width, var(--width, 100%))));
         }
@@ -263,6 +266,7 @@ export default class Input extends Shadow() {
           text-align: var(--label-text-align-mobile, var(--text-align-mobile, var(--label-text-align, var(--text-align, center))));
           color: var(--label-color-mobile, var(--color-mobile, var(--label-color, var(--color, red))));
           border: var(--label-border-mobile, var(--border-mobile, var(--label-border, var(--border, none))));
+          border-radius: var(--label-border-radius-mobile, var(--border-radius-mobile, var(--label-border-radius, var(--border-radius, 0px))));
           height: var(--label-height-mobile, var(--height-mobile, var(--label-height, var(--height, 100%))));
           width: var(--label-width-mobile, var(--width-mobile, var(--label-width, var(--width, 100%))));
         }

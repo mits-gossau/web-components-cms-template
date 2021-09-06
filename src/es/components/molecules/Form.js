@@ -182,6 +182,7 @@ export default class Form extends Shadow() {
         --balloon-color: var(--background-color, white);
         --balloon-text-color: var(--color, #009fe3);
         display: var(--display, block);
+        width: var(--width, auto) !important;
       }
       :host form {
         display: var(--form-display, flex);
@@ -259,6 +260,7 @@ export default class Form extends Shadow() {
       .searchResultsContainer a:hover, .searchResultsContainer a:focus, .searchResultsContainer a:active {
         color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
         text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+        font-family: var(--a-font-family-hover);
       }
       .searchResultsContainer ul {
         padding-left: 15px;
@@ -282,6 +284,7 @@ export default class Form extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           display: var(--display-mobile, var(--display, block));
+          width: var(--width-mobile, var(--width, auto)) !important;
         }
         :host form {
           display: var(--form-display-mobile, var(--form-display, flex));
