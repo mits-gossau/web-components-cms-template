@@ -277,6 +277,7 @@ export default class Navigation extends Shadow() {
       const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
       aLink.setAttribute('hit-area', this.getAttribute('hit-area') || 'true')
       if (this.hasAttribute('set-active')) aLink.setAttribute('set-active', this.getAttribute('set-active'))
+      if (a.classList.contains('active')) aLink.classList.add('active')
       const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
