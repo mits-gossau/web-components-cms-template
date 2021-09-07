@@ -223,6 +223,12 @@ export default class Details extends Mutation() {
         :host details .icon > img, :host details .icon > div > svg {
           width: var(--icon-width-mobile, min(1.7rem, 10vw))
         }
+        :host details summary ~ * {
+          padding: var(--child-padding-mobile, var(--child-padding, 0));
+        }
+        :host details[open] summary ~ * {
+          padding: var(--child-padding-open-mobile, var(--child-padding-open, 0));
+        }
       }
     `
   }
