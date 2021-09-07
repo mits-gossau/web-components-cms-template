@@ -241,11 +241,12 @@ export default class Form extends Shadow() {
           margin: var(--h4-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer p {
+        color: var(--p-color, var(--color, black));
         font-family: var(--p-font-family, var(--font-family-secondary));
         font-weight: var(--p-font-weight, var(--font-weight, normal));
+        margin: var(--p-margin, var(--content-spacing, unset)) auto;
         text-align: var(--p-text-align, start);
         text-transform: var(--p-text-transform, none);
-        margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer a {
         font-size: var(--a-font-size, 0.9rem);
