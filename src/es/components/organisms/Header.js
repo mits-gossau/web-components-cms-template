@@ -176,6 +176,7 @@ export default class Header extends Shadow() {
           justify-content: var(--m-navigation-justify-content-mobile, normal);
           transition: var(--m-navigation-transition, all 0.2s ease);
           top: var(--m-navigation-top-mobile, var(--height-mobile, 50px));
+          padding: var(--m-navigation-padding-mobile, 0);
           width: 100%;
         }
         :host > header > a-title {
@@ -185,6 +186,7 @@ export default class Header extends Shadow() {
           display: var(--m-navigation-display-open-mobile, var(--m-navigation-display-mobile, block));
           height: var(--m-navigation-height-open-mobile, 100vh);
           overflow-y: var(--m-navigation-overflow-y-open-mobile, auto);
+          padding: var(--m-navigation-padding-open-mobile, var(--m-navigation-padding-mobile, 0));
         }
         :host  > header > a-menu-icon{
           display: var(--a-menu-icon-display-mobile, block);
