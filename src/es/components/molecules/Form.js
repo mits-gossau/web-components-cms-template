@@ -44,7 +44,7 @@ export default class Form extends Shadow() {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
-        
+
         if (this.hasAttribute('use-html-submit')) {
           this.submitByHTML(body, method, action)
         } else {
@@ -141,9 +141,9 @@ export default class Form extends Shadow() {
     if (form) {
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
-        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') 
-            && (i.getAttribute('type') !== 'radio' || i.checked) 
-            && (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
+            (i.getAttribute('type') !== 'radio' || i.checked) &&
+            (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
       });
       [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)

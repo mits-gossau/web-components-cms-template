@@ -2,6 +2,7 @@
 import { Shadow } from '../prototypes/Shadow.js'
 
 /* global self */
+/* global location */
 
 /**
  * Link is a wrapper for an a-tag

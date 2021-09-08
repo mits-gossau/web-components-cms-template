@@ -82,7 +82,7 @@ export default class Navigation extends Shadow() {
    * @return {void}
    */
   renderCSS () {
-    const firstLevelCount = this.root.querySelectorAll('nav > ul > li').length;
+    const firstLevelCount = this.root.querySelectorAll('nav > ul > li').length
     this.css = /* css */`
       :host{
         color: black;
@@ -303,10 +303,12 @@ export default class Navigation extends Shadow() {
           }
         }
       })
-      if (this.focusLostClose) self.addEventListener('click', event => {
-        Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
-        if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
-      })
+      if (this.focusLostClose) {
+        self.addEventListener('click', event => {
+          Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+          if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
+        })
+      }
       li.prepend(arrow)
       a.replaceWith(aLink)
       li.prepend(aLink)
