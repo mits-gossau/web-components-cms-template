@@ -117,6 +117,7 @@ export default class Input extends Shadow() {
         flex-direction: var(--flex-direction, column);
         height: var(--height, min(95px, 20vw)); 
         text-align: var(--text-align, center);
+        position: var(--position, static);
       }
       :host([type=radio]) {
         display: var(--radio-display, var(--display, flex));
@@ -242,6 +243,7 @@ export default class Input extends Shadow() {
           flex-direction: var(--flex-direction-mobile, var(--flex-direction, column));
           height: var(--height-mobile, var(--height, min(85px, 20vw)));
           text-align: var(--text-align-mobile, var(--text-align, center));
+          position: var(--position-mobile, var(--position, static));
         }
         :host(:focus-within) {
           box-shadow: var(--input-box-shadow-mobile, inset 0 0 1.5px 1.5px var(--color));

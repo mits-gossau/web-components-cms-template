@@ -2,6 +2,8 @@
 import { Mutation } from '../prototypes/Mutation.js'
 
 /* global CustomEvent */
+/* global self */
+/* global Image */
 
 /**
  * Details (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) aka. Bootstrap accordion
@@ -46,7 +48,7 @@ import { Mutation } from '../prototypes/Mutation.js'
  * }
  */
 export default class Details extends Mutation() {
-  constructor(options = {}, ...args) {
+  constructor (options = {}, ...args) {
     super(Object.assign(options, { mutationObserverInit: { attributes: true, attributeFilter: ['open'] } }), ...args)
 
     this.hasRendered = false
@@ -75,7 +77,7 @@ export default class Details extends Mutation() {
     }
   }
 
-  connectedCallback() {
+  connectedCallback () {
     super.connectedCallback()
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
@@ -83,13 +85,13 @@ export default class Details extends Mutation() {
     this.root.addEventListener('click', this.clickEventListener)
   }
 
-  disconnectedCallback() {
+  disconnectedCallback () {
     super.disconnectedCallback()
     document.body.removeEventListener(this.openEventName, this.openEventListener)
     this.root.removeEventListener('click', this.clickEventListener)
   }
 
-  mutationCallback(mutationList, observer) {
+  mutationCallback (mutationList, observer) {
     mutationList.forEach(mutation => {
       if (mutation.target.hasAttribute('open')) {
         this.dispatchEvent(new CustomEvent(this.openEventName, {
@@ -109,7 +111,7 @@ export default class Details extends Mutation() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS() {
+  shouldComponentRenderCSS () {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -118,7 +120,7 @@ export default class Details extends Mutation() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML() {
+  shouldComponentRenderHTML () {
     return !this.hasRendered
   }
 
@@ -127,7 +129,7 @@ export default class Details extends Mutation() {
    *
    * @return {void}
    */
-  renderCSS() {
+  renderCSS () {
     this.css = /* css */` 
       :host {
         display: var(--display, block);
@@ -238,13 +240,13 @@ export default class Details extends Mutation() {
    *
    * @return {void}
    */
-  renderHTML() {
+  renderHTML () {
     this.hasRendered = true
     Array.from(this.summary.childNodes).forEach(node => this.divSummary.appendChild(node))
     if (this.getAttribute('icon-image')) {
       const iconImg = new Image()
       iconImg.src = this.getAttribute('icon-image')
-      iconImg.alt = "close detail"
+      iconImg.alt = 'close detail'
       this.divSummary.append(iconImg)
       this.divSummary.classList.add('icon')
     } else if (this.hasAttribute('icon-image')) {
@@ -266,19 +268,19 @@ export default class Details extends Mutation() {
     this.summary.appendChild(this.divSummary)
   }
 
-  get openEventName() {
+  get openEventName () {
     return this.getAttribute('open-event-name') || 'open'
   }
 
-  get summary() {
+  get summary () {
     return this.root.querySelector('summary')
   }
 
-  get details() {
+  get details () {
     return this.root.querySelector('details')
   }
 
-  get divSummary() {
+  get divSummary () {
     return this._divSummary || (this._divSummary = document.createElement('div'))
   }
 }

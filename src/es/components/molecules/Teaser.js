@@ -1,7 +1,7 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global location */
+/* global self */
 
 /**
  * As a molecule, this component shall hold Atoms
