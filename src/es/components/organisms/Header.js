@@ -94,6 +94,7 @@ export default class Header extends Shadow() {
         top: 0;
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);
+        background-color: var(--background-color, transparent);
       }
       :host > * {
         margin: var(--content-spacing, 40px) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
