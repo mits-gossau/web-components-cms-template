@@ -90,7 +90,7 @@ export default class Header extends Shadow() {
     this.css = /* css */`
       :host {
         grid-area: header;
-        position: var(--position, sticky);
+        position: ${this.hasAttribute('sticky') ? 'sticky' : 'var(--position, sticky)'};
         top: 0;
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);

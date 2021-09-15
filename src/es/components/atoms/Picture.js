@@ -106,6 +106,9 @@ export default class Picture extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
+      :host {
+        text-align: var(--text-align, center);
+      }
       :host picture {
         filter: var(--filter, none);
         display: var(--display, block); /* don't use flex here, it can have strange side effects */
