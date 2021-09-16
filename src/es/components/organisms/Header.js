@@ -35,6 +35,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {boolean} [menu-icon=false]
  *  {string} [no-scroll="no-scroll"]
  *  {has} [flyer-transitionend=n.a.] trigger the animate class animations and early set children to no-scroll aka. open
+ *  {has} [sticky] make header sticky
  * }
  */
 export default class Header extends Shadow() {
@@ -51,16 +52,52 @@ export default class Header extends Shadow() {
         }
       }
     }
+
+    this.scrollListener = event => {
+      const lastScroll = self.scrollY
+      setTimeout(() => {
+        // is top
+        if (self.scrollY <= this.offsetHeight + 5) {
+          this.stickyStyle.textContent = ''
+        // is scrolled down
+        } else {
+          // scrolling up and show header
+          if ((Math.abs(self.scrollY - lastScroll) > 30 && self.scrollY <= lastScroll)) {
+            this.stickyStyle.textContent = /* css */`
+              :host {
+                border-bottom: var(--sticky-border-bottom, 1px solid var(--color));
+                position: sticky;
+                top: 0;
+                transition: var(--sticky-transition-show, top .3s ease);
+              }
+            `
+          // scrolling down and hide header
+          } else if (Math.abs(self.scrollY - lastScroll) > 30) {
+            if (this.mNavigation) Array.from(this.mNavigation.root.querySelectorAll('.open')).forEach(node => node.classList.remove('open'))
+            this.stickyStyle.textContent = /* css */`
+              :host {
+                position: sticky;
+                top: -${this.offsetHeight}px;
+                ${this.stickyStyle.textContent.includes('position: sticky;') ? 'transition: var(--sticky-transition-hide, top .3s ease);' : ''}
+              }
+            `
+          }
+        }
+        self.addEventListener('scroll', this.scrollListener, { once: true })
+      }, 200)
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (this.hasAttribute('flyer-transitionend')) document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, { once: true })
+    if (this.hasAttribute('sticky')) self.addEventListener('scroll', this.scrollListener, { once: true })
   }
 
   disconnectedCallback () {
     if (this.hasAttribute('flyer-transitionend')) document.body.removeEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener)
+    if (this.hasAttribute('sticky')) self.removeEventListener('scroll', this.scrollListener)
   }
 
   /**
@@ -90,7 +127,7 @@ export default class Header extends Shadow() {
     this.css = /* css */`
       :host {
         grid-area: header;
-        position: ${this.hasAttribute('sticky') ? 'sticky' : 'var(--position, sticky)'};
+        position: var(--position, sticky);
         top: 0;
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);
@@ -229,6 +266,10 @@ export default class Header extends Shadow() {
         this.header.appendChild(MenuIcon)
       })
     }
+    if (this.hasAttribute('sticky')) {
+      this.stickyStyle.setAttribute('protected', 'true')
+      this.root.appendChild(this.stickyStyle)
+    }
     self.addEventListener('resize', event => document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
   }
 
@@ -258,5 +299,13 @@ export default class Header extends Shadow() {
       })
       return elements
     }))
+  }
+
+  get stickyStyle () {
+    return this._stickyStyle || (this._stickyStyle = document.createElement('style'))
+  }
+
+  get mNavigation () {
+    return this.root.querySelector('m-navigation')
   }
 }

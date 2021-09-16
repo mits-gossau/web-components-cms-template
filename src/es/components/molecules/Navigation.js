@@ -154,6 +154,8 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li ul{
         display: var(--li-ul-display, none);
+        padding: var(--li-ul-padding, 0);
+        border-radius: var(--li-ul-border-radius, 0);
         padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
         margin: var(--li-ul-margin);
         position: var(--li-ul-position, absolute);
