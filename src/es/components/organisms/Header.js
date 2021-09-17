@@ -58,29 +58,17 @@ export default class Header extends Shadow() {
       setTimeout(() => {
         // is top
         if (self.scrollY <= this.offsetHeight + 5) {
-          this.stickyStyle.textContent = ''
+          this.classList.add('top')
         // is scrolled down
         } else {
+          this.classList.remove('top')
           // scrolling up and show header
           if ((Math.abs(self.scrollY - lastScroll) > 30 && self.scrollY <= lastScroll)) {
-            this.stickyStyle.textContent = /* css */`
-              :host {
-                border-bottom: var(--sticky-border-bottom, 1px solid var(--color));
-                position: sticky;
-                top: 0;
-                transition: var(--sticky-transition-show, top .3s ease);
-              }
-            `
+            this.classList.add('show')
           // scrolling down and hide header
           } else if (Math.abs(self.scrollY - lastScroll) > 30) {
             if (this.mNavigation) Array.from(this.mNavigation.root.querySelectorAll('.open')).forEach(node => node.classList.remove('open'))
-            this.stickyStyle.textContent = /* css */`
-              :host {
-                position: sticky;
-                top: -${this.offsetHeight}px;
-                ${this.stickyStyle.textContent.includes('position: sticky;') ? 'transition: var(--sticky-transition-hide, top .3s ease);' : ''}
-              }
-            `
+            this.classList.remove('show')
           }
         }
         self.addEventListener('scroll', this.scrollListener, { once: true })
@@ -186,6 +174,26 @@ export default class Header extends Shadow() {
         display: none;
         --a-menu-icon-background-color: var(--color, #777);
       }
+      /* sticky header classes */
+      :host([sticky]) {
+        position: sticky;
+      }
+      :host([sticky].top) {
+        position: var(--position, sticky);
+        top: -${this.offsetHeight}px;
+      }
+      :host([sticky].top), :host([sticky].top) > header {
+        background-color: transparent;
+      }
+      :host([sticky].show:not(.top)) {
+        border-bottom: var(--sticky-border-bottom, 1px solid var(--color));
+        top: 0;
+        transition: var(--sticky-transition-show, top .5s ease);
+      }
+      :host([sticky]:not(.top)) {
+        top: -${this.offsetHeight}px;
+        transition: var(--sticky-transition-hide, top .4s ease);
+      }
       @keyframes backgroundAnimation {
         0%{background-position-y:100%}
         100%{background-position-y:0%}
@@ -266,10 +274,7 @@ export default class Header extends Shadow() {
         this.header.appendChild(MenuIcon)
       })
     }
-    if (this.hasAttribute('sticky')) {
-      this.stickyStyle.setAttribute('protected', 'true')
-      this.root.appendChild(this.stickyStyle)
-    }
+    if (this.hasAttribute('sticky')) this.classList.add('top')
     self.addEventListener('resize', event => document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
   }
 
@@ -299,10 +304,6 @@ export default class Header extends Shadow() {
       })
       return elements
     }))
-  }
-
-  get stickyStyle () {
-    return this._stickyStyle || (this._stickyStyle = document.createElement('style'))
   }
 
   get mNavigation () {
