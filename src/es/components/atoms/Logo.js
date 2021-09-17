@@ -136,6 +136,7 @@ export default class Logo extends Shadow() {
         margin: var(--img-margin, 0);
       }
       :host > ${this.textSelector}{
+        font-family: var(--text-font-family);
         box-sizing: var(--text-box-sizing, border-box);
         color: var(--text-color, var(--color, pink));
         font-size: var(--text-font-size, 1rem);
