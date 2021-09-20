@@ -231,6 +231,9 @@ export default class Details extends Mutation() {
         :host details[open] summary ~ * {
           padding: var(--child-padding-open-mobile, var(--child-padding-open, 0));
         }
+        :host details summary > div {
+          font-size:var(--summary-font-size-mobile, var(--summary-font-size, inherit));
+        }
       }
     `
   }
