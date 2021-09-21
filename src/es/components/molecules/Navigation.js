@@ -213,6 +213,15 @@ export default class Navigation extends Shadow() {
           --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, 2rem);
           --line-height: var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--line-height-mobile)));
         }
+        :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
+          --font-size: var(--a-link-second-level-font-size-mobile, var(--a-link-second-level-font-size, 1rem));
+        }
+        ${(this.getAttribute('hover') === 'true' &&
+        `:host > nav > ul li:hover ul a-link,
+        :host > nav > ul li ul:hover a-link,`) || ''}
+        :host > nav > ul li a-link.open ~ ul a-link {
+          --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem));
+        }
         :host > nav > ul{
           flex-direction: var(--flex-direction-mobile, var(--flex-direction, column));
           padding: 0;
