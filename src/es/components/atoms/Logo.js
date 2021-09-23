@@ -153,6 +153,7 @@ export default class Logo extends Shadow() {
       :host > ${this.textSelector} a{
         color: var(--text-a-color, var(--color, green));
         text-decoration: var(--text-a-text-decoration, var(--text-decoration, none));
+        white-space: var(--text-a-white-space, var(--white-space, nowrap));
       }
       :host > ${this.textSelector} a:hover{
         color: var(--text-a-color-hover, var(--color-hover, var(--color, green)));
