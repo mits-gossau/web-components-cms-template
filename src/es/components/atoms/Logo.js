@@ -198,7 +198,7 @@ export default class Logo extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    const img = `<img src=${this.getAttribute('src')} alt=${this.getAttribute('alt')}>`
+    const img = `<img src=${this.getAttribute('src')} alt=${this.getAttribute('alt')} loading=${this.getAttribute('loading') || 'lazy'}>`
     let a = null
     if (this.getAttribute('href')) {
       a = document.createElement('a')
