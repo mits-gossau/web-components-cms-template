@@ -44,7 +44,7 @@ export default class Form extends Shadow() {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
-        
+
         if (this.hasAttribute('use-html-submit')) {
           this.submitByHTML(body, method, action)
         } else {
@@ -141,9 +141,9 @@ export default class Form extends Shadow() {
     if (form) {
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
-        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') 
-            && (i.getAttribute('type') !== 'radio' || i.checked) 
-            && (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
+            (i.getAttribute('type') !== 'radio' || i.checked) &&
+            (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
       });
       [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
@@ -182,6 +182,7 @@ export default class Form extends Shadow() {
         --balloon-color: var(--background-color, white);
         --balloon-text-color: var(--color, #009fe3);
         display: var(--display, block);
+        width: var(--width, auto) !important;
       }
       :host form {
         display: var(--form-display, flex);
@@ -240,11 +241,12 @@ export default class Form extends Shadow() {
           margin: var(--h4-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer p {
+        color: var(--p-color, var(--color, black));
         font-family: var(--p-font-family, var(--font-family-secondary));
         font-weight: var(--p-font-weight, var(--font-weight, normal));
+        margin: var(--p-margin, var(--content-spacing, unset)) auto;
         text-align: var(--p-text-align, start);
         text-transform: var(--p-text-transform, none);
-        margin: var(--p-margin, var(--content-spacing, unset)) auto;
       }
       .searchResultsContainer a {
         font-size: var(--a-font-size, 0.9rem);
@@ -259,6 +261,7 @@ export default class Form extends Shadow() {
       .searchResultsContainer a:hover, .searchResultsContainer a:focus, .searchResultsContainer a:active {
         color: var(--a-color-hover, var(--color-hover-secondary, var(--color-hover, var(--color, green))));
         text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none))));
+        font-family: var(--a-font-family-hover);
       }
       .searchResultsContainer ul {
         padding-left: 15px;
@@ -282,6 +285,7 @@ export default class Form extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           display: var(--display-mobile, var(--display, block));
+          width: var(--width-mobile, var(--width, auto)) !important;
         }
         :host form {
           display: var(--form-display-mobile, var(--form-display, flex));

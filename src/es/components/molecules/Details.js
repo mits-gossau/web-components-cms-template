@@ -2,6 +2,8 @@
 import { Mutation } from '../prototypes/Mutation.js'
 
 /* global CustomEvent */
+/* global self */
+/* global Image */
 
 /**
  * Details (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) aka. Bootstrap accordion
@@ -42,6 +44,7 @@ import { Mutation } from '../prototypes/Mutation.js'
  *  {boolean} [open=false] opens the details
  *  {string} [openEventName='open'] the event to which it listens on body
  *  {has} [scroll-into-view=n.a.] scrolls into view if set
+ *  {has} [icon-image=n.a] add open/close icon
  * }
  */
 export default class Details extends Mutation() {
@@ -127,7 +130,17 @@ export default class Details extends Mutation() {
    * @return {void}
    */
   renderCSS () {
-    this.css = /* css */`
+    this.css = /* css */` 
+      :host {
+        display: var(--display, block);
+        border-top: var(--border-top, 0);
+        border-bottom:var(--border-bottom, 0);
+        border-color: var(--color);
+      }
+      :host(:last-of-type) {
+        border-bottom:var(--border-bottom-last, var(--border-bottom, 0));
+        border-color: var(--color);
+      }
       :host details {
         text-align: var(--text-align, center);
         margin: var(--margin, 0);
@@ -142,14 +155,15 @@ export default class Details extends Mutation() {
       }
       :host details summary > div {
         cursor: var(--summary-cursor, pointer);
-        text-decoration: var(--summary-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
-        text-underline-offset: var(--a-text-underline-offset, unset);
-        text-transform: var(--summary-text-transform, none);
-        outline: var(--summary-outline, none);
-        margin: var(--summary-margin, 0);
-        padding: var(--summary-padding, 0);
         font-family: var(--summary-font-family, var(--font-family, var(--font-family-bold)));
+        font-size:var(--summary-font-size, inherit);
         font-weight: var(--summary-font-weight, var(--font-weight, normal));
+        margin: var(--summary-margin, 0);
+        outline: var(--summary-outline, none);
+        padding: var(--summary-padding, 0);
+        text-decoration: var(--summary-text-decoration, var(--a-text-decoration, var(--text-decoration, none)));
+        text-transform: var(--summary-text-transform, none);
+        text-underline-offset: var(--a-text-underline-offset, unset);
       }
       :host details summary > div:hover, :host details summary > div:active, :host details summary > div:focus {
         text-decoration: var(--summary-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
@@ -175,6 +189,10 @@ export default class Details extends Mutation() {
         margin: var(--child-margin-open, 0);
         padding: var(--child-padding-open, 0);
       }
+      :host details summary ~ ul, :host details[open] summary ~ ul {
+        display: var(--ul-display, inline-block);
+        margin: var(--ul-margin, 0 0 0 1em);
+      }
       :host details .close {
         color: var(--a-color, var(--color));
         cursor: var(--close-cursor, pointer);
@@ -186,9 +204,36 @@ export default class Details extends Mutation() {
       :host details .close:hover, :host details .close:active, :host details .close:focus {
         text-decoration: var(--close-text-decoration-hover, var(--a-text-decoration-hover, var(--text-decoration-hover, var(--a-text-decoration, var(--text-decoration, none)))));
       }
+      :host details .icon {
+        display: var(--icon-display, flex);
+        flex-direction: var(--icon-row, row);
+        justify-content: var(--icon-justify-content, center);
+        align-items: var(--icon-align-items, flex-start);
+      }
+      :host details .icon > img, :host details .icon > div > svg {
+        transition: var(--icon-transition, transform 0.15s ease);
+        margin: var(--icon-margin, 0 1rem) !important;
+      }
+      :host details[open] .icon > img, :host details[open] .icon > div > svg  {
+        transform: var(--icon-transform-open, rotate(180deg));
+      }
       @keyframes open {
         0% {font-size: 0}
         100% {font-size: inherit}
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host details .icon > img, :host details .icon > div > svg {
+          width: var(--icon-width-mobile, min(1.7rem, 10vw))
+        }
+        :host details summary ~ * {
+          padding: var(--child-padding-mobile, var(--child-padding, 0));
+        }
+        :host details[open] summary ~ * {
+          padding: var(--child-padding-open-mobile, var(--child-padding-open, 0));
+        }
+        :host details summary > div {
+          font-size:var(--summary-font-size-mobile, var(--summary-font-size, inherit));
+        }
       }
     `
   }
@@ -201,6 +246,28 @@ export default class Details extends Mutation() {
   renderHTML () {
     this.hasRendered = true
     Array.from(this.summary.childNodes).forEach(node => this.divSummary.appendChild(node))
+    if (this.getAttribute('icon-image')) {
+      const iconImg = new Image()
+      iconImg.src = this.getAttribute('icon-image')
+      iconImg.alt = 'close detail'
+      this.divSummary.append(iconImg)
+      this.divSummary.classList.add('icon')
+    } else if (this.hasAttribute('icon-image')) {
+      const iconSvg = document.createElement('div')
+      iconSvg.innerHTML = `
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg width="35px" height="20px" viewBox="0 0 35 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+            <title>Mobile Pfeil</title>
+            <desc>Created with Sketch.</desc>
+            <g id="Mobile-Pfeil" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <polyline id="Path-2" stroke="var(--color, --${this.namespace}color)" stroke-width="3" points="2 3 17 18 32 3"></polyline>
+            </g>
+        </svg>
+      `
+      this.divSummary.append(iconSvg)
+      this.divSummary.classList.add('icon')
+    }
     this.summary.appendChild(this.divSummary)
   }
 

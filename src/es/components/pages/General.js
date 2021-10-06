@@ -66,6 +66,7 @@ export default class General extends Shadow() {
         background-color: var(--html-background-color, transparent);
         font-size: var(--font-size, 10px);
         line-height: var(--line-height, normal);
+        letter-spacing: var(--letter-spacing, normal);
         word-break: var(--word-break, normal);
       }
       /* to counteract misc.css */

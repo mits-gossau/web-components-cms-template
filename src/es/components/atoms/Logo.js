@@ -58,7 +58,12 @@ export default class Logo extends Shadow() {
         if (this.text) {
           this.css = /* css */`
           :host > ${this.textSelector}{
-            width: ${this.img.getBoundingClientRect().width}px;
+            width: var(--text-width, ${this.img.getBoundingClientRect().width}px);
+          }
+          @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+            :host > ${this.textSelector}{
+              width: var(--text-width-mobile, ${this.img.getBoundingClientRect().width}px);
+            }
           }
         `
         }
@@ -131,6 +136,7 @@ export default class Logo extends Shadow() {
         margin: var(--img-margin, 0);
       }
       :host > ${this.textSelector}{
+        font-family: var(--text-font-family);
         box-sizing: var(--text-box-sizing, border-box);
         color: var(--text-color, var(--color, pink));
         font-size: var(--text-font-size, 1rem);
@@ -147,10 +153,12 @@ export default class Logo extends Shadow() {
       :host > ${this.textSelector} a{
         color: var(--text-a-color, var(--color, green));
         text-decoration: var(--text-a-text-decoration, var(--text-decoration, none));
+        white-space: var(--text-a-white-space, var(--white-space, nowrap));
       }
       :host > ${this.textSelector} a:hover{
         color: var(--text-a-color-hover, var(--color-hover, var(--color, green)));
         text-decoration: var(--text-a-text-decoration-hover, var(--text-decoration-hover, var(--text-decoration, none)));
+        font-family: var(--text-a-font-family-hover);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
@@ -190,7 +198,7 @@ export default class Logo extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    const img = `<img src=${this.getAttribute('src')} alt=${this.getAttribute('alt')}>`
+    const img = `<img src=${this.getAttribute('src')} alt=${this.getAttribute('alt')} loading=${this.getAttribute('loading') || 'lazy'}>`
     let a = null
     if (this.getAttribute('href')) {
       a = document.createElement('a')

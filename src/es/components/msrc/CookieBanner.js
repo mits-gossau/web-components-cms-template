@@ -88,6 +88,7 @@ export default class CookieBanner extends Shadow() {
       #msrc-widget > div {
         background-color: var(--background-color, white) !important;
         box-shadow: var(--box-shadow-color, white 0px -3px 3px) !important;
+        border-top: var(--border-top, 0) !important;
       }
       #msrc-widget button {
         background-color: var(--button-background-color, var(--color-secondary, var(--color, orange))) !important;
@@ -95,6 +96,12 @@ export default class CookieBanner extends Shadow() {
         color: var(--button-color, var(--background-color, white)) !important;
         font-family: var(--font-family-bold) !important;
         text-transform: var(--text-transform, uppercase) !important;
+        border-radius: var(--button-border-radius, 4px) !important;
+        padding: var(--button-padding, 0.5rem 1.2rem) !important;
+      }
+      #msrc-widget button:hover {
+        background-color: var(--button-background-color-hover, var(--button-background-color, var(--color-secondary, var(--color, orange)))) !important;
+        font-family: var(--button-font-family-hover, var(--font-family-bold)) !important;
       }
       #msrc-widget a {
         color: var(--a-color, var(--color-secondary, var(--color, white))) !important;
