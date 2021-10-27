@@ -120,7 +120,7 @@ export default class Teaser extends Shadow() {
       :host figure figcaption {
         background-color: var(${backgroundColor}, #c2262f);
         padding: var(${figcaptionPadding}, 15px 15px 20px 15px);
-        position: absolute;
+        position: var(--figcaption-position, absolute);
         opacity: var(--opacity, 1);
         bottom: 0;
         left: 0;
