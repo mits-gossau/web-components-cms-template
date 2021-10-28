@@ -2,7 +2,6 @@
 import { Intersection } from '../prototypes/Intersection.js'
 
 /* global CustomEvent */
-/* global location */
 /* global self */
 
 /**
@@ -51,8 +50,13 @@ export default class Flyer extends Intersection() {
     this.clickListener = event => {
       if (this.getAttribute('href')) {
         event.preventDefault()
-        location.href = this.getAttribute('href')
+        self.open(this.getAttribute('href'), this.getAttribute('target') || '_self')
       }
+    }
+    // link behavior made accessible
+    if (this.hasAttribute('href')) {
+      this.setAttribute('data-href', this.getAttribute('href'))
+      this.setAttribute('role', 'link')
     }
     this.closeClickListener = event => {
       event.preventDefault()

@@ -10,8 +10,9 @@
  * @export
  * @function Shadow
  * @param {CustomElementConstructor} ChosenHTMLElement
- * @attribute {mode} [mode='open']
- * @attribute {namespace} namespace
+ * @attribute {mode} [mode='open'] decide which ShadowRootMode it shall be + 'false' if no shadow is desired
+ * @attribute {namespace} namespace all css vars by the string passed here
+ * @attribute {namespace-fallback} if the node has this attribute it will make a fallback to the css vars without namespace
  * @property {
     connectedCallback,
     disconnectedCallback,
@@ -162,7 +163,15 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
         style = style.replace(/:host\s{0,5}\((.*?)\)/g, `${this.cssSelector}$1 `) // remove :host([...]) selector brackets
         style = style.replace(/:host\s{0,5}/g, `${this.cssSelector} `)
       }
-      if (this.namespace) style = style.replace(/--/g, `--${this.namespace}`)
+      if (this.namespace) {
+        if (this.hasAttribute('namespace-fallback')) {
+          // only namespace the first statement variable and make it fallback
+          style = style.replace(/:[\s]*var\(--([^),\s]*)([^)]*)/g, `: var(--${this.namespace}$1, var(--$1$2)`)
+          style = style.replace(/([^(]{1})--([^;]*)/g, `$1--${this.namespace}$2;--$2`)
+        } else {
+          style = style.replace(/--/g, `--${this.namespace}`)
+        }
+      }
       this._css.textContent += style
     }
   }

@@ -82,7 +82,7 @@ export default class Navigation extends Shadow() {
    * @return {void}
    */
   renderCSS () {
-    const firstLevelCount = this.root.querySelectorAll('nav > ul > li').length;
+    const firstLevelCount = this.root.querySelectorAll('nav > ul > li').length
     this.css = /* css */`
       :host{
         color: black;
@@ -154,6 +154,8 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li ul{
         display: var(--li-ul-display, none);
+        padding: var(--li-ul-padding, 0);
+        border-radius: var(--li-ul-border-radius, 0);
         padding-top: calc(var(--content-spacing, 40px) / 2 + 1px);
         margin: var(--li-ul-margin);
         position: var(--li-ul-position, absolute);
@@ -194,6 +196,10 @@ export default class Navigation extends Shadow() {
         padding-top: var(--padding-top, 6px);
         border-top: var(--border-top, 1px solid) var(--hr-color, var(--color, white));
       }
+      :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
+        --font-family: var(--font-family-open);
+        --color: var(--color-open);
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           --font-weight: var(--font-weight-mobile, normal);
@@ -206,6 +212,15 @@ export default class Navigation extends Shadow() {
         :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) a-link {
           --font-size: var(--a-link-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, 2rem);
           --line-height: var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, var(--a-link-line-height-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--line-height-mobile)));
+        }
+        :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) > nav > ul li ul a-link {
+          --font-size: var(--a-link-second-level-font-size-mobile, var(--a-link-second-level-font-size, 1rem));
+        }
+        ${(this.getAttribute('hover') === 'true' &&
+        `:host > nav > ul li:hover ul a-link,
+        :host > nav > ul li ul:hover a-link,`) || ''}
+        :host > nav > ul li a-link.open ~ ul a-link {
+          --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}-mobile, var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem));
         }
         :host > nav > ul{
           flex-direction: var(--flex-direction-mobile, var(--flex-direction, column));
@@ -253,6 +268,10 @@ export default class Navigation extends Shadow() {
           flex-wrap: unset;
           margin-bottom: var(--li-ul-margin-bottom-mobile, 0);
         }
+        :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
+          --font-family: var(--font-family-open-mobile, var(--font-family-open));
+          --color: var(--color-open-mobile, var(--color-open));
+        }
       }
     `
   }
@@ -268,6 +287,8 @@ export default class Navigation extends Shadow() {
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
       const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
       aLink.setAttribute('hit-area', this.getAttribute('hit-area') || 'true')
+      if (this.hasAttribute('set-active')) aLink.setAttribute('set-active', this.getAttribute('set-active'))
+      if (a.classList.contains('active')) aLink.classList.add('active')
       const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
@@ -299,10 +320,12 @@ export default class Navigation extends Shadow() {
           }
         }
       })
-      if (this.focusLostClose) self.addEventListener('click', event => {
-        Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
-        if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
-      })
+      if (this.focusLostClose) {
+        self.addEventListener('click', event => {
+          Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+          if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
+        })
+      }
       li.prepend(arrow)
       a.replaceWith(aLink)
       li.prepend(aLink)

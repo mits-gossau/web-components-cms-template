@@ -106,6 +106,9 @@ export default class Picture extends Shadow() {
    */
   renderCSS () {
     this.css = /* css */`
+      :host {
+        text-align: var(--text-align, center);
+      }
       :host picture {
         filter: var(--filter, none);
         display: var(--display, block); /* don't use flex here, it can have strange side effects */
@@ -130,8 +133,9 @@ export default class Picture extends Shadow() {
         min-height: var(--img-min-height, 100%);
         max-height: var(--img-max-height);
         object-fit: var(--img-object-fit, cover);
+        vertical-align: middle; /* use middle to avoid having a gap at the bottom of the image https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
       }
-      @media only screen and (max-width: ${this.maxWidthMobile}) {
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
           transition: var(--transition-mobile, none);
           transform: var(--transform-mobile, none);
@@ -164,10 +168,10 @@ export default class Picture extends Shadow() {
               this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(max-width: 400px)">`
               break
             case 'medium':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 401px) and (max-width: ${this.maxWidthMobile})">`
+              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 401px) and (max-width: 600px)">`
               break
             case 'large':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: ${this.minWidthDesktop}) and (max-width: 1200px)">`
+              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 601px) and (max-width: 1200px)">`
               break
             case 'extra-large':
               this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
@@ -212,13 +216,5 @@ export default class Picture extends Shadow() {
 
   get img () {
     return this.root.querySelector('img')
-  }
-
-  get maxWidthMobile () {
-    return this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-  }
-
-  get minWidthDesktop () {
-    return `${Number(this.maxWidthMobile.replace('px', '')) + 1}px`
   }
 }

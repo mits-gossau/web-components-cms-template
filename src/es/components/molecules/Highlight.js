@@ -1,7 +1,6 @@
 // @ts-check
 import { Shadow } from '../prototypes/Shadow.js'
 
-/* global location */
 /* global self */
 
 /**
@@ -41,7 +40,12 @@ export default class Highlight extends Shadow() {
     super(...args)
 
     this.clickListener = event => {
-      if (this.getAttribute('href')) location.href = this.getAttribute('href')
+      if (this.getAttribute('href')) self.open(this.getAttribute('href'), this.getAttribute('target') || '_self')
+    }
+    // link behavior made accessible
+    if (this.hasAttribute('href')) {
+      this.setAttribute('data-href', this.getAttribute('href'))
+      this.setAttribute('role', 'link')
     }
   }
 
