@@ -180,7 +180,7 @@ export default class Form extends Shadow() {
     this.css = /* css */`
       :host {
         --balloon-color: var(--background-color, white);
-        --balloon-text-color: var(--color, #009fe3);
+        --balloon-text-color: var(--color, red);
         display: var(--display, block);
         width: var(--width, auto) !important;
       }
