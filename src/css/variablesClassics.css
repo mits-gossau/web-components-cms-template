@@ -318,7 +318,7 @@ html {
   --search-button-transform-mobile: none;
   --search-button-transform: translateX(100%);
   --search-color-hover: var(--color);
-  --search-color: var(--color);
+  --search-color: var(--background-color);
   --search-content-width-mobile: var(--content-width-not-web-component-mobile);
   --search-content-width: var(--content-width-not-web-component);
   --search-display: inline;

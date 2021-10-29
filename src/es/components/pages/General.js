@@ -65,6 +65,7 @@ export default class General extends Shadow() {
       html {
         background-color: var(--html-background-color, transparent);
         font-size: var(--font-size, 10px);
+        font-weight: var(--font-weight, normal);
         line-height: var(--line-height, normal);
         letter-spacing: var(--letter-spacing, normal);
         word-break: var(--word-break, normal);
@@ -103,6 +104,7 @@ export default class General extends Shadow() {
         /* global css set by page */
         html {
           font-size: var(--font-size-mobile, 10px);
+          font-weight: var(--font-weight-mobile, var(--font-weight, normal));
           line-height: var(--line-height-mobile, var(--line-height, normal));
           word-break: var(--word-break-mobile, normal);
         }

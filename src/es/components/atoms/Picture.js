@@ -133,6 +133,7 @@ export default class Picture extends Shadow() {
         min-height: var(--img-min-height, 100%);
         max-height: var(--img-max-height);
         object-fit: var(--img-object-fit, cover);
+        vertical-align: middle; /* use middle to avoid having a gap at the bottom of the image https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {

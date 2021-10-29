@@ -111,6 +111,7 @@ export default class CookieBanner extends Shadow() {
       #msrc-widget a:hover {
         color: var(--a-color-hover, var(--color-secondary-hover, var(--color-hover))) !important;
         text-decoration: var(--a-text-decoration-hover, var(--text-decoration-hover)) !important;
+        font-family: var(--a-font-family-hover, var(--font-family)) !important;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         #msrc-widget div, #msrc-widget a, #msrc-widget button {
