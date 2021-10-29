@@ -79,9 +79,17 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > section > * {
-          margin: var(--margin-mobile, var(--${this.namespace || ''}margin, 0)) !important;
-          padding: var(--padding-mobile, var(--${this.namespace || ''}padding, 0)) !important;
+          margin: var(--margin-mobile, var(--${this.namespace || ''}margin, 0));
+          padding: var(--padding-mobile, var(--${this.namespace || ''}padding, 0));
           ${this.hasAttribute('flex-nowrap-mobile') ? '' : 'width: 100% !important;'}
+        }
+        :host > section > *:first-child {
+          margin: var(--margin-first-child-mobile, var(--${this.namespace || ''}margin-first-child, var(--${this.namespace || ''}margin, 0)));
+          padding: var(--padding-first-child-mobile, var(--${this.namespace || ''}padding-first-child, var(--${this.namespace || ''}padding, 0)));
+        }
+        :host > section > *:last-child {
+          margin: var(--margin-last-child-mobile, var(--${this.namespace || ''}margin-last-child, var(--${this.namespace || ''}margin, 0)));
+          padding: var(--padding-last-child-mobile, var(--${this.namespace || ''}padding-last-child, var(--${this.namespace || ''}padding, 0)));
         }
       }
     `
