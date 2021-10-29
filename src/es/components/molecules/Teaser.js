@@ -81,14 +81,10 @@ export default class Teaser extends Body {
   renderCSS () {
     const theme = this.getAttribute('theme')
     let backgroundColor = '--background-color'
-    let fontColorH3 = '--h3-color'
-    let fontColorP = '--p-color'
     let figcaptionPadding = '--figcaption-padding'
     let figcaptionPaddingMobile = '--figcaption-padding-mobile'
     if (theme) {
       backgroundColor = '--background-color-light-theme'
-      fontColorH3 = '--h3-color-light-theme'
-      fontColorP = '--p-color-light-theme'
       figcaptionPadding = '--figcaption-padding-light-theme'
       figcaptionPaddingMobile = '--figcaption-padding-mobile-light-theme'
     }

@@ -81,23 +81,25 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
         :host > section > * {
           margin: var(--margin-mobile, var(--${this.namespace || ''}margin, 0)) !important;
           padding: var(--padding-mobile, var(--${this.namespace || ''}padding, 0)) !important;
-          ${this.hasAttribute(`flex-nowrap-mobile`) ? '' : 'width: 100% !important;'}
+          ${this.hasAttribute('flex-nowrap-mobile') ? '' : 'width: 100% !important;'}
         }
       }
     `
     // set width attributes as css vars
     const childNodes = Array.from(this.root.childNodes).filter(node => node.nodeName !== 'STYLE')
     for (let i = 1; i < childNodes.length + 1; i++) {
-      if (this.hasAttribute(`any-${i}-width`)) this.css = /* css */ `
+      if (this.hasAttribute(`any-${i}-width`)) {
+        this.css = /* css */ `
         :host {
           --any-${i}-width: ${this.getAttribute(`any-${i}-width`)};
         }
       `
+      }
     }
     // calculate flex child width by CSS vars
     const [bookedWidth, bookedCount, margin, unit] = childNodes.reduce((acc, node, i) => {
-      let width = this.cleanPropertyWidthValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}any-${i+1}-width`))
-      if (!width && this.hasAttribute('namespace-fallback')) width = this.cleanPropertyWidthValue(self.getComputedStyle(node).getPropertyValue(`--any-${i+1}-width`))
+      let width = this.cleanPropertyWidthValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}any-${i + 1}-width`))
+      if (!width && this.hasAttribute('namespace-fallback')) width = this.cleanPropertyWidthValue(self.getComputedStyle(node).getPropertyValue(`--any-${i + 1}-width`))
       let [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin`))
       if (i === 0) {
         const [marginFirst, unitFirst] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin-first-child`))
@@ -113,7 +115,7 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
           unit = unitLast
         }
       }
-      return [acc[0] + width, width ? acc[1] + 1 : acc[1], unit ? acc[2] + margin : acc[2], unit ? unit : acc[3]]
+      return [acc[0] + width, width ? acc[1] + 1 : acc[1], unit ? acc[2] + margin : acc[2], unit || acc[3]]
     }, [0, 0, 0, ''])
     let freeWidth = ((100 - bookedWidth) / (childNodes.length - bookedCount))
     // @ts-ignore
@@ -143,7 +145,7 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
    * @param {string} value
    * @returns {number}
    */
-  cleanPropertyWidthValue(value) {
+  cleanPropertyWidthValue (value) {
     return Number(value.trim().replace(/[^0-9]/g, ''))
   }
 
@@ -151,7 +153,7 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
    * @param {string | any} value
    * @returns {[number, string] | [false, false]}
    */
-  cleanPropertyMarginValue(value) {
+  cleanPropertyMarginValue (value) {
     if (!value) return [false, false]
     let values = value.trimStart().split(' ')
     if (values.length === 0) return [false, false]
