@@ -70,26 +70,26 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
         padding: var(--padding, 0);
       }
       :host > section > *:first-child {
-        margin: var(--margin-first-child, var(--${this.namespace || ''}margin, 0));
-        padding: var(--padding-first-child, var(--${this.namespace || ''}padding, 0));
+        margin: var(--margin-first-child, var(--margin, 0));
+        padding: var(--padding-first-child, var(--padding, 0));
       }
       :host > section > *:last-child {
-        margin: var(--margin-last-child, var(--${this.namespace || ''}margin, 0));
-        padding: var(--padding-last-child, var(--${this.namespace || ''}padding, 0));
+        margin: var(--margin-last-child, var(--margin, 0));
+        padding: var(--padding-last-child, var(--padding, 0));
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > section > * {
-          margin: var(--margin-mobile, var(--${this.namespace || ''}margin, 0));
-          padding: var(--padding-mobile, var(--${this.namespace || ''}padding, 0));
+          margin: var(--margin-mobile, var(--margin, 0));
+          padding: var(--padding-mobile, var(--padding, 0));
           ${this.hasAttribute('flex-nowrap-mobile') ? '' : 'width: 100% !important;'}
         }
         :host > section > *:first-child {
-          margin: var(--margin-first-child-mobile, var(--${this.namespace || ''}margin-first-child, var(--${this.namespace || ''}margin, 0)));
-          padding: var(--padding-first-child-mobile, var(--${this.namespace || ''}padding-first-child, var(--${this.namespace || ''}padding, 0)));
+          margin: var(--margin-first-child-mobile, var(--margin-first-child, var(--margin, 0)));
+          padding: var(--padding-first-child-mobile, var(--padding-first-child, var(--padding, 0)));
         }
         :host > section > *:last-child {
-          margin: var(--margin-last-child-mobile, var(--${this.namespace || ''}margin-last-child, var(--${this.namespace || ''}margin, 0)));
-          padding: var(--padding-last-child-mobile, var(--${this.namespace || ''}padding-last-child, var(--${this.namespace || ''}padding, 0)));
+          margin: var(--margin-last-child-mobile, var(--margin-last-child, var(--margin, 0)));
+          padding: var(--padding-last-child-mobile, var(--padding-last-child, var(--padding, 0)));
         }
       }
     `
