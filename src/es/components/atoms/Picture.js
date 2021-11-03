@@ -125,6 +125,7 @@ export default class Picture extends Shadow() {
         filter: var(--filter-hover, var(--filter, none));
       }
       :host picture img {
+        aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
         display: var(--img-display, inline);
         width: var(--img-width, 100%);
         min-width: var(--img-min-width);

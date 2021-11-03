@@ -17,7 +17,7 @@
     connectedCallback,
     disconnectedCallback,
     Shadow.parseAttribute,
-    getMode,
+    Shadow.getMode,
     mode,
     namespace,
     hasShadowRoot,
@@ -25,6 +25,11 @@
     cssSelector,
     css,
     _css,
+    setCss,
+    Shadow.cssHostFallback,
+    Shadow.cssNamespaceToVarFunc,
+    Shadow.cssNamespaceToVarDec,
+    Shadow.cssNamespaceToVar,
     html
   }
  * @return {CustomElementConstructor | *}
@@ -47,7 +52,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
      *
      * @type {mode}
      */
-    this.mode = this.getMode(typeof options.mode === 'string' ? options.mode : this.getAttribute('mode'))
+    this.mode = Shadow.getMode(typeof options.mode === 'string' ? options.mode : this.getAttribute('mode'))
     if (this.hasShadowRoot) {
       // @ts-ignore
       const shadowRoot = this.attachShadow({ mode: this.mode })
@@ -96,10 +101,11 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
   /**
    * returns a mode from a string and falls back to 'open'
    *
+   * @static
    * @param {string | null} mode
    * @return {mode}
    */
-  getMode (mode) {
+  static getMode (mode) {
     return mode === 'closed' || mode === 'open' || mode === 'false' ? mode : 'open'
   }
 
@@ -149,6 +155,18 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    * @param {string} style
    */
   set css (style) {
+    this.setCss(style)
+  }
+
+  /**
+   * setCss is an alternative to the this.css setter and returns a Promise with the string once done
+   *
+   * @param {string} style
+   * @param {string} [cssSelector = this.cssSelector]
+   * @param {string} [namespace = this.namespace]
+   * @return {string}
+   */
+  setCss (style, cssSelector = this.cssSelector, namespace = this.namespace) {
     if (!this._css) {
       /** @type {HTMLStyleElement} */
       this._css = document.createElement('style')
@@ -157,20 +175,77 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
       this.root.appendChild(this._css)
     }
     if (!style) {
-      this._css.textContent = ''
+      return this._css.textContent = ''
     } else {
-      if (!this.hasShadowRoot) {
-        style = style.replace(/:host\s{0,5}\((.*?)\)/g, `${this.cssSelector}$1 `) // remove :host([...]) selector brackets
-        style = style.replace(/:host\s{0,5}/g, `${this.cssSelector} `)
-      }
-      if (this.namespace) {
+      if (!this.hasShadowRoot) style = Shadow.cssHostFallback(style, cssSelector)
+      if (namespace) {
         if (style.includes('---')) console.error('this.css has illegal dash characters at:', this)
-        if (this.hasAttribute('namespace-fallback')) style = style.replace(/var\(--([^),\s]*)([^)]*)/g, `var(--$1, var(==$1$2)`) // only the namespace of the first statements variable is going to fallback
-        style = style.replace(/--/g, `--${this.namespace}`)
-        if (this.hasAttribute('namespace-fallback')) style = style.replace(/==/g, `--`)
+        if (this.hasAttribute('namespace-fallback')) {
+          style = Shadow.cssNamespaceToVarFunc(style, namespace)
+          style = Shadow.cssNamespaceToVarDec(style, namespace)
+        } else {
+          style = Shadow.cssNamespaceToVar(style, namespace)
+        }
       }
-      this._css.textContent += style
+      return this._css.textContent += style
     }
+  }
+
+  /**
+   * namespace and fallback for variable consumptions
+   * NOTE: this function has two simple regex which are likely faster in the main dom threat
+   *
+   * @static
+   * @param {string} style
+   * @param {string} cssSelector
+   * @return {string}
+   */
+  static cssHostFallback(style, cssSelector) {
+    style = style.replace(/:host\s{0,5}\((.*?)\)/g, `${cssSelector}$1 `) // remove :host([...]) selector brackets
+    return style.replace(/:host\s{0,5}/g, `${cssSelector} `) // replace :host with cssSelector
+  }
+
+  /**
+   * namespace and fallback for variable consumptions
+   * NOTE: this function has a lot of recursive calls and would be nearly DOUBLE as fast within a webworker (tested)
+   * BUT: It produces a flickering (build up) on pictures within a component eg. Wrapper.js and for that is skipped at this stage
+   *
+   * @static
+   * @param {string} style
+   * @param {string} namespace
+   * @return {string}
+   */
+  static cssNamespaceToVarFunc(style, namespace) {
+    return style.replace(/var\(--([^,\)]*)([^;]*)/g, (match, p1, p2) => {
+      if (!p2) console.error('this.css cssNamespaceToVarFunc found corrupt css at:', this)
+      return `var(--${namespace}${p1},var(--${p1}${p2 ? this.cssNamespaceToVarFunc(p2, namespace).replace(/([^\)]*)(.*?)$/, '$1)$2') : '));'}`
+    })
+  }
+
+  /**
+   * namespace and fallback for variable declarations
+   * NOTE: this function has a simple regex which is couple ms 5-10% faster in the main dom threat (tested)
+   *
+   * @static
+   * @param {string} style
+   * @param {string} namespace
+   * @return {string}
+   */
+  static cssNamespaceToVarDec(style, namespace) {
+    return style.replace(/([^(])--([^;]*)/g, `$1--${namespace}$2;--$2`)
+  }
+
+  /**
+   * namespace for variable declarations and consumptions
+   * NOTE: this function has a simple regex which is likely faster in the main dom threat
+   *
+   * @static
+   * @param {string} style
+   * @param {string} namespace
+   * @return {string}
+   */
+  static cssNamespaceToVar(style, namespace) {
+    return style.replace(/--/g, `--${namespace}`)
   }
 
   /**

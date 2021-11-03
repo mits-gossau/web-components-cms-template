@@ -51,7 +51,7 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
     super.renderCSS()
     const bodyCss = this.css.replace(/\s>\smain/g, '')
     this.css = ''
-    this._css.textContent = bodyCss
+    this.setCss(bodyCss, undefined, '') // already received its namespace and for that gets set without any ''
     // general flex styles
     this.css = /* css */`
       :host {

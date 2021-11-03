@@ -78,6 +78,7 @@ export default class Video extends Shadow() {
     :host video, :host iframe {
       ${this.getAttribute('height') ? `height: ${this.getAttribute('height')}` : ''}
       ${this.getAttribute('width') ? `width: ${this.getAttribute('width')}` : ''}
+      aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
       display: var(--display, block);
       filter: var(--filter, none);
       margin: var(--margin, 0 auto);
