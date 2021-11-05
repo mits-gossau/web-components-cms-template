@@ -96,6 +96,10 @@ export default class Teaser extends Body {
     this.css = /* css */`
       :host {
         cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
+        display: var(--display, flex);
+        flex-direction: var(--flex-direction, column);
+        align-items: var(--align-items, flex-start);
+        justify-content: var(--justify-content, space-between);
       }
       :host figure {
         display: flex;
