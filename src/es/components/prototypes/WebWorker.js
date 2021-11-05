@@ -1,6 +1,10 @@
 // @ts-check
 
-/* global WebWorker */
+/* global Blob */
+/* global BlobBuilder */
+/* global HTMLElement */
+/* global self */
+/* global Worker */
 
 /**
  * WebWorker is a helper which executes simple functions inside a webworker (spans one worker per function)
@@ -25,12 +29,12 @@ export const WebWorker = (ChosenHTMLElement = HTMLElement) => class WebWorker ex
    * @param {any[]} args
    * @return {Promise<any>}
    */
-  webWorker(func, ...args){
+  webWorker (func, ...args) {
     const key = func = typeof func === 'string' ? func : func.toLocaleString()
     if (this.webWorkerMap.has(key)) {
-      const {worker, promise} = this.webWorkerMap.get(key)
+      const { worker, promise } = this.webWorkerMap.get(key)
       const newPromise = WebWorker.getWebWorkerPromise(worker, args, promise)
-      this.webWorkerMap.set(key, {worker, promise: newPromise})
+      this.webWorkerMap.set(key, { worker, promise: newPromise })
       return newPromise
     }
     func = func.replace(/this\./g, '')
@@ -49,10 +53,10 @@ export const WebWorker = (ChosenHTMLElement = HTMLElement) => class WebWorker ex
     }
     const worker = new Worker(URL.createObjectURL(blob))
     const promise = WebWorker.getWebWorkerPromise(worker, args)
-    this.webWorkerMap.set(key, {worker, promise})
+    this.webWorkerMap.set(key, { worker, promise })
     return promise
   }
-  
+
   /**
    * @static
    * @param {Worker} worker

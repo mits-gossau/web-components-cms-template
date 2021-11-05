@@ -175,7 +175,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
       this.root.appendChild(this._css)
     }
     if (!style) {
-      return this._css.textContent = ''
+      return (this._css.textContent = '')
     } else {
       if (!this.hasShadowRoot) style = Shadow.cssHostFallback(style, cssSelector)
       if (namespace) {
@@ -187,7 +187,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
           style = Shadow.cssNamespaceToVar(style, namespace)
         }
       }
-      return this._css.textContent += style
+      return (this._css.textContent += style)
     }
   }
 
@@ -200,7 +200,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    * @param {string} cssSelector
    * @return {string}
    */
-  static cssHostFallback(style, cssSelector) {
+  static cssHostFallback (style, cssSelector) {
     style = style.replace(/:host\s{0,5}\((.*?)\)/g, `${cssSelector}$1 `) // remove :host([...]) selector brackets
     return style.replace(/:host\s{0,5}/g, `${cssSelector} `) // replace :host with cssSelector
   }
@@ -215,10 +215,10 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    * @param {string} namespace
    * @return {string}
    */
-  static cssNamespaceToVarFunc(style, namespace) {
-    return style.replace(/var\(--([^,\)]*)([^;]*)/g, (match, p1, p2) => {
+  static cssNamespaceToVarFunc (style, namespace) {
+    return style.replace(/var\(--([^,)]*)([^;]*)/g, (match, p1, p2) => {
       if (!p2) console.error('this.css cssNamespaceToVarFunc found corrupt css at:', this)
-      return `var(--${namespace}${p1},var(--${p1}${p2 ? this.cssNamespaceToVarFunc(p2, namespace).replace(/([^\)]*)(.*?)$/, '$1)$2') : '));'}`
+      return `var(--${namespace}${p1},var(--${p1}${p2 ? this.cssNamespaceToVarFunc(p2, namespace).replace(/([^)]*)(.*?)$/, '$1)$2') : '));'}`
     })
   }
 
@@ -231,7 +231,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    * @param {string} namespace
    * @return {string}
    */
-  static cssNamespaceToVarDec(style, namespace) {
+  static cssNamespaceToVarDec (style, namespace) {
     return style.replace(/([^(])--([^;]*)/g, `$1--${namespace}$2;--$2`)
   }
 
@@ -244,7 +244,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    * @param {string} namespace
    * @return {string}
    */
-  static cssNamespaceToVar(style, namespace) {
+  static cssNamespaceToVar (style, namespace) {
     return style.replace(/--/g, `--${namespace}`)
   }
 
