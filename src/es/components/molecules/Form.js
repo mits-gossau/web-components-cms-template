@@ -142,8 +142,8 @@ export default class Form extends Shadow() {
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
         if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
-            (i.getAttribute('type') !== 'radio' || i.checked) &&
-            (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+          (i.getAttribute('type') !== 'radio' || i.checked) &&
+          (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
       });
       [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
@@ -174,9 +174,10 @@ export default class Form extends Shadow() {
   /**
    * renders the css
    *
+   * @params {boolean} [balloon=true]
    * @return {void}
    */
-  renderCSS () {
+  renderCSS (balloon = true) {
     this.css = /* css */`
       :host {
         --balloon-color: var(--background-color, white);
@@ -310,6 +311,9 @@ export default class Form extends Shadow() {
           margin: var(--h4-margin-mobile, var(--h4-margin)) auto;
         }
       }
+    `
+    if (balloon) {
+      this.css = /* css */`
       /* https://kazzkiq.github.io/balloon.css/ */
       /* https://raw.githubusercontent.com/kazzkiq/balloon.css/master/balloon.css */
       :root {
@@ -450,9 +454,9 @@ export default class Form extends Shadow() {
             [aria-label][data-balloon-pos][data-balloon-length="xlarge"]:after {
               width: 90vw; } }
         [aria-label][data-balloon-pos][data-balloon-length="fit"]:after {
-          width: 100%; }
-      
+          width: 100%; }  
     `
+    }
   }
 
   /**
@@ -463,11 +467,12 @@ export default class Form extends Shadow() {
   renderHTML () {
     this.hasRendered = true
     this.loadChildComponents().then(children => {
-      Array.from(this.root.querySelectorAll('input'))
+      this.inputAll
         .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
           this.inputFields.push(input)
           const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`) || this.root.querySelector(`label[for='${input.getAttribute('name')}']`)
-          const aInput = new children[0][1](input, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
+          const description = this.getDescription(input)
+          const aInput = new children[0][1](input, label, description, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
           aInput.setAttribute('type', input.getAttribute('type'))
           if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
           input.replaceWith(aInput)
@@ -559,5 +564,13 @@ export default class Form extends Shadow() {
 
   get valids () {
     return Array.from(this.root.querySelectorAll('[valid]'))
+  }
+
+  get inputAll () {
+    return Array.from(this.root.querySelectorAll('input')).concat(Array.from(this.root.querySelectorAll('select')))
+  }
+
+  getDescription (input) {
+    return this.root.querySelector(`.description[data-for='${input.getAttribute('id')}']`) || this.root.querySelector(`.description[data-for='${input.getAttribute('name')}']`)
   }
 }

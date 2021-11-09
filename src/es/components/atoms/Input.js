@@ -47,11 +47,12 @@ import { Shadow } from '../prototypes/Shadow.js'
  */
 
 export default class Input extends Shadow() {
-  constructor (input, label, ...args) {
+  constructor (input, label, description, ...args) {
     super(...args)
 
     this._input = input
     this._label = label
+    this._description = description
 
     this.onChange = event => {
       if (!this.getAttribute('name')) this.setAttribute('name', event.target.name)
@@ -300,10 +301,14 @@ export default class Input extends Shadow() {
    */
   renderHTML () {
     if (this.hasAttribute('reverse')) {
-      this.html = [this.input, this.label]
+      this.html = [this.description, this.input, this.label]
     } else {
-      this.html = [this.label, this.input]
+      this.html = [this.description, this.label, this.input]
     }
+  }
+
+  get description () {
+    return this._description || this.root.querySelector('.description')
   }
 
   get label () {
