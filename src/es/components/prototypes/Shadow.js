@@ -3,6 +3,7 @@
 
 /* global HTMLElement */
 /* global document */
+/* global self */
 
 /**
  * Shadow is a helper with a few functions for every web component which possibly allows a shadowRoot (atom, organism and molecule)
@@ -187,6 +188,9 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
           style = Shadow.cssNamespaceToVar(style, namespace)
         }
       }
+      // TODO: Review the safari fix below, if the bug got fixed within safari itself (NOTE: -webkit prefix did not work for text-decoration-thickness). DONE 2021.11.10 | LAST CHECKED 2021.11.10
+      // safari text-decoration un-supported shorthand fix
+      if (navigator.userAgent.includes('Mac') && Shadow.cssTextDecorationShortHandDetection(style)) style = Shadow.cssTextDecorationShortHandFix(style, this)
       return (this._css.textContent += style)
     }
   }
@@ -246,6 +250,45 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    */
   static cssNamespaceToVar (style, namespace) {
     return style.replace(/--/g, `--${namespace}`)
+  }
+
+  /**
+   * detect text-decoration shorthand
+   *
+   * @static
+   * @param {string} style
+   * @return {boolean}
+   */
+  static cssTextDecorationShortHandDetection (style) {
+    return /text-decoration:\s*[^;\s]{1,50}\s{1,10}[^;\s]{1,50}/g.test(style) // find text-decoration: with more than one argument
+  }
+
+  /**
+   * spread text-decoration shorthand to text-decoration-line, text-decoration-style, text-decoration-color and text-decoration-thickness
+   *
+   * @static
+   * @param {string} style
+   * @param {HTMLElement} node
+   * @return {string}
+   */
+  static cssTextDecorationShortHandFix (style, node) {
+    return style.replace(/text-decoration:\s*([^;]*);/g, (match, p1) => {
+      if (p1.includes('var(--')) p1.match(/var\(--[^,)]*/g).some(variable => (p1 = self.getComputedStyle(node).getPropertyValue(variable.replace('var(', ''))) !== '')
+      return `${p1.split(' ').filter(prop => /\w/g.test(prop)).reduce((acc, prop, i) => {
+        switch (i) {
+          case 0:
+            return `${acc}text-decoration-line: ${prop};`
+          case 1:
+            return `${acc}text-decoration-style: ${prop};`
+          case 2:
+            return `${acc}text-decoration-color: ${prop};`
+          case 3:
+            return `${acc}text-decoration-thickness: ${prop};`
+          default:
+            return acc
+        }
+      }, `${match}/* Safari fix of text-decoration shorthand bug which only supports the first two arguments. */`)}/* end of fix. More Infos at: src/es/components/web-components-cms-template/src/es/components/prototypes/Shadow.js */`
+    }) // find text-decoration: and spread the arguments to line, style, color and thickness
   }
 
   /**

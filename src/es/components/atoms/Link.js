@@ -28,13 +28,13 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Link extends Shadow() {
-  constructor(a, ...args) {
+  constructor (a, ...args) {
     super(...args)
 
-    this.a = a
+    this._a = a
   }
 
-  connectedCallback() {
+  connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
@@ -44,7 +44,7 @@ export default class Link extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS() {
+  shouldComponentRenderCSS () {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -53,7 +53,7 @@ export default class Link extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML() {
+  shouldComponentRenderHTML () {
     return !this.root.querySelector('a')
   }
 
@@ -62,7 +62,7 @@ export default class Link extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS() {
+  renderCSS () {
     this.css = /* css */`
       ${this.hitArea
         ? /* css */`
@@ -96,11 +96,8 @@ export default class Link extends Shadow() {
         height: 100%;
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);
-        text-decoration-line: var(--text-decoration, none);
-        text-decoration-style: var(--text-decoration-style, solid);
-        text-decoration-color: var(--text-decoration-color, inherit);
-        text-decoration-thickness:var(--text-decoration-thickness, 1px);        
-        text-underline-offset: var(--a-text-underline-offset, unset);
+        text-decoration: var(--text-decoration, none);
+        text-underline-offset: var(--text-underline-offset, var(--a-text-underline-offset, unset));
         text-transform: var(--text-transform, none);
         transition: var(--transition, all 0.2s ease);
         width: 100%;
@@ -108,17 +105,11 @@ export default class Link extends Shadow() {
       }
       :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName}, :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
         color: var(--color-hover, var(--color, yellow));
-        text-decoration-line: var(--text-decoration-hover, none);
-        text-decoration-style: var(--text-decoration-style-hover, solid);
-        text-decoration-color: var(--text-decoration-color-hover, inherit);
-        text-decoration-thickness:var(--text-decoration-thickness-hover, 1px);    
+        text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
         font-family: var(--font-family-hover);
       }
       :host > a:focus {
-        text-decoration-line: var(--text-decoration-focus, none);
-        text-decoration-style: var(--text-decoration-style-focus, solid);
-        text-decoration-color: var(--text-decoration-color-focus, inherit);
-        text-decoration-thickness:var(--text-decoration-thickness-focus, 1px);    
+        text-decoration: var(--text-decoration-focus, unset);
       }
       :host > span {
         display: var(--span-display, inline);
@@ -140,7 +131,7 @@ export default class Link extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML() {
+  renderHTML () {
     this.html = this.a
     if (this.hitArea) {
       this.hitArea.innerHTML = this.a.innerHTML
@@ -153,11 +144,15 @@ export default class Link extends Shadow() {
     if (this.hasAttribute('set-active') && location.href.includes(this.a.getAttribute('href'))) this.classList.add('active')
   }
 
-  get hitArea() {
+  get hitArea () {
     return this.getAttribute('hit-area') && this.getAttribute('hit-area') !== 'false' ? this._hitArea || (this._hitArea = document.createElement(this.hitAreaTagName)) : null
   }
 
-  get hitAreaTagName() {
+  get hitAreaTagName () {
     return 'div'
+  }
+
+  get a () {
+    return this._a || (this._a = this.root.querySelector('a'))
   }
 }
