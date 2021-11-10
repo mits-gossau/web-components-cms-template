@@ -98,7 +98,7 @@ export default class Link extends Shadow() {
         text-align: var(--text-align, left);
         text-decoration-line: var(--text-decoration, none);
         text-decoration-style: var(--text-decoration-style, solid);
-        text-decoration-color: var(--text-decoration-color, red);
+        text-decoration-color: var(--text-decoration-color, inherit);
         text-decoration-thickness:var(--text-decoration-thickness, 1px);        
         text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--text-transform, none);
@@ -110,13 +110,15 @@ export default class Link extends Shadow() {
         color: var(--color-hover, var(--color, yellow));
         text-decoration-line: var(--text-decoration-hover, none);
         text-decoration-style: var(--text-decoration-style-hover, solid);
-        text-decoration-color: var(--text-decoration-color-hover, yellow);
-        text-decoration-thickness:var(--text-decoration-thickness-hover, 1px);     
-        text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
+        text-decoration-color: var(--text-decoration-color-hover, inherit);
+        text-decoration-thickness:var(--text-decoration-thickness-hover, 1px);    
         font-family: var(--font-family-hover);
       }
       :host > a:focus {
-        text-decoration: var(--text-decoration-focus, unset);
+        text-decoration-line: var(--text-decoration-focus, none);
+        text-decoration-style: var(--text-decoration-style-focus, solid);
+        text-decoration-color: var(--text-decoration-color-focus, inherit);
+        text-decoration-thickness:var(--text-decoration-thickness-focus, 1px);    
       }
       :host > span {
         display: var(--span-display, inline);
