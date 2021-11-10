@@ -190,7 +190,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
       }
       // TODO: Review the safari fix below, if the bug got fixed within safari itself (NOTE: -webkit prefix did not work for text-decoration-thickness). DONE 2021.11.10 | LAST CHECKED 2021.11.10
       // safari text-decoration un-supported shorthand fix
-      if (navigator.userAgent.includes('Mac') && Shadow.cssTextDecorationShortHandDetection(style)) style = Shadow.cssTextDecorationShortHandFix(style, this)
+      if (navigator.userAgent.includes('Mac') && style.includes('text-decoration:')) style = Shadow.cssTextDecorationShortHandFix(style, this)
       return (this._css.textContent += style)
     }
   }
@@ -250,17 +250,6 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    */
   static cssNamespaceToVar (style, namespace) {
     return style.replace(/--/g, `--${namespace}`)
-  }
-
-  /**
-   * detect text-decoration shorthand
-   *
-   * @static
-   * @param {string} style
-   * @return {boolean}
-   */
-  static cssTextDecorationShortHandDetection (style) {
-    return /text-decoration:\s*[^;\s]{1,50}\s{1,10}[^;\s]{1,50}/g.test(style) // find text-decoration: with more than one argument
   }
 
   /**
