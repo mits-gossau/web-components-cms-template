@@ -21,6 +21,7 @@
     Shadow.getMode,
     mode,
     namespace,
+    namespaceFallback,
     hasShadowRoot,
     root,
     cssSelector,
@@ -39,10 +40,10 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
   /**
    * Creates an instance of Shadow. The constructor will be called for every custom element using this class when initially created.
    *
-   * @param {{mode?: mode | undefined, namespace?: string | undefined}} [options = {mode: undefined, namespace: undefined}]
+   * @param {{mode?: mode | undefined, namespace?: string | undefined, namespaceFallback?: boolean | undefined}} [options = {mode: undefined, namespace: undefined, namespaceFallback: undefined}]
    * @param {*} args
    */
-  constructor (options = { mode: undefined, namespace: undefined }, ...args) {
+  constructor (options = { mode: undefined, namespace: undefined, namespaceFallback: undefined }, ...args) {
     // @ts-ignore
     super(...args)
 
@@ -64,6 +65,9 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
     if (typeof options.namespace === 'string') this.setAttribute('namespace', options.namespace)
     /** @type {string} */
     this.namespace = this.getAttribute('namespace') || ''
+    if (options.namespaceFallback) this.setAttribute('namespace-fallback', '')
+    /** @type {boolean} */
+    this.namespaceFallback = this.hasAttribute('namespace-fallback')
   }
 
   /**
@@ -165,9 +169,10 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    * @param {string} style
    * @param {string} [cssSelector = this.cssSelector]
    * @param {string} [namespace = this.namespace]
+   * @param {boolean} [namespaceFallback = this.namespaceFallback]
    * @return {string}
    */
-  setCss (style, cssSelector = this.cssSelector, namespace = this.namespace) {
+  setCss (style, cssSelector = this.cssSelector, namespace = this.namespace, namespaceFallback = this.namespaceFallback) {
     if (!this._css) {
       /** @type {HTMLStyleElement} */
       this._css = document.createElement('style')
@@ -181,7 +186,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
       if (!this.hasShadowRoot) style = Shadow.cssHostFallback(style, cssSelector)
       if (namespace) {
         if (style.includes('---')) console.error('this.css has illegal dash characters at:', this)
-        if (this.hasAttribute('namespace-fallback')) {
+        if (namespaceFallback) {
           style = Shadow.cssNamespaceToVarFunc(style, namespace)
           style = Shadow.cssNamespaceToVarDec(style, namespace)
         } else {

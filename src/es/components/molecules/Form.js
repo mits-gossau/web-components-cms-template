@@ -472,7 +472,7 @@ export default class Form extends Shadow() {
           this.inputFields.push(input)
           const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`) || this.root.querySelector(`label[for='${input.getAttribute('name')}']`)
           const description = this.getDescription(input)
-          const aInput = new children[0][1](input, label, description, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
+          const aInput = new children[0][1](input, label, description, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
           aInput.setAttribute('type', input.getAttribute('type'))
           if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
           input.replaceWith(aInput)
@@ -505,7 +505,7 @@ export default class Form extends Shadow() {
         this.form.appendChild(this.emptyInput)
       }
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
-        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
         button.replaceWith(aButton)
       })
     })

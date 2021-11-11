@@ -285,11 +285,11 @@ export default class Navigation extends Shadow() {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
-      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
+      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
       aLink.setAttribute('hit-area', this.getAttribute('hit-area') || 'true')
       if (this.hasAttribute('set-active')) aLink.setAttribute('set-active', this.getAttribute('set-active'))
       if (a.classList.contains('active')) aLink.classList.add('active')
-      const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '' })
+      const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
       arrow.setAttribute('direction', 'down')
       const arrowClickListener = event => {
         if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))

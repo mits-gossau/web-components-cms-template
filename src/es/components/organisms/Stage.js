@@ -133,7 +133,7 @@ export default class Stage extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.html = `<img src=${this.getAttribute('src')}><a-arrow direction=up namespace=${this.getAttribute('namespace') || ''}></a-arrow>`
+    this.html = `<img src=${this.getAttribute('src')}><a-arrow direction=up namespace=${this.getAttribute('namespace') || ''}${this.hasAttribute('namespace-fallback') ? ' namespace-fallback' : ''}></a-arrow>`
   }
 
   /**
