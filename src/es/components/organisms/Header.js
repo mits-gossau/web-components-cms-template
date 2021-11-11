@@ -131,6 +131,8 @@ export default class Header extends Shadow() {
       :host > header {
         align-items: var(--align-items, center);
         background-color: var(--background-color, black);
+        border: var(--border, 0);
+        border-bottom: var(--border-bottom, 0);
         display: flex;
         flex-direction: var(--flex-direction , row);
         height: var(--height , 85px);
