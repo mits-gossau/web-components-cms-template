@@ -336,9 +336,10 @@ export default class Navigation extends Shadow() {
   /**
    * fetch children when first needed
    *
+   * @param {Promise<[string, CustomElementConstructor]>[]} [promises=[]]
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
-  loadChildComponents () {
+  loadChildComponents (promises = []) {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let linkPromise, arrowPromise
     try {
@@ -359,7 +360,8 @@ export default class Navigation extends Shadow() {
       arrowPromise.then(
         /** @returns {[string, CustomElementConstructor]} */
         module => ['a-arrow', module.default]
-      )
+      ),
+      ...promises
     ]).then(elements => {
       elements.forEach(element => {
         // don't define already existing customElements

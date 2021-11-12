@@ -103,6 +103,7 @@ export default class Link extends Shadow() {
         width: 100%;
         font-family: var(--font-family);
         white-space: var(--white-space, normal);
+        word-break: var(--word-break, normal);
       }
       :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName}, :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
         color: var(--color-hover, var(--color, yellow));

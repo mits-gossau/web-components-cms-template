@@ -140,6 +140,7 @@ export default class Header extends Shadow() {
         height: var(--height , 85px);
         justify-content: var(--justify-content , space-between);
         padding: var(--padding, 0 calc(var(--content-spacing, 40px) / 2));
+        position: var(--header-position, static);
         transition: var(--transition, all 0.2s ease);
       }
       :host > header.open {
@@ -155,6 +156,7 @@ export default class Header extends Shadow() {
         --a-menu-icon-background-color: var(--background-color, #777);
       }
       :host > header > a {
+        align-self: var(--a-align-self, var(--align-self, auto));
         color: var(--a-color, var(--color));
         font-family: var(--a-font-family, var(--font-family));
         font-weight: var(--a-font-weight, var(--font-weight, normal));
