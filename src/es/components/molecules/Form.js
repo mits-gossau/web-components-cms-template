@@ -505,7 +505,7 @@ export default class Form extends Shadow() {
         this.form.appendChild(this.emptyInput)
       }
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
-        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-button') || this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
         button.replaceWith(aButton)
       })
     })
