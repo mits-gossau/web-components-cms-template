@@ -13,7 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * Form is a wrapper for a form
  * Example at: /src/es/components/pages/ClassicsSearch.html
  * As a molecule, this component shall hold Atoms
- * 
+ *
  * @export
  * @class Form
  * @type {CustomElementConstructor}
@@ -61,18 +61,18 @@ export default class Form extends Shadow() {
               if (event.detail && event.detail.button) event.detail.button.disabled = false
               this.submitFailure(error, this.getAttribute('type'))
             })
-          }
-          return true;
+        }
+        return true
       } else {
         this.validateFunctions.forEach(func => func())
-          return false;
+        return false
       }
     }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-      if (this.shouldComponentRenderHTML()) this.renderHTML()
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
     this.addEventListener('form-submit', this.submitEventListener)
   }
 

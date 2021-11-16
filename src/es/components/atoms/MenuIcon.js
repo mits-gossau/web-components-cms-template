@@ -28,7 +28,7 @@ export default class MenuIcon extends Shadow() {
     this.openClass = this.getAttribute('openClass') ? this.getAttribute('openClass') : 'open'
     this.barClass = this.getAttribute('barClass') ? this.getAttribute('barClass') : 'bar'
   }
-  
+
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
