@@ -32,7 +32,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Form extends Shadow() {
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
 
     this.hasRendered = false // TODO: somehow the umbraco bundled js does execute the connectedCallback twice
@@ -68,17 +68,17 @@ export default class Form extends Shadow() {
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     this.addEventListener('form-submit', this.submitEventListener)
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     this.removeEventListener('form-submit', this.submitEventListener)
   }
 
-  submitByHTML (formData, method, action) {
+  submitByHTML(formData, method, action) {
     const form = document.createElement('form')
     form.setAttribute('method', method)
     form.setAttribute('action', action);
@@ -106,7 +106,7 @@ export default class Form extends Shadow() {
    *
    * @return {void}
    */
-  submitSuccess (response, type) {
+  submitSuccess(response, type) {
     if (type === 'search') {
       if (this.searchResultsContainer) {
         response.text().then(results => {
@@ -127,7 +127,7 @@ export default class Form extends Shadow() {
    *
    * @return {void}
    */
-  submitFailure (response, type) {
+  submitFailure(response, type) {
     console.error(`Error submitting form of type ${type}: `, response)
   }
 
@@ -137,7 +137,7 @@ export default class Form extends Shadow() {
    *
    * @return {FormData}
    */
-  getAllInputValues (form) {
+  getAllInputValues(form) {
     if (form) {
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
@@ -158,7 +158,7 @@ export default class Form extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -167,7 +167,7 @@ export default class Form extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.hasRendered
   }
 
@@ -177,7 +177,7 @@ export default class Form extends Shadow() {
    * @params {boolean} [balloon=true]
    * @return {void}
    */
-  renderCSS (balloon = true) {
+  renderCSS(balloon = true) {
     this.css = /* css */`
       :host {
         --balloon-color: var(--background-color, white);
@@ -464,7 +464,7 @@ export default class Form extends Shadow() {
   *
   * @return {void}
   */
-  renderHTML () {
+  renderHTML() {
     this.hasRendered = true
     this.loadChildComponents().then(children => {
       this.inputAll
@@ -505,7 +505,7 @@ export default class Form extends Shadow() {
         this.form.appendChild(this.emptyInput)
       }
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
-        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-button') || this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
         button.replaceWith(aButton)
       })
     })
@@ -516,7 +516,7 @@ export default class Form extends Shadow() {
    *
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
-  loadChildComponents () {
+  loadChildComponents() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let inputPromise
     try {
@@ -549,11 +549,11 @@ export default class Form extends Shadow() {
     }))
   }
 
-  get form () {
+  get form() {
     return this.root.querySelector('form')
   }
 
-  get searchResultsContainer () {
+  get searchResultsContainer() {
     if (this.root.querySelector('.searchResultsContainer')) { return this.root.querySelector('.searchResultsContainer') }
 
     const searchResultsContainer = document.createElement('DIV')
@@ -562,15 +562,15 @@ export default class Form extends Shadow() {
     return searchResultsContainer
   }
 
-  get valids () {
+  get valids() {
     return Array.from(this.root.querySelectorAll('[valid]'))
   }
 
-  get inputAll () {
+  get inputAll() {
     return Array.from(this.root.querySelectorAll('input')).concat(Array.from(this.root.querySelectorAll('select')))
   }
 
-  getDescription (input) {
+  getDescription(input) {
     return this.root.querySelector(`.description[data-for='${input.getAttribute('id')}']`) || this.root.querySelector(`.description[data-for='${input.getAttribute('name')}']`)
   }
 }
