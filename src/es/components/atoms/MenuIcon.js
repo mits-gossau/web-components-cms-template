@@ -89,7 +89,7 @@ export default class MenuIcon extends Shadow() {
       }
       /* Rotate first ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}1, :host(.${this.openClass}) .${this.barClass}2 {
-        transform: rotate(-45deg) var(--one-translate-y, translateY(calc(var(--height, 5px) * 5.5 / 2)));
+        transform: rotate(-45deg) var(--one-translate, translateY(calc(var(--height, 5px) * 5.5 / 2)));
       }
       /* Fade out the second ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}2 {
@@ -97,7 +97,7 @@ export default class MenuIcon extends Shadow() {
       }
       /* Rotate last ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}3 {
-        transform: rotate(45deg) var(--two-translate-y, translateY(calc(var(--height, 5px) * -5.5 / 2)));
+        transform: rotate(45deg) var(--two-translate, translateY(calc(var(--height, 5px) * -5.5 / 2)));
       }
     `
   }

@@ -162,6 +162,7 @@ export default class Header extends Shadow() {
         font-weight: var(--a-font-weight, var(--font-weight, normal));
         font-size: var(--a-font-size, var(--font-size));
         padding: var(--a-padding, 0);
+        margin: var(--a-margin, 0);
         line-height: var(--a-line-height, 0);
         order: var(--order, 1);
         text-decoration: var(--a-text-decoration, var(--text-decoration, none));
@@ -238,12 +239,13 @@ export default class Header extends Shadow() {
           align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
           font-size: var(--a-font-size-mobile, var(--a-font-size, var(--font-size)));
           padding: var(--a-padding-mobile, var(--a-padding, 0));
+          margin: var(--a-margin-mobile, var(--a-margin, 0));
           order: var(--order-mobile, var(--order, 1));
         }
         :host > header > a-title {
           z-index: var(--a-title-z-index, auto);
         }
-        :host > header.open > ${this.getAttribute('m-navigation') || 'm-navigation'}{
+        :host > header.open > ${this.getAttribute('m-navigation') || 'm-navigation'} {
           display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, block));
           height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-open-mobile, 100vh);
           overflow-y: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-overflow-y-open-mobile, auto);
