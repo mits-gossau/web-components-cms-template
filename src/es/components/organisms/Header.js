@@ -178,6 +178,7 @@ export default class Header extends Shadow() {
         font-size: var(--a-font-size-open, var(--font-size-open, var(--a-font-size, var(--font-size))));
       }
       :host > header > a-menu-icon {
+        align-self: var(--a-menu-icon-align-self, var(--align-self, auto));
         display: none;
         --a-menu-icon-background-color: var(--color, #777);
       }
@@ -217,6 +218,7 @@ export default class Header extends Shadow() {
           height: var(--height-mobile, 50px);
           flex-direction: var(--flex-direction-mobile, row-reverse);
           justify-content: var(--justify-content-mobile, space-between);
+          padding: var(--padding-mobile, var(--padding, 0 calc(var(--content-spacing, 40px) / 2)));
         }
         :host > header > ${this.getAttribute('m-navigation') || 'm-navigation'} {
           display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, none);
@@ -232,6 +234,12 @@ export default class Header extends Shadow() {
           padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0);
           width: 100%;
         }
+        :host > header > a {
+          align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
+          font-size: var(--a-font-size-mobile, var(--a-font-size, var(--font-size)));
+          padding: var(--a-padding-mobile, var(--a-padding, 0));
+          order: var(--order-mobile, var(--order, 1));
+        }
         :host > header > a-title {
           z-index: var(--a-title-z-index, auto);
         }
@@ -242,6 +250,7 @@ export default class Header extends Shadow() {
           padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0));
         }
         :host  > header > a-menu-icon{
+          align-self: var(--a-menu-icon-align-self-mobile, var(--a-menu-icon-align-self, var(--align-self, auto)));
           display: var(--a-menu-icon-display-mobile, block);
         }
         :host  > header.open > a-menu-icon{
