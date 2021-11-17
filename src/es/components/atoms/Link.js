@@ -93,14 +93,14 @@ export default class Link extends Shadow() {
         line-height: var(--line-height, normal);
         letter-spacing: var(--letter-spacing, normal);
         font-weight: var(--font-weight, normal);
-        height: 100%;
+        height: var(--height, 100%);
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);
         text-decoration: var(--text-decoration, none);
         text-underline-offset: var(--text-underline-offset, var(--a-text-underline-offset, unset));
         text-transform: var(--text-transform, none);
         transition: var(--transition, all 0.2s ease);
-        width: 100%;
+        width: var(--width, 100%);
         font-family: var(--font-family);
         white-space: var(--white-space, normal);
         word-break: var(--word-break, normal);
