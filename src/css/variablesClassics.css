@@ -206,7 +206,7 @@ html {
   --header-m-navigation-height-open-mobile: auto;
   --header-m-navigation-overflow-y-open-mobile: hidden;
   --header-m-navigation-position-mobile: static;
-  --header-padding-mobile: 2vh 10% 1vh;
+  --header-padding-mobile: var(--header-padding);
   --header-padding: 4vh 0 2vh;
   --header-position: static;
   --header-text-align: center;
