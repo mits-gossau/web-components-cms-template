@@ -327,7 +327,10 @@ export default class Navigation extends Shadow() {
       })
       if (this.focusLostClose) {
         self.addEventListener('click', event => {
-          if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
+          if (this.hasAttribute('focus-lost-close-mobile')) {
+            Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
+            if (this.hasAttribute('no-scroll')) document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll')
+          }
           Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
             aLink.classList.remove('open')
             let arrow
