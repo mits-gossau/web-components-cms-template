@@ -279,9 +279,10 @@ export default class Navigation extends Shadow() {
   /**
    * renders the a-link html
    *
+   * @param {string[]} [arrowDirections=['up', 'down']]
    * @return {void}
    */
-  renderHTML () {
+  renderHTML (arrowDirections = ['up', 'down']) {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       if (!li.querySelector('ul')) li.classList.add('no-arrow')
@@ -290,11 +291,11 @@ export default class Navigation extends Shadow() {
       if (this.hasAttribute('set-active')) aLink.setAttribute('set-active', this.getAttribute('set-active'))
       if (a.classList.contains('active')) aLink.classList.add('active')
       const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
-      arrow.setAttribute('direction', 'down')
+      arrow.setAttribute('direction', arrowDirections[1])
       const arrowClickListener = event => {
         if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
         li.classList.toggle('open')
-        arrow.setAttribute('direction', li.classList.contains('open') ? 'up' : 'down')
+        arrow.setAttribute('direction', li.classList.contains('open') ? arrowDirections[0] : arrowDirections[1])
       }
       arrow.addEventListener('click', arrowClickListener)
       aLink.addEventListener('click', event => {
