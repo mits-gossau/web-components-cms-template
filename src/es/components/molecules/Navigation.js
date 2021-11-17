@@ -306,7 +306,11 @@ export default class Navigation extends Shadow() {
             if (!a.getAttribute('href') || a.getAttribute('href') === '#') {
               event.preventDefault()
               if (this.focusLostClose) event.stopPropagation()
-              Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+              Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
+                aLink.classList.remove('open')
+                let arrow
+                if (aLink.parentNode && event.target && !aLink.parentNode.classList.contains('open') && (arrow = aLink.parentNode.querySelector(`[direction=${arrowDirections[0]}]`))) arrow.setAttribute('direction', arrowDirections[1])
+              })
               event.target.classList.add('open')
             } else if (a.getAttribute('href')[0] === '#') {
               this.dispatchEvent(new CustomEvent(this.getAttribute('click-anchor') || 'click-anchor', {
@@ -323,7 +327,12 @@ export default class Navigation extends Shadow() {
       })
       if (this.focusLostClose) {
         self.addEventListener('click', event => {
-          Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => aLink.classList.remove('open'))
+          Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
+            aLink.classList.remove('open')
+            let arrow
+            console.log('changed', aLink, aLink.classList);
+            if (aLink.parentNode && event.target && !aLink.parentNode.classList.contains('open') && (arrow = aLink.parentNode.querySelector(`[direction=${arrowDirections[0]}]`))) arrow.setAttribute('direction', arrowDirections[1])
+          })
           if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
         })
       }

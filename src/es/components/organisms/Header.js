@@ -293,7 +293,12 @@ export default class Header extends Shadow() {
       })
     }
     if (this.hasAttribute('sticky')) this.classList.add('top')
-    self.addEventListener('resize', event => document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
+    self.addEventListener('resize', event => {
+      document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll')
+      Array.from(this.header.children).forEach(node => {
+        node.classList.remove(this.getAttribute('no-scroll') || 'no-scroll')
+      })
+    })
   }
 
   /**
