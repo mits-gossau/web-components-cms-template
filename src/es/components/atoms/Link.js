@@ -118,7 +118,7 @@ export default class Link extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > a, :host > ${this.hitAreaTagName} {
-          color:var(--color-mobile, inherit);
+          color:var(--color-mobile, var(--color, inherit));
           display: var(--display-mobile, var(--display, block));
           line-height: var(--line-height-mobile, var(--line-height, normal));
         }
