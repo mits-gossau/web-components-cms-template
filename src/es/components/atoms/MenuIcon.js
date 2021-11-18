@@ -27,16 +27,18 @@ export default class MenuIcon extends Shadow() {
 
     this.openClass = this.getAttribute('openClass') ? this.getAttribute('openClass') : 'open'
     this.barClass = this.getAttribute('barClass') ? this.getAttribute('barClass') : 'bar'
+
+    this.clickListener = event => this.toggleAnimationClass()
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
-    this.addEventListener('click', event => this.toggleAnimationClass())
+    this.addEventListener('click', this.clickListener)
   }
 
   disconnectedCallback () {
-    this.removeEventListener('click', event => this.toggleAnimationClass())
+    this.removeEventListener('click', this.clickListener)
   }
 
   /**
