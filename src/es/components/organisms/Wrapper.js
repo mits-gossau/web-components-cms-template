@@ -108,22 +108,30 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
     }
     // calculate flex child width by CSS vars
     const [bookedWidth, bookedCount, margin, unit] = childNodes.reduce((acc, node, i) => {
+      // width
       let width = this.cleanPropertyWidthValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}any-${i + 1}-width`))
+      // width without namespace
       if (!width && this.hasAttribute('namespace-fallback')) width = this.cleanPropertyWidthValue(self.getComputedStyle(node).getPropertyValue(`--any-${i + 1}-width`))
-      let [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin`))
+      /** @type {false | number} */
+      let margin = false
+      /** @type {false | string} */
+      let unit = false
+      // margin-first-child
       if (i === 0) {
-        const [marginFirst, unitFirst] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin-first-child`))
-        if (marginFirst !== false) {
-          margin = marginFirst
-          unit = unitFirst
-        }
+        [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin-first-child`))
+        // margin-first-child without namespace
+        if (margin === false && this.hasAttribute('namespace-fallback')) [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--margin-first-child`))
       }
+      // margin-last-child
       if (i === childNodes.length - 1) {
-        const [marginLast, unitLast] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin-last-child`))
-        if (marginLast !== false) {
-          margin = marginLast
-          unit = unitLast
-        }
+        [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin-last-child`))
+        // margin-last-child without namespace
+        if (margin === false && this.hasAttribute('namespace-fallback')) [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--margin-last-child`))
+      }
+      // margin
+      if (margin === false) {
+        [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin`))
+        if (margin === false && this.hasAttribute('namespace-fallback')) [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue('--margin'))
       }
       return [acc[0] + width, width ? acc[1] + 1 : acc[1], unit ? acc[2] + margin : acc[2], unit || acc[3]]
     }, [0, 0, 0, ''])
