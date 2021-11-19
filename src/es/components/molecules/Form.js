@@ -47,6 +47,19 @@ export default class Form extends Shadow() {
 
         if (this.hasAttribute('use-html-submit')) {
           this.submitByHTML(body, method, action)
+        } else if (this.hasAttribute('use-url-params')) {
+          const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          }
+          const body = this.getAllInputValuesAsUrlParams(this.form)
+          fetch(action, { method, body, headers })
+            .then(response => {
+              return response.ok
+            })
+            .catch(error => {
+              this.submitFailure(error, this.getAttribute('type'))
+            })
+
         } else {
           fetch(action, { method, body })
             .then(response => {
@@ -141,6 +154,7 @@ export default class Form extends Shadow() {
    */
   getAllInputValues (form) {
     if (form) {
+  
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
         if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
@@ -153,6 +167,23 @@ export default class Form extends Shadow() {
       return formData
     }
     return new FormData()
+  }
+
+  /**
+   * Extracts all input values and returns the form data as a URL Querystring
+   * @returns {string}
+   */
+  getAllInputValuesAsUrlParams(form) {
+    if (form) {
+      let formData = "";
+        [...this.root.querySelectorAll(`input`)].forEach(i => {
+          if (i && (i.getAttribute('type') !== 'radio' || i.checked) &&
+            (i.getAttribute('type') !== 'checkbox' || i.checked)) {
+              formData += `${i.getAttribute('name')}=${i.value || i.getAttribute('value')}&`
+            }
+        });
+        return formData;
+    }
   }
 
   /**
