@@ -44,7 +44,6 @@ export default class Form extends Shadow() {
         const method = this.form.getAttribute('method')
         const action = this.form.getAttribute('action')
         const body = this.getAllInputValues(this.form)
-        
 
         if (this.hasAttribute('use-html-submit')) {
           this.submitByHTML(body, method, action)
@@ -53,14 +52,11 @@ export default class Form extends Shadow() {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
           }
           const body = this.getAllInputValuesAsUrlParams(this.form)
-          console.log(body);
           fetch(action, { method, body, headers })
             .then(response => {
-              if (event.detail && event.detail.button) event.detail.button.disabled = false
               return response.ok
             })
             .catch(error => {
-              if (event.detail && event.detail.button) event.detail.button.disabled = false
               this.submitFailure(error, this.getAttribute('type'))
             })
 
