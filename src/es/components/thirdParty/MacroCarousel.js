@@ -282,6 +282,8 @@ export default class MacroCarousel extends Shadow() {
         macroCarouselScript.setAttribute('async', '')
         // macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel/dist/macro-carousel.min.js')
         macroCarouselScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/macro-carousel@1.0.0/dist/macro-carousel.min.js')
+        macroCarouselScript.setAttribute('integrity', 'sha384-zdSqIGGcobwlWW1xUQRlMCHvEp1eYvisEFv4LRQzdG5fZvcZSKFbC3CLWcH1u3mG')
+        macroCarouselScript.setAttribute('crossorigin', 'anonymous')
         macroCarouselScript.onload = () => resolve()
         this.html = macroCarouselScript
       }

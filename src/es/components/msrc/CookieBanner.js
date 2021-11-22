@@ -148,6 +148,7 @@ export default class CookieBanner extends Shadow() {
       if ('msrc' in self === true) {
         resolve(self.msrc) // eslint-disable-line
       } else {
+        // TODO: Should Integrity check? https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
         let scriptCount = 0
         const vendorsMainScript = document.createElement('script')
         vendorsMainScript.setAttribute('type', 'text/javascript')

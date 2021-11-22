@@ -58,6 +58,8 @@ export default class BodyBootstrap extends Body {
       jquery.onload = event => {
         const bootstrap = document.createElement('script')
         bootstrap.setAttribute('src', 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js')
+        bootstrap.setAttribute('integrity', 'sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx')
+        bootstrap.setAttribute('crossorigin', 'anonymous')
         bootstrap.onload = event => resolve()
         scripts.appendChild(bootstrap)
       }

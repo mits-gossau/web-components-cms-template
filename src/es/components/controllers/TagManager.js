@@ -70,6 +70,7 @@ export default class TagManager extends Shadow() {
     return this.dependencyPromise || (this.dependencyPromise = new Promise(resolve => {
       const gtmScript = document.createElement('script')
       gtmScript.setAttribute('type', 'text/javascript')
+      // TODO: Should Integrity check? https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
       gtmScript.setAttribute('src', 'https://www.google-analytics.com/analytics.js')
       gtmScript.onload = () => {
         resolve()
