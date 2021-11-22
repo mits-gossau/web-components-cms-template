@@ -537,6 +537,7 @@ export default class Form extends Shadow() {
         this.emptyInput.id = 'oceans'
         this.form.appendChild(this.emptyInput)
       }
+      // TODO: Textarea support => https://github.com/roli81/web-components-cms-template-base/blob/main/src/es/components/molecules/ContactForm.js
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
         const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-button') || this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
         button.replaceWith(aButton)
