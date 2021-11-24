@@ -120,13 +120,13 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
       if (i === 0) {
         [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin-first-child`))
         // margin-first-child without namespace
-        if (margin === false && this.hasAttribute('namespace-fallback')) [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--margin-first-child`))
+        if (margin === false && this.hasAttribute('namespace-fallback')) [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue('--margin-first-child'))
       }
       // margin-last-child
       if (i === childNodes.length - 1) {
         [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--${this.namespace || ''}margin-last-child`))
         // margin-last-child without namespace
-        if (margin === false && this.hasAttribute('namespace-fallback')) [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue(`--margin-last-child`))
+        if (margin === false && this.hasAttribute('namespace-fallback')) [margin, unit] = this.cleanPropertyMarginValue(self.getComputedStyle(node).getPropertyValue('--margin-last-child'))
       }
       // margin
       if (margin === false) {

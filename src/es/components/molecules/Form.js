@@ -59,7 +59,6 @@ export default class Form extends Shadow() {
             .catch(error => {
               this.submitFailure(error, this.getAttribute('type'))
             })
-
         } else {
           fetch(action, { method, body })
             .then(response => {
@@ -154,7 +153,6 @@ export default class Form extends Shadow() {
    */
   getAllInputValues (form) {
     if (form) {
-  
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
         if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
@@ -173,16 +171,16 @@ export default class Form extends Shadow() {
    * Extracts all input values and returns the form data as a URL Querystring
    * @returns {string}
    */
-  getAllInputValuesAsUrlParams(form) {
+  getAllInputValuesAsUrlParams (form) {
     if (form) {
-      let formData = "";
-        [...this.root.querySelectorAll(`input`)].forEach(i => {
-          if (i && (i.getAttribute('type') !== 'radio' || i.checked) &&
+      let formData = '';
+      [...this.root.querySelectorAll('input')].forEach(i => {
+        if (i && (i.getAttribute('type') !== 'radio' || i.checked) &&
             (i.getAttribute('type') !== 'checkbox' || i.checked)) {
-              formData += `${i.getAttribute('name')}=${i.value || i.getAttribute('value')}&`
-            }
-        });
-        return formData;
+          formData += `${i.getAttribute('name')}=${i.value || i.getAttribute('value')}&`
+        }
+      })
+      return formData
     }
   }
 
