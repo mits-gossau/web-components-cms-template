@@ -86,12 +86,12 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
           ${this.hasAttribute('flex-nowrap-mobile') ? '' : 'width: 100% !important;'}
         }
         :host > section > *:first-child {
-          margin: var(--margin-first-child-mobile, var(--margin-first-child, var(--margin, 0)));
-          padding: var(--padding-first-child-mobile, var(--padding-first-child, var(--padding, 0)));
+          margin: var(--margin-first-child-mobile, var(--margin-first-child, var(--margin-mobile, var(--margin, 0))));
+          padding: var(--padding-first-child-mobile, var(--padding-first-child, var(--padding-mobile, var(--padding, 0))));
         }
         :host > section > *:last-child {
-          margin: var(--margin-last-child-mobile, var(--margin-last-child, var(--margin, 0)));
-          padding: var(--padding-last-child-mobile, var(--padding-last-child, var(--padding, 0)));
+          margin: var(--margin-last-child-mobile, var(--margin-last-child, var(--margin-mobile, var(--margin, 0))));
+          padding: var(--padding-last-child-mobile, var(--padding-last-child, var(--padding-mobile, var(--padding, 0))));
         }
       }
     `
