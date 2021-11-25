@@ -13,6 +13,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @attribute {
  *  {string} local-part expl.: user
  *  {string} [domain=${location.hostname}] expl.: domain.com
+ *  {string} [subject='']
  * }
  */
 export default class Email extends Shadow() {
@@ -23,7 +24,7 @@ export default class Email extends Shadow() {
       event.preventDefault()
       // location.hostname.replace('www.', '')
       const a = document.createElement('a')
-      a.setAttribute('href', `mailto:${this.getAttribute('local-part') || 'set "local-part"'}@${this.getAttribute('domain') || location.hostname.replace('www.', '')}`)
+      a.setAttribute('href', `mailto:${this.getAttribute('local-part') || 'set "local-part"'}@${this.getAttribute('domain') || location.hostname.replace('www.', '')}${this.hasAttribute('subject') ? `?subject=${this.getAttribute('subject') || 'set a subject'}` : ''}`)
       a.click()
     }
   }
