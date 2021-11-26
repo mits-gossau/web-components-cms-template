@@ -122,13 +122,17 @@ export default class Teaser extends Body {
       :host figure figcaption {
         background-color: var(${backgroundColor}, #c2262f);
         opacity: var(--opacity, 1);
-      }
-      :host figure > ${this.getAttribute('a-picture') || 'a-picture'} ~ figcaption, :host figure > picture ~ figcaption {
         padding: var(${figcaptionPadding}, 15px 15px 20px 15px);
       }
+      :host figure > *:not(${this.getAttribute('a-picture') || 'a-picture'} ~ figcaption):not(picture ~ figcaption) {
+        padding-top: 0;
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
-        :host figure > ${this.getAttribute('a-picture') || 'a-picture'} ~ figcaption, :host figure > picture ~ figcaption {
+        :host figure figcaption {
           padding: var(${figcaptionPaddingMobile}, var(${figcaptionPadding}, 15px 15px 20px 15px));
+        }
+        :host figure > *:not(${this.getAttribute('a-picture') || 'a-picture'} ~ figcaption):not(picture ~ figcaption) {
+          padding-top: 0;
         }
       }
     `
