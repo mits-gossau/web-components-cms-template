@@ -47,7 +47,8 @@ import { Mutation } from '../prototypes/Mutation.js'
  *  {has} [icon-image=n.a] add open/close icon
  * }
  */
-export default class Details extends Mutation() {
+
+export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends ChosenHTMLElement {
   constructor (options = {}, ...args) {
     super(Object.assign(options, { mutationObserverInit: { attributes: true, attributeFilter: ['open'] } }), ...args)
 
@@ -130,6 +131,13 @@ export default class Details extends Mutation() {
    * @return {void}
    */
   renderCSS () {
+    // extend body styles
+    if (typeof super.renderCSS === 'function') {
+      super.renderCSS()
+      const bodyCss = this.css.replace(/\s>\smain/g, '')
+      this.css = ''
+      this.setCss(bodyCss, undefined, '') // already received its namespace and for that gets set without any ''
+    }
     this.css = /* css */` 
       :host {
         display: var(--display, block);

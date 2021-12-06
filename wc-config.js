@@ -29,6 +29,8 @@
    * @typedef {{
       selector: string, // finds first most specific/longest selector (selector.length) matching the node.tagName
       url: string, // url pointing to the javascript file or to a directory which contains javascript files (for directories the selector should end with a trailing hyphen)
+      separateFolder?: boolean, // expects the component to be in a separate folder. Example: Button.js would be expected inside atoms/buttons/Button.js
+      fileEnding?: string
     }} Directory
    */
   /**
@@ -65,6 +67,8 @@
       importEl.then(element => {
         if (Array.isArray(element)) {
           if (customElements.get(element[0])) return imports.splice(i, 1, Promise.resolve(`${element[0]} is already defined @resolve`))
+          // @ts-ignore
+          if (typeof element[1] === 'object') element[1] = element[1][Object.keys(element[1])[0]]() // helps to load functions which return the component class eg: src/es/components/web-components-cms-template/src/es/components/organisms/Wrapper.js
           customElements.define(...element)
         }
       })
@@ -89,12 +93,18 @@
       url = url || directory.url
       if (url) {
         /**
+         * js or mjs
+         * @type {string} ['js']
+         */
+        const fileEnding = directory.fileEnding || 'js'
+        /**
          * if the url points to a javascript file the fileName will be an empty string '' else it will replace the directory.selector from tagName, if possible, then it will convert hyphen separated tagNames to camel case example: playlist-item => PlaylistItem
          * @type {string}
          */
-        const fileName = /.[m]{0,1}js/.test(url) ? '' : `${(tagName.replace(directory.selector, '') || tagName).charAt(0).toUpperCase()}${(tagName.replace(directory.selector, '') || tagName).slice(1).replace(/-([a-z]{1})/g, (match, p1) => p1.toUpperCase())}.js`
+        const fileName = /.[m]{0,1}js/.test(url) ? '' : `${(tagName.replace(directory.selector, '') || tagName).charAt(0).toUpperCase()}${(tagName.replace(directory.selector, '') || tagName).slice(1).replace(/-([a-z]{1})/g, (match, p1) => p1.toUpperCase())}.${fileEnding}`
+        if (directory.separateFolder) url += `${fileName.replace(`.${fileEnding}`, '').toLowerCase()}s/`
         /** @type {ImportEl} */
-        const importEl = import(`${/[./]{1}/.test(url.charAt(0)) ? '' : baseUrl}${url}${fileName}`).then(module => /** @returns {[string, CustomElementConstructor]} */ [tagName, module.default])
+        const importEl = import(`${/[./]{1}/.test(url.charAt(0)) ? '' : baseUrl}${url}${fileName}`).then(module => /** @returns {[string, CustomElementConstructor]} */ [tagName, module.default || module])
         if (src.searchParams.get('resolveImmediately') === 'true') resolve([importEl])
         return importEl
       }
