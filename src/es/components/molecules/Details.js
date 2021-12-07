@@ -143,11 +143,11 @@ export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends
         display: var(--display, block);
         border-top: var(--border-top, 0);
         border-bottom:var(--border-bottom, 0);
-        border-color: var(--color);
+        border-color: var(--border-color, var(--color));
       }
       :host(:last-of-type) {
         border-bottom:var(--border-bottom-last, var(--border-bottom, 0));
-        border-color: var(--color);
+        border-color: var(--border-color-last, var(--border-color, var(--color)));
       }
       :host details {
         text-align: var(--text-align, center);
@@ -264,12 +264,12 @@ export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends
       const iconSvg = document.createElement('div')
       iconSvg.innerHTML = `
         <?xml version="1.0" encoding="UTF-8"?>
-        <svg width="35px" height="20px" viewBox="0 0 35 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg width="${this.svgWidth || '35px'}" height="${this.svgHeight || '20px'}" viewBox="0 0 35 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
             <title>Mobile Pfeil</title>
             <desc>Created with Sketch.</desc>
             <g id="Mobile-Pfeil" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <polyline id="Path-2" stroke="var(--color, --${this.namespace}color)" stroke-width="3" points="2 3 17 18 32 3"></polyline>
+                <polyline id="Path-2" stroke="${this.svgColor || `var(--color, --${this.namespace}color)`}" stroke-width="3" points="2 3 17 18 32 3"></polyline>
             </g>
         </svg>
       `
