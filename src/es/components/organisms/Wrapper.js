@@ -96,7 +96,7 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
       }
     `
     // set width attributes as css vars
-    const childNodes = Array.from(this.root.childNodes).filter(node => node.nodeName !== 'STYLE')
+    const childNodes = Array.from(this.root.children).filter(node => node.nodeName !== 'STYLE')
     for (let i = 1; i < childNodes.length + 1; i++) {
       if (this.hasAttribute(`any-${i}-width`)) {
         this.css = /* css */ `
