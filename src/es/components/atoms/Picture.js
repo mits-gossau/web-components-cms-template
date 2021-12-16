@@ -126,6 +126,7 @@ export default class Picture extends Shadow() {
       }
       :host picture img {
         aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
+        border-radius:var(--border-radius, unset);
         display: var(--img-display, inline);
         width: var(--img-width, 100%);
         min-width: var(--img-min-width);
@@ -138,6 +139,7 @@ export default class Picture extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
+          border-radius:var(--border-radius-mobile, unset);
           transition: var(--transition-mobile, none);
           transform: var(--transform-mobile, none);
           filter: var(--filter-mobile, none);
