@@ -66,9 +66,9 @@
     imports.forEach((importEl, i) => {
       importEl.then(element => {
         if (Array.isArray(element)) {
-          if (customElements.get(element[0])) return imports.splice(i, 1, Promise.resolve(`${element[0]} is already defined @resolve`))
           // @ts-ignore
           if (typeof element[1] === 'object') element[1] = element[1][Object.keys(element[1])[0]]() // helps to load functions which return the component class eg: src/es/components/web-components-cms-template/src/es/components/organisms/Wrapper.js
+          if (customElements.get(element[0])) return imports.splice(i, 1, Promise.resolve(`${element[0]} is already defined @resolve`))
           customElements.define(...element)
         }
       })
