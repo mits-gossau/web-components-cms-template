@@ -45,7 +45,7 @@ export default class Navigation extends Shadow() {
     super(...args)
 
     this.nav = document.createElement('nav')
-    this.nav.hidden = true
+    this.hidden = true
     Array.from(this.root.children).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       this.nav.appendChild(node)
@@ -73,7 +73,7 @@ export default class Navigation extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return this.nav.hidden
+    return this.hidden
   }
 
   /**
@@ -341,7 +341,7 @@ export default class Navigation extends Shadow() {
       li.prepend(arrow)
       a.replaceWith(aLink)
       li.prepend(aLink)
-      this.nav.hidden = false
+      this.hidden = false
     }))
   }
 
