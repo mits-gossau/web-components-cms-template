@@ -283,66 +283,68 @@ export default class Navigation extends Shadow() {
    * @return {void}
    */
   renderHTML (arrowDirections = ['up', 'down']) {
-    this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
-      const li = a.parentElement
-      if (!li.querySelector('ul')) li.classList.add('no-arrow')
-      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
-      aLink.setAttribute('hit-area', this.getAttribute('hit-area') || 'true')
-      if (this.hasAttribute('set-active')) aLink.setAttribute('set-active', this.getAttribute('set-active'))
-      if (a.classList.contains('active')) aLink.classList.add('active')
-      const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
-      arrow.setAttribute('direction', arrowDirections[1])
-      const arrowClickListener = event => {
-        if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
-        li.classList.toggle('open')
-        arrow.setAttribute('direction', li.classList.contains('open') ? arrowDirections[0] : arrowDirections[1])
-      }
-      arrow.addEventListener('click', arrowClickListener)
-      aLink.addEventListener('click', event => {
-        if (event.target) {
-          arrowClickListener()
-          let a = null
-          if (event.target.root && (a = event.target.root.querySelector('a'))) {
-            if (!a.getAttribute('href') || a.getAttribute('href') === '#') {
-              event.preventDefault()
-              if (this.focusLostClose) event.stopPropagation()
-              Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
-                aLink.classList.remove('open')
-                let arrow
-                if (aLink.parentNode && event.target && !aLink.parentNode.classList.contains('open') && (arrow = aLink.parentNode.querySelector(`[direction=${arrowDirections[0]}]`))) arrow.setAttribute('direction', arrowDirections[1])
-              })
-              event.target.classList.add('open')
-            } else if (a.getAttribute('href')[0] === '#') {
-              this.dispatchEvent(new CustomEvent(this.getAttribute('click-anchor') || 'click-anchor', {
-                detail: {
-                  selector: a.getAttribute('href')
-                },
-                bubbles: true,
-                cancelable: true,
-                composed: true
-              }))
+    this.loadChildComponents().then(children => {
+      Array.from(this.root.querySelectorAll('a')).forEach(a => {
+        const li = a.parentElement
+        if (!li.querySelector('ul')) li.classList.add('no-arrow')
+        const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
+        aLink.setAttribute('hit-area', this.getAttribute('hit-area') || 'true')
+        if (this.hasAttribute('set-active')) aLink.setAttribute('set-active', this.getAttribute('set-active'))
+        if (a.classList.contains('active')) aLink.classList.add('active')
+        const arrow = new children[1][1]({ namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
+        arrow.setAttribute('direction', arrowDirections[1])
+        const arrowClickListener = event => {
+          if (this.hasAttribute('focus-lost-close-mobile')) Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
+          li.classList.toggle('open')
+          arrow.setAttribute('direction', li.classList.contains('open') ? arrowDirections[0] : arrowDirections[1])
+        }
+        arrow.addEventListener('click', arrowClickListener)
+        aLink.addEventListener('click', event => {
+          if (event.target) {
+            arrowClickListener()
+            let a = null
+            if (event.target.root && (a = event.target.root.querySelector('a'))) {
+              if (!a.getAttribute('href') || a.getAttribute('href') === '#') {
+                event.preventDefault()
+                if (this.focusLostClose) event.stopPropagation()
+                Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
+                  aLink.classList.remove('open')
+                  let arrow
+                  if (aLink.parentNode && event.target && !aLink.parentNode.classList.contains('open') && (arrow = aLink.parentNode.querySelector(`[direction=${arrowDirections[0]}]`))) arrow.setAttribute('direction', arrowDirections[1])
+                })
+                event.target.classList.add('open')
+              } else if (a.getAttribute('href')[0] === '#') {
+                this.dispatchEvent(new CustomEvent(this.getAttribute('click-anchor') || 'click-anchor', {
+                  detail: {
+                    selector: a.getAttribute('href')
+                  },
+                  bubbles: true,
+                  cancelable: true,
+                  composed: true
+                }))
+              }
             }
           }
-        }
-      })
-      if (this.focusLostClose) {
-        self.addEventListener('click', event => {
-          if (this.hasAttribute('focus-lost-close-mobile')) {
-            Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
-            if (this.hasAttribute('no-scroll')) document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll')
-          }
-          Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
-            aLink.classList.remove('open')
-            let arrow
-            if (aLink.parentNode && event.target && !aLink.parentNode.classList.contains('open') && (arrow = aLink.parentNode.querySelector(`[direction=${arrowDirections[0]}]`))) arrow.setAttribute('direction', arrowDirections[1])
-          })
         })
-      }
-      li.prepend(arrow)
-      a.replaceWith(aLink)
-      li.prepend(aLink)
+        if (this.focusLostClose) {
+          self.addEventListener('click', event => {
+            if (this.hasAttribute('focus-lost-close-mobile')) {
+              Array.from(this.root.querySelectorAll('li.open')).forEach(li => li.classList.remove('open'))
+              if (this.hasAttribute('no-scroll')) document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll')
+            }
+            Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
+              aLink.classList.remove('open')
+              let arrow
+              if (aLink.parentNode && event.target && !aLink.parentNode.classList.contains('open') && (arrow = aLink.parentNode.querySelector(`[direction=${arrowDirections[0]}]`))) arrow.setAttribute('direction', arrowDirections[1])
+            })
+          })
+        }
+        li.prepend(arrow)
+        a.replaceWith(aLink)
+        li.prepend(aLink)
+      })
       this.hidden = false
-    }))
+    })
   }
 
   /**
