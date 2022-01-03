@@ -112,7 +112,6 @@ export default class Picture extends Shadow() {
       :host picture {
         filter: var(--filter, none);
         display: var(--display, block); /* don't use flex here, it can have strange side effects */
-        border-radius:var(--border-radius, 0);
         justify-content: var(--justify-content, center);
         width: var(--width, unset);
         height: var(--height, unset);
@@ -128,6 +127,7 @@ export default class Picture extends Shadow() {
       :host picture img {
         aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
         display: var(--img-display, inline);
+        border-radius:var(--border-radius, 0);
         width: var(--img-width, 100%);
         min-width: var(--img-min-width);
         max-width: var(--img-max-width, 100%);
@@ -145,6 +145,9 @@ export default class Picture extends Shadow() {
           filter: var(--filter-mobile, none);
           width: var(--width-mobile, var(--width, 100%));
           height: var(--height-mobile, var(--height, unset));
+        }
+        :host picture img {
+          border-radius:var(--border-radius-mobile, 0);
         }
       }
     `
