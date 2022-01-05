@@ -214,11 +214,17 @@ export default class Body extends Shadow() {
         text-align: var(--outro-text-text-align, center);
         margin-top: var(--outro-text-margin-top, 100px) auto;
       }
+      .white{
+        background-color: var(--color);
+        width: calc(100% - 2rem);
+        padding: 1rem;
+      }
       .spacer {
         display: block;
         height: var(--spacer-height, 15vw);
-        margin: 0 auto !important;
-        padding: 0 !important;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > main {
