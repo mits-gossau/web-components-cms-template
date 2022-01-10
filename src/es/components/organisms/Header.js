@@ -284,7 +284,7 @@ export default class Header extends Shadow() {
         MenuIcon.addEventListener('click', event => {
           this.header.classList.toggle('open')
           const prop = this.header.classList.contains('open') ? 'add' : 'remove'
-          document.documentElement.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
+          document.body.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           Array.from(this.header.children).forEach(node => {
             node.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           })
@@ -293,7 +293,7 @@ export default class Header extends Shadow() {
       })
     }
     if (this.hasAttribute('sticky')) this.classList.add('top')
-    self.addEventListener('resize', event => document.documentElement.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
+    self.addEventListener('resize', event => document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
   }
 
   /**
