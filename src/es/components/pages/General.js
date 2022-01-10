@@ -69,6 +69,7 @@ export default class General extends Shadow() {
         line-height: var(--line-height, normal);
         letter-spacing: var(--letter-spacing, normal);
         word-break: var(--word-break, normal);
+        overflow-x: hidden;
       }
       /* to counteract misc.css */
       /* hide component stuff before it is rendered to avoid the blitz (flashing white) also set the --background-color in the variables...css */
@@ -95,7 +96,6 @@ export default class General extends Shadow() {
       body {
         margin: 0;
         min-height: 100vh;
-        overflow-x: hidden;
       }
       /* navigation open must be visible (initial) so that the menu can be seen */
       html.${this.getAttribute('no-scroll') || 'no-scroll'} body {
