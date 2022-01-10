@@ -97,7 +97,7 @@ export default class General extends Shadow() {
         margin: 0;
         min-height: 100vh;
       }
-      /* navigation open must be visible (initial) so that the menu can be seen */
+      /* this is not necessary since all overflow commands are on html but just in case... to open the navigation this must be visible (initial) so that the menu can be seen */
       html.${this.getAttribute('no-scroll') || 'no-scroll'} body {
         overflow: initial;
       }
