@@ -77,6 +77,10 @@ export default class General extends Shadow() {
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
         font-weight: var(--font-weight, normal);
       }
+      /* navigation open */
+      html.${this.getAttribute('no-scroll') || 'no-scroll'} {
+        overflow: hidden;
+      }
       html a {
         color: var(--a-color, var(--color-secondary, var(--color, blue)));
         font-family: var(--font-family, "FuturaT", Arial, sans-serif);
@@ -93,9 +97,9 @@ export default class General extends Shadow() {
         min-height: 100vh;
         overflow-x: hidden;
       }
-      /* navigation open */
-      body.${this.getAttribute('no-scroll') || 'no-scroll'} {
-        overflow: hidden;
+      /* navigation open must be visible (initial) so that the menu can be seen */
+      html.${this.getAttribute('no-scroll') || 'no-scroll'} body {
+        overflow: initial;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
