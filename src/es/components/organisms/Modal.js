@@ -107,10 +107,10 @@ export default class Modal extends Shadow() {
   attributeChangedCallback (name, oldValue, newValue) {
     if (name === 'open') {
       if (this.hasAttribute('open')) {
-        document.body.classList.add(this.getAttribute('no-scroll') || 'no-scroll')
+        document.documentElement.classList.add(this.getAttribute('no-scroll') || 'no-scroll')
         this.openModalListener()
       } else {
-        document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll')
+        document.documentElement.classList.remove(this.getAttribute('no-scroll') || 'no-scroll')
         this.closeModalListener()
       }
     }
