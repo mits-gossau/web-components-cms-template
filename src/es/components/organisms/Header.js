@@ -221,6 +221,13 @@ export default class Header extends Shadow() {
           justify-content: var(--justify-content-mobile, space-between);
           padding: var(--padding-mobile, var(--padding, 0 calc(var(--content-spacing, 40px) / 2)));
         }
+        :host > header.open {
+          box-sizing: var(--box-sizing-open-mobile, var(--box-sizing-open, var(--box-sizing, content-box)));;
+          position: var(--position-open-mobile, var(--position-open, var(--position, static)));
+          top: var(--top-open-mobile, var(--top-open, var(--top, auto)));
+          left: var(--left-open-mobile, var(--left-open, var(--position, auto)));
+          width: var(--width-open-mobile, var(--width-open, var(--width, auto)));
+        }
         :host > header > ${this.getAttribute('m-navigation') || 'm-navigation'} {
           display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, none);
           left: 0;

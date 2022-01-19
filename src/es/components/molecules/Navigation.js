@@ -86,6 +86,7 @@ export default class Navigation extends Shadow() {
     this.css = /* css */`
       :host{
         color: black;
+        overscroll-behavior: contain;
       }
       :host a-link {
         --padding: var(--a-link-content-spacing, 14px 10px);
