@@ -112,6 +112,9 @@ export default class Picture extends Shadow() {
       :host {
         text-align: var(--text-align, center);
       }
+      :host([open-modal]) {
+        cursor: pointer;
+      }
       :host picture {
         filter: var(--filter, none);
         display: var(--display, block); /* don't use flex here, it can have strange side effects */
