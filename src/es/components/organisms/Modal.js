@@ -71,7 +71,10 @@ export default class Modal extends Shadow() {
           this.container.appendChild(this.initialContent)
         }
         if (this.closeBtn) this.container.appendChild(this.closeBtn)
-        if (!this.hasAttribute('open')) this.setAttribute('open', '')
+        if (!this.hasAttribute('open')) {
+          this.setAttribute('open', '')
+          this.clone.setAttribute('open', '')
+        }
       }
     }
     // close
@@ -81,7 +84,10 @@ export default class Modal extends Shadow() {
         this.section.animate({ opacity: '0' }, { duration: Number(this.getAttribute('transition')) }).onfinish = () => {
           // move closeBtn back outside shadowDom
           if (this.closeBtn) this.appendChild(this.closeBtn)
-          if (this.hasAttribute('open')) this.removeAttribute('open')
+          if (this.hasAttribute('open')) {
+            this.removeAttribute('open')
+            this.clone.removeAttribute('open')
+          }
           let child
           // if showOriginal this will be triggered by this.clone !== child to move the original back to its origin
           if (this.clone && (child = this.container.childNodes[0]) && this.clone !== child) this.clone.replaceWith(child)
@@ -144,6 +150,7 @@ export default class Modal extends Shadow() {
       :host > section {
         height: 0;
         opacity: 0;
+        overscroll-behavior: contain;
         width: 0;
       }
       :host([open]) > section {

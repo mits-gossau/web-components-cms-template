@@ -46,15 +46,18 @@ export default class Picture extends Shadow() {
     this.defaultSource = this.getAttribute('defaultSource') ? this.getAttribute('defaultSource') : ''
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
 
-    this.clickListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('open-modal') || 'open-modal', {
-      detail: {
-        origEvent: event,
-        child: this
-      },
-      bubbles: true,
-      cancelable: true,
-      composed: true
-    }))
+    this.clickListener = event => {
+      if (!this.hasAttribute('open')) event.stopPropagation()
+      this.dispatchEvent(new CustomEvent(this.getAttribute('open-modal') || 'open-modal', {
+        detail: {
+          origEvent: event,
+          child: this
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    }
   }
 
   connectedCallback () {

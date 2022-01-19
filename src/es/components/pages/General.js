@@ -98,7 +98,6 @@ export default class General extends Shadow() {
         overflow: hidden;
       }
       html.${this.getAttribute('no-scroll') || 'no-scroll'} body {
-        height: 100vh;
         overflow: hidden;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {

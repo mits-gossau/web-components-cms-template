@@ -34,11 +34,11 @@ export default class MenuIcon extends Shadow() {
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
-    this.addEventListener('click', this.clickListener)
+    if (!this.hasAttribute('no-click')) this.addEventListener('click', this.clickListener)
   }
 
   disconnectedCallback () {
-    this.removeEventListener('click', this.clickListener)
+    if (!this.hasAttribute('no-click')) this.removeEventListener('click', this.clickListener)
   }
 
   /**
