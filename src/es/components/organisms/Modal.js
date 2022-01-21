@@ -232,7 +232,7 @@ export default class Modal extends Shadow() {
 
   setContainerMaxWidth () {
     const margins = this.cleanPropertyMarginValue(self.getComputedStyle(this.container).getPropertyValue(`--${this.namespace || ''}margin`))
-    const height = `calc(100vh - ${margins[0]} - ${margins[2]})`;
+    const height = `calc(100vh - ${margins[0]} - ${margins[2]})`
     this.style.textContent = /* css */`
       :host([open]) > section > div {
         ${this.containerNamespaces.reduce((acc, namespace) => acc + this.getMaxWidthString(namespace, height), `max-height: ${height};${this.getMaxWidthString('', height)}`)}
@@ -255,10 +255,8 @@ export default class Modal extends Shadow() {
     if (values.length === 1) values = Array(4).fill(values[0])
     if (values.length === 2) values = [values[0], values[1], values[0], values[1]]
     if (values.length === 3) values = [values[0], values[1], values[2], values[1]]
-    const valueRegex = /[^a-z%]/g
     return values
   }
-
 
   get style () {
     return this._style || (this._style = (() => {
