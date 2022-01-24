@@ -97,13 +97,13 @@ export const Wrapper = (ChosenHTMLElement = Body) => class Wrapper extends Chose
     `
     // set width attributes as css vars
     const childNodes = Array.from(this.root.children).filter(node => node.nodeName !== 'STYLE')
-    for (let i = 1; i < childNodes.length + 1; i++) {
-      if (this.hasAttribute(`any-${i}-width`)) {
+    for (let i = 0; i < childNodes.length; i++) {
+      if (this.hasAttribute(`any-${i + 1}-width`) || (childNodes[i] && childNodes[i].hasAttribute('width'))) {
         this.css = /* css */ `
-        :host {
-          --any-${i}-width: ${this.getAttribute(`any-${i}-width`)};
-        }
-      `
+          :host {
+            --any-${i + 1}-width: ${this.getAttribute(`any-${i + 1}-width`) || childNodes[i].getAttribute('width')};
+          }
+        `
       }
     }
     // calculate flex child width by CSS vars
