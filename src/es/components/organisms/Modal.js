@@ -8,6 +8,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * Modal is sticky and hosts uls
  * Example at: /src/es/components/pages/Home.html
  * As an organism, this component shall hold molecules and/or atoms
+ * TODO: Once Firefox supports this feature use dialog instead of section => https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
  *
  * @export
  * @class Modal
