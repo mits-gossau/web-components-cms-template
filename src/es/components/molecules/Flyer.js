@@ -48,9 +48,9 @@ export default class Flyer extends Intersection() {
     this.html = this.div
 
     this.clickListener = event => {
-      if (this.getAttribute('href')) {
+      if (this.hasAttribute('href')) {
         event.preventDefault()
-        self.open(this.getAttribute('href'), this.getAttribute('target') || '_self')
+        self.open(this.getAttribute('href'), this.getAttribute('target') || '_self', this.hasAttribute('rel') ? `rel=${this.getAttribute('rel')}` : '')
       }
     }
     // link behavior made accessible

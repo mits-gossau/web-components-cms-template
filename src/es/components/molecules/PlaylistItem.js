@@ -37,7 +37,7 @@ export default class PlaylistItem extends Shadow() {
     super(...args)
 
     this.clickListener = event => {
-      if (this.getAttribute('href')) self.open(this.getAttribute('href'), this.getAttribute('target') || '_self')
+      if (this.hasAttribute('href')) self.open(this.getAttribute('href'), this.getAttribute('target') || '_self', this.hasAttribute('rel') ? `rel=${this.getAttribute('rel')}` : '')
     }
     // link behavior made accessible
     if (this.hasAttribute('href')) {
