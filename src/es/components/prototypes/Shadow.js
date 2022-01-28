@@ -170,18 +170,20 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
    * @param {string} [cssSelector = this.cssSelector]
    * @param {string} [namespace = this.namespace]
    * @param {boolean} [namespaceFallback = this.namespaceFallback]
+   * @param {HTMLStyleElement} [styleNode = this._css]
    * @return {string}
    */
-  setCss (style, cssSelector = this.cssSelector, namespace = this.namespace, namespaceFallback = this.namespaceFallback) {
-    if (!this._css) {
-      /** @type {HTMLStyleElement} */
-      this._css = document.createElement('style')
-      this._css.setAttribute('_css', '')
-      this._css.setAttribute('protected', 'true') // this will avoid deletion by html=''
-      this.root.appendChild(this._css)
+  setCss (style, cssSelector = this.cssSelector, namespace = this.namespace, namespaceFallback = this.namespaceFallback, styleNode = this._css) {
+    if (!styleNode) {
+    /** @type {HTMLStyleElement} */
+      styleNode = document.createElement('style')
+      styleNode.setAttribute('_css', '')
+      styleNode.setAttribute('protected', 'true') // this will avoid deletion by html=''
+      this.root.appendChild(styleNode)
+      this._css = styleNode
     }
     if (!style) {
-      return (this._css.textContent = '')
+      return (styleNode.textContent = '')
     } else {
       if (!this.hasShadowRoot) style = Shadow.cssHostFallback(style, cssSelector)
       if (namespace) {
@@ -196,7 +198,7 @@ export const Shadow = (ChosenHTMLElement = HTMLElement) => class Shadow extends 
       // TODO: Review the safari fix below, if the bug got fixed within safari itself (NOTE: -webkit prefix did not work for text-decoration-thickness). DONE 2021.11.10 | LAST CHECKED 2021.11.10
       // safari text-decoration un-supported shorthand fix
       if (navigator.userAgent.includes('Mac') && style.includes('text-decoration:')) style = Shadow.cssTextDecorationShortHandFix(style, this)
-      return (this._css.textContent += style)
+      return (styleNode.textContent += style)
     }
   }
 
