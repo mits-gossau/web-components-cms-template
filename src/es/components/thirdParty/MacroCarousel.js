@@ -250,20 +250,20 @@ export default class MacroCarousel extends Shadow() {
         --macro-carousel-navigation-icon-mask: var(--navigation-icon-mask, url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E %3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E %3C/svg%3E"));
       }
     `.replace(/var\(--/g, `var(--${this.namespace}`)
-    
+
     // get the width and height of the pagination
-    var rs = getComputedStyle(this.root.children[0])
-    var width = this.cleanPropertyWidthValue(rs.getPropertyValue(`--${this.namespace}pagination-width`))
-    if (rs.getPropertyValue(`--${this.namespace}pagination-width`) == '') // set default width if it isn't set
-      width = 1;
-    var height = this.cleanPropertyWidthValue(rs.getPropertyValue(`--${this.namespace}pagination-height`))
-    if (rs.getPropertyValue(`--${this.namespace}pagination-height`) == '') // use width if height isn't set
-      height = width;
-    var ratio = width/height
+    const rs = self.getComputedStyle(this.root.children[0])
+    let width = this.cleanPropertyWidthValue(rs.getPropertyValue(`--${this.namespace}pagination-width`))
+    if (rs.getPropertyValue(`--${this.namespace}pagination-width`) === '') // set default width if it isn't set
+      width = 1
+    let height = this.cleanPropertyWidthValue(rs.getPropertyValue(`--${this.namespace}pagination-height`))
+    if (rs.getPropertyValue(`--${this.namespace}pagination-height`) === '') // use width if height isn't set
+      height = width
+    const ratio = width / height
 
     // inject style which can't be controlled through css vars für pagination
     this.injectStylePagination = document.createElement('style')
-    this.injectStylePagination.innerHTML = /*css*/`
+    this.injectStylePagination.innerHTML = /* css */`
       .fg {
         width: calc(var(--pagination-width, 5px));
         border-radius: var(--pagination-border-radius, 0.5rem);
@@ -276,10 +276,10 @@ export default class MacroCarousel extends Shadow() {
         width: calc(var(--pagination-width, 5px) * ${ratio});
       }
       :host(.selected) .bg {
-        width: calc(var(--pagination-width, 5px) * ${ratio*0.5 + 0.5});
+        width: calc(var(--pagination-width, 5px) * ${ratio * 0.5 + 0.5});
       }
       :host(.selected) {
-        width: calc(var(--pagination-width, 5px) * ${ratio+1});
+        width: calc(var(--pagination-width, 5px) * ${ratio + 1});
       }
       :host {
         border-radius: var(--pagination-border-radius, 0.5rem);
@@ -335,7 +335,7 @@ export default class MacroCarousel extends Shadow() {
 
     // style which has to be injected to take effect on pagination-indicator
     this.macroCarousel.querySelectorAll('macro-carousel-pagination-indicator').forEach(p => {
-      var dupNode = this.injectStylePagination.cloneNode(true);
+      const dupNode = this.injectStylePagination.cloneNode(true)
       p.shadowRoot.append(dupNode)
     })
 
