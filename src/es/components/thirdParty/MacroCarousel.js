@@ -38,7 +38,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --pagination-bottom
  *  --pagination-background-color [black]
  *  --pagination-background-color-selected [pink]
- *  --pagination-height [5px]
+ *  --pagination-width [5px]
  *  --navigation-color [black]
  *  --navigation-color-focus [black]
  *  --navigation-background-color [transparent]
@@ -229,15 +229,15 @@ export default class MacroCarousel extends Shadow() {
       :host > #pagination {
         position: var(--pagination-position);
         bottom: var(--pagination-bottom);
-        --macro-carousel-pagination-height: calc(var(--pagination-height)*3);
+        --macro-carousel-pagination-height: calc(var(--pagination-height, var(--pagination-width, 5px))*3);
       }
       :host div ::slotted(macro-carousel-pagination-indicator) {
         --macro-carousel-pagination-color: var(--pagination-background-color, var(--background-color, black));
         --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected, var(--background-color-selected, var(--background-color, pink)));
-        --macro-carousel-pagination-size-dot: var(--pagination-height, 5px);
+        --macro-carousel-pagination-size-dot: var(--pagination-height, var(--pagination-width, 5px));
         --macro-carousel-pagination-size-dot-selected: 6rem;
         --macro-carousel-pagination-border-selected: var(--pagination-border-selected);
-        --macro-carousel-pagination-size-clickable: calc(var(--pagination-width) * 2);
+        --macro-carousel-pagination-size-clickable: calc(var(--pagination-width, 5px) * 2);
         opacity: var(--pagination-opacity, 1);
       }
       :host div ::slotted(macro-carousel-nav-button) {
@@ -251,11 +251,17 @@ export default class MacroCarousel extends Shadow() {
       }
     `.replace(/var\(--/g, `var(--${this.namespace}`)
     
+    // get the width and height of the pagination
     var rs = getComputedStyle(this.root.children[0])
-    var width = this.cleanPropertyWidthValue(rs.getPropertyValue(`--${this.namespace}pagination-width`))   
+    var width = this.cleanPropertyWidthValue(rs.getPropertyValue(`--${this.namespace}pagination-width`))
+    if (rs.getPropertyValue(`--${this.namespace}pagination-width`) == '') // set default width if it isn't set
+      width = 1;
     var height = this.cleanPropertyWidthValue(rs.getPropertyValue(`--${this.namespace}pagination-height`))
+    if (rs.getPropertyValue(`--${this.namespace}pagination-height`) == '') // use width if height isn't set
+      height = width;
     var ratio = width/height
-   
+
+    // inject style which can't be controlled through css vars für pagination
     this.injectStylePagination = document.createElement('style')
     this.injectStylePagination.innerHTML = /*css*/`
       .fg {
@@ -273,7 +279,7 @@ export default class MacroCarousel extends Shadow() {
         width: calc(var(--pagination-width, 5px) * ${ratio*0.5 + 0.5});
       }
       :host(.selected) {
-        width: calc(var(--pagination-width) * ${ratio+1});
+        width: calc(var(--pagination-width, 5px) * ${ratio+1});
       }
       :host {
         border-radius: var(--pagination-border-radius, 0.5rem);
@@ -357,5 +363,13 @@ export default class MacroCarousel extends Shadow() {
 
   get scripts () {
     return this.root.querySelectorAll('script')
+  }
+
+  /**
+   * @param {string} value
+   * @returns {number}
+   */
+  cleanPropertyWidthValue (value) {
+    return Number(value.trim().replace(/[^0-9.]/g, ''))
   }
 }
