@@ -236,6 +236,7 @@ export default class MacroCarousel extends Shadow() {
         --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected, var(--background-color-selected, var(--background-color, pink)));
         --macro-carousel-pagination-size-dot: var(--pagination-height, var(--pagination-width, 5px));
         --macro-carousel-pagination-size-dot-selected: 6rem;
+        --macro-carousel-pagination-border: var(--pagination-border);
         --macro-carousel-pagination-border-selected: var(--pagination-border-selected);
         --macro-carousel-pagination-size-clickable: calc(var(--pagination-width, 5px) * 2);
         opacity: var(--pagination-opacity, 1);
@@ -261,6 +262,11 @@ export default class MacroCarousel extends Shadow() {
       height = width
     const ratio = width / height
 
+    // is a hover variable set?
+    let bcHover = true
+    if (rs.getPropertyValue(`--${this.namespace}pagination-background-color-hover`) === '') // set default width if it isn't set
+      bcHover = false
+
     // inject style which can't be controlled through css vars für pagination
     this.injectStylePagination = document.createElement('style')
     this.injectStylePagination.innerHTML = /* css */`
@@ -268,7 +274,19 @@ export default class MacroCarousel extends Shadow() {
         width: calc(var(--pagination-width, 5px));
         border-radius: var(--pagination-border-radius, 0.5rem);
       }
-      .bg {
+    ${ bcHover ? /* css */ `
+      :host {
+        width: calc(var(--pagination-width, 5px) * 1.5);
+      }
+      :host(:hover) .fg {
+        --macro-carousel-pagination-color: var(--pagination-background-color-hover, grey);
+        --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected-hover, var(--pagination-background-color-hover, red));
+      }
+      .bg{
+        display:none;
+      ` : /* css */`
+      .bg {`
+    }
         width: var(--pagination-width, 5px);
         border-radius: var(--pagination-border-radius, 0.5rem);
       }
