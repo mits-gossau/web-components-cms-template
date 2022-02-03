@@ -229,6 +229,7 @@ export default class MacroCarousel extends Shadow() {
       :host > #pagination {
         position: var(--pagination-position);
         bottom: var(--pagination-bottom);
+        padding: var(--pagination-padding, 0);
         --macro-carousel-pagination-height: calc(var(--pagination-height, var(--pagination-width, 5px))*3);
       }
       :host div ::slotted(macro-carousel-pagination-indicator) {
