@@ -87,6 +87,7 @@ export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends
       }
 
       // animate the opening
+      // No support with close button
       if (this.hasAttribute('animation')) {
         event.preventDefault()
         this.details.style.overflow = 'hidden'
@@ -403,6 +404,12 @@ export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends
   get divSummary () {
     return this._divSummary || (this._divSummary = document.createElement('div'))
   }
+
+  /*
+  * ToDo
+  * Duration with seconds = "2s"
+  * Get Animation from Attribut
+  */
 
   get animationDuration () {
     const rs = self.getComputedStyle(this.root.children[0])
