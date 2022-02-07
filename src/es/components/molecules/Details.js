@@ -397,7 +397,7 @@ export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends
   }
 
   get content () {
-    return this.root.querySelector('.content')
+    return this.root.querySelector('.content') || this.root.querySelector('details > :not(summary)')
   }
 
   get divSummary () {
