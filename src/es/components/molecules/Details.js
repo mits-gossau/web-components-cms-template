@@ -74,7 +74,9 @@ export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends
         if (event.detail.child === this) {
           if (this.hasAttribute('scroll-into-view')) this.details.scrollIntoView({ behavior: 'smooth' })
         } else {
-          this.details.removeAttribute('open')
+          if (!this.hasAttribute('animation')){
+            this.details.removeAttribute('open')
+          }
         }
       }
     }
