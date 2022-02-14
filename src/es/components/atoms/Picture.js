@@ -151,6 +151,7 @@ export default class Picture extends Shadow() {
           filter: var(--filter-mobile, none);
           width: var(--width-mobile, var(--width, 100%));
           height: var(--height-mobile, var(--height, unset));
+          text-align: var(--text-align-mobile, var(--text-align, center));
         }
         :host picture img {
           border-radius:var(--border-radius-mobile, 0);
