@@ -62,7 +62,10 @@ export default class Picture extends Shadow() {
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.shouldComponentRenderHTML()) this.renderHTML()
+    if (this.shouldComponentRenderHTML()) {
+      this.renderHTML()
+      if (this.hasAttribute('preview')) this.renderHTML(undefined, this.getAttribute('preview'))
+    }
     if (this.hasAttribute('open-modal')) this.addEventListener('click', this.clickListener)
   }
 
@@ -99,7 +102,7 @@ export default class Picture extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return !this.picture
+    return !this.root.querySelector('picture')
   }
 
   /**
@@ -111,6 +114,17 @@ export default class Picture extends Shadow() {
     this.css = /* css */`
       :host {
         text-align: var(--text-align, center);
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+      }
+      :host > picture {
+        grid-column: 1;
+        grid-row: 1;
+        z-index: 1;
+      }
+      :host > picture[preview] {
+        z-index: 0;
       }
       :host([open-modal]) {
         cursor: pointer;
@@ -165,12 +179,13 @@ export default class Picture extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
-    this.html = this.picture = document.createElement('picture')
+  renderHTML (picture = document.createElement('picture'), pictureQuery = '') {
+    this.html = picture 
+    if (pictureQuery) picture.setAttribute('preview', '')
 
     // in case someone adds sources/img directly instead of using the attributes
     Array.from(this.root.children).forEach(node => {
-      if (node.nodeName === 'SOURCE' || node.nodeName === 'IMG') this.picture.appendChild(node)
+      if (node.nodeName === 'SOURCE' || node.nodeName === 'IMG') picture.appendChild(node)
     })
 
     if (this.sources) {
@@ -178,19 +193,19 @@ export default class Picture extends Shadow() {
         if (i.src !== '' && i.type !== '' && i.size !== '') {
           switch (i.size) {
             case 'small':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(max-width: 400px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(max-width: 400px)">`
               break
             case 'medium':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 401px) and (max-width: 600px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(min-width: 401px) and (max-width: 600px)">`
               break
             case 'large':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 601px) and (max-width: 1200px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(min-width: 601px) and (max-width: 1200px)">`
               break
             case 'extra-large':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(min-width: 1201px)">`
               break
             default:
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}">`
               break
           }
         } else {
@@ -199,7 +214,7 @@ export default class Picture extends Shadow() {
       })
     }
     if (this.defaultSource) {
-      this.picture.innerHTML += `<img src="${this.defaultSource}" alt="${this.alt}">`
+      picture.innerHTML += `<img src="${this.defaultSource + pictureQuery}" alt="${this.alt}">`
       if (this.alt === '') {
         console.warn('a-picture alt is missing')
       }
@@ -214,7 +229,7 @@ export default class Picture extends Shadow() {
             origEvent: event,
             child: this,
             img: this.img,
-            picture: this.picture
+            picture: picture
           },
           bubbles: true,
           cancelable: true,
@@ -228,6 +243,6 @@ export default class Picture extends Shadow() {
   }
 
   get img () {
-    return this.root.querySelector('img')
+    return this.root.querySelector('picture:not([preview]) > img')
   }
 }
