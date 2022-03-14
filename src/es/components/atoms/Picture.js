@@ -114,7 +114,7 @@ export default class Picture extends Shadow() {
     this.css = /* css */`
       :host {
         text-align: var(--text-align, center);
-        display: grid;
+        display: grid !important;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
       }
