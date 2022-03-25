@@ -13,6 +13,7 @@ html {
   --font-family-secondary: "Cardo", "Times New Roman", Times, serif;
   --font-family: "Circular", Helvetica, Arial, sans-serif;
   --font-weight: 300;
+  --font-size-mobile: 16px;
   --footer-a-link-font-size: 2rem;
   --footer-a-link-font-size-2: 1.5rem;
   --footer-background-color: #343227; 
@@ -36,4 +37,5 @@ html {
   --navigation-content-spacing: var(--content-spacing);
   --navigation-hr-color: var(--navigation-color);
   --stage-arrow-color: var(--color-secondary);
+  --picture-width: 100%;
 }
