@@ -180,7 +180,7 @@ export default class Picture extends Shadow() {
    * @return {void}
    */
   renderHTML (picture = document.createElement('picture'), pictureQuery = '') {
-    this.html = picture 
+    this.html = picture
     if (pictureQuery) picture.setAttribute('preview', '')
 
     // in case someone adds sources/img directly instead of using the attributes
@@ -214,7 +214,7 @@ export default class Picture extends Shadow() {
       })
     }
     if (this.defaultSource) {
-      picture.innerHTML += `<img src="${this.defaultSource + pictureQuery}" alt="${this.alt}">`
+      picture.innerHTML += `<img src="${this.defaultSource + pictureQuery}" alt="${this.alt}" draggable="false">`
       if (this.alt === '') {
         console.warn('a-picture alt is missing')
       }
