@@ -5,13 +5,13 @@ import Body from '../organisms/Body.js'
 /* global self */
 
 /**
- * 
+ *
  *
  * @export
  * @class ImageHotspot
  * @type {CustomElementConstructor}
  * @css {
- * 
+ *
  * }
  * @attribute {
  * }
@@ -20,12 +20,11 @@ export default class ImageHotspot extends Body {
   constructor (...args) {
     super(...args)
     this.hasRendered = false
-
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.shouldComponentRenderHTML()) this.renderHTML();
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
 
   disconnectedCallback () {
@@ -49,8 +48,6 @@ export default class ImageHotspot extends Body {
   shouldComponentRenderHTML () {
     return !this.hasRendered
   }
-  
-
 
   /**
    * renders the m-Image-Hotspot css
@@ -112,13 +109,13 @@ export default class ImageHotspot extends Body {
   renderHTML () {
     this.hasRendered = true
 
-    this.divWrapper.classList.add("wrapper")
+    this.divWrapper.classList.add('wrapper')
 
-    this.divPicture.classList.add("picture")
+    this.divPicture.classList.add('picture')
     this.divPicture.appendChild(this.picture)
     this.divWrapper.appendChild(this.divPicture)
 
-    this.divHotspot.classList.add("hotspots-container")
+    this.divHotspot.classList.add('hotspots-container')
     Array.from(this.hotspots).forEach(node => {
       this.divHotspot.appendChild(node)
     })
@@ -127,12 +124,11 @@ export default class ImageHotspot extends Body {
     this.html = this.divWrapper
   }
 
-
   get hotspots () {
     return this.root.querySelectorAll('a-hotspot')
   }
 
-  get picture(){
+  get picture () {
     return this.root.querySelector('a-picture') || this.root.querySelector('picture')
   }
 
@@ -142,10 +138,9 @@ export default class ImageHotspot extends Body {
 
   get divHotspot () {
     return this._divHotspot || (this._divHotspot = document.createElement('div'))
-  } 
-  
-  get divPicture (){
-    return this._divPicture || (this._divPicture = document.createElement('div'))
   }
 
+  get divPicture () {
+    return this._divPicture || (this._divPicture = document.createElement('div'))
+  }
 }

@@ -5,13 +5,13 @@ import Body from '../organisms/Body.js'
 /* global self */
 
 /**
- * 
+ *
  *
  * @export
  * @class Hotspot
  * @type {CustomElementConstructor}
  * @css {
- * 
+ *
  * }
  * @attribute {
  * {number} [top] The position to top
@@ -23,20 +23,20 @@ import Body from '../organisms/Body.js'
 export default class Hotspot extends Body {
   constructor (...args) {
     super(...args)
-    this.hasRendered = false;
+    this.hasRendered = false
 
     this.buttonClickListener = e => {
-      if (this.classList.contains("active")){
-        this.classList.remove("active")
-      }else{
-        this.classList.add("active")
+      if (this.classList.contains('active')) {
+        this.classList.remove('active')
+      } else {
+        this.classList.add('active')
       }
     }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.shouldComponentRenderHTML()) this.renderHTML();
+    if (this.shouldComponentRenderHTML()) this.renderHTML()
     this.buttonOpen.addEventListener('click', this.buttonClickListener)
     this.buttonClose.addEventListener('click', this.buttonClickListener)
   }
@@ -63,7 +63,6 @@ export default class Hotspot extends Body {
   shouldComponentRenderHTML () {
     return !this.hasRendered
   }
-  
 
   /**
    * renders the a-Hotspot css
@@ -147,15 +146,15 @@ export default class Hotspot extends Body {
       }
 
       :host .btn-open:after{
-        width: 35px;
-        height: 35px;
         background-image: url(../assets/img/close-white.svg);
         background-color: #ff6600;
         background-position: 50% 50%;
         background-repeat: no-repeat;
+        transform: translate(-50%,-50%) rotate(-45deg);
+        width: 35px;
+        height: 35px;
         box-shadow: 0 0 0 0 transparent;
         content: '';
-        transform: translate(-50%,-50%) rotate(-45deg);
         transition: transform .2s ease-out,
           box-shadow .2s ease-out,
           background-color .2s ease-out;
@@ -238,6 +237,7 @@ export default class Hotspot extends Body {
           visibility: hidden;
           overflow-x: hidden;
           overflow-y: scroll;
+          white-space: normal;
         }
         :host(.active) .content{
           animation: fadeInBottom 1s ease;
@@ -305,7 +305,6 @@ export default class Hotspot extends Body {
     `
   }
 
-
   /**
    * renders the html
    *
@@ -314,86 +313,82 @@ export default class Hotspot extends Body {
   renderHTML () {
     this.hasRendered = true
 
-    this.buttonOpen.classList.add("btn-open")
-    this.buttonClose.classList.add("btn-close")
+    this.buttonOpen.classList.add('btn-open')
+    this.buttonClose.classList.add('btn-close')
     Array.from(this.span).forEach(node => {
-      this.buttonOpen.appendChild(node) 
-      if (node.classList.contains("sr-close")) this.buttonClose.appendChild(node.cloneNode())
+      this.buttonOpen.appendChild(node)
+      if (node.classList.contains('sr-close')) this.buttonClose.appendChild(node.cloneNode())
     })
 
-    this.divTitle.classList.add("content-title")
+    this.divTitle.classList.add('content-title')
     this.divTitle.appendChild(this.content.querySelector('h3'))
     this.content.prepend(this.divTitle)
     this.content.appendChild(this.buttonClose)
 
-    this.html = this.buttonOpen;
+    this.html = this.buttonOpen
   }
 
-  get CSSPlace(){
-    switch(this.getAttribute('place')){
-      case "Left":
+  get CSSPlace () {
+    switch (this.getAttribute('place')) {
+      case 'Left':
         return `
           right: 0;
           left: auto;
           transform-origin: top right;
         `
-      case "Right":
-        return `
-        `
-      case "Top":
+      case 'Right':
+        return ``
+      case 'Top':
         return `
           top: auto;
           bottom: 0;
           transform-origin: bottom left;
         `
-      case "Bottom":
+      case 'Bottom':
       default:
-        return `
-
-        `
+        return ``
     }
   }
 
-  get CSSPlaceActive(){
-    switch(this.getAttribute('place')){
-      case "Left":
+  get CSSPlaceActive () {
+    switch (this.getAttribute('place')) {
+      case 'Left':
         return `
           transform: scale(1) translate(-48px,-50%);
         `
-      case "Right":
+      case 'Right':
         return `
           transform: scale(1) translate(48px,-50%);
         `
-      case "Top":
+      case 'Top':
         return `
           transform: scale(1) translate(-50%,-48px);
           transition: transform .4s 250ms cubic-bezier(.23,1,.32,1),
             background-color .4s 250ms cubic-bezier(.23,1,.32,1),
             visibility .4s 250ms cubic-bezier(.23,1,.32,1);
         `
-      case "Bottom":
+      case 'Bottom':
       default:
         return `
           transform: scale(1) translate(-50%,48px);
         `
     }
   }
-
-  get CSSPlaceAfter(){
-    switch(this.getAttribute('place')){
-      case "Left":
+  get CSSPlaceAfter () {
+    switch (this.getAttribute('place')) {
+      case 'Left':
         return `
           transform: translate(0,-50%) rotate(-45deg) scale(1);
           top: 50%;
           left: 100%;
         `
-      case "Right":
+      case 'Right':
         return `
           transform: translate(0,-50%) rotate(135deg) scale(1);
           top: 50%;
           left: 0;
         `
-      case "Top":
+      case 'Top':
         return `
           transform: translate(0,-50%) rotate(45deg) scale(1);
           box-shadow: 5px 5px 15px -6px rgba(0,0,0,.3);
@@ -402,7 +397,7 @@ export default class Hotspot extends Body {
           top: 100%;
           left: 50%;
         `
-      case "Bottom":
+      case 'Bottom':
       default:
         return `
           top: 0;
@@ -412,8 +407,7 @@ export default class Hotspot extends Body {
     }
   }
 
-
-  get content (){
+  get content () {
     return this.root.querySelector('.content')
   }
 
@@ -429,11 +423,8 @@ export default class Hotspot extends Body {
     return this._buttonClose || (this._buttonClose = document.createElement('button'))
   }
 
-  get span (){
+  get span () {
     return this.root.querySelectorAll('span.sr-only')
   }
-  get spanClose (){
-    return this.root.querySelector('span.sr-close')
-  }
-}
 
+}
