@@ -38,4 +38,5 @@ html {
   --navigation-hr-color: var(--navigation-color);
   --stage-arrow-color: var(--color-secondary);
   --picture-width: 100%;
+  --pagination-height: 0px;
 }

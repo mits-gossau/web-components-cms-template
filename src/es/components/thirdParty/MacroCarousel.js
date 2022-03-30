@@ -59,8 +59,9 @@ export default class MacroCarousel extends Shadow() {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
       if (node.nodeName !== 'A') node.setAttribute('pointer-events', 'none') // firefox would drag the ghost image and interrupt the carousel
-      this.macroCarousel.appendChild(node)
+      if (node.nodeName !== 'A-SLIDER-BUTTON') { this.macroCarousel.appendChild(node) }
     })
+
     // forward all attributes
     Array.from(this.attributes).forEach(attribute => {
       if (attribute.name) {
@@ -79,6 +80,16 @@ export default class MacroCarousel extends Shadow() {
 
     this.macroCarouselSelectedChangedListener = event => {
       this.dispatchEvent(new CustomEvent((this.getAttribute('macro-carousel-selected-changed') || 'macro-carousel-selected-changed') + this.getAttribute('sync-id'), {
+        detail: {
+          slide: event.detail
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    }
+    this.macroCarouselSelectedChangedListenerBody = event => {
+      document.body.dispatchEvent(new CustomEvent('macro-carousel-selected-changed', {
         detail: {
           slide: event.detail
         },
@@ -113,6 +124,7 @@ export default class MacroCarousel extends Shadow() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     self.addEventListener('resize', this.resizeListener)
+    this.macroCarousel.addEventListener('macro-carousel-selected-changed', this.macroCarouselSelectedChangedListenerBody)
     if (this.hasAttribute('sync-id')) {
       if (this.getAttribute('interval')) {
         this.macroCarousel.addEventListener('macro-carousel-selected-changed', this.macroCarouselSelectedChangedListener)
@@ -130,6 +142,7 @@ export default class MacroCarousel extends Shadow() {
 
   disconnectedCallback () {
     self.removeEventListener('resize', this.resizeListener)
+    this.macroCarousel.removeEventListener('macro-carousel-selected-changed', this.macroCarouselSelectedChangedListenerBody)
     if (this.hasAttribute('sync-id')) {
       if (this.getAttribute('interval')) {
         this.macroCarousel.removeEventListener('macro-carousel-selected-changed', this.macroCarouselSelectedChangedListener)
@@ -275,7 +288,7 @@ export default class MacroCarousel extends Shadow() {
         width: calc(var(--pagination-width, 5px));
         border-radius: var(--pagination-border-radius, 0.5rem);
       }
-    ${ bcHover ? /* css */ `
+    ${bcHover ? /* css */ `
       :host {
         width: calc(var(--pagination-width, 5px) * 1.5);
       }
@@ -285,9 +298,9 @@ export default class MacroCarousel extends Shadow() {
       }
       .bg{
         display:none;
-      ` : /* css */`
-      .bg {`
+      }` : /* css */''
     }
+      .bg {
         width: var(--pagination-width, 5px);
         border-radius: var(--pagination-border-radius, 0.5rem);
       }
