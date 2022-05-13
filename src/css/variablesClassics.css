@@ -13,7 +13,7 @@ html {
   --a-text-underline-offset: 0.2em; /* should be 6px but not visible */
   --animation: none;
   --any-a-display: inline;
-  --background-color: #E6007E;
+  --background-color: #009fe3;
   --carousel-a-text-decoration-hover: var(--a-text-decoration-hover);
   --carousel-a-text-decoration: var(--a-text-decoration);
   --carousel-a-text-underline-offset: var(--a-text-underline-offset);
@@ -70,8 +70,8 @@ html {
   --footer-align-content: flex-start;
   --footer-background-color: white;
   --footer-box-sizing: border-box;
-  --footer-color-hover: #E6007E;
-  --footer-color: #E6007E;
+  --footer-color-hover: #009fe3;
+  --footer-color: #009fe3;
   --footer-content-width-mobile: 100%;
   --footer-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
   --footer-content-width-not-web-component: var(--content-width-not-web-component);
@@ -83,8 +83,8 @@ html {
   --footer-engagement-logo-max-height: 40px;
   --footer-engagement-logo-padding: 24px 0 0;
   --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
-  --footer-engagement-logo-text-a-color: #E6007E;
-  --footer-engagement-logo-text-color: #E6007E;
+  --footer-engagement-logo-text-a-color: #009fe3;
+  --footer-engagement-logo-text-color: #009fe3;
   --footer-engagement-logo-text-font-size-mobile: 0.42rem;
   --footer-engagement-logo-text-font-size: 0.49rem;
   --footer-engagement-logo-text-line-height: 11px;
@@ -97,7 +97,7 @@ html {
   --footer-flex-wrap: wrap; 
   --footer-font-size-mobile: var(--footer-a-link-font-size-mobile);
   --footer-font-size: var(--footer-a-link-font-size);
-  --footer-homepage-background-color: #E6007E;
+  --footer-homepage-background-color: #009fe3;
   --footer-homepage-logo-container-justify-content: flex-end;
   --footer-homepage-padding-mobile: 0 10px 5px 0;
   --footer-homepage-padding: var(--footer-padding);
@@ -185,7 +185,7 @@ html {
   --header-background-animation: 1s ease;
   --header-background-color-open: white;
   --header-background-color: var(--header-background-color-open);
-  --header-color: #E6007E;
+  --header-color: #009fe3;
   --header-content-spacing-mobile: var(--header-content-spacing);
   --header-content-spacing: 0;
   --header-content-width-mobile: var(--content-width-mobile);
@@ -211,7 +211,7 @@ html {
   --header-padding: 4vh 0 2vh;
   --header-position: static;
   --header-text-align: center;
-  --header-title-color-nav-open: #E6007E;
+  --header-title-color-nav-open: #009fe3;
   --header-title-color-secondary-nav-open: var(--header-title-color-nav-open);
   --header-title-color: var(--header-title-color-nav-open);
   --header-title-font-family-bold: var(--font-family-bold);
@@ -247,7 +247,7 @@ html {
   --main-padding: calc(var(--spacer-height)/2) 0 var(--spacer-height) 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
   --module-wrapper-margin: 15% 0 0 0;
-  --navigation-a-link-color-nav-open: #E6007E;
+  --navigation-a-link-color-nav-open: #009fe3;
   --navigation-a-link-content-spacing-nav-open: 0;
   --navigation-a-link-content-spacing: 0;
   --navigation-a-link-font-family: var(--font-family-bold);
@@ -263,7 +263,7 @@ html {
   --navigation-border-top: 0;
   --navigation-color-hover: var(--navigation-a-link-color-nav-open);
   --navigation-color-open: var(--navigation-color);
-  --navigation-color: #E6007E;
+  --navigation-color: #009fe3;
   --navigation-content-spacing: 0;
   --navigation-flex-direction: column;
   --navigation-hr-color: transparent;
