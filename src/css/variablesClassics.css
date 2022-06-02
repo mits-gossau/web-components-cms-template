@@ -27,9 +27,9 @@ html {
   --carousel-pagination-background-color-selected: white;
   --carousel-pagination-background-color: #FFED00;
   --carousel-pagination-bottom: 10%;
+  --carousel-pagination-height: 10px;
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
-  --carousel-pagination-height: 10px;
   --carousel-transition-duration: 1.6s;
   --color-hover-secondary: var(--color);
   --color-hover: var(--color);
@@ -284,6 +284,7 @@ html {
   --p-text-align: center;
   --padding: 15px 0;
   --picture-img-max-height: 80vh;
+  --picture-img-object-fit: contain;
   --picture-margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
   --picture-width-mobile: 100%;
   --picture-width: var(--content-width, 80%);
