@@ -150,6 +150,9 @@ export default class Logo extends Shadow() {
       :host([lang="fr"]) > ${this.textSelector}{
         padding: var(--text-padding-fr, var(--text-padding, 0));
       }
+      :host([lang="it"]) > ${this.textSelector}{
+        padding: var(--text-padding-it, var(--text-padding, 0));
+      }
       :host > ${this.textSelector} a{
         color: var(--text-a-color, var(--color, green));
         text-decoration: var(--text-a-text-decoration, var(--text-decoration, none));
@@ -187,6 +190,9 @@ export default class Logo extends Shadow() {
         }
         :host([lang="fr"]) > ${this.textSelector}{
           padding: var(--text-padding-mobile-fr, var(--text-padding-mobile, 0));
+        }
+        :host([lang="it"]) > ${this.textSelector}{
+          padding: var(--text-padding-mobile-it, var(--text-padding-mobile, 0));
         }
       }
     `
