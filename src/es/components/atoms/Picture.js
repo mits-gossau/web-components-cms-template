@@ -122,6 +122,7 @@ export default class Picture extends Shadow() {
         grid-column: 1;
         grid-row: 1;
         z-index: 1;
+        display: var(--display, inline); /* don't use flex here, it can have strange side effects */
       }
       :host > picture[preview] {
         z-index: 0;
@@ -146,16 +147,17 @@ export default class Picture extends Shadow() {
       }
       :host picture img {
         aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
-        display: var(--img-display, inline);
+        display: var(--img-display, block);
         border-radius:var(--border-radius, 0);
-        width: var(--img-width, 100%);
-        min-width: var(--img-min-width);
-        max-width: var(--img-max-width, 100%);
+        width: var(--img-width, max-content);
+        min-width: var(--img-min-width, unset);
+        max-width: var(--img-max-width, 100%); /* max-content would have been nice to not scale up the image, but in general make the editor use big enough images and this must stay at 100% default value, otherwise there are several side effects */
         height: var(--img-height, auto);
-        min-height: var(--img-min-height, 100%);
-        max-height: var(--img-max-height);
-        object-fit: var(--img-object-fit, cover);
+        min-height: var(--img-min-height, unset);
+        max-height: var(--img-max-height, 75vh);
+        object-fit: var(--img-object-fit, contain); /* cover does not render the same on IOS */
         vertical-align: middle; /* use middle to avoid having a gap at the bottom of the image https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
+        margin: var(--img-margin, auto);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
