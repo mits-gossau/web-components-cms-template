@@ -177,6 +177,7 @@ export default class MacroCarousel extends Shadow() {
       :host > macro-carousel > * {
         --img-height: ${this.getAttribute('height') ? 'min(auto, 100%)' : 'auto'};
         --img-width: ${this.getAttribute('height') ? 'auto' : '100%'};
+        --picture-img-max-height: ${this.getAttribute('height') || '100%'};
         --img-max-height: ${this.getAttribute('height') || '100%'};
         --img-min-height: 0px;
         --img-max-width: 100%;
