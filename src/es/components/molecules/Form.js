@@ -395,7 +395,7 @@ export default class Form extends Shadow() {
           z-index: 10; }
         [aria-label][data-balloon-pos]:hover:before, [aria-label][data-balloon-pos]:hover:after, [aria-label][data-balloon-pos][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-visible]:after, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:before, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:after {
           /* custom */
-          opacity: var(--balloon-opacity, 0.8);
+          opacity: var(--balloon-opacity, 1.0);
           pointer-events: none; }
         [aria-label][data-balloon-pos].font-awesome:after {
           font-family: FontAwesome, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }
