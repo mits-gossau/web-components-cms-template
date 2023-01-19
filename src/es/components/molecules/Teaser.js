@@ -1,5 +1,5 @@
 // @ts-check
-import { Shadow } from '../prototypes/Shadow.js'
+import Body from '../organisms/Body.js'
 
 /* global self */
 
@@ -41,12 +41,12 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  </figure>
  * }
  */
-export default class Teaser extends Shadow() {
+export default class Teaser extends Body {
   constructor (...args) {
     super(...args)
 
     this.clickListener = event => {
-      if (this.getAttribute('href')) self.open(this.getAttribute('href'), this.getAttribute('target') || '_self')
+      if (this.hasAttribute('href')) self.open(this.getAttribute('href'), this.getAttribute('target') || '_self', this.hasAttribute('rel') ? `rel=${this.getAttribute('rel')}` : '')
     }
     // link behavior made accessible
     if (this.hasAttribute('href')) {
@@ -81,65 +81,59 @@ export default class Teaser extends Shadow() {
   renderCSS () {
     const theme = this.getAttribute('theme')
     let backgroundColor = '--background-color'
-    let fontColorH3 = '--h3-color'
-    let fontColorP = '--p-color'
     let figcaptionPadding = '--figcaption-padding'
-
+    let figcaptionPaddingMobile = '--figcaption-padding-mobile'
     if (theme) {
       backgroundColor = '--background-color-light-theme'
-      fontColorH3 = '--h3-color-light-theme'
-      fontColorP = '--p-color-light-theme'
       figcaptionPadding = '--figcaption-padding-light-theme'
+      figcaptionPaddingMobile = '--figcaption-padding-mobile-light-theme'
     }
-
+    // extend body styles
+    super.renderCSS()
+    const bodyCss = this.css.replace(/\s>\smain/g, '')
+    this.css = ''
+    this._css.textContent = bodyCss
     this.css = /* css */`
       :host {
         cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
+        display: var(--display, flex);
+        flex-direction: var(--flex-direction, column);
+        align-items: var(--align-items, flex-start);
+        justify-content: var(--justify-content, space-between);
       }
       :host figure {
-        display: block;
-        position: relative;
+        display: flex;
+        flex-direction: column;
         margin: 0;
         background-color: var(${backgroundColor}, #c2262f);
+        width: 100%;
       }
-
       /* fallback if a-picture is not used */
       :host figure picture {
-        display: block;
         height: var(--height, 300px);
         overflow: hidden;
       }
       :host figure > picture > img {
-        width: 100%;
         min-height: var(--min-height, 100%);
         height: auto;
         object-fit: var(--object-fit, cover);
+        width: 100%;
       }
-      /* --------------------------- */
-
       :host figure figcaption {
         background-color: var(${backgroundColor}, #c2262f);
-        padding: var(${figcaptionPadding}, 15px 15px 20px 15px);
-        position: absolute;
         opacity: var(--opacity, 1);
-        bottom: 0;
-        left: 0;
-        right: 0;
+        padding: var(${figcaptionPadding}, 15px 15px 20px 15px);
       }
-      :host h3, :host p {
-        font-family: var(--font-family, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif);
-        font-weight: var(--h3-font-weight, var(--font-weight, normal));
+      :host figure > *:not(${this.getAttribute('a-picture') || 'a-picture'} ~ figcaption):not(picture ~ figcaption) {
+        padding-top: 0;
       }
-      :host h3 {
-         margin: 0 0 10px 0;
-         font-size: var(--h3-font-size, 1.2rem); 
-         color: var(${fontColorH3}, white);
-      }
-      :host p { 
-        margin: 0;
-        font-size: var(--p-font-size, 1rem); 
-        color: var(${fontColorP}, white);
-      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host figure figcaption {
+          padding: var(${figcaptionPaddingMobile}, var(${figcaptionPadding}, 15px 15px 20px 15px));
+        }
+        :host figure > *:not(${this.getAttribute('a-picture') || 'a-picture'} ~ figcaption):not(picture ~ figcaption) {
+          padding-top: 0;
+        }
       }
     `
   }

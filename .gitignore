@@ -15,3 +15,7 @@
 #System Files
 .DS_Store
 Thumbs.db
+/.vs/web-components-cms-template/v16/.suo
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json

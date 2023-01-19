@@ -78,6 +78,7 @@ export default class Video extends Shadow() {
     :host video, :host iframe {
       ${this.getAttribute('height') ? `height: ${this.getAttribute('height')}` : ''}
       ${this.getAttribute('width') ? `width: ${this.getAttribute('width')}` : ''}
+      aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
       display: var(--display, block);
       filter: var(--filter, none);
       margin: var(--margin, 0 auto);
@@ -114,7 +115,12 @@ export default class Video extends Shadow() {
    * @return {void}
    */
   renderHTML () {
-    this.video = document.createElement('video')
+    this.video = document.createElement('div')
+    this.video.innerHTML = Array.from(this.attributes).reduce((acc, attribute) => {
+      if (attribute.name && attribute.name !== 'sources') return `${acc} ${attribute.name}="${attribute.value || 'true'}"`
+      return acc
+    }, '<video') + '></video'
+    this.video = this.video.children[0] // workaround, since autoplay did not trigger, when document.createElement('video')
 
     // in case someone adds sources directly instead of using the attributes
     Array.from(this.root.children).forEach(node => {
@@ -124,12 +130,6 @@ export default class Video extends Shadow() {
     if ((this.sources && this.sources.every(i => {
       if (i.src !== '' && i.type !== '') return (this.video.innerHTML += `<source src="${i.src}" type="${i.type}">`)
       return false
-    })) || this.video.querySelector('source')) {
-      // forward all attributes
-      Array.from(this.attributes).forEach(attribute => {
-        if (attribute.name) this.video.setAttribute(attribute.name, attribute.value || 'true')
-      })
-      this.html = this.video
-    }
+    })) || this.video.querySelector('source')) this.html = this.video
   }
 }

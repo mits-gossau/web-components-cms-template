@@ -46,20 +46,26 @@ export default class Picture extends Shadow() {
     this.defaultSource = this.getAttribute('defaultSource') ? this.getAttribute('defaultSource') : ''
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
 
-    this.clickListener = event => this.dispatchEvent(new CustomEvent(this.getAttribute('open-modal') || 'open-modal', {
-      detail: {
-        origEvent: event,
-        child: this
-      },
-      bubbles: true,
-      cancelable: true,
-      composed: true
-    }))
+    this.clickListener = event => {
+      if (!this.hasAttribute('open')) event.stopPropagation()
+      this.dispatchEvent(new CustomEvent(this.getAttribute('open-modal') || 'open-modal', {
+        detail: {
+          origEvent: event,
+          child: this
+        },
+        bubbles: true,
+        cancelable: true,
+        composed: true
+      }))
+    }
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.shouldComponentRenderHTML()) this.renderHTML()
+    if (this.shouldComponentRenderHTML()) {
+      this.renderHTML()
+      if (this.hasAttribute('preview')) this.renderHTML(undefined, this.getAttribute('preview'))
+    }
     if (this.hasAttribute('open-modal')) this.addEventListener('click', this.clickListener)
   }
 
@@ -96,7 +102,7 @@ export default class Picture extends Shadow() {
    * @return {boolean}
    */
   shouldComponentRenderHTML () {
-    return !this.picture
+    return !this.root.querySelector('picture')
   }
 
   /**
@@ -108,6 +114,21 @@ export default class Picture extends Shadow() {
     this.css = /* css */`
       :host {
         text-align: var(--text-align, center);
+        display: grid !important;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+      }
+      :host > picture {
+        grid-column: 1;
+        grid-row: 1;
+        z-index: 1;
+        display: var(--display, inline); /* don't use flex here, it can have strange side effects */
+      }
+      :host > picture[preview] {
+        z-index: 0;
+      }
+      :host([open-modal]) {
+        cursor: pointer;
       }
       :host picture {
         filter: var(--filter, none);
@@ -125,22 +146,31 @@ export default class Picture extends Shadow() {
         filter: var(--filter-hover, var(--filter, none));
       }
       :host picture img {
-        display: var(--img-display, inline);
-        width: var(--img-width, 100%);
-        min-width: var(--img-min-width);
-        max-width: var(--img-max-width, 100%);
+        aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
+        display: var(--img-display, block);
+        border-radius:var(--border-radius, 0);
+        width: var(--img-width, max-content);
+        min-width: var(--img-min-width, unset);
+        max-width: var(--img-max-width, 100%); /* max-content would have been nice to not scale up the image, but in general make the editor use big enough images and this must stay at 100% default value, otherwise there are several side effects */
         height: var(--img-height, auto);
-        min-height: var(--img-min-height, 100%);
-        max-height: var(--img-max-height);
-        object-fit: var(--img-object-fit, cover);
+        min-height: var(--img-min-height, unset);
+        max-height: var(--img-max-height, 75vh);
+        object-fit: var(--img-object-fit, contain); /* cover does not render the same on IOS */
+        vertical-align: middle; /* use middle to avoid having a gap at the bottom of the image https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
+        margin: var(--img-margin, auto);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
+          border-radius:var(--border-radius-mobile, 0);
           transition: var(--transition-mobile, none);
           transform: var(--transform-mobile, none);
           filter: var(--filter-mobile, none);
           width: var(--width-mobile, var(--width, 100%));
           height: var(--height-mobile, var(--height, unset));
+          text-align: var(--text-align-mobile, var(--text-align, center));
+        }
+        :host picture img {
+          border-radius:var(--border-radius-mobile, 0);
         }
       }
     `
@@ -151,12 +181,13 @@ export default class Picture extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
-    this.html = this.picture = document.createElement('picture')
+  renderHTML (picture = document.createElement('picture'), pictureQuery = '') {
+    this.html = picture 
+    if (pictureQuery) picture.setAttribute('preview', '')
 
     // in case someone adds sources/img directly instead of using the attributes
     Array.from(this.root.children).forEach(node => {
-      if (node.nodeName === 'SOURCE' || node.nodeName === 'IMG') this.picture.appendChild(node)
+      if (node.nodeName === 'SOURCE' || node.nodeName === 'IMG') picture.appendChild(node)
     })
 
     if (this.sources) {
@@ -164,19 +195,19 @@ export default class Picture extends Shadow() {
         if (i.src !== '' && i.type !== '' && i.size !== '') {
           switch (i.size) {
             case 'small':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(max-width: 400px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(max-width: 400px)">`
               break
             case 'medium':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 401px) and (max-width: 600px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(min-width: 401px) and (max-width: 600px)">`
               break
             case 'large':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 601px) and (max-width: 1200px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(min-width: 601px) and (max-width: 1200px)">`
               break
             case 'extra-large':
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}" media="(min-width: 1201px)">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}" media="(min-width: 1201px)">`
               break
             default:
-              this.picture.innerHTML += `<source srcset="${i.src}" type="${i.type}">`
+              picture.innerHTML += `<source srcset="${i.src + pictureQuery}" type="${i.type}">`
               break
           }
         } else {
@@ -185,7 +216,7 @@ export default class Picture extends Shadow() {
       })
     }
     if (this.defaultSource) {
-      this.picture.innerHTML += `<img src="${this.defaultSource}" alt="${this.alt}">`
+      picture.innerHTML += `<img src="${this.defaultSource + pictureQuery}" alt="${this.alt}">`
       if (this.alt === '') {
         console.warn('a-picture alt is missing')
       }
@@ -200,7 +231,7 @@ export default class Picture extends Shadow() {
             origEvent: event,
             child: this,
             img: this.img,
-            picture: this.picture
+            picture: picture
           },
           bubbles: true,
           cancelable: true,
@@ -214,6 +245,6 @@ export default class Picture extends Shadow() {
   }
 
   get img () {
-    return this.root.querySelector('img')
+    return this.root.querySelector('picture:not([preview]) > img')
   }
 }

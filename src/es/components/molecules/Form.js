@@ -47,6 +47,18 @@ export default class Form extends Shadow() {
 
         if (this.hasAttribute('use-html-submit')) {
           this.submitByHTML(body, method, action)
+        } else if (this.hasAttribute('use-url-params')) {
+          const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          }
+          const body = this.getAllInputValuesAsUrlParams(this.form)
+          fetch(action, { method, body, headers })
+            .then(response => {
+              return response.ok
+            })
+            .catch(error => {
+              this.submitFailure(error, this.getAttribute('type'))
+            })
         } else {
           fetch(action, { method, body })
             .then(response => {
@@ -62,8 +74,10 @@ export default class Form extends Shadow() {
               this.submitFailure(error, this.getAttribute('type'))
             })
         }
+        return true
       } else {
         this.validateFunctions.forEach(func => func())
+        return false
       }
     }
   }
@@ -142,8 +156,8 @@ export default class Form extends Shadow() {
       const formData = new FormData();
       [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
         if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
-            (i.getAttribute('type') !== 'radio' || i.checked) &&
-            (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+          (i.getAttribute('type') !== 'radio' || i.checked) &&
+          (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
       });
       [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
         formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
@@ -151,6 +165,23 @@ export default class Form extends Shadow() {
       return formData
     }
     return new FormData()
+  }
+
+  /**
+   * Extracts all input values and returns the form data as a URL Querystring
+   * @returns {string}
+   */
+  getAllInputValuesAsUrlParams (form) {
+    if (form) {
+      let formData = '';
+      [...this.root.querySelectorAll('input')].forEach(i => {
+        if (i && (i.getAttribute('type') !== 'radio' || i.checked) &&
+            (i.getAttribute('type') !== 'checkbox' || i.checked)) {
+          formData += `${i.getAttribute('name')}=${i.value || i.getAttribute('value')}&`
+        }
+      })
+      return formData
+    }
   }
 
   /**
@@ -174,13 +205,14 @@ export default class Form extends Shadow() {
   /**
    * renders the css
    *
+   * @params {boolean} [balloon=true]
    * @return {void}
    */
-  renderCSS () {
+  renderCSS (balloon = true) {
     this.css = /* css */`
       :host {
         --balloon-color: var(--background-color, white);
-        --balloon-text-color: var(--color, #009fe3);
+        --balloon-text-color: var(--color, red);
         display: var(--display, block);
         width: var(--width, auto) !important;
       }
@@ -310,6 +342,9 @@ export default class Form extends Shadow() {
           margin: var(--h4-margin-mobile, var(--h4-margin)) auto;
         }
       }
+    `
+    if (balloon) {
+      this.css = /* css */`
       /* https://kazzkiq.github.io/balloon.css/ */
       /* https://raw.githubusercontent.com/kazzkiq/balloon.css/master/balloon.css */
       :root {
@@ -360,7 +395,7 @@ export default class Form extends Shadow() {
           z-index: 10; }
         [aria-label][data-balloon-pos]:hover:before, [aria-label][data-balloon-pos]:hover:after, [aria-label][data-balloon-pos][data-balloon-visible]:before, [aria-label][data-balloon-pos][data-balloon-visible]:after, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:before, [aria-label][data-balloon-pos]:not([data-balloon-nofocus]):focus:after {
           /* custom */
-          opacity: var(--balloon-opacity, 0.8);
+          opacity: var(--balloon-opacity, 1.0);
           pointer-events: none; }
         [aria-label][data-balloon-pos].font-awesome:after {
           font-family: FontAwesome, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }
@@ -450,9 +485,9 @@ export default class Form extends Shadow() {
             [aria-label][data-balloon-pos][data-balloon-length="xlarge"]:after {
               width: 90vw; } }
         [aria-label][data-balloon-pos][data-balloon-length="fit"]:after {
-          width: 100%; }
-      
+          width: 100%; }  
     `
+    }
   }
 
   /**
@@ -463,11 +498,12 @@ export default class Form extends Shadow() {
   renderHTML () {
     this.hasRendered = true
     this.loadChildComponents().then(children => {
-      Array.from(this.root.querySelectorAll('input'))
+      this.inputAll
         .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
           this.inputFields.push(input)
           const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`) || this.root.querySelector(`label[for='${input.getAttribute('name')}']`)
-          const aInput = new children[0][1](input, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
+          const description = this.getDescription(input)
+          const aInput = new children[0][1](input, label, description, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
           aInput.setAttribute('type', input.getAttribute('type'))
           if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
           input.replaceWith(aInput)
@@ -499,8 +535,9 @@ export default class Form extends Shadow() {
         this.emptyInput.id = 'oceans'
         this.form.appendChild(this.emptyInput)
       }
+      // TODO: Textarea support => https://github.com/roli81/web-components-cms-template-base/blob/main/src/es/components/molecules/ContactForm.js
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
-        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
+        const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-button') || this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
         button.replaceWith(aButton)
       })
     })
@@ -559,5 +596,13 @@ export default class Form extends Shadow() {
 
   get valids () {
     return Array.from(this.root.querySelectorAll('[valid]'))
+  }
+
+  get inputAll () {
+    return Array.from(this.root.querySelectorAll('input')).concat(Array.from(this.root.querySelectorAll('select')))
+  }
+
+  getDescription (input) {
+    return this.root.querySelector(`.description[data-for='${input.getAttribute('id')}']`) || this.root.querySelector(`.description[data-for='${input.getAttribute('name')}']`)
   }
 }

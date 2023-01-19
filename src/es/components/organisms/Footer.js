@@ -340,7 +340,7 @@ export default class Footer extends Shadow() {
   renderHTML () {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
-      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '' })
+      const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
       if (a.classList.contains('active')) aLink.classList.add('active')
       a.replaceWith(aLink)
       li.prepend(aLink)

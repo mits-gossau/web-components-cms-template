@@ -28,12 +28,17 @@ export default class MenuIcon extends Shadow() {
     this.openClass = this.getAttribute('openClass') ? this.getAttribute('openClass') : 'open'
     this.barClass = this.getAttribute('barClass') ? this.getAttribute('barClass') : 'bar'
 
-    this.addEventListener('click', event => this.toggleAnimationClass())
+    this.clickListener = event => this.toggleAnimationClass()
   }
 
   connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+    if (!this.hasAttribute('no-click')) this.addEventListener('click', this.clickListener)
+  }
+
+  disconnectedCallback () {
+    if (!this.hasAttribute('no-click')) this.removeEventListener('click', this.clickListener)
   }
 
   /**
@@ -78,6 +83,7 @@ export default class MenuIcon extends Shadow() {
         background-color: var(--background-color, white);
         margin: 0;
         transition: var(--transition, all 0.2s ease);
+        border-radius: var(--border-radius, 0);
       }
       .${this.barClass}2 {
         margin: var(--spacing, var(--height, 5px)) 0;
@@ -85,7 +91,7 @@ export default class MenuIcon extends Shadow() {
       }
       /* Rotate first ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}1, :host(.${this.openClass}) .${this.barClass}2 {
-        transform: rotate(-45deg) translateY(calc(var(--height, 5px) * 5.5 / 2));
+        transform: var(--one-transform, rotate(-45deg) translateY(calc(var(--height, 5px) * 5.5 / 2)));
       }
       /* Fade out the second ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}2 {
@@ -93,7 +99,7 @@ export default class MenuIcon extends Shadow() {
       }
       /* Rotate last ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}3 {
-        transform: rotate(45deg) translateY(calc(var(--height, 5px) * -5.5 / 2));
+        transform: var(--two-transform, rotate(45deg) translateY(calc(var(--height, 5px) * -5.5 / 2)));
       }
     `
   }

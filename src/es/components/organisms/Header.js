@@ -122,6 +122,7 @@ export default class Header extends Shadow() {
         background-color: var(--background-color, transparent);
       }
       :host > * {
+        font-size: var(--font-size, 1rem);
         margin: var(--content-spacing, 40px) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
@@ -131,11 +132,15 @@ export default class Header extends Shadow() {
       :host > header {
         align-items: var(--align-items, center);
         background-color: var(--background-color, black);
+        border: var(--border, 0);
+        border-bottom: var(--border-bottom, 0);
         display: flex;
         flex-direction: var(--flex-direction , row);
+        flex-wrap: var(--flex-wrap, nowrap);
         height: var(--height , 85px);
         justify-content: var(--justify-content , space-between);
         padding: var(--padding, 0 calc(var(--content-spacing, 40px) / 2));
+        position: var(--header-position, static);
         transition: var(--transition, all 0.2s ease);
       }
       :host > header.open {
@@ -151,17 +156,20 @@ export default class Header extends Shadow() {
         --a-menu-icon-background-color: var(--background-color, #777);
       }
       :host > header > a {
+        align-self: var(--a-align-self, var(--align-self, auto));
         color: var(--a-color, var(--color));
         font-family: var(--a-font-family, var(--font-family));
         font-weight: var(--a-font-weight, var(--font-weight, normal));
         font-size: var(--a-font-size, var(--font-size));
         padding: var(--a-padding, 0);
+        margin: var(--a-margin, 0);
         line-height: var(--a-line-height, 0);
-        order: 1;
+        order: var(--order, 1);
         text-decoration: var(--a-text-decoration, var(--text-decoration, none));
         text-underline-offset: var(--a-text-underline-offset, unset);
         text-transform: var(--a-text-transform, uppercase);
         transition: var(--a-transition, all 0.2s ease);
+        white-space: var(--a-white-space, normal);
       }
       :host > header > a:hover {
         color: var(--a-color-hover, var(--a-color-hover, var(--a-color, var(--color))));
@@ -171,6 +179,7 @@ export default class Header extends Shadow() {
         font-size: var(--a-font-size-open, var(--font-size-open, var(--a-font-size, var(--font-size))));
       }
       :host > header > a-menu-icon {
+        align-self: var(--a-menu-icon-align-self, var(--align-self, auto));
         display: none;
         --a-menu-icon-background-color: var(--color, #777);
       }
@@ -210,31 +219,47 @@ export default class Header extends Shadow() {
           height: var(--height-mobile, 50px);
           flex-direction: var(--flex-direction-mobile, row-reverse);
           justify-content: var(--justify-content-mobile, space-between);
+          padding: var(--padding-mobile, var(--padding, 0 calc(var(--content-spacing, 40px) / 2)));
         }
-        :host > header > m-navigation {
-          display: var(--m-navigation-display-mobile, none);
+        :host > header.open {
+          box-sizing: var(--box-sizing-open-mobile, var(--box-sizing-open, var(--box-sizing, content-box)));;
+          position: var(--position-open-mobile, var(--position-open, var(--position, static)));
+          top: var(--top-open-mobile, var(--top-open, var(--top, auto)));
+          left: var(--left-open-mobile, var(--left-open, var(--position, auto)));
+          width: var(--width-open-mobile, var(--width-open, var(--width, auto)));
+        }
+        :host > header > ${this.getAttribute('m-navigation') || 'm-navigation'} {
+          display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, none);
           left: 0;
-          background-color: var(--m-navigation-background-color-mobile, transparent);
-          height: var(--m-navigation-height-mobile, 0);
+          background-color: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-background-color-mobile, transparent);
+          height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-mobile, 0);
           overflow: hidden;
-          position: var(--m-navigation-position-mobile, absolute);
-          align-items: var(--m-navigation-align-items-mobile, normal);
-          justify-content: var(--m-navigation-justify-content-mobile, normal);
-          transition: var(--m-navigation-transition, all 0.2s ease);
-          top: var(--m-navigation-top-mobile, var(--height-mobile, 50px));
-          padding: var(--m-navigation-padding-mobile, 0);
+          position: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-position-mobile, absolute);
+          align-items: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-align-items-mobile, normal);
+          justify-content: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-justify-content-mobile, normal);
+          transition: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-transition, all 0.2s ease);
+          top: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-top-mobile, var(--height-mobile, 50px));
+          padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0);
           width: 100%;
+        }
+        :host > header > a {
+          align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
+          font-size: var(--a-font-size-mobile, var(--a-font-size, var(--font-size)));
+          padding: var(--a-padding-mobile, var(--a-padding, 0));
+          margin: var(--a-margin-mobile, var(--a-margin, 0));
+          order: var(--order-mobile, var(--order, 1));
         }
         :host > header > a-title {
           z-index: var(--a-title-z-index, auto);
         }
-        :host > header.open > m-navigation{
-          display: var(--m-navigation-display-open-mobile, var(--m-navigation-display-mobile, block));
-          height: var(--m-navigation-height-open-mobile, 100vh);
-          overflow-y: var(--m-navigation-overflow-y-open-mobile, auto);
-          padding: var(--m-navigation-padding-open-mobile, var(--m-navigation-padding-mobile, 0));
+        :host > header.open > ${this.getAttribute('m-navigation') || 'm-navigation'} {
+          display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, block));
+          height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-open-mobile, 100vh);
+          overflow-y: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-overflow-y-open-mobile, auto);
+          padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0));
         }
         :host  > header > a-menu-icon{
+          align-self: var(--a-menu-icon-align-self-mobile, var(--a-menu-icon-align-self, var(--align-self, auto)));
           display: var(--a-menu-icon-display-mobile, block);
         }
         :host  > header.open > a-menu-icon{
@@ -262,11 +287,11 @@ export default class Header extends Shadow() {
     })
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {
-        const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '' })
+        const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '', namespaceFallback: this.hasAttribute('namespace-fallback') })
         MenuIcon.addEventListener('click', event => {
           this.header.classList.toggle('open')
           const prop = this.header.classList.contains('open') ? 'add' : 'remove'
-          document.body.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
+          document.documentElement.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           Array.from(this.header.children).forEach(node => {
             node.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           })
@@ -275,7 +300,7 @@ export default class Header extends Shadow() {
       })
     }
     if (this.hasAttribute('sticky')) this.classList.add('top')
-    self.addEventListener('resize', event => document.body.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
+    self.addEventListener('resize', event => document.documentElement.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
   }
 
   /**
@@ -307,6 +332,6 @@ export default class Header extends Shadow() {
   }
 
   get mNavigation () {
-    return this.root.querySelector('m-navigation')
+    return this.root.querySelector(this.getAttribute('m-navigation') || 'm-navigation')
   }
 }

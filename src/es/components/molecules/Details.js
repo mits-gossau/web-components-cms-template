@@ -32,6 +32,8 @@ import { Mutation } from '../prototypes/Mutation.js'
  *  --child-margin, 0
  *  --child-padding, 0
  *  --animation, 0.1s ease
+ *  --animation-duration: 500
+ *  --animation-easing: ease-out
  *  --child-margin-open, 0
  *  --child-padding-open, 0
  *  --a-color, var(--color)
@@ -45,13 +47,22 @@ import { Mutation } from '../prototypes/Mutation.js'
  *  {string} [openEventName='open'] the event to which it listens on body
  *  {has} [scroll-into-view=n.a.] scrolls into view if set
  *  {has} [icon-image=n.a] add open/close icon
+ *  {boolean} [animation=false] set an animation on open and close
  * }
  */
-export default class Details extends Mutation() {
+
+export const Details = (ChosenHTMLElement = Mutation()) => class Wrapper extends ChosenHTMLElement {
   constructor (options = {}, ...args) {
     super(Object.assign(options, { mutationObserverInit: { attributes: true, attributeFilter: ['open'] } }), ...args)
-
     this.hasRendered = false
+
+    // Store the animation object (so we can cancel it, if needed)
+    this.animation = null
+    // Store if the element is closing
+    this.isClosing = false
+    // Store if the element is expanding
+    this.isExpanding = false
+
     // overwrite default Mutation observer parent function created at super
     this.mutationObserveStart = () => {
       // @ts-ignore
@@ -63,7 +74,9 @@ export default class Details extends Mutation() {
         if (event.detail.child === this) {
           if (this.hasAttribute('scroll-into-view')) this.details.scrollIntoView({ behavior: 'smooth' })
         } else {
-          this.details.removeAttribute('open')
+          if (!this.hasAttribute('animation')){
+            this.details.removeAttribute('open')
+          }
         }
       }
     }
@@ -73,6 +86,19 @@ export default class Details extends Mutation() {
         event.preventDefault()
         this.details.removeAttribute('open')
         if (this.summary.getBoundingClientRect().top < 0) this.details.scrollIntoView({ behavior: 'smooth' })
+      }
+
+      // animate the opening
+      // No support with close button
+      if (this.hasAttribute('animation')) {
+        event.preventDefault()
+        this.details.style.overflow = 'hidden'
+        if (this.isClosing || !this.details.open) {
+          this.open()
+        // Check if the element is being openned or is already open
+        } else if (this.isExpanding || this.details.open) {
+          this.shrink()
+        }
       }
     }
   }
@@ -130,16 +156,23 @@ export default class Details extends Mutation() {
    * @return {void}
    */
   renderCSS () {
+    // extend body styles
+    if (typeof super.renderCSS === 'function') {
+      super.renderCSS()
+      const bodyCss = this.css.replace(/\s>\smain/g, '')
+      this.css = ''
+      this.setCss(bodyCss, undefined, '') // already received its namespace and for that gets set without any ''
+    }
     this.css = /* css */` 
       :host {
         display: var(--display, block);
         border-top: var(--border-top, 0);
         border-bottom:var(--border-bottom, 0);
-        border-color: var(--color);
+        border-color: var(--border-color, var(--color));
       }
       :host(:last-of-type) {
         border-bottom:var(--border-bottom-last, var(--border-bottom, 0));
-        border-color: var(--color);
+        border-color: var(--border-color-last, var(--border-color, var(--color)));
       }
       :host details {
         text-align: var(--text-align, center);
@@ -256,12 +289,12 @@ export default class Details extends Mutation() {
       const iconSvg = document.createElement('div')
       iconSvg.innerHTML = `
         <?xml version="1.0" encoding="UTF-8"?>
-        <svg width="35px" height="20px" viewBox="0 0 35 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg width="${this.svgWidth || '35px'}" height="${this.svgHeight || '20px'}" viewBox="0 0 35 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
             <title>Mobile Pfeil</title>
             <desc>Created with Sketch.</desc>
             <g id="Mobile-Pfeil" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <polyline id="Path-2" stroke="var(--color, --${this.namespace}color)" stroke-width="3" points="2 3 17 18 32 3"></polyline>
+                <polyline id="Path-2" stroke="${this.svgColor || `var(--color, --${this.namespace}color)`}" stroke-width="3" points="2 3 17 18 32 3"></polyline>
             </g>
         </svg>
       `
@@ -269,6 +302,89 @@ export default class Details extends Mutation() {
       this.divSummary.classList.add('icon')
     }
     this.summary.appendChild(this.divSummary)
+  }
+
+  shrink () {
+    // Set the element as "being closed"
+    this.isClosing = true
+
+    // Store the current height of the element
+    const startHeight = `${this.details.offsetHeight}px`
+    // Calculate the height of the summary
+    const endHeight = `${this.summary.offsetHeight}px`
+
+    // If there is already an animation running
+    if (this.animation) {
+      // Cancel the current animation
+      this.animation.cancel()
+    }
+
+    // Start a WAAPI animation
+    this.animation = this.details.animate({
+      // Set the keyframes from the startHeight to endHeight
+      height: [startHeight, endHeight]
+    }, {
+      // If the duration is too slow or fast, you can change it here
+      duration: this.animationDuration,
+      // You can also change the ease of the animation
+      easing: this.animationEasing
+    })
+
+    // When the animation is complete, call onAnimationFinish()
+    this.animation.onfinish = () => this.onAnimationFinish(false)
+    // If the animation is cancelled, isClosing variable is set to false
+    this.animation.oncancel = () => this.isClosing = false
+  }
+
+  open () {
+    // Apply a fixed height on the element
+    this.details.style.height = `${this.details.offsetHeight}px`
+    // Wait for the next frame to call the expand function
+    window.requestAnimationFrame(() => this.expand())
+  }
+
+  expand () {
+    // Force the [open] attribute on the details element
+    this.details.open = true
+    // Set the element as "being expanding"
+    this.isExpanding = true
+    // Get the current fixed height of the element
+    const startHeight = `${this.details.offsetHeight}px`
+    // Calculate the open height of the element (summary height + content height)
+    const endHeight = `${this.summary.offsetHeight + this.content.offsetHeight}px`
+
+    // If there is already an animation running
+    if (this.animation) {
+      // Cancel the current animation
+      this.animation.cancel()
+    }
+
+    // Start a WAAPI animation
+    this.animation = this.details.animate({
+      // Set the keyframes from the startHeight to endHeight
+      height: [startHeight, endHeight]
+    }, {
+      // If the duration is too slow of fast, you can change it here
+      duration: this.animationDuration,
+      // You can also change the ease of the animation
+      easing: this.animationEasing
+    })
+    // When the animation is complete, call onAnimationFinish()
+    this.animation.onfinish = () => this.onAnimationFinish(true)
+    // If the animation is cancelled, isExpanding variable is set to false
+    this.animation.oncancel = () => this.isExpanding = false
+  }
+
+  onAnimationFinish (open) {
+    // Set the open attribute based on the parameter
+    this.details.open = open
+    // Clear the stored animation
+    this.animation = null
+    // Reset isClosing & isExpanding
+    this.isClosing = false
+    this.isExpanding = false
+    // Remove the overflow hidden and the fixed height
+    this.details.style.height = this.details.style.overflow = ''
   }
 
   get openEventName () {
@@ -283,7 +399,31 @@ export default class Details extends Mutation() {
     return this.root.querySelector('details')
   }
 
+  get content () {
+    return this.root.querySelector('.content') || this.root.querySelector('details > :not(summary)')
+  }
+
   get divSummary () {
     return this._divSummary || (this._divSummary = document.createElement('div'))
+  }
+
+  /*
+  * ToDo
+  * Duration with seconds = "2s"
+  * Get Animation from Attribut
+  */
+
+  get animationDuration () {
+    const rs = self.getComputedStyle(this.root.children[0])
+    let numb = Number.parseInt(rs.getPropertyValue(`--${this.namespace}animation-duration`))
+    if (!Number.isFinite(numb)) { numb = 1000 }
+    return numb
+  }
+
+  get animationEasing () {
+    const rs = self.getComputedStyle(this.root.children[0])
+    let string = rs.getPropertyValue(`--${this.namespace}animation-easing`)
+    if (string === '') { string = 'ease-out' }
+    return string
   }
 }

@@ -31,7 +31,7 @@ export default class Link extends Shadow() {
   constructor (a, ...args) {
     super(...args)
 
-    this.a = a
+    this._a = a
   }
 
   connectedCallback () {
@@ -93,17 +93,24 @@ export default class Link extends Shadow() {
         line-height: var(--line-height, normal);
         letter-spacing: var(--letter-spacing, normal);
         font-weight: var(--font-weight, normal);
-        height: 100%;
+        height: var(--height, 100%);
         padding: var(--padding, 14px 10px);
         text-align: var(--text-align, left);
         text-decoration: var(--text-decoration, none);
-        text-underline-offset: var(--a-text-underline-offset, unset);
+        text-underline-offset: var(--text-underline-offset, var(--a-text-underline-offset, unset));
         text-transform: var(--text-transform, none);
         transition: var(--transition, all 0.2s ease);
-        width: 100%;
+        width: var(--width, 100%);
         font-family: var(--font-family);
+        white-space: var(--white-space, normal);
+        word-break: var(--word-break, normal);
       }
-      :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName}, :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
+      :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
+        color: var(--color-active, var(--color-hover, var(--color, yellow)));
+        text-decoration: var(--text-decoration-active, var(--text-decoration-hover, var(--text-decoration, none)));
+        font-family: var(--font-family-active, var(--font-family-hover));
+      }
+      :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName} {
         color: var(--color-hover, var(--color, yellow));
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
         font-family: var(--font-family-hover);
@@ -116,6 +123,7 @@ export default class Link extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > a, :host > ${this.hitAreaTagName} {
+          color:var(--color-mobile, var(--color, inherit));
           display: var(--display-mobile, var(--display, block));
           line-height: var(--line-height-mobile, var(--line-height, normal));
         }
@@ -150,5 +158,9 @@ export default class Link extends Shadow() {
 
   get hitAreaTagName () {
     return 'div'
+  }
+
+  get a () {
+    return this._a || (this._a = this.root.querySelector('a'))
   }
 }
