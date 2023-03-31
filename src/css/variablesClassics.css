@@ -185,7 +185,7 @@ html {
     --header-background-animation: 1s ease;
     --header-background-color-open: white;
     --header-background-color: var(--header-background-color-open);
-    --header-color: #009FE3s;
+    --header-color: #009FE3;
     --header-content-spacing-mobile: var(--header-content-spacing);
     --header-content-spacing: 0;
     --header-content-width-mobile: var(--content-width-mobile);
