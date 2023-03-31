@@ -170,7 +170,7 @@ html {
     --header-a-font-size-open: 0;
     --header-a-font-size: var(--font-size-mobile);
     --header-a-line-height: 1.3em;
-    --header-a-menu-icon-background-color: var(--header-color);
+    --header-a-menu-icon-background-color: var(--color);
     --header-a-menu-icon-height-open-mobile: 0;
     --header-a-menu-icon-height: min(3px, 0.6vw);
     --header-a-menu-icon-margin-open-mobile: 0;
@@ -184,7 +184,7 @@ html {
     --header-a-transition: none;
     --header-background-animation: 1s ease;
     --header-background-color-open: white;
-    --header-background-color: var(--header-background-color-open);
+    --header-background-color: var(--color);
     --header-color: #009FE3;
     --header-content-spacing-mobile: var(--header-content-spacing);
     --header-content-spacing: 0;
