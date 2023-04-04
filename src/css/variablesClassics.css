@@ -184,7 +184,7 @@ html {
     --header-a-transition: none;
     --header-background-animation: 1s ease;
     --header-background-color-open: white;
-    --header-background-color: var(--color);
+    --header-background-color: white;
     --header-color: #009FE3;
     --header-content-spacing-mobile: var(--header-content-spacing);
     --header-content-spacing: 0;
