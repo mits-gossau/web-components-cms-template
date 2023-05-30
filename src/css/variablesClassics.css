@@ -284,6 +284,7 @@ html {
     --p-text-align: center;
     --padding: 15px 0;
     --picture-img-max-height: 80vh;
+    --picture-img-margin: 0;
     --picture-margin: var(--content-spacing, unset) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
     --picture-width-mobile: 100%;
     --picture-width: var(--content-width, 80%);
