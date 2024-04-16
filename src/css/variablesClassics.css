@@ -124,6 +124,7 @@ html {
     --footer-ul-margin-mobile: 0 auto 15px auto;
     --footer-ul-margin: 0 10px;
     --footer-ul-padding: 0;
+    --footer-li-last-of-type-padding: 0;
     --form-flex-direction: row;
     --h1-font-size-mobile: var(--h1-font-size);
     --h1-font-size: min(2.223em, 9vw);
@@ -248,7 +249,7 @@ html {
     --li-margin: 0 12px;
     --line-height-mobile: 1.7em;
     --line-height: 1.5em;
-    --main-padding-mobile: calc(var(--spacer-height-mobile)/2) 0 var(--spacer-height-mobile) 0;
+    --main-padding-mobile: calc(var(--spacer-height-mobile)/2) 0 0 0;
     --main-padding: calc(var(--spacer-height)/2) 0 0 0;
     --module-wrapper-margin-mobile: 20% 0 0 0;
     --module-wrapper-margin: 15% 0 0 0;
