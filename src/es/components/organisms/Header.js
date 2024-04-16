@@ -36,11 +36,14 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [no-scroll="no-scroll"]
  *  {has} [flyer-transitionend=n.a.] trigger the animate class animations and early set children to no-scroll aka. open
  *  {has} [sticky] make header sticky
+ *  {boolean} [is-home-page=false]
  * }
  */
 export default class Header extends Shadow() {
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
+
+    this.isHomePage = this.getAttribute('is-home-page') === 'true'
 
     this.transitionendListener = event => {
       if (!this.header.classList.contains('open')) {
@@ -59,13 +62,13 @@ export default class Header extends Shadow() {
         // is top
         if (self.scrollY <= this.offsetHeight + 5) {
           this.classList.add('top')
-        // is scrolled down
+          // is scrolled down
         } else {
           this.classList.remove('top')
           // scrolling up and show header
           if ((Math.abs(self.scrollY - lastScroll) > 30 && self.scrollY <= lastScroll)) {
             this.classList.add('show')
-          // scrolling down and hide header
+            // scrolling down and hide header
           } else if (Math.abs(self.scrollY - lastScroll) > 30) {
             if (this.mNavigation) Array.from(this.mNavigation.root.querySelectorAll('.open')).forEach(node => node.classList.remove('open'))
             this.classList.remove('show')
@@ -76,14 +79,14 @@ export default class Header extends Shadow() {
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (this.hasAttribute('flyer-transitionend')) document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, { once: true })
     if (this.hasAttribute('sticky')) self.addEventListener('scroll', this.scrollListener, { once: true })
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     if (this.hasAttribute('flyer-transitionend')) document.body.removeEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener)
     if (this.hasAttribute('sticky')) self.removeEventListener('scroll', this.scrollListener)
   }
@@ -93,7 +96,7 @@ export default class Header extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -102,7 +105,7 @@ export default class Header extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.root.querySelector('header')
   }
 
@@ -111,7 +114,7 @@ export default class Header extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host {
         grid-area: header;
@@ -120,6 +123,7 @@ export default class Header extends Shadow() {
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);
         background-color: var(--background-color, transparent);
+        ${this.isHomePage ? `--title-color: var(--homepage-title-color)` : `--title-color: var(--sub-page-title-color) `};
       }
       :host > * {
         font-size: var(--font-size, 1rem);
@@ -131,7 +135,7 @@ export default class Header extends Shadow() {
       }
       :host > header {
         align-items: var(--align-items, center);
-        background-color: var(--background-color, black);
+        background-color: ${this.isHomePage ? `var(--homepage-background-color, black)` : `var(--sub-page-background-color, black)`};
         border: var(--border, 0);
         border-bottom: var(--border-bottom, 0);
         display: flex;
@@ -279,7 +283,7 @@ export default class Header extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.header = this.root.appendChild(document.createElement('header'))
     Array.from(this.root.children).forEach(node => {
       if (node === this.header || node.getAttribute('slot') || node.nodeName === 'STYLE') return false
@@ -308,7 +312,7 @@ export default class Header extends Shadow() {
    *
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
-  loadChildComponents () {
+  loadChildComponents() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let menuIconPromise
     try {
@@ -331,7 +335,7 @@ export default class Header extends Shadow() {
     }))
   }
 
-  get mNavigation () {
+  get mNavigation() {
     return this.root.querySelector(this.getAttribute('m-navigation') || 'm-navigation')
   }
 }

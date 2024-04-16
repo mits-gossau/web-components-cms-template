@@ -4,6 +4,7 @@
  * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
  * - if a component holds other components you should share the attribute namespace with its children
  */
+
 html {
     --a-display: block;
     --a-margin: 0;
@@ -13,7 +14,7 @@ html {
     --a-text-underline-offset: 0.2em; /* should be 6px but not visible */
     --animation: none;
     --any-a-display: inline;
-    --background-color: #E6007E;
+    --background-color: #000;
     --carousel-a-text-decoration-hover: var(--a-text-decoration-hover);
     --carousel-a-text-decoration: var(--a-text-decoration);
     --carousel-a-text-underline-offset: var(--a-text-underline-offset);
@@ -33,7 +34,7 @@ html {
     --carousel-transition-duration: 1.6s;
     --color-hover-secondary: var(--color);
     --color-hover: var(--color);
-    --color: #E6007E;
+    --color: #ffed00;
     --concerts-playlist-border-bottom: 2px solid white;
     --concerts-playlist-border-top: 2px solid white;
     --concerts-playlist-color: var(--concerts-color);
@@ -70,8 +71,8 @@ html {
     --footer-align-content: flex-start;
     --footer-background-color: white;
     --footer-box-sizing: border-box;
-    --footer-color-hover: #009FE3;
-    --footer-color: #009FE3;
+    --footer-color-hover: #000;
+    --footer-color: #000;
     --footer-content-width-mobile: 100%;
     --footer-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
     --footer-content-width-not-web-component: var(--content-width-not-web-component);
@@ -83,8 +84,8 @@ html {
     --footer-engagement-logo-max-height: 40px;
     --footer-engagement-logo-padding: 24px 0 0;
     --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
-    --footer-engagement-logo-text-a-color: #009FE3;
-    --footer-engagement-logo-text-color: #009FE3;
+    --footer-engagement-logo-text-a-color: #000;
+    --footer-engagement-logo-text-color: #000;
     --footer-engagement-logo-text-font-size-mobile: 0.42rem;
     --footer-engagement-logo-text-font-size: 0.49rem;
     --footer-engagement-logo-text-line-height: 11px;
@@ -97,7 +98,7 @@ html {
     --footer-flex-wrap: wrap;
     --footer-font-size-mobile: var(--footer-a-link-font-size-mobile);
     --footer-font-size: var(--footer-a-link-font-size);
-    --footer-homepage-background-color: #E6007E;
+    --footer-homepage-background-color: #000;
     --footer-homepage-logo-container-justify-content: flex-end;
     --footer-homepage-padding-mobile: 0 10px 5px 0;
     --footer-homepage-padding: var(--footer-padding);
@@ -182,10 +183,12 @@ html {
     --header-a-text-decoration-hover: none;
     --header-a-text-underline-offset: var(--a-text-underline-offset);
     --header-a-transition: none;
+    --header-homepage-background-color: #000;
+    --header-sub-page-background-color: var(--color);
     --header-background-animation: 1s ease;
     --header-background-color-open: white;
     --header-background-color: white;
-    --header-color: #009FE3;
+    --header-color: #000;
     --header-content-spacing-mobile: var(--header-content-spacing);
     --header-content-spacing: 0;
     --header-content-width-mobile: var(--content-width-mobile);
@@ -211,7 +214,9 @@ html {
     --header-padding: 4vh 0 2vh;
     --header-position: static;
     --header-text-align: center;
-    --header-title-color-nav-open: #009FE3;
+    --header-homepage-title-color: var(--color);
+    --header-sub-page-title-color: #000;
+    --header-title-color-nav-open: #000;
     --header-title-color-secondary-nav-open: var(--header-title-color-nav-open);
     --header-title-color: var(--header-title-color-nav-open);
     --header-title-font-family-bold: var(--font-family-bold);
@@ -244,10 +249,10 @@ html {
     --line-height-mobile: 1.7em;
     --line-height: 1.5em;
     --main-padding-mobile: calc(var(--spacer-height-mobile)/2) 0 var(--spacer-height-mobile) 0;
-    --main-padding: calc(var(--spacer-height)/2) 0 var(--spacer-height) 0;
+    --main-padding: calc(var(--spacer-height)/2) 0 0 0;
     --module-wrapper-margin-mobile: 20% 0 0 0;
     --module-wrapper-margin: 15% 0 0 0;
-    --navigation-a-link-color-nav-open: #009FE3;
+    --navigation-a-link-color-nav-open: #000;
     --navigation-a-link-content-spacing-nav-open: 0;
     --navigation-a-link-content-spacing: 0;
     --navigation-a-link-font-family: var(--font-family-bold);
@@ -263,7 +268,7 @@ html {
     --navigation-border-top: 0;
     --navigation-color-hover: var(--navigation-a-link-color-nav-open);
     --navigation-color-open: var(--navigation-color);
-    --navigation-color: #009FE3;
+    --navigation-color: #000;
     --navigation-content-spacing: 0;
     --navigation-flex-direction: column;
     --navigation-hr-color: transparent;
@@ -288,10 +293,16 @@ html {
     --picture-margin: var(--content-spacing, unset) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
     --picture-width-mobile: 100%;
     --picture-width: var(--content-width, 80%);
+    --playlist-color: #000;
     --playlist-border-bottom: 2px solid white;
     --playlist-border-top: 2px solid white;
-    --playlist-item-a-color-hover: var(--color);
-    --playlist-item-a-color: var(--color);
+    --playlist-margin-first-child: 30px 0 0 0;
+    --playlist-margin: 30px 0 10% 0;
+    --playlist-width: 100%;
+    --playlist-spacer-background-color: var(--color);
+    --playlist-item-background-color:  var(--color);
+    --playlist-item-a-color-hover: #000;
+    --playlist-item-a-color: #000;
     --playlist-item-a-text-decoration-hover: var(--a-text-decoration-hover);
     --playlist-item-a-text-decoration: var(--a-text-decoration);
     --playlist-item-a-text-underline-offset: var(--a-text-underline-offset);
@@ -299,9 +310,9 @@ html {
     --playlist-item-h4-font-family: var(--h4-font-family);
     --playlist-item-li-margin: 0 30px;
     --playlist-item-padding: var(--padding);
-    --playlist-margin-first-child: 30px 0 0 0;
-    --playlist-margin: 30px 0 10% 0;
-    --playlist-width: 100%;
+    --playlist-item-heading-margin: 1rem auto 1rem auto;
+    --playlist-item-heading-font-family: var(--font-family-bold);
+    --playlist-item-heading-font-weight: bold;
     --search-a-color: var(--color);
     --search-a-display: var(--a-display);
     --search-a-input-border-bottom-first: 2px solid white;
