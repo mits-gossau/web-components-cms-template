@@ -32,7 +32,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Footer extends Shadow() {
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
 
     this.footer = document.createElement('footer')
@@ -60,14 +60,14 @@ export default class Footer extends Shadow() {
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     this.renderHTML()
     self.addEventListener('resize', this.wrappedListener)
     this.addEventListener(this.getAttribute('logo-load') || 'logo-load', this.wrappedListener)
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     self.removeEventListener('resize', this.wrappedListener)
     this.removeEventListener(this.getAttribute('logo-load') || 'logo-load', this.wrappedListener)
   }
@@ -77,7 +77,7 @@ export default class Footer extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -86,7 +86,7 @@ export default class Footer extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host {
         grid-area: footer;
@@ -114,22 +114,22 @@ export default class Footer extends Shadow() {
       :host > footer {
         display: var(--display, flex);
         background-color: var(${this.getAttribute('homepage') === 'true'
-          ? 'transparent'
-          : '--background-color'}, black);
+        ? 'transparent'
+        : '--background-color'}, black);
         justify-content: var(--justify-content, normal);
         flex-direction: var(--flex-direction, row);
         align-content: var(--align-content, normal);
         padding: var(${this.getAttribute('homepage') === 'true'
-          ? '--homepage-padding'
-          : '--padding'}, 0);
+        ? '--homepage-padding'
+        : '--padding'}, 0);
         box-sizing: var(--box-sizing, content-box);
       }
       
       :host .logo-container {
         width: ${this.getAttribute('homepage') === 'true' ? '100%' : 'unset'};
         justify-content: var(${this.getAttribute('homepage') === 'true'
-          ? '--homepage-logo-container-justify-content'
-          : '--logo-container-justify-content'}, space-between);
+        ? '--homepage-logo-container-justify-content'
+        : '--logo-container-justify-content'}, space-between);
         display: flex;
         flex-wrap: var(--logo-container-flex-wrap, nowrap);
         align-content: var(--logo-container-align-content, normal);
@@ -178,8 +178,8 @@ export default class Footer extends Shadow() {
         }
         :host > footer {
           padding: var(${this.getAttribute('homepage') === 'true'
-          ? '--homepage-padding-mobile'
-          : '--padding-mobile'}, 0);
+        ? '--homepage-padding-mobile'
+        : '--padding-mobile'}, 0);
         }
         :host > span, :host > div, :host > p, :host > ul, :host > ol {
           width: var(--content-width-not-web-component-mobile, 90%);
@@ -187,8 +187,8 @@ export default class Footer extends Shadow() {
         :host .logo-container {
           flex-wrap: var(--logo-container-flex-wrap-mobile, nowrap);
           justify-content: var(${this.getAttribute('homepage') === 'true'
-          ? '--homepage-logo-container-justify-content'
-          : '--logo-container-justify-content-mobile'}, space-between);
+        ? '--homepage-logo-container-justify-content'
+        : '--logo-container-justify-content-mobile'}, space-between);
         }
         :host .logo-container.wrapped {
           justify-content: var(--logo-container-justify-content-wrapped-mobile, var(--logo-container-justify-content-mobile, space-between));
@@ -267,6 +267,15 @@ export default class Footer extends Shadow() {
         .footer-ul-wrapper {
           padding-top: 19px;
         }
+        .social-media-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.2rem;
+          margin-bottom: 2rem;
+          --logo-height: 3.5rem;
+          --logo-width: 3.5rem;
+        }
         :host > footer > div:not(.footer-ul-wrapper) {
           flex: 1;
         }
@@ -337,7 +346,7 @@ export default class Footer extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.loadChildComponents().then(children => Array.from(this.root.querySelectorAll('a')).forEach(a => {
       const li = a.parentElement
       const aLink = new children[0][1](a, { namespace: this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback') })
@@ -353,7 +362,7 @@ export default class Footer extends Shadow() {
    *
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
-  loadChildComponents () {
+  loadChildComponents() {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let linkPromise
     try {
@@ -376,7 +385,7 @@ export default class Footer extends Shadow() {
     }))
   }
 
-  get logoContainer () {
+  get logoContainer() {
     return this.root.querySelector('.logo-container')
   }
 }
