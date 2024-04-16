@@ -69,19 +69,20 @@ export default class PlaylistItem extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host {
         cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
         display: block;
         text-align: var(--text-align, center);
         padding: var(--padding, 0);
+        background-color: var(--background-color, inherit);
       }
       :host > * {
         margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--content-width, 80%);
       }
-      :host h4, :host ul li {
+      :host :is(h1, h2, h3, h4, h5, h6), :host ul li {
         text-transform: var(--text-transform, uppercase);
       }
       :host p {
@@ -98,10 +99,10 @@ export default class PlaylistItem extends Shadow() {
         text-decoration: var(--a-text-decoration-hover, underline);
         color: var(--a-color-hover, var(--color, pink));
       }
-      :host h4 {
-        margin: var(--h4-margin, 0) auto;
-        font-family: var(--h4-font-family, var(--font-family-bold));
-        font-weight: var(--h4-font-weight, var(--font-weight, normal));
+      :host :is(h1, h2, h3, h4, h5, h6) {
+        margin: var(--heading-margin, auto);
+        font-family: var(--heading-font-family, var(--font-family-bold));
+        font-weight: var(--heading-font-weight, var(--font-weight, normal));
       }
       :host ul {
         display: flex;

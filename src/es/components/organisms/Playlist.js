@@ -57,6 +57,10 @@ export default class Playlist extends Shadow() {
         width: var(--width, 80%);
         border-bottom: var(--border-bottom, unset);
       }
+      :host .spacer{
+        border-bottom: var(--spacer-border-bottom, none);
+        background-color: var(--spacer-background-color, inherit);
+      }
       
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
