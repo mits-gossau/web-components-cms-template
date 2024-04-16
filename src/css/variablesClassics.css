@@ -183,6 +183,8 @@ html {
     --header-a-text-decoration-hover: none;
     --header-a-text-underline-offset: var(--a-text-underline-offset);
     --header-a-transition: none;
+    --header-homepage-background-color: #000;
+    --header-sub-page-background-color: var(--color);
     --header-background-animation: 1s ease;
     --header-background-color-open: white;
     --header-background-color: white;
@@ -212,6 +214,8 @@ html {
     --header-padding: 4vh 0 2vh;
     --header-position: static;
     --header-text-align: center;
+    --header-homepage-title-color: var(--color);
+    --header-sub-page-title-color: #000;
     --header-title-color-nav-open: #000;
     --header-title-color-secondary-nav-open: var(--header-title-color-nav-open);
     --header-title-color: var(--header-title-color-nav-open);
