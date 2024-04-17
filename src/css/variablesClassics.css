@@ -6,10 +6,14 @@
  */
 
  html[is-home=true] {
-   --font-family: Arial;
-   --header-title-color: red;
-   --header-background-color: pink;
-  } 
+  --font-family: Arial;
+  --font-family-bold: Arial;
+  --color:#FFED00;
+  --background-color: #000;
+  --header-title-color: #FFED00;
+  --header-background-color: #000;
+  --playlist-item-background-color: #FFED00;
+ } 
 
 html {
     --a-display: block;
@@ -20,7 +24,7 @@ html {
     --a-text-underline-offset: 0.2em; /* should be 6px but not visible */
     --animation: none;
     --any-a-display: inline;
-    --background-color: #000;
+    --background-color: #FFED00;
     --carousel-a-text-decoration-hover: var(--a-text-decoration-hover);
     --carousel-a-text-decoration: var(--a-text-decoration);
     --carousel-a-text-underline-offset: var(--a-text-underline-offset);
@@ -40,7 +44,7 @@ html {
     --carousel-transition-duration: 1.6s;
     --color-hover-secondary: var(--color);
     --color-hover: var(--color);
-    --color: #ffed00;
+    --color: #000;
     --concerts-playlist-border-bottom: 2px solid white;
     --concerts-playlist-border-top: 2px solid white;
     --concerts-playlist-color: var(--concerts-color);
@@ -130,7 +134,7 @@ html {
     --footer-ul-margin-mobile: 0 auto 15px auto;
     --footer-ul-margin: 0 10px;
     --footer-ul-padding: 0;
-    --footer-li-last-of-type-padding: 0;
+    --footer-li-last-of-type-padding: 0.5rem;
     --form-flex-direction: row;
     --h1-font-size-mobile: var(--h1-font-size);
     --h1-font-size: min(2.223em, 9vw);
@@ -190,11 +194,9 @@ html {
     --header-a-text-decoration-hover: none;
     --header-a-text-underline-offset: var(--a-text-underline-offset);
     --header-a-transition: none;
-    --header-homepage-background-color: #000;
-    --header-sub-page-background-color: var(--color);
     --header-background-animation: 1s ease;
     --header-background-color-open: white;
-    --header-background-color: white;
+    --header-background-color: #FFED00;
     --header-color: #000;
     --header-content-spacing-mobile: var(--header-content-spacing);
     --header-content-spacing: 0;
@@ -221,8 +223,6 @@ html {
     --header-padding: 4vh 0 2vh;
     --header-position: static;
     --header-text-align: center;
-    --header-homepage-title-color: var(--color);
-    --header-sub-page-title-color: #000;
     --header-title-color-nav-open: #000;
     --header-title-color-secondary-nav-open: var(--header-title-color-nav-open);
     --header-title-color: var(--header-title-color-nav-open);
@@ -306,8 +306,8 @@ html {
     --playlist-margin-first-child: 30px 0 0 0;
     --playlist-margin: 30px 0 10% 0;
     --playlist-width: 100%;
-    --playlist-spacer-background-color: var(--color);
-    --playlist-item-background-color:  var(--color);
+    --playlist-spacer-background-color: #FFED00;
+    --playlist-item-background-color:  #FFED00;
     --playlist-item-a-color-hover: #000;
     --playlist-item-a-color: #000;
     --playlist-item-a-text-decoration-hover: var(--a-text-decoration-hover);
@@ -399,3 +399,4 @@ html {
     --video-margin: 70px auto 0 auto;
     --video-width: var(--picture-width);
 }
+
