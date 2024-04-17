@@ -5,6 +5,12 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 
+ html[is-home=true] {
+   --font-family: Arial;
+   --header-title-color: red;
+   --header-background-color: pink;
+  } 
+
 html {
     --a-display: block;
     --a-margin: 0;

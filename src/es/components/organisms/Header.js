@@ -43,8 +43,6 @@ export default class Header extends Shadow() {
   constructor(...args) {
     super(...args)
 
-    this.isHomePage = this.getAttribute('is-home-page') === 'true'
-
     this.transitionendListener = event => {
       if (!this.header.classList.contains('open')) {
         this.header.classList.add('animate')
@@ -123,7 +121,6 @@ export default class Header extends Shadow() {
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);
         background-color: var(--background-color, transparent);
-        ${this.isHomePage ? `--title-color: var(--homepage-title-color)` : `--title-color: var(--sub-page-title-color) `};
       }
       :host > * {
         font-size: var(--font-size, 1rem);
@@ -135,7 +132,7 @@ export default class Header extends Shadow() {
       }
       :host > header {
         align-items: var(--align-items, center);
-        background-color: ${this.isHomePage ? `var(--homepage-background-color, black)` : `var(--sub-page-background-color, black)`};
+        background-color: var(--background-color, black);
         border: var(--border, 0);
         border-bottom: var(--border-bottom, 0);
         display: flex;
