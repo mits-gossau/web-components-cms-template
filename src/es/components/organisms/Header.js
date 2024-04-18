@@ -36,12 +36,14 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [no-scroll="no-scroll"]
  *  {has} [flyer-transitionend=n.a.] trigger the animate class animations and early set children to no-scroll aka. open
  *  {has} [sticky] make header sticky
- *  {boolean} [is-home-page=false]
+ *  {boolean} [has-background-img]
  * }
  */
 export default class Header extends Shadow() {
   constructor(...args) {
     super(...args)
+
+    this.hasBackgroundImg = this.getAttribute('has-background-img') === 'true'
 
     this.transitionendListener = event => {
       if (!this.header.classList.contains('open')) {
@@ -184,6 +186,10 @@ export default class Header extends Shadow() {
         display: none;
         --a-menu-icon-background-color: var(--color, #777);
       }
+      :host > header > a-picture {
+        position:absolute;
+        top: 0;
+      }
       /* sticky header classes */
       :host([sticky]) {
         position: sticky;
@@ -273,6 +279,16 @@ export default class Header extends Shadow() {
         }
       }
     `
+
+    this.setCss(/* CSS */`
+    :host > header > a-picture {
+    --a-title-z-index: 5;
+    --picture-margin: 0 auto;
+    }
+    :host > header > a-title {
+      z-index: 5;
+      }
+  `, undefined, false, false, this.style)
   }
 
   /**
@@ -302,6 +318,7 @@ export default class Header extends Shadow() {
     }
     if (this.hasAttribute('sticky')) this.classList.add('top')
     self.addEventListener('resize', event => document.documentElement.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
+    this.html = this.style
   }
 
   /**
@@ -334,5 +351,16 @@ export default class Header extends Shadow() {
 
   get mNavigation() {
     return this.root.querySelector(this.getAttribute('m-navigation') || 'm-navigation')
+  }
+
+  get style() {
+    return (
+      this._style ||
+      (this._style = (() => {
+        const style = document.createElement('style')
+        style.setAttribute('protected', 'true')
+        return style
+      })())
+    )
   }
 }

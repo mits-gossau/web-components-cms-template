@@ -18,11 +18,17 @@
 
 <body>
   <p-general>
-    <o-header namespace="header-" role="header">
-      <a-title namespace="header-title-">Highlights</a-title>
+    <o-header namespace="header-" role="header" has-background-img="true">
+      <a-title namespace="header-title-">
+        <h2>MIGROS-KULTURPROZENT-CLASSICS</h2>
+      </a-title>
+      <a-picture picture-load namespace=picture- defaultSource="../../../img/header-img.png"
+        alt="Some Alt text"></a-picture>
     </o-header>
     <o-body>
       <main>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
         <third-party-macro-carousel pagination loop interval="5000" namespace="carousel-">
           <a-picture defaultSource="https://picsum.photos/1200/316" alt="randomized image" sources='[{
             "src": "https://picsum.photos/770/544",
