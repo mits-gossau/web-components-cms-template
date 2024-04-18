@@ -26,6 +26,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [loading=lazy] image loading
  *  {string} [open-modal=""] does emit event with name set by open-modal which can be reacted on by eg. organisms/Modal.js
  *  {string} [picture-load=""] does emit event with name set by picture-load which can be reacted on by eg. molecules/Flyer.js
+ *  {string} [custom-width] alt-text for the image
+ * 
  * }
  * @css {
  *  --width [100%]
@@ -36,15 +38,19 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Picture extends Shadow() {
-  static get observedAttributes () {
+  static get observedAttributes() {
     return ['loading', 'pointer-events']
   }
 
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
     this.sources = (this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources'))) || null
     this.defaultSource = this.getAttribute('defaultSource') ? this.getAttribute('defaultSource') : ''
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
+    this.customWidth = this.getAttribute('custom-width')
+    this.customMobileWidth = this.getAttribute('custom-mobile-width-%') ? this.getAttribute('custom-mobile-width-%') : this.getAttribute('custom-width')
+
+
 
     this.clickListener = event => {
       if (!this.hasAttribute('open')) event.stopPropagation()
@@ -60,7 +66,7 @@ export default class Picture extends Shadow() {
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) {
       this.renderHTML()
@@ -69,11 +75,11 @@ export default class Picture extends Shadow() {
     if (this.hasAttribute('open-modal')) this.addEventListener('click', this.clickListener)
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     if (this.hasAttribute('open-modal')) this.removeEventListener('click', this.clickListener)
   }
 
-  attributeChangedCallback (name, oldValue, newValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     if (this.img) {
       if (name === 'loading') {
         this.img.setAttribute(name, newValue)
@@ -92,7 +98,7 @@ export default class Picture extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -101,7 +107,7 @@ export default class Picture extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.root.querySelector('picture')
   }
 
@@ -110,7 +116,7 @@ export default class Picture extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host {
         text-align: var(--text-align, center);
@@ -134,13 +140,13 @@ export default class Picture extends Shadow() {
         filter: var(--filter, none);
         display: var(--display, block); /* don't use flex here, it can have strange side effects */
         justify-content: var(--justify-content, center);
-        width: var(--width, unset);
         height: var(--height, unset);
         overflow: var(--overflow, initial);
         transition: var(--transition, none);
         margin: var(--margin, 0);
         transform: var(--transform, none);
         text-align: var(--text-align, center);
+        width: ${this.customWidth ? `${this.customWidth}%;` : `var(--width, "unset")};`}
       }
       :host picture:hover {
         filter: var(--filter-hover, var(--filter, none));
@@ -165,9 +171,9 @@ export default class Picture extends Shadow() {
           transition: var(--transition-mobile, none);
           transform: var(--transform-mobile, none);
           filter: var(--filter-mobile, none);
-          width: var(--width-mobile, var(--width, 100%));
           height: var(--height-mobile, var(--height, unset));
           text-align: var(--text-align-mobile, var(--text-align, center));
+          width: ${this.customMobileWidth ? `${this.customMobileWidth}%;` : `var(--width-mobile, var(--width, 100%);`}
         }
         :host picture img {
           border-radius:var(--border-radius-mobile, 0);
@@ -181,8 +187,8 @@ export default class Picture extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML (picture = document.createElement('picture'), pictureQuery = '') {
-    this.html = picture 
+  renderHTML(picture = document.createElement('picture'), pictureQuery = '') {
+    this.html = picture
     if (pictureQuery) picture.setAttribute('preview', '')
 
     // in case someone adds sources/img directly instead of using the attributes
@@ -244,7 +250,7 @@ export default class Picture extends Shadow() {
     }
   }
 
-  get img () {
+  get img() {
     return this.root.querySelector('picture:not([preview]) > img')
   }
 }

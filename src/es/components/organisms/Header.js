@@ -43,8 +43,6 @@ export default class Header extends Shadow() {
   constructor(...args) {
     super(...args)
 
-    this.hasBackgroundImg = this.getAttribute('has-background-img') === 'true'
-
     this.transitionendListener = event => {
       if (!this.header.classList.contains('open')) {
         this.header.classList.add('animate')

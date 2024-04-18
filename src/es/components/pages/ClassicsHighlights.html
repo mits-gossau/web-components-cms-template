@@ -18,17 +18,24 @@
 
 <body>
   <p-general>
-    <o-header namespace="header-" role="header" has-background-img="true">
+    <o-header namespace="header-" role="header">
       <a-title namespace="header-title-">
-        <h2>MIGROS-KULTURPROZENT-CLASSICS</h2>
+        <h3>MIGROS-KULTURPROZENT-CLASSICS</h3>
       </a-title>
-      <a-picture picture-load namespace=picture- defaultSource="../../../img/header-img.png"
-        alt="Some Alt text"></a-picture>
+      <a-picture custom-width-%="60" custom-mobile-width-%="40" picture-load namespace=picture-
+        defaultSource="../../../img/header-imgs/6.png" alt="Some Alt text">
+      </a-picture>
+      <m-main-title-wrapper class="classics-main-title-wrapper" custom-margin-top-px="20"
+        custom-mobile-margin-top-px="20">
+        <h1>BRUCKNERS <br> NEUNTE </h1>
+        <h4>MO, 15*04*2024 <br> 19.30 UHR <br> TONHALLE ZÜRICH</h4>
+        <a-link text-transform="uppercase">
+          <a href="#">Erfahre mehr</a>
+        </a-link>
+      </m-main-title-wrapper>
     </o-header>
     <o-body>
       <main>
-        <div class="spacer"></div>
-        <div class="spacer"></div>
         <third-party-macro-carousel pagination loop interval="5000" namespace="carousel-">
           <a-picture defaultSource="https://picsum.photos/1200/316" alt="randomized image" sources='[{
             "src": "https://picsum.photos/770/544",
