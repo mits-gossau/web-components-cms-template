@@ -220,7 +220,7 @@ html {
     --header-m-navigation-overflow-y-open-mobile: hidden;
     --header-m-navigation-position-mobile: static;
     --header-padding-mobile: var(--header-padding);
-    --header-padding: 4vh 0 2vh;
+    --header-padding: 0 0 0;
     --header-position: static;
     --header-text-align: center;
     --header-title-color-nav-open: #000;
