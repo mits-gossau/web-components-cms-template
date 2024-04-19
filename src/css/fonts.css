@@ -56,3 +56,47 @@
     font-style: normal;
     font-weight: normal;
 }
+
+/*New fonts*/
+@font-face{
+  font-family:"Futura Now Black";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextBlack_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextBlack_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now ExtraBlack";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBlack_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBlack_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now ExtraBold";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBold_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBold_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now Light";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextLight_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextLight_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now Regular";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextRegular_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextRegular_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now Var";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowVariableRoman_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowVariableRoman_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}

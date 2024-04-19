@@ -6,8 +6,8 @@
  */
 
  html[is-home=true] {
-  --font-family: Arial;
-  --font-family-bold: Arial;
+  --font-family: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
+  --font-family-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
   --color:#FFED00;
   --background-color: #000;
   --header-title-color: #FFED00;
