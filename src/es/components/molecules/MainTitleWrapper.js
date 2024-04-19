@@ -31,12 +31,14 @@ export default class MainTitleWrapper extends Shadow() {
     const resizeObserver = new ResizeObserver((entries) => {
       const img = entries[0]
       const imgHeight = img.contentRect.height
-      if (screen.width >= this.mobileBreakPoint) {
-        this.desktopOffset = 0
+      // if is mobile
+      if (window.innerWidth <= this.mobileBreakPoint) {
+        this.style.marginTop = 0
         if (this.mobileOffset === 0) this.mobileOffset = +this.offsetTop
         this.mainTitleWrapperMarginTop = Math.ceil(+imgHeight - this.mobileOffset + +this.customMobileMarginTop) + "px"
       } else {
-        this.mobileOffset = 0
+        // if desktop
+        this.style.marginTop = 0
         if (this.desktopOffset === 0) this.desktopOffset = +this.offsetTop
         this.mainTitleWrapperMarginTop = Math.ceil(+imgHeight - this.desktopOffset + +this.customMarginTop) + "px"
       }
