@@ -24,7 +24,6 @@ export default class MainTitleWrapper extends Shadow() {
     this.customMobileMarginTop = this.getAttribute('custom-mobile-margin-top-px') ? this.getAttribute('custom-mobile-margin-top-px') : this.customMarginTop
     this.mobileBreakPoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
     this.mobileBreakPoint = +this.mobileBreakPoint.slice(0, -2);
-    console.log("mb", this.mobileBreakPoint)
     this.mobileOffset = 0
     this.desktopOffset = 0
 
@@ -33,18 +32,18 @@ export default class MainTitleWrapper extends Shadow() {
       const img = entries[0]
       const imgHeight = img.contentRect.height
       if (screen.width >= this.mobileBreakPoint) {
+        this.desktopOffset = 0
         if (this.mobileOffset === 0) this.mobileOffset = +this.offsetTop
         this.mainTitleWrapperMarginTop = Math.ceil(+imgHeight - this.mobileOffset + +this.customMobileMarginTop) + "px"
       } else {
+        this.mobileOffset = 0
         if (this.desktopOffset === 0) this.desktopOffset = +this.offsetTop
         this.mainTitleWrapperMarginTop = Math.ceil(+imgHeight - this.desktopOffset + +this.customMarginTop) + "px"
       }
       this.style.marginTop = this.mainTitleWrapperMarginTop
-
-
     })
 
-    resizeObserver.observe(this.resizeImg)
+    if (this.resizeImg) resizeObserver.observe(this.resizeImg)
 
   }
   connectedCallback() {
@@ -80,6 +79,16 @@ export default class MainTitleWrapper extends Shadow() {
       }
       :host > h1 {
         margin: 0 auto 1rem auto;
+      }
+      :host > a-link {
+        margin: auto;
+        --width: max-content;
+        --text-align: center;
+      }
+      @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          width: var(--content-width-mobile, var(--content-width, 90%));
+        }
       }
     `
   }
