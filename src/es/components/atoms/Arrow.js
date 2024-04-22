@@ -19,16 +19,16 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Arrow extends Shadow() {
-  static get observedAttributes () {
+  static get observedAttributes() {
     return ['direction']
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
 
-  attributeChangedCallback (name, oldValue, newValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'direction' && this.span) {
       if (newValue === 'toggle') this.setAttribute('direction', (newValue = this.span.classList.contains('up') ? 'down' : this.span.classList.contains('down') ? 'up' : newValue))
       this.span.className = newValue
@@ -40,7 +40,7 @@ export default class Arrow extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -49,7 +49,7 @@ export default class Arrow extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.span
   }
 
@@ -58,7 +58,7 @@ export default class Arrow extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host > span{
         align-items: center;
@@ -93,13 +93,23 @@ export default class Arrow extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.html = /* html */`
-      <span class=${this.getAttribute('direction')}>&#10094;</span>
+      <span class=${this.getAttribute('direction')}><svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_1038_650)">
+      <path d="M7.17199 5.61719L13.3909 11.8361H0.953125V13.2247H13.3909L7.17199 19.4436H9.13426L16.0475 12.5304L9.13426 5.61719H7.17199Z" fill="#FFED00"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_1038_650">
+      <rect width="15.0943" height="15.0943" fill="white" transform="translate(0.953125 4.95288)"/>
+      </clipPath>
+      </defs>
+      </svg>
+      </span>
     `
   }
 
-  get span () {
+  get span() {
     return this.root.querySelector('span')
   }
 }

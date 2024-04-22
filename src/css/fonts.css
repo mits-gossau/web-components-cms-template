@@ -34,25 +34,45 @@
  *  https://css-tricks.com/leading-trim-the-future-of-digital-typesetting/
  *  https://caniuse.com/?search=leading-trim
  */
-@import url(/t/1.css?apiType=css&projectid=2b52b456-d052-418d-8595-f1c46d3439fb);
 @font-face{
-    font-family:"Futura Now Text W05 Light";
-    src:url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=14&fcId=4b337b7c-fddd-4807-9488-a13e198cdbae&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff2"),url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=3&fcId=4b337b7c-fddd-4807-9488-a13e198cdbae&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff");
-    font-display: block;
-    font-style: normal;
-    font-weight: normal;
+  font-family:"Futura Now Black";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextBlack_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextBlack_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
 }
 @font-face{
-    font-family:"Futura Now Text W05 Regular";
-    src:url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=14&fcId=b146c55f-9315-4918-bdeb-285b47e2bbbf&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff2"),url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=3&fcId=b146c55f-9315-4918-bdeb-285b47e2bbbf&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff");
-    font-display: block;
-    font-style: normal;
-    font-weight: normal;
+  font-family:"Futura Now ExtraBlack";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBlack_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBlack_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
 }
 @font-face{
-    font-family:"Futura Now Text W05 XBold";
-    src:url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=14&fcId=54e08efd-3b5a-4677-89e6-553be91d0a3a&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff2"),url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=3&fcId=54e08efd-3b5a-4677-89e6-553be91d0a3a&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff");
-    font-display: block;
-    font-style: normal;
-    font-weight: normal;
+  font-family:"Futura Now ExtraBold";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBold_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextExtraBold_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now Light";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextLight_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextLight_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now Regular";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextRegular_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowTextRegular_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family:"Futura Now Var";
+  src:url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowVariableRoman_normal.woff2") format("woff2"),url("https://cdn.migros.ch/ch.migros/static/fonts/FuturaNow/FuturaNowVariableRoman_normal.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
 }

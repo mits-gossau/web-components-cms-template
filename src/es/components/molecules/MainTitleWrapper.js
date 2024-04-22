@@ -19,6 +19,8 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class MainTitleWrapper extends Shadow() {
   constructor(...args) {
     super(...args)
+    this.desktopMainTitleSize = this.getAttribute('main-desktop-title-size-rem') ? this.getAttribute('main-desktop-title-size-rem') + "rem" : "4rem"
+    this.mobileMainTitleSize = this.getAttribute('main-mobile-title-size-rem') ? this.getAttribute('main-mobile-title-size-rem') + "rem" : "4rem"
     this.resizeImg = this.parentElement.querySelector('a-picture').root.querySelector('picture > img')
     this.customMarginTop = this.getAttribute('custom-margin-top-px') ? this.getAttribute('custom-margin-top-px') : 0
     this.customMobileMarginTop = this.getAttribute('custom-mobile-margin-top-px') ? this.getAttribute('custom-mobile-margin-top-px') : this.customMarginTop
@@ -31,12 +33,14 @@ export default class MainTitleWrapper extends Shadow() {
     const resizeObserver = new ResizeObserver((entries) => {
       const img = entries[0]
       const imgHeight = img.contentRect.height
-      if (screen.width >= this.mobileBreakPoint) {
-        this.desktopOffset = 0
+      // if is mobile
+      if (window.innerWidth <= this.mobileBreakPoint) {
+        this.style.marginTop = 0
         if (this.mobileOffset === 0) this.mobileOffset = +this.offsetTop
         this.mainTitleWrapperMarginTop = Math.ceil(+imgHeight - this.mobileOffset + +this.customMobileMarginTop) + "px"
       } else {
-        this.mobileOffset = 0
+        // if desktop
+        this.style.marginTop = 0
         if (this.desktopOffset === 0) this.desktopOffset = +this.offsetTop
         this.mainTitleWrapperMarginTop = Math.ceil(+imgHeight - this.desktopOffset + +this.customMarginTop) + "px"
       }
@@ -67,6 +71,7 @@ export default class MainTitleWrapper extends Shadow() {
   renderCSS() {
     this.css = /* css */`
       :host {
+        --content-width: 90%;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -79,15 +84,28 @@ export default class MainTitleWrapper extends Shadow() {
       }
       :host > h1 {
         margin: 0 auto 1rem auto;
+        font-family: var(--font-family-extra-bold);
+        font-size: ${this.desktopMainTitleSize};
+        line-height: 0.85;
+      }
+      :host > h4 {
+        margin: 0 auto 1rem auto;
+        font-family: var(--font-family-extra-bold);
+        line-height: 1.2;
       }
       :host > a-link {
         margin: auto;
+        --gap: 0.5rem;
         --width: max-content;
         --text-align: center;
+        --display: flex;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           width: var(--content-width-mobile, var(--content-width, 90%));
+        }
+        :host > h1 {
+          font-size:${this.mobileMainTitleSize};
         }
       }
     `

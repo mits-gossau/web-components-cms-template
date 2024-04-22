@@ -23,7 +23,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Title extends Shadow() {
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
@@ -33,7 +33,7 @@ export default class Title extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -42,7 +42,7 @@ export default class Title extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.h1
   }
 
@@ -51,10 +51,11 @@ export default class Title extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host {
         margin: var(--margin, min(9vw, 60px) 0 0 0);
+        height: var(--height, auto);
       }
       :host h1{
         color: var(--color, white);
@@ -100,7 +101,7 @@ export default class Title extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.html = this.h1 = document.createElement('h1')
     if (this.getAttribute('wrap') === 'only-last') {
       this.textContent.split(' ').forEach((text, i, arr) => {

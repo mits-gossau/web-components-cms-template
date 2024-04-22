@@ -28,13 +28,13 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Link extends Shadow() {
-  constructor (a, ...args) {
+  constructor(a, ...args) {
     super(...args)
 
     this._a = a
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
@@ -44,7 +44,7 @@ export default class Link extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -53,7 +53,7 @@ export default class Link extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.root.querySelector('a')
   }
 
@@ -62,7 +62,7 @@ export default class Link extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       ${this.hitArea
         ? /* css */`
@@ -86,6 +86,7 @@ export default class Link extends Shadow() {
         `
         : ''}
       :host > a, :host > ${this.hitAreaTagName} {
+        position: relative;
         box-sizing: border-box;
         color: var(--color, red);
         display: var(--display, block);
@@ -104,6 +105,16 @@ export default class Link extends Shadow() {
         font-family: var(--font-family);
         white-space: var(--white-space, normal);
         word-break: var(--word-break, normal);
+        gap: var(--gap, 0);
+      }
+      :host > a.has-border-bottom::after, :host > ${this.hitAreaTagName}.has-border-bottom::after {
+        content: '';
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: var(--color, red);
       }
       :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
         color: var(--color-active, var(--color-hover, var(--color, yellow)));
@@ -139,7 +150,7 @@ export default class Link extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.html = this.a
     if (this.hitArea) {
       this.hitArea.innerHTML = this.a.innerHTML
@@ -152,15 +163,15 @@ export default class Link extends Shadow() {
     if (this.hasAttribute('set-active') && location.href.includes(this.a.getAttribute('href'))) this.classList.add('active')
   }
 
-  get hitArea () {
+  get hitArea() {
     return this.getAttribute('hit-area') && this.getAttribute('hit-area') !== 'false' ? this._hitArea || (this._hitArea = document.createElement(this.hitAreaTagName)) : null
   }
 
-  get hitAreaTagName () {
+  get hitAreaTagName() {
     return 'div'
   }
 
-  get a () {
+  get a() {
     return this._a || (this._a = this.root.querySelector('a'))
   }
 }
