@@ -17,9 +17,9 @@ html {
   --content-width-not-web-component-mobile: 90%;
   --content-width-not-web-component: var(--content-width);
   --content-width: 65%;
-  --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
+  --font-family-bold: "Futura Now ExtraBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
   --font-family-secondary: var(--font-family);
-  --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
+  --font-family: "Futura Now Regular", "FuturaT", Arial, sans-serif;
   --font-size-mobile: 19px;
   --font-size: max(22px, 1vw);
   --font-weight: 300;

@@ -6,8 +6,9 @@
  */
 
  html[is-home=true] {
-  --font-family: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
-  --font-family-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
+  --font-family: "Futura Now Regular", "FuturaT", "Arial", sans-serif;
+  --font-family-bold: "Futura Now ExtraBold", "FuturaT", "Arial", sans-serif;
+  --font-family-extra-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
   --color:#FFED00;
   --background-color: #000;
   --header-title-color: #FFED00;
@@ -66,9 +67,9 @@ html {
     --flyer-duration: 1.2s;
     --flyer-timing-mobile: cubic-bezier(0.43, 1.77, 0, 0.43);
     --flyer-timing: cubic-bezier(0.88, 1.96, 0, 0.15);
-    --font-family-bold: "Futura Now Text W05 XBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
+    --font-family-bold: "Futura Now ExtraBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
     --font-family-secondary: var(--font-family);
-    --font-family: "Futura Now Text W05 Regular", "FuturaT", Arial, sans-serif;
+    --font-family: "Futura Now Regular", "FuturaT", Arial, sans-serif;
     --font-size-mobile: min(18px, 5vw);
     --font-size: max(18px, 0.9vw);
     --font-weight: normal;
