@@ -95,9 +95,10 @@ export default class MainTitleWrapper extends Shadow() {
       }
       :host > a-link {
         margin: auto;
+        --gap: 0.5rem;
         --width: max-content;
         --text-align: center;
-        --text-decoration: underline;
+        --display: flex;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {

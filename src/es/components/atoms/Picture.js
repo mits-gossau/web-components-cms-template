@@ -49,8 +49,7 @@ export default class Picture extends Shadow() {
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
     this.customWidth = this.getAttribute('custom-width-%')
     this.customMobileWidth = this.getAttribute('custom-mobile-width-%') ? this.getAttribute('custom-mobile-width-%') : this.getAttribute('custom-width')
-
-
+    this.hasLandingBlurAnimation = this.getAttribute('landing-blur-animation') === 'true'
 
     this.clickListener = event => {
       if (!this.hasAttribute('open')) event.stopPropagation()
@@ -164,7 +163,11 @@ export default class Picture extends Shadow() {
         object-fit: var(--img-object-fit, contain); /* cover does not render the same on IOS */
         vertical-align: middle; /* use middle to avoid having a gap at the bottom of the image https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
         margin: var(--img-margin, auto);
+        ${this.hasLandingBlurAnimation ? 'filter: blur(10px) drop-shadow(0 0 0 #222);' : ''}
+        ${this.hasLandingBlurAnimation ? 'animation: blur-animation 1s ease-in-out forwards' : ''}
+
       }
+
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host picture {
           border-radius:var(--border-radius-mobile, 0);
@@ -178,6 +181,10 @@ export default class Picture extends Shadow() {
         :host picture img {
           border-radius:var(--border-radius-mobile, 0);
         }
+      }
+
+      @keyframes blur-animation {
+        100% {	filter: blur(0) drop-shadow(0px 21px 40px #222); }
       }
     `
   }
