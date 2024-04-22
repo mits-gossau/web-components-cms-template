@@ -47,7 +47,7 @@ export default class Picture extends Shadow() {
     this.sources = (this.getAttribute('sources') && Picture.parseAttribute(this.getAttribute('sources'))) || null
     this.defaultSource = this.getAttribute('defaultSource') ? this.getAttribute('defaultSource') : ''
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
-    this.customWidth = this.getAttribute('custom-width')
+    this.customWidth = this.getAttribute('custom-width-%')
     this.customMobileWidth = this.getAttribute('custom-mobile-width-%') ? this.getAttribute('custom-mobile-width-%') : this.getAttribute('custom-width')
 
 
