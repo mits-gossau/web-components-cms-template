@@ -57,7 +57,7 @@ export default class Title extends Shadow() {
         margin: var(--margin, min(9vw, 60px) 0 0 0);
         height: var(--height, auto);
       }
-      :host h1{
+      :host h1 {
         color: var(--color, white);
         font-size: var(--font-size, max(79px, 4vw));
         font-family: var(--font-family-bold, 'OPTIFutura-ExtraBlackCond');

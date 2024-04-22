@@ -82,7 +82,7 @@ export default class MainTitleWrapper extends Shadow() {
       :host > * {
         z-index: 5;
       }
-      :host > h1 {
+      :host > h2 {
         margin: 0 auto 1rem auto;
         font-family: var(--font-family-extra-bold);
         font-size: ${this.desktopMainTitleSize};
@@ -104,7 +104,7 @@ export default class MainTitleWrapper extends Shadow() {
         :host {
           width: var(--content-width-mobile, var(--content-width, 90%));
         }
-        :host > h1 {
+        :host > h2 {
           font-size:${this.mobileMainTitleSize};
         }
       }
