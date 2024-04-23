@@ -285,7 +285,7 @@ export default class Header extends Shadow() {
     }
     :host > header > a-title {
       z-index: 5;
-      --header-title-height: 75px;
+      --header-title-height: 95px;
       }
   `, undefined, false, false, this.style)
   }
