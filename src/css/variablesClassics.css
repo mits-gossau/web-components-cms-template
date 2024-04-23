@@ -399,5 +399,9 @@ html {
     --ul-text-align: var(--h1-text-align);
     --video-margin: 70px auto 0 auto;
     --video-width: var(--picture-width);
+    
+    /*Added smooth scrolling*/
+    scroll-behavior: smooth;
+
 }
 
