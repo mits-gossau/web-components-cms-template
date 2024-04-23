@@ -23,6 +23,11 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Title extends Shadow() {
+  constructor(...args) {
+    super(...args)
+    this.textShadow = this.getAttribute('text-shadow')
+  }
+
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
@@ -66,6 +71,7 @@ export default class Title extends Shadow() {
         line-height: var(--line-height, max(69px, 3.5vw));
         text-transform: var(--text-transform, uppercase);
         transition: var(--transition, all 0.2s ease);
+        text-shadow: ${this.textShadow ? this.textShadow : ''};
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) h1 {
         color: var(--color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--color, white));
