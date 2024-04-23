@@ -26,6 +26,7 @@ export default class Title extends Shadow() {
   constructor(...args) {
     super(...args)
     this.textShadow = this.getAttribute('text-shadow')
+    this.linkValue = this.getAttribute('href')
   }
 
   connectedCallback() {
@@ -61,6 +62,9 @@ export default class Title extends Shadow() {
       :host {
         margin: var(--margin, min(9vw, 60px) 0 0 0);
         height: var(--height, auto);
+      }
+      :host a {
+        text-decoration: none;
       }
       :host h1 {
         color: var(--color, white);
@@ -127,6 +131,11 @@ export default class Title extends Shadow() {
         if (i === arr.length - 1) span.classList.add('secondary-color')
         this.h1.appendChild(span)
       })
+    }
+    if (this.linkValue) {
+      const currentATag = `<a href="${this.linkValue}">${this.h1.outerHTML}</a>`
+      this.html = ""
+      this.html = currentATag
     }
   }
 }

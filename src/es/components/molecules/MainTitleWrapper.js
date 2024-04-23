@@ -73,7 +73,8 @@ export default class MainTitleWrapper extends Shadow() {
   renderCSS() {
     this.css = /* css */`
       :host {
-        --content-width: 90%;
+        --content-width-mobile: 90%;
+        --content-width: 60%;
         display: flex;
         flex-direction: column;
         text-align: center;
