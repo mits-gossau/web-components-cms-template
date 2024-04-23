@@ -269,6 +269,8 @@ export default class Footer extends Shadow() {
         }
         .social-media-wrapper {
           display: flex;
+          flex-wrap: wrap;
+          padding: 0 1rem;
           align-items: center;
           justify-content: center;
           gap: 1.2rem;

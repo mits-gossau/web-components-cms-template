@@ -6,9 +6,9 @@
  */
 
  html[is-home=true] {
+  /*If the requirement of the font families doesn't change, we can remove the font-family variables from html[is-home=true]*/
   --font-family: "Futura Now Regular", "FuturaT", "Arial", sans-serif;
-  --font-family-bold: "Futura Now ExtraBold", "FuturaT", "Arial", sans-serif;
-  --font-family-extra-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
+  --font-family-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
   --color:#FFED00;
   --background-color: #000;
   --header-title-color: #FFED00;
@@ -60,14 +60,14 @@ html {
     --content-spacing: 20px;
     --content-width-mobile: 100%;
     --content-width-not-web-component-mobile: 90%;
-    --content-width-not-web-component: 65%;
+    --content-width-not-web-component: 60%;
     --content-width: 45%;
     --flex-grow: 1;
     --flyer-duration-mobile: 0.8s;
     --flyer-duration: 1.2s;
     --flyer-timing-mobile: cubic-bezier(0.43, 1.77, 0, 0.43);
     --flyer-timing: cubic-bezier(0.88, 1.96, 0, 0.15);
-    --font-family-bold: "Futura Now ExtraBlack", "OPTIFutura-ExtraBlackCond", "FuturaT", "Arial", sans-serif;
+    --font-family-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
     --font-family-secondary: var(--font-family);
     --font-family: "Futura Now Regular", "FuturaT", Arial, sans-serif;
     --font-size-mobile: min(18px, 5vw);
@@ -232,7 +232,7 @@ html {
     --header-title-font-size: var(--h1-font-size);
     --header-title-line-height-mobile: var(--header-title-line-height);
     --header-title-line-height: var(--h1-line-height);
-    --header-title-margin: 0 max(2.2vw, 15px) 30px;
+    --header-title-margin: 1.2rem max(2.2vw, 15px) 30px;
     --header-title-secondary-color-font-family: var(--font-family);
     --header-title-secondary-color-font-size-mobile: var(--header-title-secondary-color-font-size);
     --header-title-secondary-color-font-size: 0.8em;
@@ -399,5 +399,9 @@ html {
     --ul-text-align: var(--h1-text-align);
     --video-margin: 70px auto 0 auto;
     --video-width: var(--picture-width);
+
+    /*Added smooth scrolling*/
+    scroll-behavior: smooth;
+
 }
 

@@ -23,6 +23,12 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Title extends Shadow() {
+  constructor(...args) {
+    super(...args)
+    this.textShadow = this.getAttribute('text-shadow')
+    this.linkValue = this.getAttribute('href')
+  }
+
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
@@ -57,7 +63,10 @@ export default class Title extends Shadow() {
         margin: var(--margin, min(9vw, 60px) 0 0 0);
         height: var(--height, auto);
       }
-      :host h1{
+      :host a {
+        text-decoration: none;
+      }
+      :host h1 {
         color: var(--color, white);
         font-size: var(--font-size, max(79px, 4vw));
         font-family: var(--font-family-bold, 'OPTIFutura-ExtraBlackCond');
@@ -66,6 +75,7 @@ export default class Title extends Shadow() {
         line-height: var(--line-height, max(69px, 3.5vw));
         text-transform: var(--text-transform, uppercase);
         transition: var(--transition, all 0.2s ease);
+        text-shadow: ${this.textShadow ? this.textShadow : ''};
       }
       :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) h1 {
         color: var(--color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--color, white));
@@ -121,6 +131,11 @@ export default class Title extends Shadow() {
         if (i === arr.length - 1) span.classList.add('secondary-color')
         this.h1.appendChild(span)
       })
+    }
+    if (this.linkValue) {
+      const currentATag = `<a href="${this.linkValue}">${this.h1.outerHTML}</a>`
+      this.html = ""
+      this.html = currentATag
     }
   }
 }

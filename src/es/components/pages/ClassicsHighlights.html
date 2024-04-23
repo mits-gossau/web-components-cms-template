@@ -19,15 +19,15 @@
 <body>
   <p-general>
     <o-header namespace="header-" role="header">
-      <a-title namespace="header-title-">
-        <h3>MIGROS-KULTURPROZENT-CLASSICS</h3>
-      </a-title>
-      <a-picture img-filter="true" landing-blur-animation="true" custom-width-%="70" custom-mobile-width-%="90"
-        picture-load namespace=picture- defaultSource="../../../img/header-imgs/1.png" alt="Some Alt text">
+      <a-title href="/" namespace="header-title-" wrap="only-last" no-scroll="nav-open"
+        text-shadow="2px 4px 10px black"> MIGROS-KULTURPROZENT-CLASSICS
+        180°</a-title>
+      <a-picture img-filter="true" landing-animation="true" custom-width-%="70" custom-mobile-width-%="90" picture-load
+        namespace=picture- defaultSource="../../../img/header-imgs/1.png" alt="Some Alt text">
       </a-picture>
       <m-main-title-wrapper class="classics-main-title-wrapper" main-desktop-title-size-rem="4"
-        main-mobile-title-size-rem="4" custom-margin-top-px="-160" custom-mobile-margin-top-px="-70">
-        <h1>BRUCKNERS <br> NEUNTE </h1>
+        main-mobile-title-size-rem="2" custom-margin-top-px="40" custom-mobile-margin-top-px="20">
+        <h2>BRUCKNERS <br> NEUNTE </h2>
         <h4>MO, 15*04*2024 <br> 19.30 UHR <br> TONHALLE ZÜRICH</h4>
         <a-link text-transform="uppercase">
           <a class="has-border-bottom" href="#">Erfahre mehr
@@ -143,6 +143,10 @@
           }]'></a-picture>
         </third-party-macro-carousel>
 
+        <a-link text-transform="uppercase">
+          <a href="#scroll-text">Test scrolling</a>
+        </a-link>
+
         <h3>Daniel Müller-Schott</h3>
         <p>Der Münchner Cellist Daniel Müller-Schott wurde als Gewinner des Ersten Preises beim Tschaikowsky-Wettbewerb
           in Moskau 1992 bekannt und durfte als Preisträger der <br>Anne-Sophie-Mutter-Stiftung unter anderem ein Jahr
@@ -234,7 +238,7 @@
         </o-playlist>
       </main>
     </o-body>
-    <o-footer theme="classics" namespace="footer-">
+    <o-footer id="scroll-text" theme="classics" namespace="footer-">
       <div>
         <a-logo class="hide-mobile" namespace="footer-engagement-logo-"
           src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg"
@@ -251,11 +255,15 @@
       <div class="footer-ul-wrapper">
         <ul>
           <li class="social-media-wrapper">
-            <a-logo src=../../../img/classics-facebook-footer.svg alt="Facebook Logo"
+            <a-logo src=../../../img/footer-icons/classics-facebook-footer.svg alt="Facebook Logo"
               href="https://www.facebook.com/migrosclassics" namespace="footer-logo-"></a-logo>
-            <a-logo src=../../../img/classics-instagram-footer.svg alt="Instagram Logo"
+            <a-logo src=../../../img/footer-icons/classics-instagram-footer.svg alt="Instagram Logo"
               href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
-            <a-logo src=../../../img/classics-newsletter-footer.svg alt="Newsletter Logo" href="#"
+            <a-logo src=../../../img/footer-icons/classics-tiktok-footer.svg alt="TikTok Logo"
+              href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+            <a-logo src=../../../img/footer-icons/classics-youtube-footer.svg alt="Youtube Logo"
+              href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+            <a-logo src=../../../img/footer-icons/classics-newsletter-footer.svg alt="Newsletter Logo" href="#"
               namespace="footer-logo-"></a-logo>
           </li>
           <li>

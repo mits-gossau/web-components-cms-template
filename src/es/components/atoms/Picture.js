@@ -49,7 +49,9 @@ export default class Picture extends Shadow() {
     this.alt = this.getAttribute('alt') ? this.getAttribute('alt') : ''
     this.customWidth = this.getAttribute('custom-width-%')
     this.customMobileWidth = this.getAttribute('custom-mobile-width-%') ? this.getAttribute('custom-mobile-width-%') : this.getAttribute('custom-width')
-    this.hasLandingBlurAnimation = this.getAttribute('landing-blur-animation') === 'true'
+    this.hasLandingAnimation = this.getAttribute('landing-animation') === 'true'
+    this.isAnimationShown = false
+
 
     this.clickListener = event => {
       if (!this.hasAttribute('open')) event.stopPropagation()
@@ -72,6 +74,7 @@ export default class Picture extends Shadow() {
       if (this.hasAttribute('preview')) this.renderHTML(undefined, this.getAttribute('preview'))
     }
     if (this.hasAttribute('open-modal')) this.addEventListener('click', this.clickListener)
+    this.isAnimationShown = true
   }
 
   disconnectedCallback() {
@@ -163,8 +166,8 @@ export default class Picture extends Shadow() {
         object-fit: var(--img-object-fit, contain); /* cover does not render the same on IOS */
         vertical-align: middle; /* use middle to avoid having a gap at the bottom of the image https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
         margin: var(--img-margin, auto);
-        ${this.hasLandingBlurAnimation ? 'filter: blur(10px) drop-shadow(0 0 0 #222);' : ''}
-        ${this.hasLandingBlurAnimation ? 'animation: blur-animation 1s ease-in-out forwards' : ''}
+        ${this.hasLandingAnimation && !this.isAnimationShown ? 'opacity: 0; transform: translateY(-40%);' : ''}
+        ${this.hasLandingAnimation && !this.isAnimationShown ? 'animation: img-animation 0.75s linear 0.5s forwards' : ''}
 
       }
 
@@ -183,8 +186,11 @@ export default class Picture extends Shadow() {
         }
       }
 
-      @keyframes blur-animation {
-        100% {	filter: blur(0) drop-shadow(0px 21px 40px #222); }
+      @keyframes img-animation {
+        100% {	
+          opacity: 1;
+          transform: translateY(0);
+         }
       }
     `
   }

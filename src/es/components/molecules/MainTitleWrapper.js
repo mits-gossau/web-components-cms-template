@@ -28,6 +28,7 @@ export default class MainTitleWrapper extends Shadow() {
     this.mobileBreakPoint = +this.mobileBreakPoint.slice(0, -2);
     this.mobileOffset = 0
     this.desktopOffset = 0
+    this.isAnimationShown = false
 
 
     const resizeObserver = new ResizeObserver((entries) => {
@@ -52,6 +53,7 @@ export default class MainTitleWrapper extends Shadow() {
   }
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    this.isAnimationShown = true
   }
 
   /**
@@ -71,26 +73,31 @@ export default class MainTitleWrapper extends Shadow() {
   renderCSS() {
     this.css = /* css */`
       :host {
-        --content-width: 90%;
+        --content-width-mobile: 90%;
+        --content-width: 60%;
         display: flex;
         flex-direction: column;
         text-align: center;
         width: var(--content-width, 80%);
         margin: auto;
         margin-top: ${this.mainTitleWrapperMarginTop};
+        z-index: 5;
+        ${this.isAnimationShown ? '' : 'opacity: 0;'}
+        ${this.isAnimationShown ? '' : 'transform: translateY(40%);'}
+        ${this.isAnimationShown ? '' : 'animation: main-title-animation 0.5s linear forwards'}
       }
       :host > * {
         z-index: 5;
       }
-      :host > h1 {
+      :host > h2 {
         margin: 0 auto 1rem auto;
-        font-family: var(--font-family-extra-bold);
+        font-family: var(--font-family-bold);
         font-size: ${this.desktopMainTitleSize};
         line-height: 0.85;
       }
       :host > h4 {
         margin: 0 auto 1rem auto;
-        font-family: var(--font-family-extra-bold);
+        font-family: var(--font-family-bold);
         line-height: 1.2;
       }
       :host > a-link {
@@ -104,9 +111,15 @@ export default class MainTitleWrapper extends Shadow() {
         :host {
           width: var(--content-width-mobile, var(--content-width, 90%));
         }
-        :host > h1 {
+        :host > h2 {
           font-size:${this.mobileMainTitleSize};
         }
+      }
+      @keyframes main-title-animation {
+        100% {	
+          transform: translateY(0);
+          opacity: 1;
+         }
       }
     `
   }
