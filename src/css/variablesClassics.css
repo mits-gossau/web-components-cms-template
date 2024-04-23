@@ -60,7 +60,7 @@ html {
     --content-spacing: 20px;
     --content-width-mobile: 100%;
     --content-width-not-web-component-mobile: 90%;
-    --content-width-not-web-component: 65%;
+    --content-width-not-web-component: 60%;
     --content-width: 45%;
     --flex-grow: 1;
     --flyer-duration-mobile: 0.8s;
@@ -399,7 +399,7 @@ html {
     --ul-text-align: var(--h1-text-align);
     --video-margin: 70px auto 0 auto;
     --video-width: var(--picture-width);
-    
+
     /*Added smooth scrolling*/
     scroll-behavior: smooth;
 
