@@ -28,7 +28,6 @@ export default class MainTitleWrapper extends Shadow() {
     this.mobileOffset = 0
     this.desktopOffset = 0
     this.isAnimationShown = false
-    console.log("this", this.root)
 
 
     const imgResizeObserver = new ResizeObserver((entries) => {
