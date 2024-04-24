@@ -101,7 +101,7 @@ export default class MainTitleWrapper extends Shadow() {
         z-index: 5;
         ${this.isAnimationShown ? '' : 'opacity: 0;'}
         ${this.isAnimationShown ? '' : 'transform: translateY(40%);'}
-        ${this.isAnimationShown ? '' : 'animation: main-title-animation 0.5s linear forwards'}
+        ${this.isAnimationShown ? '' : 'animation: main-title-animation 0.3s linear forwards'}
       }
       :host > * {
         z-index: 5;

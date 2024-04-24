@@ -167,7 +167,7 @@ export default class Picture extends Shadow() {
         vertical-align: middle; /* use middle to avoid having a gap at the bottom of the image https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
         margin: var(--img-margin, auto);
         ${this.hasLandingAnimation && !this.isAnimationShown ? 'opacity: 0; transform: translateY(-40%);' : ''}
-        ${this.hasLandingAnimation && !this.isAnimationShown ? 'animation: img-animation 0.75s linear 0.5s forwards' : ''}
+        ${this.hasLandingAnimation && !this.isAnimationShown ? 'animation: img-animation 0.5s linear 0.5s forwards' : ''}
 
       }
 
