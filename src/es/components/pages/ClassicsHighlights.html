@@ -18,15 +18,96 @@
 
 <body>
   <p-general>
-    <o-header namespace="header-" role="header">
+    <o-header mobile-breakpoint="100000px" no-scroll="nav-open" menu-icon="true" namespace="header-" role="header"
+      flyer-transitionend="">
       <a-title href="/" namespace="header-title-" wrap="only-last" no-scroll="nav-open"
         text-shadow="2px 4px 10px black"> MIGROS-KULTURPROZENT-CLASSICS
         180°</a-title>
+      <m-navigation mobile-breakpoint="0px" hover="false" namespace=navigation- no-scroll="nav-open">
+        <ul>
+          <li>
+            <a href="#">News</a>
+            <ul>
+              <li>
+                <a href="#highlight">Highlights</a>
+              </li>
+              <li>
+                <a href="#aktuell">Aktuell</a>
+              </li>
+              <li>
+                <a href="#programm">Programm</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Konzerte</a>
+            <ul>
+              <li>
+                <a href="/de/spielplan">Spielplan</a>
+              </li>
+              <li>
+                <a href="/de/Orchester">Orchester</a>
+              </li>
+              <li>
+                <a href="/de/dirigent">Dirigent*innen</a>
+              </li>
+              <li>
+                <a href="/de/solist">Solist*innen</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Tickets</a>
+            <ul>
+              <li>
+                <a href="/de/bern">Bern</a>
+              </li>
+              <li>
+                <a href="/de/Luzern">Luzern</a>
+              </li>
+              <li>
+                <a href="/de/Genf">Genf</a>
+              </li>
+              <li>
+                <a href="/de/Zurich">Zürich</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Backstage</a>
+            <ul>
+              <li>
+                <a href="/de/werk">Werkeinführung</a>
+              </li>
+              <li>
+                <a href="/de/archiv">Archiv</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">About</a>
+            <ul>
+              <li>
+                <a href="/de/idee">Idee</a>
+              </li>
+              <li>
+                <a href="/de/intendanz">Intendanz</a>
+              </li>
+              <li>
+                <a href="/de/Talentförderung">Talentförderung</a>
+              </li>
+              <li>
+                <a href="/de/Kontakt">Kontakt</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </m-navigation>
       <a-picture img-filter="true" landing-animation="true" custom-width-%="70" custom-mobile-width-%="90" picture-load
         namespace=picture- defaultSource="../../../img/header-imgs/1.png" alt="Some Alt text">
       </a-picture>
-      <m-main-title-wrapper class="classics-main-title-wrapper" main-desktop-title-size-rem="4"
-        main-mobile-title-size-rem="2" custom-margin-top-px="40" custom-mobile-margin-top-px="20">
+      <m-main-title-wrapper class="classics-main-title-wrapper" main-desktop-title-size-rem="5" custom-margin-top-px="0"
+        custom-mobile-margin-top-px="20">
         <h2>BRUCKNERS <br> NEUNTE </h2>
         <h4>MO, 15*04*2024 <br> 19.30 UHR <br> TONHALLE ZÜRICH</h4>
         <a-link text-transform="uppercase">

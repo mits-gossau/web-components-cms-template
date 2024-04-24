@@ -22,7 +22,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class MenuIcon extends Shadow() {
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
 
     this.openClass = this.getAttribute('openClass') ? this.getAttribute('openClass') : 'open'
@@ -31,13 +31,13 @@ export default class MenuIcon extends Shadow() {
     this.clickListener = event => this.toggleAnimationClass()
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (!this.hasAttribute('no-click')) this.addEventListener('click', this.clickListener)
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     if (!this.hasAttribute('no-click')) this.removeEventListener('click', this.clickListener)
   }
 
@@ -46,7 +46,7 @@ export default class MenuIcon extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -55,7 +55,7 @@ export default class MenuIcon extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.root.querySelector('div')
   }
 
@@ -64,7 +64,7 @@ export default class MenuIcon extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host {
         display: inline-block;
@@ -73,6 +73,13 @@ export default class MenuIcon extends Shadow() {
         padding: var(--padding, 0 calc(var(--width, 35px) / 4)) !important;
         margin: var(--margin, 0);
         transition: var(--transition, 0.2s);
+        z-index: var(--z-index, 1);
+        position: var(--position, static);
+        left: var(--position-left, "");
+        right: var(--position-right, "");
+        top: var(--position-top, "");
+        bottom: var(--position-bottom, "");
+
       }
       :host(.${this.openClass}) {
         padding: var(--padding-open, 0 calc(var(--width, 35px) / 4)) !important;
@@ -109,7 +116,7 @@ export default class MenuIcon extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.html = /* html */`
       <div class="${this.barClass}1"></div>
       <div class="${this.barClass}2"></div>
@@ -117,7 +124,7 @@ export default class MenuIcon extends Shadow() {
     `
   }
 
-  toggleAnimationClass (command = 'toggle') {
+  toggleAnimationClass(command = 'toggle') {
     this.classList[command](this.openClass)
   }
 }

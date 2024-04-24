@@ -121,6 +121,7 @@ export default class Header extends Shadow() {
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);
         background-color: var(--background-color, transparent);
+        --header-position: relative;
       }
       :host > * {
         font-size: var(--font-size, 1rem);
@@ -147,6 +148,16 @@ export default class Header extends Shadow() {
       :host > header.open {
         background-color: var(--background-color-open, var(--background-color, black));
       }
+      :host > header.open::after {
+        position: fixed;
+        z-index: 6;
+        content:'';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
       :host > header.animate {
         background: linear-gradient(to bottom, var(--background-color-open) 0%, var(--background-color-open) 50%, var(--background-color) 50%, var(--background-color) 100%);
         animation: backgroundAnimation var(--background-animation, 0.5s ease);
@@ -155,6 +166,11 @@ export default class Header extends Shadow() {
       }
       :host > header.animate > a-menu-icon {
         --a-menu-icon-background-color: var(--background-color, #777);
+      }
+      :host > header > a-title {
+        --title-width: 60%;
+        --title-width-mobile: 90%;
+        z-index: var(--a-title-z-index, auto);
       }
       :host > header > a {
         align-self: var(--a-align-self, var(--align-self, auto));
@@ -232,10 +248,12 @@ export default class Header extends Shadow() {
           top: var(--top-open-mobile, var(--top-open, var(--top, auto)));
           left: var(--left-open-mobile, var(--left-open, var(--position, auto)));
           width: var(--width-open-mobile, var(--width-open, var(--width, auto)));
+          
         }
         :host > header > ${this.getAttribute('m-navigation') || 'm-navigation'} {
-          display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, none);
-          left: 0;
+          display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, block);
+          left: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-left-mobile, "");
+          right: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-right-mobile, "");
           background-color: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-background-color-mobile, transparent);
           height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-mobile, 0);
           overflow: hidden;
@@ -245,7 +263,9 @@ export default class Header extends Shadow() {
           transition: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-transition, all 0.2s ease);
           top: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-top-mobile, var(--height-mobile, 50px));
           padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0);
-          width: 100%;
+          width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-width-mobile, 100%);
+          max-width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-max-width-mobile, 100%);
+          z-index: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-z-index-mobile, 2);
         }
         :host > header > a {
           align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
@@ -254,9 +274,7 @@ export default class Header extends Shadow() {
           margin: var(--a-margin-mobile, var(--a-margin, 0));
           order: var(--order-mobile, var(--order, 1));
         }
-        :host > header > a-title {
-          z-index: var(--a-title-z-index, auto);
-        }
+      
         :host > header.open > ${this.getAttribute('m-navigation') || 'm-navigation'} {
           display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, block));
           height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-open-mobile, 100vh);
@@ -279,6 +297,17 @@ export default class Header extends Shadow() {
     `
 
     this.setCss(/* CSS */`
+    :host > header {
+      --header-m-navigation-background-color-mobile: white;
+      --header-m-navigation-width-mobile: 33%;
+      --header-m-navigation-max-width-mobile: 85%;
+      --header-m-navigation-padding-open-mobile: 2rem 4rem 2rem 2rem;
+      --header-m-navigation-z-index-mobile: 7;
+      --header-m-navigation-right-mobile: 0;
+      --header-m-navigation-top-mobile: 0;
+      --navigation-align-items: flex-start;
+    }
+    :host > header.open {}
     :host > header > a-picture {
     --a-title-z-index: 5;
     --picture-margin: 0 auto;
@@ -286,7 +315,17 @@ export default class Header extends Shadow() {
     :host > header > a-title {
       z-index: 5;
       --header-title-height: 95px;
-      }
+    }
+    :host > header > a-menu-icon {
+      --header-a-menu-icon-background-color: var(--color);
+      --header-a-menu-icon-z-index: 7;
+      --header-a-menu-icon-position: absolute;
+      --header-a-menu-icon-position-right: 0;
+      --header-a-menu-icon-position-top: 1.5rem;
+    }
+    :host > header.open > a-menu-icon {
+      --header-a-menu-icon-background-color: #000;
+    }
   `, undefined, false, false, this.style)
   }
 

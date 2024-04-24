@@ -62,6 +62,8 @@ export default class Title extends Shadow() {
       :host {
         margin: var(--margin, min(9vw, 60px) 0 0 0);
         height: var(--height, auto);
+        width: var(--width, auto);
+        display: var(--display, block);
       }
       :host a {
         text-decoration: none;
@@ -77,9 +79,6 @@ export default class Title extends Shadow() {
         transition: var(--transition, all 0.2s ease);
         text-shadow: ${this.textShadow ? this.textShadow : ''};
       }
-      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) h1 {
-        color: var(--color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--color, white));
-      }
       :host h1 .secondary-color {
         color: var(--color-secondary, var(--color, white));
         font-size: var(--secondary-color-font-size, var(--font-size));
@@ -88,13 +87,13 @@ export default class Title extends Shadow() {
         text-transform: var(--secondary-color-text-transform, var(--text-transform, uppercase));
         transition: var(--secondary-transition, var(--transition, all 0.2s ease));
       }
-      :host(.${this.getAttribute('no-scroll') || 'no-scroll'}) h1 .secondary-color {
-        color: var(--color-secondary-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--color-secondary, var(--color, white)));
-      }
       :host h1 span {
         display: block;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        :host {
+          width: var(--width-mobile, auto);
+        }
         :host h1{
           font-size: var(--font-size-mobile, min(14vw, 49px));
           line-height: var(--line-height-mobile, var(--line-height, min(14vw, 43px)));
