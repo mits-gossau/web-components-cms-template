@@ -92,7 +92,7 @@ export default class MainTitleWrapper extends Shadow() {
       :host {
         --content-width-mobile: 90%;
         --content-width: 60%;
-        display: flex;
+        display: var(--display, flex);
         flex-direction: column;
         text-align: center;
         width: var(--content-width, 80%);
