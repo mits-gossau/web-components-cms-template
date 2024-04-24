@@ -19,8 +19,7 @@ import { Shadow } from '../prototypes/Shadow.js'
 export default class MainTitleWrapper extends Shadow() {
   constructor(...args) {
     super(...args)
-    this.desktopMainTitleSize = this.getAttribute('main-desktop-title-size-rem') ? this.getAttribute('main-desktop-title-size-rem') + "rem" : "4rem"
-    this.mobileMainTitleSize = this.getAttribute('main-mobile-title-size-rem') ? this.getAttribute('main-mobile-title-size-rem') + "rem" : "4rem"
+    this.desktopMainTitleSize = this.getAttribute('main-desktop-title-size-rem') ? this.getAttribute('main-desktop-title-size-rem') : 4
     this.resizeImg = this.parentElement.querySelector('a-picture').root.querySelector('picture > img')
     this.customMarginTop = this.getAttribute('custom-margin-top-px') ? this.getAttribute('custom-margin-top-px') : 0
     this.customMobileMarginTop = this.getAttribute('custom-mobile-margin-top-px') ? this.getAttribute('custom-mobile-margin-top-px') : this.customMarginTop
@@ -29,9 +28,10 @@ export default class MainTitleWrapper extends Shadow() {
     this.mobileOffset = 0
     this.desktopOffset = 0
     this.isAnimationShown = false
+    console.log("this", this.root)
 
 
-    const resizeObserver = new ResizeObserver((entries) => {
+    const imgResizeObserver = new ResizeObserver((entries) => {
       const img = entries[0]
       const imgHeight = img.contentRect.height
       // if is mobile
@@ -48,7 +48,25 @@ export default class MainTitleWrapper extends Shadow() {
       this.style.marginTop = this.mainTitleWrapperMarginTop
     })
 
-    if (this.resizeImg) resizeObserver.observe(this.resizeImg)
+    const h2ResizeObserver = new ResizeObserver((entries) => {
+      const wrapper = entries[0]
+      const wrapperWidth = wrapper.contentRect.width
+      const h2Elem = entries[0].target.root.querySelector('h2')
+      const h2ElemFontSize = +h2Elem.style.fontSize.slice(0, -3) === 0 ? this.desktopMainTitleSize : +h2Elem.style.fontSize.slice(0, -3)
+      const h2Width = h2Elem.offsetWidth
+      if (h2Width > wrapperWidth) {
+        const test = h2ElemFontSize / wrapperWidth * (wrapperWidth - 10)
+        h2Elem.style.fontSize = test + 'rem'
+      }
+      if (h2Width < wrapperWidth - 10) {
+        let test = h2ElemFontSize / wrapperWidth * (wrapperWidth + 10)
+        if (test > this.desktopMainTitleSize) test = this.desktopMainTitleSize
+        h2Elem.style.fontSize = test + 'rem'
+      }
+    })
+
+    if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)
+    h2ResizeObserver.observe(this.parentElement.querySelector('m-main-title-wrapper'))
 
   }
   connectedCallback() {
@@ -92,7 +110,7 @@ export default class MainTitleWrapper extends Shadow() {
       :host > h2 {
         margin: 0 auto 1rem auto;
         font-family: var(--font-family-bold);
-        font-size: ${this.desktopMainTitleSize};
+        font-size: ${this.desktopMainTitleSize + 'rem'};
         line-height: 0.85;
       }
       :host > h4 {
@@ -110,9 +128,6 @@ export default class MainTitleWrapper extends Shadow() {
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
           width: var(--content-width-mobile, var(--content-width, 90%));
-        }
-        :host > h2 {
-          font-size:${this.mobileMainTitleSize};
         }
       }
       @keyframes main-title-animation {
