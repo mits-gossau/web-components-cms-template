@@ -17,6 +17,10 @@ html {
   background-color: var(--background-color, transparent);
 }
 
+html.nav-open {
+  overflow: hidden;
+}
+
 :not(:defined) {
   display: none;
 }
