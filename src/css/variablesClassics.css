@@ -184,13 +184,13 @@ html {
     --header-a-font-size: var(--font-size-mobile);
     --header-a-line-height: 1.3em;
     --header-a-menu-icon-background-color: var(--color);
-    --header-a-menu-icon-height-open-mobile: 6px;
-    --header-a-menu-icon-height: 5px;
+    --header-a-menu-icon-height-open-mobile: 2px;
+    --header-a-menu-icon-height: 2px;
     --header-a-menu-icon-margin-open-mobile: 0;
     --header-a-menu-icon-margin: 0;
     --header-a-menu-icon-spacing: min(6px, 1.4vw);
     --header-a-menu-icon-transition: background-color 1.2s ease;
-    --header-a-menu-icon-width: min(55px, 16vw);
+    --header-a-menu-icon-width: min(45px, 12vw);
     --header-a-padding: 0;
     --header-a-text-decoration-hover: none;
     --header-a-text-underline-offset: var(--a-text-underline-offset);
@@ -275,7 +275,8 @@ html {
     --navigation-background-color: transparent;
     --navigation-border-top: 0;
     --navigation-color-hover: var(--navigation-a-link-color-nav-open);
-    --navigation-color-open: var(--navigation-color);
+    --navigation-color-open: #AEAEB2; 
+    --navigation-color-open-hover: #6C6C70;
     --navigation-color: #000;
     --navigation-content-spacing: 0;
     --navigation-flex-direction: column;
