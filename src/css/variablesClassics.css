@@ -186,8 +186,8 @@ html {
     --header-a-menu-icon-background-color: var(--color);
     --header-a-menu-icon-height-open-mobile: 2px;
     --header-a-menu-icon-height: 2px;
-    --header-a-menu-icon-margin-open-mobile: 0;
-    --header-a-menu-icon-margin: 0;
+    --header-a-menu-icon-margin-open-mobile: 2px;
+    --header-a-menu-icon-margin: 2px;
     --header-a-menu-icon-spacing: min(6px, 1.4vw);
     --header-a-menu-icon-transition: background-color 1.2s ease;
     --header-a-menu-icon-width: min(45px, 12vw);
@@ -265,11 +265,11 @@ html {
     --navigation-a-link-content-spacing: 0;
     --navigation-a-link-font-family: var(--font-family-bold);
     --navigation-a-link-font-size-nav-open: var(--h1-font-size);
-    --navigation-a-link-font-size: 0;
+    --navigation-a-link-font-size: var(--h1-font-size);
     --navigation-a-link-line-height-nav-open: 1em;
     --navigation-a-link-line-height: var(--navigation-a-link-line-height-nav-open);
     --navigation-a-link-second-level-font-size-nav-open: calc(var(--navigation-a-link-font-size-nav-open) * 0.9);
-    --navigation-a-link-second-level-font-size: 0;
+    --navigation-a-link-second-level-font-size: calc(var(--navigation-a-link-font-size-nav-open) * 0.9);
     --navigation-a-link-second-level-line-height-nav-open: var(--navigation-a-link-line-height-nav-open);
     --navigation-a-link-text-transform: uppercase;
     --navigation-background-color: transparent;
