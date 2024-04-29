@@ -235,6 +235,7 @@ export default class Header extends Shadow() {
       }
       @keyframes slideInRight {
         0% {
+          background-color: white;
           right: -100%;
         }
         100% {
@@ -245,8 +246,13 @@ export default class Header extends Shadow() {
         0% {
           right: -6%;
         }
+        99% {
+          background-color: white;
+
+        }
         100% {
           right: -100%;
+          background-color: transparent;
         }
       }
       
@@ -360,6 +366,15 @@ export default class Header extends Shadow() {
     }
     :host > header.open > a-menu-icon {
       --header-a-menu-icon-background-color: #000;
+    }
+
+    @media only screen and (max-width: 700px){
+      :host > header {
+        --header-a-menu-icon-width: min(30px, 12vw);
+      }
+      :host > header > a-menu-icon {
+        --header-a-menu-icon-position-right: -0.5rem;
+      }
     }
   `, undefined, false, false, this.style)
   }

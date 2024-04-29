@@ -137,7 +137,7 @@ html {
     --footer-ul-padding: 0;
     --footer-li-last-of-type-padding: 0.5rem;
     --form-flex-direction: row;
-    --h1-font-size-mobile: var(--h1-font-size);
+    --h1-font-size-mobile: min(1.7em, 9vw);
     --h1-font-size: min(2.223em, 9vw);
     --h1-line-height-mobile: var(--h1-line-height);
     --h1-line-height: 1.1em;
