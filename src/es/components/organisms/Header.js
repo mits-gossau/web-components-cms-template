@@ -332,7 +332,8 @@ export default class Header extends Shadow() {
       --header-m-navigation-background-color-mobile: white;
       --header-m-navigation-width-mobile: 33%;
       --header-m-navigation-max-width-mobile: 85%;
-      --header-m-navigation-padding-open-mobile: 2rem 4rem 2rem 2rem;
+      --header-m-navigation-padding-open-mobile: 4rem 4rem 2rem 2rem;
+      --header-m-navigation-padding-mobile: 4rem 4rem 2rem 2rem;
       --header-m-navigation-z-index-mobile: 7;
       --header-m-navigation-right-mobile: -100%;
       --header-m-navigation-top-mobile: 0;
@@ -383,6 +384,20 @@ export default class Header extends Shadow() {
           document.documentElement.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           Array.from(this.header.children).forEach(node => {
             node.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
+            if (node.tagName === 'M-NAVIGATION') {
+              const openedLinks = node.root.querySelectorAll('a-link.open')
+              const openedLis = node.root.querySelectorAll('li.open')
+              if (openedLis.length > 0) openedLis.forEach(li => {
+                setTimeout(() => {
+                  li.classList.remove('open')
+                }, 500);
+              })
+              if (openedLinks.length > 0) openedLinks.forEach(link => {
+                setTimeout(() => {
+                  link.classList.remove('open')
+                }, 500);
+              })
+            }
           })
         })
         this.header.appendChild(MenuIcon)
