@@ -19,6 +19,8 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {boolean} [hover=false]
  *  {boolean} [hit-area=true] this lets you define a hit-area of your link, to avoid too large focus (hit-area) by fonts too large line-height, which can't be overwritten with css: https://github.com/mits-gossau/web-components-cms-template/issues/53
  *  {boolean} [focus-lost-close=false] tell it to close when focus is lost
+ *  {boolean} [is-classic-navigation=false] tell if it is a classic navigation
+ * 
  * }
  * @css {
  *  --content-spacing [40px]
@@ -41,11 +43,12 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Navigation extends Shadow() {
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
 
     this.nav = document.createElement('nav')
     this.hidden = true
+    this.isClassicNavigation = this.getAttribute('is-classic-navigation') === 'true'
     Array.from(this.root.children).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       this.nav.appendChild(node)
@@ -53,7 +56,7 @@ export default class Navigation extends Shadow() {
     this.root.appendChild(this.nav)
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
@@ -63,7 +66,7 @@ export default class Navigation extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -72,7 +75,7 @@ export default class Navigation extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return this.hidden
   }
 
@@ -81,7 +84,7 @@ export default class Navigation extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     const firstLevelCount = this.root.querySelectorAll('nav > ul > li').length
     this.css = /* css */`
       :host{
@@ -112,7 +115,7 @@ export default class Navigation extends Shadow() {
         font-weight: var(--a-font-weight, var(--font-weight, normal));
       }
       ${(this.getAttribute('hover') === 'true' &&
-      `:host > nav > ul li:hover ul a-link,
+        `:host > nav > ul li:hover ul a-link,
       :host > nav > ul li ul:hover a-link,`) || ''}
       :host > nav > ul li a-link.open ~ ul a-link {
         --font-size: var(--a-link-second-level-font-size-${this.getAttribute('no-scroll') || 'no-scroll'}, 1rem);
@@ -175,7 +178,7 @@ export default class Navigation extends Shadow() {
         left: var(--li-ul-left-second-half, unset);
       }
       ${(this.getAttribute('hover') === 'true' &&
-      `:host > nav > ul li:hover ul,
+        `:host > nav > ul li:hover ul,
       :host > nav > ul li ul:hover,`) || ''}
       :host > nav > ul li a-link.open ~ ul {
         display: block;
@@ -197,9 +200,10 @@ export default class Navigation extends Shadow() {
         padding-top: var(--padding-top, 6px);
         border-top: var(--border-top, 1px solid) var(--hr-color, var(--color, white));
       }
-      :host > nav > ul li.open > a-link, :host > nav > ul li.open > a-arrow{
+      :host > nav > ul li.open a-link, :host > nav > ul li.open a-arrow {
         --font-family: var(--font-family-open);
         --color: var(--color-open);
+        --color-hover: var(--color-open-hover);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
@@ -274,6 +278,52 @@ export default class Navigation extends Shadow() {
           --color: var(--color-open-mobile, var(--color-open));
         }
       }
+      :host > nav > ul li.language-switcher {
+        display: flex;
+        margin: 2.5rem 0;
+      }
+      :host > nav > ul li.language-switcher >:first-child {
+        margin-right: 1.5rem;
+      }
+      :host > nav > ul li.language-switcher > a-link {
+        --a-link-font-family: var(--font-family);
+        --a-link-font-size: 1.2rem;
+        --a-link-font-size-nav-open: 1.2rem;
+      }
+      :host > nav > ul li.language-switcher > a-link.active {
+        --text-decoration: underline;
+      }
+      :host > nav > ul li.ticket-btn-wrapper {
+        background-color: black;
+        --color: white;
+        --a-link-color-nav-open: white;
+        --a-link-font-family: "Futura Now Light";
+        --a-link-font-size: 1.2rem;
+        --a-link-font-size-nav-open: 1.2rem;
+        --a-link-content-spacing-nav-open: 1rem 1.25rem;
+        --a-link-content-spacing: 1rem 1.25rem;
+        --color-hover: white;
+      }
+      @media only screen and (max-width: 1500px){
+        :host {
+          width: 30% !important;
+        }
+      }
+      @media only screen and (max-width: 1000px){
+        :host {
+          width: 45% !important;
+        }
+      }
+      @media only screen and (max-width: 600px){
+        :host {
+          width: 65% !important;
+        }
+      }
+      @media only screen and (min-width: 1501px){
+        :host {
+          width: 25% !important;
+        }
+      }
     `
   }
 
@@ -283,7 +333,7 @@ export default class Navigation extends Shadow() {
    * @param {string[]} [arrowDirections=['up', 'down']]
    * @return {void}
    */
-  renderHTML (arrowDirections = ['up', 'down']) {
+  renderHTML(arrowDirections = ['up', 'down']) {
     this.loadChildComponents().then(children => {
       Array.from(this.root.querySelectorAll('a')).forEach(a => {
         const li = a.parentElement
@@ -309,11 +359,24 @@ export default class Navigation extends Shadow() {
                 event.preventDefault()
                 if (this.focusLostClose) event.stopPropagation()
                 Array.from(this.root.querySelectorAll('a-link.open')).forEach(aLink => {
-                  aLink.classList.remove('open')
+                  if (this.isClassicNavigation && aLink === event.target) {
+                    return
+                  } else {
+                    aLink.classList.remove('open')
+                  }
                   let arrow
                   if (aLink.parentNode && event.target && !aLink.parentNode.classList.contains('open') && (arrow = aLink.parentNode.querySelector(`[direction=${arrowDirections[0]}]`))) arrow.setAttribute('direction', arrowDirections[1])
+                  if (this.isClassicNavigation) aLink.parentElement.classList.remove('open')
                 })
-                event.target.classList.add('open')
+                if (this.isClassicNavigation) {
+                  if (event.target.classList.contains('open')) {
+                    event.target.classList.remove('open')
+                  } else {
+                    event.target.classList.add('open')
+                  }
+                } else {
+                  event.target.classList.add('open')
+                }
               } else if (a.getAttribute('href')[0] === '#') {
                 this.dispatchEvent(new CustomEvent(this.getAttribute('click-anchor') || 'click-anchor', {
                   detail: {
@@ -354,7 +417,7 @@ export default class Navigation extends Shadow() {
    * @param {Promise<[string, CustomElementConstructor]>[]} [promises=[]]
    * @returns {Promise<[string, CustomElementConstructor][]>}
    */
-  loadChildComponents (promises = []) {
+  loadChildComponents(promises = []) {
     if (this.childComponentsPromise) return this.childComponentsPromise
     let linkPromise, arrowPromise
     try {
@@ -387,7 +450,7 @@ export default class Navigation extends Shadow() {
     }))
   }
 
-  get focusLostClose () {
+  get focusLostClose() {
     return this.hasAttribute('focus-lost-close') && this.getAttribute('focus-lost-close') !== 'false'
   }
 }

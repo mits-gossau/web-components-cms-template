@@ -94,19 +94,20 @@ export default class MenuIcon extends Shadow() {
       }
       .${this.barClass}2 {
         margin: var(--spacing, var(--height, 5px)) 0;
-        transition: var(--transition, 0.2s);
+        transition: var(--bar-2-transition, 0.2s);
       }
       /* Rotate first ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}1, :host(.${this.openClass}) .${this.barClass}2 {
-        transform: var(--one-transform, rotate(-45deg) translateY(calc(var(--height, 5px) * 5.5 / 2)));
+        transform: var(--one-transform, rotate(-30deg) translateY(calc(var(--height, 5px) * 5.5 / 2)));
       }
       /* Fade out the second ${this.barClass} */
-      :host(.${this.openClass}) .${this.barClass}2 {
+      :host(.${this.openClass}) .${this.barClass}1 {
         opacity: 0;
       }
+     
       /* Rotate last ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}3 {
-        transform: var(--two-transform, rotate(45deg) translateY(calc(var(--height, 5px) * -5.5 / 2)));
+        transform: var(--two-transform, rotate(30deg) translateY(calc(var(--height, 5px) * -5.5 / 2)));
       }
     `
   }

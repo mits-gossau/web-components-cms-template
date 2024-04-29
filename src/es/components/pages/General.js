@@ -26,13 +26,13 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class General extends Shadow() {
-  constructor (...args) {
+  constructor(...args) {
     super({ mode: 'false' }, ...args) // disabling shadow-DOM to control root font-size on html-tag
 
     if (this.detectIOS()) document.documentElement.classList.add('ios')
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
   }
 
@@ -41,7 +41,7 @@ export default class General extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -50,7 +50,7 @@ export default class General extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host {
         display: grid;
@@ -60,6 +60,7 @@ export default class General extends Shadow() {
         grid-template-columns: 100%;
         grid-template-rows: var(--header-height , 85px) 1fr minmax(var(--footer-min-height, 250px), auto);
         min-height: 100vh;
+        overflow-x: hidden;
       }
       /* global css set by page */
       html {
@@ -115,7 +116,7 @@ export default class General extends Shadow() {
     `
   }
 
-  detectIOS () {
+  detectIOS() {
     return [
       'iPad Simulator',
       'iPhone Simulator',

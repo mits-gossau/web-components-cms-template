@@ -82,6 +82,10 @@ export default class Header extends Shadow() {
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (this.hasAttribute('flyer-transitionend')) document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, { once: true })
     if (this.hasAttribute('sticky')) self.addEventListener('scroll', this.scrollListener, { once: true })
+
+    setTimeout(() => {
+      this.root.querySelector('header').querySelector('m-navigation').style.opacity = 1
+    }, 500);
   }
 
   disconnectedCallback() {
@@ -149,6 +153,7 @@ export default class Header extends Shadow() {
         background-color: var(--background-color-open, var(--background-color, black));
       }
       :host > header.open::after {
+        animation: fadeIn 0.25s forwards 0.25s ease-in-out;
         position: fixed;
         z-index: 6;
         content:'';
@@ -156,7 +161,7 @@ export default class Header extends Shadow() {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: transparent;
       }
       :host > header.animate {
         background: linear-gradient(to bottom, var(--background-color-open) 0%, var(--background-color-open) 50%, var(--background-color) 50%, var(--background-color) 100%);
@@ -228,6 +233,28 @@ export default class Header extends Shadow() {
         0%{background-position-y:100%}
         100%{background-position-y:0%}
       }
+      @keyframes slideInRight {
+        0% {
+          right: -100%;
+        }
+        100% {
+          right: -6%;
+        }
+      }
+      @keyframes slideOutRight {
+        0% {
+          right: -6%;
+        }
+        100% {
+          right: -100%;
+        }
+      }
+      
+      @keyframes fadeIn {
+        100% {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > * {
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
@@ -247,7 +274,7 @@ export default class Header extends Shadow() {
           position: var(--position-open-mobile, var(--position-open, var(--position, static)));
           top: var(--top-open-mobile, var(--top-open, var(--top, auto)));
           left: var(--left-open-mobile, var(--left-open, var(--position, auto)));
-          width: var(--width-open-mobile, var(--width-open, var(--width, auto)));
+          /* width: var(--width-open-mobile, var(--width-open, var(--width, auto)));*/
           
         }
         :host > header > ${this.getAttribute('m-navigation') || 'm-navigation'} {
@@ -266,6 +293,8 @@ export default class Header extends Shadow() {
           width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-width-mobile, 100%);
           max-width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-max-width-mobile, 100%);
           z-index: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-z-index-mobile, 2);
+          animation: slideOutRight 0.5s forwards ease-in-out;
+          opacity: 0;
         }
         :host > header > a {
           align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
@@ -280,6 +309,8 @@ export default class Header extends Shadow() {
           height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-open-mobile, 100vh);
           overflow-y: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-overflow-y-open-mobile, auto);
           padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0));
+          right: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-right-open-mobile, "");
+          animation: slideInRight 0.5s forwards ease-in-out;
         }
         :host  > header > a-menu-icon{
           align-self: var(--a-menu-icon-align-self-mobile, var(--a-menu-icon-align-self, var(--align-self, auto)));
@@ -301,11 +332,15 @@ export default class Header extends Shadow() {
       --header-m-navigation-background-color-mobile: white;
       --header-m-navigation-width-mobile: 33%;
       --header-m-navigation-max-width-mobile: 85%;
-      --header-m-navigation-padding-open-mobile: 2rem 4rem 2rem 2rem;
+      --header-m-navigation-padding-open-mobile: 4rem 4rem 2rem 2rem;
+      --header-m-navigation-padding-mobile: 4rem 4rem 2rem 2rem;
       --header-m-navigation-z-index-mobile: 7;
-      --header-m-navigation-right-mobile: 0;
+      --header-m-navigation-right-mobile: -100%;
       --header-m-navigation-top-mobile: 0;
+      --header-position-open-mobile: relative;
       --navigation-align-items: flex-start;
+      --header-a-menu-icon-transition: 0.35s;
+      --header-a-menu-icon-bar-2-transition: 0.1s;
     }
     :host > header.open {}
     :host > header > a-picture {
@@ -349,6 +384,20 @@ export default class Header extends Shadow() {
           document.documentElement.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           Array.from(this.header.children).forEach(node => {
             node.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
+            if (node.tagName === 'M-NAVIGATION') {
+              const openedLinks = node.root.querySelectorAll('a-link.open')
+              const openedLis = node.root.querySelectorAll('li.open')
+              if (openedLis.length > 0) openedLis.forEach(li => {
+                setTimeout(() => {
+                  li.classList.remove('open')
+                }, 500);
+              })
+              if (openedLinks.length > 0) openedLinks.forEach(link => {
+                setTimeout(() => {
+                  link.classList.remove('open')
+                }, 500);
+              })
+            }
           })
         })
         this.header.appendChild(MenuIcon)
