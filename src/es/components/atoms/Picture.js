@@ -26,7 +26,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [loading=lazy] image loading
  *  {string} [open-modal=""] does emit event with name set by open-modal which can be reacted on by eg. organisms/Modal.js
  *  {string} [picture-load=""] does emit event with name set by picture-load which can be reacted on by eg. molecules/Flyer.js
- *  {string} [custom-width] alt-text for the image
+ *  {string} [custom-width] width of the image
+ *  {string} [img-width] original width of the image
+ *  {string} [img-height] original height of the image
+ * 
  * 
  * }
  * @css {
@@ -51,7 +54,9 @@ export default class Picture extends Shadow() {
     this.customMobileWidth = this.getAttribute('custom-mobile-width-%') ? this.getAttribute('custom-mobile-width-%') : this.getAttribute('custom-width')
     this.hasLandingAnimation = this.getAttribute('landing-animation') === 'true'
     this.isAnimationShown = false
-
+    this.imgWidth = this.getAttribute('img-width')
+    this.imgHeight = this.getAttribute('img-height')
+    this.imgAspectRatio = this.imgWidth / this.imgHeight
 
     this.clickListener = event => {
       if (!this.hasAttribute('open')) event.stopPropagation()
@@ -154,10 +159,10 @@ export default class Picture extends Shadow() {
         filter: var(--filter-hover, var(--filter, none));
       }
       :host picture img {
-        aspect-ratio: var(--aspect-ratio, attr(width, auto) / attr(height, auto));
+        aspect-ratio: ${this.imgAspectRatio ? `${this.imgAspectRatio};` : `var(--aspect-ratio, attr(width, auto) / attr(height, auto));`};
         display: var(--img-display, block);
         border-radius:var(--border-radius, 0);
-        width: var(--img-width, max-content);
+        width: ${this.imgWidth ? `${this.imgWidth}px;` : ` var(--img-width, max-content);`};
         min-width: var(--img-min-width, unset);
         max-width: var(--img-max-width, 100%); /* max-content would have been nice to not scale up the image, but in general make the editor use big enough images and this must stay at 100% default value, otherwise there are several side effects */
         height: var(--img-height, auto);
