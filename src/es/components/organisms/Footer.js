@@ -111,7 +111,8 @@ export default class Footer extends Shadow() {
       :host div p {
         line-height: var(--p-line-height, 1em);
       }
-      :host > footer {
+      :host > footer,
+      :host > footer > .bottom-part {
         display: var(--display, flex);
         background-color: var(${this.getAttribute('homepage') === 'true'
         ? 'transparent'
@@ -157,17 +158,21 @@ export default class Footer extends Shadow() {
         --display: var(--a-link-display);
         --display-mobile: var(--a-link-display-mobile);
       }
-      :host > footer ul > li {
+      :host > footer ul > li,
+      :host > footer > .bottom-part ul > li {
         color: var(--color, red);
       }
-      :host > footer ul > li > * {
+      :host > footer ul > li > *,
+      :host > footer > .bottom-part ul > li > * {
         font-size: var(--a-link-font-size, 1rem);
         display: block;
       }
-      :host > footer ul > li > a-link {
+      :host > footer ul > li > a-link,
+      :host > footer > .bottom-part ul > li > a-link  {
         --font-size: var(--a-link-font-size, 1rem);
       }
-      :host > footer ul > li > ul a-link {
+      :host > footer ul > li > ul a-link,
+      :host > footer > .bottom-part ul > li > ul a-link  {
         --font-size: var(--a-link-font-size-2, 1rem);
       }
 
@@ -176,7 +181,8 @@ export default class Footer extends Shadow() {
           width: var(--content-width-mobile, 90%);
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         }
-        :host > footer {
+        :host > footer,
+        :host > footer > .bottom-part {
           padding: var(${this.getAttribute('homepage') === 'true'
         ? '--homepage-padding-mobile'
         : '--padding-mobile'}, 0);
@@ -253,15 +259,20 @@ export default class Footer extends Shadow() {
       /* ----------------------------------------- CLASSICS CSS ------------------------------------------------- */
     } else if (this.getAttribute('theme') === 'classics') {
       this.css = /* css */`
+      :host > footer {
+        flex-direction: column;
+      }
         .logo-container {
           display: flex;
         }
-        :host > footer ul {
+        :host > footer ul,
+        :host > footer > .bottom-part ul  {
           list-style-type: none;
           padding: var(--ul-padding, 0);
           margin: var(--ul-margin, 30px 0);
         }
-        :host > footer ul > li {
+        :host > footer ul > li,
+        :host > footer > .bottom-part ul > li {
           text-align: center;
         }
         .footer-ul-wrapper {
@@ -270,37 +281,58 @@ export default class Footer extends Shadow() {
         .social-media-wrapper {
           display: flex;
           flex-wrap: wrap;
-          padding: 0 1rem;
           align-items: center;
           justify-content: center;
-          gap: 1.2rem;
-          margin-bottom: 2rem;
-          --logo-height: 3.5rem;
-          --logo-width: 3.5rem;
+          gap: 0.25rem 1rem;
+          margin: 0 0 1.5rem 0;
+          --logo-height: 3rem;
+          --logo-width: 3rem;
         }
-        :host > footer > div:not(.footer-ul-wrapper) {
+        .footer-language-switcher{
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+        :host .logo-container.wrapped {
+          align-items: center;
+        }
+        :host > footer > .bottom-part {
+          padding: 0 1rem;
+        }
+        :host > footer > div:not(.footer-ul-wrapper),
+        :host > footer > .bottom-part > div:not(.footer-ul-wrapper)  {
           flex: 1;
         }
-        :host > footer > div:first-of-type > * {
+        :host > footer > div:first-of-type > *,
+        :host > footer > .bottom-part > div:first-of-type > * {
           width: max-content;
           height: 100%;
         }
-        :host > footer ul > li p {
+        :host > footer ul > li p,
+        :host > footer > .bottom-part ul > li p {
           margin: var(--p-margin, 0);
         }
-        :host > footer ul > li:last-of-type {
+        :host > footer ul > li:last-of-type,
+        :host > footer > .bottom-part ul > li:last-of-type {
           padding: var(--li-last-of-type-padding, 10px 0 0);
         }
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
           .language-switcher a-link {
             --display-mobile: inline;
           }
-          :host > footer {
+          :host > footer,
+          :host > footer > .bottom-part {
             flex-direction: var(--flex-direction-mobile, column);
           }
-          :host > footer ul {
+          :host > footer ul,
+          :host > footer > .bottom-part ul {
             margin: var(--ul-margin-mobile, 10px auto);
             padding: var(--ul-padding-mobile, 0);
+          }
+          .social-media-wrapper {
+            padding: 0 10%;
+            --logo-height: 2rem;
+            --logo-width: 2rem;
           }
         }
       `
@@ -315,28 +347,36 @@ export default class Footer extends Shadow() {
         :host ul:first-child{
           margin-top: 0;
         }
-        :host > footer > ul {
+        :host > footer > ul,
+        :host > footer > .bottom-part > ul {
           align-items: var(--align-items, start);
           display: flex;
           flex-wrap: wrap;
           padding: calc(var(--content-spacing, 40px) / 2) var(--content-spacing, 40px);
         }
-        :host > footer > ul > li{
+        :host > footer > ul > li,
+        :host > footer > .bottom-part > ul > li{
           font-size: var(--font-size, 1rem);
         }
-        :host > footer > ul li:hover{
+        :host > footer > ul li:hover,
+        :host > footer > .bottom-part > ul li:hover{
           cursor: pointer;
         }
-        :host > footer > ul > li{
+        :host > footer > ul > li,
+        :host > footer > .bottom-part > ul > li{
           margin: calc(var(--content-spacing, 40px) / 2) var(--content-spacing, 40px) 0 0;
         }
-        :host > footer > ul li{
+        
+        :host > footer > ul li,
+        :host > footer > .bottom-part > ul li{
           padding-bottom: .5rem;
         }
-        :host > footer > ul li:last-child{
+        :host > footer > ul li:last-child,
+        :host > footer > .bottom-part > ul li:last-child{
           padding-bottom: 0;
         }
-        :host > footer > ul > li:last-child {
+        :host > footer > ul > li:last-child,
+        :host > footer > .bottom-part > ul > li:last-child {
           margin-right: 0;
         }
       `

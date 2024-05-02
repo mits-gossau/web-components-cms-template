@@ -53,15 +53,18 @@ export default class MainTitleWrapper extends Shadow() {
       const h2Elem = entries[0].target.root.querySelector('h2')
       const h2ElemFontSize = +h2Elem.style.fontSize.slice(0, -3) === 0 ? this.desktopMainTitleSize : +h2Elem.style.fontSize.slice(0, -3)
       const h2Width = h2Elem.offsetWidth
+      let updatedFontSizeRem
+
       if (h2Width > wrapperWidth) {
-        const test = h2ElemFontSize / wrapperWidth * (wrapperWidth - 10)
-        h2Elem.style.fontSize = test + 'rem'
+        updatedFontSizeRem = h2ElemFontSize / wrapperWidth * (wrapperWidth - 10)
+
       }
       if (h2Width < wrapperWidth - 10) {
-        let test = h2ElemFontSize / wrapperWidth * (wrapperWidth + 10)
-        if (test > this.desktopMainTitleSize) test = this.desktopMainTitleSize
-        h2Elem.style.fontSize = test + 'rem'
+        updatedFontSizeRem = h2ElemFontSize / wrapperWidth * (wrapperWidth + 10)
+        if (updatedFontSizeRem > this.desktopMainTitleSize) updatedFontSizeRem = this.desktopMainTitleSize
       }
+
+      h2Elem.style.fontSize = updatedFontSizeRem + 'rem'
     })
 
     if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)

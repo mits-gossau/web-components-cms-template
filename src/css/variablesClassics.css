@@ -129,7 +129,7 @@ html {
     --footer-p-line-height: normal;
     --footer-p-margin: -3px 0px;
     --footer-padding-mobile: 3vh 2vw;
-    --footer-padding: calc(2.4vw - 15px) 10px 2.4vw 10px;
+    --footer-padding: 2vw 10px 2.4vw 10px;
     --footer-text-align: center;
     --footer-text-decoration-hover: underline;
     --footer-ul-margin-mobile: 0 auto 15px auto;

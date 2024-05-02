@@ -173,8 +173,8 @@ export default class Header extends Shadow() {
         --a-menu-icon-background-color: var(--background-color, #777);
       }
       :host > header > a-title {
-        --title-width: 60%;
-        --title-width-mobile: 90%;
+        --header-title-width: 60%;
+        --header-title-width-mobile: 80%;
         z-index: var(--a-title-z-index, auto);
       }
       :host > header > a {
@@ -338,15 +338,14 @@ export default class Header extends Shadow() {
       --header-m-navigation-background-color-mobile: white;
       --header-m-navigation-width-mobile: 33%;
       --header-m-navigation-max-width-mobile: 85%;
-      --header-m-navigation-padding-open-mobile: 4rem 4rem 2rem 2rem;
-      --header-m-navigation-padding-mobile: 4rem 4rem 2rem 2rem;
+      --header-m-navigation-padding-open-mobile: 2rem;
+      --header-m-navigation-padding-mobile: 2rem;
       --header-m-navigation-z-index-mobile: 7;
       --header-m-navigation-right-mobile: -100%;
       --header-m-navigation-top-mobile: 0;
       --header-position-open-mobile: relative;
       --navigation-align-items: flex-start;
-      --header-a-menu-icon-transition: 0.35s;
-      --header-a-menu-icon-bar-2-transition: 0.1s;
+      --header-a-menu-icon-display-open-mobile: none;
     }
     :host > header.open {}
     :host > header > a-picture {
@@ -359,13 +358,13 @@ export default class Header extends Shadow() {
     }
     :host > header > a-menu-icon {
       --header-a-menu-icon-background-color: var(--color);
-      --header-a-menu-icon-z-index: 7;
+      --header-a-menu-icon-z-index: 6;
       --header-a-menu-icon-position: absolute;
       --header-a-menu-icon-position-right: 0;
       --header-a-menu-icon-position-top: 1.5rem;
     }
     :host > header.open > a-menu-icon {
-      --header-a-menu-icon-background-color: #000;
+      --header-a-menu-icon-background-color: transparent;
     }
 
     @media only screen and (max-width: 700px){
@@ -374,6 +373,22 @@ export default class Header extends Shadow() {
       }
       :host > header > a-menu-icon {
         --header-a-menu-icon-position-right: -0.5rem;
+      }
+      :host > header > a-title {
+        --header-title-width: 80%;
+      }
+    }
+
+    @media only screen and (max-width: 600px){
+      :host > header {
+        --header-m-navigation-padding-open-mobile: 3rem 2rem 2rem 2rem;
+        --header-m-navigation-padding-mobile: 3rem 2rem 2rem 2rem;
+      }
+    }
+
+    @media only screen and (max-width: 500px){
+      :host > header > a-title {
+        --header-title-width-mobile: 100%;
       }
     }
   `, undefined, false, false, this.style)
