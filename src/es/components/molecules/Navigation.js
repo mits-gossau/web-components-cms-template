@@ -49,16 +49,29 @@ export default class Navigation extends Shadow() {
     this.nav = document.createElement('nav')
     this.hidden = true
     this.isClassicNavigation = this.getAttribute('is-classic-navigation') === 'true'
+
+
+
+
     Array.from(this.root.children).forEach(node => {
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       this.nav.appendChild(node)
     })
     this.root.appendChild(this.nav)
+
+    if (this.isClassicNavigation) {
+      const closeIcon = this.root.querySelector('div.close-icon-wrapper > a-logo')
+      closeIcon.addEventListener('click', () => this.parentElement.querySelector('a-menu-icon').click())
+    }
   }
 
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('click', () => this.parentElement.querySelector('a-menu-icon').click())
   }
 
   /**
@@ -133,6 +146,7 @@ export default class Navigation extends Shadow() {
         background-color: var(--background-color-${this.getAttribute('no-scroll') || 'no-scroll'}, var(--background-color, black));
       }
       :host > nav > ul{
+        position: relative;
         align-items: var(--align-items, center);
         justify-content: var(--justify-content, normal);
         display: flex;
@@ -204,6 +218,12 @@ export default class Navigation extends Shadow() {
         --font-family: var(--font-family-open);
         --color: var(--color-open);
         --color-hover: var(--color-open-hover);
+      }
+      :host .close-icon-wrapper {
+        position:absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host {
@@ -295,6 +315,7 @@ export default class Navigation extends Shadow() {
       }
       :host > nav > ul li.ticket-btn-wrapper {
         background-color: black;
+        border: 1px solid black;
         --color: white;
         --a-link-color-nav-open: white;
         --a-link-font-family: "Futura Now Light";
@@ -302,7 +323,10 @@ export default class Navigation extends Shadow() {
         --a-link-font-size-nav-open: 1.2rem;
         --a-link-content-spacing-nav-open: 1rem 1.25rem;
         --a-link-content-spacing: 1rem 1.25rem;
-        --color-hover: white;
+        --color-hover: black;
+      }
+      :host > nav > ul li.ticket-btn-wrapper:hover{
+        background-color: white;
       }
       @media only screen and (max-width: 1500px){
         :host {
@@ -318,6 +342,10 @@ export default class Navigation extends Shadow() {
         :host {
           width: 65% !important;
         }
+        :host .close-icon-wrapper {
+          top: -2.5rem;
+          right: -1rem;
+        }
       }
       @media only screen and (min-width: 1501px){
         :host {
@@ -325,6 +353,13 @@ export default class Navigation extends Shadow() {
         }
       }
     `
+
+    this.setCss(/* CSS */`
+    :host > .close-icon-wrapper > a-logo {
+      --footer-logo-height: 2rem;
+      --footer-logo-margin-mobile: 0;
+    }
+  `, undefined, false, false, this.style)
   }
 
   /**
@@ -407,6 +442,7 @@ export default class Navigation extends Shadow() {
         a.replaceWith(aLink)
         li.prepend(aLink)
       })
+      //  this.html = this.style
       this.hidden = false
     })
   }
@@ -453,4 +489,15 @@ export default class Navigation extends Shadow() {
   get focusLostClose() {
     return this.hasAttribute('focus-lost-close') && this.getAttribute('focus-lost-close') !== 'false'
   }
+
+  // get style() {
+  //   return (
+  //     this._style ||
+  //     (this._style = (() => {
+  //       const style = document.createElement('style')
+  //       style.setAttribute('protected', 'true')
+  //       return style
+  //     })())
+  //   )
+  // }
 }
