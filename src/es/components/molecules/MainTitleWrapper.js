@@ -21,6 +21,7 @@ export default class MainTitleWrapper extends Shadow() {
     super(...args)
     this.desktopMainTitleSize = this.getAttribute('main-desktop-title-size-rem') ? this.getAttribute('main-desktop-title-size-rem') : 4
     this.resizeImg = this.parentElement.querySelector('a-picture').root.querySelector('picture > img')
+    this.titleWrapper = this.parentElement.querySelector('m-main-title-wrapper')
     this.customMarginTop = this.getAttribute('custom-margin-top-px') ? this.getAttribute('custom-margin-top-px') : 0
     this.customMobileMarginTop = this.getAttribute('custom-mobile-margin-top-px') ? this.getAttribute('custom-mobile-margin-top-px') : this.customMarginTop
     this.mobileBreakPoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
@@ -28,6 +29,7 @@ export default class MainTitleWrapper extends Shadow() {
     this.mobileOffset = 0
     this.desktopOffset = 0
     this.isAnimationShown = false
+    this.timeoutId = null
 
 
     const imgResizeObserver = new ResizeObserver((entries) => {
@@ -48,6 +50,7 @@ export default class MainTitleWrapper extends Shadow() {
     })
 
     const h2ResizeObserver = new ResizeObserver((entries) => {
+
       const wrapper = entries[0]
       const wrapperWidth = wrapper.contentRect.width
       const h2Elem = entries[0].target.root.querySelector('h2')
@@ -57,7 +60,6 @@ export default class MainTitleWrapper extends Shadow() {
 
       if (h2Width > wrapperWidth) {
         updatedFontSizeRem = h2ElemFontSize / wrapperWidth * (wrapperWidth - 10)
-
       }
       if (h2Width < wrapperWidth - 10) {
         updatedFontSizeRem = h2ElemFontSize / wrapperWidth * (wrapperWidth + 10)
@@ -65,10 +67,20 @@ export default class MainTitleWrapper extends Shadow() {
       }
 
       h2Elem.style.fontSize = updatedFontSizeRem + 'rem'
+
+      // @ts-ignore
+      clearTimeout(this.timeoutId)
+      this.timeoutId = setTimeout(() => {
+        this.styleTwo.textContent = /* css */`
+        :host {
+         animation: main-title-animation 0.3s linear forwards;
+        }
+        `
+      }, 50)
     })
 
     if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)
-    h2ResizeObserver.observe(this.parentElement.querySelector('m-main-title-wrapper'))
+    if (this.titleWrapper) h2ResizeObserver.observe(this.titleWrapper)
 
   }
   connectedCallback() {
@@ -103,8 +115,7 @@ export default class MainTitleWrapper extends Shadow() {
         margin-top: ${this.mainTitleWrapperMarginTop};
         z-index: 5;
         ${this.isAnimationShown ? '' : 'opacity: 0;'}
-        ${this.isAnimationShown ? '' : 'transform: translateY(40%);'}
-        ${this.isAnimationShown ? '' : 'animation: main-title-animation 0.3s linear forwards'}
+        ${this.isAnimationShown ? '' : 'transform: translateY(100%);'}
       }
       :host > * {
         z-index: 5;
@@ -139,5 +150,17 @@ export default class MainTitleWrapper extends Shadow() {
          }
       }
     `
+    this.html = this.styleTwo
+  }
+
+  get styleTwo() {
+    return (
+      this._style ||
+      (this._style = (() => {
+        const style = document.createElement('style')
+        style.setAttribute('protected', 'true')
+        return style
+      })())
+    )
   }
 }
