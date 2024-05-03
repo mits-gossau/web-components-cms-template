@@ -123,6 +123,8 @@ export default class Title extends Shadow() {
           this.h1.append(`${text} `)
         }
       })
+    } else if (this.getAttribute('wrap') === 'separated-span') {
+      return
     } else {
       this.textContent.split(' ').forEach((text, i, arr) => {
         const span = document.createElement('span')
