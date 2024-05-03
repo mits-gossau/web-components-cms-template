@@ -316,7 +316,7 @@ export default class Header extends Shadow() {
           overflow-y: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-overflow-y-open-mobile, auto);
           padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0));
           right: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-right-open-mobile, "");
-          animation: slideInRight 0.5s forwards ease-in-out;
+          animation: slideInRight 0.3s forwards ease-in-out;
         }
         :host  > header > a-menu-icon{
           align-self: var(--a-menu-icon-align-self-mobile, var(--a-menu-icon-align-self, var(--align-self, auto)));
@@ -361,7 +361,7 @@ export default class Header extends Shadow() {
       --header-a-menu-icon-z-index: 6;
       --header-a-menu-icon-position: absolute;
       --header-a-menu-icon-position-right: 0;
-      --header-a-menu-icon-position-top: 1.5rem;
+      --header-a-menu-icon-position-top: 1rem;
     }
     :host > header.open > a-menu-icon {
       --header-a-menu-icon-background-color: transparent;
@@ -373,6 +373,7 @@ export default class Header extends Shadow() {
       }
       :host > header > a-menu-icon {
         --header-a-menu-icon-position-right: -0.5rem;
+        --header-a-menu-icon-position-top: 0.5rem;
       }
       :host > header > a-title {
         --header-title-width: 80%;

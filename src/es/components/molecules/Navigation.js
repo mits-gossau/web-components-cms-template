@@ -343,8 +343,8 @@ export default class Navigation extends Shadow() {
           width: 65% !important;
         }
         :host .close-icon-wrapper {
-          top: -2.5rem;
-          right: -1rem;
+          top: -2rem;
+          right: -0.25rem;
         }
       }
       @media only screen and (min-width: 1501px){
@@ -355,11 +355,13 @@ export default class Navigation extends Shadow() {
     `
 
     this.setCss(/* CSS */`
-    :host > .close-icon-wrapper > a-logo {
-      --footer-logo-height: 2rem;
-      --footer-logo-margin-mobile: 0;
-    }
-  `, undefined, false, false, this.style)
+       :host .close-icon-wrapper > a-logo {
+         --header-logo-margin: 0;
+         --header-logo-height: 2.5rem;
+         --header-logo-margin-mobile: 0;
+         --header-logo-height-mobile: 2rem;
+       }
+     `, undefined, false, false, this.styleTwo)
   }
 
   /**
@@ -442,9 +444,10 @@ export default class Navigation extends Shadow() {
         a.replaceWith(aLink)
         li.prepend(aLink)
       })
-      //  this.html = this.style
       this.hidden = false
-    })
+      this.html = this.styleTwo
+    }
+    )
   }
 
   /**
@@ -490,14 +493,14 @@ export default class Navigation extends Shadow() {
     return this.hasAttribute('focus-lost-close') && this.getAttribute('focus-lost-close') !== 'false'
   }
 
-  // get style() {
-  //   return (
-  //     this._style ||
-  //     (this._style = (() => {
-  //       const style = document.createElement('style')
-  //       style.setAttribute('protected', 'true')
-  //       return style
-  //     })())
-  //   )
-  // }
+  get styleTwo() {
+    return (
+      this._style ||
+      (this._style = (() => {
+        const style = document.createElement('style')
+        style.setAttribute('protected', 'true')
+        return style
+      })())
+    )
+  }
 }
