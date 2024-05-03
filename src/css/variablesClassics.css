@@ -191,6 +191,7 @@ html {
     --header-a-menu-icon-spacing: min(6px, 1.4vw);
     --header-a-menu-icon-transition: background-color 1.2s ease;
     --header-a-menu-icon-width: min(45px, 12vw);
+    --header-a-menu-icon-padding: 1rem;
     --header-a-padding: 0;
     --header-a-text-decoration-hover: none;
     --header-a-text-underline-offset: var(--a-text-underline-offset);
