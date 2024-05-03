@@ -73,10 +73,10 @@ export default class MainTitleWrapper extends Shadow() {
       this.timeoutId = setTimeout(() => {
         this.styleTwo.textContent = /* css */`
         :host {
-         animation: main-title-animation 0.3s linear forwards;
+         animation: main-title-animation 0.35s ease-out forwards;
         }
         `
-      }, 50)
+      }, 75)
     })
 
     if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)
@@ -115,7 +115,7 @@ export default class MainTitleWrapper extends Shadow() {
         margin-top: ${this.mainTitleWrapperMarginTop};
         z-index: 5;
         ${this.isAnimationShown ? '' : 'opacity: 0;'}
-        ${this.isAnimationShown ? '' : 'transform: translateY(100%);'}
+        ${this.isAnimationShown ? '' : 'transform: translateY(50%);'}
       }
       :host > * {
         z-index: 5;
@@ -144,6 +144,9 @@ export default class MainTitleWrapper extends Shadow() {
         }
       }
       @keyframes main-title-animation {
+        40% {
+          opacity: 1;
+        }
         100% {	
           transform: translateY(0);
           opacity: 1;
