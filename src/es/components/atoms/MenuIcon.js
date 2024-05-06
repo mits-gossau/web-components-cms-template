@@ -29,16 +29,25 @@ export default class MenuIcon extends Shadow() {
     this.barClass = this.getAttribute('barClass') ? this.getAttribute('barClass') : 'bar'
 
     this.clickListener = event => this.toggleAnimationClass()
+    this.enterEventListener = event => {
+      if ((event.keyCode || event.which) == 13) {
+        this.click()
+        this.parentElement.querySelector('m-navigation').root.querySelector('nav > ul > li > a-link').root.querySelector('a').focus()
+      }
+    }
   }
 
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (!this.hasAttribute('no-click')) this.addEventListener('click', this.clickListener)
+    if (!this.hasAttribute('no-click')) this.addEventListener('keyup', this.enterEventListener)
   }
 
   disconnectedCallback() {
     if (!this.hasAttribute('no-click')) this.removeEventListener('click', this.clickListener)
+    if (!this.hasAttribute('no-click')) this.removeEventListener('keyup', this.enterEventListener)
+
   }
 
   /**

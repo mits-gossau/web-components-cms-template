@@ -409,6 +409,7 @@ export default class Header extends Shadow() {
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {
         const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '', namespaceFallback: this.hasAttribute('namespace-fallback') })
+        MenuIcon.setAttribute('tabindex', '0')
         MenuIcon.addEventListener('click', event => {
           this.header.classList.toggle('open')
           const prop = this.header.classList.contains('open') ? 'add' : 'remove'
@@ -418,6 +419,7 @@ export default class Header extends Shadow() {
             if (node.tagName === 'M-NAVIGATION') {
               const openedLinks = node.root.querySelectorAll('a-link.open')
               const openedLis = node.root.querySelectorAll('li.open')
+              const isNavigationOpen = this.header.classList.contains('open')
               if (openedLis.length > 0) openedLis.forEach(li => {
                 setTimeout(() => {
                   li.classList.remove('open')
@@ -428,6 +430,12 @@ export default class Header extends Shadow() {
                   link.classList.remove('open')
                 }, 500);
               })
+              if (isNavigationOpen) {
+                node.setAttribute('tabindex', '0')
+              }
+              if (!isNavigationOpen) {
+                node.setAttribute('tabindex', '-1')
+              }
             }
           })
         })
