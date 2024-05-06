@@ -25,6 +25,7 @@ export default class MainTitleWrapper extends Shadow() {
     this.customMarginTop = this.getAttribute('custom-margin-top-px') ? this.getAttribute('custom-margin-top-px') : 0
     this.customMobileMarginTop = this.getAttribute('custom-mobile-margin-top-px') ? this.getAttribute('custom-mobile-margin-top-px') : this.customMarginTop
     this.mobileBreakPoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
+    this.elementLink = this.root.querySelector('a-link').querySelector('a')
     this.mobileBreakPoint = +this.mobileBreakPoint.slice(0, -2);
     this.mobileOffset = 0
     this.desktopOffset = 0
@@ -79,13 +80,20 @@ export default class MainTitleWrapper extends Shadow() {
       }, 75)
     })
 
+
     if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)
     if (this.titleWrapper) h2ResizeObserver.observe(this.titleWrapper)
+
+    this.handleNavigation = event => {
+      if (this.classList.contains('nav-open')) this.parentElement.querySelector('a-menu-icon').click()
+    }
 
   }
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
+    if (this.elementLink) this.elementLink.addEventListener('keyup', this.handleNavigation)
     this.isAnimationShown = true
+
   }
 
   /**
