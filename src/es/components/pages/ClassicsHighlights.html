@@ -21,18 +21,19 @@
 
     <o-header mobile-breakpoint="100000px" no-scroll="nav-open" menu-icon="true" namespace="header-" role="header"
       flyer-transitionend="">
-      <a-title href="/" namespace="header-title-" wrap="separated-span" no-scroll="nav-open"
-        text-shadow="2px 4px 10px black">
-        <h1>MIGROS-KULTURPROZENT-CLASSICS
-          <span class="secondary-color">180°</span>
-        </h1>
+      <a-title namespace="header-title-" wrap="separated-span" no-scroll="nav-open" text-shadow="2px 4px 10px black">
+        <a href="/">
+          <h1>MIGROS-KULTURPROZENT-CLASSICS
+            <span class="secondary-color">180°</span>
+          </h1>
+        </a>
       </a-title>
 
-      <m-navigation mobile-breakpoint="0px" hover="false" namespace=navigation- no-scroll="nav-open"
+      <m-navigation tabindex="-1" mobile-breakpoint="0px" hover="false" namespace=navigation- no-scroll="nav-open"
         is-classic-navigation="true">
         <ul>
           <div class="close-icon-wrapper">
-            <a-logo src=../../../img/close-icon-classics.svg alt="close" namespace="header-logo-"></a-logo>
+            <a-logo tabindex="0" src=../../../img/close-icon-classics.svg alt="close" namespace="header-logo-"></a-logo>
           </div>
           <li>
             <a href="#">News</a>
@@ -115,7 +116,7 @@
             <a href="">EN</a>
           </li>
           <li class="ticket-btn-wrapper">
-            <a>Tickets kaufen</a>
+            <a href="">Tickets kaufen</a>
           </li>
         </ul>
       </m-navigation>
