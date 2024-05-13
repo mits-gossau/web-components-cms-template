@@ -32,6 +32,26 @@ export default class Link extends Shadow() {
     super(...args)
 
     this._a = a
+    this.hasArrow = !!this.a.querySelector('a-arrow')
+    this.arrowNode = this.a.querySelector('a-arrow')
+
+    this.baseUnderlined = this.getAttribute('base-underlined') === 'true'
+    this.underlineColor = this.getAttribute('underline-color')
+    this.hoverUnderlined = this.getAttribute('hover-underlined') === 'true'
+    this.hoverRemoveUnderlined = this.getAttribute('hover-remove-underlined') === 'true'
+
+    if (this.baseUnderlined && this.hasArrow) {
+      this.a.classList.contains('has-border-bottom') ? '' : this.a.classList.add('has-border-bottom')
+    }
+
+    if (this.hoverUnderlined && this.hasArrow) {
+      this.a.classList.contains('has-hover-border-bottom') ? '' : this.a.classList.add('has-hover-border-bottom')
+    }
+
+    if (this.hoverRemoveUnderlined && this.hasArrow) {
+      this.a.classList.contains('has-hover-remove-border-bottom') ? '' : this.a.classList.add('has-hover-remove-border-bottom')
+    }
+
   }
 
   connectedCallback() {
@@ -85,6 +105,15 @@ export default class Link extends Shadow() {
           }
         `
         : ''}
+        ${this.hasArrow
+        ? /* css */`
+            :host > a {
+              --display: flex;
+              --gap: 5px;
+              --width: fit-content;
+            }
+          `
+        : ''}
       :host > a, :host > ${this.hitAreaTagName} {
         position: relative;
         box-sizing: border-box;
@@ -114,7 +143,31 @@ export default class Link extends Shadow() {
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: var(--color, red);
+        background-color: ${this.underlineColor || 'var(--color, red)'};
+      }
+      :host > a.has-hover-border-bottom::after, :host > ${this.hitAreaTagName}.has-hover-border-bottom::after {
+        content: '';
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: transparent;
+      }
+      :host > a.has-hover-border-bottom:hover::after, :host > ${this.hitAreaTagName}.has-hover-border-bottom:hover::after {
+        background-color: ${this.underlineColor || 'var(--color, red)'};
+      }
+      :host > a.has-hover-remove-border-bottom::after, :host > ${this.hitAreaTagName}.has-hover-remove-border-bottom::after {
+        content: '';
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: ${this.underlineColor || 'var(--color, red)'};
+      }
+      :host > a.has-hover-remove-border-bottom:hover::after, :host > ${this.hitAreaTagName}.has-hover-remove-border-bottom:hover::after {
+        background-color: transparent;
       }
       :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
         color: var(--color-active, var(--color-hover, var(--color, yellow)));
