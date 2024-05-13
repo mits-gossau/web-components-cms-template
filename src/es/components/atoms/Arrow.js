@@ -10,7 +10,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Arrow
  * @type {CustomElementConstructor}
  * @attribute {
- *  {up, right, down, left} [direction=left]
+ *  {up, right, down, left, up-right} [direction=left]
  * }
  * @css {
  *  --color [#777]
@@ -84,6 +84,9 @@ export default class Arrow extends Shadow() {
       }
       :host > span.left{
         transform: rotate(0deg);
+      }
+      :host > span.up-right{
+        transform: rotate(-45deg);
       }
     `
   }

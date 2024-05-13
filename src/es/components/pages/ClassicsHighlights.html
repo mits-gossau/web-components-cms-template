@@ -129,10 +129,9 @@
         custom-mobile-margin-top-px="20">
         <h2>BRUCKNERS <br> NEUNTE </h2>
         <h4>MO, 15*04*2024 <br> 19.30 UHR <br> TONHALLE ZÜRICH</h4>
-        <a-link text-transform="uppercase">
-          <a class="has-border-bottom" href="#">Erfahre mehr
-            <a-arrow direction=left></a-arrow>
-          </a>
+        <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="false"
+          base-underlined="true" underline-color="#FFED00">
+          <a href="#">Erfahre mehr <a-arrow direction=left></a-arrow></a>
         </a-link>
       </m-main-title-wrapper>
     </o-header>
@@ -243,8 +242,32 @@
           }]'></a-picture>
         </third-party-macro-carousel>
 
+        <!-- 
+        IMPORTANT: 
+        <a-link>
+        ONLY ONE ATTRIBUTE FROM
+        hover-underlined 
+        hover-remove-underlined
+        base-underlined
+        CAN BE TRUE!!
+        -->
+        <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="false"
+          base-underlined="true" underline-color="#FFED00">
+          <a href="#">Erfahre mehr <a-arrow direction="left"></a-arrow></a>
+        </a-link>
+
+        <a-link text-transform="uppercase" hover-underlined="true" hover-remove-underlined="false"
+          base-underlined="false" underline-color="white">
+          <a href="#">Erfahre mehr <a-arrow direction="right"></a-arrow></a>
+        </a-link>
+
+        <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="true"
+          base-underlined="false" underline-color="red">
+          <a href="#">Erfahre mehr <a-arrow direction="down"></a-arrow></a>
+        </a-link>
+
         <a-link text-transform="uppercase">
-          <a href="#scroll-text">Test scrolling</a>
+          <a href="#">Erfahre mehr <a-arrow direction="up-right"></a-arrow></a>
         </a-link>
 
         <h3>Daniel Müller-Schott</h3>
