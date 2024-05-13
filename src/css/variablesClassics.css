@@ -38,10 +38,10 @@ html {
     --carousel-p-margin: 0;
     --carousel-pagination-background-color-selected: white;
     --carousel-pagination-background-color: #FFED00;
-    --carousel-pagination-bottom: 10%;
+    --carousel-pagination-bottom: 3%;
     --carousel-pagination-position: absolute;
-    --carousel-pagination-width: 10px;
-    --carousel-pagination-height: 10px;
+    --carousel-pagination-width: 12px;
+    --carousel-pagination-height: 12px;
     --carousel-transition-duration: 1.6s;
     --color-hover-secondary: var(--color);
     --color-hover: var(--color);

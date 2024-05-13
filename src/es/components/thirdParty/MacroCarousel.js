@@ -50,7 +50,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @type {CustomElementConstructor}
  */
 export default class MacroCarousel extends Shadow() {
-  constructor (...args) {
+  constructor(...args) {
     super(...args)
 
     this.macroCarousel = document.createElement('macro-carousel')
@@ -93,7 +93,7 @@ export default class MacroCarousel extends Shadow() {
         // current slide is last and going to first
         if (event.detail.slide === 0 && Number(this.macroCarousel.getAttribute('selected')) === this.macroCarousel.querySelectorAll('[role=listitem]').length - 1) {
           this.macroCarousel.next()
-        // current slide is first and going to the last
+          // current slide is first and going to the last
         } else if (event.detail.slide === this.macroCarousel.querySelectorAll('[role=listitem]').length - 1 && Number(this.macroCarousel.getAttribute('selected')) === 0) {
           this.macroCarousel.previous()
         } else {
@@ -109,7 +109,7 @@ export default class MacroCarousel extends Shadow() {
     this.focusEventListener = event => this.setInterval()
   }
 
-  connectedCallback () {
+  connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     self.addEventListener('resize', this.resizeListener)
@@ -126,9 +126,23 @@ export default class MacroCarousel extends Shadow() {
       document.body.addEventListener('play', this.blurEventListener, true)
       document.body.addEventListener('pause', this.focusEventListener, true)
     }
+
+    setTimeout(() => {
+      const carouselIndicators = this.root.querySelector('macro-carousel').querySelectorAll('macro-carousel-pagination-indicator')
+
+      if (carouselIndicators.length && carouselIndicators.length !== 1) {
+        const firstIndicator = carouselIndicators[0]
+        const lastIndicator = carouselIndicators[carouselIndicators.length - 1]
+
+        if (!firstIndicator.classList.contains('first-indicator')) firstIndicator.classList.add('first-indicator')
+        if (!lastIndicator.classList.contains('last-indicator')) lastIndicator.classList.add('last-indicator')
+      }
+    }, 250);
+
+
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     self.removeEventListener('resize', this.resizeListener)
     if (this.hasAttribute('sync-id')) {
       if (this.getAttribute('interval')) {
@@ -150,7 +164,7 @@ export default class MacroCarousel extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS () {
+  shouldComponentRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -159,7 +173,7 @@ export default class MacroCarousel extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML () {
+  shouldComponentRenderHTML() {
     return !this.scripts.length
   }
 
@@ -168,7 +182,7 @@ export default class MacroCarousel extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS () {
+  renderCSS() {
     this.css = /* css */`
       :host > macro-carousel {
         width: var(--content-width, 100%) !important;
@@ -231,7 +245,7 @@ export default class MacroCarousel extends Shadow() {
         position: var(--pagination-position);
         bottom: var(--pagination-bottom);
         padding: var(--pagination-padding, 0);
-        --macro-carousel-pagination-height: calc(var(--pagination-height, var(--pagination-width, 5px))*3);
+        --macro-carousel-pagination-height: 3.5rem;
       }
       :host div ::slotted(macro-carousel-pagination-indicator) {
         --macro-carousel-pagination-color: var(--pagination-background-color, var(--background-color, black));
@@ -242,6 +256,21 @@ export default class MacroCarousel extends Shadow() {
         --macro-carousel-pagination-border-selected: var(--pagination-border-selected);
         --macro-carousel-pagination-size-clickable: calc(var(--pagination-width, 5px) * 2);
         opacity: var(--pagination-opacity, 1);
+        margin: 0;
+        background-color: rgba(0,0,0, 0.7);
+        border-radius: 0;
+        padding: 8px 2px;
+      }
+      :host div ::slotted(macro-carousel-pagination-indicator.first-indicator) {
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+        padding: 8px 0 8px 10px !important;
+
+      }
+      :host div ::slotted(macro-carousel-pagination-indicator.last-indicator) {
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        padding: 8px 10px 8px 0 !important;
       }
       :host div ::slotted(macro-carousel-nav-button) {
         --macro-carousel-navigation-color: var(--navigation-color, var(--color, black));
@@ -264,47 +293,18 @@ export default class MacroCarousel extends Shadow() {
       height = width
     const ratio = width / height
 
-    // is a hover variable set?
-    let bcHover = true
-    if (rs.getPropertyValue(`--${this.namespace}pagination-background-color-hover`) === '') // set default width if it isn't set
-      bcHover = false
-
     // inject style which can't be controlled through css vars für pagination
     this.injectStylePagination = document.createElement('style')
     this.injectStylePagination.innerHTML = /* css */`
-      .fg {
-        width: calc(var(--pagination-width, 5px));
-        border-radius: var(--pagination-border-radius, 0.5rem);
-      }
-    ${ bcHover ? /* css */ `
-      :host {
-        width: calc(var(--pagination-width, 5px) * 1.5);
-      }
-      :host(:hover) .fg {
-        --macro-carousel-pagination-color: var(--pagination-background-color-hover, grey);
-        --macro-carousel-pagination-color-selected: var(--pagination-background-color-selected-hover, var(--pagination-background-color-hover, red));
-      }
-      .bg{
-        display:none;
-      ` : /* css */`
-      .bg {`
+    :host(.first-indicator) .bg,
+    :host(.first-indicator) .fg {
+      left: calc(50% + 4px)
     }
-        width: var(--pagination-width, 5px);
-        border-radius: var(--pagination-border-radius, 0.5rem);
-      }
-      :host(.selected) .fg{
-        width: calc(var(--pagination-width, 5px) * ${ratio});
-      }
-      :host(.selected) .bg {
-        width: calc(var(--pagination-width, 5px) * ${ratio * 0.5 + 0.5});
-      }
-      :host(.selected) {
-        width: calc(var(--pagination-width, 5px) * ${ratio + 1});
-      }
-      :host {
-        border-radius: var(--pagination-border-radius, 0.5rem);
-      }
-    `.replace(/var\(--/g, `var(--${this.namespace}`)
+    :host(.last-indicator) .bg,
+    :host(.last-indicator) .fg {
+      left: calc(50% - 4px)
+    }
+    `
   }
 
   /**
@@ -312,7 +312,7 @@ export default class MacroCarousel extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML () {
+  renderHTML() {
     this.loadDependency().then(() => {
       this.html = this.macroCarousel
       // wait for the carousel component to initiate the shadowDom and be ready
@@ -330,7 +330,7 @@ export default class MacroCarousel extends Shadow() {
    *
    * @returns {Promise<{components: any}>}
    */
-  loadDependency () {
+  loadDependency() {
     // make it global to self so that other components can know when it has been loaded
     return self.macroCarousel || (self.macroCarousel = new Promise(resolve => {
       if (customElements.get('macro-carousel')) {
@@ -349,7 +349,7 @@ export default class MacroCarousel extends Shadow() {
     }))
   }
 
-  macroCarouselReady () {
+  macroCarouselReady() {
     // style which has to be injected to take effect on Carousel
     this.macroCarousel.shadowRoot.appendChild(this.injectStyle)
 
@@ -366,22 +366,22 @@ export default class MacroCarousel extends Shadow() {
     }
   }
 
-  setInterval () {
+  setInterval() {
     clearInterval(this.interval)
     this.interval = setInterval(() => this.macroCarousel.next(), Number(this.getAttribute('interval')))
   }
 
-  clearInterval () {
+  clearInterval() {
     clearInterval(this.interval)
   }
 
-  getMedia () {
+  getMedia() {
     // @ts-ignore ignoring self.Environment error
     const breakpoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
     return self.matchMedia(`(min-width: calc(${breakpoint} + 1px))`).matches ? '' : '-mobile'
   }
 
-  get scripts () {
+  get scripts() {
     return this.root.querySelectorAll('script')
   }
 
@@ -389,7 +389,7 @@ export default class MacroCarousel extends Shadow() {
    * @param {string} value
    * @returns {number}
    */
-  cleanPropertyWidthValue (value) {
+  cleanPropertyWidthValue(value) {
     return Number(value.trim().replace(/[^0-9.]/g, ''))
   }
 }
