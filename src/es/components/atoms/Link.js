@@ -34,9 +34,10 @@ export default class Link extends Shadow() {
     this._a = a
     this.hasArrow = !!this.a.querySelector('a-arrow')
     this.arrowNode = this.a.querySelector('a-arrow')
+    this.isArrowHasRightDirection = this.arrowNode?.getAttribute('direction') === 'right'
 
     this.baseUnderlined = this.getAttribute('base-underlined') === 'true'
-    this.underlineColor = this.getAttribute('underline-color')
+    this.generalColor = this.getAttribute('general-color')
     this.hoverUnderlined = this.getAttribute('hover-underlined') === 'true'
     this.hoverRemoveUnderlined = this.getAttribute('hover-remove-underlined') === 'true'
 
@@ -100,7 +101,7 @@ export default class Link extends Shadow() {
             grid-row: 1;
           }
           :host > a:hover ~ ${this.hitAreaTagName} {
-            color: var(--color-hover, var(--color, yellow));
+            color: ${this.generalColor || 'var(--color-hover, var(--color, yellow))'};
             text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
           }
         `
@@ -109,15 +110,29 @@ export default class Link extends Shadow() {
         ? /* css */`
             :host > a {
               --display: flex;
-              --gap: 5px;
+              --gap: 7px;
               --width: fit-content;
             }
           `
         : ''}
+        ${this.generalColor
+        ? /* css */`
+              :host > a > a-arrow {
+                --color: ${this.generalColor || 'var(--color, red)'};
+              }
+            `
+        : ''}
+        ${this.isArrowHasRightDirection
+        ? /* css */`
+                :host > a > a-arrow {
+                  transform: translateY(4px);
+                }
+              `
+        : ''}
       :host > a, :host > ${this.hitAreaTagName} {
         position: relative;
         box-sizing: border-box;
-        color: var(--color, red);
+        color: ${this.generalColor || 'var(--color, red)'};
         display: var(--display, block);
         font-size: var(--font-size, 1rem);
         line-height: var(--line-height, normal);
@@ -143,7 +158,7 @@ export default class Link extends Shadow() {
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: ${this.underlineColor || 'var(--color, red)'};
+        background-color: ${this.generalColor || 'var(--color, red)'};
       }
       :host > a.has-hover-border-bottom::after, :host > ${this.hitAreaTagName}.has-hover-border-bottom::after {
         content: '';
@@ -155,7 +170,7 @@ export default class Link extends Shadow() {
         background-color: transparent;
       }
       :host > a.has-hover-border-bottom:hover::after, :host > ${this.hitAreaTagName}.has-hover-border-bottom:hover::after {
-        background-color: ${this.underlineColor || 'var(--color, red)'};
+        background-color: ${this.generalColor || 'var(--color, red)'};
       }
       :host > a.has-hover-remove-border-bottom::after, :host > ${this.hitAreaTagName}.has-hover-remove-border-bottom::after {
         content: '';
@@ -164,18 +179,18 @@ export default class Link extends Shadow() {
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: ${this.underlineColor || 'var(--color, red)'};
+        background-color: ${this.generalColor || 'var(--color, red)'};
       }
       :host > a.has-hover-remove-border-bottom:hover::after, :host > ${this.hitAreaTagName}.has-hover-remove-border-bottom:hover::after {
         background-color: transparent;
       }
       :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
-        color: var(--color-active, var(--color-hover, var(--color, yellow)));
+        color: ${this.generalColor || 'var(--color-active, var(--color-hover, var(--color, yellow)))'};
         text-decoration: var(--text-decoration-active, var(--text-decoration-hover, var(--text-decoration, none)));
         font-family: var(--font-family-active, var(--font-family-hover));
       }
       :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName} {
-        color: var(--color-hover, var(--color, yellow));
+        color: ${this.generalColor || 'var(--color-hover, var(--color, yellow))'};
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
         font-family: var(--font-family-hover);
       }
@@ -187,7 +202,7 @@ export default class Link extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > a, :host > ${this.hitAreaTagName} {
-          color:var(--color-mobile, var(--color, inherit));
+          color: ${this.generalColor || 'var(--color-mobile, var(--color, inherit))'};
           display: var(--display-mobile, var(--display, block));
           line-height: var(--line-height-mobile, var(--line-height, normal));
         }
