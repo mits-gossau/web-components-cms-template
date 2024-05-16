@@ -404,6 +404,18 @@ html {
 
     /*Added smooth scrolling*/
     scroll-behavior: smooth;
-
 }
+
+@media only screen and (min-width: 1000px){
+  html {
+    --content-width-not-web-component: 50%;
+  }
+}
+
+@media only screen and (min-width: 1350px){
+  html {
+    --content-width-not-web-component: 40%;
+  }
+}
+
 
