@@ -184,7 +184,7 @@ export default class Picture extends Shadow() {
           filter: var(--filter-mobile, none);
           height: var(--height-mobile, var(--height, unset));
           text-align: var(--text-align-mobile, var(--text-align, center));
-          width: ${this.customMobileWidth ? `${this.customMobileWidth}%;` : `var(--width-mobile, var(--width, 100%);`}
+          width: ${this.customMobileWidth ? `${this.customMobileWidth}%;` : `var(--width-mobile, var(--width, 100%);`};
         }
         :host picture img {
           border-radius:var(--border-radius-mobile, 0);
