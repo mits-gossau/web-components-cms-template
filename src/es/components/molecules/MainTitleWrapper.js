@@ -134,7 +134,8 @@ export default class MainTitleWrapper extends Shadow() {
         font-size: ${this.desktopMainTitleSize + 'rem'};
         line-height: 0.85;
       }
-      :host > h4 {
+      :host > h4,
+      :host > h3 {
         margin: 0 auto 1rem auto;
         font-family: var(--font-family-bold);
         line-height: 1.2;
