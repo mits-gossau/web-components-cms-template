@@ -47,6 +47,7 @@ export default class Navigation extends Shadow() {
     super(...args)
 
     this.nav = document.createElement('nav')
+    this.nav.setAttribute('role', 'navigation')
     this.hidden = true
     this.isClassicNavigation = this.getAttribute('is-classic-navigation') === 'true'
 
