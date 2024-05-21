@@ -292,6 +292,7 @@ export default class Footer extends Shadow() {
           display: flex;
           justify-content: center;
           gap: 0.5rem;
+          margin-bottom: 1.5rem;
         }
         :host .logo-container.wrapped {
           align-items: center;

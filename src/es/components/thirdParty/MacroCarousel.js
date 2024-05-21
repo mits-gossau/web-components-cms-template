@@ -56,6 +56,7 @@ export default class MacroCarousel extends Shadow() {
     this.macroCarousel = document.createElement('macro-carousel')
     // copy all kids into the macro-carousel
     Array.from(this.root.children).forEach(node => {
+      node.setAttribute('role', 'listitem')
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
       if (node.nodeName !== 'A') node.setAttribute('pointer-events', 'none') // firefox would drag the ghost image and interrupt the carousel
