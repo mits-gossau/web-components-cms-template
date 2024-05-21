@@ -56,7 +56,6 @@ export default class MacroCarousel extends Shadow() {
     this.macroCarousel = document.createElement('macro-carousel')
     // copy all kids into the macro-carousel
     Array.from(this.root.children).forEach(node => {
-      node.setAttribute('role', 'listitem')
       if (node.getAttribute('slot') || node.nodeName === 'STYLE') return false
       node.setAttribute('loading', 'eager') // must be eager, not that it loads once visible
       if (node.nodeName !== 'A') node.setAttribute('pointer-events', 'none') // firefox would drag the ghost image and interrupt the carousel
@@ -128,6 +127,7 @@ export default class MacroCarousel extends Shadow() {
       document.body.addEventListener('pause', this.focusEventListener, true)
     }
 
+
     setTimeout(() => {
       const carouselIndicators = this.root.querySelector('macro-carousel').querySelectorAll('macro-carousel-pagination-indicator')
 
@@ -139,8 +139,6 @@ export default class MacroCarousel extends Shadow() {
         if (!lastIndicator.classList.contains('last-indicator')) lastIndicator.classList.add('last-indicator')
       }
     }, 250);
-
-
   }
 
   disconnectedCallback() {
@@ -322,8 +320,27 @@ export default class MacroCarousel extends Shadow() {
           clearInterval(interval)
           this.macroCarouselReady()
         }
+        Array.from(this.root.querySelector('macro-carousel').children).forEach(node => {
+          if (node.tagName === 'DIV') node.setAttribute('aria-hidden', 'true')
+          else {
+            if (node.hasAttribute('role')) {
+              let currentRole = `${node.getAttribute('role')} listitem`
+              node.setAttribute('role', currentRole)
+            } else {
+              node.setAttribute('role', 'listitem')
+            }
+          }
+        })
+        Array.from(this.root.querySelector('macro-carousel').shadowRoot.querySelectorAll('div')).forEach(div => {
+          div.setAttribute('aria-hidden', 'true')
+          if (div.getAttribute('id').toLowerCase() === 'pagination') {
+            div.setAttribute('aria-hidden', 'false')
+            div.setAttribute('role', 'listitem')
+          }
+        })
       }, 100)
     })
+
   }
 
   /**
