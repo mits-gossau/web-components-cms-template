@@ -61,7 +61,7 @@ export default class Navigation extends Shadow() {
     this.root.appendChild(this.nav)
 
     if (this.isClassicNavigation) {
-      const closeIcon = this.root.querySelector('div.close-icon-wrapper > a-logo')
+      const closeIcon = this.root.querySelector('li.close-icon-wrapper > a-logo')
       closeIcon.addEventListener('click', () => this.parentElement.querySelector('a-menu-icon').click())
     }
   }
