@@ -173,8 +173,8 @@ export default class Header extends Shadow() {
         --a-menu-icon-background-color: var(--background-color, #777);
       }
       :host > header > a-title {
-        --header-title-width: 60%;
-        --header-title-width-mobile: 80%;
+        --title-width: 60%;
+        --title-width-mobile: 80%;
         z-index: var(--a-title-z-index, auto);
       }
       :host > header > a {
@@ -373,10 +373,11 @@ export default class Header extends Shadow() {
       }
       :host > header > a-menu-icon {
         --header-a-menu-icon-position-right: -0.5rem;
-        --header-a-menu-icon-position-top: 0.5rem;
+        --header-a-menu-icon-position-top: 0;
       }
       :host > header > a-title {
         --header-title-width: 80%;
+        --header-title-margin: 0.5rem max(2.2vw, 15px) 30px;
       }
     }
 
@@ -389,7 +390,8 @@ export default class Header extends Shadow() {
 
     @media only screen and (max-width: 500px){
       :host > header > a-title {
-        --header-title-width-mobile: 100%;
+        --header-title-width-mobile: 80%;
+        --header-title-font-size-mobile: 1.2rem;
       }
     }
   `, undefined, false, false, this.style)
