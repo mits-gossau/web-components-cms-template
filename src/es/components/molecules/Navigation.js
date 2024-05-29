@@ -331,18 +331,10 @@ export default class Navigation extends Shadow() {
       }
       @media only screen and (max-width: 1500px){
         :host {
-          width: 30% !important;
-        }
-      }
-      @media only screen and (max-width: 1000px){
-        :host {
-          width: 45% !important;
+          width: auto !important;
         }
       }
       @media only screen and (max-width: 600px){
-        :host {
-          width: 65% !important;
-        }
         :host .close-icon-wrapper {
           top: -2rem;
           right: -0.25rem;
