@@ -115,7 +115,7 @@ html {
     --footer-homepage-padding: var(--footer-padding);
     --footer-justify-content: space-between;
     --footer-logo-align-items: flex-end;
-    --footer-logo-container-flex-wrap-mobile: wrap;
+    --footer-logo-container-flex-wrap-mobile: nowrap;
     --footer-logo-container-justify-content-wrapped-mobile: space-between;
     --footer-logo-container-justify-content-wrapped: flex-end;
     --footer-logo-height-mobile: max(50px, 15vw);
