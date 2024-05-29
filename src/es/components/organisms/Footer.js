@@ -335,6 +335,15 @@ export default class Footer extends Shadow() {
             --logo-height: 2rem;
             --logo-width: 2rem;
           }
+          .logo-container {
+            gap: 1rem;
+          }
+          .logo-container > a-logo {
+            width: 50%;
+            --engagement-logo-width: 100%;
+            --engagement-logo-width-mobile: 100%;
+            --engagement-logo-text-padding-mobile: 0;
+          }
         }
       `
       /* ----------------------------------------------------------------------------- */
