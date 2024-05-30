@@ -35,7 +35,7 @@ html {
   --footer-flex-direction: column;
   --footer-flex-wrap: wrap;
   --footer-logo-align-items: center;
-  --footer-logo-container-flex-wrap-mobile: var(--footer-flex-wrap);
+  --footer-logo-container-flex-wrap-mobile: nowrap;
   --footer-logo-container-flex-wrap: var(--footer-flex-wrap);
   --footer-logo-container-justify-content-wrapped-mobile: var(--footer-logo-container-justify-content-wrapped);
   --footer-logo-container-justify-content-wrapped: center;
