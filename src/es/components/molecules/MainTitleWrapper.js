@@ -49,7 +49,7 @@ export default class MainTitleWrapper extends Shadow() {
       this.style.marginTop = this.mainTitleWrapperMarginTop
     })
     // I would not absolutely remove because its a nice feature, maybe we could use it on other projects
-    const h2ResizeObserver = new ResizeObserver((entries) => {
+    /*const h2ResizeObserver = new ResizeObserver((entries) => {
       const wrapper = entries[0]
       const wrapperWidth = wrapper.contentRect.width
       const h2Elem = entries[0].target.root.querySelector('h2')
@@ -66,18 +66,15 @@ export default class MainTitleWrapper extends Shadow() {
       }
 
       h2Elem.style.fontSize = updatedFontSizeRem + 'rem'
+    })*/
 
-      // @ts-ignore
-      clearTimeout(this.timeoutId)
-      this.timeoutId = setTimeout(() => {
-        this.styleTwo.textContent = /* css */`
-        :host {
-         animation: main-title-animation 0.35s ease-out forwards;
-        }
-        `
-      }, 75)
-    })
-
+    if (!document.referrer.includes(location.origin)) {
+      this.styleTwo.textContent = /* css */`
+      :host {
+        animation: main-title-animation 0.35s ease-out forwards;
+      }
+      `
+    }
 
     if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)
 
@@ -119,8 +116,8 @@ export default class MainTitleWrapper extends Shadow() {
         margin: auto;
         margin-top: ${this.mainTitleWrapperMarginTop};
         z-index: 5;
-        ${this.isAnimationShown ? '' : 'opacity: 0;'}
-        ${this.isAnimationShown ? '' : 'transform: translateY(50%);'}
+        ${this.isAnimationShown ? 'opacity: 1;' : 'opacity: 0;'}
+        ${this.isAnimationShown ? 'transform: translateY(0);' : 'transform: translateY(50%);'}
       }
       :host > * {
         z-index: 5;
