@@ -73,13 +73,13 @@ export default class Picture extends Shadow() {
   }
 
   connectedCallback() {
+    if (this.hasLandingAnimation) this.isAnimationShown = document.referrer.includes(location.origin)
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) {
       this.renderHTML()
       if (this.hasAttribute('preview')) this.renderHTML(undefined, this.getAttribute('preview'))
     }
     if (this.hasAttribute('open-modal')) this.addEventListener('click', this.clickListener)
-    this.isAnimationShown = true
   }
 
   disconnectedCallback() {
