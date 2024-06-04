@@ -32,7 +32,6 @@ export default class MainTitleWrapper extends Shadow() {
     this.isAnimationShown = false
     this.timeoutId = null
 
-
     const imgResizeObserver = new ResizeObserver((entries) => {
       const img = entries[0]
       const imgHeight = img.contentRect.height
@@ -49,9 +48,8 @@ export default class MainTitleWrapper extends Shadow() {
       }
       this.style.marginTop = this.mainTitleWrapperMarginTop
     })
-
+    // I would not absolutely remove because its a nice feature, maybe we could use it on other projects
     const h2ResizeObserver = new ResizeObserver((entries) => {
-
       const wrapper = entries[0]
       const wrapperWidth = wrapper.contentRect.width
       const h2Elem = entries[0].target.root.querySelector('h2')
@@ -82,7 +80,6 @@ export default class MainTitleWrapper extends Shadow() {
 
 
     if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)
-    if (this.titleWrapper) h2ResizeObserver.observe(this.titleWrapper)
 
     this.handleNavigation = event => {
       if (this.classList.contains('nav-open')) this.parentElement.querySelector('a-menu-icon').click()
@@ -90,9 +87,9 @@ export default class MainTitleWrapper extends Shadow() {
 
   }
   connectedCallback() {
+    this.isAnimationShown = document.referrer.includes(location.origin)
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.elementLink) this.elementLink.addEventListener('keyup', this.handleNavigation)
-    this.isAnimationShown = true
 
   }
 
@@ -131,7 +128,7 @@ export default class MainTitleWrapper extends Shadow() {
       :host > h2 {
         margin: 0 auto 1rem auto;
         font-family: var(--font-family-bold);
-        font-size: ${this.desktopMainTitleSize + 'rem'};
+        font-size: ${this.desktopMainTitleSize * 0.49 + 'rem'};
         line-height: 0.925;
       }
       :host > h4,
@@ -160,6 +157,63 @@ export default class MainTitleWrapper extends Shadow() {
           transform: translateY(0);
           opacity: 1;
          }
+      }
+      /*Special h2 title style */
+      @media only screen and (max-width: 1200px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.9 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 1100px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.85 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 1000px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.8 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 900px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.72 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 800px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.65 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 700px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.54 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 600px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.7 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 500px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.6 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 450px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.54 + 'rem'};
+        }
+      }
+      @media only screen and (max-width: 400px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize * 0.49 + 'rem'};
+        }
+      }
+      
+      @media only screen and (min-width: 1201px) {
+        :host > h2 {
+          font-size: ${this.desktopMainTitleSize + 'rem'};
+        }
       }
     `
     this.html = this.styleTwo

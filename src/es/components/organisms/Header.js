@@ -85,7 +85,7 @@ export default class Header extends Shadow() {
 
     setTimeout(() => {
       this.root.querySelector('header').querySelector('m-navigation').style.opacity = 1
-    }, 500);
+    }, 1000);
   }
 
   disconnectedCallback() {
@@ -299,8 +299,8 @@ export default class Header extends Shadow() {
           width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-width-mobile, 100%);
           max-width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-max-width-mobile, 100%);
           z-index: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-z-index-mobile, 2);
-          animation: slideOutRight 0.5s forwards ease-in-out;
           opacity: 0;
+          animation: slideOutRight 0.5s forwards ease-in-out;
         }
         :host > header > a {
           align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
