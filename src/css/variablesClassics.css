@@ -38,10 +38,10 @@ html {
     --carousel-p-margin: 0;
     --carousel-pagination-background-color-selected: white;
     --carousel-pagination-background-color: #FFED00;
-    --carousel-pagination-bottom: 3%;
+    --carousel-pagination-bottom: 10%;
     --carousel-pagination-position: absolute;
-    --carousel-pagination-width: 12px;
-    --carousel-pagination-height: 12px;
+    --carousel-pagination-width: 10px;
+    --carousel-pagination-height: 10px;
     --carousel-transition-duration: 1.6s;
     --color-hover-secondary: var(--color);
     --color-hover: var(--color);
@@ -115,7 +115,7 @@ html {
     --footer-homepage-padding: var(--footer-padding);
     --footer-justify-content: space-between;
     --footer-logo-align-items: flex-end;
-    --footer-logo-container-flex-wrap-mobile: nowrap;
+    --footer-logo-container-flex-wrap-mobile: wrap;
     --footer-logo-container-justify-content-wrapped-mobile: space-between;
     --footer-logo-container-justify-content-wrapped: flex-end;
     --footer-logo-height-mobile: max(50px, 15vw);
@@ -404,18 +404,6 @@ html {
 
     /*Added smooth scrolling*/
     scroll-behavior: smooth;
-}
 
-@media only screen and (min-width: 1000px){
-  html {
-    --content-width-not-web-component: 50%;
-  }
 }
-
-@media only screen and (min-width: 1350px){
-  html {
-    --content-width-not-web-component: 40%;
-  }
-}
-
 

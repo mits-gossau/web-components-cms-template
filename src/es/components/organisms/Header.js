@@ -85,7 +85,7 @@ export default class Header extends Shadow() {
 
     setTimeout(() => {
       this.root.querySelector('header').querySelector('m-navigation').style.opacity = 1
-    }, 1000);
+    }, 500);
   }
 
   disconnectedCallback() {
@@ -173,8 +173,8 @@ export default class Header extends Shadow() {
         --a-menu-icon-background-color: var(--background-color, #777);
       }
       :host > header > a-title {
-        --title-width: 60%;
-        --title-width-mobile: 80%;
+        --header-title-width: 60%;
+        --header-title-width-mobile: 80%;
         z-index: var(--a-title-z-index, auto);
       }
       :host > header > a {
@@ -299,8 +299,8 @@ export default class Header extends Shadow() {
           width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-width-mobile, 100%);
           max-width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-max-width-mobile, 100%);
           z-index: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-z-index-mobile, 2);
-          opacity: 0;
           animation: slideOutRight 0.5s forwards ease-in-out;
+          opacity: 0;
         }
         :host > header > a {
           align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
@@ -373,11 +373,10 @@ export default class Header extends Shadow() {
       }
       :host > header > a-menu-icon {
         --header-a-menu-icon-position-right: -0.5rem;
-        --header-a-menu-icon-position-top: 0;
+        --header-a-menu-icon-position-top: 0.5rem;
       }
       :host > header > a-title {
         --header-title-width: 80%;
-        --header-title-margin: 0.5rem max(2.2vw, 15px) 30px;
       }
     }
 
@@ -390,8 +389,7 @@ export default class Header extends Shadow() {
 
     @media only screen and (max-width: 500px){
       :host > header > a-title {
-        --header-title-width-mobile: 80%;
-        --header-title-font-size-mobile: 1.2rem;
+        --header-title-width-mobile: 100%;
       }
     }
   `, undefined, false, false, this.style)
@@ -411,7 +409,6 @@ export default class Header extends Shadow() {
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {
         const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '', namespaceFallback: this.hasAttribute('namespace-fallback') })
-        MenuIcon.setAttribute('tabindex', '0')
         MenuIcon.addEventListener('click', event => {
           this.header.classList.toggle('open')
           const prop = this.header.classList.contains('open') ? 'add' : 'remove'
@@ -421,7 +418,6 @@ export default class Header extends Shadow() {
             if (node.tagName === 'M-NAVIGATION') {
               const openedLinks = node.root.querySelectorAll('a-link.open')
               const openedLis = node.root.querySelectorAll('li.open')
-              const isNavigationOpen = this.header.classList.contains('open')
               if (openedLis.length > 0) openedLis.forEach(li => {
                 setTimeout(() => {
                   li.classList.remove('open')
@@ -432,12 +428,6 @@ export default class Header extends Shadow() {
                   link.classList.remove('open')
                 }, 500);
               })
-              if (isNavigationOpen) {
-                node.setAttribute('tabindex', '0')
-              }
-              if (!isNavigationOpen) {
-                node.setAttribute('tabindex', '-1')
-              }
             }
           })
         })

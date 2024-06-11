@@ -292,7 +292,6 @@ export default class Footer extends Shadow() {
           display: flex;
           justify-content: center;
           gap: 0.5rem;
-          margin-bottom: 1.5rem;
         }
         :host .logo-container.wrapped {
           align-items: center;
@@ -334,15 +333,6 @@ export default class Footer extends Shadow() {
             padding: 0 10%;
             --logo-height: 2rem;
             --logo-width: 2rem;
-          }
-          .logo-container {
-            gap: 1rem;
-          }
-          .logo-container > a-logo {
-            width: 50%;
-            --engagement-logo-width: 100%;
-            --engagement-logo-width-mobile: 100%;
-            --engagement-logo-text-padding-mobile: 0;
           }
         }
       `

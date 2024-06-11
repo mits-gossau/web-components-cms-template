@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta name="Description"
     content="Erfahre hier die neusten Informationen über die Klub-Konzerte des Migros-Kulturprozent-Classics.">
-  <link href=../../../favicon/classics/FAVICON_CLASSICS_KEY.ico rel="shortcut icon" type=image/x-icon>
+  <link href=../../../favicon/classics/FAVICON_CLASSICS_YELLOW.ico rel="shortcut icon" type=image/x-icon>
   <link href=../../../css/variablesClassics.css rel=stylesheet>
   <link href=../../../css/misc.css rel=stylesheet>
   <link href=../../../css/fonts.css rel=stylesheet>
@@ -18,8 +18,7 @@
 
 <body>
   <p-general>
-
-    <o-header mobile-breakpoint="100000px" no-scroll="nav-open" menu-icon="true" namespace="header-" role="heading"
+    <o-header mobile-breakpoint="100000px" no-scroll="nav-open" menu-icon="true" namespace="header-" role="header"
       flyer-transitionend="">
       <a-title namespace="header-title-" wrap="separated-span" no-scroll="nav-open" text-shadow="2px 4px 10px black">
         <a href="/">
@@ -32,9 +31,9 @@
       <m-navigation tabindex="-1" mobile-breakpoint="0px" hover="false" namespace=navigation- no-scroll="nav-open"
         is-classic-navigation="true">
         <ul>
-          <li class="close-icon-wrapper">
-            <a-logo tabindex="0" src=../../../img/close-icon-classics.svg alt="close" namespace="header-logo-"></a-logo>
-          </li>
+          <div class="close-icon-wrapper">
+            <a-logo src=../../../img/close-icon-classics.svg alt="close" namespace="header-logo-"></a-logo>
+          </div>
           <li>
             <a href="#">News</a>
             <ul>
@@ -116,7 +115,7 @@
             <a href="">EN</a>
           </li>
           <li class="ticket-btn-wrapper">
-            <a href="">Tickets kaufen</a>
+            <a>Tickets kaufen</a>
           </li>
         </ul>
       </m-navigation>
@@ -124,14 +123,14 @@
         custom-mobile-width-%="90" picture-load namespace=picture- defaultSource="../../../img/header-imgs/1.png"
         alt="Some Alt text">
       </a-picture>
-
       <m-main-title-wrapper class="classics-main-title-wrapper" main-desktop-title-size-rem="5" custom-margin-top-px="0"
         custom-mobile-margin-top-px="20">
         <h2>BRUCKNERS <br> NEUNTE </h2>
-        <h3>MO, 15*04*2024 <br> 19.30 UHR <br> TONHALLE ZÜRICH</h3>
-        <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="true"
-          base-underlined="false" general-color="#FFED00">
-          <a href="#">Erfahre mehr <a-arrow direction=left></a-arrow></a>
+        <h4>MO, 15*04*2024 <br> 19.30 UHR <br> TONHALLE ZÜRICH</h4>
+        <a-link text-transform="uppercase">
+          <a class="has-border-bottom" href="#">Erfahre mehr
+            <a-arrow direction=left></a-arrow>
+          </a>
         </a-link>
       </m-main-title-wrapper>
     </o-header>
@@ -242,57 +241,9 @@
           }]'></a-picture>
         </third-party-macro-carousel>
 
-        <a class="title-page-link" href="/">
-          <h3>Lets go back to Home</h3>
-        </a>
-        <!-- 
-        IMPORTANT: 
-        <a-link>
-        ONLY ONE ATTRIBUTE FROM
-        hover-underlined 
-        hover-remove-underlined
-        base-underlined
-        CAN BE TRUE!!
-        -->
-        <div>
-          <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="false"
-            base-underlined="true" general-color="#FFED00">
-            <a href="#"><a-arrow direction="left"></a-arrow>Erfahre mehr</a>
-          </a-link>
-
-          <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="false"
-            base-underlined="true" general-color="#FFED00">
-            <a href="#">Erfahre mehr<a-arrow direction="left"></a-arrow></a>
-          </a-link>
-
-          <a-link text-transform="uppercase" hover-underlined="true" hover-remove-underlined="false"
-            base-underlined="false" general-color="white">
-            <a href="#"><a-arrow direction="right"></a-arrow>Erfahre mehr</a>
-          </a-link>
-
-          <a-link text-transform="uppercase" hover-underlined="true" hover-remove-underlined="false"
-            base-underlined="false" general-color="white">
-            <a href="#">Erfahre mehr<a-arrow direction="right"></a-arrow></a>
-          </a-link>
-
-          <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="true"
-            base-underlined="false" general-color="red">
-            <a href="#">Erfahre mehr <a-arrow direction="down"></a-arrow></a>
-          </a-link>
-
-          <a-link text-transform="uppercase" hover-underlined="false" hover-remove-underlined="true"
-            base-underlined="false" general-color="red">
-            <a href="#"><a-arrow direction="down"></a-arrow>Erfahre mehr</a>
-          </a-link>
-
-          <a-link text-transform="uppercase">
-            <a href="#">Erfahre mehr <a-arrow direction="up-right"></a-arrow></a>
-          </a-link>
-
-          <a-link text-transform="uppercase">
-            <a href="#"><a-arrow direction="up-right"></a-arrow>Erfahre mehr</a>
-          </a-link>
-        </div>
+        <a-link text-transform="uppercase">
+          <a href="#scroll-text">Test scrolling</a>
+        </a-link>
 
         <h3>Daniel Müller-Schott</h3>
         <p>Der Münchner Cellist Daniel Müller-Schott wurde als Gewinner des Ersten Preises beim Tschaikowsky-Wettbewerb
@@ -425,6 +376,7 @@
                 <a href="#">EN</a>
               </a-link>
             </li>
+            <br>
             <li>
               <p>
                 <a-link namespace="footer-" text-transform="uppercase">
