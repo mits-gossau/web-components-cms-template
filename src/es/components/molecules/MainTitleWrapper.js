@@ -25,12 +25,12 @@ export default class MainTitleWrapper extends Shadow() {
     this.customMarginTop = this.getAttribute('custom-margin-top-px') ? this.getAttribute('custom-margin-top-px') : 0
     this.customMobileMarginTop = this.getAttribute('custom-mobile-margin-top-px') ? this.getAttribute('custom-mobile-margin-top-px') : this.customMarginTop
     this.mobileBreakPoint = this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'
-    this.elementLink = this.root.querySelector('a-link') ? this.root.querySelector('a-link').querySelector('a') : null
     this.mobileBreakPoint = +this.mobileBreakPoint.slice(0, -2);
     this.mobileOffset = 0
     this.desktopOffset = 0
     this.isAnimationShown = false
     this.timeoutId = null
+
 
     const imgResizeObserver = new ResizeObserver((entries) => {
       const img = entries[0]
@@ -48,8 +48,9 @@ export default class MainTitleWrapper extends Shadow() {
       }
       this.style.marginTop = this.mainTitleWrapperMarginTop
     })
-    // I would not absolutely remove because its a nice feature, maybe we could use it on other projects
-    /*const h2ResizeObserver = new ResizeObserver((entries) => {
+
+    const h2ResizeObserver = new ResizeObserver((entries) => {
+
       const wrapper = entries[0]
       const wrapperWidth = wrapper.contentRect.width
       const h2Elem = entries[0].target.root.querySelector('h2')
@@ -66,28 +67,25 @@ export default class MainTitleWrapper extends Shadow() {
       }
 
       h2Elem.style.fontSize = updatedFontSizeRem + 'rem'
-    })*/
 
-    if (!document.referrer.includes(location.origin)) {
-      this.styleTwo.textContent = /* css */`
-      :host {
-        animation: main-title-animation 0.35s ease-out forwards;
-      }
-      `
-    }
+      // @ts-ignore
+      clearTimeout(this.timeoutId)
+      this.timeoutId = setTimeout(() => {
+        this.styleTwo.textContent = /* css */`
+        :host {
+         animation: main-title-animation 0.3s linear forwards;
+        }
+        `
+      }, 50)
+    })
 
     if (this.resizeImg) imgResizeObserver.observe(this.resizeImg)
-
-    this.handleNavigation = event => {
-      if (this.classList.contains('nav-open')) this.parentElement.querySelector('a-menu-icon').click()
-    }
+    if (this.titleWrapper) h2ResizeObserver.observe(this.titleWrapper)
 
   }
   connectedCallback() {
-    this.isAnimationShown = document.referrer.includes(location.origin)
     if (this.shouldComponentRenderCSS()) this.renderCSS()
-    if (this.elementLink) this.elementLink.addEventListener('keyup', this.handleNavigation)
-
+    this.isAnimationShown = true
   }
 
   /**
@@ -116,8 +114,8 @@ export default class MainTitleWrapper extends Shadow() {
         margin: auto;
         margin-top: ${this.mainTitleWrapperMarginTop};
         z-index: 5;
-        ${this.isAnimationShown ? 'opacity: 1;' : 'opacity: 0;'}
-        ${this.isAnimationShown ? 'transform: translateY(0);' : 'transform: translateY(50%);'}
+        ${this.isAnimationShown ? '' : 'opacity: 0;'}
+        ${this.isAnimationShown ? '' : 'transform: translateY(100%);'}
       }
       :host > * {
         z-index: 5;
@@ -125,11 +123,10 @@ export default class MainTitleWrapper extends Shadow() {
       :host > h2 {
         margin: 0 auto 1rem auto;
         font-family: var(--font-family-bold);
-        font-size: ${this.desktopMainTitleSize * 0.49 + 'rem'};
-        line-height: 0.925;
+        font-size: ${this.desktopMainTitleSize + 'rem'};
+        line-height: 0.85;
       }
-      :host > h4,
-      :host > h3 {
+      :host > h4 {
         margin: 0 auto 1rem auto;
         font-family: var(--font-family-bold);
         line-height: 1.2;
@@ -147,70 +144,10 @@ export default class MainTitleWrapper extends Shadow() {
         }
       }
       @keyframes main-title-animation {
-        40% {
-          opacity: 1;
-        }
         100% {	
           transform: translateY(0);
           opacity: 1;
          }
-      }
-      /*Special h2 title style */
-      @media only screen and (max-width: 1200px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.9 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 1100px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.85 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 1000px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.8 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 900px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.72 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 800px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.65 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 700px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.54 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 600px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.7 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 500px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.6 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 450px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.54 + 'rem'};
-        }
-      }
-      @media only screen and (max-width: 400px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize * 0.49 + 'rem'};
-        }
-      }
-      
-      @media only screen and (min-width: 1201px) {
-        :host > h2 {
-          font-size: ${this.desktopMainTitleSize + 'rem'};
-        }
       }
     `
     this.html = this.styleTwo

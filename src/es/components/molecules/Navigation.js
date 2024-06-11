@@ -47,7 +47,6 @@ export default class Navigation extends Shadow() {
     super(...args)
 
     this.nav = document.createElement('nav')
-    this.nav.setAttribute('role', 'navigation')
     this.hidden = true
     this.isClassicNavigation = this.getAttribute('is-classic-navigation') === 'true'
 
@@ -61,7 +60,7 @@ export default class Navigation extends Shadow() {
     this.root.appendChild(this.nav)
 
     if (this.isClassicNavigation) {
-      const closeIcon = this.root.querySelector('li.close-icon-wrapper > a-logo')
+      const closeIcon = this.root.querySelector('div.close-icon-wrapper > a-logo')
       closeIcon.addEventListener('click', () => this.parentElement.querySelector('a-menu-icon').click())
     }
   }
@@ -331,10 +330,18 @@ export default class Navigation extends Shadow() {
       }
       @media only screen and (max-width: 1500px){
         :host {
-          width: auto !important;
+          width: 30% !important;
+        }
+      }
+      @media only screen and (max-width: 1000px){
+        :host {
+          width: 45% !important;
         }
       }
       @media only screen and (max-width: 600px){
+        :host {
+          width: 65% !important;
+        }
         :host .close-icon-wrapper {
           top: -2rem;
           right: -0.25rem;

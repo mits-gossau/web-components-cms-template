@@ -10,7 +10,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * @class Arrow
  * @type {CustomElementConstructor}
  * @attribute {
- *  {up, right, down, left, up-right} [direction=left]
+ *  {up, right, down, left} [direction=left]
  * }
  * @css {
  *  --color [#777]
@@ -24,8 +24,6 @@ export default class Arrow extends Shadow() {
   }
 
   connectedCallback() {
-    // @ts-ignore
-    this.customColor = getComputedStyle(this).getPropertyValue('--color')
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
   }
@@ -87,9 +85,6 @@ export default class Arrow extends Shadow() {
       :host > span.left{
         transform: rotate(0deg);
       }
-      :host > span.up-right{
-        transform: rotate(-45deg);
-      }
     `
   }
 
@@ -102,7 +97,7 @@ export default class Arrow extends Shadow() {
     this.html = /* html */`
       <span class=${this.getAttribute('direction')}><svg width="17" height="21" viewBox="0 0 17 21" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_1038_650)">
-      <path d="M7.17199 5.61719L13.3909 11.8361H0.953125V13.2247H13.3909L7.17199 19.4436H9.13426L16.0475 12.5304L9.13426 5.61719H7.17199Z" fill="${this.customColor || '#777'}"/>
+      <path d="M7.17199 5.61719L13.3909 11.8361H0.953125V13.2247H13.3909L7.17199 19.4436H9.13426L16.0475 12.5304L9.13426 5.61719H7.17199Z" fill="#FFED00"/>
       </g>
       <defs>
       <clipPath id="clip0_1038_650">

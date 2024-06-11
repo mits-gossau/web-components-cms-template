@@ -21,7 +21,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  * }
  */
 export default class Body extends Shadow() {
-  constructor(...args) {
+  constructor (...args) {
     super(...args)
 
     this.clickAnchorEventListener = event => {
@@ -30,7 +30,7 @@ export default class Body extends Shadow() {
     }
   }
 
-  connectedCallback() {
+  connectedCallback () {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     document.body.addEventListener(this.getAttribute('click-anchor') || 'click-anchor', this.clickAnchorEventListener)
@@ -40,7 +40,7 @@ export default class Body extends Shadow() {
     }
   }
 
-  disconnectedCallback() {
+  disconnectedCallback () {
     document.body.removeEventListener(this.getAttribute('click-anchor') || 'click-anchor', this.clickAnchorEventListener)
   }
 
@@ -49,7 +49,7 @@ export default class Body extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderCSS() {
+  shouldComponentRenderCSS () {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -58,7 +58,7 @@ export default class Body extends Shadow() {
    *
    * @return {boolean}
    */
-  shouldComponentRenderHTML() {
+  shouldComponentRenderHTML () {
     return !this.root.querySelector('main')
   }
 
@@ -67,7 +67,7 @@ export default class Body extends Shadow() {
    *
    * @return {void}
    */
-  renderCSS() {
+  renderCSS () {
     this.css = /* css */`
       :host {
         background-color: var(--background-color, white);
@@ -170,10 +170,6 @@ export default class Body extends Shadow() {
         text-underline-offset: var(--a-text-underline-offset, unset);
         display: var(--a-display, inline);
         margin: var(--a-margin, var(--content-spacing, unset)) auto;
-      }
-      :host > main a.title-page-link,
-      :host > main a.title-page-link:hover {
-        text-decoration:none;
       }
       :host > main * a {
         display: var(--any-a-display, var(--a-display, inline));
@@ -305,7 +301,7 @@ export default class Body extends Shadow() {
    *
    * @return {void}
    */
-  renderHTML() {
+  renderHTML () {
     const main = this.root.appendChild(document.createElement('main'))
     Array.from(this.root.children).forEach(node => {
       if (node === main || node.getAttribute('slot') || node.nodeName === 'STYLE') return false

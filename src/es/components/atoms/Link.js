@@ -32,27 +32,6 @@ export default class Link extends Shadow() {
     super(...args)
 
     this._a = a
-    this.hasArrow = !!this.a.querySelector('a-arrow')
-    this.arrowNode = this.a.querySelector('a-arrow')
-    this.isArrowHasRightDirection = this.arrowNode?.getAttribute('direction') === 'right'
-
-    this.baseUnderlined = this.getAttribute('base-underlined') === 'true'
-    this.generalColor = this.getAttribute('general-color')
-    this.hoverUnderlined = this.getAttribute('hover-underlined') === 'true'
-    this.hoverRemoveUnderlined = this.getAttribute('hover-remove-underlined') === 'true'
-
-    if (this.baseUnderlined && this.hasArrow) {
-      this.a.classList.contains('has-border-bottom') ? '' : this.a.classList.add('has-border-bottom')
-    }
-
-    if (this.hoverUnderlined && this.hasArrow) {
-      this.a.classList.contains('has-hover-border-bottom') ? '' : this.a.classList.add('has-hover-border-bottom')
-    }
-
-    if (this.hoverRemoveUnderlined && this.hasArrow) {
-      this.a.classList.contains('has-hover-remove-border-bottom') ? '' : this.a.classList.add('has-hover-remove-border-bottom')
-    }
-
   }
 
   connectedCallback() {
@@ -101,38 +80,15 @@ export default class Link extends Shadow() {
             grid-row: 1;
           }
           :host > a:hover ~ ${this.hitAreaTagName} {
-            color: ${this.generalColor || 'var(--color-hover, var(--color, yellow))'};
+            color: var(--color-hover, var(--color, yellow));
             text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
           }
         `
         : ''}
-        ${this.hasArrow
-        ? /* css */`
-            :host > a {
-              --display: flex;
-              --gap: 7px;
-              --width: fit-content;
-            }
-          `
-        : ''}
-        ${this.generalColor
-        ? /* css */`
-              :host > a > a-arrow {
-                --color: ${this.generalColor || 'var(--color, red)'};
-              }
-            `
-        : ''}
-        ${this.isArrowHasRightDirection
-        ? /* css */`
-                :host > a > a-arrow {
-                  transform: translateY(4px);
-                }
-              `
-        : ''}
       :host > a, :host > ${this.hitAreaTagName} {
         position: relative;
         box-sizing: border-box;
-        color: ${this.generalColor || 'var(--color, red)'};
+        color: var(--color, red);
         display: var(--display, block);
         font-size: var(--font-size, 1rem);
         line-height: var(--line-height, normal);
@@ -158,39 +114,15 @@ export default class Link extends Shadow() {
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: ${this.generalColor || 'var(--color, red)'};
-      }
-      :host > a.has-hover-border-bottom::after, :host > ${this.hitAreaTagName}.has-hover-border-bottom::after {
-        content: '';
-        position: absolute;
-        bottom: 10px;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: transparent;
-      }
-      :host > a.has-hover-border-bottom:hover::after, :host > ${this.hitAreaTagName}.has-hover-border-bottom:hover::after {
-        background-color: ${this.generalColor || 'var(--color, red)'};
-      }
-      :host > a.has-hover-remove-border-bottom::after, :host > ${this.hitAreaTagName}.has-hover-remove-border-bottom::after {
-        content: '';
-        position: absolute;
-        bottom: 10px;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: ${this.generalColor || 'var(--color, red)'};
-      }
-      :host > a.has-hover-remove-border-bottom:hover::after, :host > ${this.hitAreaTagName}.has-hover-remove-border-bottom:hover::after {
-        background-color: transparent;
+        background-color: var(--color, red);
       }
       :host(.active) > a, :host(.active) > a ~ ${this.hitAreaTagName} {
-        color: ${this.generalColor || 'var(--color-active, var(--color-hover, var(--color, yellow)))'};
+        color: var(--color-active, var(--color-hover, var(--color, yellow)));
         text-decoration: var(--text-decoration-active, var(--text-decoration-hover, var(--text-decoration, none)));
         font-family: var(--font-family-active, var(--font-family-hover));
       }
       :host > a:hover, :host > a:hover ~ ${this.hitAreaTagName} {
-        color: ${this.generalColor || 'var(--color-hover, var(--color, yellow))'};
+        color: var(--color-hover, var(--color, yellow));
         text-decoration: var(--text-decoration-hover, var(--text-decoration, none));
         font-family: var(--font-family-hover);
       }
@@ -202,7 +134,7 @@ export default class Link extends Shadow() {
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > a, :host > ${this.hitAreaTagName} {
-          color: ${this.generalColor || 'var(--color-mobile, var(--color, inherit))'};
+          color:var(--color-mobile, var(--color, inherit));
           display: var(--display-mobile, var(--display, block));
           line-height: var(--line-height-mobile, var(--line-height, normal));
         }
