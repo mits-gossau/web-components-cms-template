@@ -175,9 +175,9 @@ export default class Form extends Shadow() {
     if (form) {
       let formData = '';
       [...this.root.querySelectorAll('input')].forEach(i => {
-        if (i && (i.getAttribute('type') !== 'radio' || i.checked) &&
-            (i.getAttribute('type') !== 'checkbox' || i.checked)) {
-          formData += `${i.getAttribute('name')}=${i.value || i.getAttribute('value')}&`
+        if (i && (i.getAttribute('type') !== 'radio' || i.checked) && (i.getAttribute('type') !== 'checkbox' || i.checked) && i.getAttribute('name') && i.getAttribute('value')){
+		  if (formData !== '') formData += '&'
+          formData += `${i.getAttribute('name')}=${encodeURIComponent(i.value || i.getAttribute('value'))}`
         }
       })
       return formData
@@ -528,13 +528,6 @@ export default class Form extends Shadow() {
             }, { once: true })
           }
         })
-      // spam protection
-      if (this.getAttribute('type') === 'newsletter') {
-        this.emptyInput = document.createElement('input')
-        this.emptyInput.type = 'text'
-        this.emptyInput.id = 'oceans'
-        this.form.appendChild(this.emptyInput)
-      }
       // TODO: Textarea support => https://github.com/roli81/web-components-cms-template-base/blob/main/src/es/components/molecules/ContactForm.js
       Array.from(this.root.querySelectorAll('button')).forEach(button => {
         const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-button') || this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
