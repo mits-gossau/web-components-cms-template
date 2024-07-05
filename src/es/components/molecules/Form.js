@@ -174,7 +174,7 @@ export default class Form extends Shadow() {
   getAllInputValuesAsUrlParams (form) {
     if (form) {
       let formData = '';
-      [...this.root.querySelectorAll('input')].forEach(i => {
+      [...form.querySelectorAll('input,a-input')].forEach(i => {
         if (i && (i.getAttribute('type') !== 'radio' || i.checked) && (i.getAttribute('type') !== 'checkbox' || i.checked) && i.getAttribute('name') && i.getAttribute('value')){
 		  if (formData !== '') formData += '&'
           formData += `${i.getAttribute('name')}=${encodeURIComponent(i.value || i.getAttribute('value'))}`
