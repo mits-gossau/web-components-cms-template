@@ -36,9 +36,10 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  {string} [no-scroll="no-scroll"]
  *  {has} [flyer-transitionend=n.a.] trigger the animate class animations and early set children to no-scroll aka. open
  *  {has} [sticky] make header sticky
+ *  {boolean} [has-background-img]
  * }
  */
-export default class Header extends Shadow() {
+export default class ClassicsHeader extends Shadow() {
   constructor(...args) {
     super(...args)
 
@@ -81,6 +82,10 @@ export default class Header extends Shadow() {
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (this.hasAttribute('flyer-transitionend')) document.body.addEventListener(this.getAttribute('flyer-transitionend') || 'flyer-transitionend', this.transitionendListener, { once: true })
     if (this.hasAttribute('sticky')) self.addEventListener('scroll', this.scrollListener, { once: true })
+
+    setTimeout(() => {
+      this.root.querySelector('header').querySelector('m-navigation').style.opacity = 1
+    }, 1000);
   }
 
   disconnectedCallback() {
@@ -120,6 +125,7 @@ export default class Header extends Shadow() {
         z-index: var(--z-index, 100);
         text-align: var(--text-align, initial);
         background-color: var(--background-color, transparent);
+        --header-position: relative;
       }
       :host > * {
         font-size: var(--font-size, 1rem);
@@ -146,6 +152,17 @@ export default class Header extends Shadow() {
       :host > header.open {
         background-color: var(--background-color-open, var(--background-color, black));
       }
+      :host > header.open::after {
+        animation: fadeIn 0.25s forwards 0.25s ease-in-out;
+        position: fixed;
+        z-index: 6;
+        content:'';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: transparent;
+      }
       :host > header.animate {
         background: linear-gradient(to bottom, var(--background-color-open) 0%, var(--background-color-open) 50%, var(--background-color) 50%, var(--background-color) 100%);
         animation: backgroundAnimation var(--background-animation, 0.5s ease);
@@ -154,6 +171,11 @@ export default class Header extends Shadow() {
       }
       :host > header.animate > a-menu-icon {
         --a-menu-icon-background-color: var(--background-color, #777);
+      }
+      :host > header > a-title {
+        --title-width: 60%;
+        --title-width-mobile: 80%;
+        z-index: var(--a-title-z-index, auto);
       }
       :host > header > a {
         align-self: var(--a-align-self, var(--align-self, auto));
@@ -183,6 +205,10 @@ export default class Header extends Shadow() {
         display: none;
         --a-menu-icon-background-color: var(--color, #777);
       }
+      :host > header > a-picture {
+        position:absolute;
+        top: 0;
+      }
       /* sticky header classes */
       :host([sticky]) {
         position: sticky;
@@ -207,6 +233,34 @@ export default class Header extends Shadow() {
         0%{background-position-y:100%}
         100%{background-position-y:0%}
       }
+      @keyframes slideInRight {
+        0% {
+          background-color: white;
+          right: -100%;
+        }
+        100% {
+          right: -6%;
+        }
+      }
+      @keyframes slideOutRight {
+        0% {
+          right: -6%;
+        }
+        99% {
+          background-color: white;
+
+        }
+        100% {
+          right: -100%;
+          background-color: transparent;
+        }
+      }
+      
+      @keyframes fadeIn {
+        100% {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > * {
           margin: var(--content-spacing-mobile, 0) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
@@ -226,11 +280,13 @@ export default class Header extends Shadow() {
           position: var(--position-open-mobile, var(--position-open, var(--position, static)));
           top: var(--top-open-mobile, var(--top-open, var(--top, auto)));
           left: var(--left-open-mobile, var(--left-open, var(--position, auto)));
-          width: var(--width-open-mobile, var(--width-open, var(--width, auto)));
+          /* width: var(--width-open-mobile, var(--width-open, var(--width, auto)));*/
+          
         }
         :host > header > ${this.getAttribute('m-navigation') || 'm-navigation'} {
-          display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, none);
-          left: 0;
+          display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, block);
+          left: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-left-mobile, "");
+          right: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-right-mobile, "");
           background-color: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-background-color-mobile, transparent);
           height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-mobile, 0);
           overflow: hidden;
@@ -240,7 +296,11 @@ export default class Header extends Shadow() {
           transition: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-transition, all 0.2s ease);
           top: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-top-mobile, var(--height-mobile, 50px));
           padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0);
-          width: 100%;
+          width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-width-mobile, 100%);
+          max-width: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-max-width-mobile, 100%);
+          z-index: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-z-index-mobile, 2);
+          opacity: 0;
+          animation: slideOutRight 0.5s forwards ease-in-out;
         }
         :host > header > a {
           align-self: var(--a-align-self-mobile, var(--a-align-self, var(--align-self, auto)));
@@ -249,14 +309,14 @@ export default class Header extends Shadow() {
           margin: var(--a-margin-mobile, var(--a-margin, 0));
           order: var(--order-mobile, var(--order, 1));
         }
-        :host > header > a-title {
-          z-index: var(--a-title-z-index, auto);
-        }
+      
         :host > header.open > ${this.getAttribute('m-navigation') || 'm-navigation'} {
           display: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-display-mobile, block));
           height: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-height-open-mobile, 100vh);
           overflow-y: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-overflow-y-open-mobile, auto);
           padding: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-open-mobile, var(--${this.getAttribute('m-navigation') || 'm-navigation'}-padding-mobile, 0));
+          right: var(--${this.getAttribute('m-navigation') || 'm-navigation'}-right-open-mobile, "");
+          animation: slideInRight 0.3s forwards ease-in-out;
         }
         :host  > header > a-menu-icon{
           align-self: var(--a-menu-icon-align-self-mobile, var(--a-menu-icon-align-self, var(--align-self, auto)));
@@ -272,6 +332,69 @@ export default class Header extends Shadow() {
         }
       }
     `
+
+    this.setCss(/* CSS */`
+    :host > header {
+      --header-m-navigation-background-color-mobile: white;
+      --header-m-navigation-width-mobile: 33%;
+      --header-m-navigation-max-width-mobile: 85%;
+      --header-m-navigation-padding-open-mobile: 2rem;
+      --header-m-navigation-padding-mobile: 2rem;
+      --header-m-navigation-z-index-mobile: 7;
+      --header-m-navigation-right-mobile: -100%;
+      --header-m-navigation-top-mobile: 0;
+      --header-position-open-mobile: relative;
+      --navigation-align-items: flex-start;
+      --header-a-menu-icon-display-open-mobile: none;
+    }
+    :host > header.open {}
+    :host > header > a-picture {
+    --a-title-z-index: 5;
+    --picture-margin: 0 auto;
+    }
+    :host > header > a-title {
+      z-index: 5;
+      --header-title-height: 95px;
+    }
+    :host > header > a-menu-icon {
+      --header-a-menu-icon-background-color: var(--color);
+      --header-a-menu-icon-z-index: 6;
+      --header-a-menu-icon-position: absolute;
+      --header-a-menu-icon-position-right: 0;
+      --header-a-menu-icon-position-top: 1rem;
+    }
+    :host > header.open > a-menu-icon {
+      --header-a-menu-icon-background-color: transparent;
+    }
+
+    @media only screen and (max-width: 700px){
+      :host > header {
+        --header-a-menu-icon-width: min(30px, 12vw);
+      }
+      :host > header > a-menu-icon {
+        --header-a-menu-icon-position-right: -0.5rem;
+        --header-a-menu-icon-position-top: 0;
+      }
+      :host > header > a-title {
+        --header-title-width: 80%;
+        --header-title-margin: 0.5rem max(2.2vw, 15px) 30px;
+      }
+    }
+
+    @media only screen and (max-width: 600px){
+      :host > header {
+        --header-m-navigation-padding-open-mobile: 3rem 2rem 2rem 2rem;
+        --header-m-navigation-padding-mobile: 3rem 2rem 2rem 2rem;
+      }
+    }
+
+    @media only screen and (max-width: 500px){
+      :host > header > a-title {
+        --header-title-width-mobile: 80%;
+        --header-title-font-size-mobile: 1.2rem;
+      }
+    }
+  `, undefined, false, false, this.style)
   }
 
   /**
@@ -288,12 +411,34 @@ export default class Header extends Shadow() {
     if (this.getAttribute('menu-icon')) {
       this.loadChildComponents().then(children => {
         const MenuIcon = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-menu-icon-` : '', namespaceFallback: this.hasAttribute('namespace-fallback') })
+        MenuIcon.setAttribute('tabindex', '0')
         MenuIcon.addEventListener('click', event => {
           this.header.classList.toggle('open')
           const prop = this.header.classList.contains('open') ? 'add' : 'remove'
           document.documentElement.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
           Array.from(this.header.children).forEach(node => {
             node.classList[prop](this.getAttribute('no-scroll') || 'no-scroll')
+            if (node.tagName === 'M-NAVIGATION') {
+              const openedLinks = node.root.querySelectorAll('a-link.open')
+              const openedLis = node.root.querySelectorAll('li.open')
+              const isNavigationOpen = this.header.classList.contains('open')
+              if (openedLis.length > 0) openedLis.forEach(li => {
+                setTimeout(() => {
+                  li.classList.remove('open')
+                }, 500);
+              })
+              if (openedLinks.length > 0) openedLinks.forEach(link => {
+                setTimeout(() => {
+                  link.classList.remove('open')
+                }, 500);
+              })
+              if (isNavigationOpen) {
+                node.setAttribute('tabindex', '0')
+              }
+              if (!isNavigationOpen) {
+                node.setAttribute('tabindex', '-1')
+              }
+            }
           })
         })
         this.header.appendChild(MenuIcon)
@@ -301,6 +446,7 @@ export default class Header extends Shadow() {
     }
     if (this.hasAttribute('sticky')) this.classList.add('top')
     self.addEventListener('resize', event => document.documentElement.classList.remove(this.getAttribute('no-scroll') || 'no-scroll'))
+    this.html = this.style
   }
 
   /**
@@ -333,5 +479,16 @@ export default class Header extends Shadow() {
 
   get mNavigation() {
     return this.root.querySelector(this.getAttribute('m-navigation') || 'm-navigation')
+  }
+
+  get style() {
+    return (
+      this._style ||
+      (this._style = (() => {
+        const style = document.createElement('style')
+        style.setAttribute('protected', 'true')
+        return style
+      })())
+    )
   }
 }
