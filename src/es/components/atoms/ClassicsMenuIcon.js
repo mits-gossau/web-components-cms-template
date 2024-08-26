@@ -21,7 +21,7 @@ import { Shadow } from '../prototypes/Shadow.js'
  *  --transition [0.2s]
  * }
  */
-export default class MenuIcon extends Shadow() {
+export default class ClassicsMenuIcon extends Shadow() {
   constructor(...args) {
     super(...args)
 
@@ -29,16 +29,25 @@ export default class MenuIcon extends Shadow() {
     this.barClass = this.getAttribute('barClass') ? this.getAttribute('barClass') : 'bar'
 
     this.clickListener = event => this.toggleAnimationClass()
+    this.enterEventListener = event => {
+      if ((event.keyCode || event.which) == 13) {
+        this.click()
+        this.parentElement.querySelector('m-navigation').root.querySelector('nav > ul > li > a-link').root.querySelector('a').focus()
+      }
+    }
   }
 
   connectedCallback() {
     if (this.shouldComponentRenderCSS()) this.renderCSS()
     if (this.shouldComponentRenderHTML()) this.renderHTML()
     if (!this.hasAttribute('no-click')) this.addEventListener('click', this.clickListener)
+    if (!this.hasAttribute('no-click')) this.addEventListener('keyup', this.enterEventListener)
   }
 
   disconnectedCallback() {
     if (!this.hasAttribute('no-click')) this.removeEventListener('click', this.clickListener)
+    if (!this.hasAttribute('no-click')) this.removeEventListener('keyup', this.enterEventListener)
+
   }
 
   /**
@@ -73,6 +82,13 @@ export default class MenuIcon extends Shadow() {
         padding: var(--padding, 0 calc(var(--width, 35px) / 4)) !important;
         margin: var(--margin, 0);
         transition: var(--transition, 0.2s);
+        z-index: var(--z-index, 1);
+        position: var(--position, static);
+        left: var(--position-left, "");
+        right: var(--position-right, "");
+        top: var(--position-top, "");
+        bottom: var(--position-bottom, "");
+
       }
       :host(.${this.openClass}) {
         padding: var(--padding-open, 0 calc(var(--width, 35px) / 4)) !important;
@@ -87,19 +103,20 @@ export default class MenuIcon extends Shadow() {
       }
       .${this.barClass}2 {
         margin: var(--spacing, var(--height, 5px)) 0;
-        transition: var(--transition, 0.2s);
+        transition: var(--bar-2-transition, 0.2s);
       }
       /* Rotate first ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}1, :host(.${this.openClass}) .${this.barClass}2 {
-        transform: var(--one-transform, rotate(-45deg) translateY(calc(var(--height, 5px) * 5.5 / 2)));
+        transform: var(--one-transform, rotate(-30deg) translateY(calc(var(--height, 5px) * 5.5 / 2)));
       }
       /* Fade out the second ${this.barClass} */
-      :host(.${this.openClass}) .${this.barClass}2 {
+      :host(.${this.openClass}) .${this.barClass}1 {
         opacity: 0;
       }
+     
       /* Rotate last ${this.barClass} */
       :host(.${this.openClass}) .${this.barClass}3 {
-        transform: var(--two-transform, rotate(45deg) translateY(calc(var(--height, 5px) * -5.5 / 2)));
+        transform: var(--two-transform, rotate(30deg) translateY(calc(var(--height, 5px) * -5.5 / 2)));
       }
     `
   }

@@ -460,7 +460,7 @@ export default class ClassicsHeader extends Shadow() {
     try {
       menuIconPromise = Promise.resolve({ default: MenuIcon })
     } catch (error) {
-      menuIconPromise = import('../atoms/MenuIcon.js')
+      menuIconPromise = import('../atoms/ClassicsMenuIcon.js')
     }
     return (this.childComponentsPromise = Promise.all([
       menuIconPromise.then(
