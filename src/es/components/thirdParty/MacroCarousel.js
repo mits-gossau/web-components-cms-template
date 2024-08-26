@@ -129,12 +129,10 @@ export default class MacroCarousel extends Shadow() {
 
 
     setTimeout(() => {
-      const carouselIndicators = this.root.querySelector('macro-carousel').querySelectorAll('macro-carousel-pagination-indicator')
-
+      const carouselIndicators = this.root.querySelector('macro-carousel')?.querySelectorAll('macro-carousel-pagination-indicator')
       if (carouselIndicators.length && carouselIndicators.length !== 1) {
         const firstIndicator = carouselIndicators[0]
         const lastIndicator = carouselIndicators[carouselIndicators.length - 1]
-
         if (!firstIndicator.classList.contains('first-indicator')) firstIndicator.classList.add('first-indicator')
         if (!lastIndicator.classList.contains('last-indicator')) lastIndicator.classList.add('last-indicator')
       }
