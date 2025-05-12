@@ -404,6 +404,9 @@ html {
 
     /*Added smooth scrolling*/
     scroll-behavior: smooth;
+
+    /* Bugfix: Safari Desktop ugly font rendering: https://jira.migros.net/browse/MUTOBOTEAM-3123 */
+    -webkit-font-smoothing: antialiased;
 }
 
 @media only screen and (min-width: 1000px){
