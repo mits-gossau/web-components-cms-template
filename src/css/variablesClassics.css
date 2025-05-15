@@ -322,7 +322,7 @@ html {
     --playlist-item-padding: var(--padding);
     --playlist-item-heading-margin: 1rem auto 1rem auto;
     --playlist-item-heading-font-family: var(--font-family-bold);
-    --playlist-item-heading-font-weight: bold;
+    --playlist-item-heading-font-weight: 500;
     --search-a-color: var(--color);
     --search-a-display: var(--a-display);
     --search-a-input-border-bottom-first: 2px solid white;
