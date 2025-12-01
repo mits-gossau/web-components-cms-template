@@ -80,10 +80,10 @@ html {
     --footer-a-link-font-size: 0.8rem;
     --footer-a-text-underline-offset: var(--a-text-underline-offset);
     --footer-align-content: flex-start;
-    --footer-background-color: white;
+    --footer-background-color: #2F2F2F;
     --footer-box-sizing: border-box;
     --footer-color-hover: #000;
-    --footer-color: #000;
+    --footer-color: #FFFFFF;
     --footer-content-width-mobile: 100%;
     --footer-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
     --footer-content-width-not-web-component: var(--content-width-not-web-component);
