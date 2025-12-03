@@ -60,8 +60,8 @@ html {
     --content-spacing: 20px;
     --content-width-mobile: 100%;
     --content-width-not-web-component-mobile: 90%;
-    --content-width-not-web-component: 60%;
-    --content-width: 45%;
+    --content-width-not-web-component: 670px;
+    --content-width: 900px;
     --flex-grow: 1;
     --flyer-duration-mobile: 0.8s;
     --flyer-duration: 1.2s;
@@ -409,7 +409,7 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
-@media only screen and (min-width: 1000px){
+/* @media only screen and (min-width: 1000px){
   html {
     --content-width-not-web-component: 50%;
   }
@@ -419,6 +419,6 @@ html {
   html {
     --content-width-not-web-component: 40%;
   }
-}
+} */
 
 

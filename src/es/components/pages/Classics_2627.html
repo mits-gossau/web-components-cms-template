@@ -124,7 +124,7 @@
           </ul>
         </m-navigation>
 
-        <a-picture img-width="1045" img-height="987" img-filter="true" landing-animation="true" custom-width-%="70"
+        <a-picture img-width="1045" img-height="987" img-filter="true" landing-animation="false" custom-width-%="70"
           custom-mobile-width-%="90" picture-load namespace=picture- defaultSource="../../../img/header-imgs/1.png"
           alt="Some Alt text">
         </a-picture>
@@ -159,11 +159,16 @@
             <a href="#">Erfahre mehr <a-arrow direction=left></a-arrow></a>
           </a-link> -->
         </m-main-title-wrapper>
+
       </o-classics-header>
       <o-body>
         <main>
-
           <section class="welcome" style="text-align: center;">
+            <style>
+              :host > main p {
+                --content-width-not-web-component: 670px !important
+              }
+            </style>
             <h2>Willkommen bei<br>Migros Classics</h2>
             <h3>Willkommen zur 79. Konzertsaison<br>der Migros-Kulturprozent-Classics.</h3>
             <p>Wir präsentieren qualitativ hochstehende und neue Konzerterlebnisse mit Meisterwerken von Beethoven,
@@ -173,43 +178,29 @@
             <p><strong>Mischa Damev</strong><br>Intendant Migros-Kulturprozent-Classics</p>
             <a href="#konzerte" class="link">ALLE KONZERTE IM ÜBERBLICK</a>
           </section>
-
           <div class="spacer"></div>
-
           <h2>DIE NÄCHSTEN
-          KONZERTE</h2>
-          <a-picture 
-            namespace="picture-" 
-            defaultSource="../../../img/demo_concert.jpg" 
-            alt="Joana Mallwitz" 
+            KONZERTE</h2>
+          <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
             loading="lazy">
             <style>
               :host {
-               --picture-width: auto !important;
-      
+                --picture-width: auto !important;
+                --picture-img-width: 900px !important;
+
               }
             </style>
           </a-picture>
           <h3>MUSIK VON BACH ÜBER KLEZMER
-          BIS HIN ZU LED ZEPPELIN</h3>
+            BIS HIN ZU LED ZEPPELIN</h3>
           <p>Sie ist die erste Dirigentin, die bei den Salzburger Festspielen eine Oper dirigiert: Joana Mallwitz, 34
             Jahre alt, Leidenschaftliche Mozart-Liebhaberin.</p>
           <a href="#">Zum Gespräch</a>
-
-          <div class="spacer"></div>
-
-
-
-
-
           <h3>Teodor Currentzis Backstage</h3>
           <p>(Aktuell C) «Es ist mein Job zu träumen», sagt Teodor Currentzis. Überraschend offene Einsichten in seine
             Innenwelt gewährt uns der Chefdirigent des SWR Symphonieorchesters im Backstage Talk.</p>
           <a href="#">Backstage Talk 3:36 min</a>
-
-
           <div class="spacer"></div>
-
         </main>
       </o-body>
       <o-footer id="scroll-text" theme="classics" namespace="footer-">
@@ -231,12 +222,14 @@
               src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg"
               href="https://migros-engagement.ch" target="_blank" lang="de">
               <style>
-                :host p, :host a {
-                 color:#FFFFFF !important; 
+                :host p,
+                :host a {
+                  color: #FFFFFF !important;
                 }
+
               </style>
               <p>
-               Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
+                Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
                 <br />
                 <strong>
                   <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
