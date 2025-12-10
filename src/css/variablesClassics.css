@@ -59,7 +59,7 @@
   /* --font-family: "Futura Now Regular", "FuturaT", "Arial", sans-serif; */
   --font-family: "HelveticaNowTextRegular", "Arial", sans-serif;
   --font-family-bold: "HelveticaNowDisplayBold", "Arial", sans-serif;
-  --color:#B79E86;
+  --color: white;
   --background-color: #2F2F2F;
   --header-title-color: #FFED00;
   --header-background-color: #DC7CD3;
@@ -69,8 +69,10 @@
 html {
     --h2-font-size-custom: 4em;
     --h3-font-size-custom: 2.25em;
+    --h4-font-size-custom: 1.5em;
     --a-display: block;
     --a-margin: 0;
+    --a-color: #B79E86;
     --a-text-align: center;
     --a-text-decoration-hover: none;
     --a-text-decoration: underline;
@@ -205,6 +207,7 @@ html {
     --h2-text-transform: uppercase;
     --h2-word-break: break-word;
     --h2-font-weight: bold;
+    --h2-color: #B79E86;
     --h3-font-size-mobile: var(--h1-font-size-mobile);
     --h3-font-size: var(--h3-font-size-custom);
     --h3-line-height-mobile: var(--h1-line-height-mobile);
@@ -215,12 +218,13 @@ html {
     --h3-color: white;
     --h4-font-family: var(--font-family-bold);
     --h4-font-size-mobile: var(--h1-font-size-mobile);
-    --h4-font-size: var(--h1-font-size);
+    --h4-font-size: var(--h4-font-size-custom);
     --h4-line-height-mobile: var(--h1-line-height-mobile);
     --h4-line-height: var(--h1-line-height);
     --h4-margin: 0;
     --h4-text-align: var(--h1-text-align);
     --h4-text-transform: uppercase;
+    --h4-color: white;
     --h5-font-family: var(--font-family-bold);
     --h5-font-size-mobile: var(--h1-font-size-mobile);
     --h5-font-size: var(--h1-font-size);
