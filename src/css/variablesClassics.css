@@ -98,6 +98,7 @@ html {
     --color-hover-secondary: var(--color);
     --color-hover: var(--color);
     --color: #000;
+    --color-menu-icon: white;
     --concerts-playlist-border-bottom: 2px solid white;
     --concerts-playlist-border-top: 2px solid white;
     --concerts-playlist-color: var(--concerts-color);
@@ -455,6 +456,7 @@ html {
     --ul-text-align: var(--h1-text-align);
     --video-margin: 70px auto 0 auto;
     --video-width: var(--picture-width);
+    --a-font-weight: bold;
 
     /*Added smooth scrolling*/
     scroll-behavior: smooth;

@@ -357,7 +357,7 @@ export default class ClassicsHeader extends Shadow() {
       --header-title-height: 95px;
     }
     :host > header > a-menu-icon {
-      --header-a-menu-icon-background-color: var(--color);
+      --header-a-menu-icon-background-color: var(--color-menu-icon);
       --header-a-menu-icon-z-index: 6;
       --header-a-menu-icon-position: absolute;
       --header-a-menu-icon-position-right: 0;
