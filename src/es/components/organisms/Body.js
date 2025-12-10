@@ -230,6 +230,20 @@ export default class Body extends Shadow() {
         padding: 0;
         width: 100%;
       }
+      .spacer-content {
+        display: block;
+        height: 4em;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+      }
+      .spacer-half {
+        display: block;
+        height: 2em;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+      }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
         :host > main {
           padding: var(--main-padding-mobile, var(--main-padding, 0));

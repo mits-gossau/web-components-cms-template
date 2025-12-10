@@ -5,10 +5,60 @@
  * - if a component holds other components you should share the attribute namespace with its children
  */
 
+
+/* Font Tracking */
+@import url("https://cdn.fonts.net/t/1.css?apiType=css&projectid=d41a6a55-dcea-48d6-9295-bd9073f9bb02");
+
+@font-face {
+  font-family: "HelveticaNowDisplayBold";
+  src: url("https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW05-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HelveticaNowDisplayMedium";
+  src: url("https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayMedium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HelveticaNowDisplayXBoldItalic";
+  src: url("https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW01-XBdIt.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 750;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HelveticaNowTextRegular";
+  src: url("https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HelveticaNowTextBold";
+  src: url("https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+
  html[is-home=true] {
-  /*If the requirement of the font families doesn't change, we can remove the font-family variables from html[is-home=true]*/
-  --font-family: "Futura Now Regular", "FuturaT", "Arial", sans-serif;
-  --font-family-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
+  /* --font-family: "Futura Now Regular", "FuturaT", "Arial", sans-serif; */
+  --font-family: "HelveticaNowTextRegular", "Arial", sans-serif;
+  --font-family-bold: "HelveticaNowDisplayBold", "Arial", sans-serif;
   --color:#B79E86;
   --background-color: #2F2F2F;
   --header-title-color: #FFED00;
@@ -17,6 +67,8 @@
  } 
 
 html {
+    --h2-font-size-custom: 4em;
+    --h3-font-size-custom: 2.25em;
     --a-display: block;
     --a-margin: 0;
     --a-text-align: center;
@@ -67,9 +119,9 @@ html {
     --flyer-duration: 1.2s;
     --flyer-timing-mobile: cubic-bezier(0.43, 1.77, 0, 0.43);
     --flyer-timing: cubic-bezier(0.88, 1.96, 0, 0.15);
-    --font-family-bold: "Futura Now ExtraBlack", "FuturaT", "Arial", sans-serif;
+    --font-family-bold: var(--font-family-bold); 
     --font-family-secondary: var(--font-family);
-    --font-family: "Futura Now Regular", "FuturaT", Arial, sans-serif;
+    --font-family: var(--font-family); 
     --font-size-mobile: min(18px, 5vw);
     --font-size: max(18px, 0.9vw);
     --font-weight: normal;
@@ -144,20 +196,22 @@ html {
     --h1-text-align: center;
     --h1-text-transform: uppercase;
     --h2-font-size-mobile: var(--h1-font-size-mobile);
-    --h2-font-size: var(--h1-font-size);
+    --h2-font-size: var(--h2-font-size-custom);
     --h2-line-height-mobile: var(--h1-line-height-mobile);
     --h2-line-height: var(--h1-line-height);
     --h2-margin: 10px;
     --h2-text-align: var(--h1-text-align);
     --h2-text-transform: uppercase;
     --h2-word-break: break-word;
+    --h2-font-weight: bold;
     --h3-font-size-mobile: var(--h1-font-size-mobile);
-    --h3-font-size: var(--h1-font-size);
+    --h3-font-size: var(--h3-font-size-custom);
     --h3-line-height-mobile: var(--h1-line-height-mobile);
     --h3-line-height: var(--h1-line-height);
     --h3-margin: 15px;
     --h3-text-align: var(--h1-text-align);
     --h3-text-transform: uppercase;
+    --h3-color: white;
     --h4-font-family: var(--font-family-bold);
     --h4-font-size-mobile: var(--h1-font-size-mobile);
     --h4-font-size: var(--h1-font-size);
@@ -407,7 +461,11 @@ html {
 
     /* Bugfix: Safari Desktop ugly font rendering: https://jira.migros.net/browse/MUTOBOTEAM-3123 */
     -webkit-font-smoothing: antialiased;
+
+    
 }
+
+
 
 /* @media only screen and (min-width: 1000px){
   html {
