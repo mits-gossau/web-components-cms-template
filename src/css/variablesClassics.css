@@ -71,7 +71,7 @@
   --background-color: #2F2F2F;
   --header-title-color: #FFED00;
   --header-background-color: #DC7CD3;
-  --playlist-item-background-color: #FFED00;
+  --playlist-item-background-color: var(--background-color);
 } 
 
 html {
@@ -110,8 +110,8 @@ html {
     --color-hover: var(--color);
     --color: #000;
     --color-menu-icon: white;
-    --concerts-playlist-border-bottom: 2px solid white;
-    --concerts-playlist-border-top: 2px solid white;
+    --concerts-playlist-border-bottom: none;
+    --concerts-playlist-border-top: 1px solid var(--a-color);
     --concerts-playlist-color: var(--concerts-color);
     --concerts-playlist-item-content-width-mobile: var(--content-width-not-web-component-mobile);
     --concerts-playlist-item-h4-font-family: var(--h4-font-family);
@@ -378,9 +378,9 @@ html {
     --playlist-margin: 30px 0 10% 0;
     --playlist-width: 100%;
     --playlist-spacer-background-color: #FFED00;
-    --playlist-item-background-color:  #FFED00;
-    --playlist-item-a-color-hover: #000;
-    --playlist-item-a-color: #000;
+    --playlist-item-background-color:  var(--background-color);
+    --playlist-item-a-color-hover: white;
+    --playlist-item-a-color: var(--a-color);
     --playlist-item-a-text-decoration-hover: var(--a-text-decoration-hover);
     --playlist-item-a-text-decoration: var(--a-text-decoration);
     --playlist-item-a-text-underline-offset: var(--a-text-underline-offset);
