@@ -22,6 +22,27 @@
       <o-classics-header mobile-breakpoint="100000px" no-scroll="nav-open" menu-icon="true" namespace="header-"
         role="heading" flyer-transitionend="">
 
+        <style>
+          :host .header-logo {
+            z-index: 99999;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+          }
+          @media only screen and (max-width: 767px) {
+            :host .header-logo {
+              z-index: 7;
+              top: 0px;
+              left: 0px;
+            }
+          }
+        </style>
+
+        <div class="header-logo">
+          <a-logo src=../../../img/migros_kulturprozent_classics_cyan.svg alt="Kulturprozent Classics Logo" href="#"
+            namespace="footer-logo-"></a-logo>
+        </div>
+
 
         <!-- <a-title namespace="header-title-" wrap="separated-span" no-scroll="nav-open" text-shadow="2px 4px 10px black">
         <a href="/">
@@ -300,8 +321,7 @@
       }
     </script>
     <!-- fonts -->
-    <script type="text/javascript" async
-      src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
+    <!-- <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script> -->
     <!-- /fonts -->
   </body>
 

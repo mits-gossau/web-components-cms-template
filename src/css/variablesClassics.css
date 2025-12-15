@@ -54,6 +54,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "HelveticaExpanded";
+  src: url("https://cdn.migros.ch/ch.migros/static/fonts/NeueHelvetica-normal/NeueHelvetica_normal_expanded_700.woff2") format("woff2");
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
 
  html[is-home=true] {
   /* --font-family: "Futura Now Regular", "FuturaT", "Arial", sans-serif; */
@@ -64,9 +72,10 @@
   --header-title-color: #FFED00;
   --header-background-color: #DC7CD3;
   --playlist-item-background-color: #FFED00;
- } 
+} 
 
 html {
+    --h2-font-family: "HelveticaExpanded";
     --h2-font-size-custom: 4em;
     --h3-font-size-custom: 2.25em;
     --h4-font-size-custom: 1.5em;
@@ -470,6 +479,7 @@ html {
 
     
 }
+
 
 
 
