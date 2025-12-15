@@ -72,7 +72,7 @@ export default class PlaylistItem extends Shadow() {
   renderCSS() {
     this.css = /* css */`
       :host {
-        cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};
+        /*cursor: ${this.getAttribute('href') ? 'pointer' : 'auto'};*/
         display: block;
         text-align: var(--text-align, center);
         padding: var(--padding, 0);

@@ -110,8 +110,8 @@ html {
     --color-hover: var(--color);
     --color: #000;
     --color-menu-icon: white;
-    --concerts-playlist-border-bottom: none;
-    --concerts-playlist-border-top: 1px solid var(--a-color);
+    --concerts-playlist-border-bottom: 1px solid var(--a-color);;
+    --concerts-playlist-border-top: none;
     --concerts-playlist-color: var(--concerts-color);
     --concerts-playlist-item-content-width-mobile: var(--content-width-not-web-component-mobile);
     --concerts-playlist-item-h4-font-family: var(--h4-font-family);
@@ -477,7 +477,6 @@ html {
     /* Bugfix: Safari Desktop ugly font rendering: https://jira.migros.net/browse/MUTOBOTEAM-3123 */
     -webkit-font-smoothing: antialiased;
 
-    
 }
 
 
