@@ -204,27 +204,88 @@
             <a href="#konzerte" class="link">ALLE KONZERTE IM ÜBERBLICK</a> -->
           </section>
           <div class="spacer-content"></div>
-          <h2>DIE NÄCHSTEN KONZERTE</h2>
-          <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
-            loading="lazy">
-            <style>
-              :host {
-                --picture-width: auto !important;
-                --picture-img-width: 900px !important;
+          
+          
+          <style>
+            :host {
+              --content-width-not-web-component: 100%;
+            }
+            .grid-container {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              gap: 20px;
+              width: 100%;
+              max-width: 1102px;
+              margin: 0 auto;
+            }
+            .grid-item {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            }
+            .grid-item:first-child {
+              align-items: flex-start;
+            }
+            .grid-item:last-child {
+              align-items: flex-end;
+            }
+            .grid-container > .grid-item p, 
+            .grid-container > .grid-item h3, 
+            .grid-container > .grid-item h4 {
+              margin: 0 !important;
+              text-align: left !important;
+            }
+            
+            @media only screen and (max-width: 768px) {
+              .grid-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                max-width: 100%;
+                padding: 0 20px;
               }
-            </style>
-          </a-picture>
-          <h3>MUSIK VON BACH ÜBER KLEZMER
-            BIS HIN ZU LED ZEPPELIN</h3>
-            <h4>THE MALIKIAN ORCHESTRA & ARA MALIKIAN</h4>
-          <p>Sie ist die erste Dirigentin, die bei den Salzburger Festspielen eine Oper dirigiert: Joana Mallwitz, 34
-            Jahre alt, Leidenschaftliche Mozart-Liebhaberin.</p>
-          <a href="#">Zum Gespräch</a>
-          <div class="spacer-content"></div>
-          <h3>Teodor Currentzis Backstage</h3>
-          <p>(Aktuell C) «Es ist mein Job zu träumen», sagt Teodor Currentzis. Überraschend offene Einsichten in seine
-            Innenwelt gewährt uns der Chefdirigent des SWR Symphonieorchesters im Backstage Talk.</p>
-          <a href="#">Backstage Talk 3:36 min</a>
+            }
+            
+            @media only screen and (max-width: 480px) {
+              .grid-container {
+                gap: 10px;
+                padding: 0 15px;
+              }
+            }
+          </style>
+          <div class="grid-container">
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>  
+          </div>
+          
+
           <div class="spacer-content"></div>
         </main>
       </o-body>

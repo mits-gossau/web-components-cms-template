@@ -20,7 +20,8 @@ export default class MainTitleWrapper extends Shadow() {
   constructor(...args) {
     super(...args)
     this.desktopMainTitleSize = this.getAttribute('main-desktop-title-size-rem') ? this.getAttribute('main-desktop-title-size-rem') : 4
-    this.resizeImg = this.parentElement.querySelector('a-picture').root.querySelector('picture > img')
+    const pictureElement = this.parentElement.querySelector('a-picture')
+    this.resizeImg = pictureElement ? pictureElement.root.querySelector('picture > img') : null
     this.titleWrapper = this.parentElement.querySelector('m-main-title-wrapper')
     this.customMarginTop = this.getAttribute('custom-margin-top-px') ? this.getAttribute('custom-margin-top-px') : 0
     this.customMobileMarginTop = this.getAttribute('custom-mobile-margin-top-px') ? this.getAttribute('custom-mobile-margin-top-px') : this.customMarginTop
