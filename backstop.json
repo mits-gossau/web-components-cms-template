@@ -64,7 +64,8 @@
   "report": ["browser"],
   "engine": "puppeteer",
   "engineOptions": {
-    "args": ["--no-sandbox"]
+    "args": ["--no-sandbox"],
+    "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
   },
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 50,
