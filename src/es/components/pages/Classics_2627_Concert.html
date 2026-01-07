@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=de is-home="true">
+<html lang=de is-concert="true">
 
   <head>
     <meta charset=UTF-8>
@@ -29,6 +29,7 @@
             top: 20px;
             left: 20px;
           }
+
           @media only screen and (max-width: 767px) {
             :host .header-logo {
               z-index: 7;
@@ -145,8 +146,7 @@
           </ul>
         </m-navigation>
 
-        <a-picture picture-load namespace=picture- defaultSource="https://placehold.co/900x800"
-          alt="Some Alt text">
+        <a-picture picture-load namespace=picture- defaultSource="https://placehold.co/900x800" alt="Some Alt text">
         </a-picture>
 
 
@@ -175,75 +175,67 @@
         <main>
           <section class="welcome" style="text-align: center;">
             <style>
-
               :host>main p {
                 --content-width-not-web-component: 670px !important;
               }
-
             </style>
-            <h2>Spielplan</h2>
-
-            <o-playlist namespace="concerts-playlist-" border-top-first-child="true">
-
-              <m-playlist-item namespace="playlist-item-" href="/en/concerts/playlist/london-symphony-orchestra">
-                <h4>
-                  <div style="width:100%">
-                    <div style="display:inline-block">18*10*2021</div>&nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">
-                      19*10*2021</div>&nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">20*10*2021</div>
-                    &nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">21*10*2021</div>
-                  </div>
-                </h4>
-                <h4><a href="/en/concerts/playlist/london-symphony-orchestra"> LONDON SYMPHONY ORCHESTRA </a></h4>
-                <div style="width:100%">
-                  <div style="display:inline-block">LUCERNE</div>&nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">
-                    BERN</div>&nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">GENEVA</div>
-                  &nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">ZURICH</div>
-                </div>
-                <p></p>
-                <p>Daniel Harding (Conductor) <br></p>
-                <p>Antoine Tamestit (Viola) <br></p>
-              </m-playlist-item>
-            
-              <m-playlist-item namespace="playlist-item-" href="/en/concerts/playlist/london-symphony-orchestra">
-                <h4>
-                  <div style="width:100%">
-                    <div style="display:inline-block">18*10*2021</div>&nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">
-                      19*10*2021</div>&nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">20*10*2021</div>
-                    &nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">21*10*2021</div>
-                  </div>
-                </h4>
-                <h4><a href="/en/concerts/playlist/london-symphony-orchestra"> LONDON SYMPHONY ORCHESTRA </a></h4>
-                <div style="width:100%">
-                  <div style="display:inline-block">LUCERNE</div>&nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">
-                    BERN</div>&nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">GENEVA</div>
-                  &nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">ZURICH</div>
-                </div>
-                <p>Daniel Harding (Conductor) <br></p>
-                <p>Antoine Tamestit (Viola) <br></p>
-              </m-playlist-item>
-            
-              <m-playlist-item namespace="playlist-item-" href="/en/concerts/playlist/london-symphony-orchestra">
-                <h4>
-                  <div style="width:100%">
-                    <div style="display:inline-block">18*10*2021</div>&nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">
-                      19*10*2021</div>&nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">20*10*2021</div>
-                    &nbsp;&nbsp;/&nbsp;&nbsp;<div style="display:inline-block">21*10*2021</div>
-                  </div>
-                </h4>
-                <h4><a href="/en/concerts/playlist/london-symphony-orchestra"> LONDON SYMPHONY ORCHESTRA </a></h4>
-                <div style="width:100%">
-                  <div style="display:inline-block">LUCERNE</div>&nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">
-                    BERN</div>&nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">GENEVA</div>
-                  &nbsp;&nbsp;*&nbsp;&nbsp;<div style="display:inline-block">ZURICH</div>
-                </div>
-                <p>Daniel Harding (Conductor) <br></p>
-                <p>Antoine Tamestit (Viola) <br></p>
-              </m-playlist-item>
-
-            </o-playlist>
-
+            <a href="spielplan.html">Spielplan</a>
+            <br><br>
+            <h2>THE MALIKIAN ORCHESTRA ARA MALIKIAN</h2>
+            <h3>MUSIK VON BACH ÜBER KLEZMER BIS HIN ZU LED ZEPPELIN</h3>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+              et dolore
+              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+              clita kasd
+              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+              sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+              At vero eos et
+              accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+              ipsum dolor sit
+              amet.</p>
           </section>
-          
+
+          <style>
+            :host {
+              --picture-width: 1106px;
+              --content-width: 100%;
+            }
+          </style>
+
+          <a-picture picture-load namespace=picture- defaultSource="https://placehold.co/1106x515" alt="Some Alt text">
+          </a-picture>
+
+          <section>
+
+            <div style="text-align:center; padding-bottom:2em;">
+              <h4>TONHALLE ZÜRICH · 17. OKTOBER 2026</h4>
+              <a href="spielplan.html" style="color:#cc2f89;">TICKETS</a>
+            </div>
+
+
+            <div style="text-align:center; padding-bottom:2em;">
+              <h4>TONHALLE ZÜRICH · 17. OKTOBER 2026</h4>
+              <a href="spielplan.html" style="color:#cc2f89;">TICKETS</a>
+            </div>
+
+
+            <div>
+              <h4>PROGRAMM</h4>
+              <h3>MARTIN FRÖST</h3>
+              <p>Cast faceriterus; Catoriam host pubit, es hore privendem plis cae inatisquam.
+              Serem seriostrae in Etrit; nos incesilla dic tem iaelari praed forsula demus, sa
+              conos imus in dicorbitam for que retore, quam opublicaet patius o Catabutum
+              publi prata, no. Seritus? Adduconu mo cul hus ina, quam vis ad forestimil ves
+              pra, nero perem, nihicie simpos efacenic iumuribus hocaperorus consulis patri
+              ipti, terevid iocaes Catis, sena, tam omnentiam forterum te, nox merebusul
+              ublicaequod cotena, Casterf erbeffre adhus ium a ex mena, nosteri bultorum
+              incepsediem ape</p>
+            </div>
+
+            
+          </section>
+
         </main>
       </o-body>
       <o-footer id="scroll-text" theme="classics" namespace="footer-">
