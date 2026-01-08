@@ -234,22 +234,26 @@
             </div>
 
             <style>
+              :host {
+                --font-family: "HelveticaNowTextRegular", "Arial", sans-serif !important;
+
+              }
               .quote-section {
                 display: flex;
                 align-items: flex-start;
-                background-color: #e8e8e8;
                 padding: 40px 60px;
                 position: relative;
               }
 
               .quote-section::before {
-                content: "\201e";
+                content: "\201D";
                 font-size: 120px;
                 color: #c4599c;
                 position: absolute;
                 left: 10px;
-                top: 0px;
+                top: 25px;
                 line-height: 1;
+                font-family: Georgia, serif;
               }
 
               .quote-section::after {
@@ -257,24 +261,27 @@
                 font-size: 120px;
                 color: #c4599c;
                 position: absolute;
-                right: 20px;
-                bottom: -40px;
+                right: 5px;
+                bottom: -30px;
                 line-height: 1;
+                font-family: Georgia, serif;
               }
 
               .quote-text {
                 color: #c4599c;
-                font-size: 48px;
+                font-size: 1.5em;
                 font-weight: bold;
-                line-height: 1.2;
-                /* margin: 0 60px; */
+                line-height: 100%;
+                margin: 0 10px;
                 flex: 1;
+                font-family: "HelveticaExpanded", "Arial", sans-serif !important;
               }
 
               .quote-author {
                 color: #000;
-                font-size: 32px;
+                font-size: 0.75em;
                 font-weight: normal;
+                font-family: "HelveticaNowTextRegular", "Arial", sans-serif !important;
                 text-align: right;
               }
 
