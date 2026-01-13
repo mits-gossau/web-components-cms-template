@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang=de is-concert="true">
+
+  <head>
+    <meta charset=UTF-8>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="Description"
+      content="Erfahre hier die neusten Informationen über die Klub-Konzerte des Migros-Kulturprozent-Classics.">
+    <link href=../../../favicon/classics/FAVICON_CLASSICS_KEY.ico rel="shortcut icon" type=image/x-icon>
+    <link href=../../../css/variablesClassics.css rel=stylesheet>
+    <link href=../../../css/misc.css rel=stylesheet>
+    <link href=../../../css/fonts.css rel=stylesheet>
+    <!-- NOTE: Remove line Debugging.js below for none localhost -->
+    <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+    <script type="text/javascript" src="../../../../wc-config.js"></script>
+    <title>Classics</title>
+  </head>
+
+  <body>
+    <p-general>
+
+      <o-classics-header mobile-breakpoint="100000px" no-scroll="nav-open" menu-icon="true" namespace="header-"
+        role="heading" flyer-transitionend="">
+
+        <style>
+          :host .header-logo {
+            z-index: 99999;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+          }
+
+          @media only screen and (max-width: 767px) {
+            :host .header-logo {
+              z-index: 7;
+              top: 0px;
+              left: 0px;
+            }
+          }
+        </style>
+
+        <div class="header-logo">
+          <a-logo src=../../../img/migros_kulturprozent_classics_cyan.svg alt="Kulturprozent Classics Logo" href="#"
+            namespace="footer-logo-"></a-logo>
+        </div>
+
+
+        <!-- <a-title namespace="header-title-" wrap="separated-span" no-scroll="nav-open" text-shadow="2px 4px 10px black">
+        <a href="/">
+          <h1>MIGROS-KULTURPROZENT-CLASSICS
+            <span class="secondary-color">180°</span>
+          </h1>
+        </a>
+      </a-title> -->
+
+        <m-navigation tabindex="-1" mobile-breakpoint="0px" hover="false" namespace=navigation- no-scroll="nav-open"
+          is-classic-navigation="true">
+          <ul>
+            <li class="close-icon-wrapper">
+              <a-logo tabindex="0" src=../../../img/close-icon-classics.svg alt="close"
+                namespace="header-logo-"></a-logo>
+            </li>
+            <li>
+              <a href="#">News</a>
+              <ul>
+                <li>
+                  <a href="#highlight">Highlights</a>
+                </li>
+                <li>
+                  <a href="#aktuell">Aktuell</a>
+                </li>
+                <li>
+                  <a href="#programm">Programm</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Konzerte</a>
+              <ul>
+                <li>
+                  <a href="/de/spielplan">Spielplan</a>
+                </li>
+                <li>
+                  <a href="/de/Orchester">Orchester</a>
+                </li>
+                <li>
+                  <a href="/de/dirigent">Dirigent*innen</a>
+                </li>
+                <li>
+                  <a href="/de/solist">Solist*innen</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Tickets</a>
+              <ul>
+                <li>
+                  <a href="/de/bern">Bern</a>
+                </li>
+                <li>
+                  <a href="/de/Luzern">Luzern</a>
+                </li>
+                <li>
+                  <a href="/de/Genf">Genf</a>
+                </li>
+                <li>
+                  <a href="/de/Zurich">Zürich</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Backstage</a>
+              <ul>
+                <li>
+                  <a href="/de/werk">Werkeinführung</a>
+                </li>
+                <li>
+                  <a href="/de/archiv">Archiv</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">About</a>
+              <ul>
+                <li>
+                  <a href="/de/idee">Idee</a>
+                </li>
+                <li>
+                  <a href="/de/intendanz">Intendanz</a>
+                </li>
+                <li>
+                  <a href="/de/Talentförderung">Talentförderung</a>
+                </li>
+                <li>
+                  <a href="/de/Kontakt">Kontakt</a>
+                </li>
+              </ul>
+            </li>
+            <li class="language-switcher">
+              <a class="active" href="">FR</a>
+              <a href="">EN</a>
+            </li>
+            <li class="ticket-btn-wrapper">
+              <a href="">Tickets kaufen</a>
+            </li>
+          </ul>
+        </m-navigation>
+
+        <a-picture picture-load namespace=picture- defaultSource="https://placehold.co/900x800" alt="Some Alt text">
+        </a-picture>
+
+
+        <!-- <a-picture 
+        img-filter="false" 
+        landing-animation="false" 
+        custom-mobile-width-%="100" 
+        picture-load 
+        namespace=picture- 
+        defaultSource="../../../img/header-imgs/demo.jpg"
+        alt="Some Alt text">
+        <style>
+          :host {
+            --picture-aspect-ratio: unset !important;
+            --picture-width:100%
+          }
+        </style>
+      </a-picture> -->
+
+        <m-main-title-wrapper class="classics-main-title-wrapper" main-desktop-title-size-rem="5"
+          custom-margin-top-px="0" custom-mobile-margin-top-px="20">
+        </m-main-title-wrapper>
+
+      </o-classics-header>
+      <o-body>
+        <main>
+          <section class="welcome" style="text-align: center;">
+            <style>
+              :host>main p {
+                --content-width-not-web-component: 670px !important;
+              }
+            </style>
+            <a href="spielplan.html">Spielplan</a>
+            <br><br>
+            <h2>THE MALIKIAN ORCHESTRA ARA MALIKIAN</h2>
+            <h3>MUSIK VON BACH ÜBER KLEZMER BIS HIN ZU LED ZEPPELIN</h3>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+              et dolore
+              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+              clita kasd
+              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+              sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+              At vero eos et
+              accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+              ipsum dolor sit
+              amet.</p>
+          </section>
+
+          <style>
+            :host {
+              --picture-width: 1106px;
+              --content-width: 100%;
+            }
+          </style>
+
+          <a-picture picture-load namespace=picture- defaultSource="https://placehold.co/1106x515" alt="Some Alt text">
+          </a-picture>
+
+          <section>
+
+            <div style="text-align:center; padding-bottom:2em;">
+              <h4>TONHALLE ZÜRICH · 17. OKTOBER 2026</h4>
+              <a href="spielplan.html" style="color:#cc2f89;">TICKETS</a>
+            </div>
+
+
+            <div style="text-align:center; padding-bottom:2em;">
+              <h4>TONHALLE ZÜRICH · 17. OKTOBER 2026</h4>
+              <a href="spielplan.html" style="color:#cc2f89;">TICKETS</a>
+            </div>
+
+
+            <div>
+              <h4>PROGRAMM</h4>
+              <h3>MARTIN FRÖST</h3>
+              <p>Cast faceriterus; Catoriam host pubit, es hore privendem plis cae inatisquam.
+                Serem seriostrae in Etrit; nos incesilla dic tem iaelari praed forsula demus, sa
+                conos imus in dicorbitam for que retore, quam opublicaet patius o Catabutum
+                publi prata, no. Seritus? Adduconu mo cul hus ina, quam vis ad forestimil ves
+                pra, nero perem, nihicie simpos efacenic iumuribus hocaperorus consulis patri
+                ipti, terevid iocaes Catis, sena, tam omnentiam forterum te, nox merebusul
+                ublicaequod cotena, Casterf erbeffre adhus ium a ex mena, nosteri bultorum
+                incepsediem ape</p>
+            </div>
+
+            <style>
+              :host {
+                --font-family: "HelveticaNowTextRegular", "Arial", sans-serif !important;
+
+              }
+              .quote-section {
+                display: flex;
+                align-items: flex-start;
+                padding: 40px 60px;
+                position: relative;
+              }
+
+              .quote-section::before {
+                content: "\201D";
+                font-size: 120px;
+                color: #c4599c;
+                position: absolute;
+                left: 10px;
+                top: 25px;
+                line-height: 1;
+                font-family: Georgia, serif;
+              }
+
+              .quote-section::after {
+                content: "\201D";
+                font-size: 120px;
+                color: #c4599c;
+                position: absolute;
+                right: 5px;
+                bottom: -30px;
+                line-height: 1;
+                font-family: Georgia, serif;
+              }
+
+              .quote-text {
+                color: #c4599c;
+                font-size: 1.5em;
+                font-weight: bold;
+                line-height: 100%;
+                margin: 0 10px;
+                flex: 1;
+                font-family: "HelveticaExpanded", "Arial", sans-serif !important;
+              }
+
+              .quote-author {
+                color: #000;
+                font-size: 0.75em;
+                font-weight: normal;
+                font-family: "HelveticaNowTextRegular", "Arial", sans-serif !important;
+                text-align: right;
+              }
+
+              .quote-logo {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: #888;
+                padding: 20px;
+                color: white;
+                font-size: 24px;
+                font-weight: bold;
+              }
+            </style>
+            <div class="quote-section">
+              <div class="quote-text">
+                Ich bin der, der ich bin, weil ich das Glück hatte, verschiedenste Kulturen kennenzulernen.
+                <div class="quote-author">Ara Malikian</div>
+              </div>
+            </div>
+
+            <div>
+              <h4>SOLIST:IN</h4>
+              <h3>MARTIN FRÖST</h3>
+              <p>Cast faceriterus; Catoriam host pubit, es hore privendem plis cae inatisquam.
+                Serem seriostrae in Etrit; nos incesilla dic tem iaelari praed forsula demus, sa
+                conos imus in dicorbitam for que retore, quam opublicaet patius o Catabutum
+                publi prata, no. Seritus? Adduconu mo cul hus ina, quam vis ad forestimil ves
+                pra, nero perem, nihicie simpos efacenic iumuribus hocaperorus consulis patri
+                ipti, terevid iocaes Catis, sena, tam omnentiam forterum te, nox merebusul
+                ublicaequod cotena, Casterf erbeffre adhus ium a ex mena, nosteri bultorum
+                incepsediem ape</p>
+            </div>
+
+          </section>
+
+        </main>
+      </o-body>
+      <o-footer id="scroll-text" theme="classics" namespace="footer-">
+        <div class="social-media-wrapper">
+          <a-logo src=../../../img/footer-icons/facebook.svg alt="Facebook Logo"
+            href="https://www.facebook.com/migrosclassics" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/instagram.svg alt="Instagram Logo"
+            href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/tiktok.svg alt="TikTok Logo"
+            href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/youtube.svg alt="Youtube Logo"
+            href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/newsletter.svg alt="Newsletter Logo" href="#"
+            namespace="footer-logo-"></a-logo>
+        </div>
+        <div class="bottom-part">
+          <div>
+            <a-logo class="hide-mobile" namespace="footer-engagement-logo-"
+              src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg"
+              href="https://migros-engagement.ch" target="_blank" lang="de">
+              <style>
+                :host p,
+                :host a {
+                  color: #FFFFFF !important;
+                }
+              </style>
+              <p>
+                Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
+                <br />
+                <strong>
+                  <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
+                </strong>
+              </p>
+            </a-logo>
+          </div>
+          <div class="footer-ul-wrapper">
+            <ul>
+              <li class="footer-language-switcher">
+                <a-link namespace="footer-" text-transform="uppercase">
+                  <a href="#">DE</a>
+                </a-link>
+                <a-link namespace="footer-" text-transform="uppercase">
+                  <a href="#">FR</a>
+                </a-link>
+                <a-link namespace="footer-" text-transform="uppercase">
+                  <a href="#">EN</a>
+                </a-link>
+              </li>
+              <li>
+                <p>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Impressum</a>
+                    <span>, </span>
+                  </a-link>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Datenschutz</a>
+                    <span>, </span>
+                  </a-link>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Rechtliche Hinweise</a>
+                    <span>, </span>
+                  </a-link>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Kontakt</a>
+                  </a-link>
+                </p>
+              </li>
+              <li>
+                <p>&copy; 2024 Migros-Kulturprozent-Classics</p>
+              </li>
+            </ul>
+          </div>
+          <div class="logo-container">
+            <a-logo class="hide-desktop" namespace="footer-engagement-logo-"
+              src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg"
+              href="https://migros-engagement.ch" target="_blank" lang="de">
+              <p>
+                Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
+                <br />
+                <strong>
+                  <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
+                </strong>
+              </p>
+            </a-logo>
+            <a-logo src=../../../img/migros_kulturprozent_classics_cyan.svg alt="Kulturprozent Classics Logo" href="#"
+              namespace="footer-logo-"></a-logo>
+          </div>
+        </div>
+
+      </o-footer>
+    </p-general>
+    <script rel=preload type=module>
+      self.Environment = {
+        mobileBreakpoint: '600px'
+      }
+    </script>
+    <!-- fonts -->
+    <!-- <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script> -->
+    <!-- /fonts -->
+  </body>
+
+</html>
