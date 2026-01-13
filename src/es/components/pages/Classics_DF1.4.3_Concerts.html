@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang=de is-home="true">
+
+  <head>
+    <meta charset=UTF-8>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="Description"
+      content="Erfahre hier die neusten Informationen über die Klub-Konzerte des Migros-Kulturprozent-Classics.">
+    <link href=../../../favicon/classics/FAVICON_CLASSICS_KEY.ico rel="shortcut icon" type=image/x-icon>
+    <link href=../../../css/variablesClassics.css rel=stylesheet>
+    <link href=../../../css/misc.css rel=stylesheet>
+    <link href=../../../css/fonts.css rel=stylesheet>
+    <!-- NOTE: Remove line Debugging.js below for none localhost -->
+    <script rel=preload type=module>import('../../../es/helpers/Debugging.js')</script>
+    <script type="text/javascript" src="../../../../wc-config.js"></script>
+    <title>Konzerte</title>
+  </head>
+
+  <body>
+    <p-general>
+
+      <o-classics-header mobile-breakpoint="100000px" no-scroll="nav-open" menu-icon="true" namespace="header-"
+        role="heading" flyer-transitionend="">
+
+        <style>
+          :host .header-logo {
+            z-index: 99999;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+          }
+          @media only screen and (max-width: 767px) {
+            :host .header-logo {
+              z-index: 7;
+              top: 0px;
+              left: 0px;
+            }
+          }
+        </style>
+
+        <div class="header-logo">
+          <a-logo src=../../../img/migros_kulturprozent_classics_white.svg alt="Kulturprozent Classics Logo" href="#"
+            namespace="footer-logo-"></a-logo>
+        </div>
+
+
+        <!-- <a-title namespace="header-title-" wrap="separated-span" no-scroll="nav-open" text-shadow="2px 4px 10px black">
+        <a href="/">
+          <h1>MIGROS-KULTURPROZENT-CLASSICS
+            <span class="secondary-color">180°</span>
+          </h1>
+        </a>
+      </a-title> -->
+
+        <m-navigation tabindex="-1" mobile-breakpoint="0px" hover="false" namespace=navigation- no-scroll="nav-open"
+          is-classic-navigation="true">
+          <ul>
+            <li class="close-icon-wrapper">
+              <a-logo tabindex="0" src=../../../img/close-icon-classics.svg alt="close"
+                namespace="header-logo-"></a-logo>
+            </li>
+            <li>
+              <a href="#">News</a>
+              <ul>
+                <li>
+                  <a href="#highlight">Highlights</a>
+                </li>
+                <li>
+                  <a href="#aktuell">Aktuell</a>
+                </li>
+                <li>
+                  <a href="#programm">Programm</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Konzerte</a>
+              <ul>
+                <li>
+                  <a href="/de/spielplan">Spielplan</a>
+                </li>
+                <li>
+                  <a href="/de/Orchester">Orchester</a>
+                </li>
+                <li>
+                  <a href="/de/dirigent">Dirigent*innen</a>
+                </li>
+                <li>
+                  <a href="/de/solist">Solist*innen</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Tickets</a>
+              <ul>
+                <li>
+                  <a href="/de/bern">Bern</a>
+                </li>
+                <li>
+                  <a href="/de/Luzern">Luzern</a>
+                </li>
+                <li>
+                  <a href="/de/Genf">Genf</a>
+                </li>
+                <li>
+                  <a href="/de/Zurich">Zürich</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Backstage</a>
+              <ul>
+                <li>
+                  <a href="/de/werk">Werkeinführung</a>
+                </li>
+                <li>
+                  <a href="/de/archiv">Archiv</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">About</a>
+              <ul>
+                <li>
+                  <a href="/de/idee">Idee</a>
+                </li>
+                <li>
+                  <a href="/de/intendanz">Intendanz</a>
+                </li>
+                <li>
+                  <a href="/de/Talentförderung">Talentförderung</a>
+                </li>
+                <li>
+                  <a href="/de/Kontakt">Kontakt</a>
+                </li>
+              </ul>
+            </li>
+            <li class="language-switcher">
+              <a class="active" href="">FR</a>
+              <a href="">EN</a>
+            </li>
+            <li class="ticket-btn-wrapper">
+              <a href="">Tickets kaufen</a>
+            </li>
+          </ul>
+        </m-navigation>
+
+        <div style="height:1110px"></div>
+
+        <!-- <a-picture img-width="1045" img-height="987" img-filter="true" landing-animation="false" custom-width-%="70"
+          custom-mobile-width-%="90" picture-load namespace=picture- defaultSource="../../../img/header-imgs/1.png"
+          alt="Some Alt text">
+        </a-picture> -->
+
+
+        <!-- <a-picture 
+        img-filter="false" 
+        landing-animation="false" 
+        custom-mobile-width-%="100" 
+        picture-load 
+        namespace=picture- 
+        defaultSource="../../../img/header-imgs/demo.jpg"
+        alt="Some Alt text">
+        <style>
+          :host {
+            --picture-aspect-ratio: unset !important;
+            --picture-width:100%
+          }
+        </style>
+      </a-picture> -->
+
+        <m-main-title-wrapper class="classics-main-title-wrapper" main-desktop-title-size-rem="5"
+          custom-margin-top-px="0" custom-mobile-margin-top-px="20">
+          <!-- <h2>BRUCKNERS <br> NEUNTE </h2>
+          <h3>MO, 15*04*2024 <br> 19.30 UHR <br> TONHALLE ZÜRICH</h3>
+          <a-link 
+            text-transform="uppercase" 
+            hover-underlined="false" 
+            hover-remove-underlined="true"
+            base-underlined="false" 
+            general-color="#FFED00">
+            <a href="#">Erfahre mehr <a-arrow direction=left></a-arrow></a>
+          </a-link> -->
+        </m-main-title-wrapper>
+
+      </o-classics-header>
+      <o-body>
+        <main>
+          <section class="welcome" style="text-align: center;">
+            <style>
+              :host>main p {
+                --content-width-not-web-component: 670px !important;
+              }
+            </style>
+            <h2>Die Konzerte</h2>
+            <!-- <h3>Willkommen zur 79. Konzertsaison<br>der Migros-Kulturprozent-Classics.</h3>
+            <p>Wir präsentieren qualitativ hochstehende und neue Konzerterlebnisse mit Meisterwerken von Beethoven,
+              Strawinski, Händel, Gershwin, Sibelius, Berg und Mahler. Junge Orchester eröffnen einen neuen Zugang zu
+              klassischer Musik – innovativ, experimentell und voller Spielfreude.</p>
+            Ich freue mich auf Sie. Bis auf bald im Konzertsaal!</p>
+            <div class="spacer-half"></div>
+            <p><strong>Mischa Damev</strong><br>Intendant Migros-Kulturprozent-Classics</p>
+            <div class="spacer-small"></div>
+            <a href="#konzerte" class="link">ALLE KONZERTE IM ÜBERBLICK</a> -->
+          </section>
+          <div class="spacer-content"></div>
+          
+          
+          <style>
+            :host {
+              --content-width-not-web-component: 100%;
+            }
+            .grid-container {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              gap: 20px;
+              width: 100%;
+              max-width: 1102px;
+              margin: 0 auto;
+            }
+            .grid-item {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-start;
+            }
+            .grid-item:last-child:has(a-picture) {
+              align-items: flex-end;
+            }
+            .grid-container > .grid-item p, 
+            .grid-container > .grid-item h3, 
+            .grid-container > .grid-item h4 {
+              margin: 0 !important;
+              text-align: left !important;
+            }
+            
+            @media only screen and (max-width: 768px) {
+              .grid-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                max-width: 100%;
+                padding: 0 20px;
+              }
+            }
+            
+            @media only screen and (max-width: 480px) {
+              .grid-container {
+                gap: 10px;
+                padding: 0 15px;
+              }
+            }
+          </style>
+
+          <!-- 1. concert section -->
+          <div class="grid-container">
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>
+          </div>
+
+          <!-- 2. concert section -->
+          <div class="grid-container">
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. concert section -->
+          <div class="grid-container">
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>
+          </div>
+          
+          <!-- 4. concert section -->
+          <div class="grid-container">
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
+          </div>
+          
+
+          <div class="spacer-content"></div>
+        </main>
+      </o-body>
+      <o-footer id="scroll-text" theme="classics" namespace="footer-">
+        <div class="social-media-wrapper">
+          <a-logo src=../../../img/footer-icons/facebook.svg alt="Facebook Logo"
+            href="https://www.facebook.com/migrosclassics" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/instagram.svg alt="Instagram Logo"
+            href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/tiktok.svg alt="TikTok Logo"
+            href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/youtube.svg alt="Youtube Logo"
+            href="https://www.instagram.com/migrosclassics/?igshid=YmMyMTA2M2Y%3D" namespace="footer-logo-"></a-logo>
+          <a-logo src=../../../img/footer-icons/newsletter.svg alt="Newsletter Logo" href="#"
+            namespace="footer-logo-"></a-logo>
+        </div>
+        <div class="bottom-part">
+          <div>
+            <a-logo class="hide-mobile" namespace="footer-engagement-logo-"
+              src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg"
+              href="https://migros-engagement.ch" target="_blank" lang="de">
+              <style>
+                :host p,
+                :host a {
+                  color: #FFFFFF !important;
+                }
+              </style>
+              <p>
+                Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
+                <br />
+                <strong>
+                  <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
+                </strong>
+              </p>
+            </a-logo>
+          </div>
+          <div class="footer-ul-wrapper">
+            <ul>
+              <li class="footer-language-switcher">
+                <a-link namespace="footer-" text-transform="uppercase">
+                  <a href="#">DE</a>
+                </a-link>
+                <a-link namespace="footer-" text-transform="uppercase">
+                  <a href="#">FR</a>
+                </a-link>
+                <a-link namespace="footer-" text-transform="uppercase">
+                  <a href="#">EN</a>
+                </a-link>
+              </li>
+              <li>
+                <p>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Impressum</a>
+                    <span>, </span>
+                  </a-link>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Datenschutz</a>
+                    <span>, </span>
+                  </a-link>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Rechtliche Hinweise</a>
+                    <span>, </span>
+                  </a-link>
+                  <a-link namespace="footer-" text-transform="uppercase">
+                    <a href="#">Kontakt</a>
+                  </a-link>
+                </p>
+              </li>
+              <li>
+                <p>&copy; 2024 Migros-Kulturprozent-Classics</p>
+              </li>
+            </ul>
+          </div>
+          <div class="logo-container">
+            <a-logo class="hide-desktop" namespace="footer-engagement-logo-"
+              src="https://www.migros-engagement.ch/dam/jcr:b1ff6b31-f8ba-4b68-91cb-132c8d781014/MIGROS-Engagement_EN.svg"
+              href="https://migros-engagement.ch" target="_blank" lang="de">
+              <p>
+                Die Migros-Kulturprozent-Classics sind Teil des gesellschaftlichen Engagements der Migros-Gruppe:&nbsp;
+                <br />
+                <strong>
+                  <a href="https://migros-engagement.ch" target="_blank">migros-engagement.ch</a>
+                </strong>
+              </p>
+            </a-logo>
+            <a-logo src=../../../img/migros_kulturprozent_classics_white.svg alt="Kulturprozent Classics Logo" href="#"
+              namespace="footer-logo-"></a-logo>
+          </div>
+        </div>
+
+      </o-footer>
+    </p-general>
+    <script rel=preload type=module>
+      self.Environment = {
+        mobileBreakpoint: '600px'
+      }
+    </script>
+    <!-- fonts -->
+    <!-- <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script> -->
+    <!-- /fonts -->
+  </body>
+
+</html>
