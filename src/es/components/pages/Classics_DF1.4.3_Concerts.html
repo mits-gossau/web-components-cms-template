@@ -145,7 +145,7 @@
           </ul>
         </m-navigation>
 
-        <div style="height:1110px"></div>"
+        <div style="height:1110px"></div>
 
         <!-- <a-picture img-width="1045" img-height="987" img-filter="true" landing-animation="false" custom-width-%="70"
           custom-mobile-width-%="90" picture-load namespace=picture- defaultSource="../../../img/header-imgs/1.png"
@@ -222,12 +222,9 @@
               display: flex;
               flex-direction: column;
               justify-content: center;
-              align-items: center;
-            }
-            .grid-item:first-child {
               align-items: flex-start;
             }
-            .grid-item:last-child {
+            .grid-item:last-child:has(a-picture) {
               align-items: flex-end;
             }
             .grid-container > .grid-item p, 
@@ -253,6 +250,8 @@
               }
             }
           </style>
+
+          <!-- 1. concert section -->
           <div class="grid-container">
             <div class="grid-item">
               <p>
@@ -282,7 +281,106 @@
                   }
                 </style>
               </a-picture>
-            </div>  
+            </div>
+          </div>
+
+          <!-- 2. concert section -->
+          <div class="grid-container">
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. concert section -->
+          <div class="grid-container">
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>
+          </div>
+          
+          <!-- 4. concert section -->
+          <div class="grid-container">
+            <div class="grid-item">
+              <a-picture namespace="picture-" defaultSource="../../../img/demo_concert.jpg" alt="Joana Mallwitz"
+                loading="lazy">
+                <style>
+                  :host {
+                    --picture-width: auto !important;
+                    --picture-img-width: 536px !important;
+                    --picture-img-height: 545px !important;
+                    --picture-img-object-fit: cover !important;
+                  }
+                </style>
+              </a-picture>
+            </div>
+            <div class="grid-item">
+              <p>
+                TONHALLE ZÜRICH · 17. OKTOBER 2026<br />
+                CASINO BERN · 29. OKTOBER 2026<br />
+                VICTORIA HALL GENF · 30. OKTOBER 2026
+              </p>
+              <h3>THE EXPLOSIVE VIOLINIST</h3>
+              <h4>
+                MUSIK VON BACH ÜBER KLEZMER<br />
+                BIS HIN ZU LED ZEPPELIN
+              </h4>
+              <p>
+                THE MALIKIAN ORCHESTRA<br />
+                ARA MALIKIAN · VIOLONE
+              </p>
+            </div>
           </div>
           
 
