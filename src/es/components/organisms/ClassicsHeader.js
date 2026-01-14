@@ -205,10 +205,6 @@ export default class ClassicsHeader extends Shadow() {
         display: none;
         --a-menu-icon-background-color: var(--color, #777);
       }
-      :host > header > a-picture {
-        position:absolute;
-        top: 0;
-      }
       /* sticky header classes */
       :host([sticky]) {
         position: sticky;
