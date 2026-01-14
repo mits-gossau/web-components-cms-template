@@ -318,6 +318,9 @@ html {
   --header-title-secondary-color-text-transform: lowercase;
   --header-title-transition: color 0.8s ease;
   --header-transition: background-color 0.3s ease;
+  --header-img-width: 100vw;
+  --header-img-max-width: 100vw;
+  --header-img-max-height: auto;
   --highlight-list-border-bottom: none;
   --highlight-list-border-top: none;
   --highlight-list-content-spacing: 40px 0;
