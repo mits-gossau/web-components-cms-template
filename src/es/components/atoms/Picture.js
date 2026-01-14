@@ -160,6 +160,7 @@ export default class Picture extends Shadow() {
       }
       :host picture img {
         aspect-ratio: ${this.imgAspectRatio ? `${this.imgAspectRatio};` : `var(--aspect-ratio, attr(width, auto) / attr(height, auto));`};
+        object-fit: var(--img-object-fit, contain);
         display: var(--img-display, block);
         border-radius:var(--border-radius, 0);
         width: ${this.imgWidth ? `${this.imgWidth}px;` : ` var(--img-width, max-content);`};
