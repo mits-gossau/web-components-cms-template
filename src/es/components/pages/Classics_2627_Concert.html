@@ -200,6 +200,26 @@
             :host {
               --picture-width: 1106px;
               --content-width: 100%;
+
+              .accessibility-info {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                margin-top:1em;
+              }
+              .accessibility-info img {
+                width: 40px;
+                height: auto;
+                margin: 0 10px;
+              }
+              .accessibility-info a {
+                display: contents;
+                text-decoration: none;
+              }
+              .accessibility-info.hide {
+                display:none;
+              }
             }
           </style>
 
@@ -211,6 +231,14 @@
             <div style="text-align:center; padding-bottom:2em;">
               <h4>TONHALLE ZÜRICH · 17. OKTOBER 2026</h4>
               <a href="spielplan.html" style="color:#cc2f89;">TICKETS</a>
+              <div class="accessibility-info">
+                <a href="https://www.migros-kulturprozent-classics.ch/de/accessibility-information">
+                  <img src="../../../img/accessibility_icons/placeholder1.png" /> 
+                </a>
+                <a href="https://www.migros-kulturprozent-classics.ch/de/accessibility-information">
+                  <img src="../../../img/accessibility_icons/placeholder2.png" />
+                </a>
+              </div>
             </div>
 
 

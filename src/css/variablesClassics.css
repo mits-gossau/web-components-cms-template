@@ -82,6 +82,7 @@ html[is-concert=true] {
   --h1-color:#70665c;
   --h2-color:#000000;
   --h3-color:#000000;
+  --h4-color:#000000;
 }
 
 html {
@@ -496,20 +497,3 @@ html {
   -webkit-font-smoothing: antialiased;
 
 }
-
-
-
-
-/* @media only screen and (min-width: 1000px){
-  html {
-    --content-width-not-web-component: 50%;
-  }
-}
-
-@media only screen and (min-width: 1350px){
-  html {
-    --content-width-not-web-component: 40%;
-  }
-} */
-
-
